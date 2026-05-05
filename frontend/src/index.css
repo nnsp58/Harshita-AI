@@ -1,0 +1,314 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* Custom theme extensions for Tailwind v4 */
+@theme {
+  /* Colors */
+  --color-maroon-50: #fdf2f8;
+  --color-maroon-100: #fce7f3;
+  --color-maroon-200: #fbcfe8;
+  --color-maroon-300: #f9a8d4;
+  --color-maroon-400: #f472b6;
+  --color-maroon-500: #ec4899;
+  --color-maroon-600: #db2777;
+  --color-maroon-700: #be185d;
+  --color-maroon-800: #9d174d;
+  --color-maroon-900: #831843;
+
+  --color-gold-50: #fffbeb;
+  --color-gold-100: #fef3c7;
+  --color-gold-200: #fde68a;
+  --color-gold-300: #fcd34d;
+  --color-gold-400: #fbbf24;
+  --color-gold-500: #f59e0b;
+  --color-gold-600: #d97706;
+  --color-gold-700: #b45309;
+  --color-gold-800: #92400e;
+  --color-gold-900: #78350f;
+
+  --color-navy-50: #f0f9ff;
+  --color-navy-100: #e0f2fe;
+  --color-navy-200: #bae6fd;
+  --color-navy-300: #7dd3fc;
+  --color-navy-400: #38bdf8;
+  --color-navy-500: #0ea5e9;
+  --color-navy-600: #0284c7;
+  --color-navy-700: #0369a1;
+  --color-navy-800: #075985;
+  --color-navy-900: #0c4a6e;
+
+  /* Fonts */
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-heading: 'Poppins', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* Base styles */
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f9a8d4;
+  border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #be185d;
+}
+
+/* Component classes */
+.card {
+  background: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s;
+}
+
+.dark .card {
+  background: #020617;
+  border-color: #1e293b;
+}
+
+.card-hover:hover {
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  transform: translateY(-0.5rem);
+  border-color: #ec4899;
+  background-color: #fff1f2;
+}
+
+.dark .card-hover:hover {
+  background-color: #1e1b4b;
+  border-color: #db2777;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn:focus {
+  outline: none;
+  ring: 2px;
+  ring-offset: 2px;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: linear-gradient(to right, #db2777, #9d174d);
+  color: white;
+  box-shadow: 0 4px 6px -1px rgba(219, 39, 119, 0.2);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(to right, #be185d, #831843);
+  box-shadow: 0 10px 15px -3px rgba(219, 39, 119, 0.3);
+}
+
+.btn-primary:focus {
+  --tw-ring-color: #ec4899;
+}
+
+.btn-secondary {
+  background: linear-gradient(to right, #fbbf24, #f59e0b);
+  color: #111827;
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(to right, #fcd34d, #d97706);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: #374151;
+}
+
+.btn-ghost:hover {
+  background: #f3f4f6;
+}
+
+.dark .btn-ghost {
+  color: #d1d5db;
+}
+
+.dark .btn-ghost:hover {
+  background: #1e293b;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem 0.625rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.badge-success {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.dark .badge-success {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+}
+
+.badge-warning {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.dark .badge-warning {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+}
+
+.badge-error {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.dark .badge-error {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+}
+
+.badge-info {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.dark .badge-info {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+}
+
+.input {
+  width: 100%;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  background: white;
+  color: #111827;
+}
+
+.dark .input {
+  background: #0f172a;
+  border-color: #334155;
+  color: #f1f5f9;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #ec4899;
+  box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
+}
+
+/* Foolproof fix for overlapping icons and text in inputs */
+.pl-10, 
+[class*="pl-10"] {
+  padding-left: 2.5rem !important;
+}
+
+.pr-10,
+[class*="pr-10"] {
+  padding-right: 2.5rem !important;
+}
+
+.input, 
+input[type="text"], 
+input[type="password"], 
+input[type="email"], 
+input[type="search"] {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+/* Ensure padding utility wins over base styles */
+.input.pl-10, 
+input.pl-10 {
+  padding-left: 2.5rem !important;
+}
+
+.label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.25rem;
+}
+
+.dark .label {
+  color: #d1d5db;
+}
+
+.skeleton {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  background: #e5e7eb;
+  border-radius: 0.25rem;
+}
+
+.dark .skeleton {
+  background: #334155;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Rawan glow animation */
+@keyframes ravan-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 16px rgba(251, 191, 36, 0.8));
+  }
+}
+
+.glow-active {
+  animation: ravan-glow 2s ease-in-out infinite;
+}
+
+.animate-delay-100 { animation-delay: 100ms; }
+.animate-delay-200 { animation-delay: 200ms; }
+.animate-delay-300 { animation-delay: 300ms; }
+.animate-delay-400 { animation-delay: 400ms; }
+.animate-delay-500 { animation-delay: 500ms; }

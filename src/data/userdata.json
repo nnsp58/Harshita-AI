@@ -1,0 +1,54 @@
+{
+  "personal": {
+    "fullName": "Nar Narayan Singh",
+    "firstName": "Nar",
+    "middleName": "Narayan",
+    "lastName": "Singh",
+    "fatherName": "Meer Singh",
+    "motherName": "Jatan Kaur Devi",
+    "gender": "male",
+    "dob": "2000-01-01",
+    "maritalStatus": "single",
+    "nationality": "Indian",
+    "category": "General"
+  },
+  "contact": {
+    "email": "narayan@gmail.com",
+    "phone": "9876543210",
+    "alternatePhone": "9123456780"
+  },
+  "address": {
+    "line1": "Village XYZ",
+    "line2": "Post ABC",
+    "city": "Lucknow",
+    "district": "Lucknow",
+    "state": "Uttar Pradesh",
+    "pincode": "226001",
+    "country": "India"
+  },
+  "documents": {
+    "aadhaar": "123456789012",
+    "pan": "ABCDE1234F",
+    "voterId": "XYZ1234567"
+  },
+  "education": {
+    "qualification": "Graduate",
+    "board": "UP Board",
+    "year": "2022",
+    "percentage": "65"
+  },
+  "employment": {
+    "status": "unemployed",
+    "experience": "0",
+    "skills": ["Computer Basic", "Typing"]
+  },
+  "files": {
+    "photo": "./uploads/photo.jpg",
+    "signature": "./uploads/signature.png",
+    "documents": "./uploads/docs.pdf"
+  },
+  "preferences": {
+    "language": "Hindi",
+    "examCenter": "Lucknow"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "name": "CSC Task Complete Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "csc-task-complete",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-node",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.intent }}",
+              "operation": "equals",
+              "value2": "document"
+            }
+          ]
+        }
+      },
+      "id": "if-node",
+      "name": "If Document Task",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "to": "admin@csc.com",
+        "subject": "CSC Task Completed: {{ $json.intent }}",
+        "text": "Task for user {{ $json.userId }} completed successfully.\n\nResult: {{ $json.result.message }}"
+      },
+      "id": "email-node",
+      "name": "Send Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [680, 200]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "If Document Task",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Document Task": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "staticData": null
+}

@@ -1,0 +1,302 @@
+// prisma/schema.prisma - Database Schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  superadmin
+  csc_admin
+  operator
+}
+
+enum Gender {
+  male
+  female
+  other
+}
+
+enum Category {
+  general
+  obc
+  sc
+  st
+  other
+}
+
+enum JobStatus {
+  pending
+  queued
+  running
+  completed
+  failed
+  cancelled
+}
+
+enum ServiceType {
+  ssc
+  army
+  railway
+  banking
+  police
+  defence
+  postal
+  apprenticeship
+  stateSsc
+  aadhaar_update
+  pan_card
+  passport
+  ration_card
+  land_record
+  Scholarship
+  pension
+  driving_license
+  voter_id
+  birth_certificate
+  income_certificate
+  caste_certificate
+  other
+}
+
+enum OtpStatus {
+  pending
+  sent
+  verified
+  expired
+  failed
+}
+
+enum SubscriptionPlan {
+  free
+  basic
+  standard
+  pro
+}
+
+enum VerificationStatus {
+  draft
+  needs_review
+  verified
+  rejected
+}
+
+model CSC {
+  id            String    @id @default(uuid())
+  name          String
+  address       String
+  contact_email String    @map("contact_email")
+  contact_phone String    @map("contact_phone")
+  vle_id        String?   @map("vle_id") // CSC VLE ID
+  plan          SubscriptionPlan @default(free)
+  is_active     Boolean   @default(true) @map("is_active")
+  expires_at    DateTime? @map("expires_at")
+  created_at    DateTime  @default(now()) @map("created_at")
+  updated_at    DateTime  @updatedAt @map("updated_at")
+
+  users         User[]
+  candidates    Candidate[]
+  jobs          Job[]
+  documents     Document[]
+  otps          Otp[]
+  reviews       Review[]
+
+  @@map("cscs")
+}
+
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  password_hash String    @map("password_hash")
+  name          String
+  role          UserRole  @default(operator)
+  is_active     Boolean   @default(true) @map("is_active")
+  created_at    DateTime  @default(now()) @map("created_at")
+  updated_at    DateTime  @updatedAt @map("updated_at")
+
+  csc_id        String    @map("csc_id")
+  csc           CSC       @relation(fields: [csc_id], references: [id], onDelete: Cascade)
+
+  candidates    Candidate[]
+  jobs          Job[]
+  reviews       Review[]
+  documents     Document[]
+
+  @@index([csc_id])
+  @@map("users")
+}
+
+model Candidate {
+  id            String    @id @default(uuid())
+  name          String
+  father_name   String    @map("father_name")
+  mother_name   String?   @map("mother_name")
+  dob           DateTime
+  gender        Gender
+  aadhaar_number String   @unique @map("aadhaar_number")
+  mobile        String
+  email         String?
+  village       String
+  tehsil        String
+  district      String
+  state         String
+  pincode       String
+  category      Category?
+  occupation    String?
+  annual_income Decimal?  @map("annual_income")
+  verification_status VerificationStatus @default(needs_review) @map("verification_status")
+  verified_at   DateTime? @map("verified_at")
+  verified_by   String?   @map("verified_by")
+  extracted_data Json?    @map("extracted_data")
+  verified_profile Json?  @map("verified_profile")
+  corrections    Json?    @map("corrections")
+
+  csc_id        String    @map("csc_id")
+  csc           CSC       @relation(fields: [csc_id], references: [id], onDelete: Cascade)
+
+  user_id       String    @map("user_id")
+  user          User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  created_at    DateTime  @default(now()) @map("created_at")
+  updated_at    DateTime  @updatedAt @map("updated_at")
+
+  jobs          Job[]
+  documents     Document[]
+  reviews       Review[]
+
+  @@index([csc_id])
+  @@index([user_id])
+  @@index([aadhaar_number])
+  @@map("candidates")
+}
+
+model Job {
+  id            String    @id @default(uuid())
+  service_type  ServiceType @map("service_type")
+  form_url      String    @map("form_url")
+  status        JobStatus @default(pending)
+  priority      Int       @default(0)
+  notes         String?
+
+  csc_id        String    @map("csc_id")
+  csc           CSC       @relation(fields: [csc_id], references: [id], onDelete: Cascade)
+
+  candidate_id  String    @map("candidate_id")
+  candidate     Candidate @relation(fields: [candidate_id], references: [id], onDelete: Cascade)
+
+  user_id       String    @map("user_id")
+  user          User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  started_at    DateTime? @map("started_at")
+  completed_at  DateTime? @map("completed_at")
+  error_message String?   @map("error_message")
+
+  created_at    DateTime  @default(now()) @map("created_at")
+  updated_at    DateTime  @updatedAt @map("updated_at")
+
+  otps          Otp[]
+  reviews       Review[]
+  documents     Document[]
+
+  @@index([csc_id])
+  @@index([user_id])
+  @@index([candidate_id])
+  @@index([status])
+  @@map("jobs")
+}
+
+model Document {
+  id            String    @id @default(uuid())
+  filename      String
+  original_name String    @map("original_name")
+  mime_type     String    @map("mime_type")
+  size          Int
+  path          String
+  document_type String    @map("document_type")
+
+  csc_id        String    @map("csc_id")
+  csc           CSC       @relation(fields: [csc_id], references: [id], onDelete: Cascade)
+
+  candidate_id  String?   @map("candidate_id")
+  candidate     Candidate? @relation(fields: [candidate_id], references: [id], onDelete: SetNull)
+
+  job_id        String?   @map("job_id")
+  job           Job?      @relation(fields: [job_id], references: [id], onDelete: SetNull)
+
+  user_id       String    @map("user_id")
+  user          User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  ocr_data      Json?     @map("ocr_data")
+  ai_parsed     Json?     @map("ai_parsed")
+
+  created_at    DateTime  @default(now()) @map("created_at")
+  updated_at    DateTime  @updatedAt @map("updated_at")
+
+  @@index([csc_id])
+  @@index([candidate_id])
+  @@index([job_id])
+  @@map("documents")
+}
+
+model Otp {
+  id            String    @id @default(uuid())
+  phone_number  String    @map("phone_number")
+  otp_code      String?   @map("otp_code")
+  status        OtpStatus @default(pending)
+  attempts      Int       @default(0)
+  expires_at    DateTime  @map("expires_at")
+
+  csc_id        String    @map("csc_id")
+  csc           CSC       @relation(fields: [csc_id], references: [id], onDelete: Cascade)
+
+  job_id        String    @map("job_id")
+  job           Job       @relation(fields: [job_id], references: [id], onDelete: Cascade)
+
+  created_at    DateTime  @default(now()) @map("created_at")
+  updated_at    DateTime  @updatedAt @map("updated_at")
+
+  @@index([csc_id])
+  @@index([job_id])
+  @@map("otps")
+}
+
+model Review {
+  id String @id @default(uuid())
+  job_id String @map("job_id")
+  job Job @relation(fields: [job_id], references: [id], onDelete: Cascade)
+
+  candidate_id String @map("candidate_id")
+  candidate Candidate @relation(fields: [candidate_id], references: [id], onDelete: Cascade)
+
+  user_id String @map("user_id")
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  csc_id String @map("csc_id")
+  csc CSC @relation(fields: [csc_id], references: [id], onDelete: Cascade)
+
+  field_name String @map("field_name")
+  field_value String @map("field_value")
+  review_status String @default("pending")
+
+  created_at DateTime @default(now()) @map("created_at")
+
+  @@index([csc_id])
+  @@index([job_id])
+  @@index([user_id])
+  @@map("reviews")
+}
+
+model RefreshToken {
+  id            String    @id @default(uuid())
+  token         String    @unique
+  user_id       String    @map("user_id")
+  expires_at    DateTime  @map("expires_at")
+  created_at    DateTime  @default(now()) @map("created_at")
+
+  @@index([user_id])
+  @@map("refresh_tokens")
+}

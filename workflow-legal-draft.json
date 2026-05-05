@@ -1,0 +1,73 @@
+{
+  "name": "Legal Draft Completion Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "legal-draft-complete",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-node",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "fileName": "legal_draft_{{ $json.userId }}.pdf",
+        "dataPropertyName": "result.data.draftContent"
+      },
+      "id": "pdf-node",
+      "name": "Generate PDF",
+      "type": "n8n-nodes-base.pdf",
+      "typeVersion": 1,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "to": "admin@csc.com",
+        "subject": "Legal Draft Completed for User {{ $json.userId }}",
+        "text": "Draft ready: {{ $json.result.message }}",
+        "attachments": [
+          {
+            "fileName": "={{ $node[\"Generate PDF\"].json[\"fileName\"] }}",
+            "data": "={{ $node[\"Generate PDF\"].binary[\"data\"] }}"
+          }
+        ]
+      },
+      "id": "email-node",
+      "name": "Send Email with PDF",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [680, 300]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Generate PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate PDF": {
+      "main": [
+        [
+          {
+            "node": "Send Email with PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "staticData": null
+}

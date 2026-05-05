@@ -1,0 +1,35 @@
+{
+  "project": "CSC VLE AI Ravan System",
+  "tech_stack": [
+    "Node.js",
+    "Playwright",
+    "BullMQ",
+    "Redis",
+    "GPT",
+    "Gemini",
+    "Claude",
+    "n8n"
+  ],
+  "agents": [
+    "Chat Agent",
+    "Main Orchestrator",
+    "Task Queue",
+    "Automation Agent",
+    "Document Processor",
+    "Network Monitor",
+    "OTP Handler",
+    "Result Generator"
+  ],
+  "features": [
+    "Parallel execution",
+    "Network aware pause/resume",
+    "OCR document extraction",
+    "Config-driven automation"
+  ],
+  "workflow": "Chat \u2192 AI \u2192 Queue \u2192 Browser Automation \u2192 Result",
+  "target_users": "CSC VLE",
+  "limitations": [
+    "CAPTCHA manual",
+    "OTP manual"
+  ]
+}

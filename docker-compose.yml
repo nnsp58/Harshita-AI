@@ -1,0 +1,64 @@
+# CSC Automation System - Full Stack
+# Includes API server, PostgreSQL, Redis
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: csc-postgres
+    environment:
+      POSTGRES_USER: csc_user
+      POSTGRES_PASSWORD: csc_pass
+      POSTGRES_DB: csc_automation
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U csc_user"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: csc-redis
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+
+  app:
+    build: .
+    container_name: csc-api
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      DATABASE_URL: postgresql://csc_user:csc_pass@postgres:5432/csc_automation
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      GROQ_API_KEY: ${GROQ_API_KEY}
+      JWT_SECRET: ${JWT_SECRET}
+      CORS_ORIGIN: "*"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./uploads:/app/uploads
+      - ./screenshots:/app/screenshots
+      - ./output:/app/output
+      - ./prisma:/app/prisma
+    command: >
+      sh -c "
+        npx prisma generate &&
+        npx prisma db push &&
+        node src/api/server.js
+      "
+
+volumes:
+  postgres_data:
+  redis_data:

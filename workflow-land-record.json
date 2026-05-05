@@ -1,0 +1,75 @@
+{
+  "name": "Land Record Search Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "land-record-complete",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-node",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "table": "land_records",
+        "columns": {
+          "user_id": "={{ $json.userId }}",
+          "district": "={{ $json.result.data.district }}",
+          "village": "={{ $json.result.data.village }}",
+          "khasra": "={{ $json.result.data.khasra }}",
+          "status": "completed",
+          "created_at": "={{ new Date() }}"
+        }
+      },
+      "id": "db-node",
+      "name": "Save to Database",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 1,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "to": "{{ $json.result.data.email }}",
+        "subject": "Land Record Search Results",
+        "text": "{{ $json.result.message }}\n\nDetails: District - {{ $json.result.data.district }}, Village - {{ $json.result.data.village }}"
+      },
+      "id": "email-node",
+      "name": "Send Results Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [680, 300]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Save to Database",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save to Database": {
+      "main": [
+        [
+          {
+            "node": "Send Results Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "staticData": null
+}

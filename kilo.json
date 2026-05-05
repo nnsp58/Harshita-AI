@@ -1,0 +1,115 @@
+{
+  "name": "n-dizi CSC Automation System",
+  "version": "1.0.0",
+  "description": "Multi-agent CSC automation system with subscription-based access",
+  "masterAgent": {
+    "enabled": true,
+    "port": 3000,
+    "sessionTimeout": 3600000
+  },
+  "subscription": {
+    "plans": {
+      "basic": {
+        "name": "BASIC",
+        "price": 299,
+        "duration": "monthly",
+        "discount": 0,
+        "allowedAgents": ["document", "validator", "notifier", "fileProcessor", "browser"],
+        "maxTasksPerDay": 10,
+        "prioritySupport": false
+      },
+      "standard": {
+        "name": "STANDARD",
+        "price": 699,
+        "duration": "monthly",
+        "discount": 0,
+        "allowedAgents": ["document", "validator", "notifier", "fileProcessor", "browser", "land", "ration", "cscLogin"],
+        "maxTasksPerDay": 50,
+        "prioritySupport": true
+      },
+      "pro": {
+        "name": "PRO",
+        "price": 1299,
+        "duration": "monthly",
+        "discount": 0,
+        "allowedAgents": ["document", "validator", "notifier", "fileProcessor", "browser", "land", "ration", "ticket", "cscLogin", "legal"],
+        "maxTasksPerDay": -1,
+        "prioritySupport": true
+      }
+    },
+    "durationDiscounts": {
+      "monthly": 0,
+      "quarterly": 0.1,
+      "halfYearly": 0.2,
+      "yearly": 0.3,
+      "twoYearly": 0.4,
+      "fourYearly": 0.5
+    }
+  },
+  "agents": {
+    "land": {
+      "name": "LandRecordAgent",
+      "description": "Land records and bhulekh services",
+      "requiresLogin": false,
+      "supportedStates": ["uttar_pradesh", "bihar", "rajasthan", "madhya_pradesh"]
+    },
+    "ration": {
+      "name": "RationCardAgent",
+      "description": "Ration card services",
+      "requiresLogin": false,
+      "supportedStates": ["uttar_pradesh", "delhi", "maharashtra"]
+    },
+    "ticket": {
+      "name": "TicketBookingAgent",
+      "description": "Railway ticket booking",
+      "requiresLogin": true,
+      "requiresPayment": true
+    },
+    "cscLogin": {
+      "name": "CSCLoginAgent",
+      "description": "CSC portal and eDistrict login",
+      "requiresLogin": true,
+      "supportsAutoLogin": true
+    },
+    "legal": {
+      "name": "LegalDraftAgent",
+      "description": "Legal document drafting (affidavit, sapath)",
+      "requiresLogin": false,
+      "documentTypes": ["affidavit", "sapath", "declaration"]
+    },
+    "document": {
+      "name": "DocumentAIAgent",
+      "description": "Document extraction and processing"
+    },
+    "validator": {
+      "name": "ValidatorAgent",
+      "description": "Data validation"
+    },
+    "notifier": {
+      "name": "NotifierAgent",
+      "description": "Notifications and alerts"
+    },
+    "fileProcessor": {
+      "name": "FileProcessorAgent",
+      "description": "File processing and optimization"
+    },
+    "browser": {
+      "name": "BrowserAgent",
+      "description": "Browser automation and form filling"
+    }
+  },
+  "intentMapping": {
+    "land": ["land", "bhulekh", "land record", "land records", "apka khata", "khatauni", "map", "land map"],
+    "ration": ["ration", "ration card", "food card", "ration new", "ration status"],
+    "ticket": ["ticket", "book ticket", "railway", "train", "irctc", "reservation", "ticket book"],
+    "cscLogin": ["login", "csc", "edistrict", "csc portal", "login help"],
+    "legal": ["legal", "affidavit", "sapath", "sworn statement", "declaration", "draft"],
+    "document": ["document", "pdf", "extract", "scan", "read document"],
+    "file": ["file", "process file", "compress", "resize"]
+  },
+  "ui": {
+    "welcomeMessage": " Welcome to n-dizi CSC Automation System",
+    "prompt": "You: ",
+    "help": "Type 'help' for commands, 'plan' for subscription info, 'status' for your account"
+  }
+}

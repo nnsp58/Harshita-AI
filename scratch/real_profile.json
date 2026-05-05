@@ -1,0 +1,31 @@
+{
+  "personal": {
+    "fullName": "",
+    "fatherName": "",
+    "motherName": "",
+    "gender": "",
+    "dob": "",
+    "category": "",
+    "aadhaarNumber": "",
+    "panNumber": ""
+  },
+  "contact": {
+    "email": "",
+    "phone": ""
+  },
+  "address": {
+    "line1": "",
+    "city": "",
+    "state": "",
+    "pincode": ""
+  },
+  "documents": {},
+  "education": {
+    "level": "",
+    "boardOrUniversity": "",
+    "passingYear": "",
+    "percentageOrCGPA": "26/100",
+    "rollNumber": ""
+  },
+  "employment": {}
+}

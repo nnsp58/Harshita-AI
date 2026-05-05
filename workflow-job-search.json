@@ -1,0 +1,44 @@
+{
+  "name": "Job Search Results Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "job-search-complete",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-node",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "to": "{{ $json.result.data.phone }}",
+        "message": "नौकरी खोज परिणाम: {{ $json.result.message }}\n\nविवरण: {{ $json.result.data.jobs }}"
+      },
+      "id": "whatsapp-node",
+      "name": "Send WhatsApp",
+      "type": "n8n-nodes-base.whatsapp",
+      "typeVersion": 1,
+      "position": [460, 300]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Send WhatsApp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "staticData": null
+}

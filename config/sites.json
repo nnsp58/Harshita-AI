@@ -1,0 +1,347 @@
+{
+  "sites": [
+    {
+      "id": "ssc",
+      "name": "SSC CGL/CHSL",
+      "baseUrl": "https://ssc.gov.in",
+      "formUrl": "https://ssc.gov.in/registration",
+      "fieldSelectors": {
+        "fullName": "xpath=//label[contains(text(),'2. Candidate Name')]/following::input[1]",
+        "fatherName": "xpath=//label[contains(text(),\"6. Father's Name\")]/following::input[1]",
+        "motherName": "xpath=//label[contains(text(),\"7. Mother's Name\")]/following::input[1]",
+        "dob": "input[formControlName='dob']",
+        "gender": "xpath=//label[contains(text(),'4. Gender')]/following::div[contains(@class,'Select')]",
+        "email": "xpath=//label[contains(text(),\"13. Candidate's Email ID\")]/following::input[1]",
+        "phone": "xpath=//label[contains(text(),\"12. Candidate's Mobile Number\")]/following::input[1]",
+        "aadhaar": "input[placeholder*='e.g. 526262627262']",
+        "state": "xpath=//label[contains(text(),'State/UT')]/following::mat-select[1]",
+        "district": "xpath=//label[contains(text(),'District')]/following::mat-select[1]",
+        "pincode": "xpath=//label[contains(text(),'Pin Code')]/following::input[1]"
+      },
+      "requiredDocuments": ["photo", "signature", "aadhaar", "pan", "categoryCertificate", "incomeCertificate"],
+      "hasCaptcha": true,
+      "hasOtp": true,
+      "delayConfig": {
+        "minDelay": 1500,
+        "maxDelay": 3500
+      },
+      "userAgentRotation": true,
+      "submitSelector": "button[type='submit'], input[type='submit'], button:has-text('Submit'), button:has-text('Register')",
+      "successIndicator": {
+        "selector": ".success-message, .alert-success, #successMessage",
+        "text": ["submitted successfully", "registration successful", "application received", "success"]
+      },
+      "customScript": null
+    },
+    {
+      "id": "army",
+      "name": "Indian Army Recruitment",
+      "baseUrl": "https://joinindianarmy.nic.in",
+      "formUrl": "https://joinindianarmy.nic.in/registration",
+      "fieldSelectors": {
+        "fullName": "input[name='candidateName'], input[id='candidateName']",
+        "firstName": "input[name='firstName'], input[id='firstName']",
+        "lastName": "input[name='lastName'], input[id='lastName']",
+        "fatherName": "input[name='fatherName'], input[id='fatherName']",
+        "motherName": "input[name='motherName'], input[id='motherName']",
+        "dob": "input[name='dateOfBirth'], input[id='dateOfBirth'], input[name='dob']",
+        "gender": "select[name='gender']",
+        "category": "select[name='category']",
+        "maritalStatus": "select[name='maritalStatus']",
+        "email": "input[name='emailId'], input[id='email']",
+        "phone": "input[name='mobileNo'], input[name='phoneNo']",
+        "aadhaar": "input[name='aadhaarNo'], input[id='aadhaar']",
+        "addressLine1": "input[name='permanentAddress'], textarea[name='address']",
+        "city": "input[name='city'], select[name='city']",
+        "district": "input[name='district'], select[name='district']",
+        "state": "select[name='state'], input[name='state']",
+        "pincode": "input[name='pincode'], input[name='pinCode']"
+      },
+      "requiredDocuments": ["photo", "signature", "aadhaar", "domicile", "educationCertificate"],
+      "hasCaptcha": true,
+      "hasOtp": true,
+      "delayConfig": {
+        "minDelay": 2000,
+        "maxDelay": 4000
+      },
+      "userAgentRotation": true,
+      "submitSelector": "button#submit, button:has-text('Submit Application')",
+      "successIndicator": {
+        "selector": ".message-success, #successMsg",
+        "text": ["application submitted", "registration successful"]
+      },
+      "customScript": null
+    },
+    {
+      "id": "railway",
+      "name": "Railway Recruitment (RRB)",
+      "baseUrl": "https://www.rrbcdg.gov.in",
+      "formUrl": "https://www.rrbcdg.gov.in/online",
+      "fieldSelectors": {
+        "fullName": "input[name='candidateName'], input[id='candName']",
+        "firstName": "input[name='firstName']",
+        "lastName": "input[name='lastName']",
+        "fatherName": "input[name='fatherName']",
+        "dob": "input[name='dob'], input[name='dateOfBirth']",
+        "gender": "select[name='gender']",
+        "category": "select[name='community']",
+        "email": "input[name='emailId'], input[name='email']",
+        "phone": "input[name='mobileNo'], input[name='mobile']",
+        "aadhaar": "input[name='aadhaarNo']",
+        "pincode": "input[name='pinCode']"
+      },
+      "requiredDocuments": ["photo", "signature", "aadhaar", "categoryCertificate"],
+      "hasCaptcha": true,
+      "hasOtp": true,
+      "delayConfig": {
+        "minDelay": 1500,
+        "maxDelay": 3000
+      },
+      "userAgentRotation": true,
+      "submitSelector": "button[type='submit']",
+      "successIndicator": {
+        "selector": ".success-box",
+        "text": ["submitted successfully"]
+      },
+      "customScript": null
+    },
+    {
+      "id": "banking",
+      "name": "Banking Recruitment (IBPS/SBI)",
+      "baseUrl": "https://www.ibps.in",
+      "formUrl": "https://www.ibps.in/online-form",
+      "fieldSelectors": {
+        "fullName": "input[name='candidateName'], input[id='txtName']",
+        "firstName": "input[name='firstName'], input[id='txtFirstName']",
+        "lastName": "input[name='lastName'], input[id='txtLastName']",
+        "fatherName": "input[name='fatherName'], input[id='txtFatherName']",
+        "dob": "input[name='dob'], input[id='txtDob']",
+        "gender": "select[name='gender'], input[name='gender']",
+        "category": "select[name='category'], select[name='caste']",
+        "email": "input[name='emailId'], input[id='txtEmail']",
+        "phone": "input[name='mobileNo'], input[id='txtMobile']",
+        "aadhaar": "input[name='aadhaarNo']",
+        "pan": "input[name='panNo']",
+        "addressLine1": "input[name='address'], textarea[name='address']",
+        "city": "input[name='city'], select[name='city']",
+        "state": "select[name='state']",
+        "pincode": "input[name='pincode']"
+      },
+      "requiredDocuments": ["photo", "signature", "aadhaar", "pan", "categoryCertificate", "degreeCertificate"],
+      "hasCaptcha": true,
+      "hasOtp": true,
+      "delayConfig": {
+        "minDelay": 1800,
+        "maxDelay": 3500
+      },
+      "userAgentRotation": true,
+      "submitSelector": "button#btnSubmit, input[type='submit']",
+      "successIndicator": {
+        "selector": ".success-message",
+        "text": ["application submitted", "registration successful"]
+      },
+      "customScript": null
+    },
+    {
+      "id": "police",
+      "name": "Police Recruitment",
+      "baseUrl": "https://www.police.gov.in",
+      "formUrl": "https://www.police.gov.in/recruitment",
+      "fieldSelectors": {
+        "fullName": "input[name='candidateName']",
+        "fatherName": "input[name='fatherName']",
+        "dob": "input[name='dob']",
+        "gender": "select[name='gender']",
+        "category": "select[name='category']",
+        "email": "input[name='email']",
+        "phone": "input[name='phone']",
+        "aadhaar": "input[name='aadhaar']",
+        "addressLine1": "textarea[name='address']",
+        "city": "input[name='city']",
+        "district": "input[name='district']",
+        "state": "select[name='state']",
+        "pincode": "input[name='pincode']"
+      },
+      "requiredDocuments": ["photo", "signature", "aadhaar", "characterCertificate"],
+      "hasCaptcha": true,
+      "hasOtp": false,
+      "delayConfig": {
+        "minDelay": 1200,
+        "maxDelay": 2500
+      },
+      "userAgentRotation": false,
+      "submitSelector": "button[type='submit']",
+      "successIndicator": {
+        "selector": ".success",
+        "text": ["submitted"]
+      },
+      "customScript": null
+    },
+    {
+      "id": "defence",
+      "name": "Defence Recruitment (Navy/Air Force)",
+      "baseUrl": "https://joinindiannavy.gov.in",
+      "formUrl": "https://joinindiannavy.gov.in/careers",
+      "fieldSelectors": {
+        "fullName": "input[name='candidateName']",
+        "firstName": "input[name='firstName']",
+        "lastName": "input[name='lastName']",
+        "fatherName": "input[name='fatherName']",
+        "dob": "input[name='dob']",
+        "gender": "select[name='gender']",
+        "email": "input[name='email']",
+        "phone": "input[name='phone']"
+      },
+      "requiredDocuments": ["photo", "signature", "aadhaar"],
+      "hasCaptcha": true,
+      "hasOtp": true,
+      "delayConfig": {
+        "minDelay": 2000,
+        "maxDelay": 4000
+      },
+      "userAgentRotation": true,
+      "submitSelector": "button[type='submit']",
+      "successIndicator": {
+        "selector": ".success-message",
+        "text": ["submitted"]
+      },
+      "customScript": null
+    },
+    {
+      "id": "postal",
+      "name": "India Post Payments Bank",
+      "baseUrl": "https://www.ippbonline.com",
+      "formUrl": "https://www.ippbonline.com/apply",
+      "fieldSelectors": {
+        "fullName": "input[name='fullName']",
+        "dob": "input[name='dob']",
+        "gender": "select[name='gender']",
+        "email": "input[name='email']",
+        "phone": "input[name='mobile']",
+        "aadhaar": "input[name='aadhaar']",
+        "addressLine1": "textarea[name='address']",
+        "city": "input[name='city']",
+        "pincode": "input[name='pincode']"
+      },
+      "requiredDocuments": ["photo", "aadhaar", "pan"],
+      "hasCaptcha": true,
+      "hasOtp": true,
+      "delayConfig": {
+        "minDelay": 1500,
+        "maxDelay": 3000
+      },
+      "userAgentRotation": false,
+      "submitSelector": "button[type='submit']",
+      "successIndicator": {
+        "selector": ".success",
+        "text": ["success"]
+      },
+      "customScript": null
+    },
+    {
+      "id": "apprenticeship",
+      "name": "National Apprenticeship Portal",
+      "baseUrl": "https://www.apprenticeship.gov.in",
+      "formUrl": "https://www.apprenticeship.gov.in/candidate-registration",
+      "fieldSelectors": {
+        "fullName": "input[name='candidateName'], input[id='candidateName']",
+        "fatherName": "input[name='fatherName']",
+        "dob": "input[name='dob'], input[id='dob']",
+        "gender": "select[name='gender']",
+        "category": "select[name='category']",
+        "email": "input[name='email'], input[id='email']",
+        "phone": "input[name='mobile'], input[id='mobile']",
+        "aadhaar": "input[name='aadhaar']",
+        "addressLine1": "textarea[name='address']",
+        "city": "input[name='city']",
+        "district": "input[name='district']",
+        "state": "select[name='state']",
+        "pincode": "input[name='pincode']"
+      },
+      "requiredDocuments": ["aadhaar", "photo", "bankPassbook", "educationCertificate"],
+      "hasCaptcha": false,
+      "hasOtp": true,
+      "delayConfig": {
+        "minDelay": 1000,
+        "maxDelay": 2000
+      },
+      "userAgentRotation": false,
+      "submitSelector": "button[type='submit'], input[type='submit']",
+      "successIndicator": {
+        "selector": ".success-message, .alert-success",
+        "text": ["registered successfully", "registration successful"]
+      },
+      "customScript": null
+    },
+    {
+      "id": "stateSsc",
+      "name": "UPSSSC - State SSC",
+      "baseUrl": "https://upsssc.gov.in",
+      "formUrl": "https://upsssc.gov.in/online-application",
+      "fieldSelectors": {
+        "fullName": "input[name='candidateName']",
+        "fatherName": "input[name='fatherName']",
+        "dob": "input[name='dob']",
+        "gender": "select[name='gender']",
+        "category": "select[name='category']",
+        "email": "input[name='email']",
+        "phone": "input[name='mobile']",
+        "aadhaar": "input[name='aadhaar']",
+        "addressLine1": "textarea[name='address']",
+        "city": "input[name='city']",
+        "district": "input[name='district']",
+        "pincode": "input[name='pincode']"
+      },
+      "requiredDocuments": ["photo", "signature", "aadhaar", "domicile"],
+      "hasCaptcha": true,
+      "hasOtp": true,
+      "delayConfig": {
+        "minDelay": 1500,
+        "maxDelay": 3000
+      },
+      "userAgentRotation": true,
+      "submitSelector": "button[type='submit']",
+      "successIndicator": {
+        "selector": ".success",
+        "text": ["submitted"]
+      },
+      "customScript": null
+    },
+    {
+      "id": "ration",
+      "name": "Ration Card Application",
+      "baseUrl": "https://nfsa.gov.in",
+      "formUrl": "https://nfsa.gov.in/ration-card-application",
+      "fieldSelectors": {
+        "fullName": "input[name='headName'], input[id='headName']",
+        "fatherName": "input[name='fatherName']",
+        "husbandName": "input[name='husbandName']",
+        "dob": "input[name='dob']",
+        "gender": "select[name='gender']",
+        "category": "select[name='category']",
+        "email": "input[name='email']",
+        "phone": "input[name='mobile']",
+        "aadhaar": "input[name='aadhaar']",
+        "addressLine1": "input[name='address'], textarea[name='address']",
+        "city": "input[name='city']",
+        "district": "input[name='district']",
+        "state": "select[name='state']",
+        "pincode": "input[name='pincode']"
+      },
+      "requiredDocuments": ["aadhaar", "photo", "addressProof", "bankPassbook"],
+      "hasCaptcha": false,
+      "hasOtp": true,
+      "delayConfig": {
+        "minDelay": 1000,
+        "maxDelay": 2000
+      },
+      "userAgentRotation": false,
+      "submitSelector": "button[type='submit']",
+      "successIndicator": {
+        "selector": ".success-message",
+        "text": ["application submitted", "ration card applied"]
+      },
+      "customScript": null
+    }
+  ]
+}
