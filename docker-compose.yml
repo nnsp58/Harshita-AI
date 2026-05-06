@@ -1,64 +1,70 @@
-# CSC Automation System - Full Stack
-# Includes API server, PostgreSQL, Redis
+version: '3.8'
 
 services:
-  postgres:
-    image: postgres:16-alpine
-    container_name: csc-postgres
-    environment:
-      POSTGRES_USER: csc_user
-      POSTGRES_PASSWORD: csc_pass
-      POSTGRES_DB: csc_automation
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+  harshita-ai-brain:
+    build: .
+    container_name: harshita-ai-brain
+    restart: unless-stopped
     ports:
-      - "5432:5432"
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - DATABASE_URL=file:./data/prod.db
+      - CORS_ORIGIN=https://your-domain.com
+      - JWT_SECRET=${JWT_SECRET}
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - MISTRAL_API_KEY=${MISTRAL_API_KEY}
+    volumes:
+      - ./data:/app/data
+      - ./uploads:/app/uploads
+      - ./logs:/app/logs
+      - ./screenshots:/app/screenshots
+    depends_on:
+      - redis
+    networks:
+      - harshita-network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U csc_user"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
   redis:
     image: redis:7-alpine
-    container_name: csc-redis
+    container_name: harshita-redis
+    restart: unless-stopped
     ports:
       - "6379:6379"
-    command: redis-server --appendonly yes
     volumes:
       - redis_data:/data
+    networks:
+      - harshita-network
+    command: redis-server --appendonly yes
 
-  app:
-    build: .
-    container_name: csc-api
-    depends_on:
-      postgres:
-        condition: service_healthy
-      redis:
-        condition: service_started
-    environment:
-      NODE_ENV: production
-      PORT: 3000
-      DATABASE_URL: postgresql://csc_user:csc_pass@postgres:5432/csc_automation
-      REDIS_HOST: redis
-      REDIS_PORT: 6379
-      GROQ_API_KEY: ${GROQ_API_KEY}
-      JWT_SECRET: ${JWT_SECRET}
-      CORS_ORIGIN: "*"
+  nginx:
+    image: nginx:alpine
+    container_name: harshita-nginx
+    restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "80:80"
+      - "443:443"
     volumes:
-      - ./uploads:/app/uploads
-      - ./screenshots:/app/screenshots
-      - ./output:/app/output
-      - ./prisma:/app/prisma
-    command: >
-      sh -c "
-        npx prisma generate &&
-        npx prisma db push &&
-        node src/api/server.js
-      "
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+      - ./logs/nginx:/var/log/nginx
+    depends_on:
+      - harshita-ai-brain
+    networks:
+      - harshita-network
 
 volumes:
-  postgres_data:
   redis_data:
+    driver: local
+
+networks:
+  harshita-network:
+    driver: bridge
