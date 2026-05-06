@@ -1,0 +1,13 @@
+{
+  "model": "openrouter/free",
+  "env": {
+    "ANTHROPIC_BASE_URL": "https://openrouter.ai/api",
+    "ANTHROPIC_AUTH_TOKEN": "${OPENROUTER_API_KEY}",
+    "ANTHROPIC_MODEL": "openrouter/free",
+    "DISABLE_AUTOUPDATER": "1"
+  },
+  "terminal.integrated.commandsToSkipShell": [
+    "kilo-code.new.agentManagerOpen",
+    "kilo-code.new.agentManager.showTerminal"
+  ]
+}
