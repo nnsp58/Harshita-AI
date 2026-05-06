@@ -207,11 +207,24 @@ const bulkUploadCandidates = async (req, res, next) => {
       throw ApiError.badRequest('Excel file required');
     }
 
-    const XLSX = require('xlsx');
-    const workbook = XLSX.readFile(req.file.path);
-    const sheetName = workbook.SheetNames[0];
-    const worksheet = workbook.Sheets[sheetName];
-    const data = XLSX.utils.sheet_to_json(worksheet);
+    const ExcelJS = require('exceljs');
+    const workbook = new ExcelJS.Workbook();
+    await workbook.xlsx.readFile(req.file.path);
+    const worksheet = workbook.getWorksheet(1); // First worksheet
+    const data = [];
+
+    worksheet.eachRow((row, rowNumber) => {
+      if (rowNumber > 1) { // Skip header row
+        const rowData = {};
+        row.eachCell((cell, colNumber) => {
+          const headerCell = worksheet.getCell(1, colNumber);
+          if (headerCell.value) {
+            rowData[headerCell.value.toString()] = cell.value;
+          }
+        });
+        data.push(rowData);
+      }
+    });
 
     const cscId = req.user.cscId;
     const results = { success: 0, failed: 0, errors: [] };

@@ -11,7 +11,7 @@
  * Name | Father Name | DOB | Gender | Category | Aadhaar | PAN | Phone | Email | Address | State | District | Pincode | Service
  */
 
-const XLSX = require('xlsx');
+const ExcelJS = require('exceljs');
 const path = require('path');
 const fs = require('fs');
 
@@ -92,12 +92,24 @@ class BulkImportAgent {
       throw new Error(`Unsupported file format: ${ext}. Use .xlsx, .xls, or .csv`);
     }
 
-    const workbook = XLSX.readFile(filePath);
-    const sheetName = workbook.SheetNames[0]; // First sheet
-    const sheet = workbook.Sheets[sheetName];
+    const workbook = new ExcelJS.Workbook();
+    await workbook.xlsx.readFile(filePath);
+    const worksheet = workbook.getWorksheet(1); // First worksheet
 
     // Convert to array of objects (first row = headers)
-    const rawRows = XLSX.utils.sheet_to_json(sheet, { defval: '' });
+    const rawRows = [];
+    worksheet.eachRow((row, rowNumber) => {
+      if (rowNumber > 1) { // Skip header row
+        const rowData = {};
+        row.eachCell((cell, colNumber) => {
+          const headerCell = worksheet.getCell(1, colNumber);
+          if (headerCell && headerCell.value) {
+            rowData[headerCell.value.toString()] = cell.value || '';
+          }
+        });
+        rawRows.push(rowData);
+      }
+    });
 
     if (rawRows.length === 0) {
       throw new Error('Excel file is empty or has no data rows');
@@ -206,15 +218,27 @@ class BulkImportAgent {
       ['Amit Yadav',     'Vinod Yadav',    'Rekha Devi',  '05/11/1999', 'Male',   'OBC', '456789012345', 'PQRST9012H', '7654321098', 'amit@gmail.com',   'Near Railway Station', 'Bihar',       'Patna',     '800001', 'Railway'],
     ];
 
-    const wsData = [headers, ...sampleRows];
-    const ws = XLSX.utils.aoa_to_sheet(wsData);
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Candidates');
 
-    // Style header row width
-    ws['!cols'] = headers.map((h) => ({ wch: Math.max(h.length + 4, 14) }));
+    // Add headers
+    worksheet.addRow(headers);
 
-    const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Candidates');
-    XLSX.writeFile(wb, templatePath);
+    // Add sample data
+    sampleRows.forEach(row => worksheet.addRow(row));
+
+    // Style columns
+    worksheet.columns = headers.map(() => ({ width: 15 }));
+
+    // Style header row
+    worksheet.getRow(1).font = { bold: true };
+    worksheet.getRow(1).fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'FFE6E6FA' }
+    };
+
+    await workbook.xlsx.writeFile(templatePath);
 
     console.log(`[BulkImport] ✅ Template generated: ${templatePath}`);
     return templatePath;
