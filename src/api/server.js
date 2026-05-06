@@ -67,6 +67,12 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
+// Request correlation ID
+app.use((req, res, next) => {
+  req.id = require('crypto').randomUUID();
+  next();
+});
+
 // Body parsing
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
@@ -128,10 +134,25 @@ createDemoUser();
 // Start server
 const PORT = process.env.PORT || 3000;
 
-server.listen(PORT, () => {
-  console.log(`🚀 CSC API Server running on port ${PORT}`);
-  console.log(`📡 WebSocket server ready`);
-  console.log(`🔒 Environment: ${process.env.NODE_ENV || 'development'}`);
+// Ensure database connection before starting
+const ensureDatabaseConnection = async () => {
+  if (prisma) {
+    try {
+      await prisma.$connect();
+      console.log('✅ Database connected');
+    } catch (e) {
+      console.error('❌ Database connection failed:', e.message);
+      process.exit(1);
+    }
+  }
+};
+
+ensureDatabaseConnection().then(() => {
+  server.listen(PORT, () => {
+    console.log(`🚀 CSC API Server running on port ${PORT}`);
+    console.log(`📡 WebSocket server ready`);
+    console.log(`🔒 Environment: ${process.env.NODE_ENV || 'development'}`);
+  });
 });
 
 module.exports = { app, server, io };

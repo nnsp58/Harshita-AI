@@ -28,9 +28,29 @@ const setupSocketHandlers = (io) => {
     connectedUsers.set(socket.userId, socket.id);
     socket.join(`user_${socket.userId}`);
 
-    socket.on('subscribe_job', (jobId) => {
-      socket.join(`job_${jobId}`);
-      console.log(`User ${socket.userId} subscribed to job ${jobId}`);
+    socket.on('subscribe_job', async (jobId) => {
+      // Verify job ownership before allowing subscription
+      try {
+        const { prisma } = require('../../models/database');
+        if (prisma) {
+          const job = await prisma.job.findFirst({
+            where: { id: jobId, user_id: socket.userId }
+          });
+          if (job) {
+            socket.join(`job_${jobId}`);
+            console.log(`User ${socket.userId} subscribed to job ${jobId}`);
+          } else {
+            socket.emit('error', { message: 'Access denied to job' });
+          }
+        } else {
+          // Fallback for in-memory mode
+          socket.join(`job_${jobId}`);
+          console.log(`User ${socket.userId} subscribed to job ${jobId} (fallback)`);
+        }
+      } catch (error) {
+        console.error('Job subscription error:', error.message);
+        socket.emit('error', { message: 'Failed to verify job access' });
+      }
     });
 
     socket.on('unsubscribe_job', (jobId) => {

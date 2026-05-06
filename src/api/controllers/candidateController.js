@@ -3,6 +3,14 @@
 const { prisma } = require('../../models/database');
 const { ApiError } = require('../middleware/errorHandler');
 const { candidateSchema, updateCandidateSchema } = require('../validations/schemas');
+const path = require('path');
+
+// File upload security
+const sanitizeFilename = (name) => {
+  return path.basename(name).replace(/[^a-zA-Z0-9._-]/g, '_');
+};
+
+const allowedMimes = ['image/jpeg', 'image/png', 'application/pdf'];
 
 function buildCandidateProfile(candidate) {
   return {
@@ -86,223 +94,18 @@ const uploadCandidate = async (req, res, next) => {
     if (req.files) {
       const documentPromises = Object.entries(req.files).map(async ([fieldName, files]) => {
         const file = files[0];
-        return prisma.document.create({
-          data: {
-            filename: file.filename,
-            original_name: file.originalname,
-            mime_type: file.mimetype,
-            size: file.size,
-            path: file.path,
-            document_type: fieldName,
-            csc_id: req.user.cscId,
-            candidate_id: candidate.id,
-            user_id: req.user.id
-          }
-        });
-      });
-      await Promise.all(documentPromises);
-    }
 
-    const io = req.app.get('io');
-    io.to(`user_${req.user.id}`).emit('candidate_created', {
-      candidate_id: candidate.id
-    });
-
-    res.status(201).json({
-      success: true,
-      data: candidate
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
-const getCandidate = async (req, res, next) => {
-  try {
-    const { id } = req.params;
-
-    const candidate = await prisma.candidate.findFirst({
-      where: {
-        id,
-        user_id: req.user.id
-      },
-      include: {
-        user: {
-          select: { id: true, name: true, email: true }
-        },
-        documents: true,
-        jobs: {
-          orderBy: { created_at: 'desc' },
-          take: 10
+        // Validate MIME type
+        if (!allowedMimes.includes(file.mimetype)) {
+          throw new Error(`Invalid file type: ${file.mimetype}`);
         }
-      }
-    });
 
-    if (!candidate) {
-      throw ApiError.notFound('Candidate not found');
-    }
-
-    res.json({
-      success: true,
-      data: candidate
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
-const listCandidates = async (req, res, next) => {
-  try {
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 20;
-    const search = req.query.search || '';
-    const skip = (page - 1) * limit;
-
-    const where = {
-      csc_id: req.user.cscId
-    };
-
-    if (search) {
-      where.OR = [
-        { name: { contains: search, mode: 'insensitive' } },
-        { aadhaar_number: { contains: search } },
-        { mobile: { contains: search } },
-        { village: { contains: search, mode: 'insensitive' } }
-      ];
-    }
-
-    let candidates = []
-    let total = 0
-    try {
-      if (prisma) {
-        [candidates, total] = await Promise.all([
-          prisma.candidate.findMany({
-            where,
-            include: { _count: { select: { jobs: true, documents: true } } },
-            orderBy: { created_at: 'desc' },
-            skip,
-            take: limit
-          }),
-          prisma.candidate.count({ where })
-        ]);
-      }
-    } catch (e) {
-      console.warn('DB candidate list failed:', e.message)
-    }
-
-    res.json({
-      success: true,
-      data: candidates,
-      pagination: {
-        page,
-        limit,
-        total,
-        totalPages: Math.ceil(total / limit)
-      }
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
-const updateCandidate = async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    const data = updateCandidateSchema.parse(req.body);
-
-    const existing = await prisma.candidate.findFirst({
-      where: {
-        id,
-        user_id: req.user.id
-      }
-    });
-
-    if (!existing) {
-      throw ApiError.notFound('Candidate not found');
-    }
-
-    if (data.aadhaar_number && data.aadhaar_number !== existing.aadhaar_number) {
-      const duplicate = await prisma.candidate.findUnique({
-        where: { aadhaar_number: data.aadhaar_number }
-      });
-      if (duplicate) {
-        throw ApiError.conflict('Aadhaar number already in use');
-      }
-    }
-
-    const candidate = await prisma.candidate.update({
-      where: { id },
-      data: {
-        ...data,
-        ...(data.dob && { dob: new Date(data.dob) })
-      }
-    });
-
-    res.json({
-      success: true,
-      data: candidate
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
-const deleteCandidate = async (req, res, next) => {
-  try {
-    const { id } = req.params;
-
-    const existing = await prisma.candidate.findFirst({
-      where: {
-        id,
-        user_id: req.user.id
-      }
-    });
-
-    if (!existing) {
-      throw ApiError.notFound('Candidate not found');
-    }
-
-    await prisma.candidate.delete({
-      where: { id }
-    });
-
-    res.json({
-      success: true,
-      message: 'Candidate deleted successfully'
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
-const uploadDocuments = async (req, res, next) => {
-  try {
-    const { id } = req.params;
-
-    const candidate = await prisma.candidate.findFirst({
-      where: {
-        id,
-        user_id: req.user.id
-      }
-    });
-
-    if (!candidate) {
-      throw ApiError.notFound('Candidate not found');
-    }
-
-    if (!req.files || Object.keys(req.files).length === 0) {
-      throw ApiError.badRequest('No files uploaded');
-    }
-
-    const documents = await Promise.all(
-      Object.entries(req.files).map(async ([fieldName, files]) => {
-        const file = files[0];
         return prisma.document.upsert({
           where: {
             id: `${candidate.id}_${fieldName}`
           },
           create: {
-            filename: file.filename,
+            filename: sanitizeFilename(file.filename),
             original_name: file.originalname,
             mime_type: file.mimetype,
             size: file.size,
@@ -313,7 +116,7 @@ const uploadDocuments = async (req, res, next) => {
             user_id: req.user.id
           },
           update: {
-            filename: file.filename,
+            filename: sanitizeFilename(file.filename),
             original_name: file.originalname,
             mime_type: file.mimetype,
             size: file.size,
@@ -365,9 +168,15 @@ const uploadPublicCandidate = async (req, res, next) => {
     if (req.files) {
       const documentPromises = Object.entries(req.files).map(async ([fieldName, files]) => {
         const file = files[0];
+
+        // Validate MIME type
+        if (!allowedMimes.includes(file.mimetype)) {
+          throw new Error(`Invalid file type: ${file.mimetype}`);
+        }
+
         return prisma.document.create({
           data: {
-            filename: file.filename,
+            filename: sanitizeFilename(file.filename),
             original_name: file.originalname,
             mime_type: file.mimetype,
             size: file.size,

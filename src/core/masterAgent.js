@@ -22,6 +22,9 @@ const { NotifierAgent } = require('../agents/notifierAgent');
 const { FileProcessorAgent } = require('../agents/fileProcessorAgent');
 const { JobSearchAgent } = require('../agents/jobSearchAgent');
 const { runBrowserTask } = require('../agents/browserAgent');
+const { LearningCollector } = require('./learningCollector');
+const { KnowledgeStore } = require('./knowledgeStore');
+const { WebLearningAgent } = require('../agents/webLearningAgent');
 
 // Intent keywords mapping - shortened for easier matching
 const INTENT_KEYWORDS = {
@@ -72,7 +75,22 @@ class MasterAgent {
     // Chat history per user
     this.chatHistory = new Map();
 
-    console.log('🎯 MasterAgent initialized with all sub-agents');
+    // Learning system
+    this.learningCollector = new LearningCollector();
+    this.knowledgeStore = new KnowledgeStore();
+    this.webLearningAgent = new WebLearningAgent();
+
+    // Cleanup sessions every hour
+    setInterval(() => {
+      const cutoff = Date.now() - 24 * 60 * 60 * 1000; // 24h
+      for (const [userId, session] of this.sessions) {
+        if (session.lastAccess && session.lastAccess < cutoff) {
+          this.sessions.delete(userId);
+        }
+      }
+    }, 3600000); // Every hour
+
+    console.log('🎯 MasterAgent initialized with all sub-agents and learning system');
   }
 
   /**
@@ -119,11 +137,27 @@ class MasterAgent {
       };
     }
 
-     // Route to appropriate agent
-     try {
-       const result = await this._routeToAgent(userId, intent, message, session);
-       this.subscriptionManager.recordUsage(userId);
-       return result;
+      // Route to appropriate agent
+      try {
+        const startTime = Date.now();
+        const result = await this._routeToAgent(userId, intent, message, session);
+        const executionTime = Date.now() - startTime;
+
+        // Collect learning data
+        const agentUsed = await this._getAgentNameForIntent(intent);
+        await this.learningCollector.collect({
+          userId,
+          userInput: message,
+          taskResult: result,
+          agentUsed,
+          executionTime,
+          success: result.success,
+          intent,
+          context: session.context
+        });
+
+        this.subscriptionManager.recordUsage(userId);
+        return result;
      } catch (error) {
        // Provide user-friendly messages for known errors
        let friendlyMessage = error.message;
@@ -136,6 +170,14 @@ class MasterAgent {
          message: friendlyMessage
        };
      }
+  }
+
+  /**
+   * Get agent name for intent
+   */
+  async _getAgentNameForIntent(intent) {
+    const agent = this.agents[intent];
+    return agent ? agent.name : 'unknown';
   }
 
   /**
@@ -725,7 +767,11 @@ class MasterAgent {
   async cleanup() {
     for (const agent of Object.values(this.agents)) {
       if (agent.cleanup) {
-        await agent.cleanup();
+        try {
+          await agent.cleanup();
+        } catch (e) {
+          console.error(`Cleanup failed for ${agent.name}:`, e.message);
+        }
       }
     }
     console.log('MasterAgent cleanup completed.');

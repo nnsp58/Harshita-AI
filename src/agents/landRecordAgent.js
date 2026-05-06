@@ -147,23 +147,7 @@ class LandRecordAgent {
     // In production, add actual selector logic here
   }
 
-  /**
-   * View land map / naksha
-   */
-  async _viewLandMap(portal, params) {
-    console.log(`[LandRecordAgent] Opening land map on ${portal.name}...`);
 
-    return {
-      success: true,
-      agent: this.name,
-      action: 'view_map',
-      portal: portal.name,
-      params,
-      message: `Land map service for ${portal.name}. Opening portal...`,
-      requiresManualStep: true,
-      manualStepReason: 'map_selection'
-    };
-  }
 
   /**
    * Verify land ownership

@@ -59,9 +59,7 @@ class DocumentAIAgent {
   // Extract text from PDF using pdf-parse v2 API
   async extractTextFromPDF(filePath) {
     console.log(`📄 Processing PDF: ${filePath}`);
-    
-    if (!fs.existsSync(filePath)) throw new Error('File not found');
-    
+
     // Try direct text extraction first (works for text-based PDFs)
     let parser;
     try {
@@ -69,7 +67,7 @@ class DocumentAIAgent {
       parser = new PDFParse({ data: dataBuffer });
       const result = await parser.getText();
       await parser.destroy();
-      
+
       const text = result.text.trim();
       if (text.length > 100) {
         console.log(`   ✅ PDF text extraction: ${text.length} chars`);
@@ -77,6 +75,10 @@ class DocumentAIAgent {
       } else {
         console.log(`   ℹ️ Text too short (${text.length} chars), likely scanned PDF`);
       }
+    } catch (err) {
+      console.log(`   ℹ️ pdf-parse error: ${err.message}`);
+      if (parser) await parser.destroy();
+    }
     } catch (err) {
       console.log(`   ℹ️ pdf-parse error: ${err.message}`);
       if (parser) await parser.destroy();

@@ -69,9 +69,14 @@ If not found, skip the field.`;
 
       let content = response.choices[0].message.content.trim();
       content = content.replace(/^```[\w]*\s*/, '').replace(/\s*```$/, '');
-      const discovered = JSON.parse(content);
-      
-      console.log(`[${this.config.id}] ✅ AI discovered ${Object.keys(discovered).length} selectors dynamically`);
+      let discovered = {};
+      try {
+        discovered = JSON.parse(content);
+        console.log(`[${this.config.id}] ✅ AI discovered ${Object.keys(discovered).length} selectors dynamically`);
+      } catch (e) {
+        console.error(`[${this.config.id}] ❌ Failed to parse AI response as JSON:`, e.message);
+      }
+
       this.aiDiscoveryCache.set(this.page.url(), discovered);
       return discovered;
     } catch (error) {

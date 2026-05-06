@@ -90,6 +90,9 @@ class SubscriptionManager {
     // In-memory user subscriptions (replace with DB in production)
     this.userSubscriptions = new Map();
     this.dailyUsage = new Map(); // userId -> { date, count }
+
+    // Cleanup old usage data every day
+    setInterval(() => this._cleanupOldUsage(), 86400000); // Daily
   }
 
   /**
@@ -142,7 +145,8 @@ class SubscriptionManager {
     const totalPrice = plan.basePrice * duration.months * (1 - duration.discount);
     const startDate = new Date();
     const endDate = new Date();
-    endDate.setMonth(endDate.getMonth() + duration.months);
+    const targetMonth = endDate.getMonth() + duration.months;
+    endDate.setMonth(targetMonth, 1); // Set to 1st to avoid overflow
 
     const subscription = {
       userId,
@@ -349,6 +353,21 @@ class SubscriptionManager {
     status += `===\n`;
 
     return status;
+  }
+
+  /**
+   * Cleanup old usage data
+   */
+  _cleanupOldUsage() {
+    const cutoff = new Date();
+    cutoff.setDate(cutoff.getDate() - 7); // Keep 7 days
+    const cutoffStr = cutoff.toISOString().split('T')[0];
+
+    for (const [key, dateStr] of this.dailyUsage.entries()) {
+      if (dateStr < cutoffStr) {
+        this.dailyUsage.delete(key);
+      }
+    }
   }
 }
 
