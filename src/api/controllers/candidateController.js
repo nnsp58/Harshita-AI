@@ -123,8 +123,8 @@ const uploadCandidate = async (req, res, next) => {
             path: file.path
           }
         });
-      })
-    );
+      });
+
 
     res.status(201).json({
       success: true,
