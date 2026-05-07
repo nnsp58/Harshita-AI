@@ -122,13 +122,15 @@ const uploadCandidate = async (req, res, next) => {
             size: file.size,
             path: file.path
           }
-        });
       });
 
+      const documents = await Promise.all(documentPromises);
+    }
 
     res.status(201).json({
       success: true,
-      data: documents
+      data: candidate,
+      documents: req.files ? documents : []
     });
   } catch (error) {
     next(error);
