@@ -45,10 +45,10 @@ export default function DashboardLayout() {
       <Header />
       <main
         className={`pt-16 min-h-screen transition-all duration-300 ${
-          sidebarOpen ? 'ml-64' : 'ml-20'
+          sidebarOpen ? 'md:ml-64 ml-0' : 'md:ml-20 ml-0'
         }`}
       >
-        <div className="p-4 md:p-6 lg:p-8">
+        <div className="p-2 xs:p-4 md:p-6 lg:p-8">
           <Outlet />
         </div>
       </main>

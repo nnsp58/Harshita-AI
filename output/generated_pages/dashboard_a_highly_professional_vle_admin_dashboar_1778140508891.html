@@ -1,0 +1,269 @@
+
+<!-- Powered by Harshita AI Platform | UIBuilderAgent | 2026-05-07T07:55:08.888Z -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📊 Harshita AI VLE Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', 'Noto Sans Devanagari', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 12px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+        }
+        .header {
+            background-color: #1a1a2e;
+            color: #fff;
+            padding: 24px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header h1 {
+            font-size: 1.4rem;
+            margin-bottom: 0;
+        }
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+        }
+        .stats-card {
+            background-color: #fff;
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+        }
+        .stats-card i {
+            font-size: 24px;
+            margin-right: 12px;
+        }
+        .charts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+        .chart {
+            background-color: #fff;
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .table {
+            background-color: #fff;
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+        .table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .sidebar {
+            background-color: #1a1a2e;
+            color: #fff;
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar li {
+            margin-bottom: 12px;
+        }
+        .sidebar a {
+            color: #fff;
+            text-decoration: none;
+        }
+        @media (min-width: 412px) {
+            .container {
+                padding: 24px;
+            }
+            .header {
+                padding: 48px;
+            }
+            .stats-card {
+                padding: 24px;
+            }
+            .chart {
+                padding: 24px;
+            }
+            .table {
+                padding: 24px;
+            }
+            .sidebar {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Harshita AI VLE Admin Dashboard</h1>
+        </div>
+        <div class="stats-cards">
+            <div class="stats-card">
+                <i class="fa-solid fa-users"></i>
+                <div>
+                    <h2>VLE Name</h2>
+                    <p>Harshita AI</p>
+                </div>
+            </div>
+            <div class="stats-card">
+                <i class="fa-solid fa-file"></i>
+                <div>
+                    <h2>Total Applications</h2>
+                    <p>1000</p>
+                </div>
+            </div>
+            <div class="stats-card">
+                <i class="fa-solid fa-rupee-sign"></i>
+                <div>
+                    <h2>Earnings</h2>
+                    <p>₹1,00,000</p>
+                </div>
+            </div>
+            <div class="stats-card">
+                <i class="fa-solid fa-user-check"></i>
+                <div>
+                    <h2>Agent Status</h2>
+                    <p>Active</p>
+                </div>
+            </div>
+        </div>
+        <div class="charts">
+            <div class="chart">
+                <canvas id="chart1"></canvas>
+            </div>
+            <div class="chart">
+                <canvas id="chart2"></canvas>
+            </div>
+        </div>
+        <div class="table">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                </tr>
+                <tr>
+                    <td>John Doe</td>
+                    <td>johndoe@example.com</td>
+                    <td>1234567890</td>
+                </tr>
+                <tr>
+                    <td>Jane Doe</td>
+                    <td>janedoe@example.com</td>
+                    <td>1234567890</td>
+                </tr>
+            </table>
+        </div>
+        <div class="sidebar">
+            <ul>
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Applications</a></li>
+                <li><a href="#">Earnings</a></li>
+                <li><a href="#">Agent Status</a></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        const chart1 = document.getElementById('chart1').getContext('2d');
+        const chart2 = document.getElementById('chart2').getContext('2d');
+        new Chart(chart1, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                datasets: [{
+                    label: 'Applications',
+                    data: [100, 200, 300, 400, 500],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        new Chart(chart2, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                datasets: [{
+                    label: 'Earnings',
+                    data: [1000, 2000, 3000, 4000, 5000],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+  <div style="text-align:center;padding:24px;background:#0a0a0f;color:#666;font-size:12px;margin-top:60px;border-top: 1px solid #1a1a2e;">
+    🤖 Powered by <strong style="color:#4834d4;">Harshita AI Platform</strong> | Adaptive UI Engine &copy; 2026
+  </div>
+</body>
+</html>

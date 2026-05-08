@@ -1,0 +1,24 @@
+reporter: apiary
+custom:
+  apiaryApiKey: 4470886023d127bcf6a54b73e85675fb
+  apiaryApiName: harshitaai
+dry-run: null
+hookfiles: null
+language: nodejs
+server: npm start
+server-wait: 3
+init: false
+names: false
+only: []
+output: []
+header: []
+sorted: false
+user: null
+inline-errors: false
+details: false
+method: []
+color: true
+level: info
+add-header: []
+blueprint: harshita.apib
+endpoint: 'http://localhost:3000'

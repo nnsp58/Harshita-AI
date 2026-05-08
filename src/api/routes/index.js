@@ -14,6 +14,9 @@ const whatsappRoutes = require('./whatsapp');
 const bulkRoutes = require('./bulk');
 const statsRoutes = require('./stats');
 const cscRoutes = require('./csc');
+const communityRoutes = require('./community');
+const notificationRoutes = require('./notifications');
+const emailRoutes = require('./email');
 
 router.use('/auth', authRoutes);
 router.use('/candidate', candidateRoutes);
@@ -26,6 +29,9 @@ router.use('/whatsapp', whatsappRoutes);
 router.use('/bulk', bulkRoutes);
 router.use('/stats', statsRoutes);
 router.use('/csc', cscRoutes);
+router.use('/community', communityRoutes);
+router.use('/notifications', notificationRoutes);
+router.use('/email', emailRoutes);
 
 // API info endpoint
 router.get('/', (req, res) => {

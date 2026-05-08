@@ -1,5 +1,7 @@
 const { chromium } = require('playwright');
 const { aiProviderManager } = require('../utils/aiProviderManager');
+const { SelectorMemory } = require('../core/selectorMemory');
+const { ReasoningEngine } = require('../core/reasoningEngine');
 
 class BaseBot {
   constructor(config, browserAgent) {
@@ -9,6 +11,13 @@ class BaseBot {
     this.browser = null;
     this.context = null;
     this.aiDiscoveryCache = new Map();
+    // PRD 1: Permanent Skill Memory
+    this.selectorMemory = new SelectorMemory();
+    // PRD 2: Reasoning Engine
+    this.reasoningEngine = new ReasoningEngine({ agentName: 'BaseBot', maxRetries: 3 });
+    // Track which selectors actually worked during this run
+    this._verifiedSelectors = {};
+    this._failedFields = [];
   }
 
   async discoverSelectorsWithAI() {
@@ -129,12 +138,31 @@ If not found, skip the field.`;
   async fillForm(candidateProfile) {
     console.log(`[${this.config.id}] Filling form for: ${candidateProfile.personal?.fullName || 'Unknown'}`);
     
-    // First, try to discover selectors using AI
-    const apiSelectors = await this.discoverSelectorsWithAI();
+    // PRD 1: Check permanent memory FIRST (skip AI if we already know selectors)
+    const memorizedSelectors = await this.selectorMemory.getVerifiedSelectorsForSite(this.config.id);
+    const memorizedCount = Object.keys(memorizedSelectors).length;
+    if (memorizedCount > 0) {
+      console.log(`[${this.config.id}] 🧠 MEMORY: Found ${memorizedCount} memorized selectors — skipping AI discovery`);
+    }
+    
+    // Only call AI if memory doesn't have enough selectors
+    let apiSelectors = {};
+    if (memorizedCount < 5) {
+      apiSelectors = await this.discoverSelectorsWithAI();
+    }
+    
     const configSelectors = this.config.fieldSelectors || {};
     
-    // Merge: Config takes priority, but AI fills the gaps
-    const selectors = { ...apiSelectors, ...configSelectors };
+    // Merge priority: Config > Memory > AI Discovery
+    const selectors = { ...apiSelectors, ...memorizedSelectors, ...configSelectors };
+    
+    // Reset tracking for this run
+    this._verifiedSelectors = {};
+    this._failedFields = [];
+    this.reasoningEngine.reset();
+    
+    let filledCount = 0;
+    const totalFields = Object.keys(selectors).length;
     
     for (const [fieldName, selector] of Object.entries(selectors)) {
       if (!selector) continue;
@@ -142,40 +170,80 @@ If not found, skip the field.`;
       const value = this.getFieldValue(fieldName, candidateProfile);
       if (!value) continue;
 
-      try {
-        // Special case for XPaths in Playwright (prefixed with xpath=)
-        const effectiveSelector = selector.startsWith('//') ? `xpath=${selector}` : selector;
-        const elements = await this.page.$$(effectiveSelector);
-        
-        for (const el of elements) {
-          const isVisible = await el.isVisible().catch(() => false);
-          if (!isVisible) continue;
-
-          const tagName = await el.evaluate(e => e.tagName.toLowerCase());
-          const inputType = await el.getAttribute('type');
-
-          if (tagName === 'select') {
-            await this.fillSelect(el, value);
-          } else if (inputType === 'radio') {
-            const elValue = await el.getAttribute('value');
-            if (this.matchesOption(elValue, value)) {
-              await el.check();
-              break;
-            }
-          } else if (inputType === 'checkbox') {
-            await el.check();
-          } else {
-            await el.fill(value);
+      // PRD 2: Wrap each field fill in the Reasoning Loop
+      const context = { page: this.page, bot: this, siteId: this.config.id, fieldName };
+      const result = await this.reasoningEngine.executeWithReasoning(
+        context,
+        async () => {
+          // Special case for XPaths in Playwright (prefixed with xpath=)
+          const effectiveSelector = selector.startsWith('//') ? `xpath=${selector}` : selector;
+          const elements = await this.page.$$(effectiveSelector);
+          
+          if (!elements || elements.length === 0) {
+            throw new Error(`Element not found for field "${fieldName}" with selector: ${selector}`);
           }
           
-          console.log(`[${this.config.id}] Filled: ${fieldName} = ${value} (using ${selector})`);
-          break;
-        }
-      } catch (error) {
-        console.warn(`[${this.config.id}] Could not fill ${fieldName}: ${error.message}`);
+          let filled = false;
+          for (const el of elements) {
+            const isVisible = await el.isVisible().catch(() => false);
+            if (!isVisible) continue;
+
+            const tagName = await el.evaluate(e => e.tagName.toLowerCase());
+            const inputType = await el.getAttribute('type');
+
+            if (tagName === 'select') {
+              await this.fillSelect(el, value);
+            } else if (inputType === 'radio') {
+              const elValue = await el.getAttribute('value');
+              if (this.matchesOption(elValue, value)) {
+                await el.check();
+                filled = true;
+                break;
+              }
+              continue;
+            } else if (inputType === 'checkbox') {
+              await el.check();
+            } else {
+              await el.fill(value);
+            }
+            
+            filled = true;
+            break;
+          }
+          
+          if (!filled) {
+            throw new Error(`All elements for "${fieldName}" were hidden or radio mismatch`);
+          }
+          
+          return { fieldName, value, selector };
+        },
+        `Fill field: ${fieldName}`
+      );
+
+      if (result.success) {
+        console.log(`[${this.config.id}] ✅ Filled: ${fieldName} = ${value} (using ${selector})`);
+        this._verifiedSelectors[fieldName] = selector;
+        filledCount++;
+      } else {
+        console.warn(`[${this.config.id}] ❌ Failed: ${fieldName} after ${result.retries} retries`);
+        this._failedFields.push(fieldName);
+        // PRD 1: Mark this selector as failed in memory
+        await this.selectorMemory.markFailed(this.config.id, fieldName);
       }
 
       await this.randomWait();
+    }
+
+    // PRD 1: Commit all verified selectors to permanent memory
+    const confidenceScore = totalFields > 0 ? Math.round((filledCount / totalFields) * 100) : 0;
+    if (filledCount > 0) {
+      await this.selectorMemory.commitVerifiedSelectors(
+        this.config.id,
+        this.page.url(),
+        this._verifiedSelectors,
+        confidenceScore
+      );
+      console.log(`[${this.config.id}] 🧠 Memory updated: ${filledCount}/${totalFields} fields saved (${confidenceScore}% confidence)`);
     }
 
     return true;
@@ -448,7 +516,17 @@ If not found, skip the field.`;
       console.log(`[${this.config.id}] Starting bot for: ${this.config.name}`);
       
       await this.initBrowser();
-      await this.navigate();
+
+      // PRD 2: Wrap navigation in reasoning loop
+      const navContext = { page: this.page, bot: this, siteId: this.config.id };
+      const navResult = await this.reasoningEngine.executeWithReasoning(
+        navContext,
+        async () => { await this.navigate(); },
+        'Navigate to form page'
+      );
+      if (!navResult.success) {
+        throw new Error(`Navigation failed after ${navResult.retries} retries: ${navResult.error?.message}`);
+      }
       
       await this.fillForm(candidateProfile);
       
@@ -461,10 +539,23 @@ If not found, skip the field.`;
       }
 
       if (options.autoSubmit !== false) {
-        await this.submit();
+        // PRD 2: Wrap submission in reasoning loop
+        const submitResult = await this.reasoningEngine.executeWithReasoning(
+          navContext,
+          async () => { await this.submit(); },
+          'Submit form'
+        );
+        if (!submitResult.success) {
+          console.warn(`[${this.config.id}] ⚠️ Submit had issues but continuing to verify...`);
+        }
       }
 
       const result = await this.verifySubmission();
+      
+      // Attach reasoning log to result
+      result.reasoningLog = this.reasoningEngine.getLog();
+      result.failedFields = this._failedFields;
+      result.verifiedSelectors = Object.keys(this._verifiedSelectors).length;
       
       if (options.keepOpen) {
         console.log(`[${this.config.id}] Browser kept open for review`);

@@ -1,13 +1,9 @@
 {
-  "model": "openrouter/free",
-  "env": {
-    "ANTHROPIC_BASE_URL": "https://openrouter.ai/api",
-    "ANTHROPIC_AUTH_TOKEN": "${OPENROUTER_API_KEY}",
-    "ANTHROPIC_MODEL": "openrouter/free",
-    "DISABLE_AUTOUPDATER": "1"
-  },
-  "terminal.integrated.commandsToSkipShell": [
-    "kilo-code.new.agentManagerOpen",
-    "kilo-code.new.agentManager.showTerminal"
-  ]
+    "model": "minimax/minimax-m2.5:free",
+    "env": {
+        "ANTHROPIC_BASE_URL": "https://opencode.ai/api/v1",
+        "ANTHROPIC_AUTH_TOKEN": "sk-fPgd7WsV3FJLItmci8GO11Qq6DiK94NbHQTmdb24iUSBhCWaWvAyGknMAWq93hS8",
+        "ANTHROPIC_MODEL": "minimax/minimax-m2.5:free",
+        "DISABLE_AUTOUPDATER": "1"
+    }
 }

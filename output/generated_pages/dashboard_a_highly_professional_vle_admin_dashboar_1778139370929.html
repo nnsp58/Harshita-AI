@@ -1,0 +1,291 @@
+
+<!-- Powered by Harshita AI Platform | UIBuilderAgent | 2026-05-07T07:36:10.920Z -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📊 Harshita AI VLE Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a1a2e;
+            --accent-color: #4834d4;
+        }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans Devanagari', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 12px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+        }
+        .header {
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            color: #fff;
+            padding: 24px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header h1 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+        }
+        .stats-card {
+            background-color: #fff;
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+        }
+        .stats-card i {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        .stats-card span {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        .stats-card h2 {
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+        .charts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+        .chart {
+            background-color: #fff;
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .chart canvas {
+            width: 100%;
+            height: 200px;
+        }
+        .table {
+            background-color: #fff;
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        .table th {
+            background-color: #f0f0f0;
+        }
+        .sidebar {
+            background-color: #fff;
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar li {
+            padding: 0.5rem;
+            border-bottom: 1px solid #ddd;
+        }
+        .sidebar li:last-child {
+            border-bottom: none;
+        }
+        .sidebar a {
+            text-decoration: none;
+            color: #337ab7;
+        }
+        .sidebar a:hover {
+            color: #23527c;
+        }
+        @media (min-width: 768px) {
+            .container {
+                padding: 24px;
+            }
+            .header {
+                padding: 48px;
+            }
+            .stats-card {
+                padding: 24px;
+            }
+            .chart {
+                padding: 24px;
+            }
+            .table {
+                padding: 24px;
+            }
+            .sidebar {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Harshita AI VLE Admin Dashboard</h1>
+            <p>Manage your VLE applications and earnings</p>
+        </div>
+        <div class="stats-cards">
+            <div class="stats-card">
+                <i class="fa-solid fa-rocket"></i>
+                <span>VLE Name:</span>
+                <h2>Harshita AI</h2>
+            </div>
+            <div class="stats-card">
+                <i class="fa-solid fa-file"></i>
+                <span>Total Applications:</span>
+                <h2>100</h2>
+            </div>
+            <div class="stats-card">
+                <i class="fa-solid fa-rupee-sign"></i>
+                <span>Earnings:</span>
+                <h2>₹10,000</h2>
+            </div>
+            <div class="stats-card">
+                <i class="fa-solid fa-user"></i>
+                <span>Agent Status:</span>
+                <h2>Active</h2>
+            </div>
+        </div>
+        <div class="charts">
+            <div class="chart">
+                <canvas id="myChart"></canvas>
+            </div>
+            <div class="chart">
+                <canvas id="myChart2"></canvas>
+            </div>
+        </div>
+        <div class="table">
+            <table>
+                <tr>
+                    <th>Application ID</th>
+                    <th>Application Name</th>
+                    <th>Earnings</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Application 1</td>
+                    <td>₹1,000</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Application 2</td>
+                    <td>₹2,000</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Application 3</td>
+                    <td>₹3,000</td>
+                </tr>
+            </table>
+        </div>
+        <div class="sidebar">
+            <ul>
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Applications</a></li>
+                <li><a href="#">Earnings</a></li>
+                <li><a href="#">Agent Status</a></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May'],
+                datasets: [{
+                    label: 'Earnings',
+                    data: [1000, 2000, 3000, 4000, 5000],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        const ctx2 = document.getElementById('myChart2').getContext('2d');
+        const myChart2 = new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May'],
+                datasets: [{
+                    label: 'Earnings',
+                    data: [1000, 2000, 3000, 4000, 5000],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <div style="text-align:center;padding:24px;background:#0a0a0f;color:#666;font-size:12px;margin-top:60px;border-top: 1px solid #1a1a2e;">
+    🤖 Powered by <strong style="color:#4834d4;">Harshita AI Platform</strong> | Adaptive UI Engine &copy; 2026
+  </div>
+</body>
+</html>

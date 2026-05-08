@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom'
+import { useSwipeable } from 'react-swipeable'
 import {
   Home, Search, FileText, Bot, Users, Settings, CreditCard,
   ChevronLeft, ChevronRight, Sparkles, Menu, X, FileSpreadsheet
@@ -7,6 +8,16 @@ import { useStore } from '../../store'
 
 export default function Sidebar() {
   const { sidebarOpen, toggleSidebar, user } = useStore()
+
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: () => {
+      if (window.innerWidth < 768) { // md breakpoint
+        toggleSidebar(false)
+      }
+    },
+    preventScrollOnSwipe: true,
+    trackMouse: false
+  })
 
   const navItems = [
     { path: '/', icon: Home, label: 'Dashboard' },
@@ -24,8 +35,8 @@ export default function Sidebar() {
   return (
     <aside
       className={`fixed left-0 top-0 h-screen bg-gradient-to-b from-maroon-900 via-maroon-800 to-maroon-900 text-white transition-all duration-300 z-[9999] flex flex-col ${
-        sidebarOpen ? 'w-64' : 'w-20'
-      }`}
+        sidebarOpen ? 'w-64 md:relative' : 'w-20 md:relative'
+      } ${sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}
     >
       {/* Logo / Brand */}
       <div className="p-4 flex items-center justify-between border-b border-maroon-700/50">

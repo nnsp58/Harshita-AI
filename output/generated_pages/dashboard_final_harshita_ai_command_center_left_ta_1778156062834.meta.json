@@ -1,0 +1,8 @@
+{
+  "prompt": "\n      FINAL HARSHITA AI COMMAND CENTER:\n      - Left: Task List (Active/Completed) with clickable items.\n      - Center: Live Work Area (Browser Iframe) with a \"Status Bar\" on top showing the current URL and progress.\n      - Right: Chat Panel + A top section titled \"Harshita AI Supervisor\".\n      - Supervisor Role: Monitoring all agents, showing live suggestions, and a \"Self-Upgrade\" status.\n      - Chat Features: 10MB Video/Image/Doc upload buttons.\n      - Theme: Ultra-premium Futuristic Dark Blue / Cyberpunk style.\n    ",
+  "pageType": "dashboard",
+  "generatedAt": "2026-05-07T12:14:22.838Z",
+  "model": "llama-3.3-70b-versatile",
+  "fileName": "dashboard_final_harshita_ai_command_center_left_ta_1778156062834.html",
+  "filePath": "D:\\Harshita-AI\\output\\generated_pages\\dashboard_final_harshita_ai_command_center_left_ta_1778156062834.html"
+}

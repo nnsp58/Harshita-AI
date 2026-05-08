@@ -1,0 +1,498 @@
+<!-- Powered by Harshita AI Platform | Enterprise Edition V6 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>🚀 Harshita AI Ultimate Command Center (V6)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a1a;
+            color: #e0e0ff;
+            height: 100vh;
+            overflow: auto;
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+
+        /* === TOP NAVIGATION === */
+        .top-nav {
+            height: 50px;
+            background: rgba(15, 15, 40, 0.95);
+            border-bottom: 1px solid rgba(100, 100, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 1000;
+        }
+        .logo { font-weight: 800; font-size: 18px; color: #7b7bff; letter-spacing: 1px; }
+        .broadcast-bar {
+            flex: 1;
+            margin: 0 40px;
+            background: rgba(255, 100, 100, 0.1);
+            border: 1px solid rgba(255, 100, 100, 0.2);
+            border-radius: 4px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            overflow: hidden;
+            position: relative;
+        }
+        .broadcast-text {
+            white-space: nowrap;
+            color: #ff6666;
+            font-size: 12px;
+            font-weight: 600;
+            animation: scroll-text 15s linear infinite;
+        }
+        @keyframes scroll-text {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .nav-actions { display: flex; gap: 15px; align-items: center; }
+        .role-toggle {
+            background: #1e1e3e;
+            border: 1px solid #7b7bff;
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .role-toggle.admin { background: #7b7bff; }
+
+        /* === MAIN LAYOUT === */
+        .app-container {
+            display: flex;
+            height: calc(100vh - 50px);
+            width: 100vw;
+        }
+
+        /* Left Panel */
+        .left-panel {
+            width: 200px;
+            min-width: 150px;
+            max-width: 400px;
+            flex-shrink: 0;
+            background: #0f0f2d;
+            border-right: 1px solid rgba(100, 100, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        .tab-btn {
+            padding: 15px 20px;
+            cursor: pointer;
+            font-size: 13px;
+            color: #888;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: 0.2s;
+        }
+        .tab-btn:hover { background: rgba(123, 123, 255, 0.1); color: #fff; }
+        .tab-btn.active { color: #7b7bff; border-left: 3px solid #7b7bff; background: rgba(123, 123, 255, 0.05); }
+
+        /* Resizer */
+        .resizer {
+            width: 6px;
+            cursor: col-resize;
+            background: rgba(100,100,255,0.05);
+            transition: 0.2s;
+            position: relative;
+            z-index: 10;
+        }
+        .resizer:hover, .resizer.active { background: rgba(123, 123, 255, 0.4); }
+
+        /* Center Panel */
+        .center-panel {
+            flex: 1;
+            background: #0a0a1a;
+            display: flex;
+            flex-direction: column;
+            min-width: 300px;
+            position: relative;
+        }
+        .admin-stats {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .stat-card {
+            background: #161636;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(100,100,255,0.1);
+        }
+        .stat-card h4 { font-size: 12px; color: #888; margin-bottom: 10px; }
+        .stat-card .val { font-size: 24px; font-weight: 800; color: #fff; }
+
+        .browser-container {
+            flex: 1;
+            margin: 10px;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            display: none; /* Only show in operator mode */
+        }
+        .browser-container.active { display: block; }
+        iframe { width: 100%; height: 100%; border: none; }
+
+        /* Right Panel */
+        .right-panel {
+            width: 300px;
+            min-width: 200px;
+            max-width: 500px;
+            flex-shrink: 0;
+            background: #0f0f2d;
+            border-left: 1px solid rgba(100, 100, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        .supervisor-view {
+            padding: 15px;
+            background: rgba(123, 123, 255, 0.1);
+            border-bottom: 1px solid rgba(123, 123, 255, 0.2);
+            font-size: 11px;
+            font-weight: 800;
+            color: #7b7bff;
+            text-transform: uppercase;
+        }
+        .chat-history { flex: 1; overflow-y: auto; padding: 10px; font-size: 12px; line-height: 1.4; }
+        .chat-msg { padding: 6px 10px; margin-bottom: 6px; border-radius: 8px; word-wrap: break-word; font-size: 11px; }
+        .chat-msg.user { background: rgba(123,123,255,0.2); text-align: right; }
+        .chat-msg.ai { background: rgba(255,255,255,0.05); }
+        .chat-msg strong { font-size: 10px; text-transform: uppercase; opacity: 0.7; }
+        .chat-input {
+            padding: 15px;
+            background: #161636;
+            border-top: 1px solid rgba(100,100,255,0.1);
+        }
+        .input-box {
+            display: flex;
+            align-items: center;
+            background: #20204a;
+            border-radius: 20px;
+            padding: 5px 15px;
+        }
+        input { flex: 1; background: none; border: none; color: #fff; padding: 8px; font-size: 13px; outline: none; }
+        .icon-btn { color: #888; cursor: pointer; margin-left: 10px; transition: 0.2s; }
+        .icon-btn:hover { color: #7b7bff; }
+
+        /* Drag Overlay */
+        .drag-overlay { display: none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 9999; }
+        .drag-overlay.active { display: block; }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .app-container { flex-direction: column; }
+            .left-panel, .right-panel { width: 100% !important; max-width: 100% !important; min-width: 100% !important; }
+            .resizer { display: none; }
+            .top-nav { flex-wrap: wrap; height: auto; padding: 8px; gap: 8px; }
+            .broadcast-bar { margin: 5px 0; order: 3; width: 100%; }
+            .stat-card .val { font-size: 18px; }
+            .chat-history { max-height: 300px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav">
+        <div class="logo">HARSHITA AI</div>
+        <div class="broadcast-bar">
+            <div class="broadcast-text">📢 ADMIN NOTIFICATION: Operator 3, stop Aadhaar updates and prioritize Ayushman Cards immediately! | All operators check Team Chat for today's targets.</div>
+        </div>
+        <div class="nav-actions">
+            <div class="role-toggle admin" id="roleToggle">ADMIN MODE</div>
+            <i class="fas fa-cog icon-btn"></i>
+            <i class="fas fa-user-circle icon-btn"></i>
+        </div>
+    </div>
+
+    <div class="app-container">
+        <!-- LEFT PANEL -->
+        <div class="left-panel" id="leftPanel">
+            <div class="tab-btn active"><i class="fas fa-chart-line"></i> Analytics</div>
+            <div class="tab-btn"><i class="fas fa-users"></i> Operators</div>
+            <div class="tab-btn"><i class="fas fa-comments"></i> Team Chat</div>
+            <div class="tab-btn"><i class="fas fa-history"></i> Logs</div>
+        </div>
+
+        <div class="resizer" id="resizerLeft"></div>
+
+        <!-- CENTER PANEL -->
+        <div class="center-panel" id="centerPanel">
+            <div class="admin-stats" id="adminStats">
+                <div class="stat-card">
+                    <h4>Total Transactions</h4>
+                    <div class="val">1,254</div>
+                </div>
+                <div class="stat-card">
+                    <h4>Active Operators</h4>
+                    <div class="val">12</div>
+                </div>
+                <div class="stat-card">
+                    <h4>Center Revenue</h4>
+                    <div class="val">₹45,200</div>
+                </div>
+            </div>
+
+            <div class="browser-container" id="browserView">
+                <iframe src="https://example.com"></iframe>
+            </div>
+        </div>
+
+        <div class="resizer" id="resizerRight"></div>
+
+        <!-- RIGHT PANEL -->
+        <div class="right-panel" id="rightPanel">
+            <div class="supervisor-view">
+                <i class="fas fa-eye"></i> Harshita AI Supervisor
+                <div id="agentStatusDot" style="display:inline-block; width:8px; height:8px; background:#00ff00; border-radius:50%; margin-left:10px; box-shadow:0 0 5px #00ff00;"></div>
+            </div>
+            <div class="chat-history" id="chatHistory">
+                <div style="font-size: 11px; color: #888; text-align: center; margin-top: 20px;">Harshita AI Platform Online</div>
+            </div>
+            
+            <!-- Quick Actions Bar -->
+            <div style="padding: 0 15px; display: flex; gap: 5px; margin-bottom: 5px;">
+                <div class="role-toggle" onclick="chatInput.value='Check status'; sendCommand()" style="font-size: 9px; padding: 2px 6px; border-color: rgba(123,123,255,0.2);">Status</div>
+                <div class="role-toggle" onclick="document.getElementById('chatHistory').innerHTML=''" style="font-size: 9px; padding: 2px 6px; border-color: rgba(255,100,100,0.2);">Clear</div>
+                <div class="role-toggle" onclick="chatInput.value='Help'; sendCommand()" style="font-size: 9px; padding: 2px 6px; border-color: rgba(123,123,255,0.2);">Help</div>
+            </div>
+
+            <div class="chat-input">
+                <div class="input-box">
+                    <input type="text" id="chatInput" placeholder="Type message to Customer...">
+                    <input type="file" id="fileInput" style="display:none;" onchange="handleFileUpload(this)">
+                    <i class="fas fa-microphone icon-btn" id="micBtn"></i>
+                    <i class="fas fa-paperclip icon-btn" onclick="document.getElementById('fileInput').click()"></i>
+                    <i class="fas fa-paper-plane icon-btn" id="sendBtn" style="color: #7b7bff;" onclick="sendCommand()"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="drag-overlay" id="dragOverlay"></div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        const leftPanel = document.getElementById('leftPanel');
+        const centerPanel = document.getElementById('centerPanel');
+        const rightPanel = document.getElementById('rightPanel');
+        const resizerLeft = document.getElementById('resizerLeft');
+        const resizerRight = document.getElementById('resizerRight');
+        const dragOverlay = document.getElementById('dragOverlay');
+        const roleToggle = document.getElementById('roleToggle');
+        const adminStats = document.getElementById('adminStats');
+        const browserView = document.getElementById('browserView');
+        const chatHistory = document.querySelector('.chat-history');
+        const broadcastText = document.querySelector('.broadcast-text');
+        const chatInput = document.querySelector('.input-box input');
+        const sendBtn = document.querySelector('.fa-paper-plane');
+
+        // --- SOCKET EVENTS ---
+        socket.on('taskUpdate', (task) => {
+            // Update left panel task list
+            const taskEl = document.createElement('div');
+            taskEl.className = 'tab-btn';
+            taskEl.innerHTML = `<i class="fas fa-sync fa-spin"></i> ${task.name}: ${task.status}`;
+            leftPanel.prepend(taskEl);
+        });
+
+        socket.on('logUpdate', (log) => {
+            const msgEl = document.createElement('div');
+            msgEl.className = `chat-msg ${log.type === 'user' ? 'user' : 'ai'}`;
+            msgEl.innerHTML = `<strong>${log.type === 'user' ? 'You' : 'Harshita AI'}:</strong> ${log.message}`;
+            chatHistory.appendChild(msgEl);
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+        });
+
+        socket.on('broadcastReceived', (msg) => {
+            broadcastText.innerText = `📢 ADMIN: ${msg}`;
+        });
+
+        socket.on('supervisorUpdate', (suggestion) => {
+            const supervisorHeader = document.querySelector('.supervisor-view');
+            // Keep the dot and title, only update suggestion text if needed or add a bubble
+            const sugEl = document.createElement('div');
+            sugEl.style = "background: rgba(255,255,255,0.1); padding: 5px; margin-top: 5px; border-radius: 4px; font-weight: normal; text-transform: none;";
+            sugEl.innerHTML = `💡 <strong>Suggestion:</strong> ${suggestion}`;
+            chatHistory.appendChild(sugEl);
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+        });
+
+        // --- USER ACTIONS ---
+        function sendCommand() {
+            const cmd = chatInput.value;
+            if (cmd) {
+                socket.emit('userCommand', cmd);
+                chatInput.value = '';
+            }
+        }
+
+        function handleFileUpload(input) {
+            const file = input.files[0];
+            if (file) {
+                const msgEl = document.createElement('div');
+                msgEl.className = 'chat-msg ai';
+                msgEl.style.fontSize = '10px';
+                msgEl.innerHTML = `📎 <strong>File Attached:</strong> ${file.name} (${Math.round(file.size/1024)} KB)`;
+                chatHistory.appendChild(msgEl);
+                chatHistory.scrollTop = chatHistory.scrollHeight;
+                // In real app, we would emit file data here
+                socket.emit('fileUpload', { name: file.name, size: file.size });
+            }
+        }
+
+        chatInput.onkeypress = (e) => { if (e.key === 'Enter') sendCommand(); };
+
+        // --- VOICE COMMAND LOGIC ---
+        const micBtn = document.querySelector('.fa-microphone');
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+        if (SpeechRecognition) {
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'hi-IN'; // Default to Hindi, can handle English too
+            recognition.interimResults = false;
+
+            micBtn.onclick = () => {
+                recognition.start();
+                micBtn.style.color = '#ff4444'; // Red glow when listening
+                micBtn.classList.add('fa-pulse');
+            };
+
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                chatInput.value = transcript;
+                micBtn.style.color = '#888';
+                micBtn.classList.remove('fa-pulse');
+                sendCommand(); // Auto-send after speaking
+            };
+
+            recognition.onerror = () => {
+                micBtn.style.color = '#888';
+                micBtn.classList.remove('fa-pulse');
+            };
+
+            recognition.onend = () => {
+                micBtn.style.color = '#888';
+                micBtn.classList.remove('fa-pulse');
+            };
+        } else {
+            console.warn("Speech Recognition not supported in this browser.");
+        }
+
+        // Admin Broadcast TEST
+        function sendBroadcast(msg) {
+            socket.emit('adminBroadcast', msg);
+        }
+
+        // --- TAB SWITCHING LOGIC ---
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        tabBtns.forEach(btn => {
+            btn.onclick = () => {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const tabName = btn.innerText.trim();
+                
+                if (tabName === 'Analytics') {
+                    adminStats.style.display = 'grid';
+                    adminStats.innerHTML = `
+                        <div class="stat-card"><h4>Total Transactions</h4><div class="val">${Math.floor(Math.random()*2000)}</div></div>
+                        <div class="stat-card"><h4>Active Operators</h4><div class="val">12</div></div>
+                        <div class="stat-card"><h4>Center Revenue</h4><div class="val">₹${(Math.random()*50000 + 40000).toFixed(0)}</div></div>
+                    `;
+                } else if (tabName === 'Operators') {
+                    adminStats.style.display = 'block';
+                    adminStats.innerHTML = `
+                        <div style="padding:20px;">
+                            <h3>Live Operators</h3>
+                            <div style="margin-top:15px; background:rgba(255,255,255,0.05); padding:10px; border-radius:8px;">
+                                🟢 Operator 1 (Harsh): Filling SSC Form<br>
+                                🟢 Operator 2 (Amit): Processing Aadhaar<br>
+                                🔴 Operator 3 (Sita): Offline
+                            </div>
+                        </div>
+                    `;
+                } else if (tabName === 'Logs') {
+                    adminStats.style.display = 'block';
+                    adminStats.innerHTML = `
+                        <div style="padding:20px; font-family:monospace; font-size:10px; color:#0f0;">
+                            [SYSTEM] Self-Evolution Brain Active...<br>
+                            [NETWORK] Socket connected on port 3001<br>
+                            [AI] MasterAgent ready for intents...<br>
+                            [LOG] Last task: sssc gd job search (SUCCESS)
+                        </div>
+                    `;
+                } else if (tabName === 'Team Chat') {
+                    adminStats.style.display = 'block';
+                    adminStats.innerHTML = `
+                        <div style="padding:20px;">
+                            <h3>Team Chat</h3>
+                            <div style="height:200px; overflow-y:auto; background:rgba(0,0,0,0.2); padding:10px; margin-top:10px;">
+                                <b>Admin:</b> Priority on SSC GD forms today!<br>
+                                <b>Amit:</b> Copy that. 5 done.
+                            </div>
+                            <input type="text" placeholder="Reply to team..." style="width:100%; margin-top:10px; padding:8px; background:#161636; border:1px solid #7b7bff; border-radius:4px; color:#fff;">
+                        </div>
+                    `;
+                }
+            };
+        });
+
+        // --- ROLE TOGGLE ---
+        roleToggle.onclick = () => {
+            if (roleToggle.classList.contains('admin')) {
+                roleToggle.classList.remove('admin');
+                roleToggle.innerText = 'OPERATOR MODE';
+                adminStats.style.display = 'none';
+                browserView.classList.add('active');
+            } else {
+                roleToggle.classList.add('admin');
+                roleToggle.innerText = 'ADMIN MODE';
+                adminStats.style.display = 'grid';
+                browserView.classList.remove('active');
+            }
+        };
+
+        // --- RESIZE LOGIC ---
+        let activeResizer = null;
+        let startX, startW;
+
+        function startResize(e, type) {
+            activeResizer = type;
+            startX = e.clientX;
+            startW = type === 'left' ? leftPanel.offsetWidth : rightPanel.offsetWidth;
+            dragOverlay.classList.add('active');
+            document.body.style.cursor = 'col-resize';
+        }
+
+        resizerLeft.onmousedown = (e) => startResize(e, 'left');
+        resizerRight.onmousedown = (e) => startResize(e, 'right');
+
+        window.onmousemove = (e) => {
+            if (!activeResizer) return;
+            const dx = e.clientX - startX;
+            if (activeResizer === 'left') {
+                leftPanel.style.width = Math.max(150, Math.min(400, startW + dx)) + 'px';
+            } else {
+                rightPanel.style.width = Math.max(200, Math.min(500, startW - dx)) + 'px';
+            }
+        };
+
+        window.onmouseup = () => {
+            activeResizer = null;
+            dragOverlay.classList.remove('active');
+            document.body.style.cursor = 'default';
+        };
+    </script>
+</body>
+</html>

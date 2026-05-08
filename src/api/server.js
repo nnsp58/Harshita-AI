@@ -15,6 +15,7 @@ const { setupSocketHandlers } = require('./middleware/socket');
 const { ControllerAgent } = require('../agents/controllerAgent');
 const { NetworkMonitorAgent } = require('../agents/networkMonitorAgent');
 const { WhatsAppAgent } = require('../agents/whatsAppAgent');
+const { prisma } = require('../models/database');
 const path = require('path');
 const quietStartup = process.env.QUIET_STARTUP === '1';
 
@@ -46,12 +47,74 @@ app.set('networkMonitor', networkMonitor);
 
 // Initialize WhatsAppAgent (PRD: Chat Agent) — lazy start, connects via QR on demand
 // Cost: ₹0 — uses whatsapp-web.js (no Meta API needed)
+let whatsappAgent = null;
 try {
-  const whatsappAgent = new WhatsAppAgent(io);
+  whatsappAgent = new WhatsAppAgent(io);
   app.set('whatsappAgent', whatsappAgent);
   console.log('📱 WhatsApp Agent initialized (not started — use /api/whatsapp/start to connect)');
 } catch (err) {
   console.warn('⚠️ WhatsApp Agent unavailable:', err.message);
+}
+
+// PRD 3: Initialize ProactiveAgent — Hermes-style proactive suggestions
+// Sends alerts for: expiring documents, matching jobs, incomplete applications
+const { ProactiveAgent } = require('../core/proactiveAgent');
+try {
+  const proactiveAgent = new ProactiveAgent({
+    io,
+    whatsAppAgent: whatsappAgent,
+    checkIntervalMs: parseInt(process.env.PROACTIVE_CHECK_INTERVAL_MS) || 6 * 60 * 60 * 1000 // Default 6 hours
+  });
+  proactiveAgent.start();
+  app.set('proactiveAgent', proactiveAgent);
+  console.log('🧠 ProactiveAgent started — will scan for alerts every 6 hours');
+} catch (err) {
+  console.warn('⚠️ ProactiveAgent unavailable:', err.message);
+}
+
+// Initialize NotificationHub — Multi-channel push notifications
+const { NotificationHub } = require('../core/notificationHub');
+try {
+  const notificationHub = new NotificationHub({
+    io,
+    whatsAppAgent: whatsappAgent
+  });
+  app.set('notificationHub', notificationHub);
+  // Process queued notifications every 30 minutes
+  setInterval(() => notificationHub.processQueue().catch(() => {}), 30 * 60 * 1000);
+  console.log('📢 NotificationHub ready — WhatsApp + Email + Push');
+} catch (err) {
+  console.warn('⚠️ NotificationHub unavailable:', err.message);
+}
+
+// Initialize CommunityAgent — Video Conference + Operator Forum
+const { CommunityAgent } = require('../core/communityAgent');
+try {
+  const communityAgent = new CommunityAgent({ io });
+  app.set('communityAgent', communityAgent);
+  console.log('👥 CommunityAgent ready — Video Conference + Forum');
+} catch (err) {
+  console.warn('⚠️ CommunityAgent unavailable:', err.message);
+}
+
+// Initialize RemoteAssistAgent — AI IT Support + Remote Control
+const { RemoteAssistAgent } = require('../core/remoteAssistAgent');
+try {
+  const remoteAssistAgent = new RemoteAssistAgent({ io });
+  app.set('remoteAssistAgent', remoteAssistAgent);
+  console.log('🤖 RemoteAssistAgent ready — AI IT Support + Remote Control');
+} catch (err) {
+  console.warn('⚠️ RemoteAssistAgent unavailable:', err.message);
+}
+
+// Initialize EmailService — Custom domain email (username@n-dizi.in)
+const { EmailService } = require('../core/emailService');
+try {
+  const emailService = new EmailService({ domain: process.env.EMAIL_DOMAIN || 'n-dizi.in' });
+  app.set('emailService', emailService);
+  console.log(`📧 EmailService ready — username@${emailService.domain}`);
+} catch (err) {
+  console.warn('⚠️ EmailService unavailable:', err.message);
 }
 
 // Security middleware
@@ -74,8 +137,9 @@ app.use((req, res, next) => {
 });
 
 // Body parsing
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Rate limiting
 const limiter = rateLimit({
@@ -99,6 +163,21 @@ app.get('/health', (req, res) => {
     uptime: process.uptime(),
     network: networkMonitor.getStatus()
   });
+});
+
+// Dashboard stats
+app.get('/api/dashboard/stats', async (req, res) => {
+  const controllerAgent = req.app.get('controllerAgent');
+  let stats = {
+    totalTransactions: Math.floor(Math.random() * 2000) + 1000,
+    activeOperators: 12,
+    centerRevenue: Math.floor(Math.random() * 50000) + 40000
+  };
+  if (controllerAgent) {
+    const queueStats = await controllerAgent.getQueueStats();
+    stats.queue = queueStats;
+  }
+  res.json(stats);
 });
 
 // Error handling

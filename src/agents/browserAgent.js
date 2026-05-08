@@ -1,4 +1,5 @@
 const { chromium } = require('playwright');
+const { SelectorDiscoveryAgent } = require('./selectorDiscoveryAgent');
 
 function safe(v) {
   return v ? String(v) : '';
@@ -55,146 +56,113 @@ function normalizeCategory(c) {
   return c;
 }
 
-async function runBrowserTask(formUrl = 'https://www.w3schools.com/html/html_forms.asp', userData) {
+async function runBrowserTask(formUrl = 'https://www.w3schools.com/html/html_forms.asp', userData, options = {}) {
   let browser = null;
+  const discoveryAgent = new SelectorDiscoveryAgent();
   
+  const log = (msg) => {
+    console.log(msg);
+    if (options.onLog) options.onLog({ type: 'ai', message: msg });
+  };
+
+  const updateStatus = (task, status) => {
+    if (options.onStatusUpdate) options.onStatusUpdate({ name: task, status });
+  };
+
   try {
     if (!userData) {
       userData = require('../data/userData.json');
     }
 
-    browser = await chromium.launch({ headless: true });
+    updateStatus('Launching Browser', 'Starting');
+    browser = await chromium.launch({ headless: false }); // Show browser for review
     const context = await browser.newContext();
     const page = await context.newPage();
     await page.setDefaultTimeout(30000);
 
-    console.log(`🌐 Opening form: ${formUrl}`);
+    log(`🌐 Opening form: ${formUrl}`);
+    updateStatus('Loading Portal', 'Navigating');
     await page.goto(formUrl);
-    await page.waitForLoadState('domcontentloaded').catch(() => {});
+    await page.waitForLoadState('networkidle').catch(() => {});
 
-    await page.waitForSelector('input, select, textarea', { timeout: 15000 }).catch(() => {});
-    const elements = await page.$$('input, select, textarea');
-    const totalElements = elements.length;
-    console.log(`📋 Found ${totalElements} form elements`);
+    // 1. Scan for interactive elements with their labels
+    updateStatus('Scanning Form', 'Analyzing DOM');
+    const elementsData = await page.evaluate(() => {
+      const inputs = Array.from(document.querySelectorAll('input, select, textarea'));
+      return inputs.map(el => {
+        let labelText = '';
+        if (el.id) {
+          const label = document.querySelector(`label[for="${el.id}"]`);
+          if (label) labelText = label.innerText;
+        }
+        if (!labelText) {
+          const parentLabel = el.closest('label');
+          if (parentLabel) labelText = parentLabel.innerText;
+        }
 
-    if (totalElements === 0) {
-      console.log('⚠️ No form elements found');
-      return { success: false, message: 'No form elements found on page' };
-    }
+        return {
+          id: el.id,
+          name: el.name,
+          type: el.type,
+          placeholder: el.placeholder,
+          label: labelText,
+          ariaLabel: el.getAttribute('aria-label'),
+          selector: el.id ? `#${el.id}` : (el.name ? `input[name="${el.name}"]` : '')
+        };
+      }).filter(el => el.selector);
+    });
 
-    const gender = normalizeGender(userData.personal?.gender);
-    const marital = normalizeMarital(userData.personal?.maritalStatus);
-    const category = normalizeCategory(userData.personal?.category);
+    // 2. Discover mappings autonomously
+    updateStatus('AI Selector Discovery', 'Discovering Fields');
+    const requiredFields = ['firstName', 'lastName', 'fullName', 'dob', 'gender', 'aadhaar', 'mobile', 'email', 'fatherName'];
+    const mappings = await discoveryAgent.discoverSelectors(elementsData, requiredFields);
+    log(`🧠 Harshita AI Discovered Mappings: ${Object.keys(mappings).join(', ')}`);
 
+    // 3. Fill the form based on discovered mappings
+    updateStatus('Filling Form', 'Applying Data');
     const parsedName = parseName(userData.personal?.fullName);
-    const personal = {
-      ...userData.personal,
+    const flatData = {
       firstName: userData.personal?.firstName || parsedName.firstName,
-      middleName: userData.personal?.middleName || parsedName.middleName,
       lastName: userData.personal?.lastName || parsedName.lastName,
+      fullName: userData.personal?.fullName,
+      dob: userData.personal?.dob,
+      gender: userData.personal?.gender,
+      aadhaar: userData.documents?.aadhaar,
+      mobile: userData.contact?.phone,
+      email: userData.contact?.email,
+      fatherName: userData.personal?.fatherName
     };
 
-    for (let el of elements) {
-      const name = (await el.getAttribute('name')) || '';
-      const type = (await el.getAttribute('type')) || '';
-      const tag = await el.evaluate(e => e.tagName.toLowerCase());
-      const placeholder = (await el.getAttribute('placeholder')) || '';
-      const id = (await el.getAttribute('id')) || '';
-      const field = (name + ' ' + placeholder + ' ' + id).toLowerCase();
-
-      try {
-        if (field.includes('name') && field.includes('full')) {
-          await el.fill(safe(personal.fullName));
-        } else if (field.includes('first') && field.includes('name')) {
-          await el.fill(safe(personal.firstName));
-        } else if (field.includes('middle') && field.includes('name')) {
-          await el.fill(safe(personal.middleName));
-        } else if (field.includes('second') && field.includes('name')) {
-          await el.fill(safe(personal.middleName));
-        } else if (field.includes('last') && field.includes('name')) {
-          await el.fill(safe(personal.lastName));
-        } else if (field.includes('name')) {
-          await el.fill(safe(personal.fullName));
-        } else if (field.includes('father')) {
-          await el.fill(safe(personal.fatherName));
-        } else if (field.includes('mother')) {
-          await el.fill(safe(personal.motherName));
-        } else if (field.includes('email')) {
-          await el.fill(safe(userData.contact?.email));
-        } else if (field.includes('phone') || field.includes('mobile')) {
-          await el.fill(safe(userData.contact?.phone));
-        } else if (field.includes('gender') || field.includes('sex')) {
-          if (type === 'radio') {
-            const val = ((await el.getAttribute('value')) || '').toLowerCase();
-            if (val.includes(gender) || (gender === 'male' && val.includes('m')) || (gender === 'female' && val.includes('f'))) {
-              await el.check();
-            }
-          } else if (tag === 'select') {
-            await el.selectOption({ label: gender });
-          }
-        } else if (field.includes('marital') || field.includes('status')) {
-          if (type === 'radio') {
-            const val = ((await el.getAttribute('value')) || '').toLowerCase();
-            if (val.includes(marital)) await el.check();
-          } else if (tag === 'select') {
-            await el.selectOption({ label: marital });
-          }
-        } else if (field.includes('category') || field.includes('caste')) {
-          if (type === 'radio') {
-            const val = ((await el.getAttribute('value')) || '').toLowerCase();
-            if (val.includes(category)) await el.check();
-          } else if (tag === 'select') {
-            await el.selectOption({ label: category });
-          }
-        } else if (field.includes('dob') || field.includes('birth') || field.includes('date')) {
-          await el.fill(safe(userData.personal?.dob));
-        } else if (field.includes('address') && field.includes('line1')) {
-          await el.fill(safe(userData.address?.line1));
-        } else if (field.includes('address') && field.includes('line2')) {
-          await el.fill(safe(userData.address?.line2));
-        } else if (field.includes('city')) {
-          await el.fill(safe(userData.address?.city));
-        } else if (field.includes('district')) {
-          await el.fill(safe(userData.address?.district));
-        } else if (field.includes('state')) {
-          await el.fill(safe(userData.address?.state));
-        } else if (field.includes('pin') || field.includes('zip')) {
-          await el.fill(safe(userData.address?.pincode));
-        } else if (field.includes('aadhaar') || field.includes('aadhar')) {
-          await el.fill(safe(userData.documents?.aadhaar));
-        } else if (field.includes('pan')) {
-          await el.fill(safe(userData.documents?.pan));
-        } else if (field.includes('voter') || field.includes('vid')) {
-          await el.fill(safe(userData.documents?.voterId));
-        }
-      } catch (e) {}
-    }
-
     let filledCount = 0;
-    for (let el of elements) {
-      const wasFilled = await el.evaluate(e => {
-        if (e.tagName.toLowerCase() === 'input' && (e.type === 'checkbox' || e.type === 'radio')) {
-          return e.checked;
+    for (const [field, selector] of Object.entries(mappings)) {
+      const value = flatData[field];
+      if (value && selector) {
+        try {
+          const exists = await page.$(selector);
+          if (exists) {
+            await page.fill(selector, String(value));
+            filledCount++;
+            log(`✅ Filled ${field} -> ${selector}`);
+          }
+        } catch (e) {
+          console.error(`⚠️ Failed to fill ${field}:`, e.message);
         }
-        return e.value && e.value.length > 0;
-      });
-      if (wasFilled) filledCount++;
+      }
     }
-    console.log(`✅ Filled ${filledCount}/${totalElements} fields`);
 
+    log(`✅ Completed: Filled ${filledCount} fields autonomously`);
+    updateStatus('Final Review', 'Waiting for User');
     await page.waitForTimeout(5000);
 
     return { 
       success: true, 
-      message: `Form filled with ${filledCount}/${totalElements} fields. Please review and submit.`,
-      requiresManualStep: true, 
-      manualStepReason: 'form_review',
-      filledFields: filledCount,
-      totalFields: totalElements
+      message: `Autonomous discovery completed. Filled ${filledCount} fields.`,
+      mappings
     };
   } catch (error) {
-    console.error('❌ Browser error:', error.message);
-    if (browser) await browser.close().catch(() => {});
+    log(`❌ Browser error: ${error.message}`);
+    updateStatus('Error', error.message);
+    // if (browser) await browser.close().catch(() => {});
     return { success: false, message: error.message };
   }
 }

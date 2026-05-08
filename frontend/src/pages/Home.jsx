@@ -42,7 +42,7 @@ export default function Home() {
       </div>
 
       {/* Global Stats */}
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 xs:gap-6">
         <StatsCard title="Total VLE Users" value={candidates.length || 1} icon={Users} color="blue" subtitle="Across registered centers" />
         <StatsCard title="Global Revenue" value={`₹${stats.revenue || 0}`} icon={DollarSign} color="gold" subtitle="System-wide earnings" />
         <StatsCard title="Core Agents" value={agents.length} icon={Bot} color="emerald" subtitle="All systems operational" />
@@ -120,7 +120,7 @@ export default function Home() {
           </div>
           <div className="space-y-4">
             {jobs.slice(0, 5).map((job) => (
-              <div key={job.id} className="flex items-center justify-between p-4 bg-gray-50 dark:bg-navy-800/50 rounded-2xl border border-gray-100 dark:border-navy-700">
+              <div key={job.id} className="flex items-center justify-between p-3 xs:p-4 bg-gray-50 dark:bg-navy-800/50 rounded-2xl border border-gray-100 dark:border-navy-700">
                 <div className="flex items-center gap-4">
                   <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
                     job.status === 'completed' ? 'bg-emerald-100 text-emerald-600' : 'bg-blue-100 text-blue-600'

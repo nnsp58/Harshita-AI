@@ -63,19 +63,19 @@ router.post(
   candidateController.uploadCandidate
 );
 
-router.get(
-  '/:id',
-  authenticate,
-  [param('id').isUUID()],
-  validate,
-  candidateController.getCandidate
-);
+// router.get(
+//   '/:id',
+//   authenticate,
+//   [param('id').isUUID()],
+//   validate,
+//   candidateController.getCandidate
+// );
 
-router.get(
-  '/',
-  authenticate,
-  candidateController.listCandidates
-);
+// router.get(
+//   '/',
+//   authenticate,
+//   candidateController.listCandidates
+// );
 
 router.get(
   '/:id/verification',
@@ -101,31 +101,31 @@ router.post(
   candidateController.rejectVerification
 );
 
-router.put(
-  '/:id',
-  authenticate,
-  [param('id').isUUID()],
-  validate,
-  candidateController.updateCandidate
-);
+// router.put(
+//   '/:id',
+//   authenticate,
+//   [param('id').isUUID()],
+//   validate,
+//   candidateController.updateCandidate
+// );
 
-router.delete(
-  '/:id',
-  authenticate,
-  authorize('csc_admin', 'superadmin'),
-  [param('id').isUUID()],
-  validate,
-  candidateController.deleteCandidate
-);
+// router.delete(
+//   '/:id',
+//   authenticate,
+//   authorize('csc_admin', 'superadmin'),
+//   [param('id').isUUID()],
+//   validate,
+//   candidateController.deleteCandidate
+// );
 
-router.post(
-  '/:id/documents',
-  authenticate,
-  [param('id').isUUID()],
-  validate,
-  uploadFields,
-  candidateController.uploadDocuments
-);
+// router.post(
+//   '/:id/documents',
+//   authenticate,
+//   [param('id').isUUID()],
+//   validate,
+//   uploadFields,
+//   candidateController.uploadDocuments
+// );
 
 // Public candidate submission (no auth required)
 router.post(

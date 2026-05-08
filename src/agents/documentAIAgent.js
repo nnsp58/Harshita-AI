@@ -79,10 +79,6 @@ class DocumentAIAgent {
       console.log(`   ℹ️ pdf-parse error: ${err.message}`);
       if (parser) await parser.destroy();
     }
-    } catch (err) {
-      console.log(`   ℹ️ pdf-parse error: ${err.message}`);
-      if (parser) await parser.destroy();
-    }
     
     // Fallback: Convert PDF pages to images and OCR each page
     return await this.extractTextFromScannedPDF(filePath);

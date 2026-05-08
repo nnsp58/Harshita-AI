@@ -103,20 +103,23 @@ class AIProviderManager {
     const modelMap = {
       groq: {
         'DocumentAIAgent': 'llama-3.3-70b-versatile',
-        'LegalDraftAgent': 'llama-3.3-70b-versatile', // fallback if gemini not set
+        'LegalDraftAgent': 'llama-3.3-70b-versatile',
         'JobSearchAgent': 'llama-3.3-70b-versatile',
+        'UIBuilderAgent': 'llama-3.3-70b-versatile',
         'default': 'llama-3.3-70b-versatile'
       },
       gemini: {
         'LegalDraftAgent': 'gemini-2.0-flash',
         'DocumentAIAgent': 'gemini-2.0-flash-lite',
         'JobSearchAgent': 'gemini-2.0-flash',
+        'UIBuilderAgent': 'gemini-2.0-flash',
         'default': 'gemini-2.0-flash'
       },
       openai: {
-        'JobSearchAgent': 'gpt-4-turbo-preview', // or 'gpt-4'
+        'JobSearchAgent': 'gpt-4-turbo-preview',
         'DocumentAIAgent': 'gpt-3.5-turbo',
         'LegalDraftAgent': 'gpt-4',
+        'UIBuilderAgent': 'gpt-4',
         'default': 'gpt-3.5-turbo'
       }
     };
@@ -128,9 +131,10 @@ class AIProviderManager {
 
   getEffectiveProvider(agentName) {
     const preferences = {
-      'DocumentAIAgent': 'gemini', // Supports images for OCR verification
+      'DocumentAIAgent': 'gemini',
       'LegalDraftAgent': 'gemini',
       'JobSearchAgent': 'openai',
+      'UIBuilderAgent': 'groq',
       'default': 'groq'
     };
     return preferences[agentName] || preferences.default;

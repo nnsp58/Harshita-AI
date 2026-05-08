@@ -1,0 +1,8 @@
+{
+  "prompt": "\n      HARSHITA AI ENTERPRISE COMMAND CENTER (V5 - SaaS):\n      - TOP NAV: Add a \"Harshita AI\" Logo, a Search Bar, and on the far right: \"Login/Signup\" and \"Admin Settings (Gear Icon)\".\n      - LAYOUT: Resizable 3-Panel Split Screen.\n      - LEFT PANEL (Management):\n        1. \"Live Tasks\" Tab (current work).\n        2. \"Operators\" Tab (Manage staff, add/remove operators).\n        3. \"Analytics\" Tab (Owner view of earnings/efficiency).\n      - CENTER PANEL (Workspace): \n        - Default: A beautiful \"Admin Stats\" dashboard (Total Work, Staff Status, Today's Earnings).\n        - Active: Switches to Live Browser View with Top Status Bar.\n      - RIGHT PANEL (Control):\n        - TOP: COMPACT \"Harshita AI Supervisor\" (Global monitor).\n        - MIDDLE: Chat with Multi-language support.\n        - BOTTOM: Advanced Chat Input with Voice/Media icons.\n      - THEME: Cyberpunk Enterprise (Deep Blue & Graphite), Neon highlights, Interactive Glass handles.\n    ",
+  "pageType": "dashboard",
+  "generatedAt": "2026-05-07T13:21:57.981Z",
+  "model": "llama-3.3-70b-versatile",
+  "fileName": "dashboard_harshita_ai_enterprise_command_center_v5_1778160117977.html",
+  "filePath": "D:\\Harshita-AI\\output\\generated_pages\\dashboard_harshita_ai_enterprise_command_center_v5_1778160117977.html"
+}

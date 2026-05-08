@@ -1,0 +1,179 @@
+
+<!-- Powered by Harshita AI Platform | UIBuilderAgent | 2026-05-07T12:14:22.829Z -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤖 FINAL HARSHITA AI COMMAND CENTER</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #1a1a2e;
+            color: #fff;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: 250px 1fr 300px;
+            height: 100vh;
+            padding: 12px;
+        }
+        .task-list {
+            background: #2f2f3f;
+            padding: 12px;
+            border-radius: 10px;
+            overflow-y: auto;
+        }
+        .task-list ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .task-list li {
+            padding: 10px;
+            border-bottom: 1px solid #4f4f5f;
+            cursor: pointer;
+        }
+        .task-list li:last-child {
+            border-bottom: none;
+        }
+        .task-list li.active {
+            background: #4f4f5f;
+        }
+        .live-work-area {
+            margin: 0 12px;
+            background: #2f2f3f;
+            padding: 12px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+        .status-bar {
+            background: #4f4f5f;
+            padding: 10px;
+            border-bottom: 1px solid #6f6f7f;
+        }
+        .status-bar span {
+            font-size: 14px;
+        }
+        .iframe-container {
+            flex: 1;
+            padding: 10px;
+        }
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .chat-panel {
+            background: #2f2f3f;
+            padding: 12px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+        .supervisor {
+            background: #4f4f5f;
+            padding: 10px;
+            border-bottom: 1px solid #6f6f7f;
+        }
+        .supervisor span {
+            font-size: 14px;
+        }
+        .chat-feed {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        .chat-feed ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .chat-feed li {
+            padding: 10px;
+            border-bottom: 1px solid #6f6f7f;
+        }
+        .chat-feed li:last-child {
+            border-bottom: none;
+        }
+        .upload-buttons {
+            padding: 10px;
+        }
+        .upload-buttons button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .upload-buttons button:hover {
+            background: #6f6f7f;
+        }
+        @media only screen and (max-width: 412px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .task-list {
+                margin-bottom: 12px;
+            }
+            .live-work-area {
+                margin: 0;
+            }
+            .chat-panel {
+                margin-top: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="task-list">
+            <h2>Task List</h2>
+            <ul>
+                <li class="active">Task 1</li>
+                <li>Task 2</li>
+                <li>Task 3</li>
+            </ul>
+        </div>
+        <div class="live-work-area">
+            <div class="status-bar">
+                <span>Current URL: https://www.example.com</span>
+                <span>Progress: 50%</span>
+            </div>
+            <div class="iframe-container">
+                <iframe src="https://www.example.com" frameborder="0"></iframe>
+            </div>
+        </div>
+        <div class="chat-panel">
+            <div class="supervisor">
+                <h2>Harshita AI Supervisor</h2>
+                <span>Monitoring all agents, showing live suggestions, and self-upgrade status.</span>
+            </div>
+            <div class="chat-feed">
+                <ul>
+                    <li>Message 1</li>
+                    <li>Message 2</li>
+                    <li>Message 3</li>
+                </ul>
+            </div>
+            <div class="upload-buttons">
+                <button><i class="fa fa-file-video" aria-hidden="true"></i> Upload Video (10MB)</button>
+                <button><i class="fa fa-file-image" aria-hidden="true"></i> Upload Image (10MB)</button>
+                <button><i class="fa fa-file" aria-hidden="true"></i> Upload Document (10MB)</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <div style="text-align:center;padding:24px;background:#0a0a0f;color:#666;font-size:12px;margin-top:60px;border-top: 1px solid #1a1a2e;">
+    🤖 Powered by <strong style="color:#4834d4;">Harshita AI Platform</strong> | Adaptive UI Engine &copy; 2026
+  </div>
+</body>
+</html>

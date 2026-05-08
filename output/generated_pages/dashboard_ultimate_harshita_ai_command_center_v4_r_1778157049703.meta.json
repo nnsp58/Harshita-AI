@@ -1,0 +1,8 @@
+{
+  "prompt": "\n      ULTIMATE HARSHITA AI COMMAND CENTER (V4 - RESIZABLE):\n      - Layout: 3-Panel Horizontal Split Screen.\n      - FEATURES: \n        1. RESIZABLE PANELS: Add vertical \"Draggable Handles\" between panels so the user can grab them with the mouse and resize panels.\n        2. Left: Compact Task List.\n        3. Center: Dynamic Browser View (Action Area) - this should grow/shrink when side panels are resized.\n        4. Right: \n           - Top: Compact \"Harshita AI Supervisor\".\n           - Bottom: Advanced Chat with Voice, Send, and Attach icons.\n           - Multi-language support label.\n      - Interactivity: Panels MUST be resizable using JavaScript mouse events (mousedown, mousemove, mouseup).\n      - Theme: Ultra-premium Cyberpunk Dark, Glassmorphism handles.\n    ",
+  "pageType": "dashboard",
+  "generatedAt": "2026-05-07T12:30:49.706Z",
+  "model": "llama-3.3-70b-versatile",
+  "fileName": "dashboard_ultimate_harshita_ai_command_center_v4_r_1778157049703.html",
+  "filePath": "D:\\Harshita-AI\\output\\generated_pages\\dashboard_ultimate_harshita_ai_command_center_v4_r_1778157049703.html"
+}

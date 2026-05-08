@@ -1,0 +1,247 @@
+
+<!-- Powered by Harshita AI Platform | UIBuilderAgent | 2026-05-07T07:36:34.448Z -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📊 Harshita AI VLE Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', 'Noto Sans Devanagari', sans-serif;
+            background: linear-gradient(90deg, #ff69b4, #ffe66d, #8bc34a);
+            background-size: 1800px 1800px;
+            animation: move 10s ease infinite;
+        }
+        @keyframes move {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 1800px 1800px;
+            }
+        }
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 12px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .card i {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .card h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .card p {
+            font-size: 14px;
+            color: #666;
+        }
+        .header {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+        .header button {
+            background: #1a1a2e;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 20px;
+        }
+        .stats-card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 16px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .stats-card i {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        .stats-card h2 {
+            font-size: 18px;
+            margin: 0;
+        }
+        .charts {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 16px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .table {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 16px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 16px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        @media only screen and (max-width: 768px) {
+            .container {
+                padding: 12px;
+            }
+            .card {
+                padding: 8px;
+            }
+            .header {
+                padding: 8px;
+            }
+            .stats-card {
+                padding: 8px;
+            }
+            .charts {
+                padding: 8px;
+            }
+            .table {
+                padding: 8px;
+            }
+            .sidebar {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Harshita AI VLE Admin Dashboard</h1>
+            <button>Logout</button>
+        </div>
+        <div class="stats-cards">
+            <div class="stats-card">
+                <i class="fa-solid fa-file"></i>
+                <h2>10</h2>
+                <p>Total Applications</p>
+            </div>
+            <div class="stats-card">
+                <i class="fa-solid fa-rupee-sign"></i>
+                <h2>₹10,000</h2>
+                <p>Total Earnings</p>
+            </div>
+            <div class="stats-card">
+                <i class="fa-solid fa-user"></i>
+                <h2>5</h2>
+                <p>Active Agents</p>
+            </div>
+        </div>
+        <div class="charts">
+            <h2>Application Status</h2>
+            <div style="width: 100%; height: 200px; background: #fff; border-radius: 10px; padding: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                <canvas id="myChart" width="400" height="200"></canvas>
+            </div>
+        </div>
+        <div class="table">
+            <h2>Recent Applications</h2>
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>John Doe</td>
+                    <td>johndoe@example.com</td>
+                    <td>1234567890</td>
+                    <td>Pending</td>
+                </tr>
+                <tr>
+                    <td>Jane Doe</td>
+                    <td>janedoe@example.com</td>
+                    <td>1234567890</td>
+                    <td>Approved</td>
+                </tr>
+            </table>
+        </div>
+        <div class="sidebar">
+            <h2>Agent Status</h2>
+            <ul style="list-style: none; padding: 0; margin: 0;">
+                <li><i class="fa-solid fa-circle" style="color: #32cd32;"></i> Active</li>
+                <li><i class="fa-solid fa-circle" style="color: #ff0000;"></i> Inactive</li>
+                <li><i class="fa-solid fa-circle" style="color: #ffff00;"></i> Pending</li>
+            </ul>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Pending', 'Approved', 'Rejected'],
+                datasets: [{
+                    label: 'Application Status',
+                    data: [10, 20, 30],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+  <div style="text-align:center;padding:24px;background:#0a0a0f;color:#666;font-size:12px;margin-top:60px;border-top: 1px solid #1a1a2e;">
+    🤖 Powered by <strong style="color:#4834d4;">Harshita AI Platform</strong> | Adaptive UI Engine &copy; 2026
+  </div>
+</body>
+</html>

@@ -36,10 +36,8 @@ async function getPrisma() {
 
 async function findUser(email) {
   const db = await getPrisma();
-  if (db) {
-    return db.user.findUnique({ where: { email } });
-  }
-  return inMemoryUsers.get(email) || null;
+  const dbUser = db ? await db.user.findUnique({ where: { email } }) : null;
+  return dbUser || inMemoryUsers.get(email) || null;
 }
 
 async function createUser(data) {

@@ -1,0 +1,75 @@
+[
+  {
+    "id": "default_user_1778175271561_ppjtizkzt",
+    "userId": "default_user",
+    "userInput": "job search ssc gd",
+    "taskResult": {
+      "type": "result",
+      "success": false,
+      "message": "Unknown action: undefined. Use: search_jobs, search_by_documents, get_all_jobs, filter_by_agency",
+      "data": {
+        "success": false,
+        "message": "Unknown action: undefined. Use: search_jobs, search_by_documents, get_all_jobs, filter_by_agency"
+      }
+    },
+    "agentUsed": "JobSearchAgent",
+    "executionTime": 1,
+    "success": false,
+    "timestamp": "2026-05-07T17:34:31.560Z",
+    "intent": "jobsearch",
+    "context": {},
+    "metadata": {
+      "version": "1.0",
+      "collectedAt": "2026-05-07T17:34:31.561Z"
+    }
+  },
+  {
+    "id": "default_user_1778185533889_zjh8yq439",
+    "userId": "default_user",
+    "userInput": "Check status",
+    "taskResult": {
+      "type": "result",
+      "success": false,
+      "message": "Failed to complete pre-check validation.",
+      "data": {
+        "success": false,
+        "error": "Cannot read properties of undefined (reading 'personal')",
+        "message": "Failed to complete pre-check validation."
+      }
+    },
+    "agentUsed": "EligibilityAgent",
+    "executionTime": 4,
+    "success": false,
+    "timestamp": "2026-05-07T20:25:33.889Z",
+    "intent": "eligibility",
+    "context": {},
+    "metadata": {
+      "version": "1.0",
+      "collectedAt": "2026-05-07T20:25:33.890Z"
+    }
+  },
+  {
+    "id": "default_user_1778185585455_tr46t4b4k",
+    "userId": "default_user",
+    "userInput": "search for ssc jobs",
+    "taskResult": {
+      "type": "result",
+      "success": false,
+      "message": "Unknown action: undefined. Use: search_jobs, search_by_documents, get_all_jobs, filter_by_agency",
+      "data": {
+        "success": false,
+        "message": "Unknown action: undefined. Use: search_jobs, search_by_documents, get_all_jobs, filter_by_agency"
+      }
+    },
+    "agentUsed": "JobSearchAgent",
+    "executionTime": 2,
+    "success": false,
+    "timestamp": "2026-05-07T20:26:25.455Z",
+    "intent": "jobsearch",
+    "context": {},
+    "metadata": {
+      "version": "1.0",
+      "collectedAt": "2026-05-07T20:26:25.456Z"
+    }
+  }
+]

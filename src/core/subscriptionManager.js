@@ -177,6 +177,12 @@ class SubscriptionManager {
    * Check if user has access to a specific agent
    */
   checkAccess(userId, requiredAgent) {
+    // ============================================
+    // DEVELOPMENT MODE: Full access for all users
+    // TODO: Remove this bypass before production
+    // ============================================
+    return { allowed: true };
+
     const subscription = this.userSubscriptions.get(userId);
 
     // No subscription

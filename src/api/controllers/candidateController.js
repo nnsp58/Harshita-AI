@@ -91,6 +91,8 @@ const uploadCandidate = async (req, res, next) => {
       }
     });
 
+    let documents = [];
+
     if (req.files) {
       const documentPromises = Object.entries(req.files).map(async ([fieldName, files]) => {
         const file = files[0];
@@ -122,9 +124,10 @@ const uploadCandidate = async (req, res, next) => {
             size: file.size,
             path: file.path
           }
+        });
       });
 
-      const documents = await Promise.all(documentPromises);
+      documents = await Promise.all(documentPromises);
     }
 
     res.status(201).json({
@@ -132,7 +135,8 @@ const uploadCandidate = async (req, res, next) => {
       data: candidate,
       documents: req.files ? documents : []
     });
-  } catch (error) {
+  }
+  catch (error) {
     next(error);
   }
 };
@@ -390,11 +394,6 @@ const rejectVerification = async (req, res, next) => {
 
 module.exports = {
   uploadCandidate,
-  getCandidate,
-  listCandidates,
-  updateCandidate,
-  deleteCandidate,
-  uploadDocuments,
   uploadPublicCandidate,
   bulkUploadCandidates,
   getVerification,

@@ -1,0 +1,183 @@
+
+<!-- Powered by Harshita AI Platform | UIBuilderAgent | 2026-05-07T12:25:11.780Z -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤖 ULTIMATE HARSHITA AI COMMAND CENTER (V3)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a2e;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: 200px 1fr 300px;
+            height: 100vh;
+        }
+        .task-list {
+            background-color: #2a2a3d;
+            padding: 12px;
+            overflow-y: auto;
+        }
+        .task-list ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .task-list li {
+            padding: 10px;
+            border-bottom: 1px solid #3a3a4d;
+            display: flex;
+            align-items: center;
+        }
+        .task-list li:last-child {
+            border-bottom: none;
+        }
+        .task-list li .status {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #ff0000;
+            margin-right: 10px;
+        }
+        .task-list li .status.completed {
+            background-color: #00ff00;
+        }
+        .browser-view {
+            display: flex;
+            flex-direction: column;
+        }
+        .status-bar {
+            background-color: #2a2a3d;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .status-bar .url {
+            font-size: 14px;
+            color: #ccc;
+        }
+        .status-bar .progress {
+            font-size: 14px;
+            color: #ccc;
+        }
+        .action-view {
+            flex: 1;
+            background-color: #3a3a4d;
+            padding: 20px;
+        }
+        .supervisor {
+            background-color: #2a2a3d;
+            padding: 10px;
+            text-align: center;
+        }
+        .supervisor h2 {
+            font-size: 18px;
+            margin: 0;
+        }
+        .chat-history {
+            background-color: #3a3a4d;
+            padding: 10px;
+            overflow-y: auto;
+            flex: 1;
+        }
+        .chat-history ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .chat-history li {
+            padding: 10px;
+            border-bottom: 1px solid #4a4a5d;
+        }
+        .chat-history li:last-child {
+            border-bottom: none;
+        }
+        .chat-input {
+            background-color: #2a2a3d;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            background-color: #3a3a4d;
+            color: #fff;
+        }
+        .chat-input input:focus {
+            outline: none;
+        }
+        .chat-input .icon {
+            margin-left: 10px;
+        }
+        .voice-support {
+            font-size: 12px;
+            color: #ccc;
+            margin-left: 10px;
+        }
+        .neon-blue {
+            color: #4834d4;
+        }
+        .frosted-glass {
+            backdrop-filter: blur(10px);
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="task-list frosted-glass">
+            <ul>
+                <li><div class="status"></div>Task 1</li>
+                <li><div class="status completed"></div>Task 2</li>
+                <li><div class="status"></div>Task 3</li>
+            </ul>
+        </div>
+        <div class="browser-view">
+            <div class="status-bar frosted-glass">
+                <span class="url">https://example.com</span>
+                <span class="progress">50%</span>
+            </div>
+            <div class="action-view">
+                <h1 class="neon-blue">Action View</h1>
+            </div>
+        </div>
+        <div class="right-panel">
+            <div class="supervisor frosted-glass">
+                <h2>Harshita AI Supervisor</h2>
+            </div>
+            <div class="chat-history frosted-glass">
+                <ul>
+                    <li>Message 1</li>
+                    <li>Message 2</li>
+                    <li>Message 3</li>
+                </ul>
+            </div>
+            <div class="chat-input frosted-glass">
+                <input type="text" placeholder="Type your query in any language...">
+                <i class="fa fa-microphone icon"></i>
+                <i class="fa fa-paper-plane icon"></i>
+                <i class="fa fa-paperclip icon"></i>
+                <span class="voice-support">Supports Hindi, English & Local Languages</span>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <div style="text-align:center;padding:24px;background:#0a0a0f;color:#666;font-size:12px;margin-top:60px;border-top: 1px solid #1a1a2e;">
+    🤖 Powered by <strong style="color:#4834d4;">Harshita AI Platform</strong> | Adaptive UI Engine &copy; 2026
+  </div>
+</body>
+</html>

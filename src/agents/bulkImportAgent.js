@@ -84,7 +84,7 @@ class BulkImportAgent {
    * @param {string} filePath - Path to uploaded .xlsx or .csv file
    * @returns {{ candidates: Array, errors: Array, total: number }}
    */
-  parseExcel(filePath) {
+  async parseExcel(filePath) {
     console.log(`[BulkImport] Parsing: ${filePath}`);
 
     const ext = path.extname(filePath).toLowerCase();
@@ -203,7 +203,7 @@ class BulkImportAgent {
    * Generate a sample Excel template file for VLEs
    * @returns {string} path to generated template
    */
-  generateTemplate(outputDir = process.cwd()) {
+  async generateTemplate(outputDir = process.cwd()) {
     const templatePath = path.join(outputDir, 'candidate_bulk_template.xlsx');
 
     const headers = [

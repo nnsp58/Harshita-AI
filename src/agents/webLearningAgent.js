@@ -127,6 +127,126 @@ class WebLearningAgent {
   }
 
   /**
+   * Extract file requirements (size, format, dimensions) from a portal URL
+   */
+  async extractFileRequirements(url) {
+    if (!this._isTrustedDomain(url)) {
+      throw new Error(`Domain not trusted for extraction: ${url}`);
+    }
+
+    console.log(`[WebLearningAgent] Extracting file requirements from: ${url}`);
+
+    try {
+      const response = await axios.get(url, {
+        headers: { 'User-Agent': this.userAgent },
+        timeout: 30000
+      });
+
+      const textContent = this._extractTextFromHtml(response.data);
+      
+      const prompt = `Extract document and file upload requirements from the following text of a government job portal.
+      Look for:
+      1. Photograph size (min/max KB)
+      2. Signature size (min/max KB)
+      3. Document formats allowed (JPG, PNG, PDF, etc.)
+      4. Dimensions (height/width in px or cm)
+      5. Any specific terms and conditions for uploads.
+
+      Text:
+      ${textContent}
+
+      Return ONLY JSON with keys: "photo", "signature", "documents", "generalTerms". 
+      Each should have "size", "format", and "dimensions" where applicable.`;
+
+      const aiResponse = await aiProviderManager.createChatCompletion('WebLearningAgent', {
+        messages: [{ role: 'user', content: prompt }],
+        temperature: 0.1,
+        max_tokens: 1000
+      });
+
+      const requirements = JSON.parse(aiResponse.choices[0].message.content);
+      
+      // Store in knowledge store
+      await this.knowledgeStore.storeTaskPattern({
+        intent: 'file_requirements',
+        portal: url,
+        requirements,
+        timestamp: new Date().toISOString()
+      });
+
+      return {
+        success: true,
+        portal: url,
+        requirements
+      };
+
+    } catch (error) {
+      console.error(`[WebLearningAgent] Extraction failed for ${url}:`, error.message);
+      return { success: false, error: error.message };
+    }
+  }
+
+  /**
+   * Provide a smart summary of Terms and Conditions from a portal URL
+   */
+  async summarizeTermsAndConditions(url) {
+    if (!this._isTrustedDomain(url)) {
+      throw new Error(`Domain not trusted for T&C summary: ${url}`);
+    }
+
+    console.log(`[WebLearningAgent] Summarizing T&C from: ${url}`);
+
+    try {
+      const response = await axios.get(url, {
+        headers: { 'User-Agent': this.userAgent },
+        timeout: 30000
+      });
+
+      const textContent = this._extractTextFromHtml(response.data);
+      
+      const prompt = `Provide a smart summary of the Terms and Conditions / Instructions for candidates from this text.
+      Focus on:
+      1. Eligibility: Detailed age limits (min/max), age relaxation rules (especially for SC/ST, OBC, and PH/PWD candidates), and essential educational qualifications.
+      2. Fees: Application fees for all categories including General, OBC, SC/ST, EXM (Ex-Servicemen), PH/PWD (Physical Handicapped), and Women candidates.
+      3. Important Dates: Specific dates for Opening of application, Closing date, and tentative Exam dates.
+      4. Key Rules: Critical warnings, special instructions for PH/PWD candidates (like scribe requirements), photo/signature upload rules, and any other important notes.
+
+      Text:
+      ${textContent}
+
+      Return ONLY JSON with keys: "eligibility", "fees", "dates", "keyRules", "summary".`;
+
+      const aiResponse = await aiProviderManager.createChatCompletion('WebLearningAgent', {
+        messages: [{ role: 'user', content: prompt }],
+        temperature: 0.2,
+        max_tokens: 1500
+      });
+
+      const summary = JSON.parse(aiResponse.choices[0].message.content);
+      
+      // Store in knowledge store
+      await this.knowledgeStore.storeWebKnowledge({
+        topic: 'terms_and_conditions',
+        source: url,
+        summary: summary.summary,
+        keyPoints: summary.keyRules,
+        metadata: summary,
+        timestamp: new Date().toISOString()
+      });
+
+      return {
+        success: true,
+        portal: url,
+        summary
+      };
+
+    } catch (error) {
+      console.error(`[WebLearningAgent] T&C summary failed for ${url}:`, error.message);
+      return { success: false, error: error.message };
+    }
+  }
+
+  /**
    * Extract text content from HTML (simple method)
    */
   _extractTextFromHtml(html) {
@@ -136,9 +256,9 @@ class WebLearningAgent {
     text = text.replace(/<[^>]+>/g, ' '); // Remove all tags
     text = text.replace(/\s+/g, ' ').trim(); // Normalize whitespace
 
-    // Limit content length
-    if (text.length > 10000) {
-      text = text.substring(0, 10000) + '...';
+    // Limit content length for AI
+    if (text.length > 15000) {
+      text = text.substring(0, 15000) + '...';
     }
 
     return text;

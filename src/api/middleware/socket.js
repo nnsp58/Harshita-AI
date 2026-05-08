@@ -57,6 +57,33 @@ const setupSocketHandlers = (io) => {
       socket.leave(`job_${jobId}`);
     });
 
+    // Dashboard chat handlers
+    socket.on('userCommand', async (cmd) => {
+      console.log(`User command from ${socket.userId}: ${cmd}`);
+      socket.emit('logUpdate', { type: 'user', message: cmd });
+
+      // Simulate AI processing (replace with actual MasterAgent integration)
+      setTimeout(() => {
+        socket.emit('logUpdate', { type: 'ai', message: `Command "${cmd}" processed successfully.` });
+      }, 1000);
+    });
+
+    socket.on('fileUpload', (data) => {
+      console.log(`File upload from ${socket.userId}: ${data.name}`);
+      socket.emit('logUpdate', { type: 'ai', message: `File "${data.name}" uploaded and processed.` });
+    });
+
+    socket.on('adminBroadcast', (msg) => {
+      console.log(`Admin broadcast: ${msg}`);
+      io.emit('broadcastReceived', msg);
+    });
+
+    socket.on('teamMessage', (msg) => {
+      console.log(`Team message from ${socket.userId}: ${msg}`);
+      // Broadcast to all connected users (simulate team chat)
+      io.emit('teamUpdate', { userId: socket.userId, message: msg });
+    });
+
     socket.on('disconnect', () => {
       console.log(`User disconnected: ${socket.userId}`);
       connectedUsers.delete(socket.userId);
