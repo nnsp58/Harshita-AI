@@ -1,0 +1,6 @@
+export { default as WorkspaceDashboard } from './WorkspaceDashboard'
+export { default as DashboardHeader } from './DashboardHeader'
+export { default as LeftPanel } from './LeftPanel'
+export { default as CenterPanel } from './CenterPanel'
+export { default as RightPanel } from './RightPanel'
+export { default as StatusBar } from './StatusBar'

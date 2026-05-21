@@ -194,6 +194,19 @@ export const useStore = create(
         }
       },
 
+      // Dashboard State
+      currentTask: null,
+      chatMessages: [],
+      activityLog: [],
+      addChatMessage: (msg) => set((state) => ({
+        chatMessages: [...state.chatMessages, msg]
+      })),
+      addActivityLog: (entry) => set((state) => ({
+        activityLog: [...state.activityLog, entry]
+      })),
+      setCurrentTask: (task) => set({ currentTask: task }),
+      clearChat: () => set({ chatMessages: [], activityLog: [] }),
+
       // UI State
       sidebarOpen: true,
       toggleSidebar: () => set((state) => ({ sidebarOpen: !state.sidebarOpen })),
