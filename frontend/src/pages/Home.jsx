@@ -50,7 +50,12 @@ export default function Home() {
     initialize()
   }, [initialize])
 
-  const recentJobs = jobs.slice(0, 5)
+  const recentJobs = jobs.slice(0, 5).map(j => ({
+    ...j,
+    type: j.service_type || j.type,
+    candidate: j.candidate?.name || j.candidate,
+    timestamp: j.created_at || j.updated_at,
+  }))
   const userName = user?.name || user?.username || 'there'
   const isAdmin = user?.role === 'admin'
 

@@ -21,6 +21,11 @@ export default function Settings() {
   const [activeTab, setActiveTab] = useState('profile')
   const [newOperatorName, setNewOperatorName] = useState('')
 
+  // Notification preferences (controlled state to survive tab switches)
+  const [notifJobCompletion, setNotifJobCompletion] = useState(true)
+  const [notifErrors, setNotifErrors] = useState(true)
+  const [notifWhatsApp, setNotifWhatsApp] = useState(false)
+
   // WhatsApp state
   const [waStatus, setWaStatus] = useState({ enabled: false, isReady: false, activeSessions: 0 })
   const [waLoading, setWaLoading] = useState(false)
@@ -251,21 +256,21 @@ export default function Settings() {
             <div className="space-y-3">
               <h3 className="text-sm font-bold uppercase text-gray-500 dark:text-gray-400">Notification Preferences</h3>
               <label className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-navy-800 rounded-lg cursor-pointer">
-                <input type="checkbox" defaultChecked className="w-4 h-4 rounded border-gray-300 text-maroon-600 focus:ring-maroon-500" />
+                <input type="checkbox" checked={notifJobCompletion} onChange={(e) => setNotifJobCompletion(e.target.checked)} className="w-4 h-4 rounded border-gray-300 text-maroon-600 focus:ring-maroon-500" />
                 <div>
                   <p className="text-sm font-medium text-gray-900 dark:text-white">Job Completion Alerts</p>
                   <p className="text-xs text-gray-500 dark:text-gray-400">Get notified when jobs finish</p>
                 </div>
               </label>
               <label className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-navy-800 rounded-lg cursor-pointer">
-                <input type="checkbox" defaultChecked className="w-4 h-4 rounded border-gray-300 text-maroon-600 focus:ring-maroon-500" />
+                <input type="checkbox" checked={notifErrors} onChange={(e) => setNotifErrors(e.target.checked)} className="w-4 h-4 rounded border-gray-300 text-maroon-600 focus:ring-maroon-500" />
                 <div>
                   <p className="text-sm font-medium text-gray-900 dark:text-white">Error Notifications</p>
                   <p className="text-xs text-gray-500 dark:text-gray-400">Alert when a job fails or needs attention</p>
                 </div>
               </label>
               <label className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-navy-800 rounded-lg cursor-pointer">
-                <input type="checkbox" className="w-4 h-4 rounded border-gray-300 text-maroon-600 focus:ring-maroon-500" />
+                <input type="checkbox" checked={notifWhatsApp} onChange={(e) => setNotifWhatsApp(e.target.checked)} className="w-4 h-4 rounded border-gray-300 text-maroon-600 focus:ring-maroon-500" />
                 <div>
                   <p className="text-sm font-medium text-gray-900 dark:text-white">WhatsApp Messages</p>
                   <p className="text-xs text-gray-500 dark:text-gray-400">Notify when candidates send documents</p>

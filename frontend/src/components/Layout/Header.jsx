@@ -1,4 +1,4 @@
-import { Bell, Menu, User, LogOut, Menu as MenuIcon, Search, ChevronDown, Sun, Moon } from 'lucide-react'
+import { Bell, Menu, User, LogOut, Menu as MenuIcon, Search, ChevronDown, Sun, Moon, Settings } from 'lucide-react'
 import { useStore } from '../../store'
 import { useState } from 'react'
 

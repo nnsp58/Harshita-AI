@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { HelpCircle, X, CheckCircle, ChevronDown, ChevronRight } from 'lucide-react'
+import { HelpCircle, X, Circle, ChevronDown, ChevronRight } from 'lucide-react'
 
 const checklistItems = [
   'Upload Documents',
@@ -90,7 +90,7 @@ export default function HelpPanel() {
                 <ul className="space-y-3">
                   {checklistItems.map((item, index) => (
                     <li key={index} className="flex items-center gap-3">
-                      <CheckCircle size={18} className="text-gray-300 dark:text-navy-600 flex-shrink-0" />
+                      <Circle size={18} className="text-gray-300 dark:text-navy-600 flex-shrink-0" />
                       <span className="text-sm text-gray-700 dark:text-gray-300">{item}</span>
                     </li>
                   ))}
