@@ -1,201 +1,246 @@
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { 
-  Users, Activity, DollarSign, Bot, UploadCloud, 
-  FileCheck, ShieldCheck, ChevronRight, Zap, Target,
-  Star, Clock, Archive, UserCheck
+import { motion, AnimatePresence } from 'framer-motion'
+import {
+  UploadCloud, Users, FileText, Search,
+  Activity, Bot, FileCheck, CheckCircle,
+  ChevronDown, ChevronUp, Shield
 } from 'lucide-react'
 import { useStore } from '../store'
+import StatsCard from '../components/Common/StatsCard'
+import QuickActionCard from '../components/Common/QuickActionCard'
+import ActivityTimeline from '../components/Common/ActivityTimeline'
 
-const StatsCard = ({ title, value, icon: Icon, color, subtitle }) => (
-  <motion.div 
-    whileHover={{ y: -5 }}
-    className="card p-6 relative overflow-hidden"
-  >
-    <div className={`absolute top-0 right-0 w-32 h-32 opacity-10 rounded-full -mr-16 -mt-16 bg-${color}-500`} />
-    <div className="flex items-start justify-between">
-      <div>
-        <p className="text-sm font-bold text-gray-500 uppercase tracking-widest">{title}</p>
-        <h3 className="text-3xl font-heading font-black mt-2">{value}</h3>
-        {subtitle && <p className="text-xs text-gray-400 mt-1">{subtitle}</p>}
-      </div>
-      <div className={`p-3 rounded-2xl bg-${color}-50 dark:bg-${color}-950 text-${color}-600`}>
-        <Icon size={28} />
-      </div>
-    </div>
-  </motion.div>
-)
+function getGreeting() {
+  const hour = new Date().getHours()
+  if (hour < 12) return 'Good morning'
+  if (hour < 17) return 'Good afternoon'
+  return 'Good evening'
+}
+
+function formatDate() {
+  return new Date().toLocaleDateString('en-IN', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  })
+}
+
+function getAgentStatusColor(status) {
+  switch (status) {
+    case 'active':
+    case 'running':
+      return 'bg-emerald-500'
+    case 'busy':
+    case 'processing':
+      return 'bg-amber-500'
+    case 'error':
+    case 'failed':
+      return 'bg-rose-500'
+    default:
+      return 'bg-gray-400'
+  }
+}
 
 export default function Home() {
-  const { stats, agents, jobs, candidates, operators, user, initialize } = useStore()
+  const { stats, agents, jobs, user, initialize } = useStore()
+  const [adminOpen, setAdminOpen] = useState(false)
 
   useEffect(() => {
     initialize()
   }, [initialize])
 
-  const renderAdminDashboard = () => (
-    <div className="space-y-8">
-      {/* Admin Header */}
-      <div>
-        <h1 className="text-3xl font-heading font-black text-gray-900 dark:text-white">Admin Command Center</h1>
-        <p className="text-gray-500">Global Overview of Rawan SaaS Platform Infrastructure</p>
-      </div>
-
-      {/* Global Stats */}
-      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 xs:gap-6">
-        <StatsCard title="Total VLE Users" value={candidates.length || 1} icon={Users} color="blue" subtitle="Across registered centers" />
-        <StatsCard title="Global Revenue" value={`₹${stats.revenue || 0}`} icon={DollarSign} color="gold" subtitle="System-wide earnings" />
-        <StatsCard title="Core Agents" value={agents.length} icon={Bot} color="emerald" subtitle="All systems operational" />
-        <StatsCard title="Success Rate" value={`${stats.successRate || 92}%`} icon={Activity} color="purple" subtitle="Global automation accuracy" />
-      </section>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="card p-6">
-          <h2 className="text-xl font-heading font-bold mb-4">Infrastructure Health</h2>
-          <div className="space-y-4">
-             {agents.slice(0, 6).map(agent => (
-               <div key={agent.id} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-navy-800 rounded-xl">
-                 <div className="flex items-center gap-3">
-                   <div className={`w-2 h-2 rounded-full ${agent.status === 'running' ? 'bg-emerald-500 animate-pulse' : 'bg-gray-400'}`} />
-                   <span className="font-medium">{agent.name}</span>
-                 </div>
-                 <span className="text-[10px] font-bold uppercase text-gray-400">{agent.status}</span>
-               </div>
-             ))}
-          </div>
-        </div>
-        <div className="card p-6 bg-gradient-to-br from-maroon-900 to-navy-950 text-white border-0">
-          <h2 className="text-xl font-heading font-bold mb-4 text-gold-400">Owner Insights</h2>
-          <p className="text-sm text-gray-400 mb-6">Your platform is currently optimized for CSC VLE automation. Current bottlenecks: CAPTCHA (Manual).</p>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="p-4 bg-white/5 rounded-xl border border-white/10">
-               <p className="text-xs text-gray-500">Server Load</p>
-               <p className="text-xl font-bold">12%</p>
-            </div>
-            <div className="p-4 bg-white/5 rounded-xl border border-white/10">
-               <p className="text-xs text-gray-500">Active Queues</p>
-               <p className="text-xl font-bold">24</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-
-  const renderVLEDashboard = () => (
-    <div className="space-y-8">
-      {/* VLE Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-3xl font-heading font-black text-gray-900 dark:text-white">Business Dashboard</h1>
-          <p className="text-gray-500">Manage your CSC Operators and Automation Workflow</p>
-        </div>
-        <div className="flex gap-3">
-          <button className="btn-secondary flex items-center gap-2">
-            <Archive size={18} /> Export History
-          </button>
-          <button className="btn-primary flex items-center gap-2 shadow-maroon-500/20 shadow-lg">
-            <UploadCloud size={18} /> New Bulk Task
-          </button>
-        </div>
-      </div>
-
-      {/* Operational Stats */}
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <StatsCard title="My Total Tasks" value={jobs.length} icon={Target} color="blue" subtitle="Local work history" />
-        <StatsCard title="Staff Performance" value={`${stats.successRate || 0}%`} icon={Star} color="amber" subtitle="Operator success average" />
-        <StatsCard title="Live Ops" value={jobs.filter(j => j.status === 'processing').length} icon={Activity} color="emerald" subtitle="Active forms filling" />
-        <StatsCard title="Total VLE Revenue" value={`₹${stats.revenue || 0}`} icon={DollarSign} color="gold" subtitle="Earnings via automation" />
-      </section>
-
-      {/* Operators & History Split */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Left Column: Recent History */}
-        <div className="lg:col-span-2 card p-6">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-heading font-bold flex items-center gap-2">
-              <Clock className="text-maroon-600" size={24} /> Recent Work History
-            </h2>
-            <button className="text-sm font-bold text-maroon-600 hover:underline">View All History</button>
-          </div>
-          <div className="space-y-4">
-            {jobs.slice(0, 5).map((job) => (
-              <div key={job.id} className="flex items-center justify-between p-3 xs:p-4 bg-gray-50 dark:bg-navy-800/50 rounded-2xl border border-gray-100 dark:border-navy-700">
-                <div className="flex items-center gap-4">
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
-                    job.status === 'completed' ? 'bg-emerald-100 text-emerald-600' : 'bg-blue-100 text-blue-600'
-                  }`}>
-                    <FileCheck size={24} />
-                  </div>
-                  <div>
-                    <p className="font-bold">{job.type || 'Sarkari Job'}</p>
-                    <p className="text-xs text-gray-500">Candidate: {job.candidate} • {job.timestamp}</p>
-                  </div>
-                </div>
-                <div className="text-right">
-                   <p className={`text-xs font-black uppercase tracking-widest ${job.status === 'completed' ? 'text-emerald-500' : 'text-blue-500'}`}>
-                      {job.status}
-                   </p>
-                </div>
-              </div>
-            ))}
-            {jobs.length === 0 && (
-              <div className="text-center py-12 text-gray-400">
-                <Archive size={48} className="mx-auto mb-4 opacity-20" />
-                <p>Your work history is empty. Start a bulk task.</p>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Right Column: Operator Performance */}
-        <div className="card p-6 border-gold-200/50">
-          <h2 className="text-xl font-heading font-bold mb-6 flex items-center gap-2">
-            <UserCheck className="text-gold-500" size={24} /> Staff Performance
-          </h2>
-          <div className="space-y-6">
-            {operators.map((op) => (
-              <div key={op.id} className="group cursor-pointer">
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-navy-100 dark:bg-navy-900 flex items-center justify-center font-bold text-navy-600 text-xs">
-                      {op.name.charAt(0)}
-                    </div>
-                    <p className="text-sm font-bold group-hover:text-maroon-600 transition-colors">{op.name}</p>
-                  </div>
-                  <p className="text-xs text-gray-500">{op.jobs} Jobs</p>
-                </div>
-                <div className="w-full bg-gray-100 dark:bg-navy-900 rounded-full h-1.5 overflow-hidden">
-                  <motion.div 
-                    initial={{ width: 0 }}
-                    animate={{ width: `${Math.min(100, (op.jobs / 50) * 100)}%` }}
-                    className="bg-maroon-600 h-full rounded-full" 
-                  />
-                </div>
-              </div>
-            ))}
-            {operators.length === 0 && (
-               <div className="text-center py-6">
-                 <p className="text-xs text-gray-500 mb-4">No operators added yet.</p>
-                 <button className="btn-secondary text-xs w-full">Manage Staff in Settings</button>
-               </div>
-            )}
-          </div>
-          
-          <div className="mt-8 p-4 bg-maroon-50 dark:bg-maroon-950/30 rounded-2xl border border-maroon-100 dark:border-maroon-900">
-             <p className="text-xs font-bold text-maroon-700 dark:text-maroon-400">VLE Pro Tip:</p>
-             <p className="text-[11px] text-maroon-600/70 dark:text-maroon-500 mt-1">
-               Give your top operator a bonus for 100% success rate this week.
-             </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
+  const recentJobs = jobs.slice(0, 5)
+  const userName = user?.name || user?.username || 'there'
+  const isAdmin = user?.role === 'admin'
 
   return (
     <div className="space-y-8">
-      {user?.role === 'admin' ? renderAdminDashboard() : renderVLEDashboard()}
+      {/* Greeting Section */}
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="flex flex-col gap-1"
+      >
+        <h1 className="text-2xl sm:text-3xl font-heading font-black text-gray-900 dark:text-white">
+          {getGreeting()}, {userName}!
+        </h1>
+        <p className="text-sm text-gray-500 dark:text-gray-400">
+          {formatDate()} &mdash; {stats.activeJobs || 0} active job{stats.activeJobs !== 1 ? 's' : ''}, {stats.agentsOnline || 0} agent{stats.agentsOnline !== 1 ? 's' : ''} online, {stats.successRate || 0}% success rate
+        </p>
+      </motion.div>
+
+      {/* Quick Actions */}
+      <section>
+        <h2 className="text-lg font-heading font-bold text-gray-900 dark:text-white mb-4">Quick Actions</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <QuickActionCard
+            icon={UploadCloud}
+            title="New Bulk Import"
+            description="Upload candidate data for batch processing"
+            linkTo="/bulk-import"
+            color="maroon"
+          />
+          <QuickActionCard
+            icon={Users}
+            title="Manage Candidates"
+            description="View, add, or verify your candidates"
+            linkTo="/candidates"
+            color="blue"
+          />
+          <QuickActionCard
+            icon={FileText}
+            title="View Documents"
+            description="Track documents and their processing status"
+            linkTo="/documents"
+            color="gold"
+          />
+          <QuickActionCard
+            icon={Search}
+            title="Search Jobs"
+            description="Browse and monitor all automation jobs"
+            linkTo="/jobs"
+            color="emerald"
+          />
+        </div>
+      </section>
+
+      {/* Stats Row */}
+      <section>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <StatsCard
+            title="Active Jobs"
+            value={stats.activeJobs || 0}
+            icon={Activity}
+            color="blue"
+            subtitle={`${stats.todayJobs || 0} today`}
+          />
+          <StatsCard
+            title="Documents Pending"
+            value={stats.pendingDocuments || 0}
+            icon={FileCheck}
+            color="gold"
+            subtitle="Awaiting processing"
+          />
+          <StatsCard
+            title="Agents Online"
+            value={stats.agentsOnline || 0}
+            icon={Bot}
+            color="emerald"
+            subtitle={`${agents.length} total agents`}
+          />
+          <StatsCard
+            title="Success Rate"
+            value={`${stats.successRate || 0}%`}
+            icon={CheckCircle}
+            color="maroon"
+            subtitle="Overall accuracy"
+          />
+        </div>
+      </section>
+
+      {/* Activity Timeline and Agent Status */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Recent Activity */}
+        <div className="lg:col-span-2 card p-6">
+          <h2 className="text-lg font-heading font-bold text-gray-900 dark:text-white mb-4">Recent Activity</h2>
+          <ActivityTimeline activities={recentJobs} />
+        </div>
+
+        {/* Agent Status */}
+        <div className="card p-6">
+          <h2 className="text-lg font-heading font-bold text-gray-900 dark:text-white mb-4">Agent Status</h2>
+          {agents.length > 0 ? (
+            <div className="flex flex-wrap gap-2">
+              {agents.map((agent) => (
+                <div
+                  key={agent.id}
+                  className="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-50 dark:bg-navy-800 rounded-full border border-gray-100 dark:border-navy-700"
+                >
+                  <div className={`w-2 h-2 rounded-full ${getAgentStatusColor(agent.status)}`} />
+                  <span className="text-xs font-medium text-gray-700 dark:text-gray-300 truncate max-w-[100px]">
+                    {agent.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-6 text-gray-400">
+              <Bot size={32} className="mx-auto mb-2 opacity-30" />
+              <p className="text-xs">No agents connected</p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Admin Section - Collapsible */}
+      {isAdmin && (
+        <section className="card overflow-hidden">
+          <button
+            onClick={() => setAdminOpen(!adminOpen)}
+            className="w-full flex items-center justify-between p-5 text-left hover:bg-gray-50 dark:hover:bg-navy-800/50 transition-colors"
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-lg bg-maroon-50 dark:bg-maroon-950/30 flex items-center justify-center">
+                <Shield size={16} className="text-maroon-600 dark:text-maroon-400" />
+              </div>
+              <div>
+                <h2 className="text-sm font-heading font-bold text-gray-900 dark:text-white">Admin Insights</h2>
+                <p className="text-xs text-gray-500">Infrastructure health and platform overview</p>
+              </div>
+            </div>
+            {adminOpen ? <ChevronUp size={18} className="text-gray-400" /> : <ChevronDown size={18} className="text-gray-400" />}
+          </button>
+
+          <AnimatePresence>
+            {adminOpen && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="overflow-hidden"
+              >
+                <div className="p-5 pt-0 border-t border-gray-100 dark:border-navy-700">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-5">
+                    {/* Infrastructure Health */}
+                    <div>
+                      <h3 className="text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">Infrastructure Health</h3>
+                      <div className="space-y-2">
+                        {agents.slice(0, 6).map((agent) => (
+                          <div key={agent.id} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-navy-800 rounded-xl">
+                            <div className="flex items-center gap-3">
+                              <div className={`w-2 h-2 rounded-full ${getAgentStatusColor(agent.status)}`} />
+                              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{agent.name}</span>
+                            </div>
+                            <span className="text-[10px] font-bold uppercase text-gray-400">{agent.status}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Owner Insights */}
+                    <div className="p-5 bg-gradient-to-br from-maroon-900 to-navy-950 rounded-2xl text-white">
+                      <h3 className="text-sm font-bold text-gold-400 mb-3">Owner Insights</h3>
+                      <p className="text-xs text-gray-400 mb-4">Platform optimized for CSC VLE automation.</p>
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="p-3 bg-white/5 rounded-xl border border-white/10">
+                          <p className="text-[10px] text-gray-500">Revenue</p>
+                          <p className="text-lg font-bold">{`\u20B9${stats.revenue || 0}`}</p>
+                        </div>
+                        <div className="p-3 bg-white/5 rounded-xl border border-white/10">
+                          <p className="text-[10px] text-gray-500">Today Jobs</p>
+                          <p className="text-lg font-bold">{stats.todayJobs || 0}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </section>
+      )}
     </div>
   )
 }
