@@ -1,7 +1,8 @@
 import { useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
-import { BriefcaseBusiness, CheckCircle, Loader2, MapPin, Phone, Save, Search, ShieldCheck, UserRound } from 'lucide-react'
+import { BriefcaseBusiness, CheckCircle, Loader2, MapPin, Phone, Save, Search, ShieldCheck, UserRound, Users } from 'lucide-react'
 import { useStore } from '../store'
+import EmptyState from '../components/Common/EmptyState'
 
 const serviceOptions = [
   { value: 'ssc', label: 'SSC Registration' },
@@ -204,10 +205,13 @@ export default function Candidates() {
           </div>
 
           {filteredCandidates.length === 0 && (
-            <div className="p-12 text-center text-gray-500">
-              <Search size={42} className="mx-auto mb-3 opacity-30" />
-              <p>No candidates found</p>
-            </div>
+            <EmptyState
+              icon={Users}
+              title="No candidates found"
+              description="Import candidates via Bulk Import or add them manually"
+              actionLabel="Bulk Import"
+              actionLink="/bulk-import"
+            />
           )}
         </div>
 

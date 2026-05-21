@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import { CheckCircle, Clock, Loader2, Play, RefreshCw, Search, ShieldCheck, XCircle } from 'lucide-react'
 import { useStore } from '../store'
+import EmptyState from '../components/Common/EmptyState'
 
 const statusIcons = {
   completed: <CheckCircle className="text-emerald-500" size={16} />,
@@ -170,10 +171,13 @@ export default function Jobs() {
         </div>
 
         {filteredJobs.length === 0 && (
-          <div className="p-12 text-center text-gray-500">
-            <Search size={48} className="mx-auto mb-4 opacity-30" />
-            <p>No jobs found</p>
-          </div>
+          <EmptyState
+            icon={Search}
+            title="No jobs found"
+            description="Create jobs from the Candidates page or use Bulk Import"
+            actionLabel="Go to Candidates"
+            actionLink="/candidates"
+          />
         )}
       </div>
     </div>

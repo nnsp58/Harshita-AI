@@ -19,6 +19,12 @@ export default function Sidebar() {
     trackMouse: false
   })
 
+  const handleNavClick = () => {
+    if (window.innerWidth < 768) {
+      toggleSidebar(false)
+    }
+  }
+
   const navItems = [
     { path: '/', icon: Home, label: 'Dashboard' },
     { path: '/candidates', icon: Users, label: 'Candidates' },
@@ -34,6 +40,7 @@ export default function Sidebar() {
 
   return (
     <aside
+      {...swipeHandlers}
       className={`fixed left-0 top-0 h-screen bg-gradient-to-b from-maroon-900 via-maroon-800 to-maroon-900 text-white transition-all duration-300 z-[9999] flex flex-col ${
         sidebarOpen ? 'w-64 md:relative' : 'w-20 md:relative'
       } ${sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}
@@ -72,6 +79,7 @@ export default function Sidebar() {
           <NavLink
             key={item.path}
             to={item.path}
+            onClick={handleNavClick}
             className={({ isActive }) =>
               `flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group ${
                 isActive
