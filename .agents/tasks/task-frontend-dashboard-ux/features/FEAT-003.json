@@ -1,0 +1,28 @@
+{
+  "id": "FEAT-003",
+  "type": "feat",
+  "description": "Add a Help/Onboarding panel and improve the Settings page to be more organized and user-friendly. CSC operators are often non-technical users who need guidance on how to use the platform effectively.",
+  "status": "in_progress",
+  "steps": [
+    "Create frontend/src/components/Common/HelpPanel.jsx - a slide-out panel (from right side) triggered by a floating help button (? icon). Contains: (1) Getting Started checklist (Upload Documents, Add Candidates, Create First Job, Connect WhatsApp). (2) Quick tips section with collapsible FAQ items. (3) Contact support link. Use framer-motion AnimatePresence for slide animation. Use a fixed-position button at bottom-right of screen.",
+    "Add the HelpPanel component to DashboardLayout.jsx so it appears on all dashboard pages.",
+    "Refactor frontend/src/pages/Settings.jsx to organize settings into clear tabbed sections using simple state-based tabs (not a new dependency): (1) Profile tab - center name, owner info, location. (2) Integrations tab - WhatsApp, network status. (3) Preferences tab - dark mode toggle, notification preferences. (4) Team tab - operator management (add/remove operators). Each tab should have a clear header and description.",
+    "Add a dark mode toggle that is more prominent and accessible - render it as a sun/moon icon button in the Header.jsx (next to notifications) so users can easily switch themes without going to Settings."
+  ],
+  "acceptance_criteria": [
+    "Help panel opens/closes with smooth animation from a floating button",
+    "Help panel contains a getting-started checklist and FAQ items",
+    "Settings page has clear tab navigation with 4 sections",
+    "Dark mode toggle appears in the Header as an icon button",
+    "Dark mode toggle uses the existing toggleDarkMode from the store",
+    "All components use only existing dependencies (framer-motion, lucide-react, zustand)"
+  ],
+  "verification": [
+    "Read HelpPanel.jsx to verify animation and content structure",
+    "Read modified DashboardLayout.jsx to confirm HelpPanel integration",
+    "Read modified Settings.jsx to confirm tabbed layout",
+    "Read modified Header.jsx to confirm dark mode toggle button"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

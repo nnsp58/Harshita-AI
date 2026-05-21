@@ -1,9 +1,9 @@
-import { Bell, Menu, User, LogOut, Menu as MenuIcon, Search, ChevronDown } from 'lucide-react'
+import { Bell, Menu, User, LogOut, Menu as MenuIcon, Search, ChevronDown, Sun, Moon } from 'lucide-react'
 import { useStore } from '../../store'
 import { useState } from 'react'
 
 export default function Header() {
-  const { sidebarOpen, toggleSidebar, user, logout, notifications, unreadCount, markRead } = useStore()
+  const { sidebarOpen, toggleSidebar, user, logout, notifications, unreadCount, markRead, darkMode, toggleDarkMode } = useStore()
   const [showNotifications, setShowNotifications] = useState(false)
   const [showUserMenu, setShowUserMenu] = useState(false)
 
@@ -35,6 +35,15 @@ export default function Header() {
 
       {/* Right section */}
       <div className="flex items-center gap-2 md:gap-4">
+        {/* Dark mode toggle */}
+        <button
+          onClick={toggleDarkMode}
+          className="p-2 hover:bg-gray-100 dark:hover:bg-navy-800 rounded-lg transition-colors"
+          aria-label="Toggle dark mode"
+        >
+          {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+        </button>
+
         {/* Notifications */}
         <div className="relative">
           <button
