@@ -1,6 +1,8 @@
 import { Outlet, Navigate } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import Header from './Header'
+import Breadcrumb from '../Common/Breadcrumb'
+import HelpPanel from '../Common/HelpPanel'
 import socketService from '../../services/socket'
 import { useStore } from '../../store'
 import { useEffect } from 'react'
@@ -49,6 +51,7 @@ export default function DashboardLayout() {
         }`}
       >
         <div className="p-2 xs:p-4 md:p-6 lg:p-8">
+          <Breadcrumb />
           <Outlet />
         </div>
       </main>
@@ -60,6 +63,9 @@ export default function DashboardLayout() {
           onClick={toggleSidebar}
         />
       )}
+
+      {/* Help Panel */}
+      <HelpPanel />
     </div>
   )
 }

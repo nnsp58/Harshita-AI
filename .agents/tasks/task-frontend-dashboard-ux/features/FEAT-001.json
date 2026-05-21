@@ -1,0 +1,30 @@
+{
+  "id": "FEAT-001",
+  "type": "feat",
+  "description": "Redesign Home.jsx dashboard to be more user-friendly with a welcoming greeting, clear quick-action cards, an activity timeline, and agent status overview. Replace the current technical admin/VLE split with a unified friendly dashboard that gives CSC operators immediate clarity on what to do next.",
+  "status": "completed",
+  "steps": [
+    "Rewrite frontend/src/pages/Home.jsx to include: (1) A greeting section with user name, date/time, and a motivational summary sentence showing key metrics inline. (2) A 'Quick Actions' grid with large clickable cards linking to: New Bulk Import (/bulk-import), Manage Candidates (/candidates), View Documents (/documents), Search Jobs (/jobs) - each with an icon, title, and short description. (3) A compact stats row using the existing StatsCard pattern showing: Active Jobs, Documents Pending, Agents Online, Success Rate. (4) A 'Recent Activity' timeline showing the last 5 jobs with status icons, candidate name, service type, and relative timestamps. (5) An 'Agent Status' compact panel showing agents as small pills/chips with color-coded status dots (green=active, amber=busy, red=error, gray=idle).",
+    "Create a new reusable component frontend/src/components/Common/QuickActionCard.jsx that accepts: icon (lucide icon component), title, description, linkTo (route path), and color. It should render as a clickable card with hover effect using react-router-dom Link, with the icon displayed prominently, and use framer-motion whileHover for subtle scale effect.",
+    "Create a new reusable component frontend/src/components/Common/ActivityTimeline.jsx that accepts an array of activity items (jobs) and renders them as a vertical timeline with status-colored dots, job type, candidate name, and relative time (e.g., '5 min ago', '2 hours ago'). Include an empty state with a friendly message.",
+    "Keep the admin-specific insights (Infrastructure Health, Owner Insights) available only when user.role === 'admin', but present them in a cleaner collapsible section at the bottom rather than replacing the entire dashboard.",
+    "Ensure the new Home page works well on mobile (stack cards vertically, reduce padding, use responsive grid classes like grid-cols-1 sm:grid-cols-2 lg:grid-cols-4)."
+  ],
+  "acceptance_criteria": [
+    "Home page displays a personalized greeting with the user's name",
+    "Quick Action cards are visible and link to the correct routes",
+    "Stats row shows real data from the store (activeJobs, pendingDocuments, etc.)",
+    "Recent Activity timeline shows the latest jobs from the store",
+    "Agent status pills show real agent status data from the store",
+    "Page is responsive and usable on mobile viewports (320px+)",
+    "Admin-only content is conditionally rendered for admin users",
+    "All imports use existing dependencies only (lucide-react, framer-motion, react-router-dom, zustand store)"
+  ],
+  "verification": [
+    "Read the modified Home.jsx and new component files to verify they follow existing patterns and use only available dependencies",
+    "Verify the components import from correct paths and use the existing store hooks",
+    "Check that responsive Tailwind classes are used correctly"
+  ],
+  "blocked_reason": null,
+  "findings": "No node_modules present; cannot run vite build. Verified code correctness by manual review of all imports and syntax. All imports use existing dependencies only. INTEGRATIONS_ONLY network mode prevents npm install."
+}

@@ -1,15 +1,17 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
   Upload, FileText, FileCheck, XCircle, Loader2, Eye, Check, X,
   Filter, Search, ImageIcon, File, Clock, BookOpen, UserCircle, PenTool
 } from 'lucide-react'
 import { useStore } from '../store'
+import EmptyState from '../components/Common/EmptyState'
 
 export default function Documents() {
   const { documents } = useStore()
   const [statusFilter, setStatusFilter] = useState('all')
   const [previewDoc, setPreviewDoc] = useState(null)
+  const fileInputRef = useRef(null)
 
   const filteredDocs = documents.filter(doc =>
     statusFilter === 'all' || doc.status === statusFilter
@@ -193,15 +195,16 @@ export default function Documents() {
 
       {/* Empty state */}
       {filteredDocs.length === 0 && (
-        <div className="card p-12 text-center">
-          <FileText size={48} className="mx-auto mb-4 text-gray-300" />
-          <h3 className="font-heading font-semibold text-lg mb-2">No documents yet</h3>
-          <p className="text-gray-500 mb-4">Upload Aadhaar, marksheets, or other documents to get started</p>
-          <label className="btn-primary inline-flex items-center gap-2 cursor-pointer">
-            <Upload size={20} /> Upload First Document
-            <input type="file" multiple className="hidden" accept=".pdf,.jpg,.jpeg,.png" />
-          </label>
-        </div>
+        <>
+          <EmptyState
+            icon={FileText}
+            title="No documents yet"
+            description="Upload Aadhaar, marksheets, or other documents to get started"
+            actionLabel="Upload Document"
+            onAction={() => fileInputRef.current?.click()}
+          />
+          <input ref={fileInputRef} type="file" multiple className="hidden" accept=".pdf,.jpg,.jpeg,.png" />
+        </>
       )}
     </div>
   )
