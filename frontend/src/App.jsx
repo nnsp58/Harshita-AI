@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { useStore } from './store'
-import { WorkspaceDashboard } from './components/Dashboard'
+import WorkspaceDashboard from './components/Dashboard/WorkspaceDashboard'
 import Login from './pages/Login'
 import Settings from './pages/Settings'
 import Subscription from './pages/Subscription'
