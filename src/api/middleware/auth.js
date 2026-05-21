@@ -52,7 +52,7 @@ const authenticate = async (req, res, next) => {
 
       // Check ID '1' specifically
       if (decoded.userId === '1') {
-        user = { id: '1', email: 'demo@csc.com', name: 'Demo User', role: 'csc_admin', is_active: true, csc_id: 'demo-csc' };
+        user = { id: '1', email: 'demo@harshita.ai', name: 'Demo User', role: 'csc_admin', is_active: true, csc_id: 'demo-csc' };
       } else {
         // Search in map
         for (const [email, memUser] of inMemoryUsers) {

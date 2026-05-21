@@ -209,6 +209,10 @@ class MasterAgent {
       return { type: 'collecting_input', field: requiredFields[0], message: `Please provide ${requiredFields[0]}` };
     }
 
+    if (!agent) {
+      return { type: 'error', success: false, message: `No agent found for intent: ${intent}` };
+    }
+
     const result = await agent.execute(taskData);
     if (result.requiresManualStep) {
       session.state = 'manual_step';

@@ -1,4 +1,4 @@
-import { Bell, Menu, User, LogOut, Menu as MenuIcon, Search, ChevronDown } from 'lucide-react'
+import { Bell, Menu, User, LogOut, Menu as MenuIcon, Search, ChevronDown, Settings as SettingsIcon } from 'lucide-react'
 import { useStore } from '../../store'
 import { useState } from 'react'
 
@@ -8,16 +8,13 @@ export default function Header() {
   const [showUserMenu, setShowUserMenu] = useState(false)
 
   return (
-    <header
-      className={`fixed top-0 right-0 h-16 bg-white dark:bg-navy-900 border-b border-gray-200 dark:border-navy-700 flex items-center justify-between px-4 transition-all duration-300 z-40 ${
-        sidebarOpen ? 'left-64' : 'left-20'
-      }`}
-    >
+    <header className="sticky top-0 z-40 w-full h-16 bg-white dark:bg-[#0f111a] border-b border-white/5 flex items-center justify-between px-4">
       {/* Left section */}
       <div className="flex items-center gap-4">
+        <img src="/harshita ai.png" alt="Harshita AI" className="w-10 h-10 hidden md:block" />
         <button
           onClick={toggleSidebar}
-          className="p-2 hover:bg-gray-100 dark:hover:bg-navy-800 rounded-lg transition-colors md:hidden"
+          className="p-2 hover:bg-white/5 rounded-lg transition-colors md:hidden"
         >
           <Menu size={20} />
         </button>
@@ -28,7 +25,7 @@ export default function Header() {
           <input
             type="text"
             placeholder="Search jobs, documents, candidates..."
-            className="pl-10 pr-4 py-2 w-64 bg-gray-100 dark:bg-navy-800 border-0 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-maroon-500"
+            className="pl-10 pr-4 py-2 w-64 bg-white/5 border border-white/10 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 text-gray-200 placeholder-gray-500"
           />
         </div>
       </div>
@@ -118,7 +115,7 @@ export default function Header() {
                   Profile
                 </button>
                 <button className="w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-navy-700 rounded-lg">
-                  <Settings size={16} />
+                  <SettingsIcon size={16} />
                   Settings
                 </button>
                 <hr className="my-2 border-gray-100 dark:border-navy-700" />

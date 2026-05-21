@@ -45,11 +45,8 @@ export default function Login() {
       >
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="w-20 h-20 bg-gradient-to-br from-gold-400 to-gold-600 rounded-2xl flex items-center justify-center mx-auto shadow-2xl mb-4">
-            <Sparkles size={40} className="text-maroon-900" />
-          </div>
-          <h1 className="text-3xl font-heading font-bold text-white">Rawan</h1>
-          <p className="text-gray-300 mt-2">20-armed Multi-Agent AI Platform</p>
+          <img src="/harshita ai.png" alt="Harshita AI" className="w-24 h-24 mx-auto mb-4" />
+          <h1 className="text-3xl font-heading font-bold text-white">HARSHITA AI</h1>
         </div>
 
         {/* Login form */}
@@ -57,7 +54,7 @@ export default function Login() {
           <h2 className="text-xl font-heading font-bold mb-6 text-center">VLE Login</h2>
 
           {error && (
-            <div className="mb-4 p-3 bg-rose-100 dark:bg-rose-900/30 border border-rose-300 dark:border-rose-700 rounded-lg flex items-center gap-2 text-rose-700 dark:text-rose-300">
+            <div className="mb-4 p-3 bg-red-600 border border-red-500 rounded-lg flex items-center gap-2 text-white font-medium">
               <AlertCircle size={18} />
               {error}
             </div>
@@ -126,7 +123,7 @@ export default function Login() {
         {/* Demo credentials */}
         <div className="mt-6 p-4 bg-white/10 backdrop-blur-sm rounded-xl text-white text-sm text-center">
           <p className="font-medium mb-1">Demo Credentials</p>
-          <p className="text-gray-300">Email: demo@csc.com</p>
+          <p className="text-gray-300">Email: demo@harshita.ai</p>
           <p className="text-gray-300">Password: demo1234</p>
         </div>
       </motion.div>

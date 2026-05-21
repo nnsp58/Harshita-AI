@@ -1,10 +1,10 @@
-# Rawan Dashboard - Frontend
+# Harshita AI Dashboard - Frontend
 
 Multi-Agent CSC Automation Platform for VLEs (Village Level Entrepreneurs) built with React + Vite + Tailwind.
 
 ## 🎯 Features
 
-- **Rawan - 20-armed Dashboard**: Interactive visualization of all agents working in parallel
+- **Harshita AI - 20-armed Dashboard**: Interactive visualization of all agents working in parallel
 - **Real-time Monitoring**: Track agent status, success rates, and costs
 - **Job Management**: View and filter job queue across all agents
 - **Document Processing**: Upload, extract, and approve document data
@@ -54,10 +54,10 @@ frontend/
 │   │   │   └── StatsCard.jsx    # Reusable stat card
 │   │   ├── Agent/
 │   │   │   └── AgentCard.jsx    # Agent status card with controls
-│   │   └── Rawan/
-│   │       └── RawanModel.jsx   # 20-arm Rawan visualization
+│   │   └── Harshita AI/
+│   │       └── Harshita AIModel.jsx   # 20-arm Harshita AI visualization
 │   ├── pages/
-│   │   ├── Home.jsx       # Dashboard with Rawan hero + stats
+│   │   ├── Home.jsx       # Dashboard with Harshita AI hero + stats
 │   │   ├── Agents.jsx    # Agent monitoring + marketplace
 │   │   ├── Jobs.jsx      # Job queue table
 │   │   ├── Documents.jsx # Document processing queue
@@ -83,7 +83,7 @@ frontend/
 ## 🎨 Design System
 
 **Colors** (Mythological + SaaS theme)
-- Primary: Maroon `#800020` (Ravan's traditional color)
+- Primary: Maroon `#800020` (Harshita AI's traditional color)
 - Secondary: Gold `#FFD700` (Royal accent)
 - Accent: Blue `#0066FF` (Modern SaaS)
 - Background: Navy `#0F172A` (Premium dark mode)
@@ -204,7 +204,7 @@ frontend:
 1. **vite-plugin-pwa** - Currently disabled due to dependency conflicts with Vite 8. Will be re-enabled when compatible version released.
 2. **Icons** - Need to generate PWA icon assets (PNG files in `public/`)
 3. **Marketplace** - Mock data only; real agent installation not yet connected to backend
-4. **Rawan 3D Animation** - Currently using CSS-based circle of agent icons; Lottie/Three.js integration pending
+4. **Harshita AI 3D Animation** - Currently using CSS-based circle of agent icons; Lottie/Three.js integration pending
 
 ## 📈 Roadmap
 
@@ -219,7 +219,7 @@ frontend:
 - [x] Build succeeds
 - [ ] Connect to real backend API (replace mock data)
 - [ ] Implement polling for live data (5s interval)
-- [ ] Add Rawan Lottie animation with arm glows
+- [ ] Add Harshita AI Lottie animation with arm glows
 - [ ] PWA service worker registration
 - [ ] Push notifications
 - [ ] Dark mode theme toggle functional

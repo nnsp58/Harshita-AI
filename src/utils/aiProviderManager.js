@@ -106,6 +106,8 @@ class AIProviderManager {
         'LegalDraftAgent': 'llama-3.3-70b-versatile',
         'JobSearchAgent': 'llama-3.3-70b-versatile',
         'UIBuilderAgent': 'llama-3.3-70b-versatile',
+        'IntentDetector': 'llama-3.3-70b-versatile',
+        'MasterAgent': 'llama-3.3-70b-versatile',
         'default': 'llama-3.3-70b-versatile'
       },
       gemini: {
@@ -135,6 +137,8 @@ class AIProviderManager {
       'LegalDraftAgent': 'gemini',
       'JobSearchAgent': 'openai',
       'UIBuilderAgent': 'groq',
+      'IntentDetector': 'groq',
+      'MasterAgent': 'groq',
       'default': 'groq'
     };
     return preferences[agentName] || preferences.default;

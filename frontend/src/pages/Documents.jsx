@@ -51,9 +51,12 @@ export default function Documents() {
     <div className="space-y-6">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl md:text-3xl font-heading font-bold">Document Management</h1>
-          <p className="text-gray-500 dark:text-gray-400 mt-1">Agent "Rawan" will use these to auto-fill your job applications</p>
+        <div className="flex items-center gap-4">
+          <img src="/harshita ai.png" alt="Harshita AI" className="w-12 h-12" />
+          <div>
+            <h1 className="text-2xl md:text-3xl font-heading font-bold">Document Management</h1>
+            <p className="text-gray-500 dark:text-gray-400 mt-1">Agent "HARSHITA AI" will use these to auto-fill your job applications</p>
+          </div>
         </div>
         <label className="btn-primary flex items-center gap-2 cursor-pointer">
           <Upload size={20} />

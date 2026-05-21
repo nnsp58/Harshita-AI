@@ -58,14 +58,19 @@ const setupSocketHandlers = (io) => {
     });
 
     // Dashboard chat handlers
+    const { MasterAgent } = require('../../agents/masterAgent');
+    const masterAgent = new MasterAgent(io);
+
     socket.on('userCommand', async (cmd) => {
       console.log(`User command from ${socket.userId}: ${cmd}`);
       socket.emit('logUpdate', { type: 'user', message: cmd });
 
-      // Simulate AI processing (replace with actual MasterAgent integration)
-      setTimeout(() => {
-        socket.emit('logUpdate', { type: 'ai', message: `Command "${cmd}" processed successfully.` });
-      }, 1000);
+      try {
+        const response = await masterAgent.processCommand(socket.userId, cmd);
+        socket.emit('logUpdate', response);
+      } catch (error) {
+        socket.emit('logUpdate', { type: 'ai', message: "Command processing error." });
+      }
     });
 
     socket.on('fileUpload', (data) => {

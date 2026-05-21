@@ -14,7 +14,13 @@
         "price": 299,
         "duration": "monthly",
         "discount": 0,
-        "allowedAgents": ["document", "validator", "notifier", "fileProcessor", "browser"],
+        "allowedAgents": [
+          "document",
+          "validator",
+          "notifier",
+          "fileProcessor",
+          "browser"
+        ],
         "maxTasksPerDay": 10,
         "prioritySupport": false
       },
@@ -23,7 +29,16 @@
         "price": 699,
         "duration": "monthly",
         "discount": 0,
-        "allowedAgents": ["document", "validator", "notifier", "fileProcessor", "browser", "land", "ration", "cscLogin"],
+        "allowedAgents": [
+          "document",
+          "validator",
+          "notifier",
+          "fileProcessor",
+          "browser",
+          "land",
+          "ration",
+          "cscLogin"
+        ],
         "maxTasksPerDay": 50,
         "prioritySupport": true
       },
@@ -32,7 +47,18 @@
         "price": 1299,
         "duration": "monthly",
         "discount": 0,
-        "allowedAgents": ["document", "validator", "notifier", "fileProcessor", "browser", "land", "ration", "ticket", "cscLogin", "legal"],
+        "allowedAgents": [
+          "document",
+          "validator",
+          "notifier",
+          "fileProcessor",
+          "browser",
+          "land",
+          "ration",
+          "ticket",
+          "cscLogin",
+          "legal"
+        ],
         "maxTasksPerDay": -1,
         "prioritySupport": true
       }
@@ -51,13 +77,22 @@
       "name": "LandRecordAgent",
       "description": "Land records and bhulekh services",
       "requiresLogin": false,
-      "supportedStates": ["uttar_pradesh", "bihar", "rajasthan", "madhya_pradesh"]
+      "supportedStates": [
+        "uttar_pradesh",
+        "bihar",
+        "rajasthan",
+        "madhya_pradesh"
+      ]
     },
     "ration": {
       "name": "RationCardAgent",
       "description": "Ration card services",
       "requiresLogin": false,
-      "supportedStates": ["uttar_pradesh", "delhi", "maharashtra"]
+      "supportedStates": [
+        "uttar_pradesh",
+        "delhi",
+        "maharashtra"
+      ]
     },
     "ticket": {
       "name": "TicketBookingAgent",
@@ -75,7 +110,11 @@
       "name": "LegalDraftAgent",
       "description": "Legal document drafting (affidavit, sapath)",
       "requiresLogin": false,
-      "documentTypes": ["affidavit", "sapath", "declaration"]
+      "documentTypes": [
+        "affidavit",
+        "sapath",
+        "declaration"
+      ]
     },
     "document": {
       "name": "DocumentAIAgent",
@@ -99,17 +138,65 @@
     }
   },
   "intentMapping": {
-    "land": ["land", "bhulekh", "land record", "land records", "apka khata", "khatauni", "map", "land map"],
-    "ration": ["ration", "ration card", "food card", "ration new", "ration status"],
-    "ticket": ["ticket", "book ticket", "railway", "train", "irctc", "reservation", "ticket book"],
-    "cscLogin": ["login", "csc", "edistrict", "csc portal", "login help"],
-    "legal": ["legal", "affidavit", "sapath", "sworn statement", "declaration", "draft"],
-    "document": ["document", "pdf", "extract", "scan", "read document"],
-    "file": ["file", "process file", "compress", "resize"]
+    "land": [
+      "land",
+      "bhulekh",
+      "land record",
+      "land records",
+      "apka khata",
+      "khatauni",
+      "map",
+      "land map"
+    ],
+    "ration": [
+      "ration",
+      "ration card",
+      "food card",
+      "ration new",
+      "ration status"
+    ],
+    "ticket": [
+      "ticket",
+      "book ticket",
+      "railway",
+      "train",
+      "irctc",
+      "reservation",
+      "ticket book"
+    ],
+    "cscLogin": [
+      "login",
+      "csc",
+      "edistrict",
+      "csc portal",
+      "login help"
+    ],
+    "legal": [
+      "legal",
+      "affidavit",
+      "sapath",
+      "sworn statement",
+      "declaration",
+      "draft"
+    ],
+    "document": [
+      "document",
+      "pdf",
+      "extract",
+      "scan",
+      "read document"
+    ],
+    "file": [
+      "file",
+      "process file",
+      "compress",
+      "resize"
+    ]
   },
   "ui": {
     "welcomeMessage": " Welcome to n-dizi CSC Automation System",
     "prompt": "You: ",
     "help": "Type 'help' for commands, 'plan' for subscription info, 'status' for your account"
-  }
+  },
+  "snapshot": false
 }

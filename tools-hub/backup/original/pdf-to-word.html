@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.png">
+<<<<<<< HEAD
+    <meta name="description" content="Convert PDF to Word, JPG, PNG, or SVG online for free. Fast and secure PDF converter tool. Transform PDF documents to editable formats easily.">
+    <meta name="keywords" content="PDF to Word, PDF to JPG, PDF to PNG, PDF to SVG, convert PDF, PDF converter, ToolHub">
+    <link rel="canonical" href="https://n-dizi.in/pdf-to-word.html">
+    <meta name="google-adsense-account" content="ca-pub-9239182778221521">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9239182778221521" crossorigin="anonymous"></script>
+    <title>PDF Converter - Word, JPG, PNG, SVG | ToolHub</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .tool-section { max-width: 900px; margin: 100px auto; padding: 2rem; background: #fff; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); }
+        .tool-section h2 { color: #1e3c72; font-size: 2rem; margin-bottom: 1.5rem; text-align: center; }
+        .tool-section h3 { color: #1e3c72; margin-top: 1.5rem; margin-bottom: 0.8rem; }
+        .tool-section p, .tool-section ul, .tool-section ol { margin-bottom: 1rem; line-height: 1.7; }
+        #pdf-upload { border: 2px dashed #ccc; padding: 2rem; text-align: center; margin-bottom: 1rem; border-radius: 10px; cursor: pointer; transition: all 0.3s; }
+        #pdf-upload:hover { border-color: #00d4ff; background: #f8fdff; }
+        #pdf-upload.dragover { border-color: #00d4ff; background: #e1f5fe; }
+        .format-options { display: flex; flex-wrap: wrap; gap: 10px; margin: 1rem 0; justify-content: center; }
+        .format-btn { padding: 10px 20px; border: 2px solid #ddd; border-radius: 25px; background: #fff; cursor: pointer; font-weight: 500; transition: all 0.3s; }
+        .format-btn:hover { border-color: #00d4ff; }
+        .format-btn.active { background: #00d4ff; color: white; border-color: #00d4ff; }
+        .action-buttons { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 1rem 0; }
+        .action-btn { padding: 14px 28px; background: #00d4ff; color: white; border: none; border-radius: 50px; cursor: pointer; font-weight: 600; font-size: 16px; transition: all 0.3s; }
+        .action-btn:hover { background: #00b7d9; transform: translateY(-2px); }
+        .action-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+        #status-message { text-align: center; margin: 1rem 0; padding: 10px; border-radius: 8px; font-weight: 500; }
+        #status-message.processing { background: #e3f2fd; color: #1565c0; }
+        #status-message.success { background: #e8f5e9; color: #2e7d32; }
+        #status-message.error { background: #ffebee; color: #c62828; }
+        #preview-section { display: none; margin-top: 2rem; text-align: center; }
+        #preview-section h3 { text-align: center; }
+        .preview-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 1rem; }
+        .preview-item { padding: 15px; background: #f8f9fa; border-radius: 10px; }
+        .preview-item canvas { max-width: 100%; border-radius: 8px; border: 1px solid #ddd; }
+        .preview-item img { max-width: 100%; border-radius: 8px; border: 1px solid #ddd; }
+        .download-links { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 1rem; }
+        .download-link { display: inline-block; padding: 12px 24px; background: #28a745; color: white; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .download-link:hover { background: #218838; transform: translateY(-2px); }
+        @media (max-width: 768px) {
+            .tool-section { margin: 80px 1rem; padding: 1.5rem; }
+            .action-buttons { flex-direction: column; }
+            .action-btn { width: 100%; }
+=======
+    <link rel="canonical" href="https://n-dizi.in/pdf-to-word.html">
+    <meta name="google-adsense-account" content="ca-pub-9239182778221521">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9239182778221521" crossorigin="anonymous"></script>
+    <title>PDF से Word कन्वर्टर - ToolHub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; line-height: 1.6; background: #f0f2f5; color: #333; }
+        .header { background: linear-gradient(120deg, #ff6b6b, #4ecdc4); padding: 1.5rem 2rem; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .nav { max-width: 1300px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 2rem; font-weight: 700; color: #fff; letter-spacing: 1px; text-shadow: 0 2px 5px rgba(0,0,0,0.3); }
+        .nav-links a { color: #fff; text-decoration: none; margin-left: 2.5rem; font-weight: 500; transition: color 0.3s ease; }
+        .nav-links a:hover { color: #ffe66d; }
+        .tool-section { max-width: 1300px; margin: 100px auto; padding: 2rem; background: #fff; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); }
+        .tool-section h2 { color: #1e3c72; font-size: 2rem; margin-bottom: 1.5rem; }
+        .tool-section p, .tool-section ul, .tool-section ol { margin-bottom: 1rem; }
+        #pdf-upload { border: 2px dashed #ccc; padding: 2rem; text-align: center; margin-bottom: 1rem; }
+        #pdf-upload.dragover { background: #e1f5fe; }
+        button { padding: 1rem 2rem; background: #00d4ff; color: white; border: none; border-radius: 50px; cursor: pointer; margin: 0.5rem; }
+        button:hover { background: #00b7d9; }
+        .ad-container { margin: 2rem auto; max-width: 100%; text-align: center; }
+        #cookie-consent { position: fixed; bottom: 0; background: #333; color: #fff; padding: 10px; width: 100%; text-align: center; z-index: 1000; }
+        #cookie-consent a { color: #ffe66d; }
+        #cookie-consent button { background: #00d4ff; border-radius: 5px; padding: 0.5rem 1rem; }
+        .footer { background: linear-gradient(120deg, #ff6b6b, #4ecdc4); color: white; padding: 3rem 2rem; margin-top: 4rem; }
+        .footer-content { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2.5rem; }
+        .footer h4 { margin-bottom: 1.5rem; font-size: 1.3rem; }
+        .footer p { opacity: 0.9; transition: opacity 0.3s ease; }
+        .footer p:hover { opacity: 1; }
+        #error-message { color: red; display: none; margin-top: 1rem; }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .tool-section { margin: 80px 1rem; padding: 1rem; }
+            .footer-content { grid-template-columns: 1fr; }
+>>>>>>> 6860395426066e7c6f676053bc3cb8fa79903a74
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">ToolHub</div>
+            <div class="nav-links">
+<<<<<<< HEAD
+                <a href="index.html">Home</a>
+                <a href="index.html#tools">Tools</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="tool-section">
+            <h2>PDF Converter Tool</h2>
+            <p>Convert your PDF documents to multiple formats instantly. Our free online tool lets you convert PDF to Word (DOCX), images (JPG, PNG), and SVG. All processing happens in your browser - your files are never uploaded to any server, ensuring complete privacy and security.</p>
+            
+            <h3>How to Use</h3>
+            <ol>
+                <li>Upload your PDF file by dragging and dropping or clicking the upload area</li>
+                <li>Select the output format you need (Word, JPG, PNG, or SVG)</li>
+                <li>Click the convert button and wait for processing to complete</li>
+                <li>Download your converted file instantly</li>
+            </ol>
+
+            <h3>Supported Formats</h3>
+            <ul>
+                <li><strong>PDF to Word (DOCX)</strong> - Extract text and convert to editable Word document</li>
+                <li><strong>PDF to JPG</strong> - Convert each page to high-quality JPEG image</li>
+                <li><strong>PDF to PNG</strong> - Convert each page to transparent-ready PNG image</li>
+                <li><strong>PDF to SVG</strong> - Convert to scalable vector graphics</li>
+            </ul>
+
+            <div id="pdf-upload">
+                <p style="font-size: 1.2rem; color: #1e3c72; margin-bottom: 0.5rem;">Drag & Drop PDF here</p>
+                <p style="color: #666; margin-bottom: 0;">or click to browse</p>
+                <input type="file" id="pdfInput" accept="application/pdf" style="display: none;">
+            </div>
+
+            <p id="file-name" style="text-align: center; color: #28a745; font-weight: 500;"></p>
+
+            <div class="format-options">
+                <button class="format-btn active" data-format="docx">Word (DOCX)</button>
+                <button class="format-btn" data-format="jpg">JPG</button>
+                <button class="format-btn" data-format="png">PNG</button>
+                <button class="format-btn" data-format="svg">SVG</button>
+            </div>
+
+            <div class="action-buttons">
+                <button id="convertBtn" class="action-btn" disabled>Convert PDF</button>
+            </div>
+
+            <div id="status-message"></div>
+
+            <div id="preview-section">
+                <h3>Preview</h3>
+                <div id="preview-container"></div>
+                <div class="download-links" id="download-links"></div>
+            </div>
+        </section>
+
+        <div class="ad-container">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9239182778221521" data-ad-slot="7274852761" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <div class="faq-section">
+            <h3>Frequently Asked Questions</h3>
+            <p><strong>Q: What types of PDF files can be converted?</strong></p>
+            <p>A: Our converter works best with text-based PDF files. Scanned PDFs or image-based PDFs may not convert accurately as they require OCR technology.</p>
+            
+            <p><strong>Q: Is there a file size limit?</strong></p>
+            <p>A: Yes, we recommend PDF files up to 10MB for optimal performance. Larger files may take longer to process.</p>
+            
+            <p><strong>Q: Will the formatting be preserved in Word conversion?</strong></p>
+            <p>A: We strive to maintain basic formatting including paragraphs and headings. Complex layouts, tables, and images may not transfer perfectly.</p>
+            
+            <p><strong>Q: Can I convert multi-page PDFs?</strong></p>
+            <p>A: Yes! Multi-page PDFs are supported. For image formats (JPG/PNG), each page will be converted to a separate image and downloadable as a ZIP file.</p>
+            
+            <p><strong>Q: Is my PDF file stored on your servers?</strong></p>
+            <p>A: No! All processing happens locally in your browser. Your files are never uploaded or stored on our servers.</p>
+        </div>
+    </main>
+
+    <div id="footer"></div>
+    <script>
+        fetch("./footer.html")
+            .then(res => res.text())
+            .then(data => document.getElementById("footer").innerHTML = data);
+=======
+                <a href="index.html">होम</a>
+                <a href="index.html#tools">टूल्स</a>
+                <a href="index.html#about">अबाउट</a>
+                <a href="index.html#contact">कॉन्टैक्ट</a>
+                <a href="privacy-policy.html">प्राइवेसी पॉलिसी</a>
+                <a href="terms.html">टर्म्स ऑफ सर्विस</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="tool-section">
+            <h2>PDF से Word कन्वर्टर टूल</h2>
+            <p>ToolHub का PDF से Word कन्वर्टर टूल आपको PDF फाइलों को Microsoft Word (.docx) दस्तावेज़ में बदलने की सुविधा देता है। यह टूल हिंदी टेक्स्ट, पैराग्राफ, और बुनियादी स्वरूपण को संरक्षित करता है, जिससे आप Word में आसानी से संपादन कर सकते हैं। यह स्टूडेंट्स, प्रोफेशनल्स, और व्यवसायों के लिए आदर्श है।</p>
+            <p>हमारा टूल PDF से टेक्स्ट निकालता है और उसे संपादन योग्य Word फाइल में बदलता है। यह सुरक्षित है और आपकी फाइलें सर्वर पर स्टोर नहीं की जातीं। <strong>नोट:</strong> केवल टेक्स्ट-आधारित PDF समर्थित हैं। स्कैन की गई PDF काम नहीं करेंगी।</p>
+            <h3>कैसे उपयोग करें?</h3>
+            <ol>
+                <li>नीचे दिए गए क्षेत्र में अपनी PDF फाइल ड्रैग करें या "फाइल चुनें" पर क्लिक करें (अधिकतम 10MB)।</li>
+                <li>"कन्वर्ट" बटन पर क्लिक करें।</li>
+                <li>रूपांतरित Word फाइल (.docx) डाउनलोड करें।</li>
+            </ol>
+            <h3>फायदे</h3>
+            <ul>
+                <li>हिंदी टेक्स्ट और बुनियादी स्वरूपण का सटीक रूपांतरण।</li>
+                <li>कोई सॉफ्टवेयर इंस्टॉलेशन की आवश्यकता नहीं।</li>
+                <li>सुरक्षित और मुफ्त उपयोग।</li>
+                <li>मोबाइल और डेस्कटॉप पर उपयोग में आसान।</li>
+            </ul>
+            <h3>उदाहरण</h3>
+            <p>मान लीजिए आपके पास एक PDF है जिसमें हिंदी में लेक्चर नोट्स हैं। हमारे टूल से आप इसे Word में बदल सकते हैं, जहाँ टेक्स्ट संपादन योग्य होगा। यह शिक्षकों और स्टूडेंट्स के लिए समय बचाने वाला है।</p>
+            <div id="pdf-upload">
+                <p>PDF फाइल यहाँ ड्रैग करें या अपलोड करें</p>
+                <input type="file" id="pdfInput" accept="application/pdf">
+            </div>
+            <button id="convertButton">कन्वर्ट करें</button>
+            <p id="error-message"></p>
+        </section>
+        <div class="ad-container">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-9239182778221521"
+                 data-ad-slot="7274852761"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        
+        <div class="faq-section">
+            <h3>Frequently Asked Questions</h3>
+            <p><strong>Q: What types of PDF files can be converted?</strong></p>
+            <p>A: Our PDF to Word converter works best with text-based PDF files. Scanned PDFs or image-based PDFs may not convert accurately as they require OCR technology.</p>
+            
+            <p><strong>Q: Is there a file size limit?</strong></p>
+            <p>A: Yes, we recommend PDF files up to 10MB for optimal performance. Larger files may take longer to process or may be rejected.</p>
+            
+            <p><strong>Q: Will the formatting be preserved?</strong></p>
+            <p>A: We strive to maintain basic formatting including paragraphs, headings, and simple layouts. Complex formatting, tables, and images may not transfer perfectly.</p>
+            
+            <p><strong>Q: Can I convert Hindi or other Indian language PDFs?</strong></p>
+            <p>A: Yes, our tool supports Hindi and other Indian languages. However, the quality depends on the PDF's text encoding and font embedding.</p>
+            
+            <p><strong>Q: Is my PDF file stored on your servers?</strong></p>
+            <p>A: No, your files are processed securely and are not stored on our servers after conversion is complete. Your privacy is our priority.</p>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <h4>ToolHub</h4>
+                <p>आपका अंतिम डिजिटल टूलकिट</p>
+            </div>
+            <div>
+                <h4>टूल्स</h4>
+                <p><a href="img-compress.html" style="color: white; text-decoration: none;">इमेज टूल्स</a></p>
+                <p><a href="pdf-to-word.html" style="color: white; text-decoration: none;">PDF टूल्स</a></p>
+                <p><a href="video-converter.html" style="color: white; text-decoration: none;">वीडियो टूल्स</a></p>
+                <p><a href="voice-translator.html" style="color: white; text-decoration: none;">वॉयस टूल्स</a></p>
+                <p><a href="doc-format-converter.html" style="color: white; text-decoration: none;">डॉक्यूमेंट टूल्स</a></p>
+                <p><a href="multifunction-calculator.html" style="color: white; text-decoration: none;">कैलकुलेटर टूल्स</a></p>
+                <p><a href="passport-size-photo-maker.html" style="color: white; text-decoration: none;">पासपोर्ट फोटो टूल्स</a></p>
+            </div>
+            <div>
+                <h4>सपोर्ट</h4>
+                <p><a href="index.html#contact" style="color: white; text-decoration: none;">कॉन्टैक्ट अस</a></p>
+                <p><a href="#faq" style="color: white; text-decoration: none;">FAQ</a></p>
+                <p><a href="#docs" style="color: white; text-decoration: none;">डॉक्यूमेंटेशन</a></p>
+            </div>
+            <div>
+                <h4>कानूनी</h4>
+                <p><a href="privacy-policy.html" style="color: white; text-decoration: none;">प्राइवेसी पॉलिसी</a></p>
+                <p><a href="terms.html" style="color: white; text-decoration: none;">टर्म्स ऑफ सर्विस</a></p>
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent">
+        <p>हम कुकीज़ का उपयोग विज्ञापन और एनालिटिक्स के लिए करते हैं। <a href="privacy-policy.html">और जानें</a></p>
+        <button onclick="document.getElementById('cookie-consent').style.display='none';">सहमत</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.0/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://unpkg.com/pizzip@3.1.7/dist/pizzip.min.js"></script>
+    <script src="https://unpkg.com/docxtemplater@3.31.1/build/docxtemplater.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.0/pdf.worker.min.js';
+        const pdfUpload = document.getElementById('pdf-upload');
+        const pdfInput = document.getElementById('pdfInput');
+        const errorMessage = document.getElementById('error-message');
+        const convertButton = document.getElementById('convertButton');
+        let isProcessing = false;
+
+        function showError(message) {
+            errorMessage.style.display = 'block';
+            errorMessage.textContent = message;
+            console.error(message);
+        }
+
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        pdfUpload.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            pdfUpload.classList.add('dragover');
+        });
+
+        pdfUpload.addEventListener('dragleave', () => {
+            pdfUpload.classList.remove('dragover');
+        });
+
+        pdfUpload.addEventListener('drop', debounce((e) => {
+            e.preventDefault();
+            pdfUpload.classList.remove('dragover');
+            const file = e.dataTransfer.files[0];
+            if (file && file.type === 'application/pdf' && file.name.endsWith('.pdf')) {
+                pdfInput.files = [file];
+                handleFile(file);
+            } else {
+                showError('कृपया केवल वैध PDF फाइल अपलोड करें।');
+            }
+        }, 300));
+
+        pdfInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file && file.type === 'application/pdf' && file.name.endsWith('.pdf')) {
+                handleFile(file);
+            } else {
+                showError('कृपया केवल वैध PDF फाइल अपलोड करें।');
+                e.target.value = '';
+            }
+        });
+
+        let pdfText = '';
+
+        function handleFile(file) {
+            if (isProcessing) return;
+            isProcessing = true;
+            if (file.size > 10 * 1024 * 1024) {
+                showError('फाइल का आकार 10MB से कम होना चाहिए।');
+                isProcessing = false;
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = async function(e) {
+                try {
+                    console.log('Processing PDF file:', file.name);
+                    const typedArray = new Uint8Array(e.target.result);
+                    const pdf = await pdfjsLib.getDocument({ data: typedArray, disableFontFace: true }).promise;
+                    pdfText = '';
+                    for (let i = 1; i <= pdf.numPages; i++) {
+                        const page = await pdf.getPage(i);
+                        const textContent = await page.getTextContent();
+                        let pageText = textContent.items
+                            .filter(item => item.str && item.str.trim())
+                            .map(item => item.str)
+                            .join(' ');
+                        const lines = pageText.split('\n').filter(line => line.trim());
+                        const filteredLines = lines.filter(line => {
+                            const trimmed = line.trim();
+                            const spaceCount = (trimmed.match(/\s+/g) || []).length;
+                            const isNumberHeavy = trimmed.match(/\d+/g) && trimmed.match(/\d+/g).length > 3;
+                            return spaceCount < 5 || !isNumberHeavy;
+                        });
+                        pdfText += filteredLines.join(' ') + '\n\n';
+                    }
+                    pdfText = pdfText.trim();
+                    console.log('PDF text extracted:', pdfText.substring(0, 100) + '...');
+                    if (!pdfText) {
+                        pdfText = 'PDF में टेक्स्ट नहीं मिला। कृपया टेक्स्ट-आधारित PDF अपलोड करें।';
+                        console.warn('No text extracted. Generating minimal DOCX.');
+                    }
+                    errorMessage.style.display = 'none';
+                } catch (err) {
+                    showError('PDF प्रोसेसिंग में त्रुटि: ' + err.message + '। कृपया टेक्स्ट-आधारित PDF अपलोड करें।');
+                    console.error('PDF processing error:', err);
+                    pdfText = 'PDF में टेक्स्ट नहीं मिला।';
+                } finally {
+                    isProcessing = false;
+                    pdfInput.value = '';
+                }
+            };
+            reader.onerror = () => {
+                showError('फाइल पढ़ने में त्रुटि।');
+                isProcessing = false;
+                pdfInput.value = '';
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        function convertToWord() {
+            if (!pdfText) {
+                showError('कृपया पहले वैध PDF फाइल अपलोड करें।');
+                return;
+            }
+            try {
+                console.log('Starting DOCX conversion...');
+                if (typeof PizZip === 'undefined') {
+                    throw new Error('PizZip लाइब्रेरी लोड नहीं हुई। कृपया पेज रिफ्रेश करें या AdBlock अक्षम करें।');
+                }
+                if (typeof docxtemplater === 'undefined') {
+                    throw new Error('docxtemplater लाइब्रेरी लोड नहीं हुई। कृपया पेज रिफ्रेश करें या AdBlock अक्षम करें।');
+                }
+
+                const zip = new PizZip();
+                const paragraphs = pdfText.split('\n\n').filter(p => p.trim());
+                let xmlContent = '';
+                paragraphs.forEach(paragraph => {
+                    const escapedText = paragraph.replace(/[<>%&"']/g, char => ({
+                        '<': '&lt;',
+                        '>': '&gt;',
+                        '&': '&amp;',
+                        '"': '&quot;',
+                        '%': '&#37;',
+                        "'": '&apos;'
+                    })[char]);
+                    xmlContent += `
+                        <w:p>
+                            <w:r>
+                                <w:rPr>
+                                    <w:rFonts w:ascii="Noto Sans Devanagari" w:hAnsi="Noto Sans Devanagari" w:cs="Noto Sans Devanagari"/>
+                                    <w:sz w:val="24"/>
+                                </w:rPr>
+                                <w:t xml:space="preserve"><![CDATA[${escapedText}]]></w:t>
+                            </w:r>
+                        </w:p>`;
+                });
+
+                if (!xmlContent) {
+                    xmlContent = `
+                        <w:p>
+                            <w:r>
+                                <w:rPr>
+                                    <w:rFonts w:ascii="Noto Sans Devanagari" w:hAnsi="Noto Sans Devanagari" w:cs="Noto Sans Devanagari"/>
+                                    <w:sz w:val="24"/>
+                                </w:rPr>
+                                <w:t xml:space="preserve"><![CDATA[${pdfText}]]></w:t>
+                            </w:r>
+                        </w:p>`;
+                }
+
+                const content = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+                        <w:body>
+                            ${xmlContent}
+                        </w:body>
+                    </w:document>`;
+
+                zip.file('word/document.xml', content);
+                zip.file('[Content_Types].xml', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
+                        <Default Extension="xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>
+                        <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
+                    </Types>`);
+                zip.file('_rels/.rels', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+                        <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>
+                    </Relationships>`);
+                zip.file('word/_rels/document.xml.rels', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                    <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"></Relationships>`);
+
+                console.log('ZIP structure created, loading into docxtemplater...');
+                const doc = new docxtemplater(zip, { paragraphLoop: true, linebreaks: true });
+                console.log('Generating DOCX...');
+                const output = doc.getZip().generate({
+                    type: 'blob',
+                    mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+                });
+                console.log('DOCX generated, initiating download...');
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(output);
+                link.download = 'converted-document.docx';
+                link.click();
+                errorMessage.style.display = 'none';
+            } catch (err) {
+                showError('Word दस्तावेज़ बनाने में त्रुटि: ' + err.message);
+                console.error('Detailed error:', err);
+            }
+        }
+
+        convertButton.addEventListener('click', convertToWord);
+>>>>>>> 6860395426066e7c6f676053bc3cb8fa79903a74
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script>
+<<<<<<< HEAD
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+        const pdfUpload = document.getElementById('pdf-upload');
+        const pdfInput = document.getElementById('pdfInput');
+        const convertBtn = document.getElementById('convertBtn');
+        const statusMessage = document.getElementById('status-message');
+        const previewSection = document.getElementById('preview-section');
+        const previewContainer = document.getElementById('preview-container');
+        const downloadLinks = document.getElementById('download-links');
+        const fileNameDisplay = document.getElementById('file-name');
+        const formatBtns = document.querySelectorAll('.format-btn');
+
+        let selectedFormat = 'docx';
+        let pdfData = null;
+        let pdfDoc = null;
+        let currentFileName = '';
+
+        formatBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                formatBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                selectedFormat = btn.dataset.format;
+            });
+        });
+
+        pdfUpload.addEventListener('click', () => pdfInput.click());
+        pdfUpload.addEventListener('dragover', e => { e.preventDefault(); pdfUpload.classList.add('dragover'); });
+        pdfUpload.addEventListener('dragleave', () => pdfUpload.classList.remove('dragover'));
+        pdfUpload.addEventListener('drop', e => {
+            e.preventDefault();
+            pdfUpload.classList.remove('dragover');
+            const file = e.dataTransfer.files[0];
+            if (file && file.type === 'application/pdf') handleFile(file);
+            else showStatus('Please upload a valid PDF file.', 'error');
+        });
+
+        pdfInput.addEventListener('change', e => {
+            const file = e.target.files[0];
+            if (file) handleFile(file);
+        });
+
+        function showStatus(msg, type) {
+            statusMessage.textContent = msg;
+            statusMessage.className = 'status-message ' + type;
+            statusMessage.style.display = msg ? 'block' : 'none';
+        }
+
+        function handleFile(file) {
+            if (file.size > 10 * 1024 * 1024) {
+                showStatus('File size must be less than 10MB.', 'error');
+                return;
+            }
+            currentFileName = file.name.replace('.pdf', '');
+            fileNameDisplay.textContent = `Selected: ${file.name}`;
+            convertBtn.disabled = false;
+            showStatus('', '');
+            
+            const reader = new FileReader();
+            reader.onload = async function(e) {
+                try {
+                    pdfData = new Uint8Array(e.target.result);
+                    pdfDoc = await pdfjsLib.getDocument({ data: pdfData }).promise;
+                    showStatus(`PDF loaded successfully. ${pdfDoc.numPages} page(s) found.`, 'success');
+                } catch (err) {
+                    showStatus('Error loading PDF: ' + err.message, 'error');
+                    pdfData = null;
+                    pdfDoc = null;
+                }
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        convertBtn.addEventListener('click', async () => {
+            if (!pdfData) {
+                showStatus('Please upload a PDF file first.', 'error');
+                return;
+            }
+
+            convertBtn.disabled = true;
+            showStatus('Processing...', 'processing');
+            previewSection.style.display = 'none';
+
+            try {
+                if (selectedFormat === 'docx') {
+                    await convertToWord();
+                } else if (selectedFormat === 'jpg' || selectedFormat === 'png' || selectedFormat === 'svg') {
+                    await convertToImages();
+                }
+            } catch (err) {
+                showStatus('Error: ' + err.message, 'error');
+            } finally {
+                convertBtn.disabled = false;
+            }
+        });
+
+        async function convertToWord() {
+            showStatus('Extracting text from PDF...', 'processing');
+            
+            let fullText = '';
+            const totalPages = pdfDoc.numPages;
+
+            for (let i = 1; i <= totalPages; i++) {
+                const page = await pdfDoc.getPage(i);
+                const textContent = await page.getTextContent();
+                const pageText = textContent.items.map(item => item.str).join(' ');
+                fullText += `[Page ${i}]\n${pageText}\n\n`;
+            }
+
+            if (!fullText.trim()) {
+                showStatus('No text found in PDF. Try image conversion instead.', 'error');
+                return;
+            }
+
+            showStatus('Creating Word document...', 'processing');
+            const docxBlob = createDocx(fullText);
+            const url = URL.createObjectURL(docxBlob);
+
+            showStatus('Conversion complete!', 'success');
+            showPreview('Word Document Created', `<p>${totalPages} pages converted</p>`);
+            downloadLinks.innerHTML = `<a href="${url}" download="${currentFileName}.docx" class="download-link">Download Word Document</a>`;
+        }
+
+        function createDocx(text) {
+            const paragraphs = text.split('\n').filter(line => line.trim()).map(line => {
+                const escaped = line.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+=======
+        const pdfjsLib = window['pdfjs-dist/build/pdf'];
+        if (pdfjsLib) pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+        const pdfUpload = document.getElementById('pdf-upload');
+        const pdfInput = document.getElementById('pdfInput');
+        const convertBtn = document.getElementById('convertButton');
+        const errorMsg = document.getElementById('error-message');
+
+        pdfUpload.addEventListener('dragover', e => { e.preventDefault(); pdfUpload.classList.add('dragover'); });
+        pdfUpload.addEventListener('dragleave', () => pdfUpload.classList.remove('dragover'));
+        pdfUpload.addEventListener('drop', e => {
+            e.preventDefault(); pdfUpload.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files[0]) pdfInput.files = files;
+        });
+        pdfUpload.addEventListener('click', () => pdfInput.click());
+
+        convertBtn.addEventListener('click', convertPDFtoWord);
+
+        async function convertPDFtoWord() {
+            const file = pdfInput.files[0];
+            if (!file) { showError('कृपया एक PDF फाइल चुनें।'); return; }
+            if (!file.name.endsWith('.pdf')) { showError('केवल PDF फाइल अपलोड करें।'); return; }
+            if (file.size > 10 * 1024 * 1024) { showError('फाइल का आकार 10MB से कम होना चाहिए।'); return; }
+
+            convertBtn.disabled = true;
+            convertBtn.textContent = 'Converting...';
+            showError('');
+            showStatus('PDF पढ़ा जा रहा है...');
+
+            try {
+                const arrayBuffer = await file.arrayBuffer();
+                const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+                let fullText = '';
+                const totalPages = pdf.numPages;
+
+                for (let i = 1; i <= totalPages; i++) {
+                    showStatus(`Page ${i}/${totalPages} process हो रहा है...`);
+                    const page = await pdf.getPage(i);
+                    const textContent = await page.getTextContent();
+                    const pageText = textContent.items.map(item => item.str).join(' ');
+                    fullText += `[Page ${i}]\n${pageText}\n\n`;
+                }
+
+                showStatus('Word document बनाया जा रहा है...');
+                const docxBlob = createDocxFromText(fullText, file.name);
+                const url = URL.createObjectURL(docxBlob);
+                const baseName = file.name.replace('.pdf','');
+
+                const resultDiv = document.getElementById('error-message').parentNode;
+                let dlDiv = document.getElementById('dlResult');
+                if (!dlDiv) { dlDiv = document.createElement('div'); dlDiv.id = 'dlResult'; resultDiv.appendChild(dlDiv); }
+                dlDiv.innerHTML = `<a href="${url}" download="${baseName}.docx" style="display:inline-block;margin-top:1rem;padding:1rem 2rem;background:#28a745;color:white;border-radius:50px;text-decoration:none;font-weight:600;">Word (.docx) Download करें</a>`;
+
+                showStatus('रूपांतरण पूर्ण! ' + totalPages + ' pages convert हुए।', 'success');
+            } catch (err) {
+                showError('Error: ' + err.message + '. Text-based PDF का उपयोग करें।');
+                showStatus('');
+            } finally {
+                convertBtn.disabled = false;
+                convertBtn.textContent = 'कन्वर्ट करें';
+            }
+        }
+
+        function createDocxFromText(text, filename) {
+            // Create minimal valid DOCX (OOXML ZIP)
+            const paragraphs = text.split('\n').map(line => {
+                const escaped = line.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+>>>>>>> 6860395426066e7c6f676053bc3cb8fa79903a74
+                return `<w:p><w:r><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri"/><w:sz w:val="24"/></w:rPr><w:t xml:space="preserve">${escaped}</w:t></w:r></w:p>`;
+            });
+
+            const docXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<<<<<<< HEAD
+<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+<w:body>${paragraphs.join('')}<w:sectPr><w:pgSz w:w="12240" w:h="15840"/></w:sectPr></w:body></w:document>`;
+
+            const zip = new JSZip();
+            zip.file('[Content_Types].xml', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+=======
+<w:document xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas"
+  xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"
+  xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
+<w:body>${paragraphs.join('')}
+<w:sectPr><w:pgSz w:w="12240" w:h="15840"/></w:sectPr>
+</w:body></w:document>`;
+
+            const relsXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>
+</Relationships>`;
+
+            const contentTypesXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+>>>>>>> 6860395426066e7c6f676053bc3cb8fa79903a74
+<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
+<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
+<Default Extension="xml" ContentType="application/xml"/>
+<Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>
+<<<<<<< HEAD
+</Types>`);
+            zip.file('_rels/.rels', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>
+</Relationships>`);
+            zip.file('word/document.xml', docXml);
+            zip.file('word/_rels/document.xml.rels', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"></Relationships>`);
+=======
+</Types>`;
+
+            const wordRelsXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+</Relationships>`;
+
+            const zip = new JSZip();
+            zip.file('[Content_Types].xml', contentTypesXml);
+            zip.file('_rels/.rels', relsXml);
+            zip.file('word/document.xml', docXml);
+            zip.file('word/_rels/document.xml.rels', wordRelsXml);
+>>>>>>> 6860395426066e7c6f676053bc3cb8fa79903a74
+
+            return zip.generateAsync({ type: 'blob', mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+        }
+
+<<<<<<< HEAD
+        async function convertToImages() {
+            const scale = 2;
+            const format = selectedFormat;
+            const images = [];
+            const totalPages = pdfDoc.numPages;
+
+            previewContainer.innerHTML = '<div class="preview-grid" id="img-grid"></div>';
+            const grid = document.getElementById('img-grid');
+
+            for (let i = 1; i <= totalPages; i++) {
+                showStatus(`Converting page ${i} of ${totalPages} to ${format.toUpperCase()}...`, 'processing');
+                
+                const page = await pdfDoc.getPage(i);
+                const viewport = page.getViewport({ scale: scale });
+                
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+
+                await page.render({ canvasContext: ctx, viewport: viewport }).promise;
+
+                let blob, url, downloadName;
+
+                if (format === 'jpg') {
+                    blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.95));
+                    url = URL.createObjectURL(blob);
+                    downloadName = `${currentFileName}_page${i}.jpg`;
+                } else if (format === 'png') {
+                    blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+                    url = URL.createObjectURL(blob);
+                    downloadName = `${currentFileName}_page${i}.png`;
+                } else if (format === 'svg') {
+                    const svgContent = createSVGFromCanvas(canvas, viewport.width, viewport.height);
+                    blob = new Blob([svgContent], { type: 'image/svg+xml' });
+                    url = URL.createObjectURL(blob);
+                    downloadName = `${currentFileName}_page${i}.svg`;
+                }
+
+                images.push({ url, downloadName, pageNum: i });
+
+                const previewItem = document.createElement('div');
+                previewItem.className = 'preview-item';
+                if (format === 'svg') {
+                    previewItem.innerHTML = `<p>Page ${i} (SVG)</p><img src="${url}" alt="Page ${i}">`;
+                } else {
+                    previewItem.innerHTML = `<p>Page ${i}</p><img src="${url}" alt="Page ${i}">`;
+                }
+                grid.appendChild(previewItem);
+            }
+
+            previewSection.style.display = 'block';
+            showStatus(`Conversion complete! ${totalPages} image(s) created.`, 'success');
+
+            if (totalPages > 1) {
+                const zip = new JSZip();
+                images.forEach(img => {
+                    fetch(img.url).then(res => res.blob()).then(blob => {
+                        zip.file(img.downloadName, blob);
+                    });
+                });
+
+                setTimeout(() => {
+                    zip.generateAsync({ type: 'blob' }).then(zipBlob => {
+                        const zipUrl = URL.createObjectURL(zipBlob);
+                        downloadLinks.innerHTML = `<a href="${zipUrl}" download="${currentFileName}_images.zip" class="download-link">Download All as ZIP</a>`;
+                    });
+                }, 500);
+            } else {
+                downloadLinks.innerHTML = `<a href="${images[0].url}" download="${images[0].downloadName}" class="download-link">Download ${format.toUpperCase()}</a>`;
+            }
+        }
+
+        function createSVGFromCanvas(canvas, width, height) {
+            const dataUrl = canvas.toDataURL('image/png');
+            return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
+                <image href="${dataUrl}" width="${width}" height="${height}"/>
+            </svg>`;
+        }
+
+        function showPreview(title, content) {
+            previewSection.style.display = 'block';
+            previewContainer.innerHTML = `<div class="preview-item"><h4>${title}</h4>${content}</div>`;
+        }
+    </script>
+    <script src="chatbot.js"></script>
+</body>
+</html>
+=======
+        function showStatus(msg, type) {
+            let s = document.getElementById('convStatus');
+            if (!s) {
+                s = document.createElement('p');
+                s.id = 'convStatus';
+                document.getElementById('error-message').insertAdjacentElement('afterend', s);
+            }
+            s.textContent = msg;
+            s.style.color = type === 'success' ? '#27ae60' : '#2a5298';
+            s.style.marginTop = '1rem';
+            s.style.fontWeight = '500';
+        }
+
+        function showError(msg) {
+            errorMsg.textContent = msg;
+            errorMsg.style.display = msg ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>
+>>>>>>> 6860395426066e7c6f676053bc3cb8fa79903a74

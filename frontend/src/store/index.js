@@ -241,7 +241,7 @@ export const useStore = create(
       })),
     }),
     {
-      name: 'rawan-dashboard-storage',
+      name: 'HARSHITA AI-dashboard-storage',
       partialize: (state) => ({
         token: state.token,
         user: state.user,

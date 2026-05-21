@@ -87,7 +87,7 @@ export default function BulkImport() {
     const url = window.URL.createObjectURL(new Blob([res.data]))
     const a = document.createElement('a')
     a.href = url
-    a.download = 'rawan_candidate_template.xlsx'
+    a.download = 'HARSHITA AI_candidate_template.xlsx'
     a.click()
   }
 
@@ -100,9 +100,12 @@ export default function BulkImport() {
     <div className="space-y-6 max-w-4xl mx-auto">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl md:text-3xl font-heading font-bold">Bulk Import</h1>
-          <p className="text-gray-500 mt-1">Excel se 100+ candidates ek saath process karein</p>
+        <div className="flex items-center gap-4">
+          <img src="/harshita ai.png" alt="Harshita AI" className="w-12 h-12" />
+          <div>
+            <h1 className="text-2xl md:text-3xl font-heading font-bold">Bulk Import</h1>
+            <p className="text-gray-500 mt-1">Excel se 100+ candidates ek saath process karein</p>
+          </div>
         </div>
         <button
           onClick={handleDownloadTemplate}
@@ -334,7 +337,7 @@ export default function BulkImport() {
           </div>
           <div>
             <p className="text-xl font-bold">Jobs Queue Ho Rahe Hain...</p>
-            <p className="text-gray-500 mt-2">Rawan har candidate ke liye ek automation job bana raha hai</p>
+            <p className="text-gray-500 mt-2">HARSHITA AI har candidate ke liye ek automation job bana raha hai</p>
           </div>
           <div className="flex justify-center">
             <RefreshCcw size={24} className="text-maroon-500 animate-spin" />

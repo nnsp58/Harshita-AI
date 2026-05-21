@@ -141,6 +141,193 @@ const uploadCandidate = async (req, res, next) => {
   }
 };
 
+const listCandidates = async (req, res, next) => {
+  try {
+    const { page = 1, limit = 10, search, status } = req.query;
+    const skip = (page - 1) * limit;
+
+    const where = {
+      csc_id: req.user.cscId,
+      ...(status && { verification_status: status }),
+      ...(search && {
+        OR: [
+          { name: { contains: search } },
+          { mobile: { contains: search } },
+          { aadhaar_number: { contains: search } }
+        ]
+      })
+    };
+
+    const [candidates, total] = await Promise.all([
+      prisma.candidate.findMany({
+        where,
+        skip: Number(skip),
+        take: Number(limit),
+        orderBy: { created_at: 'desc' },
+        include: { _count: { select: { jobs: true, documents: true } } }
+      }),
+      prisma.candidate.count({ where })
+    ]);
+
+    res.json({
+      success: true,
+      data: candidates,
+      meta: {
+        total,
+        page: Number(page),
+        limit: Number(limit),
+        totalPages: Math.ceil(total / limit)
+      }
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getCandidate = async (req, res, next) => {
+  try {
+    const candidate = await prisma.candidate.findFirst({
+      where: { id: req.params.id, csc_id: req.user.cscId },
+      include: {
+        documents: true,
+        jobs: {
+          take: 5,
+          orderBy: { created_at: 'desc' }
+        },
+        user: {
+          select: { id: true, name: true }
+        }
+      }
+    });
+
+    if (!candidate) {
+      throw ApiError.notFound('Candidate not found');
+    }
+
+    res.json({
+      success: true,
+      data: candidate
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const updateCandidate = async (req, res, next) => {
+  try {
+    const candidate = await prisma.candidate.findFirst({
+      where: { id: req.params.id, csc_id: req.user.cscId }
+    });
+
+    if (!candidate) {
+      throw ApiError.notFound('Candidate not found');
+    }
+
+    const data = updateCandidateSchema.parse(req.body);
+    
+    // Check Aadhaar conflict if updating
+    if (data.aadhaar_number && data.aadhaar_number !== candidate.aadhaar_number) {
+      const existing = await prisma.candidate.findUnique({
+        where: { aadhaar_number: data.aadhaar_number }
+      });
+      if (existing) throw ApiError.conflict('Aadhaar number already registered');
+    }
+
+    const updated = await prisma.candidate.update({
+      where: { id: candidate.id },
+      data: {
+        ...data,
+        ...(data.dob && { dob: new Date(data.dob) })
+      }
+    });
+
+    res.json({
+      success: true,
+      data: updated,
+      message: 'Candidate updated successfully'
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const deleteCandidate = async (req, res, next) => {
+  try {
+    const candidate = await prisma.candidate.findFirst({
+      where: { id: req.params.id, csc_id: req.user.cscId }
+    });
+
+    if (!candidate) {
+      throw ApiError.notFound('Candidate not found');
+    }
+
+    await prisma.candidate.delete({
+      where: { id: candidate.id }
+    });
+
+    res.json({
+      success: true,
+      message: 'Candidate deleted successfully'
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const uploadDocuments = async (req, res, next) => {
+  try {
+    const candidate = await prisma.candidate.findFirst({
+      where: { id: req.params.id, csc_id: req.user.cscId }
+    });
+
+    if (!candidate) {
+      throw ApiError.notFound('Candidate not found');
+    }
+
+    if (!req.files || Object.keys(req.files).length === 0) {
+      throw ApiError.badRequest('No files uploaded');
+    }
+
+    const documentPromises = Object.entries(req.files).map(async ([fieldName, files]) => {
+      const file = files[0];
+
+      return prisma.document.upsert({
+        where: {
+          id: `${candidate.id}_${fieldName}_${Date.now()}` // Allow multiple uploads by adding timestamp
+        },
+        create: {
+          filename: sanitizeFilename(file.filename),
+          original_name: file.originalname,
+          mime_type: file.mimetype,
+          size: file.size,
+          path: file.path,
+          document_type: fieldName,
+          csc_id: req.user.cscId,
+          candidate_id: candidate.id,
+          user_id: req.user.id
+        },
+        update: {
+          filename: sanitizeFilename(file.filename),
+          original_name: file.originalname,
+          mime_type: file.mimetype,
+          size: file.size,
+          path: file.path
+        }
+      });
+    });
+
+    const documents = await Promise.all(documentPromises);
+
+    res.json({
+      success: true,
+      data: documents,
+      message: `${documents.length} documents uploaded successfully`
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 const uploadPublicCandidate = async (req, res, next) => {
   try {
     const { cscId, ...data } = req.body;
@@ -394,6 +581,11 @@ const rejectVerification = async (req, res, next) => {
 
 module.exports = {
   uploadCandidate,
+  listCandidates,
+  getCandidate,
+  updateCandidate,
+  deleteCandidate,
+  uploadDocuments,
   uploadPublicCandidate,
   bulkUploadCandidates,
   getVerification,

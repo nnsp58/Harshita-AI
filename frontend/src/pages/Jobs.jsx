@@ -65,9 +65,12 @@ export default function Jobs() {
   return (
     <div className="space-y-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl md:text-3xl font-heading font-bold">Job Queue</h1>
-          <p className="text-gray-500 dark:text-gray-400 mt-1">Create jobs from Candidates, then start and monitor them here</p>
+        <div className="flex items-center gap-4">
+          <img src="/harshita ai.png" alt="Harshita AI" className="w-12 h-12" />
+          <div>
+            <h1 className="text-2xl md:text-3xl font-heading font-bold">Job Queue</h1>
+            <p className="text-gray-500 dark:text-gray-400 mt-1">Create jobs from Candidates, then start and monitor them here</p>
+          </div>
         </div>
         <button onClick={fetchJobs} className="btn-secondary flex items-center gap-2 w-fit">
           <RefreshCw size={16} />

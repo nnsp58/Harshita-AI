@@ -1,0 +1,12 @@
+[
+  {
+    "id": "TC001",
+    "title": "post_api_command_process_natural_language_commands",
+    "description": "Test the POST /api/command endpoint with various natural language commands including multilingual inputs to verify correct skill matching and appropriate response messages. Also test with empty or unsupported commands to ensure proper error handling."
+  },
+  {
+    "id": "TC002",
+    "title": "post_api_ocr_process_extract_text_from_uploaded_images",
+    "description": "Test the POST /api/ocr/process endpoint with valid authenticated requests uploading clear document images to verify successful OCR text extraction and correct response payload. Also test with corrupt, unreadable, or missing image files to confirm error responses are returned appropriately."
+  }
+]

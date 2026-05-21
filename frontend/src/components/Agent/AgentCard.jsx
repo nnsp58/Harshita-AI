@@ -1,4 +1,4 @@
-import { Search, FileText, Gavel, Train, Map, ShoppingBasket, LogIn, Bell, Power, Play, Pause, RotateCcw } from 'lucide-react'
+import { Search, FileText, Gavel, Train, Map, ShoppingBasket, LogIn, Bell, Power, Play, Pause, RotateCcw, FileSignature } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useStore } from '../../store'
 
@@ -11,6 +11,7 @@ const iconMap = {
   RationCardAgent: ShoppingBasket,
   CSCLoginAgent: LogIn,
   NotifierAgent: Bell,
+  ITRFilingAgent: FileSignature,
 }
 
 const statusColors = {

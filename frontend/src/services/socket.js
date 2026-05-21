@@ -18,7 +18,7 @@ class SocketService {
     });
 
     this.socket.on('connect', () => {
-      console.log('📡 Connected to Rawan WebSocket');
+      console.log('📡 Connected to HARSHITA AI WebSocket');
       // Join user-specific room
       if (this.userId) {
         this.socket.emit('join_user', this.userId);
@@ -26,7 +26,7 @@ class SocketService {
     });
 
     this.socket.on('disconnect', () => {
-      console.log('📡 Disconnected from Rawan WebSocket');
+      console.log('📡 Disconnected from HARSHITA AI WebSocket');
     });
 
     return this.socket;

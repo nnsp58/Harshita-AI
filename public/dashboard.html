@@ -3,30 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ravan CSC Dashboard</title>
+    <title>Harshita AI Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        .sidebar { width: 250px; position: fixed; top: 0; left: 0; height: 100vh; background: #343a40; color: white; padding-top: 20px; }
-        .sidebar a { color: white; text-decoration: none; padding: 10px 20px; display: block; }
-        .sidebar a:hover { background: #495057; }
-        .main-content { margin-left: 250px; padding: 20px; }
-        .stat-card { background: #f8f9fa; border-radius: 10px; padding: 20px; text-align: center; margin-bottom: 20px; }
+        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #1e1e1e; color: #cccccc; }
+        .header { height: 50px; background: #323233; border-bottom: 1px solid #3e3e42; display: flex; align-items: center; padding: 0 20px; justify-content: space-between; }
+        .header .left { display: flex; align-items: center; }
+        .header .right { display: flex; align-items: center; gap: 10px; }
+        .notification { color: #cccccc; cursor: pointer; }
+        .container { display: flex; height: calc(100vh - 50px); }
+        .left-panel { width: 300px; background: #252526; border-right: 1px solid #3e3e42; overflow-y: auto; }
+        .left-panel h4 { padding: 10px; margin: 0; border-bottom: 1px solid #3e3e42; }
+        .task-list { list-style: none; padding: 0; margin: 0; }
+        .task-item { padding: 10px; border-bottom: 1px solid #3e3e42; cursor: pointer; display: flex; align-items: center; }
+        .task-item:hover { background: #2d2d30; }
+        .task-item.active { background: #37373d; }
+        .task-status { margin-right: 10px; }
+        .task-status.running { color: #4fc3f7; }
+        .task-status.completed { color: #81c784; }
+        .task-status.pending { color: #ffb74d; }
+        .center-panel { flex: 1; background: #1e1e1e; padding: 20px; overflow-y: auto; }
+        .right-panel { width: 300px; background: #252526; border-left: 1px solid #3e3e42; display: flex; flex-direction: column; }
+        .chat-header { padding: 10px; border-bottom: 1px solid #3e3e42; }
+        .chat-messages { flex: 1; padding: 10px; overflow-y: auto; }
+        .chat-input { padding: 10px; border-top: 1px solid #3e3e42; }
+        .chat-message { margin-bottom: 10px; }
+        .stat-card { background: #252526; border: 1px solid #3e3e42; border-radius: 5px; padding: 20px; text-align: center; margin-bottom: 20px; }
+        .btn-vscode { background: #007acc; color: white; border: none; }
+        .btn-vscode:hover { background: #005a9e; }
+        .toggle-panel { cursor: pointer; padding: 5px; }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
-    <div class="sidebar">
-        <h4 class="px-3">Ravan CSC</h4>
-        <a href="#dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-        <a href="#candidates"><i class="fas fa-users"></i> Candidates</a>
-        <a href="#jobs"><i class="fas fa-briefcase"></i> Job Applications</a>
-        <a href="#operators"><i class="fas fa-user-cog"></i> Operators</a>
-        <a href="#settings"><i class="fas fa-cog"></i> Settings</a>
-        <a href="#" id="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    <div class="header">
+        <div class="left">
+            <i class="fas fa-bars toggle-panel" id="toggle-left"></i>
+            <span style="margin-left: 10px;">Harshita AI</span>
+        </div>
+        <div class="right">
+            <i class="fas fa-bell notification" id="notifications"></i>
+            <i class="fas fa-envelope notification" id="messages"></i>
+            <span id="user-name">Welcome, User</span>
+            <button class="btn btn-sm btn-outline-secondary" id="logout">Logout</button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="left-panel" id="left-panel">
+            <h4><i class="fas fa-tasks"></i> Tasks</h4>
+            <ul class="task-list" id="task-list">
+                <!-- Tasks will be loaded here -->
+            </ul>
+        </div>
+        <div class="center-panel" id="center-panel">
+            <!-- Default dashboard stats or selected task view -->
+            <div id="dashboard-view">
+                <h2>Dashboard Overview</h2>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <h3 id="totalCandidates">0</h3>
+                            <p>Total Candidates</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <h3 id="activeJobs">0</h3>
+                            <p>Active Jobs</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <h3 id="completedJobs">0</h3>
+                            <p>Completed Jobs</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <h3 id="subscriptionStatus">Free</h3>
+                            <p>Subscription</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="task-detail-view" style="display: none;">
+                <!-- Live working view for selected task -->
+            </div>
+        </div>
+        <div class="right-panel" id="right-panel">
+            <div class="chat-header">
+                <i class="fas fa-comments"></i> Chat
+                <i class="fas fa-microphone" id="voice-toggle" style="float: right; cursor: pointer;"></i>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <!-- Chat messages here -->
+            </div>
+            <div class="chat-input">
+                <input type="text" class="form-control" id="chat-input" placeholder="Type a message...">
+                <button class="btn btn-vscode mt-2" id="send-chat">Send</button>
+            </div>
+        </div>
     </div>
 
     <div class="main-content">
-        <h1 id="cscName">Welcome to Ravan CSC</h1>
+        <h1 id="cscName">Welcome to H-AI</h1>
 
         <!-- Dashboard Stats -->
         <div class="row" id="dashboard">
@@ -234,24 +315,47 @@
     <script>
         const API_BASE = 'http://localhost:3001/api';
         let currentCSC = null;
+        let currentTask = null;
 
         // Load dashboard on page load
-        document.addEventListener('DOMContentLoaded', loadDashboard);
+        document.addEventListener('DOMContentLoaded', () => {
+            loadDashboard();
+            setupEventListeners();
+        });
 
-        // Navigation
-        document.querySelectorAll('.sidebar a').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const section = e.target.getAttribute('href').substring(1);
-                showSection(section);
+        function setupEventListeners() {
+            // Toggle panels
+            document.getElementById('toggle-left').addEventListener('click', () => {
+                document.getElementById('left-panel').classList.toggle('hidden');
             });
-        });
 
-        // Logout
-        document.getElementById('logout').addEventListener('click', () => {
-            localStorage.removeItem('token');
-            window.location.href = 'index.html';
-        });
+            // Logout
+            document.getElementById('logout').addEventListener('click', () => {
+                localStorage.removeItem('token');
+                window.location.href = 'index.html';
+            });
+
+            // Chat send
+            document.getElementById('send-chat').addEventListener('click', sendChatMessage);
+            document.getElementById('chat-input').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') sendChatMessage();
+            });
+
+            // Voice toggle (placeholder)
+            document.getElementById('voice-toggle').addEventListener('click', () => {
+                alert('Voice chat feature - to be implemented');
+            });
+
+            // Notifications (placeholder)
+            document.getElementById('notifications').addEventListener('click', () => {
+                alert('Notifications panel - to be implemented');
+            });
+
+            // Messages (placeholder)
+            document.getElementById('messages').addEventListener('click', () => {
+                alert('Messages panel - to be implemented');
+            });
+        }
 
         async function loadDashboard() {
             const token = localStorage.getItem('token');
@@ -267,8 +371,9 @@
                 const data = await response.json();
                 if (data.success) {
                     currentCSC = data.csc;
-                    document.getElementById('cscName').textContent = `Welcome, ${data.csc.name}`;
+                    document.getElementById('user-name').textContent = `Welcome, ${data.csc.name}`;
                     updateStats(data.stats);
+                    loadTasks();
                 } else {
                     alert('Session expired');
                     window.location.href = 'index.html';
@@ -283,6 +388,79 @@
             document.getElementById('activeJobs').textContent = stats.activeJobs || 0;
             document.getElementById('completedJobs').textContent = stats.completedJobs || 0;
             document.getElementById('subscriptionStatus').textContent = currentCSC.plan.toUpperCase();
+        }
+
+        async function loadTasks() {
+            try {
+                const response = await fetch(`${API_BASE}/jobs`, {
+                    headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+                });
+                const data = await response.json();
+                const taskList = document.getElementById('task-list');
+                taskList.innerHTML = '';
+                data.jobs.forEach(job => {
+                    const statusClass = job.status === 'completed' ? 'completed' : job.status === 'running' ? 'running' : 'pending';
+                    const li = document.createElement('li');
+                    li.className = 'task-item';
+                    li.innerHTML = `
+                        <i class="fas fa-circle task-status ${statusClass}"></i>
+                        <div>
+                            <strong>${job.candidate.name}</strong><br>
+                            <small>${job.service_type} - ${job.status}</small>
+                        </div>
+                    `;
+                    li.addEventListener('click', () => selectTask(job));
+                    taskList.appendChild(li);
+                });
+            } catch (error) {
+                console.error('Error loading tasks:', error);
+            }
+        }
+
+        function selectTask(task) {
+            currentTask = task;
+            // Remove active class from all
+            document.querySelectorAll('.task-item').forEach(item => item.classList.remove('active'));
+            // Add to clicked
+            event.currentTarget.classList.add('active');
+
+            // Show task detail in center
+            document.getElementById('dashboard-view').style.display = 'none';
+            document.getElementById('task-detail-view').style.display = 'block';
+
+            const detailView = document.getElementById('task-detail-view');
+            detailView.innerHTML = `
+                <h2>Task Details: ${task.candidate.name} - ${task.service_type}</h2>
+                <p><strong>Status:</strong> <span class="badge bg-${task.status === 'completed' ? 'success' : task.status === 'running' ? 'warning' : 'secondary'}">${task.status}</span></p>
+                <p><strong>Candidate:</strong> ${task.candidate.name} (${task.candidate.aadhaar_number})</p>
+                <p><strong>Service:</strong> ${task.service_type}</p>
+                <p><strong>Created:</strong> ${new Date(task.createdAt).toLocaleString()}</p>
+                <div id="live-working">
+                    <!-- Placeholder for live working view -->
+                    <p>Live working simulation...</p>
+                    <div class="progress">
+                        <div class="progress-bar ${task.status === 'completed' ? 'bg-success' : task.status === 'running' ? 'bg-warning' : 'bg-secondary'}" style="width: ${task.status === 'completed' ? '100' : task.status === 'running' ? '50' : '0'}%"></div>
+                    </div>
+                    <button class="btn btn-vscode mt-3" onclick="viewJob('${task.id}')">View Full Details</button>
+                </div>
+            `;
+        }
+
+        function sendChatMessage() {
+            const input = document.getElementById('chat-input');
+            const message = input.value.trim();
+            if (!message) return;
+
+            const messagesDiv = document.getElementById('chat-messages');
+            messagesDiv.innerHTML += `<div class="chat-message"><strong>You:</strong> ${message}</div>`;
+
+            // Simulate AI response
+            setTimeout(() => {
+                messagesDiv.innerHTML += `<div class="chat-message"><strong>AI:</strong> Received: ${message}. How can I help with this task?</div>`;
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            }, 1000);
+
+            input.value = '';
         }
 
         function showSection(section) {
@@ -492,8 +670,42 @@
         }
 
         function viewJob(id) {
-            // Implement job details view
-            alert('Job details view - to be implemented');
+            // Fetch job details and show in modal
+            fetch(`${API_BASE}/jobs/${id}`, {
+                headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    const job = data.job;
+                    // Create a simple modal for job details
+                    const modalHtml = `
+                        <div class="modal fade" id="jobDetailModal" tabindex="-1">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content" style="background: #252526; color: #cccccc;">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Job Details</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p><strong>Candidate:</strong> ${job.candidate.name}</p>
+                                        <p><strong>Service:</strong> ${job.service_type}</p>
+                                        <p><strong>Status:</strong> ${job.status}</p>
+                                        <p><strong>Details:</strong> ${JSON.stringify(job.details || {}, null, 2)}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    document.body.insertAdjacentHTML('beforeend', modalHtml);
+                    const modal = new bootstrap.Modal(document.getElementById('jobDetailModal'));
+                    modal.show();
+                    document.getElementById('jobDetailModal').addEventListener('hidden.bs.modal', () => {
+                        document.getElementById('jobDetailModal').remove();
+                    });
+                }
+            })
+            .catch(error => console.error('Error fetching job:', error));
         }
     </script>
 </body>

@@ -54,27 +54,47 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
-}
-
-.dark ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #f9a8d4;
-  border-radius: 9999px;
+  background: rgba(121, 121, 121, 0.4);
+  border: 1px solid transparent;
+  background-clip: padding-box;
 }
 
-.dark ::-webkit-scrollbar-thumb {
-  background: #be185d;
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 100, 100, 0.7);
+  background-clip: padding-box;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Viewport fitting utilities */
+.container-vfit {
+  height: calc(100vh - 3.5rem); /* Header height + status bar */
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-gutter: stable;
+}
+
+@media (max-width: 1024px) {
+  .container-vfit {
+    height: auto;
+    overflow-y: visible;
+  }
 }
 
 /* Component classes */
@@ -116,8 +136,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn:focus {
   outline: none;
-  ring: 2px;
-  ring-offset: 2px;
+  box-shadow: 0 0 0 2px var(--color-maroon-500, #ec4899), 0 0 0 4px white;
 }
 
 .btn:disabled {
@@ -294,8 +313,8 @@ input.pl-10 {
   50% { opacity: 0.5; }
 }
 
-/* Rawan glow animation */
-@keyframes ravan-glow {
+/* HARSHITA AI glow animation */
+@keyframes HARSHITA_AI-glow {
   0%, 100% {
     filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.4));
   }
@@ -305,7 +324,7 @@ input.pl-10 {
 }
 
 .glow-active {
-  animation: ravan-glow 2s ease-in-out infinite;
+  animation: HARSHITA_AI-glow 2s ease-in-out infinite;
 }
 
 .animate-delay-100 { animation-delay: 100ms; }

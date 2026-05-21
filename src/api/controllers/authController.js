@@ -10,6 +10,26 @@ const { registerSchema, loginSchema } = require('../validations/schemas');
 const inMemoryUsers = new Map();
 const inMemoryTokens = new Map();
 
+// Seed demo test user for TestSprite and development testing
+(async () => {
+  try {
+    const demoPasswordHash = await bcrypt.hash('demo1234', 12);
+    inMemoryUsers.set('demo@harshita.ai', {
+      id: '1',
+      email: 'demo@harshita.ai',
+      password_hash: demoPasswordHash,
+      name: 'Demo User',
+      role: 'csc_admin',
+      is_active: true,
+      csc_id: 'demo-csc',
+      created_at: new Date()
+    });
+    console.log('✅ Demo test user seeded: demo@harshita.ai / demo1234');
+  } catch (e) {
+    console.warn('⚠️ Could not seed demo user:', e.message);
+  }
+})();
+
 function getInMemoryUsers() {
   return inMemoryUsers;
 }
@@ -107,6 +127,8 @@ const register = async (req, res, next) => {
 
     res.status(201).json({
       success: true,
+      token,
+      refreshToken,
       data: {
         user: { id: user.id, email: user.email, name: user.name, role: user.role },
         token,
@@ -125,14 +147,18 @@ const login = async (req, res, next) => {
     const user = await findUser(data.email);
 
     if (!user || !user.is_active) {
+      console.log(`❌ Login failed for ${data.email}: User not found or inactive`);
       throw ApiError.unauthorized('Invalid credentials');
     }
 
     const isValidPassword = await bcrypt.compare(data.password, user.password_hash);
-
+    
     if (!isValidPassword) {
+      console.log(`❌ Login failed for ${data.email}: Password mismatch`);
       throw ApiError.unauthorized('Invalid credentials');
     }
+
+    console.log(`✅ Login successful for ${data.email}`);
 
     const token = generateToken(user.id);
     const refreshToken = generateRefreshToken(user.id);
@@ -161,6 +187,8 @@ const login = async (req, res, next) => {
 
     res.json({
       success: true,
+      token,
+      refreshToken,
       data: {
         user: {
           id: user.id,

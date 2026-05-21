@@ -1,0 +1,128 @@
+version: "2"
+type: backend
+tech_stack:
+  - Node.js
+  - Express.js
+  - Prisma ORM (SQLite)
+  - JWT Authentication
+  - Socket.io
+  - BullMQ with Redis
+features:
+  - name: Smart Command Routing
+    description: Natural language command processing via MasterAgent with skill-based intent routing
+    files:
+      - src/agents/masterAgent.js
+      - src/skills/IntentDetector.js
+      - src/skills/SkillRegistry.js
+    endpoints:
+      - method: POST
+        path: /api/command
+        description: Process natural language commands and route to appropriate skill (form_fill, job_search, resume_maker, general_chat, etc.)
+        auth_required: true
+        request_schema:
+          body:
+            userId: string
+            cmd: string
+        response_schema:
+          "200":
+            type: string
+            message: string
+            skill: string
+          "400": Missing cmd error
+          "401": Unauthorized
+  - name: Document OCR Processing
+    description: Extract text from uploaded document images (Aadhaar, PAN, etc.)
+    files:
+      - src/skills/DocumentOcrSkill.js
+    endpoints:
+      - method: POST
+        path: /api/ocr/process
+        description: Process document images for OCR text extraction
+        auth_required: true
+        response_schema:
+          "200":
+            success: boolean
+            data: object
+          "401": Unauthorized
+  - name: Health Check
+    description: Server health status endpoint
+    files:
+      - src/api/server.js
+    endpoints:
+      - method: GET
+        path: /health
+        description: Returns server health, uptime, and network status
+        auth_required: false
+        response_schema:
+          "200":
+            status: string
+            timestamp: string
+            uptime: number
+  - name: Dashboard Statistics
+    description: Get dashboard stats for the CSC command center
+    files:
+      - src/api/server.js
+    endpoints:
+      - method: GET
+        path: /api/dashboard/stats
+        description: Returns transaction counts, active operators, and revenue data
+        auth_required: false
+        response_schema:
+          "200":
+            totalTransactions: number
+            activeOperators: number
+            centerRevenue: number
+  - name: Authentication
+    description: JWT-based user authentication with login and registration
+    files:
+      - src/api/middleware/auth.js
+      - src/api/controllers/authController.js
+    endpoints:
+      - method: POST
+        path: /api/auth/login
+        description: User login with email and password, returns JWT token
+        auth_required: false
+        request_schema:
+          body:
+            email: string
+            password: string
+        response_schema:
+          "200":
+            success: boolean
+            token: string
+          "401": Invalid credentials
+      - method: POST
+        path: /api/auth/register
+        description: New user registration
+        auth_required: false
+        request_schema:
+          body:
+            email: string
+            password: string
+            name: string
+        response_schema:
+          "200":
+            success: boolean
+            token: string
+  - name: PDF TA/DA Processing
+    description: Process PDF documents for TA/DA learning
+    files:
+      - src/api/server.js
+    endpoints:
+      - method: POST
+        path: /api/pdf/process-ta
+        description: Process a PDF file for TA/DA extraction
+        auth_required: false
+        request_schema:
+          body:
+            pdfPath: string
+        response_schema:
+          "200": object
+          "400": Missing pdfPath error
+known_limitations:
+  - issue: Redis server not running locally - using in-memory fallback
+    location: src/utils/redis.js
+    impact: BullMQ job queues are not persistent across restarts
+  - issue: AI provider (Groq) may not be available - uses keyword fallback for intent detection
+    location: src/skills/IntentDetector.js
+    impact: Intent detection relies on keyword matching when API is unavailable

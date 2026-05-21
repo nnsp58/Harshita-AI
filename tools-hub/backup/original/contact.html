@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.png">
+    <title>Contact Us - ToolHub</title>
+    <meta name="description" content="Contact ToolHub - Get in touch with us for support, feedback, or business inquiries. We're here to help with your digital tool needs.">
+    <meta name="google-adsense-account" content="ca-pub-9239182778221521">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9239182778221521" crossorigin="anonymous"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; line-height: 1.6; background: #f0f2f5; color: #333; }
+        .header { background: linear-gradient(120deg, #ff6b6b, #4ecdc4); padding: 1.5rem 2rem; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .nav { max-width: 1300px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 2rem; font-weight: 700; color: #fff; letter-spacing: 1px; text-shadow: 0 2px 5px rgba(0,0,0,0.3); }
+        .nav-links a { color: #fff; text-decoration: none; margin-left: 2.5rem; font-weight: 500; transition: color 0.3s ease; }
+        .nav-links a:hover { color: #ffe66d; }
+        .content { max-width: 1300px; margin: 100px auto; padding: 2rem; background: #fff; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); }
+        .content h1 { color: #1e3c72; font-size: 2rem; margin-bottom: 1.5rem; }
+        .content h2 { color: #1e3c72; font-size: 1.5rem; margin: 2rem 0 1rem 0; }
+        .content p, .content li { margin-bottom: 1rem; }
+        .content ul, .content ol { margin-left: 2rem; margin-bottom: 1rem; }
+        .content li { margin-bottom: 0.5rem; }
+        .contact-form { max-width: 600px; margin: 2rem auto; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: #1e3c72; }
+        .form-group input, .form-group textarea { width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem; }
+        .form-group textarea { height: 120px; resize: vertical; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: #ff6b6b; }
+        .btn { padding: 0.8rem 2rem; background: #ff6b6b; color: white; border: none; border-radius: 25px; cursor: pointer; font-size: 1rem; font-weight: 600; transition: background 0.3s ease; }
+        .btn:hover { background: #ff5252; }
+        .contact-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .contact-card { background: #f8f9fa; padding: 1.5rem; border-radius: 10px; text-align: center; }
+        .contact-card i { font-size: 2rem; color: #ff6b6b; margin-bottom: 1rem; }
+        .ad-container { margin: 2rem auto; max-width: 100%; text-align: center; }
+        .footer { background: linear-gradient(120deg, #ff6b6b, #4ecdc4); color: white; padding: 3rem 2rem; margin-top: 4rem; }
+        .footer-content { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2.5rem; }
+        .footer h4 { margin-bottom: 1.5rem; font-size: 1.3rem; }
+        .footer p { opacity: 0.9; transition: opacity 0.3s ease; }
+        .footer p:hover { opacity: 1; }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .content { margin: 80px 1rem; padding: 1rem; }
+            .footer-content { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">ToolHub</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#tools">Tools</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="content">
+            <h1>Contact Us</h1>
+            
+            <p>We'd love to hear from you! Whether you have questions, feedback, or business inquiries, our team is here to help.</p>
+            
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Your Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+                <div id="formMessage" style="margin-top: 1rem; padding: 1rem; border-radius: 5px; display: none;"></div>
+            </div>
+            
+            <h2>Alternative Ways to Reach Us</h2>
+            
+            <div class="contact-info">
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p><a href="mailto:contact@n-dizi.in">contact@n-dizi.in</a></p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>Phone</h3>
+                    <p>+91 1234567890</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Address</h3>
+                    <p>Mumbai, Maharashtra, India</p>
+                </div>
+            </div>
+            
+            <h2>Business Hours</h2>
+            <p>We typically respond to emails within 24-48 hours during our business hours:</p>
+            <ul>
+                <li>Monday - Friday: 9:00 AM - 6:00 PM IST</li>
+                <li>Saturday: 9:00 AM - 2:00 PM IST</li>
+                <li>Sunday: Closed</li>
+            </ul>
+            
+            <h2>Frequently Asked Questions</h2>
+            <p>Before contacting us, you might find answers to common questions in our:</p>
+            <ul>
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                <li><a href="terms.html">Terms of Service</a></li>
+                <li><a href="disclaimer.html">Disclaimer</a></li>
+            </ul>
+        </section>
+        
+        <div class="ad-container">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-9239182778221521"
+                 data-ad-slot="7274852761"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <h4>ToolHub</h4>
+                <p>Your ultimate digital toolkit</p>
+            </div>
+            <div>
+                <h4>Legal</h4>
+                <p><a href="privacy-policy.html" style="color: white; text-decoration: none;">Privacy Policy</a></p>
+                <p><a href="terms.html" style="color: white; text-decoration: none;">Terms of Service</a></p>
+                <p><a href="disclaimer.html" style="color: white; text-decoration: none;">Disclaimer</a></p>
+            </div>
+            <div>
+                <h4>Support</h4>
+                <p><a href="contact.html" style="color: white; text-decoration: none;">Contact Us</a></p>
+                <p><a href="about.html" style="color: white; text-decoration: none;">About</a></p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const formMessage = document.getElementById('formMessage');
+            
+            // Simulate form submission
+            formMessage.style.display = 'block';
+            formMessage.style.backgroundColor = '#d4edda';
+            formMessage.style.color = '#155724';
+            formMessage.style.border = '1px solid #c3e6cb';
+            formMessage.textContent = 'Thank you for your message! We will get back to you within 24-48 hours.';
+            
+            // Reset form
+            this.reset();
+            
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                formMessage.style.display = 'none';
+            }, 5000);
+        });
+    </script>
+</body>
+</html>

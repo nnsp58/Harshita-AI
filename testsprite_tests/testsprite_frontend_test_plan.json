@@ -1,0 +1,311 @@
+[
+  {
+    "id": "TC001",
+    "title": "Route a Hindi government-service request to the form filling skill",
+    "description": "This verifies that a Hindi natural-language request is understood and routed to the form filling skill with a confirming message.",
+    "category": "Master Agent Command Routing",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the login credentials for the required role"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Send a command request with a user ID and a Hindi request to fill an SSC form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the response shows the form filling skill was matched"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a confirmation message for the intended action is returned"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC002",
+    "title": "Extract text from a readable document image",
+    "description": "This verifies that an authenticated user can upload a readable document image and receive extracted OCR text in the response.",
+    "category": "Document OCR Processing",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the login credentials for the required role"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Open the OCR processing workflow"
+      },
+      {
+        "type": "action",
+        "description": "Upload a readable document image containing text"
+      },
+      {
+        "type": "action",
+        "description": "Submit the OCR request"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify extracted text is returned"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an OCR result object is shown"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC003",
+    "title": "Generate a downloadable PDF resume from valid profile details",
+    "description": "This verifies that providing complete resume data produces a generated PDF resume that the user can download.",
+    "category": "Resume Generation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the login credentials for the required role"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Open the resume generation workflow"
+      },
+      {
+        "type": "action",
+        "description": "Fill in valid resume details"
+      },
+      {
+        "type": "action",
+        "description": "Submit the resume generation request"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a generated PDF resume is available"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the resume download control is shown"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC004",
+    "title": "Route an informal request to the fallback skill",
+    "description": "This verifies that an informal natural-language request is routed to the closest matching fallback skill and returns a confirming response.",
+    "category": "Master Agent Command Routing",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the login credentials for the required role"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Send a command request with a user ID and an informal request for a shayari"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the response shows the fallback skill was matched"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a confirmation message for the routed action is returned"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC005",
+    "title": "Reject an unsupported command",
+    "description": "This verifies that an unsupported natural-language command returns a clear no-match or cannot-understand error instead of routing to a skill.",
+    "category": "Master Agent Command Routing",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the login credentials for the required role"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Send a command request with a user ID and an unsupported command"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an error response is shown for the unsupported command"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC006",
+    "title": "Return a consistent response shape for command routing",
+    "description": "This verifies that a successful command routing response includes the expected routed skill and message fields for the user.",
+    "category": "Master Agent Command Routing",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the login credentials for the required role"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Send a command request with a user ID and a valid government-service request"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the routing response includes a matched skill"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the routing response includes a confirmation message"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC007",
+    "title": "Reject an empty command",
+    "description": "This verifies that submitting an empty command is blocked with a clear validation error instead of creating a routed action.",
+    "category": "Master Agent Command Routing",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the login credentials for the required role"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Send a command request with a user ID and an empty command"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a command validation error is shown"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC008",
+    "title": "Reject a missing or unreadable OCR upload",
+    "description": "This verifies that submitting no file or an unreadable image in the OCR workflow returns a clear input or processing error.",
+    "category": "Document OCR Processing",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the login credentials for the required role"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Open the OCR processing workflow"
+      },
+      {
+        "type": "action",
+        "description": "Submit the OCR request without selecting a file"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an OCR input validation error is shown"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC009",
+    "title": "Block resume generation when required details are missing",
+    "description": "This verifies that incomplete resume data is rejected with a clear missing-field error instead of generating a resume.",
+    "category": "Resume Generation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the login credentials for the required role"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Open the resume generation workflow"
+      },
+      {
+        "type": "action",
+        "description": "Fill in incomplete resume details"
+      },
+      {
+        "type": "action",
+        "description": "Submit the resume generation request"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a missing required fields error is shown"
+      }
+    ],
+    "priority": "Medium"
+  }
+]

@@ -1,4 +1,4 @@
-# Rawan Dashboard - Implementation Complete ✅
+# Harshita AI Dashboard - Implementation Complete ✅
 
 **Date**: 2025-01-19
 **Status**: Phase 1 & 2 Core UI Complete ✅
@@ -27,7 +27,7 @@
 | Page | Route | Features |
 |------|-------|----------|
 | **Login** | `/login` | VLE login form, demo credentials, maroon/gold theme |
-| **Home** | `/` | Rawan hero (8-arm visualization), quick stats, activity feed, shortcuts |
+| **Home** | `/` | Harshita AI hero (8-arm visualization), quick stats, activity feed, shortcuts |
 | **Agents** | `/agents` | Agent cards with status, start/stop/restart controls, marketplace modal |
 | **Jobs** | `/jobs` | Filterable table (status, agent), search, job details |
 | **Documents** | `/documents` | Grid of uploaded docs, status badges, extraction preview, approve/reject |
@@ -37,7 +37,7 @@
 
 ### 4. Key Components ✅
 
-- **RawanModel.jsx** (`src/components/Rawan/`)
+- **Harshita AIModel.jsx** (`src/components/Harshita AI/`)
   - 20-arm conceptual layout (8 principal arms shown)
   - Each arm = one primary agent with icon + glow effect
   - Click to select, hover to see controls
@@ -55,7 +55,7 @@
   - Gradient accent bars
 
 - **Sidebar.jsx**
-  - Ravan branding logo
+  - Harshita AI branding logo
   - Nav links with active states
   - Collapsible (desktop)
   - Mobile bottom nav ready (PWA)
@@ -81,7 +81,7 @@ Custom Tailwind CSS v4 + PostCSS:
 - Custom scrollbars (maroon)
 - Badge variants (success/warning/error/info)
 - Skeleton loading style
-- Rawan glow animation (@keyframes)
+- Harshita AI glow animation (@keyframes)
 
 ### 7. API Layer ✅
 Axios client with interceptors:
@@ -98,7 +98,7 @@ Axios client with interceptors:
 |---------|--------|-------|
 | Real Backend API | ⏳ MOCK ONLY | Store uses mock data; needs real API calls |
 | Live Polling | ❌ Not implemented | 5s interval for agent status updates |
-| Rawan Lottie/3D | ⏳ Placeholder | Using CSS circles; Lottie animation needs asset |
+| Harshita AI Lottie/3D | ⏳ Placeholder | Using CSS circles; Lottie animation needs asset |
 | PWA Service Worker | ⏳ Basic manifest | Workbox not active; offline caching pending |
 | Push Notifications | ❌ Not implemented | Requires service worker + backend events |
 | Marketplace Install | ⏳ UI only | Modal shows agents; install flow not wired |
@@ -123,7 +123,7 @@ Then open http://localhost:5173
 - Or use `admin@demo.com` / `password` (hardcoded accepts any)
 
 ### Explore Dashboard
-- Home page: See Rawan's 8 arms with agent icons
+- Home page: See Harshita AI's 8 arms with agent icons
 - Click an arm → opens Agent detail panel
 - Hover over arm → shows Start/Stop/Restart buttons
 - Navigate sidebar to other pages
@@ -137,12 +137,12 @@ ls -lh dist/
 
 ---
 
-## 🎨 Branding & Rawan Character
+## 🎨 Branding & Harshita AI Character
 
 **Design Decisions:**
-- **Name**: Rawan (दशशिष्णु रावण) - 10 heads, 20 arms = multi-tasker
+- **Name**: Harshita AI (दशशिष्णु रावण) - 10 heads, 20 arms = multi-tasker
 - **Color**: Maroon (traditional), Gold (royal), Navy (modern SaaS)
-- **Concept**: Rawan's 20 arms each hold an icon representing an AI agent
+- **Concept**: Harshita AI's 20 arms each hold an icon representing an AI agent
 - **Animation**: Currently CSS-based arm positioning; future: Lottie with glow per active arm
 
 **Agent Arms Mapping** (8 principal arms displayed):
@@ -237,7 +237,7 @@ npm install -D vite-plugin-pwa@latest
    usePolling(() => api.getAgents(), 5000)
    ```
 
-3. **Rawan Lottie Asset**:
+3. **Harshita AI Lottie Asset**:
    - Create SVG with 8 arm positions
    - Add JSON animation for each arm's "active" glow
    - Use `@lottiefiles/react-lottie-player`

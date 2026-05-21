@@ -1,0 +1,37 @@
+[
+  {
+    "id": "TC001",
+    "title": "post api command with valid and invalid commands",
+    "description": "Test the POST /api/command endpoint with valid userId and various cmd inputs including supported multilingual commands to verify correct skill routing and confirmation messages. Also test with empty or unsupported cmd to ensure appropriate error responses are returned."
+  },
+  {
+    "id": "TC002",
+    "title": "post api ocr process with valid and invalid images",
+    "description": "Test the POST /api/ocr/process endpoint with authenticated requests uploading valid document images to verify successful OCR text extraction. Also test with corrupt, unreadable, or missing image files to confirm error responses indicating OCR processing failure or invalid input."
+  },
+  {
+    "id": "TC003",
+    "title": "post api auth login with valid and invalid credentials",
+    "description": "Test the POST /api/auth/login endpoint with valid email and password to receive a JWT token and success response. Also test with invalid credentials to verify that an unauthorized error is returned."
+  },
+  {
+    "id": "TC004",
+    "title": "post api auth register with valid user data",
+    "description": "Test the POST /api/auth/register endpoint with valid email, password, and name to ensure successful user registration and receipt of a JWT token."
+  },
+  {
+    "id": "TC005",
+    "title": "get health returns server status and uptime",
+    "description": "Test the GET /health endpoint to verify it returns server health status, current timestamp, and uptime without requiring authentication."
+  },
+  {
+    "id": "TC006",
+    "title": "get api dashboard stats returns correct statistics",
+    "description": "Test the GET /api/dashboard/stats endpoint to ensure it returns accurate transaction counts, active operators, and center revenue data without authentication."
+  },
+  {
+    "id": "TC007",
+    "title": "post api pdf process ta with valid and missing pdfpath",
+    "description": "Test the POST /api/pdf/process-ta endpoint with a valid pdfPath in the request body to verify successful PDF processing. Also test with missing pdfPath to confirm that a 400 error is returned indicating the missing parameter."
+  }
+]

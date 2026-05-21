@@ -122,9 +122,12 @@ export default function Candidates() {
   return (
     <div className="space-y-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl md:text-3xl font-heading font-bold">Candidates</h1>
-          <p className="text-gray-500 dark:text-gray-400 mt-1">Create service jobs directly from candidate records</p>
+        <div className="flex items-center gap-4">
+          <img src="/harshita ai.png" alt="Harshita AI" className="w-12 h-12" />
+          <div>
+            <h1 className="text-2xl md:text-3xl font-heading font-bold">Candidates</h1>
+            <p className="text-gray-500 dark:text-gray-400 mt-1">Create service jobs directly from candidate records</p>
+          </div>
         </div>
         <button onClick={fetchCandidates} className="btn-secondary w-fit">Refresh</button>
       </div>

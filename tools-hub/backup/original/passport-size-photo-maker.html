@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+<link rel="shortcut icon" href="favicon.png">
+<meta name="description" content="Create passport size photos online for free. Generate 4K AI passport photos with automatic background removal. Fast and easy passport photo maker.">
+<<<<<<< HEAD
+    <meta name="keywords" content="passport photo maker, passport size photo, AI photo, background removal, 4K photo, passport generator, ToolHub">
+    <meta name="author" content="ToolHub">
+    <link rel="canonical" href="https://n-dizi.in/passport-size-photo-maker.html">
+    <meta name="google-adsense-account" content="ca-pub-9239182778221521">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9239182778221521" crossorigin="anonymous"></script>
+    <title>Passport Photo Maker - 4K AI Passport Photos | ToolHub</title>
+=======
+<link rel="canonical" href="https://n-dizi.in/passport-size-photo-maker.html">
+<title>4K AI Passport Master - n-dizi.in</title>
+>>>>>>> 6860395426066e7c6f676053bc3cb8fa79903a74
+
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation"></script>
+
+<link rel="stylesheet" href="styles.css">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Segoe UI',sans-serif; background:#f4f7fa; padding:10px}
+  .container{max-width:900px; margin:auto; background:#fff; border-radius:20px; box-shadow:0 15px 50px rgba(0,0,0,0.15); overflow:hidden}
+  .header{background:linear-gradient(135deg,#1e3c72,#2a5298); color:#fff; padding:25px; text-align:center}
+  .content{padding:20px}
+  .upload-area{display:grid; grid-template-columns:1fr 1fr; gap:15px; margin-bottom:20px}
+  .btn-box{border:2px dashed #1e3c72; border-radius:15px; padding:25px; text-align:center; cursor:pointer; background:#f8fbff}
+  input[type=file]{display:none}
+  .settings{display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:15px; margin-bottom:20px}
+  .card{background:#fdfdfd; padding:12px; border:1px solid #ddd; border-radius:12px}
+  .card label{display:block; font-size:11px; font-weight:bold; margin-bottom:5px; color:#1e3c72}
+  .main-btn{width:100%; padding:18px; border:none; border-radius:40px; font-weight:bold; background:#1e3c72; color:#fff; cursor:pointer; font-size:18px}
+  #loader{display:none; text-align:center; margin:20px; color:#1e3c72; font-weight:bold}
+  .result{display:none; text-align:center; margin-top:20px}
+  canvas{max-width:100%; border-radius:12px; border:1px solid #ddd}
+  .footer-btns{margin-top:20px; display:flex; gap:15px; justify-content:center}
+  .dl-btn{background:#28a745; color:#fff; padding:15px 35px; border-radius:30px; text-decoration:none; font-weight:bold}
+  .modal{display:none; position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:1000; align-items:center; justify-content:center}
+  .modal-inner{background:#fff; padding:20px; border-radius:20px; width:95%; max-width:500px}
+  video{width:100%; border-radius:15px; transform:scaleX(-1)}
+  .ad-container { margin: 2rem auto; max-width: 100%; text-align: center; }
+  .faq-section {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 25px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  .faq-section h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+  }
+  .faq-section p {
+    margin: 15px 0;
+    line-height: 1.6;
+    color: #34495e;
+  }
+  .faq-section strong {
+    color: #2c3e50;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>🚀 4K AI Passport (BG Fix)</h1>
+    <p>Ultra Sharp Edges • Professional BG Color • 600 DPI</p>
+  </div>
+  
+  <div class="content">
+    <div class="upload-area">
+      <div class="btn-box" onclick="document.getElementById('fileIn').click()"><h3>📤 Gallery</h3><p>Upload High Res</p></div>
+      <div class="btn-box" id="openCam"><h3>📸 Camera</h3><p>Live Capture</p></div>
+    </div>
+    <input type="file" id="fileIn" accept="image/*">
+
+    <div class="settings">
+      <div class="card"><label>DPI Quality</label><select disabled><option>Ultra 600 DPI</option></select></div>
+      <div class="card"><label>Face Size</label><select id="z"><option value="1.4">Studio</option><option value="1.2" selected>Medium</option></select></div>
+      <div class="card"><label>New BG Color</label><input type="color" id="pColor" value="#3b92d1"></div>
+      <div class="card"><label>Copies</label><select id="pCopies"><option value="4">4</option><option value="8" selected>8</option></select></div>
+    </div>
+
+    <div id="loader">💎 Cleaning Edges & Rendering HD...</div>
+    <button class="main-btn" id="go" disabled>🚀 Generate Perfect Sheet</button>
+
+    <div class="result" id="res">
+      <canvas id="out"></canvas>
+      <div class="footer-btns">
+        <a href="#" class="dl-btn" id="dl">📥 Download HD JPG</a>
+        <button class="dl-btn" style="background:#007bff" onclick="window.print()">🖨️ Print Quality</button>
+      </div>
+      
+      <div class="ad-container">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-9239182778221521"
+             data-ad-slot="7274852761"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+      
+      <div class="faq-section">
+        <h3>Frequently Asked Questions</h3>
+        <p><strong>Q: इस टूल से पासपोर्ट साइज फोटो कैसे बनाएं?</strong></p>
+        <p>A: पहले अपनी हाई रिज़ॉल्यूशन फोटो अपलोड करें या कैमरा से लाइव कैप्चर करें। फिर DPI, फेस साइज, बैकग्राउंड कलर और कॉपीज सेट करें। "Generate Perfect Sheet" बटन पर क्लिक करें और HD पासपोर्ट फोटो शीट डाउनलोड करें।</p>
+        
+        <p><strong>Q: 600 DPI क्या है और क्यों महत्वपूर्ण है?</strong></p>
+        <p>A: 600 DPI (Dots Per Inch) उच्च रिज़ॉल्यूशन का मानक है जो पासपोर्ट फोटो के लिए आवश्यक है। यह सुनिश्चित करता है कि फोटो प्रिंट होने पर शार्प और स्पष्ट दिखे, जो आधिकारिक दस्तावेज़ों के लिए आवश्यक है।</p>
+        
+        <p><strong>Q: क्या मैं अपना पसंदीदा बैकग्राउंड कलर चुन सकता हूँ?</strong></p>
+        <p>A: हाँ, टूल में कलर पिकर ऑप्शन है जिससे आप किसी भी बैकग्राउंड कलर को चुन सकते हैं। सामान्यतः पासपोर्ट फोटो के लिए सफेद या हल्का नीला रंग प्रयोग किया जाता है।</p>
+        
+        <p><strong>Q: कितने पासपोर्ट फोटो एक शीट में मिलेंगे?</strong></p>
+        <p>A: डिफॉल्ट सेटिंग में प्रति शीट 8 पासपोर्ट फोटो (4x2 ग्रिड) बनते हैं। आप "Copies" सेटिंग में 4, 8, 12 या 16 तक चुन सकते हैं।</p>
+        
+        <p><strong>Q: क्या यह टूल मोबाइल पर काम करता है?</strong></p>
+        <p>A: हाँ, टूल पूरी तरह मोबाइल-फ्रेंडली है। हालाँकि, बेहतर गुणवत्ता और तेज़ प्रोसेसिंग के लिए हम डेस्कटॉप/लैपटॉप पर उपयोग करने की सलाह देते हैं।</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m"><div class="modal-inner"><video id="v" autoplay playsinline></video><br><br>
+<button class="dl-btn" id="snap">Take Photo</button><button class="dl-btn" style="background:red" id="close">Cancel</button></div></div>
+
+<script>
+const fileIn = document.getElementById('fileIn'), go = document.getElementById('go');
+const canvas = document.getElementById('out'), ctx = canvas.getContext('2d', {alpha: false});
+const loader = document.getElementById('loader');
+let mainImg = new Image();
+
+const ai = new SelfieSegmentation({locateFile: (f) => `https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation/${f}`});
+ai.setOptions({ modelSelection: 1 });
+
+fileIn.onchange = (e) => {
+  const r = new FileReader();
+  r.onload = () => { mainImg.src = r.result; mainImg.onload = () => go.disabled = false; };
+  r.readAsDataURL(e.target.files[0]);
+};
+
+// Camera with High Res Capture
+document.getElementById('openCam').onclick = async () => {
+  const s = await navigator.mediaDevices.getUserMedia({video: {width: 1920, height: 1080}});
+  document.getElementById('v').srcObject = s;
+  document.getElementById('m').style.display = 'flex';
+};
+document.getElementById('close').onclick = () => {
+  document.getElementById('v').srcObject.getTracks().forEach(t => t.stop());
+  document.getElementById('m').style.display = 'none';
+};
+document.getElementById('snap').onclick = () => {
+  const v = document.getElementById('v');
+  const c = document.createElement('canvas');
+  c.width = v.videoWidth; c.height = v.videoHeight;
+  const cx = c.getContext('2d');
+  cx.translate(c.width, 0); cx.scale(-1, 1);
+  cx.drawImage(v, 0, 0);
+  mainImg.src = c.toDataURL('image/png');
+  document.getElementById('close').click();
+};
+
+async function getCleanPerson(img) {
+  return new Promise(res => {
+    ai.onResults(results => {
+      const c = document.createElement('canvas');
+      c.width = img.width; c.height = img.height;
+      const x = c.getContext('2d');
+      
+      // सुधार: Strict Masking (कपड़ों पर पुराने रंग साफ करने के लिए)
+      x.save();
+      x.clearRect(0,0,c.width,c.height);
+      x.drawImage(results.segmentationMask, 0, 0, c.width, c.height);
+      x.globalCompositeOperation = 'source-in';
+      x.drawImage(results.image, 0, 0, c.width, c.height);
+      x.restore();
+      res(c);
+    });
+    ai.send({image: img});
+  });
+}
+
+go.onclick = async () => {
+  loader.style.display = 'block'; go.disabled = true;
+  const person = await getCleanPerson(mainImg);
+  
+  const pw = 826, ph = 1062; // 600 DPI
+  const bg = document.getElementById('pColor').value;
+  const zoom = parseFloat(document.getElementById('z').value);
+  const copies = parseInt(document.getElementById('pCopies').value);
+
+  const single = document.createElement('canvas');
+  single.width = pw; single.height = ph;
+  const sCtx = single.getContext('2d');
+  sCtx.imageSmoothingEnabled = true;
+  sCtx.imageSmoothingQuality = 'high';
+
+  // BG Fill
+  sCtx.fillStyle = bg;
+  sCtx.fillRect(0, 0, pw, ph);
+
+  // Auto-Centering Logic
+  const ar = person.width / person.height;
+  let sx, sy, sw, sh;
+  if(ar > pw/ph) { sh = person.height/zoom; sw = sh*(pw/ph); sx = (person.width-sw)/2; sy = person.height*0.1; }
+  else { sw = person.width/zoom; sh = sw*(ph/pw); sx = (person.width-sw)/2; sy = person.height*0.15; }
+
+  // Final Filter for Professional Look
+  sCtx.filter = "contrast(1.08) brightness(1.05) saturate(1.1)";
+  sCtx.drawImage(person, sx, sy, sw, sh, 0, 0, pw, ph);
+
+  // Sheet Build
+  const cols = 4;
+  const rows = Math.ceil(copies/cols);
+  canvas.width = cols * (pw + 40) + 80;
+  canvas.height = rows * (ph + 40) + 80;
+  ctx.fillStyle = "#ffffff";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  for(let i=0; i<copies; i++) {
+    const x = 60 + (i%cols)*(pw+40);
+    const y = 60 + Math.floor(i/cols)*(ph+40);
+    ctx.strokeStyle = "#111";
+    ctx.lineWidth = 2;
+    ctx.strokeRect(x-2, y-2, pw+4, ph+4);
+    ctx.drawImage(single, x, y);
+  }
+
+  loader.style.display = 'none';
+  document.getElementById('res').style.display = 'block';
+  document.getElementById('dl').href = canvas.toDataURL('image/jpeg', 1.0);
+  document.getElementById('dl').download = "clean_hd_passport.jpg";
+  go.disabled = false;
+};
+</script>
+    <div id="footer"></div>
+    <script>
+        fetch("./footer.html")
+            .then(res => res.text())
+            .then(data => document.getElementById("footer").innerHTML = data);
+    </script>
+</body>
+</html>

@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.png">
+    <meta name="description" content="Convert text to speech online for free. Generate natural-sounding voice from text. Fast and secure text to speech converter with multiple voice options.">
+<<<<<<< HEAD
+    <meta name="keywords" content="text to speech, TTS, voice generator, text to audio, speech synthesis, ToolHub">
+    <meta name="author" content="ToolHub">
+    <link rel="canonical" href="https://n-dizi.in/text-to-speech.html">
+    <meta name="google-adsense-account" content="ca-pub-9239182778221521">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9239182778221521" crossorigin="anonymous"></script>
+    <title>Text to Speech - Free Online TTS Converter | ToolHub</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .tool-section { max-width: 900px; margin: 100px auto; padding: 2rem; background: #fff; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); }
+        .tool-section h2 { color: #1e3c72; font-size: 2rem; margin-bottom: 1.5rem; text-align: center; }
+        .tool-section h3 { color: #1e3c72; margin-top: 1.5rem; margin-bottom: 0.8rem; }
+        .tool-section p, .tool-section ul, .tool-section ol { margin-bottom: 1rem; line-height: 1.7; }
+        .tts-controls { display: flex; flex-direction: column; align-items: center; gap: 1rem; margin: 2rem 0; }
+        .tts-controls textarea { width: 100%; max-width: 500px; padding: 15px; border: 2px solid #ddd; border-radius: 10px; font-size: 16px; resize: vertical; min-height: 120px; }
+        .tts-controls textarea:focus { border-color: #00d4ff; outline: none; }
+        .tts-options { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; align-items: center; }
+        .tts-options select { padding: 12px 20px; border: 2px solid #ddd; border-radius: 8px; font-size: 14px; min-width: 200px; }
+        .pitch-control { display: flex; align-items: center; gap: 10px; }
+        .pitch-control input[type="range"] { width: 120px; }
+        .pitch-control span { font-weight: 500; min-width: 35px; }
+        .speak-btn { padding: 14px 40px; background: linear-gradient(120deg, #ff6b6b, #4ecdc4); color: white; border: none; border-radius: 50px; font-size: 18px; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+        .speak-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        #status { margin-top: 1rem; padding: 10px 20px; border-radius: 8px; font-weight: 500; }
+        #status.speaking { background: #e3f2fd; color: #1565c0; }
+        #status.complete { background: #e8f5e9; color: #2e7d32; }
+        #status.error { background: #ffebee; color: #c62828; }
+        .instructions-box { background: #f8f9fa; padding: 1.5rem; border-radius: 12px; margin-top: 1.5rem; text-align: left; }
+        .instructions-box h3 { margin-bottom: 1rem; }
+        .instructions-box ul { margin-left: 1.5rem; }
+        .instructions-box li { margin: 0.5rem 0; }
+        @media (max-width: 768px) {
+            .tool-section { margin: 80px 1rem; padding: 1.5rem; }
+            .tts-options { flex-direction: column; }
+            .tts-options select, .speak-btn { width: 100%; }
+=======
+    <link rel="canonical" href="https://n-dizi.in/text-to-speech.html">
+    <title>Text to Speech & Speech to Text - ToolHub</title>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9239182778221521" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 10px;
+            background: #f0f2f5;
+            margin: 0;
+        }
+
+        /* ── Toggle Switch ── */
+        .mode-toggle-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin: 18px 0 10px;
+            flex-wrap: wrap;
+        }
+        .mode-label {
+            font-weight: 700;
+            font-size: clamp(13px, 3vw, 16px);
+            color: #1e3c72;
+            transition: color 0.3s;
+            user-select: none;
+        }
+        .mode-label.active { color: #00b7d9; }
+
+        .toggle-track {
+            position: relative;
+            width: 64px;
+            height: 32px;
+            background: #00d4ff;
+            border-radius: 32px;
+            cursor: pointer;
+            transition: background 0.3s;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.15);
+        }
+        .toggle-track.stt-mode { background: #ff6b6b; }
+        .toggle-thumb {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 24px;
+            height: 24px;
+            background: #fff;
+            border-radius: 50%;
+            transition: transform 0.35s cubic-bezier(.4,0,.2,1), box-shadow 0.3s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+        }
+        .toggle-track.stt-mode .toggle-thumb {
+            transform: translateX(32px);
+        }
+
+        /* ── Main Container ── */
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        h1 { color: #1e3c72; font-size: clamp(20px, 5vw, 28px); margin-bottom: 4px; }
+        .mode-subtitle {
+            font-size: clamp(12px, 2.5vw, 14px);
+            color: #888;
+            margin-bottom: 10px;
+            min-height: 20px;
+            transition: color 0.3s;
+        }
+
+        textarea, select, input[type=range], button {
+            padding: 8px;
+            margin: 5px;
+            font-size: clamp(12px, 3vw, 16px);
+            width: 90%;
+            max-width: 300px;
+            border-radius: 5px;
+        }
+        button {
+            background: #00d4ff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s;
+        }
+        button:hover { background: #00b7d9; transform: scale(1.03); }
+        button:active { transform: scale(0.97); }
+
+        /* ── TTS Panel ── */
+        #tts-panel {}
+
+        /* ── STT Panel ── */
+        #stt-panel { display: none; }
+
+        #stt-output {
+            width: 90%;
+            max-width: 600px;
+            min-height: 100px;
+            margin: 10px auto;
+            padding: 12px;
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            font-size: clamp(13px, 3vw, 16px);
+            color: #333;
+            background: #fafafa;
+            text-align: left;
+            display: block;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+            white-space: pre-wrap;
+            word-break: break-word;
+            cursor: text;
+        }
+        #stt-output.listening {
+            border-color: #ff6b6b;
+            background: #fff5f5;
+            animation: pulse-border 1.2s ease-in-out infinite;
+        }
+        @keyframes pulse-border {
+            0%, 100% { border-color: #ff6b6b; }
+            50% { border-color: #ffb3b3; }
+        }
+
+        /* Mic button special style */
+        #micBtn {
+            background: #ff6b6b;
+            font-size: clamp(18px, 4vw, 24px);
+            padding: 10px 24px;
+            border-radius: 50px;
+            min-width: 130px;
+        }
+        #micBtn:hover { background: #e85555; }
+        #micBtn.listening {
+            background: #e85555;
+            animation: mic-pulse 1s ease-in-out infinite;
+        }
+        @keyframes mic-pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255,107,107,0.5); }
+            50% { box-shadow: 0 0 0 12px rgba(255,107,107,0); }
+        }
+
+        /* Copy / Clear buttons for STT */
+        .stt-actions { margin: 5px 0; }
+        .stt-actions button {
+            background: #6c757d;
+            max-width: 130px;
+            padding: 7px 14px;
+            font-size: clamp(11px, 2.5vw, 14px);
+        }
+        .stt-actions button:hover { background: #5a6268; }
+
+        /* Language selector for STT */
+        #sttLang {
+            width: 90%;
+            max-width: 220px;
+            border: 1px solid #ccc;
+            font-size: clamp(12px, 3vw, 15px);
+        }
+
+        /* ── Status ── */
+        #status {
+            margin-top: 10px;
+            font-size: clamp(12px, 3vw, 16px);
+            color: #2a5298;
+            min-height: 22px;
+        }
+
+        /* ── Instructions & FAQ ── */
+        .instructions {
+            font-size: clamp(12px, 3vw, 14px);
+            color: #555;
+            margin-top: 15px;
+            text-align: left;
+            padding: 0 10px;
+        }
+        .faq-section {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .faq-section h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+        .faq-section p {
+            margin: 15px 0;
+            line-height: 1.6;
+            color: #34495e;
+        }
+        .faq-section strong { color: #2c3e50; }
+
+        /* Not-supported warning */
+        .not-supported {
+            color: #c0392b;
+            font-weight: bold;
+            font-size: 14px;
+            margin: 8px 0;
+        }
+
+        /* ── Mic Permission Card ── */
+        #micPermCard {
+            display: none;
+            background: linear-gradient(135deg, #fff5f5, #fff0e0);
+            border: 2px solid #ff6b6b;
+            border-radius: 12px;
+            padding: 18px 20px;
+            margin: 12px auto;
+            max-width: 500px;
+            text-align: left;
+            box-shadow: 0 4px 16px rgba(255,107,107,0.15);
+            animation: slideDown 0.3s ease;
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        #micPermCard .perm-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #c0392b;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        #micPermCard .perm-steps {
+            font-size: 13px;
+            color: #555;
+            margin: 8px 0 12px;
+            padding-left: 18px;
+            line-height: 1.8;
+        }
+        #micPermCard .perm-steps li { margin-bottom: 2px; }
+        .perm-btn-row { display: flex; gap: 10px; flex-wrap: wrap; }
+        #allowMicBtn {
+            background: #ff6b6b;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 9px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s;
+            width: auto;
+            max-width: none;
+            display: inline-block;
+        }
+        #allowMicBtn:hover { background: #e85555; transform: scale(1.03); }
+        #openSettingsBtn {
+            background: #fff;
+            color: #c0392b;
+            border: 2px solid #ff6b6b;
+            border-radius: 8px;
+            padding: 9px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            width: auto;
+            max-width: none;
+            display: inline-block;
+        }
+        #openSettingsBtn:hover { background: #fff0f0; }
+        #permStatus {
+            font-size: 12px;
+            color: #888;
+            margin-top: 8px;
+            min-height: 16px;
+        }
+
+        @media (min-width: 768px) {
+            .container { padding: 20px; }
+            textarea, select, input[type=range], button { width: auto; display: inline-block; }
+            .instructions { padding: 0; }
+>>>>>>> 6860395426066e7c6f676053bc3cb8fa79903a74
+        }
+    </style>
+</head>
+<body>
+<<<<<<< HEAD
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">ToolHub</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#tools">Tools</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#contact">Contact</a>
+=======
+    <!-- ════════════ HEADER ════════════ -->
+    <header class="header" style="background:linear-gradient(120deg,#ff6b6b,#4ecdc4);padding:1.5rem 2rem;position:fixed;width:100%;top:0;z-index:1000;box-shadow:0 4px 15px rgba(0,0,0,0.2);">
+        <nav style="max-width:1300px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;">
+            <div style="font-size:2rem;font-weight:700;color:#fff;letter-spacing:1px;">ToolHub</div>
+            <div>
+                <a href="index.html" style="color:#fff;text-decoration:none;margin-left:2.5rem;font-weight:500;">Home</a>
+                <a href="index.html#tools" style="color:#fff;text-decoration:none;margin-left:2.5rem;font-weight:500;">Tools</a>
+                <a href="index.html#about" style="color:#fff;text-decoration:none;margin-left:2.5rem;font-weight:500;">About</a>
+                <a href="index.html#contact" style="color:#fff;text-decoration:none;margin-left:2.5rem;font-weight:500;">Contact</a>
+>>>>>>> 6860395426066e7c6f676053bc3cb8fa79903a74
+            </div>
+        </nav>
+    </header>
+
+<<<<<<< HEAD
+    <main>
+        <section class="tool-section">
+            <h2>Text to Speech Converter</h2>
+            <p>Convert your text into natural-sounding speech instantly. Our free online TTS tool uses your browser's built-in speech synthesis to generate audio from text. Perfect for accessibility, learning, and content creation.</p>
+
+            <h3>How to Use</h3>
+            <ol>
+                <li>Enter or paste the text you want to convert to speech</li>
+                <li>Select a voice from the available options</li>
+                <li>Adjust pitch if needed (optional)</li>
+                <li>Click "Speak" button to hear the text</li>
+            </ol>
+
+            <div class="tts-controls">
+                <textarea id="textInput" placeholder="Enter your text here to convert to speech..."></textarea>
+                
+                <div class="tts-options">
+                    <select id="voiceSelect">
+                        <option value="">Loading voices...</option>
+                    </select>
+                    
+                    <div class="pitch-control">
+                        <label for="pitch">Pitch:</label>
+                        <input type="range" id="pitch" min="0" max="2" step="0.1" value="1">
+                        <span id="pitchValue">1.0</span>
+                    </div>
+                </div>
+
+                <button class="speak-btn" onclick="speakText()">🔊 Speak</button>
+                
+                <div id="status"></div>
+            </div>
+
+            <div class="instructions-box">
+                <h3>Features</h3>
+                <ul>
+                    <li><strong>Multiple Voices:</strong> Choose from various voices available on your system</li>
+                    <li><strong>Pitch Control:</strong> Adjust pitch from low (0) to high (2)</li>
+                    <li><strong>Offline Support:</strong> Works without internet after initial load</li>
+                    <li><strong>Mobile Friendly:</strong> Works on smartphones and tablets</li>
+                    <li><strong>No Registration:</strong> Completely free to use</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="ad-container">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9239182778221521" data-ad-slot="7274852761" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <div class="faq-section">
+            <h3>Frequently Asked Questions</h3>
+            <p><strong>Q: What is Text to Speech?</strong></p>
+            <p>A: Text to Speech (TTS) is a technology that converts written text into spoken words. Our tool uses your browser's built-in speech synthesis capabilities to read text aloud.</p>
+            
+            <p><strong>Q: What voices are available?</strong></p>
+            <p>A: The available voices depend on your operating system and browser. Common options include various accents and languages like English (US, UK), Hindi, Spanish, French, and more.</p>
+            
+            <p><strong>Q: Can I adjust the pitch?</strong></p>
+            <p>A: Yes! Use the pitch slider to adjust from 0 (low) to 2 (high). Default is 1.0.</p>
+            
+            <p><strong>Q: Does Text to Speech work offline?</strong></p>
+            <p>A: Yes! Our tool works completely offline after the page loads. It uses the browser's built-in speech synthesis engine.</p>
+            
+            <p><strong>Q: Can I use this on mobile devices?</strong></p>
+            <p>A: Absolutely! The tool is fully responsive and works on smartphones and tablets. Voice availability may vary by device.</p>
+        </div>
+    </main>
+
+=======
+    <!-- ════════════ MAIN CONTAINER ════════════ -->
+    <div class="container" style="margin-top:90px;">
+
+        <h1 id="mainTitle">Text to Speech</h1>
+        <p class="mode-subtitle" id="modeSubtitle">Type karo aur sunao 🔊</p>
+
+        <!-- ── MODE TOGGLE ── -->
+        <div class="mode-toggle-wrapper">
+            <span class="mode-label active" id="labelTTS">🔊 Text to Speech</span>
+            <div class="toggle-track" id="toggleTrack" onclick="toggleMode()" title="Switch mode">
+                <div class="toggle-thumb" id="toggleThumb"></div>
+            </div>
+            <span class="mode-label" id="labelSTT">🎤 Speech to Text</span>
+        </div>
+
+        <!-- ══════════════════════════════════════
+             TTS PANEL
+        ══════════════════════════════════════ -->
+        <div id="tts-panel">
+            <textarea id="textInput" rows="4" placeholder="Enter text here..."></textarea><br>
+            <select id="voiceSelect"></select>
+            <input type="range" id="pitch" min="0" max="2" step="0.1" value="1">
+            <label for="pitch">Pitch: <span id="pitchValue">1.0</span></label><br>
+            <button onclick="speakText()">▶ Speak</button>
+            <button onclick="stopSpeech()" style="background:#e74c3c;">■ Stop</button>
+
+            <div class="instructions">
+                <p><strong>How to Use:</strong></p>
+                <ul>
+                    <li>Enter the text you want to convert to speech in the box above.</li>
+                    <li>Choose a voice from the dropdown menu.</li>
+                    <li>Adjust the pitch using the slider (0 = low, 2 = high).</li>
+                    <li>Click "Speak" to hear the text. Click "Stop" to stop.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ══════════════════════════════════════
+             STT PANEL
+        ══════════════════════════════════════ -->
+        <div id="stt-panel">
+            <!-- Language selector -->
+            <select id="sttLang" title="Recognition Language">
+                <option value="hi-IN">Hindi (हिन्दी)</option>
+                <option value="en-IN">English (India)</option>
+                <option value="en-US">English (US)</option>
+                <option value="en-GB">English (UK)</option>
+                <option value="mr-IN">Marathi (मराठी)</option>
+                <option value="bn-IN">Bengali (বাংলা)</option>
+                <option value="gu-IN">Gujarati (ગુજરાતી)</option>
+                <option value="ta-IN">Tamil (தமிழ்)</option>
+                <option value="te-IN">Telugu (తెలుగు)</option>
+                <option value="kn-IN">Kannada (ಕನ್ನಡ)</option>
+                <option value="ml-IN">Malayalam (മലയാളം)</option>
+                <option value="pa-IN">Punjabi (ਪੰਜਾਬੀ)</option>
+            </select><br>
+
+            <!-- Big mic button -->
+            <button id="micBtn" onclick="toggleMic()">🎤 Start</button>
+            <p id="sttHint" style="font-size:13px;color:#888;margin:4px 0;">Mic button dabao aur bolo...</p>
+
+            <!-- ── Mic Permission Card (shown when permission denied/needed) ── -->
+            <div id="micPermCard">
+                <div class="perm-title">🎙️ Microphone Permission Chahiye</div>
+                <p style="font-size:13px;color:#555;margin:4px 0 8px;">
+                    Speech to Text kaam karne ke liye microphone access zaroori hai.<br>
+                    Neeche button dabao — browser ek popup dikhaega, usme <strong>"Allow"</strong> click karo.
+                </p>
+                <div class="perm-btn-row">
+                    <button id="allowMicBtn" onclick="requestMicPermission()">🎤 Microphone Allow Karo</button>
+                    <button id="openSettingsBtn" onclick="showSettingsHelp()">⚙️ Settings Help</button>
+                </div>
+                <div id="permStatus"></div>
+                <!-- Settings help (hidden by default) -->
+                <div id="settingsHelp" style="display:none;margin-top:10px;background:#fff8f8;border-radius:8px;padding:10px;">
+                    <strong style="font-size:13px;color:#c0392b;">Manually Allow Karne Ka Tarika:</strong>
+                    <ul class="perm-steps">
+                        <li>🌐 <strong>Chrome:</strong> Address bar mein 🔒 icon → Site Settings → Microphone → Allow</li>
+                        <li>🦊 <strong>Firefox:</strong> Address bar mein lock icon → Permissions → Microphone → Allow</li>
+                        <li>🧭 <strong>Edge:</strong> Address bar mein 🔒 → Permissions → Microphone → Allow</li>
+                        <li>📱 <strong>Android Chrome:</strong> ⋮ Menu → Settings → Site Settings → Microphone → Allow</li>
+                        <li>🍎 <strong>iOS Safari:</strong> Settings app → Safari → Microphone → Allow</li>
+                    </ul>
+                    <p style="font-size:12px;color:#888;margin:4px 0;">Allow karne ke baad page refresh karein aur dobara try karein.</p>
+                </div>
+            </div>
+
+            <!-- Output text area (editable) -->
+            <div id="stt-output" contenteditable="true" spellcheck="false">Yahan recognized text dikhega...</div>
+
+            <!-- Copy / Clear actions -->
+            <div class="stt-actions">
+                <button onclick="copySTT()">📋 Copy</button>
+                <button onclick="clearSTT()">🗑️ Clear</button>
+            </div>
+
+            <!-- Browser-not-supported warning (hidden by default) -->
+            <p class="not-supported" id="sttNotSupported" style="display:none;">
+                ⚠️ Aapka browser Speech Recognition support nahi karta. Chrome use karein.
+            </p>
+
+            <div class="instructions">
+                <p><strong>How to Use:</strong></p>
+                <ul>
+                    <li>Pehle apni bhasha chunein (language selector se).</li>
+                    <li>"🎤 Start" button dabao — mic active ho jayegi.</li>
+                    <li>Clearly bolo; text automatically type hota jayega.</li>
+                    <li>"⏹ Stop" dabao jab baat khatam ho.</li>
+                    <li>Text ko edit, copy ya clear kar sakte ho.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="status"></div>
+    </div>
+
+    <!-- ════════════ AD ════════════ -->
+    <div class="ad-container">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-9239182778221521"
+             data-ad-slot="7274852761"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- ════════════ FAQ ════════════ -->
+    <div class="faq-section">
+        <h3>Frequently Asked Questions</h3>
+
+        <p><strong>Q: Text to Speech kya hai?</strong></p>
+        <p>A: Text to Speech (TTS) ek technology hai jo written text ko bolne wali awaaz mein convert karti hai. Yeh tool browser ki built-in speech synthesis ka use karta hai.</p>
+
+        <p><strong>Q: Speech to Text kya hai?</strong></p>
+        <p>A: Speech to Text (STT) ek technology hai jo aapki bolne wali baat ko automatically written text mein convert kar deti hai — bilkul dictation jaisi. Yeh Web Speech API (Chrome/Edge) use karta hai.</p>
+
+        <p><strong>Q: Kaunse voices available hain?</strong></p>
+        <p>A: Available voices aapke operating system aur browser par depend karte hain. English (US, UK, Australian), Hindi, Spanish, French aur bahut si languages available hoti hain. Dropdown mein aapke system ke saare voices dikhenge.</p>
+
+        <p><strong>Q: Kya Speech to Text offline kaam karta hai?</strong></p>
+        <p>A: Speech to Text ke liye internet connection chahiye hota hai kyunki Chrome Google ke servers se recognition process karta hai. Text to Speech browser mein hi kaam karta hai aur offline bhi chalata hai.</p>
+
+        <p><strong>Q: Kaunsa browser use karna chahiye?</strong></p>
+        <p>A: Speech to Text ke liye Google Chrome ya Microsoft Edge best hai. Text to Speech sabhi modern browsers mein kaam karta hai.</p>
+
+        <p><strong>Q: Kya main mobile pe use kar sakta hoon?</strong></p>
+        <p>A: Haan! Dono tools mobile pe bhi kaam karte hain — Android Chrome aur iOS Safari mein. Voice availability device ke OS par depend karti hai.</p>
+    </div>
+
+    <div style="margin:20px auto;text-align:center;">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-9239182778221521"
+             data-ad-slot="7274852761"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- ════════════════════════════════════════════
+         JAVASCRIPT
+    ════════════════════════════════════════════ -->
+    <script>
+    /* ─── Shared Elements ─── */
+    const statusDiv      = document.getElementById('status');
+    const toggleTrack    = document.getElementById('toggleTrack');
+    const labelTTS       = document.getElementById('labelTTS');
+    const labelSTT       = document.getElementById('labelSTT');
+    const mainTitle      = document.getElementById('mainTitle');
+    const modeSubtitle   = document.getElementById('modeSubtitle');
+    const ttsPanelEl     = document.getElementById('tts-panel');
+    const sttPanelEl     = document.getElementById('stt-panel');
+
+    let isSttMode = false; // current active mode
+
+    /* ══════════════════════════════════════
+       MODE TOGGLE
+    ══════════════════════════════════════ */
+    function toggleMode() {
+        isSttMode = !isSttMode;
+
+        if (isSttMode) {
+            // Switch to STT
+            toggleTrack.classList.add('stt-mode');
+            labelTTS.classList.remove('active');
+            labelSTT.classList.add('active');
+            ttsPanelEl.style.display = 'none';
+            sttPanelEl.style.display = 'block';
+            mainTitle.textContent    = 'Speech to Text';
+            modeSubtitle.textContent = 'Bolo aur text mein convert karo 🎤';
+            modeSubtitle.style.color = '#ff6b6b';
+            // Stop any ongoing TTS
+            synth.cancel();
+            statusDiv.textContent = '';
+        } else {
+            // Switch to TTS
+            toggleTrack.classList.remove('stt-mode');
+            labelTTS.classList.add('active');
+            labelSTT.classList.remove('active');
+            ttsPanelEl.style.display = 'block';
+            sttPanelEl.style.display = 'none';
+            mainTitle.textContent    = 'Text to Speech';
+            modeSubtitle.textContent = 'Type karo aur sunao 🔊';
+            modeSubtitle.style.color = '#888';
+            // Stop any ongoing STT
+            stopMic();
+            statusDiv.textContent = '';
+        }
+    }
+
+    /* ══════════════════════════════════════
+       TEXT TO SPEECH (TTS)
+    ══════════════════════════════════════ */
+    const textInput   = document.getElementById('textInput');
+    const voiceSelect = document.getElementById('voiceSelect');
+    const pitchInput  = document.getElementById('pitch');
+    const pitchValue  = document.getElementById('pitchValue');
+    const synth       = window.speechSynthesis;
+
+    let voices = [];
+    function populateVoices() {
+        voices = synth.getVoices();
+        voiceSelect.innerHTML = '';
+        voices.forEach((voice, i) => {
+            const option = document.createElement('option');
+            option.value = i;
+            option.text  = `${voice.name} (${voice.lang})`;
+            voiceSelect.appendChild(option);
+        });
+    }
+    synth.onvoiceschanged = populateVoices;
+    populateVoices();
+
+    pitchInput.oninput = () => { pitchValue.textContent = pitchInput.value; };
+
+    function speakText() {
+        const text = textInput.value.trim();
+        if (!text) { statusDiv.innerHTML = "Please enter some text."; return; }
+
+        synth.cancel(); // stop previous
+        statusDiv.innerHTML = "Speaking...";
+        statusDiv.style.color = "#2a5298";
+
+        const utterance  = new SpeechSynthesisUtterance(text);
+        utterance.voice  = voices[voiceSelect.value];
+        utterance.pitch  = parseFloat(pitchInput.value);
+        utterance.rate   = 1;
+        utterance.onend  = () => { statusDiv.innerHTML = "Speech complete! ✅"; statusDiv.style.color = "#27ae60"; };
+        utterance.onerror = (e) => { statusDiv.innerHTML = "Error: " + e.error; statusDiv.style.color = "#c0392b"; };
+        synth.speak(utterance);
+    }
+
+    function stopSpeech() {
+        synth.cancel();
+        statusDiv.innerHTML = "Stopped.";
+        statusDiv.style.color = "#888";
+    }
+
+    /* ══════════════════════════════════════
+       SPEECH TO TEXT (STT)
+    ══════════════════════════════════════ */
+    const micBtn          = document.getElementById('micBtn');
+    const sttOutput       = document.getElementById('stt-output');
+    const sttLang         = document.getElementById('sttLang');
+    const sttHint         = document.getElementById('sttHint');
+    const sttNotSupported = document.getElementById('sttNotSupported');
+    const micPermCard     = document.getElementById('micPermCard');
+    const permStatus      = document.getElementById('permStatus');
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    let recognition     = null;
+    let isListening     = false;
+    let finalTranscript = '';
+    let micGranted      = false; // tracks if permission already granted
+
+    if (!SpeechRecognition) {
+        sttNotSupported.style.display = 'block';
+        micBtn.disabled = true;
+        micBtn.style.opacity = '0.5';
+    } else {
+        setupRecognition();
+        checkMicPermissionSilently(); // check on load — no popup, just detect state
+    }
+
+    /* ── Silent permission check on load ── */
+    function checkMicPermissionSilently() {
+        if (!navigator.permissions) return; // old browser — skip
+        navigator.permissions.query({ name: 'microphone' }).then(result => {
+            if (result.state === 'granted') {
+                micGranted = true;
+                hidePermCard();
+            } else if (result.state === 'denied') {
+                micGranted = false;
+                // Don't auto-show card; show only when user clicks mic
+            }
+            // 'prompt' = not yet asked; let toggleMic handle it
+            result.onchange = () => {
+                if (result.state === 'granted') { micGranted = true; hidePermCard(); }
+                else { micGranted = false; }
+            };
+        }).catch(() => { /* permissions API not supported — ignore */ });
+    }
+
+    /* ── Show / Hide permission card ── */
+    function showPermCard(isDenied) {
+        micPermCard.style.display = 'block';
+        document.getElementById('settingsHelp').style.display = 'none';
+        if (isDenied) {
+            permStatus.innerHTML = '❌ Permission pehle se block hai. "Settings Help" dekho.';
+            permStatus.style.color = '#c0392b';
+        } else {
+            permStatus.innerHTML = '';
+        }
+    }
+    function hidePermCard() {
+        micPermCard.style.display = 'none';
+        permStatus.innerHTML = '';
+    }
+
+    /* ── "Microphone Allow Karo" button ── */
+    function requestMicPermission() {
+        permStatus.innerHTML = '⏳ Browser ka popup aayega — "Allow" click karo...';
+        permStatus.style.color = '#e67e22';
+
+        const tryViaGetUserMedia = () => {
+            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                tryViaRecognition(); return;
+            }
+            navigator.mediaDevices.getUserMedia({ audio: true })
+                .then(stream => {
+                    micGranted = true;
+                    stream.getTracks().forEach(t => t.stop());
+                    hidePermCard();
+                    permStatus.innerHTML = '';
+                    statusDiv.innerHTML = '✅ Microphone allowed! Ab bolo.';
+                    statusDiv.style.color = '#27ae60';
+                    startMic();
+                })
+                .catch(err => {
+                    if (err.name === 'NotFoundError' || err.name === 'DevicesNotFoundError') {
+                        permStatus.innerHTML = '❌ Koi microphone nahi mila. Device check karo.';
+                        permStatus.style.color = '#c0392b';
+                    } else {
+                        tryViaRecognition();
+                    }
+                });
+        };
+
+        const tryViaRecognition = () => {
+            permStatus.innerHTML = '⏳ Dobara try — popup me "Allow" dabao...';
+            permStatus.style.color = '#e67e22';
+            const origError = recognition.onerror;
+            recognition.onerror = (event) => {
+                recognition.onerror = origError;
+                if (event.error === 'not-allowed' || event.error === 'permission-denied') {
+                    micGranted = false;
+                    permStatus.innerHTML = '❌ Allow nahi kiya. "Settings Help" se manually allow karo.';
+                    permStatus.style.color = '#c0392b';
+                    document.getElementById('settingsHelp').style.display = 'block';
+                } else if (event.error === 'audio-capture') {
+                    permStatus.innerHTML = '❌ Microphone nahi mila. Device check karo.';
+                    permStatus.style.color = '#c0392b';
+                } else {
+                    permStatus.innerHTML = '⚠️ Error: ' + event.error;
+                    permStatus.style.color = '#c0392b';
+                }
+                stopMicUI();
+            };
+            recognition.lang = sttLang.value;
+            finalTranscript = '';
+            sttOutput.innerHTML = '';
+            try {
+                recognition.start();
+            } catch(e) {
+                recognition.onerror = origError;
+                permStatus.innerHTML = '⚠️ Page refresh karke dobara try karo.';
+                permStatus.style.color = '#c0392b';
+            }
+        };
+
+        tryViaGetUserMedia();
+    }
+
+    /* ── Settings help toggle ── */
+    function showSettingsHelp() {
+        const helpDiv = document.getElementById('settingsHelp');
+        helpDiv.style.display = (helpDiv.style.display === 'none') ? 'block' : 'none';
+    }
+
+    /* ── Setup SpeechRecognition object ── */
+    function setupRecognition() {
+        recognition = new SpeechRecognition();
+        recognition.continuous     = true;
+        recognition.interimResults = true;
+        recognition.lang           = sttLang.value;
+
+        recognition.onstart = () => {
+            isListening = true;
+            micGranted  = true;
+            hidePermCard();
+            micBtn.textContent = '⏹ Stop';
+            micBtn.classList.add('listening');
+            sttOutput.classList.add('listening');
+            sttHint.textContent = '🔴 Sun raha hoon... (clearly bolo)';
+            statusDiv.innerHTML = '';
+        };
+
+        recognition.onresult = (event) => {
+            let interimTranscript = '';
+            for (let i = event.resultIndex; i < event.results.length; i++) {
+                const transcript = event.results[i][0].transcript;
+                if (event.results[i].isFinal) {
+                    finalTranscript += transcript + ' ';
+                } else {
+                    interimTranscript += transcript;
+                }
+            }
+            sttOutput.innerHTML =
+                finalTranscript +
+                '<span style="color:#aaa;">' + interimTranscript + '</span>';
+        };
+
+        recognition.onerror = (event) => {
+            const err = event.error;
+            if (err === 'not-allowed' || err === 'permission-denied') {
+                // Show inbuilt permission card instead of plain error text
+                micGranted = false;
+                stopMicUI();
+                showPermCard(true);
+                statusDiv.innerHTML = '';
+            } else if (err === 'no-speech') {
+                statusDiv.innerHTML = '⚠️ Koi awaaz nahi aayi. Phir try karo.';
+                statusDiv.style.color = '#e67e22';
+                stopMicUI();
+            } else if (err === 'network') {
+                statusDiv.innerHTML = '⚠️ Network error. Internet connection check karo.';
+                statusDiv.style.color = '#c0392b';
+                stopMicUI();
+            } else if (err === 'audio-capture') {
+                statusDiv.innerHTML = '⚠️ Microphone nahi mila. Device check karo.';
+                statusDiv.style.color = '#c0392b';
+                stopMicUI();
+            } else {
+                statusDiv.innerHTML = '⚠️ Error: ' + err;
+                statusDiv.style.color = '#c0392b';
+                stopMicUI();
+            }
+        };
+
+        recognition.onend = () => {
+            if (isListening) {
+                try { recognition.start(); } catch(e) { stopMicUI(); }
+            } else {
+                stopMicUI();
+            }
+        };
+    }
+
+    /* ── Toggle mic (called by button) ── */
+    function toggleMic() {
+        if (!SpeechRecognition) {
+            sttNotSupported.style.display = 'block';
+            return;
+        }
+        if (isListening) {
+            stopMic();
+            return;
+        }
+
+        // Check permission before starting
+        if (navigator.permissions) {
+            navigator.permissions.query({ name: 'microphone' }).then(result => {
+                if (result.state === 'denied') {
+                    // Already permanently blocked — show card with settings guide
+                    showPermCard(true);
+                } else if (result.state === 'prompt') {
+                    // Not asked yet — request permission via getUserMedia first
+                    requestMicPermission();
+                } else {
+                    // 'granted' — start directly
+                    startMic();
+                }
+            }).catch(() => {
+                // permissions API unavailable — try directly; SpeechRecognition will fire onerror if blocked
+                startMic();
+            });
+        } else {
+            // No Permissions API — let SpeechRecognition handle it
+            startMic();
+        }
+    }
+
+    function startMic() {
+        finalTranscript = '';
+        sttOutput.innerHTML = '';
+        recognition.lang = sttLang.value;
+        try { recognition.start(); } catch(e) { /* already started */ }
+    }
+
+    function stopMic() {
+        if (recognition && isListening) {
+            isListening = false;
+            recognition.stop();
+        }
+        stopMicUI();
+    }
+
+    function stopMicUI() {
+        isListening = false;
+        micBtn.textContent = '🎤 Start';
+        micBtn.classList.remove('listening');
+        sttOutput.classList.remove('listening');
+        sttHint.textContent = 'Mic button dabao aur bolo...';
+        if (finalTranscript.trim()) {
+            statusDiv.innerHTML = 'Text ready! ✅ Copy ya edit karo.';
+            statusDiv.style.color = '#27ae60';
+        }
+    }
+
+    /* Language change → restart if active */
+    sttLang.addEventListener('change', () => {
+        if (isListening) {
+            isListening = false;
+            recognition.stop();
+            setTimeout(startMic, 300);
+        }
+    });
+
+    function copySTT() {
+        const text = sttOutput.innerText.trim();
+        if (!text || text === 'Yahan recognized text dikhega...') {
+            statusDiv.innerHTML = 'Copy karne ke liye pehle kuch bolo.';
+            statusDiv.style.color = '#888';
+            return;
+        }
+        navigator.clipboard.writeText(text)
+            .then(() => { statusDiv.innerHTML = 'Copied! 📋'; statusDiv.style.color = '#27ae60'; })
+            .catch(() => {
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                statusDiv.innerHTML = 'Copied! 📋';
+                statusDiv.style.color = '#27ae60';
+            });
+    }
+
+    function clearSTT() {
+        finalTranscript = '';
+        sttOutput.innerHTML = 'Yahan recognized text dikhega...';
+        statusDiv.textContent = '';
+    }
+    </script>
+
+    <script src="chatbot.js"></script>
+>>>>>>> 6860395426066e7c6f676053bc3cb8fa79903a74
+    <div id="footer"></div>
+    <script>
+        fetch("./footer.html")
+            .then(res => res.text())
+            .then(data => document.getElementById("footer").innerHTML = data);
+    </script>
+<<<<<<< HEAD
+
+    <script>
+        const statusDiv = document.getElementById('status');
+        const textInput = document.getElementById('textInput');
+        const voiceSelect = document.getElementById('voiceSelect');
+        const pitchInput = document.getElementById('pitch');
+        const pitchValue = document.getElementById('pitchValue');
+        const synth = window.speechSynthesis;
+
+        let voices = [];
+
+        function populateVoices() {
+            voices = synth.getVoices();
+            if (voices.length === 0) {
+                voiceSelect.innerHTML = '<option value="">No voices available</option>';
+                return;
+            }
+            voiceSelect.innerHTML = '';
+            voices.forEach((voice, i) => {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = `${voice.name} (${voice.lang})${voice.default ? ' - Default' : ''}`;
+                voiceSelect.appendChild(option);
+                
+                if (voice.default) {
+                    voiceSelect.value = i;
+                }
+            });
+        }
+
+        if (synth.getVoices().length > 0) {
+            populateVoices();
+        } else {
+            synth.onvoiceschanged = populateVoices;
+            setTimeout(populateVoices, 100);
+        }
+
+        pitchInput.addEventListener('input', () => {
+            pitchValue.textContent = parseFloat(pitchInput.value).toFixed(1);
+        });
+
+        function showStatus(msg, type) {
+            statusDiv.textContent = msg;
+            statusDiv.className = type;
+            statusDiv.style.display = msg ? 'block' : 'none';
+        }
+
+        function speakText() {
+            if (!textInput.value.trim()) {
+                showStatus('Please enter some text to speak.', 'error');
+                return;
+            }
+
+            if (synth.speaking) {
+                synth.cancel();
+            }
+
+            showStatus('Speaking...', 'speaking');
+            
+            const utterance = new SpeechSynthesisUtterance(textInput.value);
+            
+            const selectedVoiceIndex = voiceSelect.value;
+            if (selectedVoiceIndex !== '' && voices[selectedVoiceIndex]) {
+                utterance.voice = voices[selectedVoiceIndex];
+            }
+            
+            utterance.pitch = parseFloat(pitchInput.value);
+            utterance.rate = 1;
+
+            utterance.onend = () => {
+                showStatus('Speech complete!', 'complete');
+            };
+
+            utterance.onerror = (event) => {
+                showStatus('Error: ' + event.error, 'error');
+            };
+
+            synth.speak(utterance);
+        }
+    </script>
+    <script src="chatbot.js"></script>
+</body>
+</html>
+=======
+</body>
+</html>
+>>>>>>> 6860395426066e7c6f676053bc3cb8fa79903a74

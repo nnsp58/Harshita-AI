@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import {
   Search, FileText, Gavel, Train, Map, ShoppingBasket, LogIn, Bell,
   Play, Pause, RotateCcw, Camera, Edit3, MessageCircle, Wrench, Globe,
-  CreditCard, Hash, Vote, Fingerprint, Baby, GraduationCap, Banknote, Bot, Zap
+  CreditCard, Hash, Vote, Fingerprint, Baby, GraduationCap, Banknote, Bot, Zap, FileSignature
 } from 'lucide-react'
 import { useStore } from '../../store'
 import { useNavigate } from 'react-router-dom'
@@ -28,6 +28,7 @@ const agentIcons = {
   BirthAgent: Baby,
   ScholarshipAgent: GraduationCap,
   BankAgent: Banknote,
+  ITRFilingAgent: FileSignature,
 }
 
 const agentLabels = {
@@ -51,6 +52,7 @@ const agentLabels = {
   BirthAgent: 'Birth Cert',
   ScholarshipAgent: 'Scholarship',
   BankAgent: 'Banking',
+  ITRFilingAgent: 'ITR Filing',
 }
 
 const agentGradients = [
@@ -87,19 +89,20 @@ const armPositions = [
   { angle: 36, agent: 'NotifierAgent' },
   { angle: 54, agent: 'OCRAgent' },
   { angle: 72, agent: 'FormFillAgent' },
-  { angle: 90, agent: 'WhatsAppAgent' },
-  { angle: 108, agent: 'DocumentFixAgent' },
-  { angle: 126, agent: 'BrowserAgent' },
-  { angle: 144, agent: 'PANCardAgent' },
-  { angle: 162, agent: 'PassportAgent' },
-  { angle: 180, agent: 'VoterIDAgent' },
-  { angle: -162, agent: 'AadhaarAgent' },
-  { angle: -144, agent: 'BirthAgent' },
-  { angle: -126, agent: 'ScholarshipAgent' },
-  { angle: -108, agent: 'BankAgent' },
+  { angle: 90, agent: 'ITRFilingAgent' },
+  { angle: 108, agent: 'WhatsAppAgent' },
+  { angle: 126, agent: 'DocumentFixAgent' },
+  { angle: 144, agent: 'BrowserAgent' },
+  { angle: 162, agent: 'PANCardAgent' },
+  { angle: 180, agent: 'PassportAgent' },
+  { angle: -162, agent: 'VoterIDAgent' },
+  { angle: -144, agent: 'AadhaarAgent' },
+  { angle: -126, agent: 'BirthAgent' },
+  { angle: -108, agent: 'ScholarshipAgent' },
+  { angle: -90, agent: 'BankAgent' },
 ]
 
-export default function RawanModel() {
+export default function HARSHITA AIMortix() {
   const { agents, selectedAgent, setSelectedAgent } = useStore()
   const navigate = useNavigate()
 
@@ -113,7 +116,7 @@ export default function RawanModel() {
       'FormFillAgent': 'form', 'WhatsAppAgent': 'whatsapp', 'BrowserAgent': 'browser',
       'PANCardAgent': 'pan', 'PassportAgent': 'passport', 'VoterIDAgent': 'voter',
       'AadhaarAgent': 'aadhaar', 'BirthAgent': 'birth', 'ScholarshipAgent': 'scholarship',
-      'BankAgent': 'bank', 'DocumentFixAgent': 'docfix',
+      'BankAgent': 'bank', 'DocumentFixAgent': 'docfix', 'ITRFilingAgent': 'itr',
     }
     const id = idMap[agentName]
     return agents.find(a => a.id === id) || null
@@ -165,7 +168,7 @@ export default function RawanModel() {
             {/* Inner core */}
             <div className="w-24 h-24 rounded-2xl bg-white dark:bg-navy-900 shadow-2xl border border-gray-100 dark:border-navy-700 flex flex-col items-center justify-center gap-1 z-10">
               <Zap size={28} className="text-maroon-600 dark:text-gold-400" />
-              <span className="text-[10px] font-black tracking-widest text-gray-700 dark:text-gray-300">RAWAN</span>
+              <span className="text-[10px] font-black tracking-widest text-gray-700 dark:text-gray-300">HARSHITA AI</span>
               <span className="text-[8px] font-bold text-gray-400 tracking-widest">AI CORE</span>
             </div>
 

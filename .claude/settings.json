@@ -1,9 +1,0 @@
-{
-    "model": "minimax/minimax-m2.5:free",
-    "env": {
-        "ANTHROPIC_BASE_URL": "https://opencode.ai/api/v1",
-        "ANTHROPIC_AUTH_TOKEN": "sk-fPgd7WsV3FJLItmci8GO11Qq6DiK94NbHQTmdb24iUSBhCWaWvAyGknMAWq93hS8",
-        "ANTHROPIC_MODEL": "minimax/minimax-m2.5:free",
-        "DISABLE_AUTOUPDATER": "1"
-    }
-}

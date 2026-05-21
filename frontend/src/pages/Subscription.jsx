@@ -41,9 +41,12 @@ export default function Subscription() {
     <div className="space-y-8">
       {/* Header & Trial Status */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl md:text-3xl font-heading font-bold">Subscription & Billing</h1>
-          <p className="text-gray-500 dark:text-gray-400 mt-1">Prepaid plans tailored for your CSC VLE needs</p>
+        <div className="flex items-center gap-4">
+          <img src="/harshita ai.png" alt="Harshita AI" className="w-12 h-12" />
+          <div>
+            <h1 className="text-2xl md:text-3xl font-heading font-bold">Subscription & Billing</h1>
+            <p className="text-gray-500 dark:text-gray-400 mt-1">Prepaid plans tailored for your CSC VLE needs</p>
+          </div>
         </div>
         {subscriptionMode === 'trial' && (
           <div className="bg-amber-100 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-700 p-3 rounded-xl flex items-center gap-3">
@@ -59,7 +62,7 @@ export default function Subscription() {
             <AlertTriangle className="text-rose-600" size={20} />
             <div>
               <p className="text-sm font-bold text-rose-800 dark:text-rose-200">Trial Expired</p>
-              <p className="text-xs text-rose-600">Subscribe now to keep using Rawan</p>
+              <p className="text-xs text-rose-600">Subscribe now to keep using HARSHITA AI</p>
             </div>
           </div>
         )}

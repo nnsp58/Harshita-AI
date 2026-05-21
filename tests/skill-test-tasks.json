@@ -1,0 +1,23 @@
+[
+  { "id": "task_01", "command": "सर मुझे एसएससी का फॉर्म भरना है", "expected_skill": "form_fill" },
+  { "id": "task_02", "command": "tada sheet upload karni hai", "expected_skill": "tada_process" },
+  { "id": "task_03", "command": "rashan card ka status kya hai?", "expected_skill": "ration_card" },
+  { "id": "task_04", "command": "pan card se data nikal do please", "expected_skill": "document_ocr" },
+  { "id": "task_05", "command": "mujhe ek shayari sunao acchi wali", "expected_skill": "notepad" },
+  { "id": "task_06", "command": "zamin ki khatauni dikhao", "expected_skill": "land_record" },
+  { "id": "task_07", "command": "train ticket book karni hai delhi ki", "expected_skill": "ticket_booking" },
+  { "id": "task_08", "command": "PMEGP project report kaise banti hai?", "expected_skill": "project_report" },
+  { "id": "task_09", "command": "affidavit draft karo rent agreement ke liye", "expected_skill": "legal_draft" },
+  { "id": "task_10", "command": "kya main SSC ke liye eligible hoon?", "expected_skill": "eligibility_check" },
+  { "id": "task_11", "command": "Railway ki latest vacancy dikhao", "expected_skill": "job_search" },
+  { "id": "task_12", "command": "namaste harshita kaise ho", "expected_skill": "general_chat" },
+  { "id": "task_13", "command": "मुद्रा लोन के लिए क्या-क्या चाहिए?", "expected_skill": "project_report" },
+  { "id": "task_14", "command": "ओल्ड एज पेंशन का स्टेटस चेक करो", "expected_skill": "form_fill" },
+  { "id": "task_15", "command": "वोटर आईडी कार्ड में सुधार करना है", "expected_skill": "form_fill" },
+  { "id": "task_16", "command": "पुलिस कैरेक्टर सर्टिफिकेट अप्लाई करना है", "expected_skill": "form_fill" },
+  { "id": "task_17", "command": "ड्राइविंग लाइसेंस रिन्यूअल का फॉर्म भर दो", "expected_skill": "form_fill" },
+  { "id": "task_18", "command": "जन्म प्रमाण पत्र का रजिस्ट्रेशन कैसे करें?", "expected_skill": "form_fill" },
+  { "id": "task_19", "command": "यूपीएसएसएससी की नई भर्ती कब आ रही है?", "expected_skill": "job_search" },
+  { "id": "task_20", "command": "आधार कार्ड में पता बदलना है", "expected_skill": "form_fill" },
+  { "id": "task_21", "command": "एक प्रोफेशनल रिज्यूमे बना दो मेरा", "expected_skill": "resume_maker" }
+]
