@@ -61,21 +61,23 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-maroon-900 via-maroon-800 to-navy-900 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-[#020617] flex items-center justify-center p-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-md"
       >
-        {/* Logo */}
         <div className="text-center mb-8">
-          <img src="/harshita ai.png" alt="Harshita AI" className="w-24 h-24 mx-auto mb-4" />
-          <h1 className="text-3xl font-heading font-bold text-white">HARSHITA AI</h1>
+          <div className="w-24 h-24 mx-auto mb-4 bg-gradient-to-tr from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-500/20">
+            <span className="text-4xl font-bold text-white">N</span>
+          </div>
+          <h1 className="text-3xl font-heading font-bold text-white">N-Dizi AI</h1>
+          <p className="text-slate-400 mt-2">Premium Service Marketplace</p>
         </div>
 
         {/* Login form */}
-        <div className="card p-8">
-          <h2 className="text-xl font-heading font-bold mb-6 text-center">VLE Login</h2>
+        <div className="card p-8 bg-slate-900 border-slate-800">
+          <h2 className="text-xl font-heading font-bold mb-6 text-center text-white">Sign In</h2>
 
           {error && (
             <div className="mb-4 p-3 bg-red-600 border border-red-500 rounded-lg flex items-center gap-2 text-white font-medium">
@@ -153,9 +155,9 @@ export default function Login() {
             <GoogleLogin
               onSuccess={handleGoogleSuccess}
               onError={handleGoogleError}
-              useOneTap
               theme="filled_black"
               shape="pill"
+              useOneTap={false}
             />
           </div>
         </div>

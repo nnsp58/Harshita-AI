@@ -254,7 +254,7 @@ export const useStore = create(
       })),
     }),
     {
-      name: 'HARSHITA AI-dashboard-storage',
+      name: 'ndizi-ai-dashboard-storage',
       partialize: (state) => ({
         token: state.token,
         user: state.user,

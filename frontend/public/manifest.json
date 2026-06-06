@@ -1,13 +1,13 @@
 {
-  "name": "Harshita AI - CSC Automation Dashboard",
-  "short_name": "Harshita AI",
-  "description": "Multi-agent CSC automation platform for VLEs",
+  "name": "N-Dizi AI - Premium Service Marketplace",
+  "short_name": "N-Dizi AI",
+  "description": "One Platform. Unlimited AI Services.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#0F172A",
-  "theme_color": "#800020",
+  "theme_color": "#6366F1",
   "categories": ["productivity", "business"],
   "icons": [
     {
