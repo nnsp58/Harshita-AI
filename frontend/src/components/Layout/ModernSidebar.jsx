@@ -53,10 +53,13 @@ export default function ModernSidebar({ isCollapsed, toggleSidebar, isMobileOpen
       <div className="flex items-center justify-between p-4 h-16 border-b border-slate-800">
         {!isCollapsed && (
           <div className="flex items-center gap-2 font-bold text-xl text-white">
-            <span className="text-indigo-500">N-Dizi</span> AI
+            <img src="/harshita ai.png" alt="Harshita AI" className="w-8 h-8 rounded-lg" />
+            <span className="text-white tracking-wide">N-Dizi AI</span>
           </div>
         )}
-        {isCollapsed && <div className="font-bold text-xl text-indigo-500 mx-auto">N</div>}
+        {isCollapsed && (
+          <img src="/harshita ai.png" alt="Harshita AI" className="w-8 h-8 rounded-lg mx-auto" />
+        )}
         <button 
           onClick={toggleSidebar} 
           className="hidden lg:block text-slate-400 hover:text-white transition-colors"
