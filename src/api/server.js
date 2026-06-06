@@ -172,7 +172,19 @@ console.log('🧠 MasterAgent V2 active — Multi-skill routing enabled');
 
 // Security middleware
 app.use(helmet({
-  crossOriginResourcePolicy: { policy: 'cross-origin' }
+  crossOriginResourcePolicy: { policy: 'cross-origin' },
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      connectSrc: ["'self'", "ws:", "wss:", "https://n-dizi.in", "https://*.onrender.com", "https://accounts.google.com"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://accounts.google.com", "https://*.googleapis.com"],
+      scriptSrcElem: ["'self'", "'unsafe-inline'", "https://accounts.google.com", "https://*.googleapis.com"],
+      frameSrc: ["'self'", "https://accounts.google.com"],
+      imgSrc: ["'self'", "data:", "https:"],
+      styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+      fontSrc: ["'self'", "https://fonts.gstatic.com", "data:"],
+    }
+  }
 }));
 
 // CORS configuration
