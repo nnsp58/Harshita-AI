@@ -66,6 +66,14 @@ function ProtectedRoute({ children }) {
 }
 
 function App() {
+  React.useEffect(() => {
+    const handleUnauthorized = () => {
+      window.location.href = '/login';
+    };
+    window.addEventListener('auth_unauthorized', handleUnauthorized);
+    return () => window.removeEventListener('auth_unauthorized', handleUnauthorized);
+  }, []);
+
   return (
     <BrowserRouter>
       <UpgradeNotification />

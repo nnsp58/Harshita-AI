@@ -41,6 +41,7 @@ api.interceptors.response.use(
         console.log('401 error on non-login request, clearing token')
         localStorage.removeItem('token')
         sessionStorage.removeItem('token')
+        localStorage.removeItem('ndizi-ai-dashboard-storage')
         // Dispatching custom event so React can catch it without full page reload
         window.dispatchEvent(new Event('auth_unauthorized'))
       }
