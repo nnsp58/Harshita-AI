@@ -66,13 +66,16 @@ function ProtectedRoute({ children }) {
 }
 
 function App() {
+  const { logout } = useStore();
+
   React.useEffect(() => {
     const handleUnauthorized = () => {
+      logout();
       window.location.href = '/login';
     };
     window.addEventListener('auth_unauthorized', handleUnauthorized);
     return () => window.removeEventListener('auth_unauthorized', handleUnauthorized);
-  }, []);
+  }, [logout]);
 
   return (
     <BrowserRouter>
