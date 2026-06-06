@@ -67,14 +67,14 @@ export default function Login() {
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-sm"
       >
-        <div className="text-center mb-8">
-          <img src="/harshita ai.png" alt="Harshita AI" className="w-24 h-24 mx-auto mb-4" />
-          <h1 className="text-3xl font-heading font-bold text-white">N-Dizi AI</h1>
-          <p className="text-slate-400 mt-2">Premium Service Marketplace</p>
+        <div className="text-center mb-4">
+          <img src="/harshita ai.png" alt="Harshita AI" className="w-20 h-20 mx-auto mb-2" />
+          <h1 className="text-2xl font-heading font-bold text-white">N-Dizi AI</h1>
+          <p className="text-slate-400 mt-1 text-sm">Premium Service Marketplace</p>
         </div>
 
         {/* Login form */}
-        <div className="card p-8 bg-slate-900 border-slate-800">
+        <div className="card p-6 bg-slate-900 border-slate-800">
           <h2 className="text-xl font-heading font-bold mb-6 text-center text-white">Sign In</h2>
 
           {error && (
