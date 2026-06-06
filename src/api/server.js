@@ -494,8 +494,8 @@ const ensureDatabaseConnection = async () => {
       await prisma.$connect();
       console.log('✅ Database connected');
     } catch (e) {
-      console.error('❌ Database connection failed:', e.message);
-      process.exit(1);
+      console.warn('⚠️ Database connection failed (running in memory-only mode):', e.message);
+      // Don't crash — use in-memory auth instead
     }
   }
 };
