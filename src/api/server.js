@@ -27,21 +27,38 @@ const server = http.createServer(app);
 
 // API mode active - Static serving disabled
 
+// Helper to validate allowed CORS origins dynamically
+const isOriginAllowed = (origin) => {
+  if (!origin) return true;
+  
+  const configured = process.env.CORS_ORIGIN;
+  if (configured === '*') return true;
+  if (configured) {
+    const allowed = configured.split(',').map((s) => s.trim()).filter(Boolean);
+    if (allowed.includes(origin)) return true;
+  }
+  
+  if (/^https?:\/\/localhost(?::\d+)?$/.test(origin) ||
+      /^https?:\/\/127\.0\.0\.1(?::\d+)?$/.test(origin)) {
+    return true;
+  }
+
+  // Allow production domains dynamically
+  try {
+    const hostname = new URL(origin).hostname;
+    if (hostname === 'n-dizi.in' || hostname.endsWith('.n-dizi.in') || hostname.endsWith('.onrender.com')) {
+      return true;
+    }
+  } catch (e) {}
+
+  return false;
+};
+
 // Socket.IO setup
-// Same permissive-localhost policy as the Express CORS middleware so the
-// chat panel works regardless of which port Vite picks (5173, 5174, ...).
 const io = new Server(server, {
   cors: {
     origin: (origin, callback) => {
-      if (!origin) return callback(null, true);
-      const configured = process.env.CORS_ORIGIN;
-      if (configured === '*') return callback(null, true);
-      if (configured) {
-        const allowed = configured.split(',').map((s) => s.trim()).filter(Boolean);
-        if (allowed.includes(origin)) return callback(null, true);
-      }
-      if (/^https?:\/\/localhost(?::\d+)?$/.test(origin) ||
-          /^https?:\/\/127\.0\.0\.1(?::\d+)?$/.test(origin)) {
+      if (isOriginAllowed(origin)) {
         return callback(null, true);
       }
       return callback(new Error(`Origin ${origin} not allowed by CORS`));
@@ -165,22 +182,9 @@ app.use(helmet({
 // breaking auth and API calls.
 app.use(cors({
   origin: (origin, callback) => {
-    // Allow same-origin / non-browser requests (no Origin header)
-    if (!origin) return callback(null, true);
-
-    const configured = process.env.CORS_ORIGIN;
-    if (configured === '*') return callback(null, true);
-    if (configured) {
-      const allowed = configured.split(',').map((s) => s.trim()).filter(Boolean);
-      if (allowed.includes(origin)) return callback(null, true);
-    }
-
-    // In development, allow any localhost or 127.0.0.1 port
-    if (/^https?:\/\/localhost(?::\d+)?$/.test(origin) ||
-        /^https?:\/\/127\.0\.0\.1(?::\d+)?$/.test(origin)) {
+    if (isOriginAllowed(origin)) {
       return callback(null, true);
     }
-
     return callback(new Error(`Origin ${origin} not allowed by CORS`));
   },
   credentials: true,
