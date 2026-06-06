@@ -28,9 +28,25 @@ const server = http.createServer(app);
 // API mode active - Static serving disabled
 
 // Socket.IO setup
+// Same permissive-localhost policy as the Express CORS middleware so the
+// chat panel works regardless of which port Vite picks (5173, 5174, ...).
 const io = new Server(server, {
   cors: {
-    origin: process.env.CORS_ORIGIN || '*',
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      const configured = process.env.CORS_ORIGIN;
+      if (configured === '*') return callback(null, true);
+      if (configured) {
+        const allowed = configured.split(',').map((s) => s.trim()).filter(Boolean);
+        if (allowed.includes(origin)) return callback(null, true);
+      }
+      if (/^https?:\/\/localhost(?::\d+)?$/.test(origin) ||
+          /^https?:\/\/127\.0\.0\.1(?::\d+)?$/.test(origin)) {
+        return callback(null, true);
+      }
+      return callback(new Error(`Origin ${origin} not allowed by CORS`));
+    },
+    credentials: true,
     methods: ['GET', 'POST']
   }
 });
@@ -143,10 +159,32 @@ app.use(helmet({
 }));
 
 // CORS configuration
+// Allow configured origins from CORS_ORIGIN env (comma-separated), with a
+// safety net for any localhost / 127.0.0.1 port during development. This
+// prevents Vite picking a different port (5174 instead of 5173) from
+// breaking auth and API calls.
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || '*',
+  origin: (origin, callback) => {
+    // Allow same-origin / non-browser requests (no Origin header)
+    if (!origin) return callback(null, true);
+
+    const configured = process.env.CORS_ORIGIN;
+    if (configured === '*') return callback(null, true);
+    if (configured) {
+      const allowed = configured.split(',').map((s) => s.trim()).filter(Boolean);
+      if (allowed.includes(origin)) return callback(null, true);
+    }
+
+    // In development, allow any localhost or 127.0.0.1 port
+    if (/^https?:\/\/localhost(?::\d+)?$/.test(origin) ||
+        /^https?:\/\/127\.0\.0\.1(?::\d+)?$/.test(origin)) {
+      return callback(null, true);
+    }
+
+    return callback(new Error(`Origin ${origin} not allowed by CORS`));
+  },
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
