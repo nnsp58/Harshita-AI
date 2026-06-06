@@ -310,6 +310,25 @@ app.get('/health', (req, res) => {
   });
 });
 
+app.get('/debug-paths', (req, res) => {
+  const fs = require('fs');
+  const path = require('path');
+  const dir = path.join(__dirname, '../../frontend/dist');
+  try {
+    const files = fs.readdirSync(dir);
+    let assets = [];
+    try {
+      assets = fs.readdirSync(path.join(dir, 'assets'));
+    } catch (ae) {
+      assets = [`Error listing assets: ${ae.message}`];
+    }
+    res.json({ exists: true, path: dir, files, assets });
+  } catch (e) {
+    res.json({ exists: false, error: e.message, path: dir });
+  }
+});
+
+
 // Dashboard stats
 app.get('/api/dashboard/stats', async (req, res) => {
   const controllerAgent = req.app.get('controllerAgent');
