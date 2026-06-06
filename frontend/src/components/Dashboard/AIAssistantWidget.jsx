@@ -83,13 +83,13 @@ export default function AIAssistantWidget() {
           </div>
         ) : (
           messages.map((msg, i) => (
-            <div key={i} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
+            <div key={i} className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}>
               <div className={`max-w-[85%] rounded-2xl px-4 py-2 text-sm ${
-                msg.sender === 'user' 
+                msg.type === 'user' 
                   ? 'bg-indigo-600 text-white rounded-br-none' 
                   : 'bg-slate-800 text-slate-200 rounded-bl-none border border-slate-700'
               }`}>
-                {msg.text}
+                {msg.message || msg.text}
               </div>
             </div>
           ))

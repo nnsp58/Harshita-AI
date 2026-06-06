@@ -13,7 +13,18 @@ const api = axios.create({
 
 // Request interceptor - add auth token
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token') || sessionStorage.getItem('token')
+  let token = localStorage.getItem('token') || sessionStorage.getItem('token');
+  if (!token) {
+    try {
+      const storeStr = localStorage.getItem('ndizi-ai-dashboard-storage');
+      if (storeStr) {
+        const store = JSON.parse(storeStr);
+        if (store?.state?.token) token = store.state.token;
+      }
+    } catch (e) {
+      console.error('Error parsing zustand storage for token:', e);
+    }
+  }
   if (token) {
     config.headers.Authorization = `Bearer ${token}`
   }
