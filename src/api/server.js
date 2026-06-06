@@ -240,16 +240,7 @@ app.post('/api/command', authenticate, async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error', message: error.message });
   }
 });
-// Serve frontend static files
-app.use(express.static(path.join(__dirname, '../../frontend/dist')));
-app.use(express.static(path.join(__dirname, 'public')));
 
-// Catch-all route for SPA
-app.get('*', (req, res, next) => {
-  // If it's an API request, skip to next (which will be 404/error handler)
-  if (req.url.startsWith('/api/')) return next();
-  res.sendFile(path.join(__dirname, '../../frontend/dist/index.html'));
-});
 
 // Rate limiting
 const limiter = rateLimit({
