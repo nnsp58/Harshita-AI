@@ -65,12 +65,10 @@ export default function Login() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-md"
+        className="w-full max-w-sm"
       >
         <div className="text-center mb-8">
-          <div className="w-24 h-24 mx-auto mb-4 bg-gradient-to-tr from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-500/20">
-            <span className="text-4xl font-bold text-white">N</span>
-          </div>
+          <img src="/harshita ai.png" alt="Harshita AI" className="w-24 h-24 mx-auto mb-4" />
           <h1 className="text-3xl font-heading font-bold text-white">N-Dizi AI</h1>
           <p className="text-slate-400 mt-2">Premium Service Marketplace</p>
         </div>
