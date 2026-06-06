@@ -1,7 +1,15 @@
 /**
  * EligibilitySkill — योग्यता / पात्रता जाँच
+ *
+ * Capabilities:
+ * - Multi-turn details gathering (scheme/job name, DOB, education, category)
+ * - Category age relaxations (OBC +3 yrs, SC/ST +5 yrs)
+ * - Execute EligibilityAgent pre-check
  */
+
 const { BaseSkill } = require('./BaseSkill');
+const { AISkillHelper } = require('./AISkillHelper');
+const { EligibilityAgent } = require('../agents/eligibilityAgent');
 
 class EligibilitySkill extends BaseSkill {
   constructor() {
@@ -11,9 +19,9 @@ class EligibilitySkill extends BaseSkill {
     this.displayNameEn = 'Eligibility Check';
     this.description = 'सरकारी योजनाओं और नौकरियों की पात्रता जाँचना';
     this.descriptionEn = 'Check eligibility for government schemes and jobs';
-    this.version = '1.0.0';
+    this.version = '2.0.0';
     this.category = 'government';
-    this.canRunOffline = true;
+    this.canRunOffline = false;
     this.priority = 6;
     this.intents = ['eligibility_check', 'yogyata_check', 'am_i_eligible', 'qualification_check'];
     this.keywords = {
@@ -22,25 +30,136 @@ class EligibilitySkill extends BaseSkill {
       hinglish: ['yogya hu', 'eligibility check', 'qualification check', 'age limit kya hai', 'paatra hu']
     };
     this.requiredAgents = ['eligibilityAgent'];
+    this.agent = new EligibilityAgent();
+    this.userSessions = new Map();
   }
 
   async execute(context) {
-    const { message, params } = context;
-    const text = message.toLowerCase();
+    const { message, userId } = context;
+    if (!message) return this._reply(this._getMenu());
 
-    // कोई specific service/scheme का नाम आया
-    const service = params?.service || null;
-    if (service) {
+    const userIdSafe = userId || 'anon';
+    const session = this._getSession(userIdSafe);
+    const pastContext = this._getContext ? this._getContext(userIdSafe, 5) : '';
+
+    const fields = [
+      { key: 'dob', desc: 'Date of Birth (DD-MM-YYYY)' },
+      { key: 'education', desc: 'Education qualification (10th pass, 12th pass, graduate)' },
+      { key: 'category', desc: 'Category (general, obc, sc, st)' },
+      { key: 'scheme', desc: 'Name of the job or scheme (e.g. ssc, railway, pmegp, police)' }
+    ];
+
+    const aiResult = await AISkillHelper.extractIntent({
+      userInput: message,
+      skillName: 'eligibility_check',
+      fields,
+      context: pastContext
+    });
+
+    Object.assign(session.entities, aiResult.entities || {});
+    if (aiResult.intent) session.intent = aiResult.intent;
+
+    const { dob, education, category, scheme } = session.entities;
+
+    if (!scheme) {
       return this._reply(
-        `🔍 *${service}* की पात्रता जाँच:\n\nकृपया बताएं:\n1. आपकी उम्र\n2. शिक्षा (10th/12th/Graduate)\n3. कैटेगरी (General/OBC/SC/ST)\n\nमैं बता दूँगा कि आप पात्र हैं या नहीं।`,
-        { mode: 'eligibility', service, step: 'collect_info' }
+        `🔍 *पात्रता जाँच (Eligibility Pre-Check)*\n\n` +
+        `किस योजना या नौकरी की पात्रता जाँचनी है? (जैसे: ssc, railway, pmegp, police)\n\n` +
+        `Example: "Mera eligibility check karo SSC ke liye"`
       );
     }
 
-    return this._reply(
-      '✅ पात्रता जाँच सेवा:\n\nबताएं किसकी पात्रता जाँचनी है:\n• "SSC के लिए eligible हूँ क्या?"\n• "Army की age limit क्या है?"\n• "PMEGP loan के लिए yogya हूँ?"\n\nकिस सर्विस/योजना की जाँच करनी है?',
-      { mode: 'eligibility_menu' }
-    );
+    // If info missing, prompt user
+    if (!dob || !education || !category) {
+      const missing = [];
+      if (!dob) missing.push("जन्म तिथि (Date of Birth - e.g. 15-08-1998)");
+      if (!education) missing.push("शिक्षा (Education - e.g. 12th Pass)");
+      if (!category) missing.push("श्रेणी (Category - General, OBC, SC, ST)");
+
+      return this._reply(
+        `🔍 *${scheme.toUpperCase()} Eligibility Pre-Check*\n\n` +
+        `पात्रता की गणना करने के लिए कृपया निम्नलिखित विवरण बताएं:\n` +
+        missing.map((m, idx) => `${idx + 1}. ${m}`).join('\n') + `\n\n` +
+        `Example: "Mera dob 12-04-2000 hai, general category, 12th pass"`,
+        { mode: 'collecting_info', collected: session.entities }
+      );
+    }
+
+    // Map education to standard categories
+    let minAge = 18;
+    let maxAge = 25;
+    if (scheme.toLowerCase().includes('ssc')) {
+      maxAge = education.toLowerCase().includes('grad') ? 32 : 27;
+    } else if (scheme.toLowerCase().includes('pmegp') || scheme.toLowerCase().includes('loan') || scheme.toLowerCase().includes('mudra')) {
+      minAge = 18;
+      maxAge = 60;
+    } else if (scheme.toLowerCase().includes('police')) {
+      maxAge = 22;
+    } else if (scheme.toLowerCase().includes('railway') || scheme.toLowerCase().includes('rrb')) {
+      maxAge = 33;
+    }
+
+    try {
+      // Reformat date from DD-MM-YYYY to YYYY-MM-DD for AgeCalculator
+      let formattedDob = dob;
+      const dateParts = dob.split(/[-/.]/);
+      if (dateParts.length === 3) {
+        if (dateParts[2].length === 4) {
+          formattedDob = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
+        }
+      }
+
+      const report = await this.agent.execute({
+        userData: {
+          personal: {
+            dob: formattedDob,
+            category: category.toLowerCase()
+          }
+        },
+        jobDetails: {
+          minAge,
+          maxAge
+        }
+      });
+
+      this.userSessions.delete(userIdSafe); // Reset session
+
+      if (report.success && report.ageCheck) {
+        const check = report.ageCheck;
+        const resultText = check.eligible
+          ? `✅ *आप योग्य हैं! (You are Eligible)*\n\n` +
+            `• योजना/नौकरी: ${scheme.toUpperCase()}\n` +
+            `• आपकी प्रभावी आयु: ${check.effectiveAge} वर्ष\n` +
+            `• आयु सीमा: ${minAge} से ${check.maxAgeLimit} वर्ष (कैटेगरी छूट शामिल)\n\n` +
+            `आप इस योजना/नौकरी के लिए आवेदन कर सकते हैं!`
+          : `❌ *आप अपात्र हैं (Not Eligible)*\n\n` +
+            `• योजना/नौकरी: ${scheme.toUpperCase()}\n` +
+            `• आपकी प्रभावी आयु: ${check.effectiveAge} वर्ष\n` +
+            `• आयु सीमा: ${minAge} से ${check.maxAgeLimit} वर्ष (कैटेगरी छूट शामिल)\n\n` +
+            `अपात्रता का कारण: आयु सीमा से बाहर।`;
+
+        return this._reply(resultText, { mode: 'eligibility_report', report });
+      }
+
+      return this._reply(`❌ पात्रता गणना करने में असमर्थ। कृपया पुनः प्रयास करें।`);
+    } catch (e) {
+      return this._reply(`⚠️ त्रुटि: ${e.message}`);
+    }
+  }
+
+  _getSession(userId) {
+    if (!this.userSessions.has(userId)) {
+      this.userSessions.set(userId, { entities: {}, intent: null, createdAt: Date.now() });
+    }
+    return this.userSessions.get(userId);
+  }
+
+  _getMenu() {
+    return `📋 *पात्रता जाँच (Eligibility Pre-Check)*\n\n` +
+      `आप किसी भी सरकारी योजना या नौकरी के लिए अपनी पात्रता जाँच सकते हैं।\n\n` +
+      `शुरू करने के लिए योजना/नौकरी का नाम बताएं:\n` +
+      `• "SSC की eligibility check करो"\n` +
+      `• "Mera yogyata check karo UP Police ke liye"`;
   }
 }
 

@@ -1,0 +1,78 @@
+(node:14128) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7) {
+  code: 'ECONNREFUSED',
+  [errors]: [
+    Error: connect ECONNREFUSED ::1:6379
+        at createConnectionError (node:net:1686:14)
+        at afterConnectMultiple (node:net:1716:16) {
+      errno: -4078,
+      code: 'ECONNREFUSED',
+      syscall: 'connect',
+      address: '::1',
+      port: 6379
+    },
+    Error: connect ECONNREFUSED 127.0.0.1:6379
+        at createConnectionError (node:net:1686:14)
+        at afterConnectMultiple (node:net:1716:16) {
+      errno: -4078,
+      code: 'ECONNREFUSED',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 6379
+    }
+  ]
+}
+⚠️ Redis not available, running in memory-only mode
+Error: Connection is closed.
+    at EventEmitter.connectionCloseHandler (D:\Harshita-AI\node_modules\ioredis\built\Redis.js:208:28)
+    at Object.onceWrapper (node:events:623:26)
+    at EventEmitter.emit (node:events:520:35)
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+[AIProvider] Provider 'gemini' not available for LegalDraftAgent. Using fallback.
+[AIProvider] Error for LegalDraftAgent: 404 The model `gemini-2.0-flash` does not exist or you do not have access to it.
+[LegalDraftSkill] AI call error: 404 The model `gemini-2.0-flash` does not exist or you do not have access to it.
+[AIProvider] Provider 'gemini' not available for LegalDraftAgent. Using fallback.
+[AIProvider] Error for LegalDraftAgent: 404 The model `gemini-2.0-flash` does not exist or you do not have access to it.
+[LegalDraftSkill] AI call error: 404 The model `gemini-2.0-flash` does not exist or you do not have access to it.
+[AIProvider] Provider 'gemini' not available for LegalDraftAgent. Using fallback.
+[AIProvider] Error for LegalDraftAgent: 404 The model `gemini-2.0-flash` does not exist or you do not have access to it.
+[LegalDraftSkill] AI call error: 404 The model `gemini-2.0-flash` does not exist or you do not have access to it.
+[AIProvider] Provider 'gemini' not available for LegalDraftAgent. Using fallback.
+[AIProvider] Error for LegalDraftAgent: 404 The model `gemini-2.0-flash` does not exist or you do not have access to it.
+[LegalDraftSkill] AI call error: 404 The model `gemini-2.0-flash` does not exist or you do not have access to it.
+[AIProvider] Provider 'gemini' not available for LegalDraftAgent. Using fallback.
+[AIProvider] Error for LegalDraftAgent: 404 The model `gemini-2.0-flash` does not exist or you do not have access to it.
+[LegalDraftSkill] AI call error: 404 The model `gemini-2.0-flash` does not exist or you do not have access to it.
+[AIProvider] Provider 'gemini' not available for LegalDraftAgent. Using fallback.
+[AIProvider] Error for LegalDraftAgent: 404 The model `gemini-2.0-flash` does not exist or you do not have access to it.
+[LegalDraftSkill] AI call error: 404 The model `gemini-2.0-flash` does not exist or you do not have access to it.
+[AIProvider] Provider 'gemini' not available for LegalDraftAgent. Using fallback.
+[AIProvider] Error for LegalDraftAgent: 404 The model `gemini-2.0-flash` does not exist or you do not have access to it.
+[LegalDraftSkill] AI call error: 404 The model `gemini-2.0-flash` does not exist or you do not have access to it.
+[AIProvider] Provider 'gemini' not available for LegalDraftAgent. Using fallback.
+[AIProvider] Error for LegalDraftAgent: 404 The model `gemini-2.0-flash` does not exist or you do not have access to it.
+[LegalDraftSkill] AI call error: 404 The model `gemini-2.0-flash` does not exist or you do not have access to it.
+[AIProvider] Provider 'gemini' not available for LegalDraftAgent. Using fallback.
+[AIProvider] Error for LegalDraftAgent: 404 The model `gemini-2.0-flash` does not exist or you do not have access to it.
+[LegalDraftSkill] AI call error: 404 The model `gemini-2.0-flash` does not exist or you do not have access to it.
+[AIProvider] Provider 'gemini' not available for LegalDraftAgent. Using fallback.
+[AIProvider] Error for LegalDraftAgent: 404 The model `gemini-2.0-flash` does not exist or you do not have access to it.
+[LegalDraftSkill] AI call error: 404 The model `gemini-2.0-flash` does not exist or you do not have access to it.
+🔴 Network lost! Pausing active jobs...
+🔴 Network lost! Pausing active jobs...
+🔴 Network lost! Pausing active jobs...
+[AIProvider] Provider 'gemini' not available for LegalDraftAgent. Using fallback.
+[AIProvider] Error for LegalDraftAgent: 404 The model `gemini-2.0-flash` does not exist or you do not have access to it.
+[LegalDraftSkill] AI call error: 404 The model `gemini-2.0-flash` does not exist or you do not have access to it.
+🔴 Network lost! Pausing active jobs...
+❌ Token verification failed: jwt expired
+🚫 Auth Error: jwt expired
+❌ Token verification failed: jwt expired
+🚫 Auth Error: jwt expired
+🔴 Network lost! Pausing active jobs...
+🔴 Network lost! Pausing active jobs...
+🔴 Network lost! Pausing active jobs...
+🔴 Network lost! Pausing active jobs...

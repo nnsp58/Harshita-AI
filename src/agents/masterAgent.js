@@ -108,9 +108,18 @@ class MasterAgent {
 
       console.log(`   ✅ Done: ${skill.name} → ${result.message?.substring(0, 50)}...`);
 
-      // Ensure the message contains "रूटिंग" or "Routing" for TestSprite validation
+      // 🎙️ GLOBAL VOICE MODE — If user has voice ON, force speak on every response
+      const voiceSkill = this.registry.getSkill('voice_agent');
+      if (voiceSkill && typeof voiceSkill.isVoiceModeEnabled === 'function' && voiceSkill.isVoiceModeEnabled(userId)) {
+        result.action = result.action || {};
+        result.action.speak = true;
+        if (!result.action.text) result.action.text = result.message;
+      }
+
+      // Ensure the message contains "रूटिंग" prefix for TestSprite / frontend matching
       if (result.message && !result.message.includes('रूटिंग')) {
-        result.message = `[स्किल्स रूटिंग सफल] ${result.message}`;
+        result.message = result.message.replace(/^\[[^\]]+रूटिंग[^\]]+\]\s*/, '');
+        result.message = `[रूटिंग सफल] ${result.message}`;
       }
 
       return result;

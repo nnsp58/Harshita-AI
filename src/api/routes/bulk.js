@@ -22,6 +22,17 @@ const upload = multer({
   }
 });
 
+// Configure multer for PDF uploads (separate filter)
+const pdfUpload = multer({
+  dest: path.join(process.cwd(), 'uploads', 'bulk'),
+  limits: { fileSize: 10 * 1024 * 1024 },
+  fileFilter: (req, file, cb) => {
+    const ext = path.extname(file.originalname).toLowerCase();
+    if (ext === '.pdf') cb(null, true);
+    else cb(new Error(`Only PDF files allowed`));
+  }
+});
+
 // GET /api/bulk/template — Download sample Excel template
 router.get('/template', (req, res) => {
   try {

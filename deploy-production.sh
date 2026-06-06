@@ -16,7 +16,7 @@ NC='\033[0m' # No Color
 # Configuration
 APP_NAME="harshita-ai-brain"
 APP_DIR="/opt/$APP_NAME"
-DOMAIN="harshita-ai.csc.gov.in"  # Replace with actual domain
+DOMAIN="n-dizi.in"  # Replace with actual domain
 NODE_VERSION="18"
 DB_PATH="./data/dev.db"
 
@@ -151,6 +151,9 @@ setup_application() {
 configure_environment() {
     log_info "Configuring environment variables..."
 
+    # Create application directory if it doesn't exist yet
+    mkdir -p $APP_DIR
+
     # Create .env file
     cat > $APP_DIR/.env << EOF
 # Production Environment Configuration
@@ -213,6 +216,8 @@ setup_nginx() {
 
     # Create Nginx configuration
     cat > /etc/nginx/sites-available/$APP_NAME << EOF
+limit_req_zone \$binary_remote_addr zone=api:10m rate=10r/s;
+
 server {
     listen 80;
     server_name $DOMAIN www.$DOMAIN;
@@ -521,8 +526,8 @@ main() {
     install_nodejs
     install_dependencies
     setup_database
-    setup_application
     configure_environment
+    setup_application
     setup_nginx
     setup_ssl
     setup_firewall

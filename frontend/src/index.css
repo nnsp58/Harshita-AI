@@ -332,3 +332,61 @@ input.pl-10 {
 .animate-delay-300 { animation-delay: 300ms; }
 .animate-delay-400 { animation-delay: 400ms; }
 .animate-delay-500 { animation-delay: 500ms; }
+
+/* ===== Print Styles for TA-DA Naksha (Legal Landscape) ===== */
+@media print {
+  @page {
+    size: legal landscape;
+    margin: 0;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    margin: 0 !important;
+  }
+
+  /* Hide everything except naksha page */
+  header, nav, .no-print, [class*="bg-[#0"], [class*="border-white"] {
+    display: none !important;
+  }
+
+  .naksha-print-wrapper {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .naksha-page {
+    width: 100% !important;
+    min-height: auto !important;
+    box-shadow: none !important;
+    padding: 5mm !important;
+    margin: 0 !important;
+  }
+
+  .naksha-preview {
+    border: 2px solid black !important;
+    background: white !important;
+    color: black !important;
+    border-radius: 0 !important;
+    font-size: 11px !important;
+    padding: 3mm !important;
+  }
+
+  .naksha-preview table {
+    width: 100% !important;
+  }
+
+  .naksha-preview .no-print {
+    display: none !important;
+  }
+
+  .prarthna-section {
+    display: block !important;
+    page-break-before: avoid;
+  }
+}

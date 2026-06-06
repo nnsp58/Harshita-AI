@@ -60,15 +60,20 @@ export default function TADAForm() {
   const parseAndCalculate = async () => {
     setIsGenerating(true)
     try {
-      // Call the workflow webhook
-      const response = await fetch('/webhook/ta-da-generate', {
+      // Use the backend API instead of webhook
+      const token = localStorage.getItem('token')
+      const response = await fetch('/api/command', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ input })
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+        body: JSON.stringify({ cmd: input, userId: 'current' })
       })
-      const result = await response.json()
-      setParsedData(result.parsedData)
-      setCalculations(result.calculations)
+      if (response.ok) {
+        const result = await response.json()
+        setParsedData(result.data || result)
+        setCalculations(result.calculations || null)
+      } else {
+        console.warn('TA-DA API returned:', response.status)
+      }
     } catch (error) {
       console.error('Error:', error)
     }

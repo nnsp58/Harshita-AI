@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
+import { GoogleOAuthProvider } from '@react-oauth/google'
 
 // Global error handler for uncaught errors
 window.onerror = function(msg, url, line) {
@@ -16,6 +17,8 @@ window.addEventListener('unhandledrejection', function(e) {
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID || 'YOUR_GOOGLE_CLIENT_ID_HERE'}>
+      <App />
+    </GoogleOAuthProvider>
   </StrictMode>,
 )

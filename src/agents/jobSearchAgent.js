@@ -356,7 +356,8 @@ class JobSearchAgent {
       );
     } else {
       // Unknown qualification - try AI matching
-      if (this.openai) {
+      const client = aiProviderManager.getClient(this.name);
+      if (client) {
         return await this._aiJobMatch(qualification);
       }
       return {

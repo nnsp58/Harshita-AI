@@ -1,0 +1,878 @@
+{
+  "user1:tada_process": {
+    "userId": "user1",
+    "skill": "tada_process",
+    "messages": [
+      {
+        "role": "user",
+        "content": "test message",
+        "timestamp": "2026-05-21T17:33:58.612Z"
+      },
+      {
+        "role": "assistant",
+        "content": "test reply",
+        "timestamp": "2026-05-21T17:33:58.612Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-05-21T17:33:58.609Z",
+    "lastActive": "2026-05-21T17:33:58.612Z"
+  },
+  "1:legal_notice": {
+    "userId": "1",
+    "skill": "legal_notice",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Cheque bounce notice bhejna hai Sham Lal ko 50000 rupaye ka",
+        "timestamp": "2026-05-22T05:11:13.599Z"
+      },
+      {
+        "role": "assistant",
+        "content": "\n═══════════════════════════════════════════════════════════════\n                    ADV. RAMESH KUMAR SINGH\n                          Advocate\n              Practising at: District Court Lucknow\n\n   Enrollment No: UP/12345/2018\n   Chamber: 12, Civil Court Road, Lucknow, UP - 226001\n   Phone: 9876543210 | Email: ramesh.adv@example.com\n═══════════════════════════════════════════════════════════════\n\nRef. No: LN/2026/____            Date: 22/5/2026\n\nNOTICE\nThrough Registered Post AD / Email\n\nTO,\n[Recipient Name]\n[Recipient Full Address]\n[City, State, PIN]\n\nSir / Madam,\n\nUnder instructions from and on behalf of my client, I hereby serve upon you the following notice:\n\n1. That my client [Client Name], S/o [Father's Name], R/o [Address], is aggrieved by your following acts:\n\n   Cheque bounce notice bhejna hai Sham Lal ko 50000 rupaye ka\n\n2. That despite repeated requests, you have failed to address the matter amicably, leaving my client with no choice but to issue this formal legal notice.\n\n3. That your aforesaid acts/omissions have caused mental agony, financial loss, and harassment to my client, for which you are legally liable.\n\n4. I hereby call upon you to:\n   a) Cease and desist from the aforementioned acts immediately;\n   b) Make good the loss caused to my client;\n   c) Send a written reply to this notice within 15 (fifteen) days from the date of receipt;\n   d) Comply with the demands stated above.\n\n5. TAKE NOTICE that in case you fail to comply with the above demands within the stipulated time, my client shall be constrained to initiate appropriate civil and/or criminal proceedings against you in the competent court of law, at your sole risk, costs, and consequences, without any further notice or intimation.\n\n6. A copy of this notice is being retained in my office for record and future reference.\n\nTake notice accordingly.\n\nYours faithfully,\n\n═══════════════════════════════════════════════════════════════\n\n                                          Adv. Ramesh Kumar",
+        "timestamp": "2026-05-22T05:11:13.600Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Cheque bounce notice ₹50000 ka",
+        "timestamp": "2026-05-23T02:25:47.388Z"
+      },
+      {
+        "role": "assistant",
+        "content": "⚠️ *Profile Setup Required*\n\nLegal notice भेजने के लिए पहले advocate profile setup करें:\n\nExample: \"Mera naam Adv. Ramesh Kumar hai, enrollment UP/12345/2018, chamber 12 Civil Court Road Lucknow, phone 9876543210, email rk@law.com\"",
+        "timestamp": "2026-05-23T02:25:47.388Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Cheque bounce notice ₹50000 ka",
+        "timestamp": "2026-05-23T02:26:32.357Z"
+      },
+      {
+        "role": "assistant",
+        "content": "⚠️ *Profile Setup Required*\n\nLegal notice भेजने के लिए पहले advocate profile setup करें:\n\nExample: \"Mera naam Adv. Ramesh Kumar hai, enrollment UP/12345/2018, chamber 12 Civil Court Road Lucknow, phone 9876543210, email rk@law.com\"",
+        "timestamp": "2026-05-23T02:26:32.357Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Money recovery notice ₹2 lakh ka",
+        "timestamp": "2026-05-23T02:54:54.895Z"
+      },
+      {
+        "role": "assistant",
+        "content": "⚠️ *Profile Setup Required*\n\nLegal notice भेजने के लिए पहले advocate profile setup करें:\n\nExample: \"Mera naam Adv. Ramesh Kumar hai, enrollment UP/12345/2018, chamber 12 Civil Court Road Lucknow, phone 9876543210, email rk@law.com\"",
+        "timestamp": "2026-05-23T02:54:54.895Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Legal draft banao - Affidavit / शपथ पत्र: mere 10th, 12th graduation ke sabhi document gum ho gayye hai mera naam nar narayan singh hai vill post sikhera disst bulandshahr up pin 203002 pita ka naam  sree meer singh. Language: Hindi only",
+        "timestamp": "2026-05-23T23:04:48.376Z"
+      },
+      {
+        "role": "assistant",
+        "content": "⚠️ *Profile Setup Required*\n\nLegal notice भेजने के लिए पहले advocate profile setup करें:\n\nExample: \"Mera naam Adv. Ramesh Kumar hai, enrollment UP/12345/2018, chamber 12 Civil Court Road Lucknow, phone 9876543210, email rk@law.com\"",
+        "timestamp": "2026-05-23T23:04:48.377Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-05-22T05:11:13.599Z",
+    "lastActive": "2026-05-23T23:04:48.377Z"
+  },
+  "1:legal_draft": {
+    "userId": "1",
+    "skill": "legal_draft",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Naam change ka affidavit banao",
+        "timestamp": "2026-05-22T13:39:50.895Z"
+      },
+      {
+        "role": "assistant",
+        "content": "शपथ पत्र / AFFIDAVIT\n═══════════════════════════════════════════════════════\n\nमैं, [नाम / Name], पुत्र / पुत्री [पिता का नाम / Father's Name], आयु [____] वर्ष,\nनिवासी [पूरा पता / Full Address], आधार संख्या [____________],\nसत्य निष्ठा से शपथ लेकर निम्न प्रकार बयान करता हूँ:\n\nI, [Name] S/o [Father's Name], aged [__] years, R/o [Full Address],\nAadhaar No. [____________], do hereby solemnly affirm and declare as under:\n\nविषय / SUBJECT:\nNaam change ka affidavit banao\n\nघोषणा / DECLARATION:\n1. यह कि उपरोक्त कथन मेरी जानकारी और विश्वास के अनुसार सत्य है।\n   That the above statement is true to the best of my knowledge and belief.\n2. यह कि मैंने कोई भी तथ्य छुपाया नहीं है।\n   That I have not concealed any material fact.\n3. यह शपथ पत्र विधिक प्रयोजन हेतु निष्पादित किया जा रहा है।\n   This affidavit is executed for legal purposes.\n\nसत्यापन / VERIFICATION:\nसत्यापित किया जाता है कि उपरोक्त कथन के पैरा 1 से अंत तक सत्य हैं और कुछ भी असत्य नहीं है।\nVerified that the contents of the above paragraphs are true and nothing is false.\n\nदिनांक / Date: 22/5/2026                  शपथकर्ता / Deponent\nस्थान / Place: ___________               हस्ताक्षर: ____________\n\n═══════════════════════════════════════════════════════\nनोट: नोटरी पब्लिक से प्रमाणित कराएं / Get notarized by Notary Public.",
+        "timestamp": "2026-05-22T13:39:50.895Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Apni sampatti patni ke naam karna hai (Gift Deed)",
+        "timestamp": "2026-05-23T01:22:59.874Z"
+      },
+      {
+        "role": "assistant",
+        "content": "दान विलेख / GIFT DEED\n═══════════════════════════════════════════════════════\n\nयह दान विलेख आज दिनांक 23/5/2026 को निम्नलिखित पक्षकारों के बीच निष्पादित किया जाता है:\nThis Gift Deed is executed on this 23/5/2026 between the following parties:\n\nदानकर्ता / DONOR:\nश्री [नाम / Name], पुत्र / पुत्री [पिता का नाम / Father's Name],\nनिवासी [पूरा पता / Full Address]\n(आधार संख्या / Aadhaar No.: [_______________])\n\nदानग्रहीता / DONEE:\nश्रीमती [पत्नी का नाम / Wife's Name], पत्नी [पति का नाम],\nनिवासी [पूरा पता]\n(आधार संख्या: [_______________])\n\nविषय / SUBJECT MATTER:\nApni sampatti patni ke naam karna hai (Gift Deed)\n\nजबकि / WHEREAS:\n1. दानकर्ता उपरोक्त सम्पत्ति का पूर्ण और निरपेक्ष स्वामी है।\n   The Donor is the absolute owner of the above property.\n2. दानकर्ता अपनी पत्नी (दानग्रहीता) के प्रति प्रेम एवं स्नेह के कारण यह दान करना चाहता है।\n   The Donor wishes to gift this property out of natural love and affection for his wife.\n\nअब इसलिए यह विलेख यह साक्ष्य देता है कि / NOW THIS DEED WITNESSES:\n1. दानकर्ता उपरोक्त सम्पत्ति का दान दानग्रहीता को बिना किसी प्रतिफल के करता है।\n2. दानग्रहीता ने उक्त दान स्वीकार किया है।\n3. दानकर्ता का सम्पत्ति में अब कोई हक, टाइटल या हित नहीं रहा।\n\nसाक्षी / WITNESSES:\n1. _________________________\n2. _________________________\n\nदिनांक / Date: 23/5/2026        दानकर्ता हस्ताक्षर: _____________\nस्थान / Place: ____________   दानग्रहीता हस्ताक्षर: ____________\n\n═══════════════════════════════════════════════════════\nNote: यह draft है — नज़दीकी sub-registrar office में पंजीकरण कराएं।\nPlease register at sub-registrar office for legal validity.",
+        "timestamp": "2026-05-23T01:22:59.874Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Naam change ka affidavit banao",
+        "timestamp": "2026-05-23T01:27:49.594Z"
+      },
+      {
+        "role": "assistant",
+        "content": "शपथ पत्र / AFFIDAVIT\n═══════════════════════════════════════════════════════════════════════════════\n\nमैं, [नाम], पुत्र / पुत्री [पिता का नाम], आयु [____] वर्ष, निवासी [पूरा पता],\nआधार संख्या [________________], सत्यनिष्ठा से शपथ लेकर निम्नलिखित घोषणा करता/करती हूँ:\n\nI, [Name], S/o [Father's Name], aged [__] years, R/o [Full Address],\nAadhaar No. [________________], do hereby solemnly affirm and declare as under:\n\nविषय / SUBJECT:\nNaam change ka affidavit banao\n\nघोषणा / DECLARATION:\n1. यह कि उपरोक्त कथन मेरी व्यक्तिगत जानकारी, विश्वास और सत्य के अनुसार पूर्णतः सही है।\n2. यह कि मैंने इस शपथ पत्र में कोई भी तथ्य जानबूझकर छुपाया या विकृत नहीं किया है।\n3. यह कि यह शपथ पत्र विधिक प्रयोजनों हेतु निष्पादित किया जा रहा है।\n\nसत्यापन / VERIFICATION:\nसत्यापित किया जाता है कि उपरोक्त पैरा 1 से 3 तक के कथन मेरी जानकारी और विश्वास के अनुसार सत्य हैं तथा इनमें कुछ भी असत्य नहीं है।\n\nदिनांक / Date: 23/5/2026                              स्थान / Place: ____________\n\nशपथकर्ता / Deponent\nनाम: ___________________________\nहस्ताक्षर: _______________________\n\n═══════════════════════════════════════════════════════════════════════════════\nनोट: इस शपथ पत्र को नोटरी पब्लिक से सत्यापित करवाना अनिवार्य है।",
+        "timestamp": "2026-05-23T01:27:49.595Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Vehicle transfer ke liye NOC chahiye",
+        "timestamp": "2026-05-23T01:55:24.130Z"
+      },
+      {
+        "role": "assistant",
+        "content": "अनापत्ति प्रमाण पत्र / NO OBJECTION CERTIFICATE\n═══════════════════════════════════════════════════════════════════════════════\n\nदिनांक / Date: 23/5/2026\n\nप्रति / TO,\n[प्राप्तकर्ता का नाम और पद / Recipient Name & Designation]\n[कार्यालय का पता / Office Address]\n\nविषय / SUBJECT: Vehicle transfer ke liye NOC chahiye\n\nमहोदय / SIR,\n\nमैं, [नाम], पुत्र / पुत्री [पिता का नाम], निवासी [पूरा पता],\nएतद् द्वारा स्वेच्छा से, बिना किसी दबाव या प्रभाव के, पूर्ण होश और समझ के साथ घोषणा करता/करती हूँ कि उपरोक्त विषय के सम्बन्ध में मुझे कोई आपत्ति नहीं है।\n\nI, [Name], S/o [Father's Name], R/o [Full Address], do hereby voluntarily and without any pressure or undue influence, declare that I have NO OBJECTION in respect of the above subject matter.\n\nयह अनापत्ति मैं अपनी स्वतंत्र इच्छा से, पूर्ण ज्ञान और समझ के साथ दे रहा/रही हूँ।\n\nI am issuing this NOC of my own free will, with full knowledge and understanding.\n\nप्रार्थी / Yours faithfully,\n\nहस्ताक्षर / Signature: ______________________\nनाम / Name: ______________________________\nदिनांक / Date: 23/5/2026\n\n═══════════════════════════════════════════════════════════════════════════════",
+        "timestamp": "2026-05-23T01:55:24.130Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Naam change ka affidavit banao",
+        "timestamp": "2026-05-23T02:02:06.995Z"
+      },
+      {
+        "role": "assistant",
+        "content": "शपथ पत्र / AFFIDAVIT\n═══════════════════════════════════════════════════════════════════════════════\n\nमैं, [नाम], पुत्र / पुत्री [पिता का नाम], आयु [____] वर्ष, निवासी [पूरा पता],\nआधार संख्या [________________], सत्यनिष्ठा से शपथ लेकर निम्नलिखित घोषणा करता/करती हूँ:\n\nI, [Name], S/o [Father's Name], aged [__] years, R/o [Full Address],\nAadhaar No. [________________], do hereby solemnly affirm and declare as under:\n\nविषय / SUBJECT:\nNaam change ka affidavit banao\n\nघोषणा / DECLARATION:\n1. यह कि उपरोक्त कथन मेरी व्यक्तिगत जानकारी, विश्वास और सत्य के अनुसार पूर्णतः सही है।\n2. यह कि मैंने इस शपथ पत्र में कोई भी तथ्य जानबूझकर छुपाया या विकृत नहीं किया है।\n3. यह कि यह शपथ पत्र विधिक प्रयोजनों हेतु निष्पादित किया जा रहा है।\n\nसत्यापन / VERIFICATION:\nसत्यापित किया जाता है कि उपरोक्त पैरा 1 से 3 तक के कथन मेरी जानकारी और विश्वास के अनुसार सत्य हैं तथा इनमें कुछ भी असत्य नहीं है।\n\nदिनांक / Date: 23/5/2026                              स्थान / Place: ____________\n\nशपथकर्ता / Deponent\nनाम: ___________________________\nहस्ताक्षर: _______________________\n\n═══════════════════════════════════════════════════════════════════════════════\nनोट: इस शपथ पत्र को नोटरी पब्लिक से सत्यापित करवाना अनिवार्य है।",
+        "timestamp": "2026-05-23T02:02:06.995Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Vehicle transfer ke liye NOC chahiye",
+        "timestamp": "2026-05-23T02:25:21.318Z"
+      },
+      {
+        "role": "assistant",
+        "content": "अनापत्ति प्रमाण पत्र / NO OBJECTION CERTIFICATE\n═══════════════════════════════════════════════════════════════════════════════\n\nदिनांक / Date: 23/5/2026\n\nप्रति / TO,\n[प्राप्तकर्ता का नाम और पद / Recipient Name & Designation]\n[कार्यालय का पता / Office Address]\n\nविषय / SUBJECT: Vehicle transfer ke liye NOC chahiye\n\nमहोदय / SIR,\n\nमैं, [नाम], पुत्र / पुत्री [पिता का नाम], निवासी [पूरा पता],\nएतद् द्वारा स्वेच्छा से, बिना किसी दबाव या प्रभाव के, पूर्ण होश और समझ के साथ घोषणा करता/करती हूँ कि उपरोक्त विषय के सम्बन्ध में मुझे कोई आपत्ति नहीं है।\n\nI, [Name], S/o [Father's Name], R/o [Full Address], do hereby voluntarily and without any pressure or undue influence, declare that I have NO OBJECTION in respect of the above subject matter.\n\nयह अनापत्ति मैं अपनी स्वतंत्र इच्छा से, पूर्ण ज्ञान और समझ के साथ दे रहा/रही हूँ।\n\nI am issuing this NOC of my own free will, with full knowledge and understanding.\n\nप्रार्थी / Yours faithfully,\n\nहस्ताक्षर / Signature: ______________________\nनाम / Name: ______________________________\nदिनांक / Date: 23/5/2026\n\n═══════════════════════════════════════════════════════════════════════════════",
+        "timestamp": "2026-05-23T02:25:21.318Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Legal draft banao - Affidavit / शपथ पत्र: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता पनघल के नाम करता हूँ ।. Language: Bilingual Hindi+English",
+        "timestamp": "2026-05-23T02:53:46.052Z"
+      },
+      {
+        "role": "assistant",
+        "content": "शपथ पत्र / AFFIDAVIT\n═══════════════════════════════════════════════════════════════════════════════\n\nमैं, [नाम], पुत्र / पुत्री [पिता का नाम], आयु [____] वर्ष, निवासी [पूरा पता],\nआधार संख्या [________________], सत्यनिष्ठा से शपथ लेकर निम्नलिखित घोषणा करता/करती हूँ:\n\nI, [Name], S/o [Father's Name], aged [__] years, R/o [Full Address],\nAadhaar No. [________________], do hereby solemnly affirm and declare as under:\n\nविषय / SUBJECT:\nLegal draft banao - Affidavit / शपथ पत्र: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता पनघल के नाम करता हूँ ।. Language: Bilingual Hindi+English\n\nघोषणा / DECLARATION:\n1. यह कि उपरोक्त कथन मेरी व्यक्तिगत जानकारी, विश्वास और सत्य के अनुसार पूर्णतः सही है।\n2. यह कि मैंने इस शपथ पत्र में कोई भी तथ्य जानबूझकर छुपाया या विकृत नहीं किया है।\n3. यह कि यह शपथ पत्र विधिक प्रयोजनों हेतु निष्पादित किया जा रहा है।\n\nसत्यापन / VERIFICATION:\nसत्यापित किया जाता है कि उपरोक्त पैरा 1 से 3 तक के कथन मेरी जानकारी और विश्वास के अनुसार सत्य हैं तथा इनमें कुछ भी असत्य नहीं है।\n\nदिनांक / Date: 23/5/2026                              स्थान / Place: ____________\n\nशपथकर्ता / Deponent\nनाम: ___________________________\nहस्ताक्षर: _______________________\n\n═══════════════════════════════════════════════════════════════════════════════\nनोट: इस शपथ पत्र को नोटरी पब्लिक से सत्यापित करवाना अनिवार्य है।",
+        "timestamp": "2026-05-23T02:53:46.053Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Legal draft banao - Affidavit / शपथ पत्र: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता पनघल के नाम करता हूँ ।. Language: Bilingual Hindi+English",
+        "timestamp": "2026-05-23T02:56:10.232Z"
+      },
+      {
+        "role": "assistant",
+        "content": "शपथ पत्र / AFFIDAVIT\n═══════════════════════════════════════════════════════════════════════════════\n\nमैं, [नाम], पुत्र / पुत्री [पिता का नाम], आयु [____] वर्ष, निवासी [पूरा पता],\nआधार संख्या [________________], सत्यनिष्ठा से शपथ लेकर निम्नलिखित घोषणा करता/करती हूँ:\n\nI, [Name], S/o [Father's Name], aged [__] years, R/o [Full Address],\nAadhaar No. [________________], do hereby solemnly affirm and declare as under:\n\nविषय / SUBJECT:\nLegal draft banao - Affidavit / शपथ पत्र: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता पनघल के नाम करता हूँ ।. Language: Bilingual Hindi+English\n\nघोषणा / DECLARATION:\n1. यह कि उपरोक्त कथन मेरी व्यक्तिगत जानकारी, विश्वास और सत्य के अनुसार पूर्णतः सही है।\n2. यह कि मैंने इस शपथ पत्र में कोई भी तथ्य जानबूझकर छुपाया या विकृत नहीं किया है।\n3. यह कि यह शपथ पत्र विधिक प्रयोजनों हेतु निष्पादित किया जा रहा है।\n\nसत्यापन / VERIFICATION:\nसत्यापित किया जाता है कि उपरोक्त पैरा 1 से 3 तक के कथन मेरी जानकारी और विश्वास के अनुसार सत्य हैं तथा इनमें कुछ भी असत्य नहीं है।\n\nदिनांक / Date: 23/5/2026                              स्थान / Place: ____________\n\nशपथकर्ता / Deponent\nनाम: ___________________________\nहस्ताक्षर: _______________________\n\n═══════════════════════════════════════════════════════════════════════════════\nनोट: इस शपथ पत्र को नोटरी पब्लिक से सत्यापित करवाना अनिवार्य है।",
+        "timestamp": "2026-05-23T02:56:10.232Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Legal draft banao - Affidavit / शपथ पत्र: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता पनघल के नाम करता हूँ ।. Language: Bilingual Hindi+English",
+        "timestamp": "2026-05-23T02:59:42.602Z"
+      },
+      {
+        "role": "assistant",
+        "content": "शपथ पत्र / AFFIDAVIT\n═══════════════════════════════════════════════════════════════════════════════\n\nमैं, [नाम], पुत्र / पुत्री [पिता का नाम], आयु [____] वर्ष, निवासी [पूरा पता],\nआधार संख्या [________________], सत्यनिष्ठा से शपथ लेकर निम्नलिखित घोषणा करता/करती हूँ:\n\nI, [Name], S/o [Father's Name], aged [__] years, R/o [Full Address],\nAadhaar No. [________________], do hereby solemnly affirm and declare as under:\n\nविषय / SUBJECT:\nLegal draft banao - Affidavit / शपथ पत्र: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता पनघल के नाम करता हूँ ।. Language: Bilingual Hindi+English\n\nघोषणा / DECLARATION:\n1. यह कि उपरोक्त कथन मेरी व्यक्तिगत जानकारी, विश्वास और सत्य के अनुसार पूर्णतः सही है।\n2. यह कि मैंने इस शपथ पत्र में कोई भी तथ्य जानबूझकर छुपाया या विकृत नहीं किया है।\n3. यह कि यह शपथ पत्र विधिक प्रयोजनों हेतु निष्पादित किया जा रहा है।\n\nसत्यापन / VERIFICATION:\nसत्यापित किया जाता है कि उपरोक्त पैरा 1 से 3 तक के कथन मेरी जानकारी और विश्वास के अनुसार सत्य हैं तथा इनमें कुछ भी असत्य नहीं है।\n\nदिनांक / Date: 23/5/2026                              स्थान / Place: ____________\n\nशपथकर्ता / Deponent\nनाम: ___________________________\nहस्ताक्षर: _______________________\n\n═══════════════════════════════════════════════════════════════════════════════\nनोट: इस शपथ पत्र को नोटरी पब्लिक से सत्यापित करवाना अनिवार्य है।",
+        "timestamp": "2026-05-23T02:59:42.602Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Legal draft banao - Affidavit / शपथ पत्र: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह ग्राम व पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ। मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता panghal के नाम करता हूँ।. Language: Bilingual Hindi+English",
+        "timestamp": "2026-05-23T03:12:46.308Z"
+      },
+      {
+        "role": "assistant",
+        "content": "शपथ पत्र / AFFIDAVIT\n═══════════════════════════════════════════════════════════════════════════════\n\nमैं, [नाम], पुत्र / पुत्री [पिता का नाम], आयु [____] वर्ष, निवासी [पूरा पता],\nआधार संख्या [________________], सत्यनिष्ठा से शपथ लेकर निम्नलिखित घोषणा करता/करती हूँ:\n\nI, [Name], S/o [Father's Name], aged [__] years, R/o [Full Address],\nAadhaar No. [________________], do hereby solemnly affirm and declare as under:\n\nविषय / SUBJECT:\nLegal draft banao - Affidavit / शपथ पत्र: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह ग्राम व पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ। मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता panghal के नाम करता हूँ।. Language: Bilingual Hindi+English\n\nघोषणा / DECLARATION:\n1. यह कि उपरोक्त कथन मेरी व्यक्तिगत जानकारी, विश्वास और सत्य के अनुसार पूर्णतः सही है।\n2. यह कि मैंने इस शपथ पत्र में कोई भी तथ्य जानबूझकर छुपाया या विकृत नहीं किया है।\n3. यह कि यह शपथ पत्र विधिक प्रयोजनों हेतु निष्पादित किया जा रहा है।\n\nसत्यापन / VERIFICATION:\nसत्यापित किया जाता है कि उपरोक्त पैरा 1 से 3 तक के कथन मेरी जानकारी और विश्वास के अनुसार सत्य हैं तथा इनमें कुछ भी असत्य नहीं है।\n\nदिनांक / Date: 23/5/2026                              स्थान / Place: ____________\n\nशपथकर्ता / Deponent\nनाम: ___________________________\nहस्ताक्षर: _______________________\n\n═══════════════════════════════════════════════════════════════════════════════\nनोट: इस शपथ पत्र को नोटरी पब्लिक से सत्यापित करवाना अनिवार्य है।",
+        "timestamp": "2026-05-23T03:12:46.308Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Apni sampatti patni ke naam karna hai (Gift Deed)",
+        "timestamp": "2026-05-23T03:27:21.141Z"
+      },
+      {
+        "role": "assistant",
+        "content": "दान विलेख / GIFT DEED\n═══════════════════════════════════════════════════════\n\nयह दान विलेख आज दिनांक 23/5/2026 को निम्नलिखित पक्षकारों के बीच निष्पादित किया जाता है:\nThis Gift Deed is executed on this 23/5/2026 between the following parties:\n\nदानकर्ता / DONOR:\nश्री [नाम / Name], पुत्र / पुत्री [पिता का नाम / Father's Name],\nनिवासी [पूरा पता / Full Address]\n(आधार संख्या / Aadhaar No.: [_______________])\n\nदानग्रहीता / DONEE:\nश्रीमती [पत्नी का नाम / Wife's Name], पत्नी [पति का नाम],\nनिवासी [पूरा पता]\n(आधार संख्या: [_______________])\n\nविषय / SUBJECT MATTER:\nApni sampatti patni ke naam karna hai (Gift Deed)\n\nजबकि / WHEREAS:\n1. दानकर्ता उपरोक्त सम्पत्ति का पूर्ण और निरपेक्ष स्वामी है।\n   The Donor is the absolute owner of the above property.\n2. दानकर्ता अपनी पत्नी (दानग्रहीता) के प्रति प्रेम एवं स्नेह के कारण यह दान करना चाहता है।\n   The Donor wishes to gift this property out of natural love and affection for his wife.\n\nअब इसलिए यह विलेख यह साक्ष्य देता है कि / NOW THIS DEED WITNESSES:\n1. दानकर्ता उपरोक्त सम्पत्ति का दान दानग्रहीता को बिना किसी प्रतिफल के करता है।\n2. दानग्रहीता ने उक्त दान स्वीकार किया है।\n3. दानकर्ता का सम्पत्ति में अब कोई हक, टाइटल या हित नहीं रहा।\n\nसाक्षी / WITNESSES:\n1. _________________________\n2. _________________________\n\nदिनांक / Date: 23/5/2026        दानकर्ता हस्ताक्षर: _____________\nस्थान / Place: ____________   दानग्रहीता हस्ताक्षर: ____________\n\n═══════════════════════════════════════════════════════\nNote: यह draft है — नज़दीकी sub-registrar office में पंजीकरण कराएं।\nPlease register at sub-registrar office for legal validity.",
+        "timestamp": "2026-05-23T03:27:21.142Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Legal draft banao - Affidavit / शपथ पत्र: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता Panghal के नाम करता हूँ ।. Language: Bilingual Hindi+English",
+        "timestamp": "2026-05-23T04:32:27.859Z"
+      },
+      {
+        "role": "assistant",
+        "content": "शपथ पत्र / AFFIDAVIT\n═══════════════════════════════════════════════════════════════════════════════\n\nमैं, [नाम], पुत्र / पुत्री [पिता का नाम], आयु [____] वर्ष, निवासी [पूरा पता],\nआधार संख्या [________________], सत्यनिष्ठा से शपथ लेकर निम्नलिखित घोषणा करता/करती हूँ:\n\nI, [Name], S/o [Father's Name], aged [__] years, R/o [Full Address],\nAadhaar No. [________________], do hereby solemnly affirm and declare as under:\n\nविषय / SUBJECT:\nLegal draft banao - Affidavit / शपथ पत्र: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता Panghal के नाम करता हूँ ।. Language: Bilingual Hindi+English\n\nघोषणा / DECLARATION:\n1. यह कि उपरोक्त कथन मेरी व्यक्तिगत जानकारी, विश्वास और सत्य के अनुसार पूर्णतः सही है।\n2. यह कि मैंने इस शपथ पत्र में कोई भी तथ्य जानबूझकर छुपाया या विकृत नहीं किया है।\n3. यह कि यह शपथ पत्र विधिक प्रयोजनों हेतु निष्पादित किया जा रहा है।\n\nसत्यापन / VERIFICATION:\nसत्यापित किया जाता है कि उपरोक्त पैरा 1 से 3 तक के कथन मेरी जानकारी और विश्वास के अनुसार सत्य हैं तथा इनमें कुछ भी असत्य नहीं है।\n\nदिनांक / Date: 23/5/2026                              स्थान / Place: ____________\n\nशपथकर्ता / Deponent\nनाम: ___________________________\nहस्ताक्षर: _______________________\n\n═══════════════════════════════════════════════════════════════════════════════\nनोट: इस शपथ पत्र को नोटरी पब्लिक से सत्यापित करवाना अनिवार्य है।",
+        "timestamp": "2026-05-23T04:32:27.860Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Legal draft banao - Affidavit / शपथ पत्र: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता Panghal के नाम करता हूँ ।. Language: Bilingual Hindi+English",
+        "timestamp": "2026-05-23T04:35:10.045Z"
+      },
+      {
+        "role": "assistant",
+        "content": "शपथ पत्र / AFFIDAVIT\n═══════════════════════════════════════════════════════════════════════════════\n\nमैं, [नाम], पुत्र / पुत्री [पिता का नाम], आयु [____] वर्ष, निवासी [पूरा पता],\nआधार संख्या [________________], सत्यनिष्ठा से शपथ लेकर निम्नलिखित घोषणा करता/करती हूँ:\n\nI, [Name], S/o [Father's Name], aged [__] years, R/o [Full Address],\nAadhaar No. [________________], do hereby solemnly affirm and declare as under:\n\nविषय / SUBJECT:\nLegal draft banao - Affidavit / शपथ पत्र: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता Panghal के नाम करता हूँ ।. Language: Bilingual Hindi+English\n\nघोषणा / DECLARATION:\n1. यह कि उपरोक्त कथन मेरी व्यक्तिगत जानकारी, विश्वास और सत्य के अनुसार पूर्णतः सही है।\n2. यह कि मैंने इस शपथ पत्र में कोई भी तथ्य जानबूझकर छुपाया या विकृत नहीं किया है।\n3. यह कि यह शपथ पत्र विधिक प्रयोजनों हेतु निष्पादित किया जा रहा है।\n\nसत्यापन / VERIFICATION:\nसत्यापित किया जाता है कि उपरोक्त पैरा 1 से 3 तक के कथन मेरी जानकारी और विश्वास के अनुसार सत्य हैं तथा इनमें कुछ भी असत्य नहीं है।\n\nदिनांक / Date: 23/5/2026                              स्थान / Place: ____________\n\nशपथकर्ता / Deponent\nनाम: ___________________________\nहस्ताक्षर: _______________________\n\n═══════════════════════════════════════════════════════════════════════════════\nनोट: इस शपथ पत्र को नोटरी पब्लिक से सत्यापित करवाना अनिवार्य है।",
+        "timestamp": "2026-05-23T04:35:10.045Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Legal draft banao - Affidavit / शपथ पत्र: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता Panghal के नाम करता हूँ ।. Language: Bilingual Hindi+English",
+        "timestamp": "2026-05-23T04:35:17.074Z"
+      },
+      {
+        "role": "assistant",
+        "content": "शपथ पत्र / AFFIDAVIT\n═══════════════════════════════════════════════════════════════════════════════\n\nमैं, [नाम], पुत्र / पुत्री [पिता का नाम], आयु [____] वर्ष, निवासी [पूरा पता],\nआधार संख्या [________________], सत्यनिष्ठा से शपथ लेकर निम्नलिखित घोषणा करता/करती हूँ:\n\nI, [Name], S/o [Father's Name], aged [__] years, R/o [Full Address],\nAadhaar No. [________________], do hereby solemnly affirm and declare as under:\n\nविषय / SUBJECT:\nLegal draft banao - Affidavit / शपथ पत्र: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता Panghal के नाम करता हूँ ।. Language: Bilingual Hindi+English\n\nघोषणा / DECLARATION:\n1. यह कि उपरोक्त कथन मेरी व्यक्तिगत जानकारी, विश्वास और सत्य के अनुसार पूर्णतः सही है।\n2. यह कि मैंने इस शपथ पत्र में कोई भी तथ्य जानबूझकर छुपाया या विकृत नहीं किया है।\n3. यह कि यह शपथ पत्र विधिक प्रयोजनों हेतु निष्पादित किया जा रहा है।\n\nसत्यापन / VERIFICATION:\nसत्यापित किया जाता है कि उपरोक्त पैरा 1 से 3 तक के कथन मेरी जानकारी और विश्वास के अनुसार सत्य हैं तथा इनमें कुछ भी असत्य नहीं है।\n\nदिनांक / Date: 23/5/2026                              स्थान / Place: ____________\n\nशपथकर्ता / Deponent\nनाम: ___________________________\nहस्ताक्षर: _______________________\n\n═══════════════════════════════════════════════════════════════════════════════\nनोट: इस शपथ पत्र को नोटरी पब्लिक से सत्यापित करवाना अनिवार्य है।",
+        "timestamp": "2026-05-23T04:35:17.075Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Legal draft banao - Affidavit / शपथ पत्र: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता Panghal के नाम करता हूँ ।. Language: Bilingual Hindi+English",
+        "timestamp": "2026-05-23T04:35:49.692Z"
+      },
+      {
+        "role": "assistant",
+        "content": "शपथ पत्र / AFFIDAVIT\n═══════════════════════════════════════════════════════════════════════════════\n\nमैं, [नाम], पुत्र / पुत्री [पिता का नाम], आयु [____] वर्ष, निवासी [पूरा पता],\nआधार संख्या [________________], सत्यनिष्ठा से शपथ लेकर निम्नलिखित घोषणा करता/करती हूँ:\n\nI, [Name], S/o [Father's Name], aged [__] years, R/o [Full Address],\nAadhaar No. [________________], do hereby solemnly affirm and declare as under:\n\nविषय / SUBJECT:\nLegal draft banao - Affidavit / शपथ पत्र: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता Panghal के नाम करता हूँ ।. Language: Bilingual Hindi+English\n\nघोषणा / DECLARATION:\n1. यह कि उपरोक्त कथन मेरी व्यक्तिगत जानकारी, विश्वास और सत्य के अनुसार पूर्णतः सही है।\n2. यह कि मैंने इस शपथ पत्र में कोई भी तथ्य जानबूझकर छुपाया या विकृत नहीं किया है।\n3. यह कि यह शपथ पत्र विधिक प्रयोजनों हेतु निष्पादित किया जा रहा है।\n\nसत्यापन / VERIFICATION:\nसत्यापित किया जाता है कि उपरोक्त पैरा 1 से 3 तक के कथन मेरी जानकारी और विश्वास के अनुसार सत्य हैं तथा इनमें कुछ भी असत्य नहीं है।\n\nदिनांक / Date: 23/5/2026                              स्थान / Place: ____________\n\nशपथकर्ता / Deponent\nनाम: ___________________________\nहस्ताक्षर: _______________________\n\n═══════════════════════════════════════════════════════════════════════════════\nनोट: इस शपथ पत्र को नोटरी पब्लिक से सत्यापित करवाना अनिवार्य है।",
+        "timestamp": "2026-05-23T04:35:49.692Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Legal draft banao - Gift Deed / दान विलेख: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता Panghal के नाम करता हूँ ।. Language: Bilingual Hindi+English",
+        "timestamp": "2026-05-23T04:41:00.015Z"
+      },
+      {
+        "role": "assistant",
+        "content": "दान विलेख / GIFT DEED\n═══════════════════════════════════════════════════════\n\nयह दान विलेख आज दिनांक 23/5/2026 को निम्नलिखित पक्षकारों के बीच निष्पादित किया जाता है:\nThis Gift Deed is executed on this 23/5/2026 between the following parties:\n\nदानकर्ता / DONOR:\nश्री [नाम / Name], पुत्र / पुत्री [पिता का नाम / Father's Name],\nनिवासी [पूरा पता / Full Address]\n(आधार संख्या / Aadhaar No.: [_______________])\n\nदानग्रहीता / DONEE:\nश्रीमती [पत्नी का नाम / Wife's Name], पत्नी [पति का नाम],\nनिवासी [पूरा पता]\n(आधार संख्या: [_______________])\n\nविषय / SUBJECT MATTER:\nLegal draft banao - Gift Deed / दान विलेख: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता Panghal के नाम करता हूँ ।. Language: Bilingual Hindi+English\n\nजबकि / WHEREAS:\n1. दानकर्ता उपरोक्त सम्पत्ति का पूर्ण और निरपेक्ष स्वामी है।\n   The Donor is the absolute owner of the above property.\n2. दानकर्ता अपनी पत्नी (दानग्रहीता) के प्रति प्रेम एवं स्नेह के कारण यह दान करना चाहता है।\n   The Donor wishes to gift this property out of natural love and affection for his wife.\n\nअब इसलिए यह विलेख यह साक्ष्य देता है कि / NOW THIS DEED WITNESSES:\n1. दानकर्ता उपरोक्त सम्पत्ति का दान दानग्रहीता को बिना किसी प्रतिफल के करता है।\n2. दानग्रहीता ने उक्त दान स्वीकार किया है।\n3. दानकर्ता का सम्पत्ति में अब कोई हक, टाइटल या हित नहीं रहा।\n\nसाक्षी / WITNESSES:\n1. _________________________\n2. _________________________\n\nदिनांक / Date: 23/5/2026        दानकर्ता हस्ताक्षर: _____________\nस्थान / Place: ____________   दानग्रहीता हस्ताक्षर: ____________\n\n═══════════════════════════════════════════════════════\nNote: यह draft है — नज़दीकी sub-registrar office में पंजीकरण कराएं।\nPlease register at sub-registrar office for legal validity.",
+        "timestamp": "2026-05-23T04:41:00.015Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Legal draft banao - Gift Deed / दान विलेख: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता Panghal के नाम करता हूँ ।. Language: Bilingual Hindi+English",
+        "timestamp": "2026-05-23T04:41:39.568Z"
+      },
+      {
+        "role": "assistant",
+        "content": "दान विलेख / GIFT DEED\n═══════════════════════════════════════════════════════\n\nयह दान विलेख आज दिनांक 23/5/2026 को निम्नलिखित पक्षकारों के बीच निष्पादित किया जाता है:\nThis Gift Deed is executed on this 23/5/2026 between the following parties:\n\nदानकर्ता / DONOR:\nश्री [नाम / Name], पुत्र / पुत्री [पिता का नाम / Father's Name],\nनिवासी [पूरा पता / Full Address]\n(आधार संख्या / Aadhaar No.: [_______________])\n\nदानग्रहीता / DONEE:\nश्रीमती [पत्नी का नाम / Wife's Name], पत्नी [पति का नाम],\nनिवासी [पूरा पता]\n(आधार संख्या: [_______________])\n\nविषय / SUBJECT MATTER:\nLegal draft banao - Gift Deed / दान विलेख: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता Panghal के नाम करता हूँ ।. Language: Bilingual Hindi+English\n\nजबकि / WHEREAS:\n1. दानकर्ता उपरोक्त सम्पत्ति का पूर्ण और निरपेक्ष स्वामी है।\n   The Donor is the absolute owner of the above property.\n2. दानकर्ता अपनी पत्नी (दानग्रहीता) के प्रति प्रेम एवं स्नेह के कारण यह दान करना चाहता है।\n   The Donor wishes to gift this property out of natural love and affection for his wife.\n\nअब इसलिए यह विलेख यह साक्ष्य देता है कि / NOW THIS DEED WITNESSES:\n1. दानकर्ता उपरोक्त सम्पत्ति का दान दानग्रहीता को बिना किसी प्रतिफल के करता है।\n2. दानग्रहीता ने उक्त दान स्वीकार किया है।\n3. दानकर्ता का सम्पत्ति में अब कोई हक, टाइटल या हित नहीं रहा।\n\nसाक्षी / WITNESSES:\n1. _________________________\n2. _________________________\n\nदिनांक / Date: 23/5/2026        दानकर्ता हस्ताक्षर: _____________\nस्थान / Place: ____________   दानग्रहीता हस्ताक्षर: ____________\n\n═══════════════════════════════════════════════════════\nNote: यह draft है — नज़दीकी sub-registrar office में पंजीकरण कराएं।\nPlease register at sub-registrar office for legal validity.",
+        "timestamp": "2026-05-23T04:41:39.569Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Legal draft banao - Gift Deed / दान विलेख: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता Panghal के नाम करता हूँ ।. Language: Bilingual Hindi+English",
+        "timestamp": "2026-05-23T04:49:47.338Z"
+      },
+      {
+        "role": "assistant",
+        "content": "दान विलेख / GIFT DEED\n═══════════════════════════════════════════════════════\n\nयह दान विलेख आज दिनांक 23/5/2026 को निम्नलिखित पक्षकारों के बीच निष्पादित किया जाता है:\nThis Gift Deed is executed on this 23/5/2026 between the following parties:\n\nदानकर्ता / DONOR:\nश्री [नाम / Name], पुत्र / पुत्री [पिता का नाम / Father's Name],\nनिवासी [पूरा पता / Full Address]\n(आधार संख्या / Aadhaar No.: [_______________])\n\nदानग्रहीता / DONEE:\nश्रीमती [पत्नी का नाम / Wife's Name], पत्नी [पति का नाम],\nनिवासी [पूरा पता]\n(आधार संख्या: [_______________])\n\nविषय / SUBJECT MATTER:\nLegal draft banao - Gift Deed / दान विलेख: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता Panghal के नाम करता हूँ ।. Language: Bilingual Hindi+English\n\nजबकि / WHEREAS:\n1. दानकर्ता उपरोक्त सम्पत्ति का पूर्ण और निरपेक्ष स्वामी है।\n   The Donor is the absolute owner of the above property.\n2. दानकर्ता अपनी पत्नी (दानग्रहीता) के प्रति प्रेम एवं स्नेह के कारण यह दान करना चाहता है।\n   The Donor wishes to gift this property out of natural love and affection for his wife.\n\nअब इसलिए यह विलेख यह साक्ष्य देता है कि / NOW THIS DEED WITNESSES:\n1. दानकर्ता उपरोक्त सम्पत्ति का दान दानग्रहीता को बिना किसी प्रतिफल के करता है।\n2. दानग्रहीता ने उक्त दान स्वीकार किया है।\n3. दानकर्ता का सम्पत्ति में अब कोई हक, टाइटल या हित नहीं रहा।\n\nसाक्षी / WITNESSES:\n1. _________________________\n2. _________________________\n\nदिनांक / Date: 23/5/2026        दानकर्ता हस्ताक्षर: _____________\nस्थान / Place: ____________   दानग्रहीता हस्ताक्षर: ____________\n\n═══════════════════════════════════════════════════════\nNote: यह draft है — नज़दीकी sub-registrar office में पंजीकरण कराएं।\nPlease register at sub-registrar office for legal validity.",
+        "timestamp": "2026-05-23T04:49:47.339Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Legal draft banao - Gift Deed / दान विलेख: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता Panghal के नाम करता हूँ ।. Language: Bilingual Hindi+English",
+        "timestamp": "2026-05-23T05:04:50.834Z"
+      },
+      {
+        "role": "assistant",
+        "content": "दान विलेख / GIFT DEED\n═══════════════════════════════════════════════════════\n\nयह दान विलेख आज दिनांक 23/5/2026 को निम्नलिखित पक्षकारों के बीच निष्पादित किया जाता है:\nThis Gift Deed is executed on this 23/5/2026 between the following parties:\n\nदानकर्ता / DONOR:\nश्री [नाम / Name], पुत्र / पुत्री [पिता का नाम / Father's Name],\nनिवासी [पूरा पता / Full Address]\n(आधार संख्या / Aadhaar No.: [_______________])\n\nदानग्रहीता / DONEE:\nश्रीमती [पत्नी का नाम / Wife's Name], पत्नी [पति का नाम],\nनिवासी [पूरा पता]\n(आधार संख्या: [_______________])\n\nविषय / SUBJECT MATTER:\nLegal draft banao - Gift Deed / दान विलेख: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता Panghal के नाम करता हूँ ।. Language: Bilingual Hindi+English\n\nजबकि / WHEREAS:\n1. दानकर्ता उपरोक्त सम्पत्ति का पूर्ण और निरपेक्ष स्वामी है।\n   The Donor is the absolute owner of the above property.\n2. दानकर्ता अपनी पत्नी (दानग्रहीता) के प्रति प्रेम एवं स्नेह के कारण यह दान करना चाहता है।\n   The Donor wishes to gift this property out of natural love and affection for his wife.\n\nअब इसलिए यह विलेख यह साक्ष्य देता है कि / NOW THIS DEED WITNESSES:\n1. दानकर्ता उपरोक्त सम्पत्ति का दान दानग्रहीता को बिना किसी प्रतिफल के करता है।\n2. दानग्रहीता ने उक्त दान स्वीकार किया है।\n3. दानकर्ता का सम्पत्ति में अब कोई हक, टाइटल या हित नहीं रहा।\n\nसाक्षी / WITNESSES:\n1. _________________________\n2. _________________________\n\nदिनांक / Date: 23/5/2026        दानकर्ता हस्ताक्षर: _____________\nस्थान / Place: ____________   दानग्रहीता हस्ताक्षर: ____________\n\n═══════════════════════════════════════════════════════\nNote: यह draft है — नज़दीकी sub-registrar office में पंजीकरण कराएं।\nPlease register at sub-registrar office for legal validity.",
+        "timestamp": "2026-05-23T05:04:50.834Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Legal draft banao - Gift Deed / दान विलेख: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता Panghal के नाम करता हूँ ।. Language: Bilingual Hindi+English",
+        "timestamp": "2026-05-23T05:05:16.826Z"
+      },
+      {
+        "role": "assistant",
+        "content": "दान विलेख / GIFT DEED\n═══════════════════════════════════════════════════════\n\nयह दान विलेख आज दिनांक 23/5/2026 को निम्नलिखित पक्षकारों के बीच निष्पादित किया जाता है:\nThis Gift Deed is executed on this 23/5/2026 between the following parties:\n\nदानकर्ता / DONOR:\nश्री [नाम / Name], पुत्र / पुत्री [पिता का नाम / Father's Name],\nनिवासी [पूरा पता / Full Address]\n(आधार संख्या / Aadhaar No.: [_______________])\n\nदानग्रहीता / DONEE:\nश्रीमती [पत्नी का नाम / Wife's Name], पत्नी [पति का नाम],\nनिवासी [पूरा पता]\n(आधार संख्या: [_______________])\n\nविषय / SUBJECT MATTER:\nLegal draft banao - Gift Deed / दान विलेख: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता Panghal के नाम करता हूँ ।. Language: Bilingual Hindi+English\n\nजबकि / WHEREAS:\n1. दानकर्ता उपरोक्त सम्पत्ति का पूर्ण और निरपेक्ष स्वामी है।\n   The Donor is the absolute owner of the above property.\n2. दानकर्ता अपनी पत्नी (दानग्रहीता) के प्रति प्रेम एवं स्नेह के कारण यह दान करना चाहता है।\n   The Donor wishes to gift this property out of natural love and affection for his wife.\n\nअब इसलिए यह विलेख यह साक्ष्य देता है कि / NOW THIS DEED WITNESSES:\n1. दानकर्ता उपरोक्त सम्पत्ति का दान दानग्रहीता को बिना किसी प्रतिफल के करता है।\n2. दानग्रहीता ने उक्त दान स्वीकार किया है।\n3. दानकर्ता का सम्पत्ति में अब कोई हक, टाइटल या हित नहीं रहा।\n\nसाक्षी / WITNESSES:\n1. _________________________\n2. _________________________\n\nदिनांक / Date: 23/5/2026        दानकर्ता हस्ताक्षर: _____________\nस्थान / Place: ____________   दानग्रहीता हस्ताक्षर: ____________\n\n═══════════════════════════════════════════════════════\nNote: यह draft है — नज़दीकी sub-registrar office में पंजीकरण कराएं।\nPlease register at sub-registrar office for legal validity.",
+        "timestamp": "2026-05-23T05:05:16.826Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Legal draft banao - Gift Deed / दान विलेख: मैं नर नारायण सिंह पुत्र श्री मीर सिंह विलेज एवं पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ। मैं अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता Panghal के नाम करता हूँ।. Language: Bilingual Hindi+English",
+        "timestamp": "2026-05-23T05:15:52.240Z"
+      },
+      {
+        "role": "assistant",
+        "content": "दान विलेख / GIFT DEED\n═══════════════════════════════════════════════════════\n\nयह दान विलेख आज दिनांक 23/5/2026 को निम्नलिखित पक्षकारों के बीच निष्पादित किया जाता है:\nThis Gift Deed is executed on this 23/5/2026 between the following parties:\n\nदानकर्ता / DONOR:\nश्री [नाम / Name], पुत्र / पुत्री [पिता का नाम / Father's Name],\nनिवासी [पूरा पता / Full Address]\n(आधार संख्या / Aadhaar No.: [_______________])\n\nदानग्रहीता / DONEE:\nश्रीमती [पत्नी का नाम / Wife's Name], पत्नी [पति का नाम],\nनिवासी [पूरा पता]\n(आधार संख्या: [_______________])\n\nविषय / SUBJECT MATTER:\nLegal draft banao - Gift Deed / दान विलेख: मैं नर नारायण सिंह पुत्र श्री मीर सिंह विलेज एवं पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ। मैं अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता Panghal के नाम करता हूँ।. Language: Bilingual Hindi+English\n\nजबकि / WHEREAS:\n1. दानकर्ता उपरोक्त सम्पत्ति का पूर्ण और निरपेक्ष स्वामी है।\n   The Donor is the absolute owner of the above property.\n2. दानकर्ता अपनी पत्नी (दानग्रहीता) के प्रति प्रेम एवं स्नेह के कारण यह दान करना चाहता है।\n   The Donor wishes to gift this property out of natural love and affection for his wife.\n\nअब इसलिए यह विलेख यह साक्ष्य देता है कि / NOW THIS DEED WITNESSES:\n1. दानकर्ता उपरोक्त सम्पत्ति का दान दानग्रहीता को बिना किसी प्रतिफल के करता है।\n2. दानग्रहीता ने उक्त दान स्वीकार किया है।\n3. दानकर्ता का सम्पत्ति में अब कोई हक, टाइटल या हित नहीं रहा।\n\nसाक्षी / WITNESSES:\n1. _________________________\n2. _________________________\n\nदिनांक / Date: 23/5/2026        दानकर्ता हस्ताक्षर: _____________\nस्थान / Place: ____________   दानग्रहीता हस्ताक्षर: ____________\n\n═══════════════════════════════════════════════════════\nNote: यह draft है — नज़दीकी sub-registrar office में पंजीकरण कराएं।\nPlease register at sub-registrar office for legal validity.",
+        "timestamp": "2026-05-23T05:15:52.240Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Legal draft banao - Gift Deed / दान विलेख: मैं नर नारायण सिंह पुत्र श्री मीर सिंह विलेज एवं पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ। मैं अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता Panghal के नाम करता हूँ।. Language: Hindi only",
+        "timestamp": "2026-05-23T05:30:55.078Z"
+      },
+      {
+        "role": "assistant",
+        "content": "दान विलेख / GIFT DEED\n═══════════════════════════════════════════════════════\n\nयह दान विलेख आज दिनांक 23/5/2026 को निम्नलिखित पक्षकारों के बीच निष्पादित किया जाता है:\nThis Gift Deed is executed on this 23/5/2026 between the following parties:\n\nदानकर्ता / DONOR:\nश्री [नाम / Name], पुत्र / पुत्री [पिता का नाम / Father's Name],\nनिवासी [पूरा पता / Full Address]\n(आधार संख्या / Aadhaar No.: [_______________])\n\nदानग्रहीता / DONEE:\nश्रीमती [पत्नी का नाम / Wife's Name], पत्नी [पति का नाम],\nनिवासी [पूरा पता]\n(आधार संख्या: [_______________])\n\nविषय / SUBJECT MATTER:\nLegal draft banao - Gift Deed / दान विलेख: मैं नर नारायण सिंह पुत्र श्री मीर सिंह विलेज एवं पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ। मैं अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता Panghal के नाम करता हूँ।. Language: Hindi only\n\nजबकि / WHEREAS:\n1. दानकर्ता उपरोक्त सम्पत्ति का पूर्ण और निरपेक्ष स्वामी है।\n   The Donor is the absolute owner of the above property.\n2. दानकर्ता अपनी पत्नी (दानग्रहीता) के प्रति प्रेम एवं स्नेह के कारण यह दान करना चाहता है।\n   The Donor wishes to gift this property out of natural love and affection for his wife.\n\nअब इसलिए यह विलेख यह साक्ष्य देता है कि / NOW THIS DEED WITNESSES:\n1. दानकर्ता उपरोक्त सम्पत्ति का दान दानग्रहीता को बिना किसी प्रतिफल के करता है।\n2. दानग्रहीता ने उक्त दान स्वीकार किया है।\n3. दानकर्ता का सम्पत्ति में अब कोई हक, टाइटल या हित नहीं रहा।\n\nसाक्षी / WITNESSES:\n1. _________________________\n2. _________________________\n\nदिनांक / Date: 23/5/2026        दानकर्ता हस्ताक्षर: _____________\nस्थान / Place: ____________   दानग्रहीता हस्ताक्षर: ____________\n\n═══════════════════════════════════════════════════════\nNote: यह draft है — नज़दीकी sub-registrar office में पंजीकरण कराएं।\nPlease register at sub-registrar office for legal validity.",
+        "timestamp": "2026-05-23T05:30:55.078Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Legal draft banao - Affidavit / शपथ पत्र: \"mere 10th 12th graduation ke document gum ho gaye mera naam Nar Narayan Singh vill post Sikhera district Bulandshahr UP pita ka naam Meer Singh\". Language: Hindi only",
+        "timestamp": "2026-05-24T00:46:01.270Z"
+      },
+      {
+        "role": "assistant",
+        "content": "शपथ पत्र / AFFIDAVIT\n═══════════════════════════════════════════════════════════════════════════════\n\nमैं, [नाम], पुत्र / पुत्री [पिता का नाम], आयु [____] वर्ष, निवासी [पूरा पता],\nआधार संख्या [________________], सत्यनिष्ठा से शपथ लेकर निम्नलिखित घोषणा करता/करती हूँ:\n\nI, [Name], S/o [Father's Name], aged [__] years, R/o [Full Address],\nAadhaar No. [________________], do hereby solemnly affirm and declare as under:\n\nविषय / SUBJECT:\nLegal draft banao - Affidavit / शपथ पत्र: \"mere 10th 12th graduation ke document gum ho gaye mera naam Nar Narayan Singh vill post Sikhera district Bulandshahr UP pita ka naam Meer Singh\". Language: Hindi only\n\nघोषणा / DECLARATION:\n1. यह कि उपरोक्त कथन मेरी व्यक्तिगत जानकारी, विश्वास और सत्य के अनुसार पूर्णतः सही है।\n2. यह कि मैंने इस शपथ पत्र में कोई भी तथ्य जानबूझकर छुपाया या विकृत नहीं किया है।\n3. यह कि यह शपथ पत्र विधिक प्रयोजनों हेतु निष्पादित किया जा रहा है।\n\nसत्यापन / VERIFICATION:\nसत्यापित किया जाता है कि उपरोक्त पैरा 1 से 3 तक के कथन मेरी जानकारी और विश्वास के अनुसार सत्य हैं तथा इनमें कुछ भी असत्य नहीं है।\n\nदिनांक / Date: 24/5/2026                              स्थान / Place: ____________\n\nशपथकर्ता / Deponent\nनाम: ___________________________\nहस्ताक्षर: _______________________\n\n═══════════════════════════════════════════════════════════════════════════════\nनोट: इस शपथ पत्र को नोटरी पब्लिक से सत्यापित करवाना अनिवार्य है।",
+        "timestamp": "2026-05-24T00:46:01.271Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Legal draft banao - NOC / अनापत्ति प्रमाण: \"mere 10th 12th graduation ke document gum ho gaye mera naam Nar Narayan Singh vill post Sikhera district Bulandshahr UP pita ka naam Meer Singh\". Language: Hindi only",
+        "timestamp": "2026-05-24T00:49:04.594Z"
+      },
+      {
+        "role": "assistant",
+        "content": "अनापत्ति प्रमाण पत्र / NO OBJECTION CERTIFICATE\n═══════════════════════════════════════════════════════════════════════════════\n\nदिनांक / Date: 24/5/2026\n\nप्रति / TO,\n[प्राप्तकर्ता का नाम और पद / Recipient Name & Designation]\n[कार्यालय का पता / Office Address]\n\nविषय / SUBJECT: Legal draft banao - NOC / अनापत्ति प्रमाण: \"mere 10th 12th graduation ke document gum ho gaye mera naam Nar Narayan Singh vill post Sikhera district Bulandshahr UP pita ka naam Meer Singh\". Language: Hindi only\n\nमहोदय / SIR,\n\nमैं, [नाम], पुत्र / पुत्री [पिता का नाम], निवासी [पूरा पता],\nएतद् द्वारा स्वेच्छा से, बिना किसी दबाव या प्रभाव के, पूर्ण होश और समझ के साथ घोषणा करता/करती हूँ कि उपरोक्त विषय के सम्बन्ध में मुझे कोई आपत्ति नहीं है।\n\nI, [Name], S/o [Father's Name], R/o [Full Address], do hereby voluntarily and without any pressure or undue influence, declare that I have NO OBJECTION in respect of the above subject matter.\n\nयह अनापत्ति मैं अपनी स्वतंत्र इच्छा से, पूर्ण ज्ञान और समझ के साथ दे रहा/रही हूँ।\n\nI am issuing this NOC of my own free will, with full knowledge and understanding.\n\nप्रार्थी / Yours faithfully,\n\nहस्ताक्षर / Signature: ______________________\nनाम / Name: ______________________________\nदिनांक / Date: 24/5/2026\n\n═══════════════════════════════════════════════════════════════════════════════",
+        "timestamp": "2026-05-24T00:49:04.594Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Legal draft banao - Partition Deed / बंटवारा: \"mere 10th 12th graduation ke document gum ho gaye mera naam Nar Narayan Singh vill post Sikhera district Bulandshahr UP pita ka naam Meer Singh\". Language: Hindi only",
+        "timestamp": "2026-05-24T00:49:48.545Z"
+      },
+      {
+        "role": "assistant",
+        "content": "बंटवारा विलेख / PARTITION DEED\n═══════════════════════════════════════════════════════\n\nयह बंटवारा विलेख दिनांक 24/5/2026 को निम्न पक्षकारों के बीच निष्पादित होता है।\n\nप्रथम पक्ष / FIRST PARTY: [नाम]\nद्वितीय पक्ष / SECOND PARTY: [नाम]\n\nविषय / SUBJECT: Legal draft banao - Partition Deed / बंटवारा: \"mere 10th 12th graduation ke document gum ho gaye mera naam Nar Narayan Singh vill post Sikhera district Bulandshahr UP pita ka naam Meer Singh\". Language: Hindi only\n\nबंटवारे का विवरण निम्न प्रकार है — [details to be filled]\n[All parties agree to division as per mutual understanding]\n\n═══════════════════════════════════════════════════════",
+        "timestamp": "2026-05-24T00:49:48.545Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-05-22T05:11:14.446Z",
+    "lastActive": "2026-05-24T00:49:48.545Z"
+  },
+  "1:whatsapp": {
+    "userId": "1",
+    "skill": "whatsapp",
+    "messages": [
+      {
+        "role": "user",
+        "content": "WhatsApp setup karo",
+        "timestamp": "2026-05-22T05:16:21.857Z"
+      },
+      {
+        "role": "assistant",
+        "content": "📲 व्हाट्सएप सेवा:\n• \"व्हाट्सएप कनेक्ट करो\"\n• \"मैसेज भेजो\"\n• \"स्टेटस चेक करो\"\n\nमैं आपकी क्या मदद करूँ?",
+        "timestamp": "2026-05-22T05:16:21.857Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "9411246224 mera whatsapp number hai isko apne data me add karo aur sabhi message ko read karke batao",
+        "timestamp": "2026-05-22T05:18:04.443Z"
+      },
+      {
+        "role": "assistant",
+        "content": "📲 व्हाट्सएप सेवा:\n• \"व्हाट्सएप कनेक्ट करो\"\n• \"मैसेज भेजो\"\n• \"स्टेटस चेक करो\"\n\nमैं आपकी क्या मदद करूँ?",
+        "timestamp": "2026-05-22T05:18:04.444Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-05-22T05:16:21.857Z",
+    "lastActive": "2026-05-22T05:18:04.444Z"
+  },
+  "1:general_chat": {
+    "userId": "1",
+    "skill": "general_chat",
+    "messages": [
+      {
+        "role": "user",
+        "content": "hello all csc vles yeplateform aap sabke liye uplabdh hai",
+        "timestamp": "2026-05-22T05:17:08.420Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🙏 नमस्ते! मैं *Harshita AI* हूँ — आपकी CSC सहायक।\n\nमैं ये सब कर सकती हूँ:\n• 📝 सरकारी फॉर्म भरना\n• 🔍 नौकरी खोजना\n• 📄 दस्तावेज़ से डेटा निकालना\n• 🧾 TA/DA प्रोसेस करना\n• ⚖️ कानूनी ड्राफ्ट बनाना\n\nबताइए क्या करना है!",
+        "timestamp": "2026-05-22T05:17:08.420Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "apne bare me batao",
+        "timestamp": "2026-05-22T06:39:11.146Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Main Harshita AI hoon, ek madadgar CSC (Common Service Centre) sahayak. Main aapki madad karti hoon government forms, jobs, documents aur anya sarkari yojnaon ke bare me. Aap mujse kisi bhi prashn puch sakte hain.",
+        "timestamp": "2026-05-22T06:39:11.146Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "apko banane wala kon hai",
+        "timestamp": "2026-05-22T06:41:24.042Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Mujhe banaya hai Meta ne, lekin main CSC assistant ki tarah kaam karta hoon, jo ki Bharat Sarkar ke Common Service Centre ke liye hai.",
+        "timestamp": "2026-05-22T06:41:24.042Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "nahi aapko maine banaya hai",
+        "timestamp": "2026-05-22T06:42:55.360Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Mujhe khushi hai ki aapne mujhe banaya hai. Main aapki madad ke liye taiyaar hoon. Kya aapko kisi sarkari form, naukri ya document ki madad chahiye?",
+        "timestamp": "2026-05-22T06:42:55.360Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "pehle browser me oen to karo tab hi to fill karunga",
+        "timestamp": "2026-05-22T10:12:46.438Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Sabse pehle browser open kijiye, phir mujhe bataiye ki aap kis form ko fill karna chahte hain 📝",
+        "timestamp": "2026-05-22T10:12:46.438Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "mujhe direct page open karke do",
+        "timestamp": "2026-05-22T10:18:45.461Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Main Harshita AI hoon. Kaun si service chahte hain? Ration card, job search, ya kuch aur? 🤔",
+        "timestamp": "2026-05-22T10:18:45.461Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-05-22T05:17:08.420Z",
+    "lastActive": "2026-05-22T10:18:45.461Z"
+  },
+  "1:ration_card": {
+    "userId": "1",
+    "skill": "ration_card",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Naya ration card banao",
+        "timestamp": "2026-05-22T05:19:50.870Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🍚 राशन कार्ड सेवा:\n• \"नया राशन कार्ड बनवाओ\"\n• \"स्टेटस चेक करो\"\n\nक्या करना है?",
+        "timestamp": "2026-05-22T05:19:50.870Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "nar narayana singh s/o meer singh ke naam ka ration card number kya hai search karke batao",
+        "timestamp": "2026-05-22T05:20:50.030Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🍚 राशन कार्ड सेवा:\n• \"नया राशन कार्ड बनवाओ\"\n• \"स्टेटस चेक करो\"\n\nक्या करना है?",
+        "timestamp": "2026-05-22T05:20:50.030Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-05-22T05:19:50.870Z",
+    "lastActive": "2026-05-22T05:20:50.030Z"
+  },
+  "1:job_search": {
+    "userId": "1",
+    "skill": "job_search",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Naye job openings dikhao",
+        "timestamp": "2026-05-22T06:20:40.861Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🔍 सरकारी नौकरियाँ खोज रहा हूँ...\n\nआप ये भी बोल सकते हैं:\n• \"SSC की भर्ती दिखाओ\"\n• \"Railway में नौकरी चाहिए\"\n• \"Army bharti कब है\"\n• \"Banking exam कौन सा आ रहा है\"",
+        "timestamp": "2026-05-22T06:20:40.862Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "SSC ki latest vacancies",
+        "timestamp": "2026-05-22T06:20:49.404Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🔍 *SSC CGL/CHSL* की ताज़ा भर्तियाँ खोज रहा हूँ...\n\n📋 एजेंसी: Staff Selection Commission\n⏳ कृपया कुछ सेकंड रुकें, मैं डैशबोर्ड अपडेट करूँगा।",
+        "timestamp": "2026-05-22T06:20:49.404Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Naye job openings dikhao",
+        "timestamp": "2026-05-22T06:26:24.343Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🔍 सरकारी नौकरियाँ खोज रहा हूँ...\n\nआप ये भी बोल सकते हैं:\n• \"SSC की भर्ती दिखाओ\"\n• \"Railway में नौकरी चाहिए\"\n• \"Army bharti कब है\"\n• \"Banking exam कौन सा आ रहा है\"",
+        "timestamp": "2026-05-22T06:26:24.344Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "SSC ki latest vacancies",
+        "timestamp": "2026-05-22T06:26:31.431Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🔍 *SSC CGL/CHSL* की ताज़ा भर्तियाँ खोज रहा हूँ...\n\n📋 एजेंसी: Staff Selection Commission\n⏳ कृपया कुछ सेकंड रुकें, मैं डैशबोर्ड अपडेट करूँगा।",
+        "timestamp": "2026-05-22T06:26:31.432Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Latest government jobs dikhao",
+        "timestamp": "2026-05-22T10:15:22.466Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🔍 सरकारी नौकरियाँ खोज रहा हूँ...\n\nआप ये भी बोल सकते हैं:\n• \"SSC की भर्ती दिखाओ\"\n• \"Railway में नौकरी चाहिए\"\n• \"Army bharti कब है\"\n• \"Banking exam कौन सा आ रहा है\"",
+        "timestamp": "2026-05-22T10:15:22.466Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "koi bhi government job",
+        "timestamp": "2026-05-22T13:44:25.882Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🔍 सरकारी नौकरियाँ खोज रहा हूँ...\n\nआप ये भी बोल सकते हैं:\n• \"SSC की भर्ती दिखाओ\"\n• \"Railway में नौकरी चाहिए\"\n• \"Army bharti कब है\"\n• \"Banking exam कौन सा आ रहा है\"",
+        "timestamp": "2026-05-22T13:44:25.882Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-05-22T06:20:40.861Z",
+    "lastActive": "2026-05-22T13:44:25.882Z"
+  },
+  "1:tada_process": {
+    "userId": "1",
+    "skill": "tada_process",
+    "messages": [
+      {
+        "role": "user",
+        "content": "TA-DA naksha banane mein madad karo",
+        "timestamp": "2026-05-22T10:11:49.111Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🧾 *TA/DA नक्शा — Harshita AI*\n\nBolkar ya likhkar apna TA/DA naksha bharein!\n\n📌 *Commands:*\n• \"naksha shuru karo\" — नया नक्शा शुरू\n• Journey details boliye — entry add hogi\n• \"naksha dikhao\" — entries dekhein\n• \"naksha final karo\" — complete naksha\n• \"entry hatao 3\" — entry delete\n\n💡 *Example:*\n\"15-05-2024 ko thana Saurikh se Chhibramau gaya, QRT duty, bus se, 15 km, 20 rupaye\"\n\n\"01-06-2024 subah 8 baje Kannauj se Lucknow, VVIP duty, roadways bus, 200 km, 350 rupaye, GD 45\"\n\nShuru karne ke liye \"naksha shuru karo\" boliye!",
+        "timestamp": "2026-05-22T10:11:49.112Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "TA-DA naksha banane mein madad karo",
+        "timestamp": "2026-05-22T10:12:10.672Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🧾 *TA/DA नक्शा — Harshita AI*\n\nBolkar ya likhkar apna TA/DA naksha bharein!\n\n📌 *Commands:*\n• \"naksha shuru karo\" — नया नक्शा शुरू\n• Journey details boliye — entry add hogi\n• \"naksha dikhao\" — entries dekhein\n• \"naksha final karo\" — complete naksha\n• \"entry hatao 3\" — entry delete\n\n💡 *Example:*\n\"15-05-2024 ko thana Saurikh se Chhibramau gaya, QRT duty, bus se, 15 km, 20 rupaye\"\n\n\"01-06-2024 subah 8 baje Kannauj se Lucknow, VVIP duty, roadways bus, 200 km, 350 rupaye, GD 45\"\n\nShuru karne ke liye \"naksha shuru karo\" boliye!",
+        "timestamp": "2026-05-22T10:12:10.672Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "open ta da form",
+        "timestamp": "2026-05-22T10:13:09.269Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🧾 *TA/DA नक्शा — Harshita AI*\n\nBolkar ya likhkar apna TA/DA naksha bharein!\n\n📌 *Commands:*\n• \"naksha shuru karo\" — नया नक्शा शुरू\n• Journey details boliye — entry add hogi\n• \"naksha dikhao\" — entries dekhein\n• \"naksha final karo\" — complete naksha\n• \"entry hatao 3\" — entry delete\n\n💡 *Example:*\n\"15-05-2024 ko thana Saurikh se Chhibramau gaya, QRT duty, bus se, 15 km, 20 rupaye\"\n\n\"01-06-2024 subah 8 baje Kannauj se Lucknow, VVIP duty, roadways bus, 200 km, 350 rupaye, GD 45\"\n\nShuru karne ke liye \"naksha shuru karo\" boliye!",
+        "timestamp": "2026-05-22T10:13:09.269Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "TA-DA naksha banane mein madad karo",
+        "timestamp": "2026-05-22T10:15:19.952Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🧾 *TA/DA नक्शा — Harshita AI*\n\nBolkar ya likhkar apna TA/DA naksha bharein!\n\n📌 *Commands:*\n• \"naksha shuru karo\" — नया नक्शा शुरू\n• Journey details boliye — entry add hogi\n• \"naksha dikhao\" — entries dekhein\n• \"naksha final karo\" — complete naksha\n• \"entry hatao 3\" — entry delete\n\n💡 *Example:*\n\"15-05-2024 ko thana Saurikh se Chhibramau gaya, QRT duty, bus se, 15 km, 20 rupaye\"\n\n\"01-06-2024 subah 8 baje Kannauj se Lucknow, VVIP duty, roadways bus, 200 km, 350 rupaye, GD 45\"\n\nShuru karne ke liye \"naksha shuru karo\" boliye!",
+        "timestamp": "2026-05-22T10:15:19.952Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "ta da ki",
+        "timestamp": "2026-05-22T10:18:54.957Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🧾 *TA/DA नक्शा — Harshita AI*\n\nBolkar ya likhkar apna TA/DA naksha bharein!\n\n📌 *Commands:*\n• \"naksha shuru karo\" — नया नक्शा शुरू\n• Journey details boliye — entry add hogi\n• \"naksha dikhao\" — entries dekhein\n• \"naksha final karo\" — complete naksha\n• \"entry hatao 3\" — entry delete\n\n💡 *Example:*\n\"15-05-2024 ko thana Saurikh se Chhibramau gaya, QRT duty, bus se, 15 km, 20 rupaye\"\n\n\"01-06-2024 subah 8 baje Kannauj se Lucknow, VVIP duty, roadways bus, 200 km, 350 rupaye, GD 45\"\n\nShuru karne ke liye \"naksha shuru karo\" boliye!",
+        "timestamp": "2026-05-22T10:18:54.957Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "open the page tada dashboard",
+        "timestamp": "2026-05-22T10:19:12.551Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🧾 *TA/DA नक्शा — Harshita AI*\n\nBolkar ya likhkar apna TA/DA naksha bharein!\n\n📌 *Commands:*\n• \"naksha shuru karo\" — नया नक्शा शुरू\n• Journey details boliye — entry add hogi\n• \"naksha dikhao\" — entries dekhein\n• \"naksha final karo\" — complete naksha\n• \"entry hatao 3\" — entry delete\n\n💡 *Example:*\n\"15-05-2024 ko thana Saurikh se Chhibramau gaya, QRT duty, bus se, 15 km, 20 rupaye\"\n\n\"01-06-2024 subah 8 baje Kannauj se Lucknow, VVIP duty, roadways bus, 200 km, 350 rupaye, GD 45\"\n\nShuru karne ke liye \"naksha shuru karo\" boliye!",
+        "timestamp": "2026-05-22T10:19:12.551Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "TA-DA naksha banane mein madad karo",
+        "timestamp": "2026-05-22T11:06:37.000Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🧾 *TA/DA नक्शा — Harshita AI*\n\nBolkar ya likhkar apna TA/DA naksha bharein!\n\n📌 *Commands:*\n• \"naksha shuru karo\" — नया नक्शा शुरू\n• Journey details boliye — entry add hogi\n• \"naksha dikhao\" — entries dekhein\n• \"naksha final karo\" — complete naksha\n• \"entry hatao 3\" — entry delete\n\n💡 *Example:*\n\"15-05-2024 ko thana Saurikh se Chhibramau gaya, QRT duty, bus se, 15 km, 20 rupaye\"\n\n\"01-06-2024 subah 8 baje Kannauj se Lucknow, VVIP duty, roadways bus, 200 km, 350 rupaye, GD 45\"\n\nShuru karne ke liye \"naksha shuru karo\" boliye!",
+        "timestamp": "2026-05-22T11:06:37.000Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "ta a bharna hai page open karo",
+        "timestamp": "2026-05-22T11:08:49.214Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🧾 *TA/DA नक्शा — Harshita AI*\n\nBolkar ya likhkar apna TA/DA naksha bharein!\n\n📌 *Commands:*\n• \"naksha shuru karo\" — नया नक्शा शुरू\n• Journey details boliye — entry add hogi\n• \"naksha dikhao\" — entries dekhein\n• \"naksha final karo\" — complete naksha\n• \"entry hatao 3\" — entry delete\n\n💡 *Example:*\n\"15-05-2024 ko thana Saurikh se Chhibramau gaya, QRT duty, bus se, 15 km, 20 rupaye\"\n\n\"01-06-2024 subah 8 baje Kannauj se Lucknow, VVIP duty, roadways bus, 200 km, 350 rupaye, GD 45\"\n\nShuru karne ke liye \"naksha shuru karo\" boliye!",
+        "timestamp": "2026-05-22T11:08:49.214Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-05-22T10:11:49.111Z",
+    "lastActive": "2026-05-22T11:08:49.214Z"
+  },
+  "1:bulk_import": {
+    "userId": "1",
+    "skill": "bulk_import",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Excel/PDF se bulk candidates import karne ka tarika batao",
+        "timestamp": "2026-05-22T10:15:23.860Z"
+      },
+      {
+        "role": "assistant",
+        "content": "📊 बल्क इम्पोर्ट के लिए अपनी Excel (.xlsx) या CSV फाइल यहाँ ड्रॉप करें। क्या आपके पास फॉर्मेट रेडी है?",
+        "timestamp": "2026-05-22T10:15:23.860Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-05-22T10:15:23.860Z",
+    "lastActive": "2026-05-22T10:15:23.860Z"
+  },
+  "1:land_record": {
+    "userId": "1",
+    "skill": "land_record",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Property bantwara karna hai",
+        "timestamp": "2026-05-22T13:31:29.861Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🏞️ भूलेख / ज़मीन सेवा:\n• \"खसरा खतौनी निकालो\"\n• \"ज़मीन का रिकॉर्ड दिखाओ\"\n• \"रजिस्ट्री की जानकारी\"\n\nक्या चाहिए?",
+        "timestamp": "2026-05-22T13:31:29.861Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "खसरा खतौनी निकालो",
+        "timestamp": "2026-05-22T13:31:46.945Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🗺️ खसरा/खतौनी निकालने के लिए बताएं:\n1. जिला\n2. तहसील\n3. गाँव का नाम\n4. खाता संख्या (अगर पता हो)",
+        "timestamp": "2026-05-22T13:31:46.945Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "jila bulandshahr,teh sikandrabad, nawada name nar narayan",
+        "timestamp": "2026-05-22T13:32:33.084Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🏞️ भूलेख / ज़मीन सेवा:\n• \"खसरा खतौनी निकालो\"\n• \"ज़मीन का रिकॉर्ड दिखाओ\"\n• \"रजिस्ट्री की जानकारी\"\n\nक्या चाहिए?",
+        "timestamp": "2026-05-22T13:32:33.084Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Property bantwara karna hai",
+        "timestamp": "2026-05-22T13:39:21.336Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🏞️ भूलेख / ज़मीन सेवा:\n• \"खसरा खतौनी निकालो\"\n• \"ज़मीन का रिकॉर्ड दिखाओ\"\n• \"रजिस्ट्री की जानकारी\"\n\nक्या चाहिए?",
+        "timestamp": "2026-05-22T13:39:21.336Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Property bantwara karna hai",
+        "timestamp": "2026-05-23T01:50:25.642Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🏞️ भूलेख / ज़मीन सेवा:\n• \"खसरा खतौनी निकालो\"\n• \"ज़मीन का रिकॉर्ड दिखाओ\"\n• \"रजिस्ट्री की जानकारी\"\n\nक्या चाहिए?",
+        "timestamp": "2026-05-23T01:50:25.642Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-05-22T13:31:29.861Z",
+    "lastActive": "2026-05-23T01:50:25.642Z"
+  },
+  "1:eligibility_check": {
+    "userId": "1",
+    "skill": "eligibility_check",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Candidates kaise use karein?",
+        "timestamp": "2026-05-22T13:43:30.009Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🔍 *candidates* की पात्रता जाँच:\n\nकृपया बताएं:\n1. आपकी उम्र\n2. शिक्षा (10th/12th/Graduate)\n3. कैटेगरी (General/OBC/SC/ST)\n\nमैं बता दूँगा कि आप पात्र हैं या नहीं।",
+        "timestamp": "2026-05-22T13:43:30.009Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "21, 12th pass, obc",
+        "timestamp": "2026-05-22T13:44:01.195Z"
+      },
+      {
+        "role": "assistant",
+        "content": "✅ पात्रता जाँच सेवा:\n\nबताएं किसकी पात्रता जाँचनी है:\n• \"SSC के लिए eligible हूँ क्या?\"\n• \"Army की age limit क्या है?\"\n• \"PMEGP loan के लिए yogya हूँ?\"\n\nकिस सर्विस/योजना की जाँच करनी है?",
+        "timestamp": "2026-05-22T13:44:01.195Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-05-22T13:43:30.008Z",
+    "lastActive": "2026-05-22T13:44:01.195Z"
+  },
+  "test-user-123:form_fill": {
+    "userId": "test-user-123",
+    "skill": "form_fill",
+    "messages": [
+      {
+        "role": "user",
+        "content": "सर मुझे एसएससी का फॉर्म भरना है",
+        "timestamp": "2026-05-24T01:37:11.670Z"
+      },
+      {
+        "role": "assistant",
+        "content": "📋 फॉर्म ऑटो-फिलिंग सिस्टम तैयार!\n\nउपलब्ध सेवाएँ:\n• *SSC CGL/CHSL* — ssc.gov.in\n• *Indian Army* — joinindianarmy.nic.in\n• *Railway RRB* — rrbcdg.gov.in\n• *Banking IBPS/SBI* — ibps.in\n• *Police Recruitment* — police.gov.in\n• *Navy/Air Force* — joinindiannavy.gov.in\n• *India Post* — ippbonline.com\n• *Apprenticeship* — apprenticeship.gov.in\n• *UPSSSC* — upsssc.gov.in\n• *Ration Card* — nfsa.gov.in\n\nकौन सा फॉर्म भरना है बताइए!\nउदाहरण: \"SSC का फॉर्म भरो\" या \"Railway में अप्लाई करो\"",
+        "timestamp": "2026-05-24T01:37:11.671Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-05-24T01:37:11.670Z",
+    "lastActive": "2026-05-24T01:37:11.671Z"
+  },
+  "test-user-123:notepad": {
+    "userId": "test-user-123",
+    "skill": "notepad",
+    "messages": [
+      {
+        "role": "user",
+        "content": "mujhe ek shayari sunao acchi wali",
+        "timestamp": "2026-05-24T01:37:13.428Z"
+      },
+      {
+        "role": "assistant",
+        "content": "जी ज़रूर, आपके लिए एक बेहतरीन शायरी लिख रहा हूँ...",
+        "timestamp": "2026-05-24T01:37:13.429Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-05-24T01:37:13.428Z",
+    "lastActive": "2026-05-24T01:37:13.429Z"
+  },
+  "test-user-123:job_search": {
+    "userId": "test-user-123",
+    "skill": "job_search",
+    "messages": [
+      {
+        "role": "user",
+        "content": "please help me with job search",
+        "timestamp": "2026-05-24T01:37:14.955Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🔍 सरकारी नौकरियाँ खोज रहा हूँ...\n\nआप ये भी बोल सकते हैं:\n• \"SSC की भर्ती दिखाओ\"\n• \"Railway में नौकरी चाहिए\"\n• \"Army bharti कब है\"\n• \"Banking exam कौन सा आ रहा है\"",
+        "timestamp": "2026-05-24T01:37:14.955Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-05-24T01:37:14.955Z",
+    "lastActive": "2026-05-24T01:37:14.955Z"
+  },
+  "test-user-123:resume_maker": {
+    "userId": "test-user-123",
+    "skill": "resume_maker",
+    "messages": [
+      {
+        "role": "user",
+        "content": "generate my resume",
+        "timestamp": "2026-05-24T01:37:15.544Z"
+      },
+      {
+        "role": "assistant",
+        "content": "📄 *Harshita AI रिज्यूमे बिल्डर* में आपका स्वागत है!\n\nमैं आपका प्रोफेशनल रिज्यूमे बना सकती हूँ।\n\nशुरू करने के लिए अपना *पूरा नाम* बताएं!\n(उदाहरण: \"मेरा नाम राहुल कुमार है\")",
+        "timestamp": "2026-05-24T01:37:15.544Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-05-24T01:37:15.544Z",
+    "lastActive": "2026-05-24T01:37:15.544Z"
+  },
+  "test-user-123:general_chat": {
+    "userId": "test-user-123",
+    "skill": "general_chat",
+    "messages": [
+      {
+        "role": "user",
+        "content": "????",
+        "timestamp": "2026-05-24T01:37:17.049Z"
+      },
+      {
+        "role": "assistant",
+        "content": "???? ?? ?? ?? ???? ?? ??, ?? ???? ?? ??? ?? ?? ?? ?? ?? ??? ?? ?? ???? ?? ?? ?? ?? ?? ?? ?? ?? ???? ?? ?? ?? ??? ?? ?? ?? ?? ?? ?? ???? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ??? ?? ?? ?? ?? ?? ?? ?? ?? ??? ?? ?? ?? ?? ?? ?? ?? ?? ???? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ???? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ??",
+        "timestamp": "2026-05-24T01:37:17.049Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-05-24T01:37:17.048Z",
+    "lastActive": "2026-05-24T01:37:17.049Z"
+  }
+}

@@ -71,5 +71,698 @@
       "version": "1.0",
       "collectedAt": "2026-05-07T20:26:25.456Z"
     }
+  },
+  {
+    "id": "user1_1779384838613_p1vebhc",
+    "userId": "user1",
+    "skill": "tada_process",
+    "input": "test message",
+    "output": "test reply",
+    "success": true,
+    "timestamp": "2026-05-21T17:33:58.613Z"
+  },
+  {
+    "id": "1_1779426673601_6zcj8d3",
+    "userId": "1",
+    "skill": "legal_notice",
+    "input": "Cheque bounce notice bhejna hai Sham Lal ko 50000 rupaye ka",
+    "output": "\n═══════════════════════════════════════════════════════════════\n                    ADV. RAMESH KUMAR SINGH\n                          Advocate\n              Practising at: District Court Lucknow\n\n   ",
+    "success": true,
+    "timestamp": "2026-05-22T05:11:13.601Z"
+  },
+  {
+    "id": "1_1779426674446_nrf3mmi",
+    "userId": "1",
+    "skill": "legal_draft",
+    "input": "main apni sampatti ka half hissa apni patni ke naam karta hoon",
+    "output": "दान विलेख / GIFT DEED\n═══════════════════════════════════════════════════════\n\nयह दान विलेख आज दिनांक 22/5/2026 को निम्नलिखित पक्षकारों के बीच निष्पादित किया जाता है:\nThis Gift Deed is executed on thi",
+    "success": true,
+    "timestamp": "2026-05-22T05:11:14.446Z"
+  },
+  {
+    "id": "1_1779426981857_06azvjj",
+    "userId": "1",
+    "skill": "whatsapp",
+    "input": "WhatsApp setup karo",
+    "output": "📲 व्हाट्सएप सेवा:\n• \"व्हाट्सएप कनेक्ट करो\"\n• \"मैसेज भेजो\"\n• \"स्टेटस चेक करो\"\n\nमैं आपकी क्या मदद करूँ?",
+    "success": true,
+    "timestamp": "2026-05-22T05:16:21.857Z"
+  },
+  {
+    "id": "1_1779427028420_0nm1avi",
+    "userId": "1",
+    "skill": "general_chat",
+    "input": "hello all csc vles yeplateform aap sabke liye uplabdh hai",
+    "output": "🙏 नमस्ते! मैं *Harshita AI* हूँ — आपकी CSC सहायक।\n\nमैं ये सब कर सकती हूँ:\n• 📝 सरकारी फॉर्म भरना\n• 🔍 नौकरी खोजना\n• 📄 दस्तावेज़ से डेटा निकालना\n• 🧾 TA/DA प्रोसेस करना\n• ⚖️ कानूनी ड्राफ्ट बनाना\n\nबता",
+    "success": true,
+    "timestamp": "2026-05-22T05:17:08.420Z"
+  },
+  {
+    "id": "1_1779427084444_yen2vqb",
+    "userId": "1",
+    "skill": "whatsapp",
+    "input": "9411246224 mera whatsapp number hai isko apne data me add karo aur sabhi message ko read karke batao",
+    "output": "📲 व्हाट्सएप सेवा:\n• \"व्हाट्सएप कनेक्ट करो\"\n• \"मैसेज भेजो\"\n• \"स्टेटस चेक करो\"\n\nमैं आपकी क्या मदद करूँ?",
+    "success": true,
+    "timestamp": "2026-05-22T05:18:04.444Z"
+  },
+  {
+    "id": "1_1779427190870_grfq5jk",
+    "userId": "1",
+    "skill": "ration_card",
+    "input": "Naya ration card banao",
+    "output": "🍚 राशन कार्ड सेवा:\n• \"नया राशन कार्ड बनवाओ\"\n• \"स्टेटस चेक करो\"\n\nक्या करना है?",
+    "success": true,
+    "timestamp": "2026-05-22T05:19:50.870Z"
+  },
+  {
+    "id": "1_1779427250030_76bs0gn",
+    "userId": "1",
+    "skill": "ration_card",
+    "input": "nar narayana singh s/o meer singh ke naam ka ration card number kya hai search karke batao",
+    "output": "🍚 राशन कार्ड सेवा:\n• \"नया राशन कार्ड बनवाओ\"\n• \"स्टेटस चेक करो\"\n\nक्या करना है?",
+    "success": true,
+    "timestamp": "2026-05-22T05:20:50.030Z"
+  },
+  {
+    "id": "1_1779430840863_5uyja00",
+    "userId": "1",
+    "skill": "job_search",
+    "input": "Naye job openings dikhao",
+    "output": "🔍 सरकारी नौकरियाँ खोज रहा हूँ...\n\nआप ये भी बोल सकते हैं:\n• \"SSC की भर्ती दिखाओ\"\n• \"Railway में नौकरी चाहिए\"\n• \"Army bharti कब है\"\n• \"Banking exam कौन सा आ रहा है\"",
+    "success": true,
+    "timestamp": "2026-05-22T06:20:40.863Z"
+  },
+  {
+    "id": "1_1779430849404_soeiuj7",
+    "userId": "1",
+    "skill": "job_search",
+    "input": "SSC ki latest vacancies",
+    "output": "🔍 *SSC CGL/CHSL* की ताज़ा भर्तियाँ खोज रहा हूँ...\n\n📋 एजेंसी: Staff Selection Commission\n⏳ कृपया कुछ सेकंड रुकें, मैं डैशबोर्ड अपडेट करूँगा।",
+    "success": true,
+    "timestamp": "2026-05-22T06:20:49.404Z"
+  },
+  {
+    "id": "1_1779431184344_7i40sep",
+    "userId": "1",
+    "skill": "job_search",
+    "input": "Naye job openings dikhao",
+    "output": "🔍 सरकारी नौकरियाँ खोज रहा हूँ...\n\nआप ये भी बोल सकते हैं:\n• \"SSC की भर्ती दिखाओ\"\n• \"Railway में नौकरी चाहिए\"\n• \"Army bharti कब है\"\n• \"Banking exam कौन सा आ रहा है\"",
+    "success": true,
+    "timestamp": "2026-05-22T06:26:24.344Z"
+  },
+  {
+    "id": "1_1779431191432_39t3yge",
+    "userId": "1",
+    "skill": "job_search",
+    "input": "SSC ki latest vacancies",
+    "output": "🔍 *SSC CGL/CHSL* की ताज़ा भर्तियाँ खोज रहा हूँ...\n\n📋 एजेंसी: Staff Selection Commission\n⏳ कृपया कुछ सेकंड रुकें, मैं डैशबोर्ड अपडेट करूँगा।",
+    "success": true,
+    "timestamp": "2026-05-22T06:26:31.432Z"
+  },
+  {
+    "id": "1_1779431951147_4p7m98y",
+    "userId": "1",
+    "skill": "general_chat",
+    "input": "apne bare me batao",
+    "output": "Main Harshita AI hoon, ek madadgar CSC (Common Service Centre) sahayak. Main aapki madad karti hoon government forms, jobs, documents aur anya sarkari yojnaon ke bare me. Aap mujse kisi bhi prashn puc",
+    "success": true,
+    "timestamp": "2026-05-22T06:39:11.147Z"
+  },
+  {
+    "id": "1_1779432084042_bwdxx22",
+    "userId": "1",
+    "skill": "general_chat",
+    "input": "apko banane wala kon hai",
+    "output": "Mujhe banaya hai Meta ne, lekin main CSC assistant ki tarah kaam karta hoon, jo ki Bharat Sarkar ke Common Service Centre ke liye hai.",
+    "success": true,
+    "timestamp": "2026-05-22T06:41:24.042Z"
+  },
+  {
+    "id": "1_1779432175360_fl1b0o2",
+    "userId": "1",
+    "skill": "general_chat",
+    "input": "nahi aapko maine banaya hai",
+    "output": "Mujhe khushi hai ki aapne mujhe banaya hai. Main aapki madad ke liye taiyaar hoon. Kya aapko kisi sarkari form, naukri ya document ki madad chahiye?",
+    "success": true,
+    "timestamp": "2026-05-22T06:42:55.360Z"
+  },
+  {
+    "id": "1_1779444709113_an64xfs",
+    "userId": "1",
+    "skill": "tada_process",
+    "input": "TA-DA naksha banane mein madad karo",
+    "output": "🧾 *TA/DA नक्शा — Harshita AI*\n\nBolkar ya likhkar apna TA/DA naksha bharein!\n\n📌 *Commands:*\n• \"naksha shuru karo\" — नया नक्शा शुरू\n• Journey details boliye — entry add hogi\n• \"naksha dikhao\" — entrie",
+    "success": true,
+    "timestamp": "2026-05-22T10:11:49.113Z"
+  },
+  {
+    "id": "1_1779444730672_u9o1mib",
+    "userId": "1",
+    "skill": "tada_process",
+    "input": "TA-DA naksha banane mein madad karo",
+    "output": "🧾 *TA/DA नक्शा — Harshita AI*\n\nBolkar ya likhkar apna TA/DA naksha bharein!\n\n📌 *Commands:*\n• \"naksha shuru karo\" — नया नक्शा शुरू\n• Journey details boliye — entry add hogi\n• \"naksha dikhao\" — entrie",
+    "success": true,
+    "timestamp": "2026-05-22T10:12:10.672Z"
+  },
+  {
+    "id": "1_1779444766438_jpzllrc",
+    "userId": "1",
+    "skill": "general_chat",
+    "input": "pehle browser me oen to karo tab hi to fill karunga",
+    "output": "Sabse pehle browser open kijiye, phir mujhe bataiye ki aap kis form ko fill karna chahte hain 📝",
+    "success": true,
+    "timestamp": "2026-05-22T10:12:46.438Z"
+  },
+  {
+    "id": "1_1779444789269_4w28h3x",
+    "userId": "1",
+    "skill": "tada_process",
+    "input": "open ta da form",
+    "output": "🧾 *TA/DA नक्शा — Harshita AI*\n\nBolkar ya likhkar apna TA/DA naksha bharein!\n\n📌 *Commands:*\n• \"naksha shuru karo\" — नया नक्शा शुरू\n• Journey details boliye — entry add hogi\n• \"naksha dikhao\" — entrie",
+    "success": true,
+    "timestamp": "2026-05-22T10:13:09.269Z"
+  },
+  {
+    "id": "1_1779444919953_xo1bdpw",
+    "userId": "1",
+    "skill": "tada_process",
+    "input": "TA-DA naksha banane mein madad karo",
+    "output": "🧾 *TA/DA नक्शा — Harshita AI*\n\nBolkar ya likhkar apna TA/DA naksha bharein!\n\n📌 *Commands:*\n• \"naksha shuru karo\" — नया नक्शा शुरू\n• Journey details boliye — entry add hogi\n• \"naksha dikhao\" — entrie",
+    "success": true,
+    "timestamp": "2026-05-22T10:15:19.953Z"
+  },
+  {
+    "id": "1_1779444922467_agkf4ly",
+    "userId": "1",
+    "skill": "job_search",
+    "input": "Latest government jobs dikhao",
+    "output": "🔍 सरकारी नौकरियाँ खोज रहा हूँ...\n\nआप ये भी बोल सकते हैं:\n• \"SSC की भर्ती दिखाओ\"\n• \"Railway में नौकरी चाहिए\"\n• \"Army bharti कब है\"\n• \"Banking exam कौन सा आ रहा है\"",
+    "success": true,
+    "timestamp": "2026-05-22T10:15:22.467Z"
+  },
+  {
+    "id": "1_1779444923860_rf6pedu",
+    "userId": "1",
+    "skill": "bulk_import",
+    "input": "Excel/PDF se bulk candidates import karne ka tarika batao",
+    "output": "📊 बल्क इम्पोर्ट के लिए अपनी Excel (.xlsx) या CSV फाइल यहाँ ड्रॉप करें। क्या आपके पास फॉर्मेट रेडी है?",
+    "success": true,
+    "timestamp": "2026-05-22T10:15:23.860Z"
+  },
+  {
+    "id": "1_1779444926539_kxpuaey",
+    "userId": "1",
+    "skill": "legal_draft",
+    "input": "Legal document draft banao — kaunsa chahiye?",
+    "output": "शपथ पत्र / AFFIDAVIT\n═══════════════════════════════════════════════════════\n\nमैं, [नाम / Name], पुत्र / पुत्री [पिता का नाम / Father's Name], आयु [____] वर्ष,\nनिवासी [पूरा पता / Full Address], आधार स",
+    "success": true,
+    "timestamp": "2026-05-22T10:15:26.539Z"
+  },
+  {
+    "id": "1_1779445125461_rsfu4vu",
+    "userId": "1",
+    "skill": "general_chat",
+    "input": "mujhe direct page open karke do",
+    "output": "Main Harshita AI hoon. Kaun si service chahte hain? Ration card, job search, ya kuch aur? 🤔",
+    "success": true,
+    "timestamp": "2026-05-22T10:18:45.461Z"
+  },
+  {
+    "id": "1_1779445134957_d4rmt91",
+    "userId": "1",
+    "skill": "tada_process",
+    "input": "ta da ki",
+    "output": "🧾 *TA/DA नक्शा — Harshita AI*\n\nBolkar ya likhkar apna TA/DA naksha bharein!\n\n📌 *Commands:*\n• \"naksha shuru karo\" — नया नक्शा शुरू\n• Journey details boliye — entry add hogi\n• \"naksha dikhao\" — entrie",
+    "success": true,
+    "timestamp": "2026-05-22T10:18:54.957Z"
+  },
+  {
+    "id": "1_1779445152551_ja27kg2",
+    "userId": "1",
+    "skill": "tada_process",
+    "input": "open the page tada dashboard",
+    "output": "🧾 *TA/DA नक्शा — Harshita AI*\n\nBolkar ya likhkar apna TA/DA naksha bharein!\n\n📌 *Commands:*\n• \"naksha shuru karo\" — नया नक्शा शुरू\n• Journey details boliye — entry add hogi\n• \"naksha dikhao\" — entrie",
+    "success": true,
+    "timestamp": "2026-05-22T10:19:12.551Z"
+  },
+  {
+    "id": "1_1779447997000_i3b0f6c",
+    "userId": "1",
+    "skill": "tada_process",
+    "input": "TA-DA naksha banane mein madad karo",
+    "output": "🧾 *TA/DA नक्शा — Harshita AI*\n\nBolkar ya likhkar apna TA/DA naksha bharein!\n\n📌 *Commands:*\n• \"naksha shuru karo\" — नया नक्शा शुरू\n• Journey details boliye — entry add hogi\n• \"naksha dikhao\" — entrie",
+    "success": true,
+    "timestamp": "2026-05-22T11:06:37.000Z"
+  },
+  {
+    "id": "1_1779448129214_xpjq53l",
+    "userId": "1",
+    "skill": "tada_process",
+    "input": "ta a bharna hai page open karo",
+    "output": "🧾 *TA/DA नक्शा — Harshita AI*\n\nBolkar ya likhkar apna TA/DA naksha bharein!\n\n📌 *Commands:*\n• \"naksha shuru karo\" — नया नक्शा शुरू\n• Journey details boliye — entry add hogi\n• \"naksha dikhao\" — entrie",
+    "success": true,
+    "timestamp": "2026-05-22T11:08:49.214Z"
+  },
+  {
+    "id": "1_1779456350784_ukfaqai",
+    "userId": "1",
+    "skill": "legal_draft",
+    "input": "Apni sampatti patni ke naam karna hai (Gift Deed)",
+    "output": "दान विलेख / GIFT DEED\n═══════════════════════════════════════════════════════\n\nयह दान विलेख आज दिनांक 22/5/2026 को निम्नलिखित पक्षकारों के बीच निष्पादित किया जाता है:\nThis Gift Deed is executed on thi",
+    "success": true,
+    "timestamp": "2026-05-22T13:25:50.784Z"
+  },
+  {
+    "id": "1_1779456651848_0j8z9dr",
+    "userId": "1",
+    "skill": "legal_draft",
+    "input": "Vehicle transfer ke liye NOC chahiye",
+    "output": "अनापत्ति प्रमाण पत्र / NO OBJECTION CERTIFICATE\n═══════════════════════════════════════════════════════\n\nदिनांक / Date: 22/5/2026\n\nप्रति / TO,\n[प्राप्तकर्ता का नाम और पद / Recipient Name & Designation",
+    "success": true,
+    "timestamp": "2026-05-22T13:30:51.848Z"
+  },
+  {
+    "id": "1_1779456689861_em0p1zg",
+    "userId": "1",
+    "skill": "land_record",
+    "input": "Property bantwara karna hai",
+    "output": "🏞️ भूलेख / ज़मीन सेवा:\n• \"खसरा खतौनी निकालो\"\n• \"ज़मीन का रिकॉर्ड दिखाओ\"\n• \"रजिस्ट्री की जानकारी\"\n\nक्या चाहिए?",
+    "success": true,
+    "timestamp": "2026-05-22T13:31:29.861Z"
+  },
+  {
+    "id": "1_1779456706945_l8g99hs",
+    "userId": "1",
+    "skill": "land_record",
+    "input": "खसरा खतौनी निकालो",
+    "output": "🗺️ खसरा/खतौनी निकालने के लिए बताएं:\n1. जिला\n2. तहसील\n3. गाँव का नाम\n4. खाता संख्या (अगर पता हो)",
+    "success": true,
+    "timestamp": "2026-05-22T13:31:46.945Z"
+  },
+  {
+    "id": "1_1779456753084_bqe289w",
+    "userId": "1",
+    "skill": "land_record",
+    "input": "jila bulandshahr,teh sikandrabad, nawada name nar narayan",
+    "output": "🏞️ भूलेख / ज़मीन सेवा:\n• \"खसरा खतौनी निकालो\"\n• \"ज़मीन का रिकॉर्ड दिखाओ\"\n• \"रजिस्ट्री की जानकारी\"\n\nक्या चाहिए?",
+    "success": true,
+    "timestamp": "2026-05-22T13:32:33.084Z"
+  },
+  {
+    "id": "1_1779456939071_d8t2i8w",
+    "userId": "1",
+    "skill": "legal_draft",
+    "input": "Vasiyat banani hai",
+    "output": "शपथ पत्र / AFFIDAVIT\n═══════════════════════════════════════════════════════\n\nमैं, [नाम / Name], पुत्र / पुत्री [पिता का नाम / Father's Name], आयु [____] वर्ष,\nनिवासी [पूरा पता / Full Address], आधार स",
+    "success": true,
+    "timestamp": "2026-05-22T13:35:39.071Z"
+  },
+  {
+    "id": "1_1779457035442_uue72fh",
+    "userId": "1",
+    "skill": "legal_draft",
+    "input": "Apni sampatti patni ke naam karna hai (Gift Deed)",
+    "output": "दान विलेख / GIFT DEED\n═══════════════════════════════════════════════════════\n\nयह दान विलेख आज दिनांक 22/5/2026 को निम्नलिखित पक्षकारों के बीच निष्पादित किया जाता है:\nThis Gift Deed is executed on thi",
+    "success": true,
+    "timestamp": "2026-05-22T13:37:15.442Z"
+  },
+  {
+    "id": "1_1779457085752_eadeafs",
+    "userId": "1",
+    "skill": "legal_draft",
+    "input": "Vehicle transfer ke liye NOC chahiye",
+    "output": "अनापत्ति प्रमाण पत्र / NO OBJECTION CERTIFICATE\n═══════════════════════════════════════════════════════\n\nदिनांक / Date: 22/5/2026\n\nप्रति / TO,\n[प्राप्तकर्ता का नाम और पद / Recipient Name & Designation",
+    "success": true,
+    "timestamp": "2026-05-22T13:38:05.752Z"
+  },
+  {
+    "id": "1_1779457125684_u1utzks",
+    "userId": "1",
+    "skill": "legal_draft",
+    "input": "Vehicle transfer ke liye NOC chahiye",
+    "output": "अनापत्ति प्रमाण पत्र / NO OBJECTION CERTIFICATE\n═══════════════════════════════════════════════════════\n\nदिनांक / Date: 22/5/2026\n\nप्रति / TO,\n[प्राप्तकर्ता का नाम और पद / Recipient Name & Designation",
+    "success": true,
+    "timestamp": "2026-05-22T13:38:45.684Z"
+  },
+  {
+    "id": "1_1779457161336_4v11lzp",
+    "userId": "1",
+    "skill": "land_record",
+    "input": "Property bantwara karna hai",
+    "output": "🏞️ भूलेख / ज़मीन सेवा:\n• \"खसरा खतौनी निकालो\"\n• \"ज़मीन का रिकॉर्ड दिखाओ\"\n• \"रजिस्ट्री की जानकारी\"\n\nक्या चाहिए?",
+    "success": true,
+    "timestamp": "2026-05-22T13:39:21.336Z"
+  },
+  {
+    "id": "1_1779457190895_dti6zzd",
+    "userId": "1",
+    "skill": "legal_draft",
+    "input": "Naam change ka affidavit banao",
+    "output": "शपथ पत्र / AFFIDAVIT\n═══════════════════════════════════════════════════════\n\nमैं, [नाम / Name], पुत्र / पुत्री [पिता का नाम / Father's Name], आयु [____] वर्ष,\nनिवासी [पूरा पता / Full Address], आधार स",
+    "success": true,
+    "timestamp": "2026-05-22T13:39:50.895Z"
+  },
+  {
+    "id": "1_1779457410009_ygijoew",
+    "userId": "1",
+    "skill": "eligibility_check",
+    "input": "Candidates kaise use karein?",
+    "output": "🔍 *candidates* की पात्रता जाँच:\n\nकृपया बताएं:\n1. आपकी उम्र\n2. शिक्षा (10th/12th/Graduate)\n3. कैटेगरी (General/OBC/SC/ST)\n\nमैं बता दूँगा कि आप पात्र हैं या नहीं।",
+    "success": true,
+    "timestamp": "2026-05-22T13:43:30.009Z"
+  },
+  {
+    "id": "1_1779457441195_8u7v8wk",
+    "userId": "1",
+    "skill": "eligibility_check",
+    "input": "21, 12th pass, obc",
+    "output": "✅ पात्रता जाँच सेवा:\n\nबताएं किसकी पात्रता जाँचनी है:\n• \"SSC के लिए eligible हूँ क्या?\"\n• \"Army की age limit क्या है?\"\n• \"PMEGP loan के लिए yogya हूँ?\"\n\nकिस सर्विस/योजना की जाँच करनी है?",
+    "success": true,
+    "timestamp": "2026-05-22T13:44:01.195Z"
+  },
+  {
+    "id": "1_1779457465882_ewl3uay",
+    "userId": "1",
+    "skill": "job_search",
+    "input": "koi bhi government job",
+    "output": "🔍 सरकारी नौकरियाँ खोज रहा हूँ...\n\nआप ये भी बोल सकते हैं:\n• \"SSC की भर्ती दिखाओ\"\n• \"Railway में नौकरी चाहिए\"\n• \"Army bharti कब है\"\n• \"Banking exam कौन सा आ रहा है\"",
+    "success": true,
+    "timestamp": "2026-05-22T13:44:25.882Z"
+  },
+  {
+    "id": "1_1779499379874_93ch06x",
+    "userId": "1",
+    "skill": "legal_draft",
+    "input": "Apni sampatti patni ke naam karna hai (Gift Deed)",
+    "output": "दान विलेख / GIFT DEED\n═══════════════════════════════════════════════════════\n\nयह दान विलेख आज दिनांक 23/5/2026 को निम्नलिखित पक्षकारों के बीच निष्पादित किया जाता है:\nThis Gift Deed is executed on thi",
+    "success": true,
+    "timestamp": "2026-05-23T01:22:59.875Z"
+  },
+  {
+    "id": "1_1779499669595_71x6ra8",
+    "userId": "1",
+    "skill": "legal_draft",
+    "input": "Naam change ka affidavit banao",
+    "output": "शपथ पत्र / AFFIDAVIT\n═══════════════════════════════════════════════════════════════════════════════\n\nमैं, [नाम], पुत्र / पुत्री [पिता का नाम], आयु [____] वर्ष, निवासी [पूरा पता],\nआधार संख्या [_______",
+    "success": true,
+    "timestamp": "2026-05-23T01:27:49.595Z"
+  },
+  {
+    "id": "1_1779501025642_r5dr5zr",
+    "userId": "1",
+    "skill": "land_record",
+    "input": "Property bantwara karna hai",
+    "output": "🏞️ भूलेख / ज़मीन सेवा:\n• \"खसरा खतौनी निकालो\"\n• \"ज़मीन का रिकॉर्ड दिखाओ\"\n• \"रजिस्ट्री की जानकारी\"\n\nक्या चाहिए?",
+    "success": true,
+    "timestamp": "2026-05-23T01:50:25.642Z"
+  },
+  {
+    "id": "1_1779501324130_50c4gik",
+    "userId": "1",
+    "skill": "legal_draft",
+    "input": "Vehicle transfer ke liye NOC chahiye",
+    "output": "अनापत्ति प्रमाण पत्र / NO OBJECTION CERTIFICATE\n═══════════════════════════════════════════════════════════════════════════════\n\nदिनांक / Date: 23/5/2026\n\nप्रति / TO,\n[प्राप्तकर्ता का नाम और पद / Reci",
+    "success": true,
+    "timestamp": "2026-05-23T01:55:24.130Z"
+  },
+  {
+    "id": "1_1779501726995_8svcmys",
+    "userId": "1",
+    "skill": "legal_draft",
+    "input": "Naam change ka affidavit banao",
+    "output": "शपथ पत्र / AFFIDAVIT\n═══════════════════════════════════════════════════════════════════════════════\n\nमैं, [नाम], पुत्र / पुत्री [पिता का नाम], आयु [____] वर्ष, निवासी [पूरा पता],\nआधार संख्या [_______",
+    "success": true,
+    "timestamp": "2026-05-23T02:02:06.995Z"
+  },
+  {
+    "id": "1_1779503121319_ale72dp",
+    "userId": "1",
+    "skill": "legal_draft",
+    "input": "Vehicle transfer ke liye NOC chahiye",
+    "output": "अनापत्ति प्रमाण पत्र / NO OBJECTION CERTIFICATE\n═══════════════════════════════════════════════════════════════════════════════\n\nदिनांक / Date: 23/5/2026\n\nप्रति / TO,\n[प्राप्तकर्ता का नाम और पद / Reci",
+    "success": true,
+    "timestamp": "2026-05-23T02:25:21.319Z"
+  },
+  {
+    "id": "1_1779503147388_lydbbnn",
+    "userId": "1",
+    "skill": "legal_notice",
+    "input": "Cheque bounce notice ₹50000 ka",
+    "output": "⚠️ *Profile Setup Required*\n\nLegal notice भेजने के लिए पहले advocate profile setup करें:\n\nExample: \"Mera naam Adv. Ramesh Kumar hai, enrollment UP/12345/2018, chamber 12 Civil Court Road Lucknow, phon",
+    "success": true,
+    "timestamp": "2026-05-23T02:25:47.388Z"
+  },
+  {
+    "id": "1_1779503192357_vx2ixde",
+    "userId": "1",
+    "skill": "legal_notice",
+    "input": "Cheque bounce notice ₹50000 ka",
+    "output": "⚠️ *Profile Setup Required*\n\nLegal notice भेजने के लिए पहले advocate profile setup करें:\n\nExample: \"Mera naam Adv. Ramesh Kumar hai, enrollment UP/12345/2018, chamber 12 Civil Court Road Lucknow, phon",
+    "success": true,
+    "timestamp": "2026-05-23T02:26:32.357Z"
+  },
+  {
+    "id": "1_1779504826053_la2wg6n",
+    "userId": "1",
+    "skill": "legal_draft",
+    "input": "Legal draft banao - Affidavit / शपथ पत्र: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता पनघल के नाम करता हूँ ।. Language: Bilingual Hindi+English",
+    "output": "शपथ पत्र / AFFIDAVIT\n═══════════════════════════════════════════════════════════════════════════════\n\nमैं, [नाम], पुत्र / पुत्री [पिता का नाम], आयु [____] वर्ष, निवासी [पूरा पता],\nआधार संख्या [_______",
+    "success": true,
+    "timestamp": "2026-05-23T02:53:46.053Z"
+  },
+  {
+    "id": "1_1779504894895_0p77zxs",
+    "userId": "1",
+    "skill": "legal_notice",
+    "input": "Money recovery notice ₹2 lakh ka",
+    "output": "⚠️ *Profile Setup Required*\n\nLegal notice भेजने के लिए पहले advocate profile setup करें:\n\nExample: \"Mera naam Adv. Ramesh Kumar hai, enrollment UP/12345/2018, chamber 12 Civil Court Road Lucknow, phon",
+    "success": true,
+    "timestamp": "2026-05-23T02:54:54.895Z"
+  },
+  {
+    "id": "1_1779504970232_fep10et",
+    "userId": "1",
+    "skill": "legal_draft",
+    "input": "Legal draft banao - Affidavit / शपथ पत्र: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता पनघल के नाम करता हूँ ।. Language: Bilingual Hindi+English",
+    "output": "शपथ पत्र / AFFIDAVIT\n═══════════════════════════════════════════════════════════════════════════════\n\nमैं, [नाम], पुत्र / पुत्री [पिता का नाम], आयु [____] वर्ष, निवासी [पूरा पता],\nआधार संख्या [_______",
+    "success": true,
+    "timestamp": "2026-05-23T02:56:10.232Z"
+  },
+  {
+    "id": "1_1779505182602_96wblhr",
+    "userId": "1",
+    "skill": "legal_draft",
+    "input": "Legal draft banao - Affidavit / शपथ पत्र: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता पनघल के नाम करता हूँ ।. Language: Bilingual Hindi+English",
+    "output": "शपथ पत्र / AFFIDAVIT\n═══════════════════════════════════════════════════════════════════════════════\n\nमैं, [नाम], पुत्र / पुत्री [पिता का नाम], आयु [____] वर्ष, निवासी [पूरा पता],\nआधार संख्या [_______",
+    "success": true,
+    "timestamp": "2026-05-23T02:59:42.602Z"
+  },
+  {
+    "id": "1_1779505966308_z0wbf2t",
+    "userId": "1",
+    "skill": "legal_draft",
+    "input": "Legal draft banao - Affidavit / शपथ पत्र: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह ग्राम व पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ। मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता panghal के नाम करता हूँ।. Language: Bilingual Hindi+English",
+    "output": "शपथ पत्र / AFFIDAVIT\n═══════════════════════════════════════════════════════════════════════════════\n\nमैं, [नाम], पुत्र / पुत्री [पिता का नाम], आयु [____] वर्ष, निवासी [पूरा पता],\nआधार संख्या [_______",
+    "success": true,
+    "timestamp": "2026-05-23T03:12:46.308Z"
+  },
+  {
+    "id": "1_1779506841142_4rggkhz",
+    "userId": "1",
+    "skill": "legal_draft",
+    "input": "Apni sampatti patni ke naam karna hai (Gift Deed)",
+    "output": "दान विलेख / GIFT DEED\n═══════════════════════════════════════════════════════\n\nयह दान विलेख आज दिनांक 23/5/2026 को निम्नलिखित पक्षकारों के बीच निष्पादित किया जाता है:\nThis Gift Deed is executed on thi",
+    "success": true,
+    "timestamp": "2026-05-23T03:27:21.142Z"
+  },
+  {
+    "id": "1_1779510747860_4aw7xy0",
+    "userId": "1",
+    "skill": "legal_draft",
+    "input": "Legal draft banao - Affidavit / शपथ पत्र: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता Panghal के नाम करता हूँ ।. Language: Bilingual Hindi+English",
+    "output": "शपथ पत्र / AFFIDAVIT\n═══════════════════════════════════════════════════════════════════════════════\n\nमैं, [नाम], पुत्र / पुत्री [पिता का नाम], आयु [____] वर्ष, निवासी [पूरा पता],\nआधार संख्या [_______",
+    "success": true,
+    "timestamp": "2026-05-23T04:32:27.860Z"
+  },
+  {
+    "id": "1_1779510910045_xy9o3dr",
+    "userId": "1",
+    "skill": "legal_draft",
+    "input": "Legal draft banao - Affidavit / शपथ पत्र: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता Panghal के नाम करता हूँ ।. Language: Bilingual Hindi+English",
+    "output": "शपथ पत्र / AFFIDAVIT\n═══════════════════════════════════════════════════════════════════════════════\n\nमैं, [नाम], पुत्र / पुत्री [पिता का नाम], आयु [____] वर्ष, निवासी [पूरा पता],\nआधार संख्या [_______",
+    "success": true,
+    "timestamp": "2026-05-23T04:35:10.045Z"
+  },
+  {
+    "id": "1_1779510917075_s44r2br",
+    "userId": "1",
+    "skill": "legal_draft",
+    "input": "Legal draft banao - Affidavit / शपथ पत्र: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता Panghal के नाम करता हूँ ।. Language: Bilingual Hindi+English",
+    "output": "शपथ पत्र / AFFIDAVIT\n═══════════════════════════════════════════════════════════════════════════════\n\nमैं, [नाम], पुत्र / पुत्री [पिता का नाम], आयु [____] वर्ष, निवासी [पूरा पता],\nआधार संख्या [_______",
+    "success": true,
+    "timestamp": "2026-05-23T04:35:17.075Z"
+  },
+  {
+    "id": "1_1779510949692_lad3w6l",
+    "userId": "1",
+    "skill": "legal_draft",
+    "input": "Legal draft banao - Affidavit / शपथ पत्र: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता Panghal के नाम करता हूँ ।. Language: Bilingual Hindi+English",
+    "output": "शपथ पत्र / AFFIDAVIT\n═══════════════════════════════════════════════════════════════════════════════\n\nमैं, [नाम], पुत्र / पुत्री [पिता का नाम], आयु [____] वर्ष, निवासी [पूरा पता],\nआधार संख्या [_______",
+    "success": true,
+    "timestamp": "2026-05-23T04:35:49.693Z"
+  },
+  {
+    "id": "1_1779511260015_m30info",
+    "userId": "1",
+    "skill": "legal_draft",
+    "input": "Legal draft banao - Gift Deed / दान विलेख: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता Panghal के नाम करता हूँ ।. Language: Bilingual Hindi+English",
+    "output": "दान विलेख / GIFT DEED\n═══════════════════════════════════════════════════════\n\nयह दान विलेख आज दिनांक 23/5/2026 को निम्नलिखित पक्षकारों के बीच निष्पादित किया जाता है:\nThis Gift Deed is executed on thi",
+    "success": true,
+    "timestamp": "2026-05-23T04:41:00.015Z"
+  },
+  {
+    "id": "1_1779511299569_pdoar8b",
+    "userId": "1",
+    "skill": "legal_draft",
+    "input": "Legal draft banao - Gift Deed / दान विलेख: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता Panghal के नाम करता हूँ ।. Language: Bilingual Hindi+English",
+    "output": "दान विलेख / GIFT DEED\n═══════════════════════════════════════════════════════\n\nयह दान विलेख आज दिनांक 23/5/2026 को निम्नलिखित पक्षकारों के बीच निष्पादित किया जाता है:\nThis Gift Deed is executed on thi",
+    "success": true,
+    "timestamp": "2026-05-23T04:41:39.569Z"
+  },
+  {
+    "id": "1_1779511787339_xvbizok",
+    "userId": "1",
+    "skill": "legal_draft",
+    "input": "Legal draft banao - Gift Deed / दान विलेख: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता Panghal के नाम करता हूँ ।. Language: Bilingual Hindi+English",
+    "output": "दान विलेख / GIFT DEED\n═══════════════════════════════════════════════════════\n\nयह दान विलेख आज दिनांक 23/5/2026 को निम्नलिखित पक्षकारों के बीच निष्पादित किया जाता है:\nThis Gift Deed is executed on thi",
+    "success": true,
+    "timestamp": "2026-05-23T04:49:47.339Z"
+  },
+  {
+    "id": "1_1779512690834_uh3u42w",
+    "userId": "1",
+    "skill": "legal_draft",
+    "input": "Legal draft banao - Gift Deed / दान विलेख: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता Panghal के नाम करता हूँ ।. Language: Bilingual Hindi+English",
+    "output": "दान विलेख / GIFT DEED\n═══════════════════════════════════════════════════════\n\nयह दान विलेख आज दिनांक 23/5/2026 को निम्नलिखित पक्षकारों के बीच निष्पादित किया जाता है:\nThis Gift Deed is executed on thi",
+    "success": true,
+    "timestamp": "2026-05-23T05:04:50.834Z"
+  },
+  {
+    "id": "1_1779512716826_w37g1ti",
+    "userId": "1",
+    "skill": "legal_draft",
+    "input": "Legal draft banao - Gift Deed / दान विलेख: मेँ नर नारायण सिंह पुत्र श्री मीर सिंह विलिज अवम पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ मेँ अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता Panghal के नाम करता हूँ ।. Language: Bilingual Hindi+English",
+    "output": "दान विलेख / GIFT DEED\n═══════════════════════════════════════════════════════\n\nयह दान विलेख आज दिनांक 23/5/2026 को निम्नलिखित पक्षकारों के बीच निष्पादित किया जाता है:\nThis Gift Deed is executed on thi",
+    "success": true,
+    "timestamp": "2026-05-23T05:05:16.827Z"
+  },
+  {
+    "id": "1_1779513352240_ecn0bbk",
+    "userId": "1",
+    "skill": "legal_draft",
+    "input": "Legal draft banao - Gift Deed / दान विलेख: मैं नर नारायण सिंह पुत्र श्री मीर सिंह विलेज एवं पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ। मैं अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता Panghal के नाम करता हूँ।. Language: Bilingual Hindi+English",
+    "output": "दान विलेख / GIFT DEED\n═══════════════════════════════════════════════════════\n\nयह दान विलेख आज दिनांक 23/5/2026 को निम्नलिखित पक्षकारों के बीच निष्पादित किया जाता है:\nThis Gift Deed is executed on thi",
+    "success": true,
+    "timestamp": "2026-05-23T05:15:52.240Z"
+  },
+  {
+    "id": "1_1779514255078_0y9go49",
+    "userId": "1",
+    "skill": "legal_draft",
+    "input": "Legal draft banao - Gift Deed / दान विलेख: मैं नर नारायण सिंह पुत्र श्री मीर सिंह विलेज एवं पोस्ट सीखेड़ा तहसील बुलंदशहर जनपद बुलंदशहर का निवासी हूँ। मैं अपनी चल व अचल सम्पत्ति का आधा हिस्सा अपनी पुत्री हर्षिता Panghal के नाम करता हूँ।. Language: Hindi only",
+    "output": "दान विलेख / GIFT DEED\n═══════════════════════════════════════════════════════\n\nयह दान विलेख आज दिनांक 23/5/2026 को निम्नलिखित पक्षकारों के बीच निष्पादित किया जाता है:\nThis Gift Deed is executed on thi",
+    "success": true,
+    "timestamp": "2026-05-23T05:30:55.078Z"
+  },
+  {
+    "id": "1_1779577488378_4f8d5qs",
+    "userId": "1",
+    "skill": "legal_notice",
+    "input": "Legal draft banao - Affidavit / शपथ पत्र: mere 10th, 12th graduation ke sabhi document gum ho gayye hai mera naam nar narayan singh hai vill post sikhera disst bulandshahr up pin 203002 pita ka naam  sree meer singh. Language: Hindi only",
+    "output": "⚠️ *Profile Setup Required*\n\nLegal notice भेजने के लिए पहले advocate profile setup करें:\n\nExample: \"Mera naam Adv. Ramesh Kumar hai, enrollment UP/12345/2018, chamber 12 Civil Court Road Lucknow, phon",
+    "success": true,
+    "timestamp": "2026-05-23T23:04:48.378Z"
+  },
+  {
+    "id": "1_1779583289023_cgvh74y",
+    "userId": "1",
+    "skill": "legal_notice",
+    "input": "Legal draft banao - Affidavit / शपथ पत्र: \"mere 10th 12th graduation ke document gum ho gaye mera naam Nar Narayan Singh vill post Sikhera district Bulandshahr UP pita ka naam Meer Singh\". Language: Hindi only",
+    "output": "⚠️ *Profile Setup Required*\n\nLegal notice भेजने के लिए पहले advocate profile setup करें:\n\nExample: \"Mera naam Adv. Ramesh Kumar hai, enrollment UP/12345/2018, chamber 12 Civil Court Road Lucknow, phon",
+    "success": true,
+    "timestamp": "2026-05-24T00:41:29.023Z"
+  },
+  {
+    "id": "1_1779583561271_g61kp6r",
+    "userId": "1",
+    "skill": "legal_draft",
+    "input": "Legal draft banao - Affidavit / शपथ पत्र: \"mere 10th 12th graduation ke document gum ho gaye mera naam Nar Narayan Singh vill post Sikhera district Bulandshahr UP pita ka naam Meer Singh\". Language: Hindi only",
+    "output": "शपथ पत्र / AFFIDAVIT\n═══════════════════════════════════════════════════════════════════════════════\n\nमैं, [नाम], पुत्र / पुत्री [पिता का नाम], आयु [____] वर्ष, निवासी [पूरा पता],\nआधार संख्या [_______",
+    "success": true,
+    "timestamp": "2026-05-24T00:46:01.271Z"
+  },
+  {
+    "id": "1_1779583744594_jt3ba3l",
+    "userId": "1",
+    "skill": "legal_draft",
+    "input": "Legal draft banao - NOC / अनापत्ति प्रमाण: \"mere 10th 12th graduation ke document gum ho gaye mera naam Nar Narayan Singh vill post Sikhera district Bulandshahr UP pita ka naam Meer Singh\". Language: Hindi only",
+    "output": "अनापत्ति प्रमाण पत्र / NO OBJECTION CERTIFICATE\n═══════════════════════════════════════════════════════════════════════════════\n\nदिनांक / Date: 24/5/2026\n\nप्रति / TO,\n[प्राप्तकर्ता का नाम और पद / Reci",
+    "success": true,
+    "timestamp": "2026-05-24T00:49:04.595Z"
+  },
+  {
+    "id": "1_1779583788545_uib3hux",
+    "userId": "1",
+    "skill": "legal_draft",
+    "input": "Legal draft banao - Partition Deed / बंटवारा: \"mere 10th 12th graduation ke document gum ho gaye mera naam Nar Narayan Singh vill post Sikhera district Bulandshahr UP pita ka naam Meer Singh\". Language: Hindi only",
+    "output": "बंटवारा विलेख / PARTITION DEED\n═══════════════════════════════════════════════════════\n\nयह बंटवारा विलेख दिनांक 24/5/2026 को निम्न पक्षकारों के बीच निष्पादित होता है।\n\nप्रथम पक्ष / FIRST PARTY: [नाम]\n",
+    "success": true,
+    "timestamp": "2026-05-24T00:49:48.545Z"
+  },
+  {
+    "id": "test-user-123_1779586631671_vk7b27x",
+    "userId": "test-user-123",
+    "skill": "form_fill",
+    "input": "सर मुझे एसएससी का फॉर्म भरना है",
+    "output": "📋 फॉर्म ऑटो-फिलिंग सिस्टम तैयार!\n\nउपलब्ध सेवाएँ:\n• *SSC CGL/CHSL* — ssc.gov.in\n• *Indian Army* — joinindianarmy.nic.in\n• *Railway RRB* — rrbcdg.gov.in\n• *Banking IBPS/SBI* — ibps.in\n• *Police Recruit",
+    "success": true,
+    "timestamp": "2026-05-24T01:37:11.671Z"
+  },
+  {
+    "id": "test-user-123_1779586633429_xvjsca6",
+    "userId": "test-user-123",
+    "skill": "notepad",
+    "input": "mujhe ek shayari sunao acchi wali",
+    "output": "जी ज़रूर, आपके लिए एक बेहतरीन शायरी लिख रहा हूँ...",
+    "success": true,
+    "timestamp": "2026-05-24T01:37:13.429Z"
+  },
+  {
+    "id": "test-user-123_1779586634955_vszcvxz",
+    "userId": "test-user-123",
+    "skill": "job_search",
+    "input": "please help me with job search",
+    "output": "🔍 सरकारी नौकरियाँ खोज रहा हूँ...\n\nआप ये भी बोल सकते हैं:\n• \"SSC की भर्ती दिखाओ\"\n• \"Railway में नौकरी चाहिए\"\n• \"Army bharti कब है\"\n• \"Banking exam कौन सा आ रहा है\"",
+    "success": true,
+    "timestamp": "2026-05-24T01:37:14.955Z"
+  },
+  {
+    "id": "test-user-123_1779586635544_mdwwnwz",
+    "userId": "test-user-123",
+    "skill": "resume_maker",
+    "input": "generate my resume",
+    "output": "📄 *Harshita AI रिज्यूमे बिल्डर* में आपका स्वागत है!\n\nमैं आपका प्रोफेशनल रिज्यूमे बना सकती हूँ।\n\nशुरू करने के लिए अपना *पूरा नाम* बताएं!\n(उदाहरण: \"मेरा नाम राहुल कुमार है\")",
+    "success": true,
+    "timestamp": "2026-05-24T01:37:15.544Z"
+  },
+  {
+    "id": "test-user-123_1779586637049_nc3gkqp",
+    "userId": "test-user-123",
+    "skill": "general_chat",
+    "input": "????",
+    "output": "???? ?? ?? ?? ???? ?? ??, ?? ???? ?? ??? ?? ?? ?? ?? ?? ??? ?? ?? ???? ?? ?? ?? ?? ?? ?? ?? ?? ???? ?? ?? ?? ??? ?? ?? ?? ?? ?? ?? ???? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?",
+    "success": true,
+    "timestamp": "2026-05-24T01:37:17.049Z"
   }
 ]

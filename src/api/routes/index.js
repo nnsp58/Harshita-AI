@@ -17,6 +17,7 @@ const cscRoutes = require('./csc');
 const communityRoutes = require('./community');
 const notificationRoutes = require('./notifications');
 const emailRoutes = require('./email');
+const contactRoutes = require('./contact');
 
 router.use('/auth', authRoutes);
 router.use('/candidate', candidateRoutes);
@@ -32,6 +33,7 @@ router.use('/csc', cscRoutes);
 router.use('/community', communityRoutes);
 router.use('/notifications', notificationRoutes);
 router.use('/email', emailRoutes);
+router.use('/contact', contactRoutes);
 
 // API info endpoint
 router.get('/', (req, res) => {

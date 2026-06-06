@@ -30,6 +30,13 @@ router.post(
 );
 
 router.post(
+  '/google',
+  [body('token').notEmpty()],
+  validate,
+  authController.googleLogin
+);
+
+router.post(
   '/refresh',
   authController.refreshToken
 );

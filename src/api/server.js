@@ -406,6 +406,16 @@ app.post('/api/project-report/generate', async (req, res) => {
   }
 });
 
+// Serve Frontend Statically (Single-App Deployment)
+const frontendPath = path.join(__dirname, '../../frontend/dist');
+app.use(express.static(frontendPath));
+
+// Fallback to index.html for React Router
+app.get('*', (req, res, next) => {
+  if (req.originalUrl.startsWith('/api')) return next();
+  res.sendFile(path.join(frontendPath, 'index.html'));
+});
+
 // Error handling
 app.use(notFound);
 app.use(errorHandler);
@@ -434,7 +444,7 @@ async function createDemoUser() {
     console.log('📝 Demo user created: demo@harshita.ai / demo1234');
   }
 }
-createDemoUser();
+// createDemoUser();
 
 // Start server
 const PORT = process.env.PORT || 3001;

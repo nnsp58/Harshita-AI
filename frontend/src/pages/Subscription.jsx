@@ -205,6 +205,35 @@ export default function Subscription() {
           </div>
         </div>
       </div>
+
+      {/* Razorpay Payment Demo */}
+      <div className="bg-white/5 border border-white/10 rounded-2xl p-6 mt-8">
+        <h3 className="font-semibold mb-3">Pay with Razorpay (Live Demo)</h3>
+        <p className="text-sm text-gray-400 mb-4">Click below to create a real Razorpay order (test mode). Payment verification will activate your plan.</p>
+        <button
+          onClick={async () => {
+            try {
+              const res = await fetch('/api/subscription/create-order', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('token')}` },
+                body: JSON.stringify({ plan: 'pro', duration: 'monthly' })
+              })
+              const data = await res.json()
+              if (data.success) {
+                alert(`Order created! ID: ${data.orderId}\nAmount: ₹${data.amount / 100}\n\n(Frontend Razorpay checkout can be opened here in production)`)
+                // In real app: open Razorpay checkout modal with data.orderId
+              } else {
+                alert('Order creation failed: ' + (data.error || 'Unknown'))
+              }
+            } catch (e) {
+              alert('Payment API error: ' + e.message)
+            }
+          }}
+          className="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-500 rounded-xl text-sm font-medium transition-colors"
+        >
+          Pay ₹1299 (Pro Plan) - Razorpay
+        </button>
+      </div>
     </div>
   )
 }

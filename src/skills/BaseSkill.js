@@ -10,7 +10,15 @@
  *   - intents: कौन-कौन से इरादे (intents) यह स्किल संभाल सकती है
  *   - keywords: हिंदी/इंग्लिश/हिंग्लिश में कीवर्ड्स (AI न हो तो backup)
  *   - execute(): मुख्य कार्य
+ *
+ * SELF-LEARNING: हर BaseSkill automatic learning karta hai!
+ *   - User inputs analyze hote hain
+ *   - Naye keywords auto-learn hote hain
+ *   - Failed patterns track hote hain
+ *   - Successful patterns yaad rahte hain
  */
+
+const { learningEngine } = require('../core/learningEngine');
 
 class BaseSkill {
   constructor() {
@@ -173,6 +181,74 @@ class BaseSkill {
    */
   _error(message) {
     return { type: 'error', message, skill: this.name };
+  }
+
+  // ═══════════════════════════════════════════════════════════
+  //  Self-Learning Helpers — har skill use kar sakti hai
+  // ═══════════════════════════════════════════════════════════
+
+  /**
+   * Conversation history record karo (user message + AI response)
+   * Skill ke execute() mein call karein:
+   *   this._remember(userId, message, response.message)
+   */
+  _remember(userId, userMessage, aiResponse, success = true) {
+    try {
+      const { conversationMemory } = require('../core/conversationMemory');
+      const { learningEngine } = require('../core/learningEngine');
+
+      // Save conversation
+      conversationMemory.addMessage(userId, this.name, 'user', userMessage);
+      conversationMemory.addMessage(userId, this.name, 'assistant', aiResponse, { success });
+
+      // Track in learning engine
+      learningEngine.learn(this.name, userId, userMessage, { message: aiResponse }, success);
+    } catch (e) {
+      // Don't break skill if memory fails
+    }
+  }
+
+  /**
+   * Past conversation context lao (last N messages)
+   * AI prompts mein use karein for better context
+   */
+  _getContext(userId, lastN = 5) {
+    try {
+      const { conversationMemory } = require('../core/conversationMemory');
+      return conversationMemory.getContextString(userId, this.name, lastN);
+    } catch {
+      return '';
+    }
+  }
+
+  /**
+   * Past similar queries dhundo (auto-learning patterns)
+   */
+  _findSimilarPast(userId, currentInput, limit = 3) {
+    try {
+      const { learningEngine } = require('../core/learningEngine');
+      return learningEngine.findSimilarPatterns(this.name, currentInput, limit);
+    } catch {
+      return [];
+    }
+  }
+
+  /**
+   * Collaborative Cognitive Action: Query another specialized skill from the registry.
+   */
+  async queryOtherSkill(targetSkillName, context) {
+    try {
+      const { SkillRegistry } = require('./SkillRegistry');
+      const registry = new SkillRegistry();
+      await registry.autoLoad();
+      const targetSkill = registry.getSkill(targetSkillName);
+      if (targetSkill) {
+        return await targetSkill.execute(context);
+      }
+    } catch (e) {
+      console.warn(`[BaseSkill] Failed to collaborate with ${targetSkillName}:`, e.message);
+    }
+    return null;
   }
 }
 

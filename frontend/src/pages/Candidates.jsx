@@ -3,6 +3,8 @@ import { motion } from 'framer-motion'
 import { BriefcaseBusiness, CheckCircle, Loader2, MapPin, Phone, Save, Search, ShieldCheck, UserRound } from 'lucide-react'
 import { useStore } from '../store'
 
+// Recruitment / Job application services for candidates
+// Ration Card ka apna dedicated page hai (/service/ration-card) — yahan nahi rakhna
 const serviceOptions = [
   { value: 'ssc', label: 'SSC Registration' },
   { value: 'army', label: 'Army Recruitment' },
@@ -12,7 +14,7 @@ const serviceOptions = [
   { value: 'defence', label: 'Defence Recruitment' },
   { value: 'postal', label: 'Postal / IPPB' },
   { value: 'apprenticeship', label: 'Apprenticeship' },
-  { value: 'ration', label: 'Ration Card' },
+  { value: 'stateSsc', label: 'UPSSSC / State SSC' },
 ]
 
 export default function Candidates() {
@@ -125,8 +127,8 @@ export default function Candidates() {
         <div className="flex items-center gap-4">
           <img src="/harshita ai.png" alt="Harshita AI" className="w-12 h-12" />
           <div>
-            <h1 className="text-2xl md:text-3xl font-heading font-bold">Candidates</h1>
-            <p className="text-gray-500 dark:text-gray-400 mt-1">Create service jobs directly from candidate records</p>
+            <h1 className="text-2xl md:text-3xl font-heading font-bold">Candidates / उम्मीदवार</h1>
+            <p className="text-gray-500 dark:text-gray-400 mt-1">Job applicants ke liye recruitment jobs create karein (SSC, Army, Railway, Banking आदि)</p>
           </div>
         </div>
         <button onClick={fetchCandidates} className="btn-secondary w-fit">Refresh</button>

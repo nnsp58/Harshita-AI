@@ -159,25 +159,43 @@ class AIProviderManager {
   }
 
   /**
+   * Get provider name for a client instance
+   */
+  getProviderOfClient(client) {
+    if (!client) return null;
+    for (const [providerName, clientInstance] of this.providers.entries()) {
+      if (clientInstance === client) {
+        return providerName;
+      }
+    }
+    return null;
+  }
+
+  /**
     * Create chat completion with automatic provider selection
     */
   async createChatCompletion(agentName, options = {}) {
-    const provider = this.getEffectiveProvider(agentName);
     const client = this.getClient(agentName);
     if (!client) {
       throw new Error(`No AI provider available for ${agentName}`);
     }
 
-    const model = this.getModel(agentName, provider);
+    const actualProvider = this.getProviderOfClient(client) || 'groq';
+    const model = this.getModel(agentName, actualProvider);
 
     try {
       // OpenAI-compatible providers
-      const response = await client.chat.completions.create({
+      // Only enforce JSON mode if explicitly requested (skills doing text generation should NOT use it)
+      const requestBody = {
         model,
         ...options,
-        // Enforce JSON mode for structured outputs
-        response_format: { type: 'json_object' }
-      });
+      };
+      if (options.json === true || options.responseFormat === 'json') {
+        requestBody.response_format = { type: 'json_object' };
+        delete requestBody.json;
+        delete requestBody.responseFormat;
+      }
+      const response = await client.chat.completions.create(requestBody);
 
       return response;
     } catch (error) {

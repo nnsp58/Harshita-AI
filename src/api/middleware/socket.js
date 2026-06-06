@@ -57,19 +57,42 @@ const setupSocketHandlers = (io) => {
       socket.leave(`job_${jobId}`);
     });
 
-    // Dashboard chat handlers
-    const { MasterAgent } = require('../../agents/masterAgent');
-    const masterAgent = new MasterAgent(io);
-
+    // Dashboard chat handlers — use shared MasterAgent singleton from app
     socket.on('userCommand', async (cmd) => {
-      console.log(`User command from ${socket.userId}: ${cmd}`);
+      console.log(`[Socket] User command from ${socket.userId}: ${cmd}`);
       socket.emit('logUpdate', { type: 'user', message: cmd });
 
       try {
-        const response = await masterAgent.processCommand(socket.userId, cmd);
-        socket.emit('logUpdate', response);
+        // Get shared singleton MasterAgent (registered in server.js)
+        const masterAgent = io._masterAgent || (() => {
+          // Lazy fallback if not registered yet
+          const { MasterAgent } = require('../../agents/masterAgent');
+          if (!io._masterAgent) io._masterAgent = new MasterAgent(io);
+          return io._masterAgent;
+        })();
+
+        // Wait for skill registry to be ready
+        if (masterAgent.registry && !masterAgent.registry.isLoaded) {
+          await new Promise(r => setTimeout(r, 1500));
+        }
+
+        const response = await masterAgent.processCommand(socket.userId, cmd, { userId: socket.userId, app: io._app });
+
+        // Emit AI reply to chat — ALWAYS show result in chat, NEVER navigate away
+        socket.emit('logUpdate', {
+          type: 'ai',
+          message: response.message || response.text || 'Done!',
+          skill: response.skill,
+          data: response.data,
+        });
+
+        // NO navigation — all results stay in chat panel
       } catch (error) {
-        socket.emit('logUpdate', { type: 'ai', message: "Command processing error." });
+        console.error('[Socket] Command error:', error.message);
+        socket.emit('logUpdate', {
+          type: 'ai',
+          message: `⚠️ Error: ${error.message}. Try rephrasing.`,
+        });
       }
     });
 

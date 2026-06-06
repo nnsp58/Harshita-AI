@@ -31,6 +31,22 @@ export default function BulkImport() {
   // Handle file drop or selection
   const handleFile = async (selectedFile) => {
     if (!selectedFile) return
+
+    // Validate file type — Excel, CSV, or PDF
+    const validTypes = ['.xlsx', '.xls', '.csv', '.pdf']
+    const fileName = selectedFile.name.toLowerCase()
+    const isValid = validTypes.some(ext => fileName.endsWith(ext))
+    if (!isValid) {
+      setError('Sirf Excel (.xlsx, .xls), CSV, ya PDF file upload karein')
+      return
+    }
+
+    // Max 10MB
+    if (selectedFile.size > 10 * 1024 * 1024) {
+      setError('File size 10MB se kam honi chahiye')
+      return
+    }
+
     setFile(selectedFile)
     setError(null)
     setStep('previewing')
@@ -38,14 +54,19 @@ export default function BulkImport() {
     const formData = new FormData()
     formData.append('file', selectedFile)
 
+    // PDF goes to a different endpoint that extracts candidates from text
+    const isPdf = fileName.endsWith('.pdf')
+    const endpoint = isPdf ? '/bulk/preview-pdf' : '/bulk/preview'
+
     try {
-      const res = await api.post('/bulk/preview', formData, {
+      const res = await api.post(endpoint, formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       })
       setPreview(res.data)
       setStep('preview')
     } catch (err) {
-      setError(err.response?.data?.error || 'File parse error')
+      const msg = err.response?.data?.error || err.response?.data?.message || 'File parse error'
+      setError(isPdf ? `PDF parse failed: ${msg}` : msg)
       setStep('upload')
       setFile(null)
     }
@@ -144,54 +165,54 @@ export default function BulkImport() {
 
       {/* ── STEP 1: Upload ── */}
       {(step === 'upload' || step === 'previewing') && (
-        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-          {/* Drop zone */}
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="grid grid-cols-1 lg:grid-cols-5 gap-4">
+          {/* Drop zone — compact */}
           <div
             onDragOver={(e) => { e.preventDefault(); setDragOver(true) }}
             onDragLeave={() => setDragOver(false)}
             onDrop={handleDrop}
             onClick={() => fileRef.current?.click()}
-            className={`cursor-pointer border-2 border-dashed rounded-2xl p-12 text-center transition-all ${dragOver ? 'border-maroon-500 bg-maroon-50 dark:bg-maroon-900/20' : 'border-gray-300 dark:border-navy-600 hover:border-maroon-400'}`}
+            className={`lg:col-span-2 cursor-pointer border-2 border-dashed rounded-2xl p-6 text-center transition-all min-h-[200px] flex items-center justify-center ${dragOver ? 'border-maroon-500 bg-maroon-50 dark:bg-maroon-900/20' : 'border-gray-300 dark:border-navy-600 hover:border-maroon-400'}`}
           >
             <input
               ref={fileRef}
               type="file"
               className="hidden"
-              accept=".xlsx,.xls,.csv"
+              accept=".xlsx,.xls,.csv,.pdf"
               onChange={(e) => handleFile(e.target.files[0])}
             />
             {step === 'previewing' ? (
-              <div className="space-y-3">
-                <RefreshCcw size={40} className="mx-auto text-maroon-500 animate-spin" />
-                <p className="font-semibold text-maroon-600">Parsing Excel...</p>
+              <div className="space-y-2">
+                <RefreshCcw size={32} className="mx-auto text-maroon-500 animate-spin" />
+                <p className="font-semibold text-maroon-600 text-sm">Parsing file...</p>
               </div>
             ) : (
-              <div className="space-y-4">
-                <div className="w-16 h-16 bg-maroon-100 dark:bg-maroon-900/30 rounded-2xl flex items-center justify-center mx-auto">
-                  <FileSpreadsheet size={32} className="text-maroon-600" />
+              <div className="space-y-3">
+                <div className="w-12 h-12 bg-maroon-100 dark:bg-maroon-900/30 rounded-xl flex items-center justify-center mx-auto">
+                  <FileSpreadsheet size={24} className="text-maroon-600" />
                 </div>
                 <div>
-                  <p className="text-lg font-bold">Excel File Yahan Drop Karein</p>
-                  <p className="text-sm text-gray-500 mt-1">ya click karke file select karein</p>
-                  <p className="text-xs text-gray-400 mt-2">.xlsx, .xls, .csv supported • Max 10MB</p>
+                  <p className="text-base font-bold">Excel / PDF Drop Karein</p>
+                  <p className="text-xs text-gray-500 mt-1">ya click karke select karein</p>
+                  <p className="text-[10px] text-gray-400 mt-1">.xlsx, .xls, .csv, .pdf • Max 10MB</p>
                 </div>
               </div>
             )}
           </div>
 
-          {/* How to make Excel guide */}
-          <div className="card p-6 mt-4">
-            <h2 className="font-heading font-semibold text-base mb-4 flex items-center gap-2">
-              <FileSpreadsheet size={18} className="text-maroon-500" />
+          {/* How to make Excel guide — side panel */}
+          <div className="card p-4 lg:col-span-3">
+            <h2 className="font-heading font-semibold text-sm mb-3 flex items-center gap-2">
+              <FileSpreadsheet size={16} className="text-maroon-500" />
               Excel File Kaise Banayein?
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-3">
-                <p className="text-sm font-bold text-gray-700 dark:text-gray-300">Step 1 — Template Download Karein</p>
-                <button onClick={handleDownloadTemplate} className="btn-secondary text-sm w-full flex items-center justify-center gap-2">
-                  <Download size={15} /> Template Download
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="space-y-2">
+                <p className="text-xs font-bold text-gray-700 dark:text-gray-300">Step 1 — Template Download</p>
+                <button onClick={handleDownloadTemplate} className="btn-secondary text-xs w-full flex items-center justify-center gap-2 py-1.5">
+                  <Download size={13} /> Template Download
                 </button>
-                <p className="text-xs text-gray-500">Yeh file MS Excel ya Google Sheets mein khulegi</p>
+                <p className="text-[10px] text-gray-500">MS Excel/Google Sheets mein khulegi</p>
               </div>
               <div className="space-y-2">
                 <p className="text-sm font-bold text-gray-700 dark:text-gray-300">Step 2 — Data Bharo</p>

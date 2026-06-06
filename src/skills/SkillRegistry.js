@@ -97,6 +97,9 @@ class SkillRegistry {
       skill.isLoaded = true; // Still register it
     }
 
+    // Auto-wrap execute() with memory + learning (zero-change for skills)
+    this._wrapWithMemory(skill);
+
     // Store the skill
     this.skills.set(skill.name, skill);
 
@@ -115,6 +118,55 @@ class SkillRegistry {
     }
 
     console.log(`   ✅ ${skill.displayName} (${skill.name}) — ${skill.intents.length} intents | ${skill.canRunOffline ? '🟢 Offline' : '🔵 Online'}`);
+  }
+
+  // ═══════════════════════════════════════════════════════════
+  //  Auto-Wrap: Har skill ka execute() ko memory + learning ke saath wrap kar do
+  //  Zero change for skill code — registry handles it automatically
+  // ═══════════════════════════════════════════════════════════
+  _wrapWithMemory(skill) {
+    if (skill._wrapped) return; // Already wrapped
+    const originalExecute = skill.execute.bind(skill);
+
+    skill.execute = async function(context) {
+      const userId = context.userId || 'anonymous';
+      const userMessage = context.message || '';
+      let response = null;
+      let success = true;
+
+      try {
+        // Inject past context into the skill so it can use chat history
+        if (!context.pastContext) {
+          context.pastContext = skill._getContext ? skill._getContext(userId, 5) : '';
+        }
+        if (!context.similarPast) {
+          context.similarPast = skill._findSimilarPast ? skill._findSimilarPast(userId, userMessage, 3) : [];
+        }
+
+        response = await originalExecute(context);
+
+        // Determine success based on response type
+        if (response?.type === 'error') success = false;
+      } catch (err) {
+        success = false;
+        response = { type: 'error', message: `${skill.displayName}: ${err.message}`, skill: skill.name };
+        console.error(`[Skill: ${skill.name}] execute error:`, err.message);
+      }
+
+      // Auto-record conversation + learning (non-blocking)
+      try {
+        if (skill._remember && userMessage) {
+          const replyText = typeof response === 'string' ? response : (response?.message || JSON.stringify(response));
+          skill._remember(userId, userMessage, replyText, success);
+        }
+      } catch (e) {
+        // Silent — don't break skill if memory fails
+      }
+
+      return response;
+    };
+
+    skill._wrapped = true;
   }
 
   // ═══════════════════════════════════════════════════════════

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3001/api'
+const API_BASE = import.meta.env.PROD ? '/api' : (import.meta.env.VITE_API_URL || 'http://localhost:3001/api')
 
 const api = axios.create({
   baseURL: API_BASE,
@@ -41,6 +41,7 @@ api.interceptors.response.use(
 // Auth APIs
 export const authAPI = {
   login: (credentials) => api.post('/auth/login', credentials),
+  googleLogin: (data) => api.post('/auth/google', data),
   logout: () => api.post('/auth/logout'),
   me: () => api.get('/auth/me'),
 }

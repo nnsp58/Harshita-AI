@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { Sparkles, Mail, Lock, Eye, EyeOff, AlertCircle } from 'lucide-react'
 import { useStore } from '../store'
 import { authAPI } from '../services/api'
+import { GoogleLogin } from '@react-oauth/google'
 
 export default function Login() {
   const { setAuth } = useStore()
@@ -34,6 +35,29 @@ export default function Login() {
     } finally {
       setLoading(false)
     }
+  }
+
+  const handleGoogleSuccess = async (credentialResponse) => {
+    setLoading(true)
+    setError('')
+    try {
+      // Send the Google ID token to our backend
+      const response = await authAPI.googleLogin({ token: credentialResponse.credential })
+      const { token, user } = response.data.data
+      
+      setAuth(token, user)
+      console.log('Google Login successful')
+      navigate('/', { replace: true })
+    } catch (err) {
+      console.error('Google Login error:', err)
+      setError(err.response?.data?.error || 'Google Login failed.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleGoogleError = () => {
+    setError('Google Sign-In was unsuccessful. Try again later.')
   }
 
   return (
@@ -118,14 +142,25 @@ export default function Login() {
               )}
             </button>
           </form>
+
+          <div className="mt-6 flex items-center justify-between">
+            <span className="w-1/5 border-b border-gray-600 lg:w-1/4"></span>
+            <span className="text-xs text-center text-gray-500 uppercase">or sign in with</span>
+            <span className="w-1/5 border-b border-gray-600 lg:w-1/4"></span>
+          </div>
+
+          <div className="mt-6 flex justify-center">
+            <GoogleLogin
+              onSuccess={handleGoogleSuccess}
+              onError={handleGoogleError}
+              useOneTap
+              theme="filled_black"
+              shape="pill"
+            />
+          </div>
         </div>
 
-        {/* Demo credentials */}
-        <div className="mt-6 p-4 bg-white/10 backdrop-blur-sm rounded-xl text-white text-sm text-center">
-          <p className="font-medium mb-1">Demo Credentials</p>
-          <p className="text-gray-300">Email: demo@harshita.ai</p>
-          <p className="text-gray-300">Password: demo1234</p>
-        </div>
+        {/* Demo credentials removed */}
       </motion.div>
     </div>
   )
