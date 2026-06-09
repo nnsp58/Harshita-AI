@@ -75,7 +75,8 @@ class MasterAgent {
     try {
       // ── Step 1: Intent Detect करो (AI + Keyword) ──
       console.log(`\n🎯 [MasterAgent] User ${userId}: "${cmd.substring(0, 60)}..."`);
-      const detection = await this.detector.detect(cmd);
+      const history = this._getHistory(userId);
+      const detection = await this.detector.detect(cmd, options.lang, history);
 
       console.log(`   📌 Intent: ${detection.intent} (${(detection.confidence * 100).toFixed(0)}% via ${detection.method})`);
 

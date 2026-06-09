@@ -34,10 +34,10 @@ class IntentDetector {
    * यूज़र के मैसेज से intent पहचानो
    * 
    * @param {string} userMessage - यूज़र ने क्या कहा
-   * @param {string} lang - भाषा (auto-detect if null)
+   * @param {Array} history - Conversation history
    * @returns {Object} - { intent, confidence, skill, params, method }
    */
-  async detect(userMessage, lang = null) {
+  async detect(userMessage, lang = null, history = []) {
     if (!userMessage || userMessage.trim().length === 0) {
       return { intent: 'general_chat', confidence: 0, skill: null, params: {}, method: 'empty' };
     }
@@ -52,7 +52,7 @@ class IntentDetector {
     }
 
     // ── Step 1: AI-based Detection (Best accuracy) ──
-    let result = await this._detectWithAI(cleanMessage, lang);
+    let result = await this._detectWithAI(cleanMessage, lang, history);
 
     // ── Step 2: Keyword Fallback (अगर AI fail हो) ──
     if (!result || result.confidence < 0.4) {
@@ -83,7 +83,7 @@ class IntentDetector {
   //  AI-Based Detection (Groq / Gemini / OpenAI)
   // ═══════════════════════════════════════════════════════════
 
-  async _detectWithAI(message, lang) {
+  async _detectWithAI(message, lang, history = []) {
     try {
       const client = aiProviderManager.getClient(this.name);
       if (!client) {
@@ -96,19 +96,29 @@ class IntentDetector {
       // सभी उपलब्ध intents की लिस्ट बनाओ
       const availableIntents = this._buildIntentList();
 
+      // Build context from history
+      let historyContext = '';
+      if (history && history.length > 0) {
+        historyContext = '\nRecent Conversation History:\n';
+        const recentHistory = history.slice(-3); // Last 3 messages
+        recentHistory.forEach(h => {
+          historyContext += `${h.role === 'user' ? 'User' : 'Assistant'}: ${h.message}\n`;
+        });
+      }
+
       const prompt = `You are an intent classifier for "Harshita AI" — a Government Service AI Assistant used in Indian CSC (Common Service Centre) centers.
 
 The user can speak in Hindi, English, or Hinglish (Roman Hindi). Your job is to identify their INTENT.
 
 Available Intents:
 ${availableIntents}
-
-User Message: "${message}"
+${historyContext}
+Current User Message: "${message}"
 
 Rules:
 1. Return ONLY raw JSON, no markdown, no explanation
-2. If the message is casual talk / greeting, use "general_chat"
-3. Extract any useful parameters (like service name, document type, person name) into "params"
+2. If the user is replying to the Assistant's previous question (e.g. saying "yes" to "Do you want to fill the form?"), deduce the correct intent (e.g. "form_fill") and DO NOT return "general_chat".
+3. Extract any useful parameters (like service name, document type, person name) into "params". If the user says "yes" and the history mentions a specific job, extract that job into params.
 4. Confidence should be 0.0 to 1.0
 
 Return format:

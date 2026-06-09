@@ -67,8 +67,8 @@ class FormFillSkill extends BaseSkill {
     if (serviceType && this.services[serviceType]) {
       const service = this.services[serviceType];
       return this._reply(
-        `📝 *${service.name}* का फॉर्म भरने की तैयारी!\n\n🌐 पोर्टल: ${service.portal}\n\nफॉर्म भरने से पहले मुझे चाहिए:\n1. ✅ उम्मीदवार का प्रोफाइल (आधार/पैन से ऑटो-भरा जाएगा)\n2. ✅ ज़रूरी दस्तावेज़ (फोटो, हस्ताक्षर आदि)\n3. ⏳ OTP — जब फॉर्म में आए तो मुझे भेजें\n\nक्या प्रोफाइल तैयार है? "हाँ" बोलें शुरू करने के लिए।`,
-        { serviceType, serviceName: service.name, step: 'confirm_profile' },
+        `📝 *${service.name}* का फॉर्म भरने की तैयारी!\n\n🌐 पोर्टल: ${service.portal}\n\nमैंने आपके लिए फॉर्म भरने वाला डैशबोर्ड खोल दिया है। यहाँ आप अपनी प्रोफाइल डालकर फॉर्म भरना शुरू कर सकते हैं!`,
+        { serviceType, serviceName: service.name, step: 'confirm_profile', navigate: '/service/form-filling' },
         'prepareFormFill'
       );
     }

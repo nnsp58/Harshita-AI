@@ -85,7 +85,7 @@ class JobSearchSkill extends BaseSkill {
 
             io.emit('logUpdate', {
               type: 'ai',
-              message: `✅ SarkariResult से *${service.name}* की ताज़ा भर्तियां (Live):\n\n${messageList}\n\nक्या मैं इनमें से किसी का फॉर्म भर दूँ?`,
+              message: `✅ SarkariResult से *${service.name}* की ताज़ा भर्तियां (Live):\n\n${messageList}`,
               action: { status: 'completed', service: detectedService }
             });
           })
@@ -93,14 +93,14 @@ class JobSearchSkill extends BaseSkill {
             console.error("SarkariResult Scrape Error:", err.message);
             io.emit('logUpdate', {
               type: 'ai',
-              message: `✅ *${service.name}* की ताज़ा भर्तियाँ मिल गई हैं!\n\n1. ${service.name} Phase XII - 2000+ पद (अंतिम तिथि: 25 Nov)\n2. ${service.name} Assistant - 500+ पद (अंतिम तिथि: 10 Dec)\n\nक्या मैं इनमें से किसी का फॉर्म भर दूँ?`,
+              message: `✅ *${service.name}* की ताज़ा भर्तियाँ मिल गई हैं!\n\n1. ${service.name} Phase XII - 2000+ पद (अंतिम तिथि: 25 Nov)\n2. ${service.name} Assistant - 500+ पद (अंतिम तिथि: 10 Dec)`,
               action: { status: 'completed', service: detectedService }
             });
           });
       }
 
       return this._reply(
-        `🔍 SarkariResult से *${service.name}* की लाइव भर्तियाँ खोज रहा हूँ...\n\n📋 एजेंसी: ${service.agency}\n⏳ कृपया कुछ सेकंड रुकें।`,
+        `🔍 *${service.name}* की लाइव भर्तियाँ खोज रहा हूँ...\n\n📋 एजेंसी: ${service.agency}\n⏳ कृपया कुछ सेकंड रुकें।`,
         { serviceType: detectedService, serviceName: service.name, action: 'search_jobs' },
         'searchJobs'
       );
@@ -127,7 +127,7 @@ class JobSearchSkill extends BaseSkill {
 
           io.emit('logUpdate', {
             type: 'ai',
-            message: `✅ SarkariResult से ताज़ा भर्तियां (Live):\n\n${messageList}\n\nक्या आप इनमें से किसी का फॉर्म भरना चाहते हैं?`,
+            message: `✅ SarkariResult से ताज़ा भर्तियां (Live):\n\n${messageList}`,
             action: { status: 'completed' }
           });
         })
@@ -135,14 +135,14 @@ class JobSearchSkill extends BaseSkill {
           console.error("SarkariResult Scrape Error:", err.message);
           io.emit('logUpdate', {
             type: 'ai',
-            message: `✅ कुछ ताज़ा सरकारी नौकरियाँ:\n\n1. SSC CHSL - 4500 पद\n2. RRB NTPC - 10000+ पद\n3. IBPS PO - 3000 पद\n\nकिसी खास विभाग के बारे में पूछें तो मैं फॉर्म भरने में मदद करूँगी।`,
+            message: `✅ कुछ ताज़ा सरकारी नौकरियाँ:\n\n1. SSC CHSL - 4500 पद\n2. RRB NTPC - 10000+ पद\n3. IBPS PO - 3000 पद`,
             action: { status: 'completed' }
           });
         });
     }
 
     return this._reply(
-      '🔍 SarkariResult से सभी ताज़ा नौकरियाँ (Latest Jobs) लाइव खोज रहा हूँ...\n\nआप ये भी बोल सकते हैं:\n• "SSC की भर्ती दिखाओ"\n• "Railway में नौकरी चाहिए"\n• "Army bharti कब है"',
+      '🔍 SarkariResult से ताज़ा नौकरियाँ खोज रहा हूँ... कृपया कुछ सेकंड प्रतीक्षा करें।',
       { action: 'search_all_jobs' },
       'searchJobs'
     );

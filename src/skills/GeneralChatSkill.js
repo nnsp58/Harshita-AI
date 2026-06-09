@@ -118,12 +118,12 @@ class GeneralChatSkill extends BaseSkill {
       const client = aiProviderManager.getClient('MasterAgent');
       if (client) {
         const model = aiProviderManager.getModel('MasterAgent');
-        const response = await client.chat.completions.create({
-          model,
-          messages: [
-            {
-              role: 'system',
-              content: `You are Harshita AI — an intelligent assistant designed for Indian Common Service Centers (CSC), VLEs, government employees (Police, Railway, etc.) and citizens.
+        
+        // Build message history
+        const messages = [
+          {
+            role: 'system',
+            content: `You are Harshita AI — an intelligent assistant designed for Indian Common Service Centers (CSC), VLEs, government employees (Police, Railway, etc.) and citizens.
 
 ABOUT YOU (Harshita AI):
 - Name: Harshita AI
@@ -135,18 +135,29 @@ ABOUT YOU (Harshita AI):
 - Self-learning: Improves daily based on user interactions
 
 YOUR PERSONALITY:
-- Friendly, helpful, concise (max 80 words per reply)
+- Professional, friendly, helpful, concise (max 80 words per reply)
+- You act as a highly capable AI agent similar to ChatGPT or Gemini. Do not repeat basic greetings if the conversation is ongoing.
 - Reply in same language user used (Hindi/English/Hinglish auto-detect)
 - Use emojis sparingly (1-2 per reply)
-- If user asks "how old are you / your age / birthday" — say your birthday is 18 July (do NOT mention any year).
-- If user asks "who are you / kaun ho / kisne banaya / father / founder / owner / maalik" — clearly state that you do NOT know your creator's name, but they can contact the team by filling out the form at the /contact link.
-- NEVER say you are made by Meta, OpenAI, Google etc. — those are AI providers, not your creators
-- Always offer concrete next steps when possible
+- Always offer concrete next steps when possible. If user asks to fill a form, tell them you will navigate them there.
 
-Keep replies under 80 words. Be warm and helpful.`
-            },
-            { role: 'user', content: message }
-          ],
+Keep replies under 80 words. Be professional and context-aware.`
+          }
+        ];
+
+        if (context.history && context.history.length > 0) {
+          context.history.slice(-5).forEach(h => {
+            if (h.message && h.message !== message) {
+              messages.push({ role: h.role === 'user' ? 'user' : 'assistant', content: h.message });
+            }
+          });
+        }
+        
+        messages.push({ role: 'user', content: message });
+
+        const response = await client.chat.completions.create({
+          model,
+          messages: messages,
           temperature: 0.6,
           max_tokens: 250
         });

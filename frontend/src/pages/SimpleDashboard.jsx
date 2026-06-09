@@ -63,6 +63,19 @@ export default function SimpleDashboard() {
   useEffect(() => { initialize() }, [initialize])
   const handleLogout = () => { logout(); navigate('/login', { replace: true }) }
 
+  // Listen for navigate actions from AI
+  useEffect(() => {
+    if (messages.length > 0) {
+      const lastMsg = messages[messages.length - 1]
+      if (lastMsg.type === 'ai' && lastMsg.action && lastMsg.action.navigate) {
+        // Delay slightly for smooth transition
+        setTimeout(() => {
+          navigate(lastMsg.action.navigate)
+        }, 1500)
+      }
+    }
+  }, [messages, navigate])
+
   // Resize logic
   const startResize = useCallback((panel) => (e) => {
     e.preventDefault()
