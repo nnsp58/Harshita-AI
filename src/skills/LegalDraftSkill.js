@@ -124,9 +124,9 @@ class LegalDraftSkill extends BaseSkill {
   }
 
   // ═══════════════════════════════════════════════════════════
-  //  AI-POWERED DRAFT GENERATION
+  //  AI-POWERED DRAFT GENERATION (with 20-Point Quality Engine)
   // ═══════════════════════════════════════════════════════════
-  async _generateWithAI(userInput, docType) {
+  async _generateWithAI(userInput, docType, retryCount = 0) {
     if (!this.aiManager) return null;
 
     let targetLang = 'both';
@@ -164,40 +164,112 @@ class LegalDraftSkill extends BaseSkill {
 
     const docName = docNames[docType] || 'Legal Affidavit';
 
-    // ========== MASTER SENIOR ADVOCATE PROMPT (20+ Years Experience) ==========
+    // ========== 20-POINT LEGAL DRAFT QUALITY ENGINE ==========
+    const qualityEngine = `
+=== LEGAL DRAFT QUALITY ENGINE (20-POINT MANDATORY PROTOCOL) ===
+
+1. MATTER DETECTION: Identify the exact legal matter from user's natural language. Classify into Gift Deed / Affidavit / Partition / NOC / Rent / Will / POA / Declaration / Name Change.
+
+2. LEGAL DOCUMENT CLASSIFICATION: Determine if it is Registration-Required (Gift Deed, Sale Deed, Partition) or Non-Registration (Affidavit, NOC, Declaration). Apply appropriate legal structure.
+
+3. ENTITY EXTRACTION (MANDATORY):
+   - Full Name, Father/Husband Name, Age, Complete Address (Village, Post, Tehsil, District, State)
+   - Aadhaar Number → If missing: leave "आधार संख्या / Aadhaar No.: ____________________"
+   - PAN Number → If missing: leave "पैन संख्या / PAN No.: ____________________"
+   - Driving License → If missing: leave "DL संख्या / DL No.: ____________________"
+   - Voter ID → If missing: leave "मतदाता पहचान संख्या / Voter ID: ____________________"
+   NEVER skip these fields. Always leave professional blank lines if user hasn't provided them.
+
+4. NAME NORMALIZATION: Convert ALL names to Title Case:
+   "nar narayan singh" → "Nar Narayan Singh"
+   "meer singh" → "Meer Singh"
+   Names must NEVER appear in all-lowercase in the final draft.
+
+5. AUTO CAPITALIZATION RULE:
+   - All proper nouns → Title Case (names, villages, districts, states)
+   - "village sikhera" → "Village Sikhera"
+   - "district bulandshahr" → "District Bulandshahr"
+   - "uttar pradesh" → "Uttar Pradesh"
+   - Legal headings → ALL CAPS ("GIFT DEED", "AFFIDAVIT", "WHEREAS")
+
+6. LEGAL TERMINOLOGY ENHANCEMENT: Replace weak/colloquial language with proper legal terms:
+   - "de raha hoon" → "स्थायी रूप से हस्तांतरित करता हूँ"
+   - "paper" → "विलेख / Deed"
+   - "sign" → "हस्ताक्षर / Signature"
+   Use authoritative legal vocabulary throughout.
+
+7. MISSING INFORMATION DETECTION: For EVERY missing critical field, leave PROFESSIONAL PLACEHOLDERS:
+   - [नाम / Name]
+   - [पिता का नाम / Father's Name]
+   - [आयु / Age: ______ वर्ष]
+   - [पूरा पता / Full Address]
+   - [आधार संख्या / Aadhaar No.: ____________________]
+   - [पैन संख्या / PAN No.: ____________________]
+   - [DL संख्या / DL No.: ____________________]
+   - [राशि / Amount: ₹__________]
+   - [दानग्रहीता का पता / Donee's Address]
+   NEVER leave a field blank without a placeholder. NEVER write "N/A".
+
+8. HALLUCINATION PREVENTION:
+   - NEVER invent names, addresses, amounts, dates, or Aadhaar/PAN numbers.
+   - If user said "Ramesh" only, DO NOT invent "Ramesh Kumar Singh S/o Rajendra Singh".
+   - Only use what the user provided. Everything else gets a placeholder.
+
+9. VERIFICATION CLAUSE GENERATOR: Every document MUST end with a verification clause:
+   "सत्यापित किया जाता है कि उपरोक्त कथन मेरी जानकारी और विश्वास के अनुसार सत्य हैं, कोई बात छुपाई नहीं गई है।"
+   "Verified that the above statements are true to my knowledge and belief, nothing has been concealed."
+
+10. NOTARY READY FORMATTING: Include at the end:
+    "नोटरी पब्लिक / NOTARY PUBLIC"
+    "मुहर एवं हस्ताक्षर / Seal & Signature: ____________________"
+    "दिनांक / Date: ____________________"
+
+11. COURT FILING FORMATTING: For Affidavits/Declarations add:
+    "न्यायालय / COURT: [माननीय न्यायालय का नाम]"
+    "वाद संख्या / Case No.: ____________________"
+
+12. GOVERNMENT OFFICE FORMATTING: For NOC/Declaration add:
+    "प्रति / TO: [कार्यालय का नाम / Office Name]"
+    "संदर्भ / Reference No.: ____________________"
+
+13. BILINGUAL SYNCHRONIZATION: If bilingual, Hindi and English versions must be structurally identical — same number of clauses, same order.
+
+14. LEGAL RISK REVIEW: Flag any potentially risky clauses (e.g., blanket power of attorney, unconditional gifts). Add a disclaimer note if appropriate.
+
+15. DUPLICATE DOCUMENT LOGIC: If generating a "second copy" or "duplicate", mark as "CERTIFIED TRUE COPY / प्रमाणित सत्य प्रतिलिपि".
+
+16. PROPERTY DRAFT LOGIC: For property documents include:
+    - खसरा / गाटा संख्या / Khasra No.: ____________________
+    - खाता संख्या / Khata No.: ____________________
+    - क्षेत्रफल / Area: ____________________
+    - चतुर्सीमा / Boundaries: पूर्व / East: ____, पश्चिम / West: ____, उत्तर / North: ____, दक्षिण / South: ____
+
+17. AFFIDAVIT LOGIC: Numbered paragraphs (1, 2, 3...), Oath language, Deponent block, Verification clause.
+
+18. AGREEMENT LOGIC: Clearly defined parties, Terms numbered, Dispute resolution clause, Duration/Termination clause.
+
+19. DEED LOGIC: WHEREAS recitals, NOW THIS DEED WITNESSES, Operative clauses, Registration reminder.
+
+20. WILL LOGIC: Sound mind declaration, Revocation of prior wills, Executor appointment, Witness requirement (min 2).
+`;
+
+    // ========== MASTER SENIOR ADVOCATE PROMPT ==========
     const baseRules = `
 You are a senior advocate with 20+ years of experience in Indian law, specializing in drafting court-admissible and registration-ready legal documents.
 
-=== MANDATORY EXTRACTION PROTOCOL (DO THIS FIRST — BEFORE WRITING ANY DRAFT) ===
-You MUST internally extract the following structured information from the user's natural language input. NEVER directly copy-paste raw sentences into the document.
+${qualityEngine}
 
-Extract these fields clearly in your thinking:
-1. Full Name of main person (Donor / Deponent / Principal / Testator / Landlord etc.)
-2. Father's Name or Husband's Name
-3. Address broken down:
-   - Village / Gram
-   - Post
-   - Tehsil
-   - District
-   - State (if mentioned)
-4. Relationship with beneficiary (पुत्री / बेटी / Daughter, पुत्र, पत्नी, भाई etc.)
-5. Beneficiary / Donee / Tenant / Attorney Holder name
-6. Property Type (चल / अचल / Movable / Immovable)
-7. Property Share / Percentage (50%, आधा हिस्सा, पूरा, etc.)
-8. Legal Intent (Gift, Partition, NOC, Rent, Will, POA, Declaration)
-9. Place of Execution / Jurisdiction
-10. Any other specific details (Rent amount, Security, Duration, etc.)
-
-If any field is missing or unclear → mark it and use professional placeholder later. 
-DO NOT stuff the entire user sentence into "Address" or "DONOR" field.
-
-=== MASTER RULES (AFTER EXTRACTION) ===
+=== MASTER RULES ===
 - Never copy the user's raw text directly into the draft.
 - Draft like a top senior lawyer: formal, precise, authoritative, no repetition, no weak language.
 - Always follow classic Indian legal structure: Title → Parties → Recitals (WHEREAS) → Operative Part → Terms & Conditions → Attestation → Witnesses & Signatures.
 ${langInstruction}
-- If any critical information is missing, use clean professional placeholders like [नाम], [पिता का नाम], [पूरा पता], [आयु], [राशि], [दानग्रहीता का पता] — but the document must still look complete and dignified.
 - Make the document Court Ready + Sub-Registrar Registration Ready + Stamp Paper Ready.
+- SIGNATURE BLOCK is MANDATORY. Include spaces for:
+  "प्रथम पक्ष / First Party: ____________________"
+  "द्वितीय पक्ष / Second Party: ____________________"
+  "साक्षी / Witness 1: ____________________"
+  "साक्षी / Witness 2: ____________________"
 - Never produce beginner or generic level output.`;
 
     let typeSpecificRules = '';
@@ -212,59 +284,81 @@ ${langInstruction}
 - Must include: Natural Love & Affection Clause, Absolute Ownership Clause, No Consideration Clause, Possession Transfer Clause.
 - Add Registration & Stamp Duty reminder.
 - Use proper revenue language: "स्थायी रूप से हस्तांतरित", "बिना किसी प्रतिफल के" etc.
-- Structure must have strong WHEREAS recitals explaining love/affection and ownership.`;
+- Structure must have strong WHEREAS recitals explaining love/affection and ownership.
+- Include Donor's Aadhaar/PAN placeholder if not provided.`;
     } else if (docType === 'affidavit') {
       typeSpecificRules = `
 === AFFIDAVIT (शपथ पत्र) - SENIOR ADVOCATE RULES ===
-- Identify Deponent with full details: Name, Father's name, Age, Complete Address, Aadhaar if available.
+- Identify Deponent with full details: Name, Father's name, Age, Complete Address.
+- Include Aadhaar No. placeholder: "आधार संख्या / Aadhaar No.: ____________________"
 - Detect Jurisdiction (where the affidavit will be used).
 - Create proper numbered facts (1, 2, 3...).
 - Strong Oath language + Verification Clause.
 - Make it Notary Public and Court Filing ready.
-- Include Self-declaration of truthfulness.`;
+- Include Self-declaration of truthfulness.
+- Add "ई-स्टाम्प / E-Stamp Reference No.: ____________________" placeholder.`;
     } else if (docType === 'partition_deed') {
       typeSpecificRules = `
 === PARTITION DEED (बंटवारा विलेख) - SENIOR ADVOCATE RULES ===
 - Identify all Co-owners and their exact shares.
 - Extract Property details (Khasra, Khata, Plot, Boundaries if mentioned).
+- Include Aadhaar of all parties as placeholder if not provided.
 - Create clear allocation of shares with mutual agreement language.
 - Include Possession Clause and No Claim Clause after partition.
-- Use proper family property division language.`;
+- Use proper family property division language.
+- Add property boundary placeholders: "चतुर्सीमा / Boundaries: पूर्व: ____, पश्चिम: ____, उत्तर: ____, दक्षिण: ____"`;
     } else if (docType === 'noc') {
       typeSpecificRules = `
 === NOC (अनापत्ति प्रमाण पत्र) - SENIOR ADVOCATE RULES ===
 - Identify Applicant and the Authority receiving the NOC.
+- Include Aadhaar No. placeholder for identity proof.
 - Clearly state the Purpose for which NOC is being issued.
 - Add Liability Disclaimer and that it is issued voluntarily without any pressure.
-- Mention Validity and that it can be withdrawn if facts are found false.`;
+- Mention Validity and that it can be withdrawn if facts are found false.
+- Add "संदर्भ / Reference No.: ____________________" for government office use.`;
     } else if (docType === 'rent_agreement') {
       typeSpecificRules = `
 === RENT AGREEMENT (किराया अनुबंध) - SENIOR ADVOCATE RULES ===
 - Clearly identify Landlord and Tenant with full details.
+- Include Aadhaar/PAN placeholder for both parties.
 - Extract Rent Amount, Security Deposit, Duration, Lock-in Period, Payment Date.
 - Include Maintenance, Eviction, Notice Period, Police Verification clauses.
-- Add that the agreement is for 11 months (standard).`;
+- Add that the agreement is for 11 months (standard).
+- Include electric meter number / gas connection placeholders.`;
     } else if (docType === 'will') {
       typeSpecificRules = `
 === WILL (वसीयत) - SENIOR ADVOCATE RULES ===
 - Identify Testator (वसीयतकर्ता) and confirm sound mind.
+- Include Aadhaar placeholder for Testator.
 - List all Beneficiaries with exact shares/relationships.
 - Include Revocation of earlier Wills clause.
 - Strong Executor appointment and distribution instructions.
-- Witness requirement (minimum 2).`;
+- Witness requirement (minimum 2) with Aadhaar placeholders.
+- Add "मेडिकल प्रमाणपत्र / Medical Certificate: ____________________" placeholder for sound mind proof.`;
     } else if (docType === 'power_of_attorney') {
       typeSpecificRules = `
 === POWER OF ATTORNEY (मुख्तारनामा) - SENIOR ADVOCATE RULES ===
-- Identify Principal and Attorney Holder.
+- Identify Principal and Attorney Holder with full details.
+- Include Aadhaar/PAN placeholder for both parties.
 - Clearly define Scope of Authority (Property, Banking, Court, General).
 - Add Revocation Clause and that it is revocable.
-- Mention whether it is General or Special POA.`;
+- Mention whether it is General or Special POA.
+- Add validity period placeholder.`;
     } else if (docType === 'declaration') {
       typeSpecificRules = `
 === DECLARATION (घोषणा पत्र) - SENIOR ADVOCATE RULES ===
-- Identify the Declarant clearly.
+- Identify the Declarant clearly with Aadhaar placeholder.
 - State the facts being declared with numbered points.
-- Strong truthfulness and penalty clause for false declaration.`;
+- Strong truthfulness and penalty clause for false declaration.
+- Add "ई-स्टाम्प / E-Stamp Reference No.: ____________________" placeholder.`;
+    } else if (docType === 'name_change') {
+      typeSpecificRules = `
+=== NAME CHANGE AFFIDAVIT - SENIOR ADVOCATE RULES ===
+- Old Name and New Name must be clearly stated.
+- Include Aadhaar No. and PAN No. placeholders.
+- Include Gazette notification reference placeholder.
+- Add newspaper publication clause.
+- Include list of documents where name change applies (Aadhaar, PAN, Bank, School, etc.).`;
     }
 
     const systemPrompt = `You are a senior advocate with 20+ years of experience in Indian law.
@@ -273,8 +367,28 @@ ${baseRules}
 
 ${typeSpecificRules}
 
+=== CHAIN-OF-THOUGHT QUALITY CHECK (MANDATORY BEFORE OUTPUT) ===
+Before writing the final document, you MUST perform this internal quality check in your thinking:
+
+<quality_check>
+✓ Document type correct: [yes/no]
+✓ Legal structure followed (Title → Parties → WHEREAS → Operative → Attestation): [yes/no]
+✓ Proper legal language used: [yes/no]
+✓ All extracted entities normalized: [yes/no]
+✓ All names Title Case capitalized: [yes/no]
+✓ Aadhaar/PAN/DL placeholders present where needed: [yes/no]
+✓ Verification clause present: [yes/no]
+✓ Signature block present (all parties + 2 witnesses): [yes/no]
+✓ Notary section present: [yes/no]
+✓ No hallucinated facts (no invented names/numbers): [yes/no]
+✓ Professional formatting maintained: [yes/no]
+</quality_check>
+
+If ANY check fails, fix it before generating the final output.
+
 Strict Output Rules:
 ${outputInstruction}
+- Output ONLY the final legal document. Do NOT output the <quality_check> block — keep it internal.
 - Maintain the highest professional Indian legal drafting standard.`;
 
     const userPrompt = `User's Request: "${userInput}"
@@ -282,21 +396,22 @@ ${outputInstruction}
 STEP-BY-STEP TASK (FOLLOW STRICTLY):
 
 1. EXTRACTION (MANDATORY FIRST STEP)
-   Carefully read the user's natural language and extract the structured fields as per the MANDATORY EXTRACTION PROTOCOL above.
+   Carefully read the user's natural language and extract the structured fields as per the 20-POINT QUALITY ENGINE.
    - Break the address properly (Village, Post, Tehsil, District).
    - Identify exact relationship (especially "पुत्री", "बेटी", "Daughter").
    - Do NOT dump the entire sentence after "निवासी" into the Address field.
+   - For Aadhaar/PAN/DL: If NOT provided by user, leave professional blank: "____________________"
 
-2. VALIDATION
-   Mark which important fields are missing.
+2. AUTO CAPITALIZATION
+   Apply Title Case to all proper nouns. Apply ALL CAPS to legal headings.
 
-3. DRAFT GENERATION
-   Now generate a complete, professional ${docName} following all the Senior Advocate rules and type-specific rules defined in the system prompt.
-   - Use proper legal structure.
-   - Use clean placeholders for missing information.
-   - Never copy raw user sentences into DONOR, DONEE or Address fields.
+3. QUALITY CHECK
+   Perform the <quality_check> internally. Fix any failures.
 
-Output ONLY the final legal document following the language rules: ${outputInstruction} No other text.`;
+4. DRAFT GENERATION
+   Generate a complete, professional ${docName} following all rules.
+
+Output ONLY the final legal document. No other text.`;
 
     try {
       const response = await this.aiManager.createChatCompletion('LegalDraftAgent', {
@@ -304,13 +419,33 @@ Output ONLY the final legal document following the language rules: ${outputInstr
           { role: 'system', content: systemPrompt },
           { role: 'user', content: userPrompt },
         ],
-        temperature: 0.4,
-        max_tokens: 2500,
+        temperature: 0.3,
+        max_tokens: 3500,
       });
 
-      const draft = response?.choices?.[0]?.message?.content?.trim();
+      let draft = response?.choices?.[0]?.message?.content?.trim();
+      
+      // Remove any accidentally leaked <quality_check> blocks
+      if (draft) {
+        draft = draft.replace(/<quality_check>[\s\S]*?<\/quality_check>/gi, '').trim();
+      }
+
+      // Self-healing: If draft is too short or missing key elements, retry once
       if (draft && draft.length > 200) {
+        const hasSignatureBlock = /हस्ताक्षर|signature|sign/i.test(draft);
+        const hasVerification = /सत्यापन|verification|verified/i.test(draft);
+        
+        if ((!hasSignatureBlock || !hasVerification) && retryCount < 1) {
+          console.log('[LegalDraftSkill] Quality check failed — auto-retrying...');
+          return this._generateWithAI(userInput, docType, retryCount + 1);
+        }
         return draft;
+      }
+
+      // If draft too short, retry once
+      if (retryCount < 1) {
+        console.log('[LegalDraftSkill] Draft too short — auto-retrying...');
+        return this._generateWithAI(userInput, docType, retryCount + 1);
       }
     } catch (err) {
       console.error('[LegalDraftSkill] AI call error:', err.message);

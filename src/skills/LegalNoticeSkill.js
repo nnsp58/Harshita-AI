@@ -265,6 +265,20 @@ CRITICAL REQUIREMENTS:
 5. Length: 500-900 words
 6. Use [Recipient Name], [Client Name], [Date] etc. as placeholders if not specified
 
+=== QUALITY ENGINE RULES FOR LEGAL NOTICE ===
+- AUTO CAPITALIZATION: All proper nouns must be Title Case. Legal headings in ALL CAPS.
+- ENTITY PLACEHOLDERS: If client/recipient details are missing, use:
+  - [आधार संख्या / Aadhaar No.: ____________________]
+  - [पैन संख्या / PAN No.: ____________________]
+  - [पता / Address: ____________________]
+  - [मोबाइल / Mobile No.: ____________________]
+  NEVER leave any identity field blank without a professional placeholder.
+- HALLUCINATION PREVENTION: NEVER invent names, addresses, amounts, or dates.
+- LEGAL SECTIONS: Always cite the correct Act and Section (e.g., Section 138 NI Act, Section 420 IPC).
+- Include legal remedy + monetary claim calculation placeholder if applicable.
+- Reply period MUST be explicitly stated (typically 15 days).
+- Include "Copy to" section at the end.
+
 Notice type: ${noticeTitle}
 
 Output ONLY the notice body — no advocate letterhead, no preamble, no explanation.`;
@@ -310,17 +324,23 @@ ${profile.court ? `              Practising at: ${profile.court}\n` : ''}
 Ref. No: LN/${new Date().getFullYear()}/____            Date: ${today}
 
 `;
-    const footer = `
+   const footer = `
 
 ═══════════════════════════════════════════════════════════════
 
                                           ${profile.name || '[Advocate Name]'}
-                                          (Advocate)
+                                          (Advocate / अधिवक्ता)
                                           Enroll. No: ${profile.enrollmentNumber || '____'}
+                                          आधार संख्या / Aadhaar No.: ____________________
+                                          पैन संख्या / PAN No.: ____________________
 
 ═══════════════════════════════════════════════════════════════
 NOTE: This is a formal legal notice. Reply within 15 days of receipt.
 This notice is sent through Registered Post AD / Email / WhatsApp.
+
+Copy to:
+1. The Addressee (by Registered Post AD)
+2. Retained in Advocate's office for record
 ═══════════════════════════════════════════════════════════════`;
 
     return letterhead + noticeBody + footer;

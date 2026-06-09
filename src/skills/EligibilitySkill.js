@@ -46,7 +46,8 @@ class EligibilitySkill extends BaseSkill {
       { key: 'dob', desc: 'Date of Birth (DD-MM-YYYY)' },
       { key: 'education', desc: 'Education qualification (10th pass, 12th pass, graduate)' },
       { key: 'category', desc: 'Category (general, obc, sc, st)' },
-      { key: 'scheme', desc: 'Name of the job or scheme (e.g. ssc, railway, pmegp, police)' }
+      { key: 'scheme', desc: 'Name of the job or scheme (e.g. ssc, railway, pmegp, police)' },
+      { key: 'aadhaarNumber', desc: 'Aadhaar number (optional, for identity verification)' }
     ];
 
     const aiResult = await AISkillHelper.extractIntent({
