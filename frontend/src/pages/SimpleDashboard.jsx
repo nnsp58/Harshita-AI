@@ -282,13 +282,6 @@ function CenterDashboardPanel({ stats, agents, jobs, onServiceClick }) {
           <p className="text-xs text-gray-400 mt-1">Left se service chuno ya right mein AI se baat karo</p>
         </div>
 
-        <div className="grid grid-cols-2 xl:grid-cols-4 gap-3">
-          <StatCard title="Total Jobs" value={jobs.length || 0} icon={Briefcase} color="bg-blue-500/20" />
-          <StatCard title="Active Agents" value={activeAgents} icon={Bot} color="bg-green-500/20" />
-          <StatCard title="Pending" value={pendingJobs} icon={Clock} color="bg-amber-500/20" />
-          <StatCard title="Success" value={`${stats.successRate || 92}%`} icon={CheckCircle} color="bg-emerald-500/20" />
-        </div>
-
         <div>
           <h3 className="text-sm font-bold text-white mb-3 flex items-center gap-2">
             <Zap size={16} className="text-amber-400" /> Quick Actions / त्वरित कार्य
