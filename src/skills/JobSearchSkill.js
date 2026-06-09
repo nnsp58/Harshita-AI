@@ -72,12 +72,24 @@ class JobSearchSkill extends BaseSkill {
             const html = res.data;
             const matches = [...html.matchAll(/<a href=\"(.*?)\".*?>(.*?)<\/a>/gi)];
             const jobs = matches
-              .map(m => m[2].replace(/<[^>]+>/g, '').trim())
-              .filter(text => text.toLowerCase().includes(detectedService.toLowerCase()) || text.toLowerCase().includes(service.name.split(' ')[0].toLowerCase()));
+              .map(m => {
+                const url = m[1].startsWith('http') ? m[1] : 'https://www.sarkariresult.com' + (m[1].startsWith('/') ? m[1] : '/' + m[1]);
+                const text = m[2].replace(/<[^>]+>/g, '').trim();
+                return { text, url };
+              })
+              .filter(item => item.text.toLowerCase().includes(detectedService.toLowerCase()) || item.text.toLowerCase().includes(service.name.split(' ')[0].toLowerCase()));
               
             // Get unique and top 5
-            const uniqueJobs = [...new Set(jobs)].slice(0, 5);
-            let messageList = uniqueJobs.map((j, i) => `${i + 1}. ${j}`).join('\n');
+            const uniqueJobs = [];
+            const seen = new Set();
+            for (const j of jobs) {
+              if (!seen.has(j.text)) {
+                seen.add(j.text);
+                uniqueJobs.push(`[${j.text}](${j.url})`);
+              }
+            }
+            const top5 = uniqueJobs.slice(0, 5);
+            let messageList = top5.map((j, i) => `${i + 1}. ${j}`).join('\n');
             
             if (!messageList) {
               messageList = `1. ${service.name} Phase XII - 2000+ पद (अंतिम तिथि: 25 Nov)\n2. ${service.name} Assistant - 500+ पद (अंतिम तिथि: 10 Dec)`;
@@ -114,12 +126,24 @@ class JobSearchSkill extends BaseSkill {
           const html = res.data;
           const matches = [...html.matchAll(/<a href=\"(.*?)\".*?>(.*?)<\/a>/gi)];
           const jobs = matches
-            .map(m => m[2].replace(/<[^>]+>/g, '').trim())
-            .filter(text => text.includes('Online Form') || text.includes('Recruitment') || text.includes('Apply'));
+            .map(m => {
+              const url = m[1].startsWith('http') ? m[1] : 'https://www.sarkariresult.com' + (m[1].startsWith('/') ? m[1] : '/' + m[1]);
+              const text = m[2].replace(/<[^>]+>/g, '').trim();
+              return { text, url };
+            })
+            .filter(item => item.text.includes('Online Form') || item.text.includes('Recruitment') || item.text.includes('Apply'));
             
           // Get unique and top 5
-          const uniqueJobs = [...new Set(jobs)].slice(0, 5);
-          let messageList = uniqueJobs.map((j, i) => `${i + 1}. ${j}`).join('\n');
+          const uniqueJobs = [];
+          const seen = new Set();
+          for (const j of jobs) {
+            if (!seen.has(j.text)) {
+              seen.add(j.text);
+              uniqueJobs.push(`[${j.text}](${j.url})`);
+            }
+          }
+          const top5 = uniqueJobs.slice(0, 5);
+          let messageList = top5.map((j, i) => `${i + 1}. ${j}`).join('\n');
           
           if (!messageList) {
             messageList = "1. SSC CHSL - 4500 पद\n2. RRB NTPC - 10000+ पद\n3. IBPS PO - 3000 पद";

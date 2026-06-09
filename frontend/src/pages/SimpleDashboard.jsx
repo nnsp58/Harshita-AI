@@ -191,6 +191,23 @@ function ResizeHandle({ onMouseDown, onToggle, collapsed, dir }) {
   )
 }
 
+// ============ MESSAGE RENDER HELPER ============
+export function renderMessageText(text) {
+  if (!text) return null;
+  const parts = text.split(/(\[[^\]]+\]\(https?:\/\/[^)]+\))/g);
+  return (
+    <p className="break-words whitespace-pre-wrap">
+      {parts.map((part, i) => {
+        const match = part.match(/^\[([^\]]+)\]\((https?:\/\/[^)]+)\)$/);
+        if (match) {
+          return <a key={i} href={match[2]} target="_blank" rel="noopener noreferrer" className="text-amber-400 hover:text-amber-300 underline font-semibold">{match[1]}</a>;
+        }
+        return <span key={i}>{part}</span>;
+      })}
+    </p>
+  );
+}
+
 // ============ LIVE CLOCK ============
 function LiveClock() {
   const [time, setTime] = useState(new Date())
@@ -521,7 +538,7 @@ function RightChatPanel({ messages, onSend, isConnected, user, jobs = [] }) {
                 <div className={`max-w-[80%] px-3 py-2 rounded-xl text-xs ${
                   msg.type === 'user' ? 'bg-amber-600 text-white rounded-br-none' : 'bg-white/5 text-gray-300 rounded-bl-none border border-white/10'
                 }`}>
-                  <p className="break-words whitespace-pre-wrap">{msg.message}</p>
+                  {renderMessageText(msg.message)}
                   <span className="text-[9px] text-gray-500 mt-1 block">{new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                 </div>
                 {msg.type === 'user' && (

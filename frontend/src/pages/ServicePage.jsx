@@ -9,6 +9,7 @@ import { useState, useRef } from 'react'
 import { useStore } from '../store'
 import { useSocket } from '../hooks/useSocket'
 import VoiceInput from '../components/VoiceInput'
+import { renderMessageText } from './SimpleDashboard'
 
 // Service definitions — each service has its own page with chat preset
 const SERVICE_CONFIGS = {
@@ -245,7 +246,7 @@ export default function ServicePage() {
                 ? 'bg-amber-500 text-black rounded-br-sm'
                 : 'bg-white/5 text-gray-200 rounded-bl-sm border border-white/10'
             }`}>
-              <p className="whitespace-pre-wrap break-words">{msg.message}</p>
+              {renderMessageText(msg.message)}
               <p className="text-[9px] opacity-60 mt-1">
                 {new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
               </p>
