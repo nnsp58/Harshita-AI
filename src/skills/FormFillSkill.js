@@ -75,7 +75,7 @@ class FormFillSkill extends BaseSkill {
 
     // कौन सी सर्विस चाहिए पूछो
     const serviceList = Object.entries(this.services)
-      .map(([key, info]) => `• *${info.name}* — ${info.portal}`)
+      .map(([key, info]) => `• *${info.name}* — [${info.portal}](https://${info.portal})`)
       .join('\n');
 
     return this._reply(
