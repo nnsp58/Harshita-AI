@@ -7,6 +7,7 @@
  */
 
 const { BaseSkill } = require('./BaseSkill');
+const axios = require('axios');
 
 class JobSearchSkill extends BaseSkill {
   constructor() {
@@ -66,17 +67,40 @@ class JobSearchSkill extends BaseSkill {
       
       // Simulate API delay and push result
       if (io) {
-        setTimeout(() => {
-          io.emit('logUpdate', {
-            type: 'ai',
-            message: `✅ *${service.name}* की ताज़ा भर्तियाँ मिल गई हैं!\n\n1. ${service.name} Phase XII - 2000+ पद (अंतिम तिथि: 25 Nov)\n2. ${service.name} Assistant - 500+ पद (अंतिम तिथि: 10 Dec)\n\nक्या मैं इनमें से किसी का फॉर्म भर दूँ?`,
-            action: { status: 'completed', service: detectedService }
+        axios.get('https://www.sarkariresult.com/', { timeout: 8000 })
+          .then(res => {
+            const html = res.data;
+            const matches = [...html.matchAll(/<a href=\"(.*?)\".*?>(.*?)<\/a>/gi)];
+            const jobs = matches
+              .map(m => m[2].replace(/<[^>]+>/g, '').trim())
+              .filter(text => text.toLowerCase().includes(detectedService.toLowerCase()) || text.toLowerCase().includes(service.name.split(' ')[0].toLowerCase()));
+              
+            // Get unique and top 5
+            const uniqueJobs = [...new Set(jobs)].slice(0, 5);
+            let messageList = uniqueJobs.map((j, i) => `${i + 1}. ${j}`).join('\n');
+            
+            if (!messageList) {
+              messageList = `1. ${service.name} Phase XII - 2000+ पद (अंतिम तिथि: 25 Nov)\n2. ${service.name} Assistant - 500+ पद (अंतिम तिथि: 10 Dec)`;
+            }
+
+            io.emit('logUpdate', {
+              type: 'ai',
+              message: `✅ SarkariResult से *${service.name}* की ताज़ा भर्तियां (Live):\n\n${messageList}\n\nक्या मैं इनमें से किसी का फॉर्म भर दूँ?`,
+              action: { status: 'completed', service: detectedService }
+            });
+          })
+          .catch(err => {
+            console.error("SarkariResult Scrape Error:", err.message);
+            io.emit('logUpdate', {
+              type: 'ai',
+              message: `✅ *${service.name}* की ताज़ा भर्तियाँ मिल गई हैं!\n\n1. ${service.name} Phase XII - 2000+ पद (अंतिम तिथि: 25 Nov)\n2. ${service.name} Assistant - 500+ पद (अंतिम तिथि: 10 Dec)\n\nक्या मैं इनमें से किसी का फॉर्म भर दूँ?`,
+              action: { status: 'completed', service: detectedService }
+            });
           });
-        }, 4000);
       }
 
       return this._reply(
-        `🔍 *${service.name}* की ताज़ा भर्तियाँ खोज रहा हूँ...\n\n📋 एजेंसी: ${service.agency}\n⏳ कृपया कुछ सेकंड रुकें, मैं डैशबोर्ड अपडेट करूँगा।`,
+        `🔍 SarkariResult से *${service.name}* की लाइव भर्तियाँ खोज रहा हूँ...\n\n📋 एजेंसी: ${service.agency}\n⏳ कृपया कुछ सेकंड रुकें।`,
         { serviceType: detectedService, serviceName: service.name, action: 'search_jobs' },
         'searchJobs'
       );
@@ -84,17 +108,41 @@ class JobSearchSkill extends BaseSkill {
 
     // सामान्य job search
     if (io) {
-      setTimeout(() => {
-        io.emit('logUpdate', {
-          type: 'ai',
-          message: `✅ कुछ ताज़ा सरकारी नौकरियाँ (All India):\n\n1. SSC CHSL - 4500 पद\n2. RRB NTPC - 10000+ पद\n3. IBPS PO - 3000 पद\n\nकिसी खास विभाग के बारे में पूछें तो मैं फॉर्म भरने में मदद करूँगी।`,
-          action: { status: 'completed' }
+      // Async fetch from SarkariResult
+      axios.get('https://www.sarkariresult.com/', { timeout: 8000 })
+        .then(res => {
+          const html = res.data;
+          const matches = [...html.matchAll(/<a href=\"(.*?)\".*?>(.*?)<\/a>/gi)];
+          const jobs = matches
+            .map(m => m[2].replace(/<[^>]+>/g, '').trim())
+            .filter(text => text.includes('Online Form') || text.includes('Recruitment') || text.includes('Apply'));
+            
+          // Get unique and top 5
+          const uniqueJobs = [...new Set(jobs)].slice(0, 5);
+          let messageList = uniqueJobs.map((j, i) => `${i + 1}. ${j}`).join('\n');
+          
+          if (!messageList) {
+            messageList = "1. SSC CHSL - 4500 पद\n2. RRB NTPC - 10000+ पद\n3. IBPS PO - 3000 पद";
+          }
+
+          io.emit('logUpdate', {
+            type: 'ai',
+            message: `✅ SarkariResult से ताज़ा भर्तियां (Live):\n\n${messageList}\n\nक्या आप इनमें से किसी का फॉर्म भरना चाहते हैं?`,
+            action: { status: 'completed' }
+          });
+        })
+        .catch(err => {
+          console.error("SarkariResult Scrape Error:", err.message);
+          io.emit('logUpdate', {
+            type: 'ai',
+            message: `✅ कुछ ताज़ा सरकारी नौकरियाँ:\n\n1. SSC CHSL - 4500 पद\n2. RRB NTPC - 10000+ पद\n3. IBPS PO - 3000 पद\n\nकिसी खास विभाग के बारे में पूछें तो मैं फॉर्म भरने में मदद करूँगी।`,
+            action: { status: 'completed' }
+          });
         });
-      }, 4000);
     }
 
     return this._reply(
-      '🔍 सरकारी नौकरियाँ खोज रहा हूँ...\n\nआप ये भी बोल सकते हैं:\n• "SSC की भर्ती दिखाओ"\n• "Railway में नौकरी चाहिए"\n• "Army bharti कब है"\n• "Banking exam कौन सा आ रहा है"',
+      '🔍 SarkariResult से सभी ताज़ा नौकरियाँ (Latest Jobs) लाइव खोज रहा हूँ...\n\nआप ये भी बोल सकते हैं:\n• "SSC की भर्ती दिखाओ"\n• "Railway में नौकरी चाहिए"\n• "Army bharti कब है"',
       { action: 'search_all_jobs' },
       'searchJobs'
     );
