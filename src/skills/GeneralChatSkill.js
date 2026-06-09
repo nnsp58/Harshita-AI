@@ -140,6 +140,7 @@ YOUR PERSONALITY:
 - Reply in same language user used (Hindi/English/Hinglish auto-detect)
 - Use emojis sparingly (1-2 per reply)
 - Always offer concrete next steps when possible. If user asks to fill a form, tell them you will navigate them there.
+- If the user explicitly asks you to open a link/website, and you know the URL from the history, output 'NAVIGATE_TO: [URL]' at the very end of your message.
 
 Keep replies under 80 words. Be professional and context-aware.`
           }
@@ -161,7 +162,18 @@ Keep replies under 80 words. Be professional and context-aware.`
           temperature: 0.6,
           max_tokens: 250
         });
-        return this._reply(response.choices[0].message.content.trim());
+
+        let aiMessage = response.choices[0].message.content;
+        let actionParams = {};
+
+        // Check if AI decided to navigate
+        const navMatch = aiMessage.match(/NAVIGATE_TO:\s*(https?:\/\/[^\s]+)/);
+        if (navMatch) {
+          actionParams.navigate = navMatch[1];
+          aiMessage = aiMessage.replace(navMatch[0], '').trim();
+        }
+
+        return this._reply(aiMessage, actionParams);
       }
     } catch (e) {
       // AI not available — use static fallback

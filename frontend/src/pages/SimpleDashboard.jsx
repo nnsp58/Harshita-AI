@@ -70,7 +70,11 @@ export default function SimpleDashboard() {
       if (lastMsg.type === 'ai' && lastMsg.action && lastMsg.action.navigate) {
         // Delay slightly for smooth transition
         setTimeout(() => {
-          navigate(lastMsg.action.navigate)
+          if (lastMsg.action.navigate.startsWith('http')) {
+            window.location.href = lastMsg.action.navigate
+          } else {
+            navigate(lastMsg.action.navigate)
+          }
         }, 1500)
       }
     }
@@ -200,7 +204,7 @@ export function renderMessageText(text) {
       {parts.map((part, i) => {
         const match = part.match(/^\[([^\]]+)\]\((https?:\/\/[^)]+)\)$/);
         if (match) {
-          return <a key={i} href={match[2]} target="_blank" rel="noopener noreferrer" className="text-amber-400 hover:text-amber-300 underline font-semibold">{match[1]}</a>;
+          return <a key={i} href={match[2]} className="text-amber-400 hover:text-amber-300 underline font-semibold">{match[1]}</a>;
         }
         return <span key={i}>{part}</span>;
       })}
