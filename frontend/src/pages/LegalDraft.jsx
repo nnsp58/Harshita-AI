@@ -372,7 +372,12 @@ export default function LegalDraft() {
           </h2>
           <div className="space-y-1.5">
             {documentTypes.map(type => (
-              <button key={type.id} onClick={() => setSelectedType(type.id)}
+              <button key={type.id} onClick={() => {
+                  setSelectedType(type.id)
+                  setNaturalInput('')
+                  setGeneratedDraft(null)
+                  setEditedDraft('')
+                }}
                 className={`w-full p-2.5 rounded-lg border text-left transition-all ${
                   selectedType === type.id
                     ? 'border-amber-500/50 bg-amber-500/10'

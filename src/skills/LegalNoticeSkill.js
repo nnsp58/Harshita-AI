@@ -245,7 +245,7 @@ Notice Type Detected: ${noticeTitle}
 Mode: ${isAdvocateMode ? 'Advocate Notice (Sent by advocate on behalf of client)' : 'Self Legal Notice (Sent directly by sender)'}
 
 === 9-STEP LEGAL NOTICE PROTOCOL ===
-STEP 1: Detect Notice Type (Money Recovery, Property Dispute, Cheque Bounce, etc.)
+STEP 1: Detect Notice Type (Money Recovery, Property Dispute, Cheque Bounce, Eviction, Contract Breach, Defamation, Consumer Complaint, etc.)
 STEP 2: Extract Parties (Sender, Receiver, Father Name, Village, District, State)
 STEP 3: Extract Claim (Money, Property, Compensation, Refund, Performance)
 STEP 4: Generate Cause of Action (Who hired whom, agreement, default, loss)
@@ -255,31 +255,36 @@ STEP 7: Limitation Review (Calculate elapsed years. Show warning "Limitation rev
 STEP 8: Auto Capitalization (deepchand -> Deepchand, meer singh -> Meer Singh, uttar pradesh -> Uttar Pradesh)
 STEP 9: Professional Legal Language (Suitable for Advocate, Civil Court, Consumer Forum, Government Submission)
 
+=== PLACEHOLDER ELIMINATION ENGINE ===
+NEVER leave internal prompt variables like [CLIENT NAME], [RESPONDENT NAME], [SPECIFIC ACTION], etc., in the final draft.
+If information exists: Auto fill it.
+If important information is missing, DO NOT hallucinate. Use professional blank lines:
+- [नाम / Name: ____________________]
+- [पिता का नाम / Father's Name: ____________________]
+- [पूरा पता / Full Address: ____________________]
+- [आधार संख्या / Aadhaar No.: ____________________]
+- [पैन संख्या / PAN No.: ____________________]
+- [राशि / Amount: ₹__________]
+
 === OUTPUT REQUIREMENTS ===
 1. Use formal legal language with proper sections of relevant Acts.
 2. Numbered paragraphs (1, 2, 3...) describing facts.
 3. Demand clause with explicit Time limit (typically 15 days).
 4. Do not generate the letterhead or bottom signature block (it will be added by the system).
-5. If placeholders are needed, use:
-   - [आधार संख्या / Aadhaar No.: ____________________]
-   - [पैन संख्या / PAN No.: ____________________]
-   - [पता / Address: ____________________]
-   - [तारीख / Date: ____________________]
 
 === QUALITY CHECK (MUST DO FIRST) ===
 Before generating the final notice body, you MUST include a <quality_check> XML block with your internal reasoning confirming:
-- ✓ Notice type detected
-- ✓ Sender extracted
-- ✓ Receiver extracted
-- ✓ Amount extracted
-- ✓ Cause of action generated
-- ✓ Relief generated
-- ✓ Limitation reviewed
-- ✓ Mode supported
-- ✓ No unnecessary profile setup request
+- ✓ Correct document type detected
+- ✓ Correct legal classification
+- ✓ Correct fact extraction
+- ✓ Names normalized (Auto Capitalization)
+- ✓ Dates & Amount extracted
+- ✓ No hallucinated facts
+- ✓ No leftover [BRACKET] placeholders (only ______ allowed)
 - ✓ Professional formatting
+- ✓ Suitable for advocate review
 
-After the </quality_check> tag, output ONLY the notice body.`;
+If any check fails, fix it before generating the draft. After the </quality_check> tag, output ONLY the notice body.`;
 
     const userPrompt = `Draft a complete professional ${noticeTitle} based on the following input:
 
