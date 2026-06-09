@@ -53,18 +53,81 @@ class WhatsAppSkill extends BaseSkill {
     const isConnected = whatsapp?.isReady || false;
 
     // Connect / QR
-    if (/connect|qr|कनेक्ट|क्यूआर/.test(text)) {
+    if (/connect|qr|कनेक्ट|क्यूआर|जोड़ो/.test(text)) {
       if (isConnected) {
-        return this._reply(`✅ WhatsApp पहले से connected है!\n\n📱 Active sessions: ${whatsapp.sessions?.size || 0}\n\nअब message भेज सकते हैं।`, { mode: 'already_connected' });
+        return this._reply(
+          `✅ WhatsApp पहले से connected है!\n\n📱 Active sessions: ${whatsapp?.sessions?.size || 0}\n\nअब message भेज सकते हैं।\n\n💡 *Harshita AI का प्रचार करना है?*\n"WhatsApp prachar karo" बोलें — मैं आपके group में professional message भेज दूंगी!`,
+          { mode: 'already_connected' }
+        );
       }
       // Trigger start (non-blocking)
       try { whatsapp?.start?.().catch(() => {}); } catch {}
       return this._reply(
-        `📱 *WhatsApp Connect कर रहे हैं...*\n\n` +
-        `Browser में QR code 5-10 sec में आएगा।\n\n` +
-        `Steps:\n1. WhatsApp app खोलें\n2. Settings → Linked Devices\n3. "Link a device" टैप करें\n4. QR code scan करें\n\n` +
-        `Connected hote hi मैं notify कर दूंगा।`,
-        { mode: 'connecting', action: 'show_qr' }
+        `📱 *WhatsApp Web खोल रहे हैं...*\n\n` +
+        `🌐 Browser में WhatsApp Web open हो रहा है।\n\n` +
+        `Steps:\n1. WhatsApp app खोलें\n2. Settings → Linked Devices\n3. "Link a device" टैप करें\n4. Browser में दिखा QR code scan करें\n\n` +
+        `Connected hote hi मैं notify कर दूंगा।\n\n` +
+        `💡 Connect होने के बाद "WhatsApp prachar karo" बोलें — मैं आपके group में Harshita AI का professional प्रचार कर दूंगी!`,
+        { mode: 'connecting', action: 'show_qr', navigate: 'https://web.whatsapp.com' }
+      );
+    }
+
+    // Promote / Prachar Harshita AI in WhatsApp groups
+    if (/prachar|प्रचार|promote|marketing|promo|advertise/.test(text)) {
+      if (!isConnected) {
+        return this._reply(
+          `⚠️ पहले WhatsApp connect करें।\n"WhatsApp connect karo" बोलें।`,
+          { mode: 'not_connected' }
+        );
+      }
+
+      // Check if user specified a group name
+      const groupMatch = message.match(/(?:group|ग्रुप|समूह)\s*["']?([^"']+)["']?/i);
+      
+      if (groupMatch && groupMatch[1]) {
+        // User specified a group — send promotional message
+        const groupName = groupMatch[1].trim();
+        const promoMsg = this._getPromoMessage();
+        
+        try {
+          // Try to find and send to the group
+          const chats = await whatsapp?.client?.getChats?.();
+          const targetGroup = chats?.find(c => c.isGroup && c.name.toLowerCase().includes(groupName.toLowerCase()));
+          
+          if (targetGroup) {
+            await whatsapp._sendMessage(targetGroup.id._serialized, promoMsg);
+            return this._reply(
+              `✅ *प्रचार सफल!*\n\n📱 Group: *${targetGroup.name}*\n💬 Professional message भेज दिया गया!\n\nGroup के सदस्य अब Harshita AI के बारे में जान पाएंगे। 🎉`,
+              { mode: 'promo_sent', groupName: targetGroup.name }
+            );
+          } else {
+            return this._reply(
+              `⚠️ "${groupName}" नाम का group नहीं मिला।\n\nकृपया सही group का नाम बताएं या ये बोलें:\n"WhatsApp prachar karo group CSC Operators"`,
+              { mode: 'group_not_found' }
+            );
+          }
+        } catch (err) {
+          return this._reply(`❌ Message भेजने में error: ${err.message}`);
+        }
+      }
+
+      // No group specified — ask user which group
+      let groupList = '';
+      try {
+        const chats = await whatsapp?.client?.getChats?.();
+        const groups = chats?.filter(c => c.isGroup)?.slice(0, 10) || [];
+        if (groups.length > 0) {
+          groupList = `\n\n📋 *आपके WhatsApp Groups:*\n` + 
+            groups.map((g, i) => `${i + 1}. ${g.name}`).join('\n') +
+            `\n\n👆 ऊपर से group का नाम बोलें:\nExample: "WhatsApp prachar karo group ${groups[0]?.name || 'CSC Operators'}"`;
+        }
+      } catch {}
+
+      return this._reply(
+        `📢 *Harshita AI प्रचार (Promotion)*\n\n` +
+        `किस WhatsApp group में प्रचार करना है?${groupList}\n\n` +
+        `बस group का नाम बताएं, मैं एक professional message लिखकर भेज दूंगी!`,
+        { mode: 'awaiting_group_selection' }
       );
     }
 
@@ -168,12 +231,40 @@ WhatsApp is currently: ${isConnected ? 'CONNECTED' : 'NOT CONNECTED'}`,
   _getMenu() {
     return `📲 *WhatsApp Bot Service*\n\n` +
       `मैं ये कर सकती हूँ:\n` +
-      `• "WhatsApp connect karo" — QR scan करके connect\n` +
+      `• "WhatsApp connect karo" — QR scan करके connect + WhatsApp Web open\n` +
+      `• "WhatsApp prachar karo" — 📢 Groups में Harshita AI का प्रचार\n` +
       `• "9876543210 par hello bhej do" — message भेजना\n` +
       `• "Inbox dikhao" — incoming messages\n` +
       `• "Status check karo" — connection status\n` +
       `• "Disconnect karo" — logout\n\n` +
       `बस normal Hindi/English में बोलिए, मैं समझ जाऊंगी!`;
+  }
+
+  _getPromoMessage() {
+    return `🌟 *Harshita AI — आपका AI सहायक* 🌟
+
+━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🤖 *Harshita AI* एक advanced AI platform है जो CSC ऑपरेटर्स, VLEs, सरकारी कर्मचारियों और आम नागरिकों के लिए बनाया गया है।
+
+✅ *ये काम कर सकती है Harshita AI:*
+
+📝 सरकारी फॉर्म ऑटो-भरना (SSC, Railway, Army, Police)
+⚖️ कानूनी दस्तावेज़ बनाना (शपथ पत्र, दान विलेख, NOC, किराया अनुबंध)
+📄 आधार/PAN/मार्कशीट से OCR डेटा निकालना
+🔍 SarkariResult से ताज़ा नौकरियाँ खोजना
+🧾 TA/DA नक्शा बनाना
+🍚 राशन कार्ड स्टेटस चेक
+🏞️ भूलेख / खसरा-खतौनी निकालना
+📊 रिज्यूमे / बायोडाटा बनाना
+🎙️ Hindi Voice Command Support
+
+🌐 *अभी आज़माएं:* https://n-dizi.in
+
+💡 _22+ AI Agents | Hindi + English | Voice Enabled | 100% Free_
+
+━━━━━━━━━━━━━━━━━━━━━━━━━
+🙏 *Harshita AI — हर काम आसान!*`;
   }
 }
 
