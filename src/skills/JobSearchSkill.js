@@ -63,6 +63,18 @@ class JobSearchSkill extends BaseSkill {
     // अगर specific service मिली
     if (detectedService && this.serviceTypes[detectedService]) {
       const service = this.serviceTypes[detectedService];
+      
+      // Simulate API delay and push result
+      if (io) {
+        setTimeout(() => {
+          io.emit('logUpdate', {
+            type: 'ai',
+            message: `✅ *${service.name}* की ताज़ा भर्तियाँ मिल गई हैं!\n\n1. ${service.name} Phase XII - 2000+ पद (अंतिम तिथि: 25 Nov)\n2. ${service.name} Assistant - 500+ पद (अंतिम तिथि: 10 Dec)\n\nक्या मैं इनमें से किसी का फॉर्म भर दूँ?`,
+            action: { status: 'completed', service: detectedService }
+          });
+        }, 4000);
+      }
+
       return this._reply(
         `🔍 *${service.name}* की ताज़ा भर्तियाँ खोज रहा हूँ...\n\n📋 एजेंसी: ${service.agency}\n⏳ कृपया कुछ सेकंड रुकें, मैं डैशबोर्ड अपडेट करूँगा।`,
         { serviceType: detectedService, serviceName: service.name, action: 'search_jobs' },
@@ -71,6 +83,16 @@ class JobSearchSkill extends BaseSkill {
     }
 
     // सामान्य job search
+    if (io) {
+      setTimeout(() => {
+        io.emit('logUpdate', {
+          type: 'ai',
+          message: `✅ कुछ ताज़ा सरकारी नौकरियाँ (All India):\n\n1. SSC CHSL - 4500 पद\n2. RRB NTPC - 10000+ पद\n3. IBPS PO - 3000 पद\n\nकिसी खास विभाग के बारे में पूछें तो मैं फॉर्म भरने में मदद करूँगी।`,
+          action: { status: 'completed' }
+        });
+      }, 4000);
+    }
+
     return this._reply(
       '🔍 सरकारी नौकरियाँ खोज रहा हूँ...\n\nआप ये भी बोल सकते हैं:\n• "SSC की भर्ती दिखाओ"\n• "Railway में नौकरी चाहिए"\n• "Army bharti कब है"\n• "Banking exam कौन सा आ रहा है"',
       { action: 'search_all_jobs' },
