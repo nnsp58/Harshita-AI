@@ -29,14 +29,43 @@ class TicketBookingSkill extends BaseSkill {
     const text = message.toLowerCase();
 
     if (text.includes('train') || text.includes('ट्रेन') || text.includes('irctc')) {
-      return this._reply('🚂 ट्रेन टिकट बुकिंग — बताएं:\n1. कहाँ से (From)\n2. कहाँ तक (To)\n3. तारीख (Date)\n4. कितने यात्री', { mode: 'train_booking', step: 'collect' });
+      return this._reply(
+        '🚂 *ट्रेन टिकट बुकिंग (IRCTC)*\n\n' +
+        'कृपया ये जानकारी प्रदान करें:\n' +
+        '1. कहाँ से (From): ____________________\n' +
+        '2. कहाँ तक (To): ____________________\n' +
+        '3. यात्रा की तारीख (Date): ____________________\n' +
+        '4. यात्रियों की संख्या: ____________________\n' +
+        '5. मुख्य यात्री का नाम (Name): ____________________\n' +
+        '6. आयु (Age): ____________________\n' +
+        '7. आधार संख्या (Aadhaar/ID): ____________________ (optional)\n\n' +
+        '🔗 [IRCTC Portal](https://www.irctc.co.in)',
+        { mode: 'train_booking', step: 'collect' }
+      );
     }
 
     if (text.includes('bus') || text.includes('बस')) {
-      return this._reply('🚌 बस टिकट बुकिंग — बताएं:\n1. कहाँ से\n2. कहाँ तक\n3. तारीख', { mode: 'bus_booking', step: 'collect' });
+      return this._reply(
+        '🚌 *बस टिकट बुकिंग*\n\n' +
+        'कृपया ये जानकारी प्रदान करें:\n' +
+        '1. कहाँ से (From): ____________________\n' +
+        '2. कहाँ तक (To): ____________________\n' +
+        '3. यात्रा की तारीख (Date): ____________________\n' +
+        '4. यात्री का नाम: ____________________\n' +
+        '5. मोबाइल नंबर: ____________________\n\n' +
+        '🔗 [RedBus/UPSRTC](https://www.redbus.in)',
+        { mode: 'bus_booking', step: 'collect' }
+      );
     }
 
-    return this._reply('🎫 टिकट बुकिंग सेवा:\n• "ट्रेन का टिकट बुक करो"\n• "बस का टिकट"\n\nकौन सा टिकट चाहिए?', { mode: 'ticket_menu' });
+    return this._reply(
+      '🎫 *टिकट बुकिंग सेवा (Ticket Booking)*\n\n' +
+      '• "ट्रेन का टिकट बुक करो" (IRCTC)\n' +
+      '• "बस का टिकट" (RedBus/State Transport)\n' +
+      '• "फ्लाइट बुकिंग" (Air Travel)\n\n' +
+      'कौन सा टिकट चाहिए?',
+      { mode: 'ticket_menu' }
+    );
   }
 }
 

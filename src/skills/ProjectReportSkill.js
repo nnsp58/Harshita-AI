@@ -29,14 +29,45 @@ class ProjectReportSkill extends BaseSkill {
     const text = message.toLowerCase();
 
     if (text.includes('pmegp')) {
-      return this._reply('📊 PMEGP प्रोजेक्ट रिपोर्ट बनाने के लिए बताएं:\n1. बिजनेस का नाम\n2. किस तरह का बिजनेस\n3. कितना लोन चाहिए\n4. आवेदक का नाम', { mode: 'pmegp_report', step: 'collect' });
+      return this._reply(
+        '📊 *PMEGP प्रोजेक्ट रिपोर्ट*\n\n' +
+        'कृपया रिपोर्ट बनाने के लिए ये जानकारी दें:\n' +
+        '1. आवेदक का नाम: ____________________\n' +
+        '2. आधार संख्या / Aadhaar No.: ____________________\n' +
+        '3. पैन संख्या / PAN No.: ____________________\n' +
+        '4. बिजनेस का नाम (Business Name): ____________________\n' +
+        '5. बिजनेस का प्रकार (Manufacturing/Service): ____________________\n' +
+        '6. प्रोजेक्ट कॉस्ट / कुल खर्च: ₹____________________\n' +
+        '7. अपनी तरफ से निवेश (Own Contribution 5%/10%): ₹____________________\n' +
+        '8. लोन राशि (Bank Loan): ₹____________________\n\n' +
+        '🔗 [PMEGP e-Portal](https://www.kviconline.gov.in/pmegpeportal)',
+        { mode: 'pmegp_report', step: 'collect' }
+      );
     }
 
     if (text.includes('mudra') || text.includes('मुद्रा')) {
-      return this._reply('🏦 मुद्रा लोन रिपोर्ट — बताएं:\n1. शिशु/किशोर/तरुण कौन सा लोन\n2. बिजनेस का प्रकार\n3. लोन राशि', { mode: 'mudra_report', step: 'collect' });
+      return this._reply(
+        '🏦 *मुद्रा लोन (Mudra Loan) रिपोर्ट*\n\n' +
+        'कृपया ये जानकारी दें:\n' +
+        '1. आवेदक का नाम: ____________________\n' +
+        '2. आधार और पैन नंबर: ____________________\n' +
+        '3. लोन का प्रकार (शिशु ₹50k/किशोर ₹5L/तरुण ₹10L): ____________________\n' +
+        '4. बिजनेस का नाम और प्रकार: ____________________\n' +
+        '5. लोन राशि: ₹____________________\n\n' +
+        '🔗 [Udyamimitra Portal](https://www.udyamimitra.in)',
+        { mode: 'mudra_report', step: 'collect' }
+      );
     }
 
-    return this._reply('📊 प्रोजेक्ट रिपोर्ट सेवा:\n• "PMEGP रिपोर्ट बनाओ"\n• "मुद्रा लोन रिपोर्ट"\n• "बिजनेस प्लान बनाओ"\n\nकिस scheme के लिए?', { mode: 'report_menu' });
+    return this._reply(
+      '📊 *प्रोजेक्ट रिपोर्ट सेवा (Business Project Report)*\n\n' +
+      'बैंक लोन के लिए प्रोफेशनल प्रोजेक्ट रिपोर्ट और CMA Data:\n\n' +
+      '• "PMEGP रिपोर्ट बनाओ" (25-35% subsidy)\n' +
+      '• "मुद्रा लोन रिपोर्ट" (Shishu/Kishor/Tarun)\n' +
+      '• "CMYK / PMFME लोन रिपोर्ट"\n\n' +
+      'किस scheme के लिए प्रोजेक्ट रिपोर्ट चाहिए?',
+      { mode: 'report_menu' }
+    );
   }
 }
 
