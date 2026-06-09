@@ -40,6 +40,7 @@ export function useSocket() {
         type: data.type || 'ai',
         message: data.message || data.text || '',
         timestamp: new Date().toISOString(),
+        action: data.action || null,
       }
       setMessages((prev) => [...prev, msg])
     })

@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { useStore } from './store'
 
 import UpgradeNotification from './components/UpgradeNotification'
+import SimpleDashboard from './pages/SimpleDashboard'
 import DashboardSaaS from './pages/DashboardSaaS'
 import Login from './pages/Login'
 
@@ -91,12 +92,20 @@ function App() {
             path="/"
             element={
               <ProtectedRoute>
-                <DashboardSaaS />
+                <SimpleDashboard />
               </ProtectedRoute>
             }
           />
           <Route
             path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <SimpleDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard-new"
             element={
               <ProtectedRoute>
                 <DashboardSaaS />

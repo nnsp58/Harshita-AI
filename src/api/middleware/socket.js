@@ -78,15 +78,15 @@ const setupSocketHandlers = (io) => {
 
         const response = await masterAgent.processCommand(socket.userId, cmd, { userId: socket.userId, app: io._app });
 
-        // Emit AI reply to chat — ALWAYS show result in chat, NEVER navigate away
+        // Emit AI reply to chat — include action data for navigation/UI actions
         socket.emit('logUpdate', {
           type: 'ai',
           message: response.message || response.text || 'Done!',
           skill: response.skill,
           data: response.data,
+          action: response.action || response.data || null,
         });
 
-        // NO navigation — all results stay in chat panel
       } catch (error) {
         console.error('[Socket] Command error:', error.message);
         socket.emit('logUpdate', {

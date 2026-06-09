@@ -17,14 +17,9 @@ router.get('/status', authenticate, async (req, res) => {
     
     // Transform skills into dashboard-friendly agent format
     const agents = skills.map(skill => {
-      // Logic to determine status (demo purposes: random status for live feel)
-      const statuses = ['running', 'busy', 'idle'];
-      // Priority 10 skills (like general chat) usually stay 'running'
-      let status = statuses[Math.floor(Math.random() * statuses.length)];
-      
-      if (skill.name === 'general_chat' || skill.name === 'master_agent') {
-        status = 'running';
-      }
+      // All loaded skills are 'running' — they're registered and ready to handle requests
+      // Only mark idle if explicitly disabled (future feature)
+      let status = 'running';
 
       return {
         id: skill.name,

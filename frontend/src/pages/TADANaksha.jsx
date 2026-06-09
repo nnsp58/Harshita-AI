@@ -392,8 +392,27 @@ export default function TADANaksha() {
   const addReturnJourney = () => {
     const last = journeys[journeys.length - 1]
     if (!last) return
+
+    // Calculate return date based on DA days or endDate
+    let returnDateStr = last.endDate || last.date;
+    const manualDays = parseInt(last.daDays);
+    
+    if (!isNaN(manualDays) && manualDays > 0 && last.date) {
+      const d = new Date(last.date);
+      if (!isNaN(d.getTime())) {
+        // e.g. 3rd + 5 days = 3,4,5,6,7 (Return on 7th, so + 4)
+        d.setDate(d.getDate() + manualDays - 1);
+        
+        // Handle timezone offset to ensure correct YYYY-MM-DD
+        const year = d.getFullYear();
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        returnDateStr = `${year}-${month}-${day}`;
+      }
+    }
+
     const returnJourney = {
-      date: last.date,
+      date: returnDateStr,
       departureTime: '', // user will fill
       arrivalTime: '',
       from: last.to,
@@ -404,17 +423,22 @@ export default function TADANaksha() {
       distance: last.distance,
       fare: last.fare,
       gdNumber: '', // different GD for return
+      daDays: '0',  // return journey should not double count DA
+      isReturn: true, // flag to disable input
     }
-    setJourneys([...journeys, returnJourney])
-    if (info.pno) saveJourneyToHistory(info.pno, returnJourney)
+    // Set form to allow user to fill time, instead of adding immediately
+    setForm(returnJourney)
   }
   const edit = (i) => { setForm({ ...journeys[i] }); setEditIdx(i); setStep(1) }
   const del = (i) => { setJourneys(journeys.filter((_,idx)=>idx!==i)); if(editIdx===i){setEditIdx(null);setForm(getEmptyJourney())} }
   const totalDist = journeys.reduce((s,j)=>s+(parseInt(j.distance)||0),0)
   const totalFare = journeys.reduce((s,j)=>s+(parseInt(j.fare)||0),0)
-  // Multi-day DA: sum of (days × daRate) per journey
-  // Manual daDays (if provided) takes priority inside calculateDA
-  const totalDays = journeys.reduce((s,j)=>s+calculateDays(j.date, j.endDate),0)
+  const getEffectiveDays = (j) => {
+    const manual = parseInt(j.daDays)
+    if (!isNaN(manual) && manual >= 0) return manual
+    return calculateDAEligibleDays(j.date, j.endDate)
+  }
+  const totalDays = journeys.reduce((s,j)=>s+getEffectiveDays(j),0)
   const totalDA = journeys.reduce((s,j)=>s+calculateDA(j, info.daRate),0)
   const grandTotal = totalFare + totalDA
 
@@ -805,6 +829,7 @@ function JourneyStep({ form, setForm, editIdx, onAdd, onCancel, pno, journeys, m
             onChange={f('daDays')}
             placeholder="e.g. 4"
             type="number"
+            disabled={form.isReturn}
           />
           <p className="text-[10px] text-gray-400 mt-1">
             Sirf stay days ka DA chahiye to yahan number likho. <br />
@@ -1043,9 +1068,6 @@ function NakshaPreview({ info, journeys, onEdit, onDelete, totalDist, totalFare,
                   <div><b>यात्रा भत्ता (TA):</b> ₹{totalFare}</div>
                    <div>
                      <b>दैनिक भत्ता (DA):</b> ₹{totalDA} ({totalDays} दिन × ₹{info.daRate || 0})
-                     {hasManualDA 
-                       ? <span className="text-emerald-600 font-semibold"> — आपने भरा (Manual)</span> 
-                       : <span className="text-blue-600 font-semibold"> — स्वतः गणना (Auto)</span>}
                    </div>
                   <div className="text-right"><b>कुल योग:</b> <span className="text-[13px]">₹{grandTotal}</span></div>
                 </div>

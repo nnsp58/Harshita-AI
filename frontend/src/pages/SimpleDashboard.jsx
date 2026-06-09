@@ -376,6 +376,7 @@ function StatCard({ title, value, icon: Icon, color }) {
 
 // ============ RIGHT CHAT PANEL ============
 function RightChatPanel({ messages, onSend, isConnected, user, jobs = [] }) {
+  const navigate = useNavigate()
   const [input, setInput] = useState('')
   const [isThinking, setIsThinking] = useState(false)
   const [mode, setMode] = useState('chat')
@@ -396,8 +397,13 @@ function RightChatPanel({ messages, onSend, isConnected, user, jobs = [] }) {
         const textToSpeak = last.action.text || last.message
         speak(textToSpeak, last.action.lang || 'hi-IN')
       }
+
+      // 🔀 Navigate action — skill wants to open a page (e.g. TADA Naksha form)
+      if (last.type === 'ai' && last.action?.navigate) {
+        setTimeout(() => navigate(last.action.navigate), 1500)
+      }
     }
-  }, [messages])
+  }, [messages, navigate])
 
   // Browser TTS helper (used by VoiceAgentSkill)
   const speak = (text, lang = 'hi-IN') => {

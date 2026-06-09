@@ -4,21 +4,95 @@ import { useStore } from '../store';
 import ModernSidebar from '../components/Layout/ModernSidebar';
 import CommandPalette from '../components/Layout/CommandPalette';
 import AIAssistantWidget from '../components/Dashboard/AIAssistantWidget';
-import { 
-  Bot, Briefcase, FileText, Upload, Settings, 
-  Search, Users, Activity, TrendingUp, Bell 
+import {
+  Bot, Briefcase, FileText, Upload, Settings,
+  Search, Users, Activity, TrendingUp, Bell,
+  SearchX, RefreshCw
 } from 'lucide-react';
+
+const AGENT_ICONS = {
+  job_search: Search,
+  resume_builder: Briefcase,
+  legal_draft: (props) => <span {...props}>⚖️</span>,
+  document_ocr: FileText,
+  form_fill: (props) => <span {...props}>📝</span>,
+  ration_card: (props) => <span {...props}>🪪</span>,
+  land_record: (props) => <span {...props}>🏗️</span>,
+  eligibility: (props) => <span {...props}>✅</span>,
+  ticket_booking: (props) => <span {...props}>🎫</span>,
+  bulk_import: Upload,
+  file_processor: (props) => <span {...props}>⚙️</span>,
+  validator: (props) => <span {...props}>✔️</span>,
+  security: (props) => <span {...props}>🔒</span>,
+  network_monitor: (props) => <span {...props}>🌐</span>,
+  web_learning: (props) => <span {...props}>📚</span>,
+  ui_builder: (props) => <span {...props}>🎨</span>,
+  notepad: (props) => <span {...props}>📒</span>,
+  result_generator: (props) => <span {...props}>📊</span>,
+  project_report: (props) => <span {...props}>📈</span>,
+  whatsapp: (props) => <span {...props}>💬</span>,
+  voice_agent: (props) => <span {...props}>🎙️</span>,
+  general_chat: Bot
+};
+
+const AGENT_GRADIENTS = [
+  'from-blue-500 to-cyan-500',
+  'from-emerald-500 to-teal-500',
+  'from-purple-500 to-violet-500',
+  'from-orange-500 to-amber-500',
+  'from-amber-500 to-yellow-500',
+  'from-rose-500 to-pink-500',
+  'from-cyan-500 to-sky-500',
+  'from-pink-500 to-fuchsia-500',
+  'from-indigo-500 to-blue-500',
+  'from-teal-500 to-emerald-500',
+  'from-green-500 to-lime-500',
+  'from-red-500 to-rose-500',
+  'from-sky-500 to-blue-500',
+  'from-violet-500 to-purple-500',
+  'from-fuchsia-500 to-pink-500',
+  'from-yellow-500 to-orange-500',
+  'from-lime-500 to-green-500',
+  'from-blue-600 to-indigo-500',
+  'from-green-600 to-emerald-500',
+  'from-purple-600 to-purple-400',
+  'from-amber-600 to-orange-400',
+  'from-emerald-600 to-cyan-500',
+];
+
+const statusColors = {
+  running: 'bg-emerald-500',
+  busy: 'bg-amber-500 animate-pulse',
+  idle: 'bg-gray-500',
+};
+
+const statusBgColors = {
+  running: 'from-emerald-500/20 to-green-500/10 border-emerald-500/30',
+  busy: 'from-amber-500/20 to-yellow-500/10 border-amber-500/30',
+  idle: 'from-slate-500/10 to-slate-400/5 border-slate-500/30',
+};
 
 export default function DashboardSaaS() {
   const navigate = useNavigate();
-  const { user, stats, initialize } = useStore();
-  const [isSidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const { user, stats, initialize, agents, fetchAgents } = useStore();
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isMobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   useEffect(() => {
     initialize().finally(() => setIsLoading(false));
   }, [initialize]);
+
+  const handleRefreshAgents = async () => {
+    setIsRefreshing(true);
+    try {
+      await fetchAgents();
+    } catch (e) {
+      // silent
+    }
+    setTimeout(() => setIsRefreshing(false), 400);
+  };
 
   const quickActions = [
     { id: 'legal', title: 'Create Affidavit', icon: FileText, color: 'from-blue-500 to-indigo-500', route: '/legal-draft' },
@@ -51,22 +125,23 @@ export default function DashboardSaaS() {
     </div>
   );
 
+  const activeAgents = agents.filter(a => a.status === 'running' || a.status === 'busy').length;
+
   return (
     <div className="flex h-screen bg-[#020617] text-white overflow-hidden">
       <CommandPalette />
-      
-      <ModernSidebar 
-        isCollapsed={isSidebarCollapsed} 
-        toggleSidebar={() => setSidebarCollapsed(!isSidebarCollapsed)}
+
+      <ModernSidebar
+        isCollapsed={isSidebarCollapsed}
+        toggleSidebar={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
         isMobileOpen={isMobileSidebarOpen}
         setMobileOpen={setMobileSidebarOpen}
       />
 
-      <main className="flex-1 flex flex-col h-screen overflow-hidden relative">
-        {/* Header */}
+      <main className={`flex-1 flex flex-col h-screen overflow-hidden relative transition-all duration-300 ${isSidebarCollapsed ? 'lg:ml-20' : 'lg:ml-64'}`}>
         <header className="flex-none h-16 border-b border-slate-800 bg-slate-900/50 backdrop-blur-md flex items-center justify-between px-4 lg:px-8">
           <div className="flex items-center gap-4">
-            <button 
+            <button
               className="lg:hidden text-slate-400 hover:text-white"
               onClick={() => setMobileSidebarOpen(true)}
             >
@@ -96,29 +171,26 @@ export default function DashboardSaaS() {
           </div>
         </header>
 
-        {/* Scrollable Content */}
         <div className="flex-1 overflow-y-auto scrollbar-hide p-4 lg:p-8">
           <div className="max-w-7xl mx-auto space-y-8">
-            
-            {/* Hero Section */}
+
             <section className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-900/40 via-slate-900 to-purple-900/40 border border-slate-800 p-8 sm:p-10">
               <div className="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-indigo-500/20 blur-3xl rounded-full"></div>
               <div className="absolute bottom-0 left-0 -mb-20 -ml-20 w-80 h-80 bg-purple-500/20 blur-3xl rounded-full"></div>
-              
+
               <div className="relative z-10">
                 <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2">
                   What would you like to do today?
                 </h1>
                 <p className="text-slate-400 text-lg mb-8 max-w-2xl">
-                  Welcome to N-Dizi AI. Access your premium tools and universal AI assistant all in one place.
+                  Welcome to N-Dizi AI. Access your premium tools and {activeAgents > 0 ? `${activeAgents} active AI agents` : 'all 22 AI agents'} — all in one place.
                 </p>
-                
-                {/* Quick Actions */}
+
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
                   {quickActions.map((action) => {
                     const Icon = action.icon;
                     return (
-                      <button 
+                      <button
                         key={action.id}
                         onClick={() => navigate(action.route)}
                         className="flex flex-col items-center justify-center p-4 rounded-xl bg-slate-800/50 border border-slate-700/50 hover:bg-slate-800 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group"
@@ -134,29 +206,100 @@ export default function DashboardSaaS() {
               </div>
             </section>
 
-            {/* Statistics */}
             <section>
-              <h2 className="text-lg font-semibold text-white mb-4 flex items-center">
-                <Activity className="mr-2 text-indigo-400" size={20} />
-                Platform Overview
-              </h2>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-lg font-semibold text-white flex items-center">
+                  <Activity className="mr-2 text-indigo-400" size={20} />
+                  Platform Overview
+                </h2>
+                <button
+                  onClick={handleRefreshAgents}
+                  disabled={isRefreshing}
+                  className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-400 hover:text-white bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition-colors"
+                >
+                  <RefreshCw size={12} className={isRefreshing ? 'animate-spin' : ''} />
+                  {isRefreshing ? 'Refreshing...' : 'Refresh'}
+                </button>
+              </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <StatCard title="Total Candidates" value={stats?.totalCandidates || '2,543'} icon={Users} trend="+12%" />
-                <StatCard title="AI Requests" value={stats?.totalJobs || '15,201'} icon={Bot} trend="+24%" />
-                <StatCard title="Documents Processed" value={stats?.totalDocuments || '4,892'} icon={FileText} trend="+8%" />
-                <StatCard title="Success Rate" value="99.8%" icon={TrendingUp} trend="+0.2%" />
+                <StatCard title="Total Agents" value={agents.length || 0} icon={Bot} trend={`${activeAgents} active`} />
+                <StatCard title="AI Requests" value={stats?.totalJobs || 0} icon={Search} trend={stats?.totalJobs ? '+24%' : '—'} />
+                <StatCard title="Documents Processed" value={stats?.totalDocuments || 0} icon={FileText} trend={stats?.totalDocuments ? '+8%' : '—'} />
+                <StatCard title="Success Rate" value={stats?.successRate ? `${stats.successRate}%` : '—'} icon={TrendingUp} trend={stats?.successRate ? '+0.2%' : '—'} />
               </div>
             </section>
-            
-            {/* Widget Area for additional content */}
+
+            <section>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-lg font-semibold text-white flex items-center">
+                  <Bot className="mr-2 text-amber-400" size={20} />
+                  AI Agents ({agents.length || 0})
+                </h2>
+                {agents.length === 0 && (
+                  <span className="text-xs text-slate-500 flex items-center gap-1.5">
+                    <SearchX size={12} />
+                    Loading agents...
+                  </span>
+                )}
+              </div>
+
+              {agents.length > 0 ? (
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+                  {agents.map((agent, idx) => {
+                    const gradient = AGENT_GRADIENTS[idx % AGENT_GRADIENTS.length];
+                    const isActive = agent.status === 'running' || agent.status === 'busy';
+                    const IconComponent = AGENT_ICONS[agent.name] || Bot;
+                    return (
+                      <button
+                        key={agent.id || agent.name}
+                        onClick={() => navigate('/service/ai-assistant')}
+                        className={`relative flex flex-col items-center justify-center p-4 rounded-xl border bg-gradient-to-br transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group ${
+                          isActive
+                            ? statusBgColors[agent.status] || statusBgColors.running
+                            : 'from-slate-800/50 to-slate-900/30 border-slate-700/50'
+                        }`}
+                      >
+                        <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-2.5 transition-transform group-hover:scale-110 ${
+                          isActive
+                            ? `bg-gradient-to-br ${gradient} shadow-lg`
+                            : 'bg-slate-800 border border-slate-600 text-gray-500'
+                        }`}>
+                          {typeof IconComponent === 'string' ? (
+                            <span className="text-lg">{IconComponent}</span>
+                          ) : (
+                            <IconComponent
+                              size={20}
+                              className={isActive ? 'text-white' : 'text-gray-500'}
+                            />
+                          )}
+                        </div>
+                        <p className="text-xs font-medium text-slate-300 text-center leading-tight line-clamp-2">
+                          {agent.displayName || agent.name}
+                        </p>
+                        <span className={`absolute top-2 right-2 w-2 h-2 rounded-full ${
+                          isActive
+                            ? statusColors[agent.status] || statusColors.running
+                            : 'bg-slate-600'
+                        }`} />
+                      </button>
+                    );
+                  })}
+                </div>
+              ) : (
+                <div className="text-center py-12 bg-white/5 rounded-xl border border-white/10">
+                  <RefreshCw className="mx-auto text-gray-600 mb-3 animate-spin" size={32} />
+                  <p className="text-sm text-gray-400">Loading all 22 AI agents...</p>
+                  <p className="text-xs text-gray-600 mt-1">If this takes too long, check if the server is running.</p>
+                </div>
+              )}
+            </section>
+
             <div className="h-32"></div>
-            
+
           </div>
         </div>
 
-        {/* Universal AI Assistant Widget (Floating) */}
         <AIAssistantWidget />
-        
       </main>
     </div>
   );

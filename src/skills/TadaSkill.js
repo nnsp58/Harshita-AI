@@ -47,19 +47,21 @@ class TadaSkill extends BaseSkill {
       );
     }
 
-    // नया TA/DA बनाना
-    if (text.includes('बनाओ') || text.includes('generate') || text.includes('new') || 
-        text.includes('नया') || text.includes('banao') || text.includes('nikalo')) {
+    // नक्शा भरना / बनाना / fill करना → REDIRECT to TA/DA Naksha form page
+    if (text.includes('नक्शा') || text.includes('naksha') || text.includes('fill') || 
+        text.includes('भरो') || text.includes('भरना') || text.includes('bharo') ||
+        text.includes('बनाओ') || text.includes('banao') || text.includes('nikalo') ||
+        text.includes('generate') || text.includes('new') || text.includes('नया')) {
       return this._reply(
-        '📝 नया TA/DA फॉर्म बनाने के लिए मुझे ये जानकारी चाहिए:\n\n1. कर्मचारी का नाम और PNO\n2. पद (Designation)\n3. कहाँ से कहाँ गए (From → To)\n4. तारीख (Date)\n5. ड्यूटी का उद्देश्य\n\nआप बोलकर या टाइप करके बता सकते हैं।',
-        { mode: 'tada_create', step: 'collect_info' }
+        '📝 TA/DA नक्शा पेज खोल रहा हूँ...\n\nवहाँ आप:\n• कर्मचारी की जानकारी भरें (नाम, PNO, पद)\n• हर दिन की यात्रा (From → To) जोड़ें\n• Live Preview देखें और Print करें\n\nProfile save करें तो अगली बार auto-fill हो जाएगा!',
+        { mode: 'tada_create', navigate: '/tada-naksha' }
       );
     }
 
-    // सामान्य TA/DA अनुरोध
+    // सामान्य TA/DA अनुरोध — also redirect to naksha page
     return this._reply(
-      '🧾 TA/DA प्रोसेसर तैयार है!\n\nआप ये कर सकते हैं:\n• "TA/DA PDF अपलोड करो" — पुराने फॉर्म से सीखने के लिए\n• "नया TA/DA बनाओ" — नया फॉर्म जनरेट करने के लिए\n• "TA/DA रेट बताओ" — DA रेट्स जानने के लिए\n\nक्या करना है बताइए!',
-      { mode: 'tada_menu' }
+      '🧾 TA/DA नक्शा पेज खोल रहा हूँ!\n\nआप वहाँ:\n• Per-day यात्रा entries भर सकते हैं\n• Distance, fare, DA auto-calculate होगा\n• Hindi/English दोनों में support है\n• Print-ready Legal format में preview मिलेगा',
+      { mode: 'tada_menu', navigate: '/tada-naksha' }
     );
   }
 }
