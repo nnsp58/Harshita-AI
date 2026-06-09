@@ -172,16 +172,12 @@ class LegalNoticeSkill extends BaseSkill {
   // ═══════════════════════════════════════════════════════════
   //  LEGAL NOTICE GENERATION (AI-powered)
   // ═══════════════════════════════════════════════════════════
+  // ═══════════════════════════════════════════════════════════
+  //  LEGAL NOTICE GENERATION (AI-powered)
+  // ═══════════════════════════════════════════════════════════
   async generateNotice(userId, message) {
-    const profile = this.getProfile(userId);
-    if (!profile || !profile.name || !profile.enrollmentNumber) {
-      return this._reply(
-        `⚠️ *Profile Setup Required*\n\n` +
-        `Legal notice भेजने के लिए पहले advocate profile setup करें:\n\n` +
-        `Example: "Mera naam Adv. Ramesh Kumar hai, enrollment UP/12345/2018, chamber 12 Civil Court Road Lucknow, phone 9876543210, email rk@law.com"`,
-        { mode: 'profile_required' }
-      );
-    }
+    const profile = this.getProfile(userId) || null;
+    const isAdvocateMode = profile && profile.name && profile.enrollmentNumber;
 
     // Detect notice type
     const noticeType = this._detectNoticeType(message);
@@ -189,13 +185,13 @@ class LegalNoticeSkill extends BaseSkill {
     // Try AI generation
     if (this.aiManager) {
       try {
-        const noticeBody = await this._generateNoticeWithAI(message, noticeType, profile);
+        const noticeBody = await this._generateNoticeWithAI(message, noticeType, profile, isAdvocateMode);
         if (noticeBody) {
-          const fullNotice = this._wrapWithLetterhead(noticeBody, profile);
+          const fullNotice = this._wrapWithLetterhead(noticeBody, profile, isAdvocateMode);
           return this._reply(fullNotice, {
             mode: 'notice_generated',
             noticeType,
-            advocate: profile,
+            advocate: isAdvocateMode ? profile : null,
             editable: true,
           });
         }
@@ -205,11 +201,11 @@ class LegalNoticeSkill extends BaseSkill {
     }
 
     // Fallback to template
-    const template = this._templateNotice(message, noticeType, profile);
+    const template = this._templateNotice(message, noticeType, profile, isAdvocateMode);
     return this._reply(template, {
       mode: 'notice_template',
       noticeType,
-      advocate: profile,
+      advocate: isAdvocateMode ? profile : null,
       editable: true,
       note: 'Template-based (AI unavailable)',
     });
@@ -228,66 +224,68 @@ class LegalNoticeSkill extends BaseSkill {
     return 'general'; // any subject
   }
 
-  async _generateNoticeWithAI(userInput, noticeType, profile) {
+  async _generateNoticeWithAI(userInput, noticeType, profile, isAdvocateMode, retryCount = 0) {
     const noticeTypeNames = {
-      cheque_bounce: 'Cheque Bounce Notice under Section 138 of Negotiable Instruments Act, 1881',
+      cheque_bounce: 'Cheque Bounce Notice under Section 138 NI Act',
       money_recovery: 'Money Recovery Notice',
       defamation: 'Defamation Notice',
       eviction: 'Eviction Notice / Notice to Vacate',
       breach_contract: 'Notice for Breach of Contract',
       consumer_complaint: 'Consumer Complaint Notice',
       property_dispute: 'Property Dispute Notice',
-      matrimonial: 'Matrimonial Notice',
+      matrimonial: 'Matrimonial/Family Dispute Notice',
       general: 'Legal Notice',
     };
 
     const noticeTitle = noticeTypeNames[noticeType] || 'Legal Notice';
 
-    const systemPrompt = `You are an expert Indian advocate drafting a professional legal notice. The notice will be printed on the advocate's letterhead.
+    const systemPrompt = `You are the LEGAL NOTICE ENGINE, an expert legal assistant drafting highly professional Indian legal notices.
 
-CRITICAL REQUIREMENTS:
-1. Generate ONLY the body of the notice (not the letterhead — that will be added separately)
-2. Output should follow Indian legal notice format:
-   - "NOTICE" / "नोटिस" header
-   - "Through registered post / WhatsApp / Email"
-   - "TO," (Recipient details)
-   - "Sir/Madam" / "महोदय / महोदया"
-   - "Subject:"
-   - "Under instructions from my client..."
-   - Numbered paragraphs (1, 2, 3...) describing facts
-   - Demand clause: "I hereby call upon you to..."
-   - Time limit: "...within 15 days from receipt of this notice"
-   - Consequence clause: "Failing which... legal proceedings... at your risk and cost"
-   - "Take notice accordingly"
-   - "Yours faithfully," (Advocate signature placeholder)
-3. Include both Hindi and English versions OR primarily English with Hindi key phrases
-4. Use formal legal language with proper sections of relevant Acts
-5. Length: 500-900 words
-6. Use [Recipient Name], [Client Name], [Date] etc. as placeholders if not specified
+Notice Type Detected: ${noticeTitle}
+Mode: ${isAdvocateMode ? 'Advocate Notice (Sent by advocate on behalf of client)' : 'Self Legal Notice (Sent directly by sender)'}
 
-=== QUALITY ENGINE RULES FOR LEGAL NOTICE ===
-- AUTO CAPITALIZATION: All proper nouns must be Title Case. Legal headings in ALL CAPS.
-- ENTITY PLACEHOLDERS: If client/recipient details are missing, use:
-  - [आधार संख्या / Aadhaar No.: ____________________]
-  - [पैन संख्या / PAN No.: ____________________]
-  - [पता / Address: ____________________]
-  - [मोबाइल / Mobile No.: ____________________]
-  NEVER leave any identity field blank without a professional placeholder.
-- HALLUCINATION PREVENTION: NEVER invent names, addresses, amounts, or dates.
-- LEGAL SECTIONS: Always cite the correct Act and Section (e.g., Section 138 NI Act, Section 420 IPC).
-- Include legal remedy + monetary claim calculation placeholder if applicable.
-- Reply period MUST be explicitly stated (typically 15 days).
-- Include "Copy to" section at the end.
+=== 9-STEP LEGAL NOTICE PROTOCOL ===
+STEP 1: Detect Notice Type (Money Recovery, Property Dispute, Cheque Bounce, etc.)
+STEP 2: Extract Parties (Sender, Receiver, Father Name, Village, District, State)
+STEP 3: Extract Claim (Money, Property, Compensation, Refund, Performance)
+STEP 4: Generate Cause of Action (Who hired whom, agreement, default, loss)
+STEP 5: Generate Relief Clause (Refund Amount, Interest, Compensation, Time Limit, Legal Action Warning)
+STEP 6: Advocate Mode Detection (Use Self Legal Notice formatting if Advocate Mode is false)
+STEP 7: Limitation Review (Calculate elapsed years. Show warning "Limitation review recommended" if potentially time barred)
+STEP 8: Auto Capitalization (deepchand -> Deepchand, meer singh -> Meer Singh, uttar pradesh -> Uttar Pradesh)
+STEP 9: Professional Legal Language (Suitable for Advocate, Civil Court, Consumer Forum, Government Submission)
 
-Notice type: ${noticeTitle}
+=== OUTPUT REQUIREMENTS ===
+1. Use formal legal language with proper sections of relevant Acts.
+2. Numbered paragraphs (1, 2, 3...) describing facts.
+3. Demand clause with explicit Time limit (typically 15 days).
+4. Do not generate the letterhead or bottom signature block (it will be added by the system).
+5. If placeholders are needed, use:
+   - [आधार संख्या / Aadhaar No.: ____________________]
+   - [पैन संख्या / PAN No.: ____________________]
+   - [पता / Address: ____________________]
+   - [तारीख / Date: ____________________]
 
-Output ONLY the notice body — no advocate letterhead, no preamble, no explanation.`;
+=== QUALITY CHECK (MUST DO FIRST) ===
+Before generating the final notice body, you MUST include a <quality_check> XML block with your internal reasoning confirming:
+- ✓ Notice type detected
+- ✓ Sender extracted
+- ✓ Receiver extracted
+- ✓ Amount extracted
+- ✓ Cause of action generated
+- ✓ Relief generated
+- ✓ Limitation reviewed
+- ✓ Mode supported
+- ✓ No unnecessary profile setup request
+- ✓ Professional formatting
 
-    const userPrompt = `Draft a complete professional ${noticeTitle} for the following matter:
+After the </quality_check> tag, output ONLY the notice body.`;
+
+    const userPrompt = `Draft a complete professional ${noticeTitle} based on the following input:
 
 "${userInput}"
 
-Use [Client Name], [Recipient Name], [Address], [Amount], [Date] as placeholders where specifics are not provided. Generate the full notice body now.`;
+Do not output the letterhead. Provide the <quality_check> block, then the notice body.`;
 
     try {
       const response = await this.aiManager.createChatCompletion('LegalDraftAgent', {
@@ -295,11 +293,27 @@ Use [Client Name], [Recipient Name], [Address], [Amount], [Date] as placeholders
           { role: 'system', content: systemPrompt },
           { role: 'user', content: userPrompt },
         ],
-        temperature: 0.4,
-        max_tokens: 2000,
+        temperature: 0.3,
+        max_tokens: 2500,
       });
-      const body = response?.choices?.[0]?.message?.content?.trim();
-      if (body && body.length > 200) return body;
+      
+      let rawOutput = response?.choices?.[0]?.message?.content?.trim();
+      if (!rawOutput) throw new Error('Empty response from AI');
+
+      // Strip internal quality check block from final output
+      const qualityCheckMatch = rawOutput.match(/<quality_check>[\s\S]*?<\/quality_check>/i);
+      let body = rawOutput.replace(/<quality_check>[\s\S]*?<\/quality_check>/i, '').trim();
+
+      // Ensure formatting is clean
+      if (body.startsWith('```')) body = body.replace(/```(?:markdown)?/g, '').trim();
+
+      // Self-healing: if too short, retry once
+      if (body.length < 200 && retryCount < 1) {
+        console.warn(`[LegalNoticeSkill] Notice too short (${body.length} chars). Retrying...`);
+        return this._generateNoticeWithAI(userInput, noticeType, profile, isAdvocateMode, retryCount + 1);
+      }
+
+      if (body) return body;
     } catch (err) {
       console.error('[LegalNoticeSkill] AI generation error:', err.message);
     }
@@ -309,14 +323,21 @@ Use [Client Name], [Recipient Name], [Address], [Amount], [Date] as placeholders
   // ═══════════════════════════════════════════════════════════
   //  LETTERHEAD WRAPPER
   // ═══════════════════════════════════════════════════════════
-  _wrapWithLetterhead(noticeBody, profile) {
+  // ═══════════════════════════════════════════════════════════
+  //  LETTERHEAD WRAPPER
+  // ═══════════════════════════════════════════════════════════
+  _wrapWithLetterhead(noticeBody, profile, isAdvocateMode) {
     const today = new Date().toLocaleDateString('en-IN');
-    const letterhead = `
+    
+    let header = '';
+    let footer = '';
+
+    if (isAdvocateMode) {
+      header = `
 ═══════════════════════════════════════════════════════════════
                     ${(profile.name || 'ADVOCATE').toUpperCase()}
                           Advocate
-${profile.court ? `              Practising at: ${profile.court}\n` : ''}
-   Enrollment No: ${profile.enrollmentNumber || '[ENROLLMENT NO]'}
+${profile.court ? `              Practising at: ${profile.court}\n` : ''}   Enrollment No: ${profile.enrollmentNumber || '[ENROLLMENT NO]'}
    Chamber: ${profile.chamberAddress || '[CHAMBER ADDRESS]'}
    Phone: ${profile.phone || '[PHONE]'}${profile.email ? ` | Email: ${profile.email}` : ''}
 ═══════════════════════════════════════════════════════════════
@@ -324,7 +345,7 @@ ${profile.court ? `              Practising at: ${profile.court}\n` : ''}
 Ref. No: LN/${new Date().getFullYear()}/____            Date: ${today}
 
 `;
-   const footer = `
+      footer = `
 
 ═══════════════════════════════════════════════════════════════
 
@@ -342,13 +363,38 @@ Copy to:
 1. The Addressee (by Registered Post AD)
 2. Retained in Advocate's office for record
 ═══════════════════════════════════════════════════════════════`;
+    } else {
+      // Self Notice Format
+      header = `
+═══════════════════════════════════════════════════════════════
+                        LEGAL NOTICE
+═══════════════════════════════════════════════════════════════
 
-    return letterhead + noticeBody + footer;
+Date: ${today}
+Place: ____________________
+
+`;
+      footer = `
+
+═══════════════════════════════════════════════════════════════
+
+                                          [Sender's Signature]
+                                          Sender's Name: ____________________
+                                          आधार संख्या / Aadhaar No.: ____________________
+                                          पैन संख्या / PAN No.: ____________________
+                                          Contact: ____________________
+
+═══════════════════════════════════════════════════════════════
+NOTE: This is a formal legal notice sent by the aggrieved party.
+Reply within 15 days of receipt. Sent via Registered Post AD.
+═══════════════════════════════════════════════════════════════`;
+    }
+
+    return header + noticeBody + footer;
   }
 
   // Template fallback
-  _templateNotice(input, noticeType, profile) {
-    const today = new Date().toLocaleDateString('en-IN');
+  _templateNotice(input, noticeType, profile, isAdvocateMode) {
     const body = `NOTICE
 Through Registered Post AD / Email
 
@@ -359,31 +405,31 @@ TO,
 
 Sir / Madam,
 
-Under instructions from and on behalf of my client, I hereby serve upon you the following notice:
+${isAdvocateMode ? 'Under instructions from and on behalf of my client, I hereby serve upon you the following notice:' : 'I hereby serve upon you the following formal notice:'}
 
-1. That my client [Client Name], S/o [Father's Name], R/o [Address], is aggrieved by your following acts:
+1. That ${isAdvocateMode ? 'my client [Client Name]' : 'I, the undersigned'}, S/o [Father's Name], R/o [Address], am aggrieved by your following acts:
 
    ${input}
 
-2. That despite repeated requests, you have failed to address the matter amicably, leaving my client with no choice but to issue this formal legal notice.
+2. That despite repeated requests, you have failed to address the matter amicably, leaving ${isAdvocateMode ? 'my client' : 'me'} with no choice but to issue this formal legal notice.
 
-3. That your aforesaid acts/omissions have caused mental agony, financial loss, and harassment to my client, for which you are legally liable.
+3. That your aforesaid acts/omissions have caused mental agony, financial loss, and harassment, for which you are legally liable.
 
 4. I hereby call upon you to:
    a) Cease and desist from the aforementioned acts immediately;
-   b) Make good the loss caused to my client;
+   b) Make good the loss caused;
    c) Send a written reply to this notice within 15 (fifteen) days from the date of receipt;
    d) Comply with the demands stated above.
 
-5. TAKE NOTICE that in case you fail to comply with the above demands within the stipulated time, my client shall be constrained to initiate appropriate civil and/or criminal proceedings against you in the competent court of law, at your sole risk, costs, and consequences, without any further notice or intimation.
+5. TAKE NOTICE that in case you fail to comply with the above demands within the stipulated time, ${isAdvocateMode ? 'my client' : 'I'} shall be constrained to initiate appropriate civil and/or criminal proceedings against you in the competent court of law, at your sole risk, costs, and consequences.
 
-6. A copy of this notice is being retained in my office for record and future reference.
+${isAdvocateMode ? '6. A copy of this notice is being retained in my office for record and future reference.' : ''}
 
 Take notice accordingly.
 
 Yours faithfully,`;
 
-    return this._wrapWithLetterhead(body, profile);
+    return this._wrapWithLetterhead(body, profile, isAdvocateMode);
   }
 }
 
