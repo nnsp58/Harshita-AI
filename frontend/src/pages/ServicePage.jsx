@@ -151,13 +151,24 @@ export default function ServicePage() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
 
-  // Stop "thinking" indicator when AI responds
+  // Stop "thinking" indicator when AI responds and handle AI actions
   useEffect(() => {
     if (messages?.length > 0) {
       const last = messages[messages.length - 1]
       if (last.type === 'ai' || last.type === 'system') setIsThinking(false)
+
+      // 🔀 Navigate action — skill wants to open a page (e.g. WhatsApp Web)
+      if (last.type === 'ai' && last.action?.navigate) {
+        setTimeout(() => {
+          if (last.action.navigate.startsWith('http')) {
+            window.open(last.action.navigate, '_blank')
+          } else {
+            navigate(last.action.navigate)
+          }
+        }, 1500)
+      }
     }
-  }, [messages])
+  }, [messages, navigate])
 
   if (!config) {
     return (

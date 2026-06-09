@@ -434,9 +434,15 @@ function RightChatPanel({ messages, onSend, isConnected, user, jobs = [] }) {
         speak(textToSpeak, last.action.lang || 'hi-IN')
       }
 
-      // 🔀 Navigate action — skill wants to open a page (e.g. TADA Naksha form)
+      // 🔀 Navigate action — skill wants to open a page (e.g. TADA Naksha form or WhatsApp Web)
       if (last.type === 'ai' && last.action?.navigate) {
-        setTimeout(() => navigate(last.action.navigate), 1500)
+        setTimeout(() => {
+          if (last.action.navigate.startsWith('http')) {
+            window.open(last.action.navigate, '_blank')
+          } else {
+            navigate(last.action.navigate)
+          }
+        }, 1500)
       }
     }
   }, [messages, navigate])
