@@ -390,7 +390,16 @@ function RightChatPanel({ messages, onSend, isConnected, user, jobs = [] }) {
   useEffect(() => {
     if (messages?.length > 0) {
       const last = messages[messages.length - 1]
-      if (last.type === 'ai' || last.type === 'system') setIsThinking(false)
+      
+      if (last.type === 'ai' || last.type === 'system') {
+        // If AI indicates it's working in the background, keep the typing indicator for visual satisfaction
+        if (last.message && (last.message.includes('रुकें') || last.message.includes('खोज रहा हूँ') || last.message.includes('रहा हूँ'))) {
+          setIsThinking(true)
+          setTimeout(() => setIsThinking(false), 3500)
+        } else {
+          setIsThinking(false)
+        }
+      }
 
       // 🎙️ VoiceAgentSkill support — auto speak when action.speak is true
       if (last.type === 'ai' && last.action?.speak) {
