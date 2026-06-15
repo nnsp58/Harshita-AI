@@ -17,9 +17,9 @@ class ResultGeneratorSkill extends BaseSkill {
     this.priority = 5;
     this.intents = ['check_result', 'result_update', 'exam_score', 'merit_list'];
     this.keywords = {
-      hi: ['रिजल्ट', 'नतीजा', 'मेरिट', 'स्कोर', 'अपडेट', 'परिणाम'],
-      en: ['result', 'merit', 'score', 'exam', 'update', 'status'],
-      hinglish: ['result aa gaya', 'check karo mera result', 'merit list dikhao']
+      hi: ['रिजल्ट देखो', 'नतीजा चेक', 'मेरिट लिस्ट', 'स्कोर कार्ड', 'परिणाम देखो', 'रिजल्ट आ गया'],
+      en: ['check result', 'my result', 'result status', 'merit list', 'score card', 'result declared'],
+      hinglish: ['result aa gaya', 'check karo mera result', 'merit list dikhao', 'result dekho']
     };
     this.requiredAgents = ['resultGeneratorAgent', 'browserAgent'];
   }

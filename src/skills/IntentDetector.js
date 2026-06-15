@@ -107,11 +107,27 @@ ${availableIntents}
 ${historyContext}
 Current User Message: "${message}"
 
-Rules:
+CRITICAL RULES:
 1. Return ONLY raw JSON, no markdown, no explanation
-2. If the user is replying to the Assistant's previous question (e.g. saying "yes" to "Do you want to fill the form?"), deduce the correct intent (e.g. "form_fill") and DO NOT return "general_chat".
-3. Extract any useful parameters (like service name, document type, person name) into "params". If the user says "yes" and the history mentions a specific job, extract that job into params.
-4. Confidence should be 0.0 to 1.0
+2. **GENERAL KNOWLEDGE / INFORMATIONAL QUESTIONS must ALWAYS go to "general_chat"**:
+   - "Who invented telephone?" → general_chat (NOT form_fill or result_generator)
+   - "What is velocity ratio?" → general_chat
+   - "ICSE physics question paper" → general_chat (asking for study material, NOT checking results)
+   - "Is bungee jumping dangerous?" → general_chat
+   - "Tell me about humidity" → general_chat
+   - "Vivo ka malik kaun hai?" → general_chat
+   - "Phone chalana sahi hai?" → general_chat
+   - ANY question asking for information/knowledge/facts → general_chat
+3. **Only route to a specific skill when the user clearly wants to USE A SERVICE:**
+   - "Mera SSC ka result check karo" → check_result (user wants to CHECK THEIR result)
+   - "SSC ka form bharo" → form_fill (user wants to FILL a form)
+   - "Naukri dhundho railway mein" → job_search (user wants to SEARCH for jobs)
+   - "TA/DA nikalo" → tada_process (user wants to GENERATE TA/DA)
+   - "Aadhaar se data nikalo" → document_ocr (user wants to EXTRACT data)
+4. **Follow-up responses ("haan", "yes", "ok", "roll number de do") should use conversation history to determine intent.** If history has NO relevant service context, route to general_chat.
+5. **When in doubt, choose "general_chat"** — it's better to give a conversational AI answer than to route to the wrong service.
+6. Extract any useful parameters into "params".
+7. Confidence should be 0.0 to 1.0. Use LOW confidence (< 0.4) if the intent is ambiguous.
 
 Return format:
 {"intent": "intent_name", "confidence": 0.85, "params": {"key": "value"}}`;
@@ -258,19 +274,19 @@ Return format:
       },
       {
         intent: 'web_learning',
-        words: ['seekho', 'learn', 'portal', 'website', 'train', 'एनालाइज']
+        words: ['seekho portal', 'learn portal', 'website analyze', 'website seekho', 'एनालाइज करो']
       },
       {
         intent: 'ui_builder',
-        words: ['ui', 'dashboard', 'design', 'layout', 'बनाओ', 'कंपोनेंट']
+        words: ['ui banao', 'dashboard banao', 'layout banao', 'design karo', 'यूआई बनाओ', 'कंपोनेंट बनाओ']
       },
       {
         intent: 'network_monitor',
-        words: ['network', 'internet', 'speed', 'server', 'status', 'चेक']
+        words: ['network check', 'internet speed', 'server status', 'नेटवर्क चेक', 'इंटरनेट स्पीड']
       },
       {
         intent: 'validator',
-        words: ['validate', 'verify', 'correct', 'audit', 'गलती', 'सुधार']
+        words: ['validate karo', 'verify karo', 'audit karo', 'गलती ढूंढो', 'सुधार करो']
       },
       {
         intent: 'file_processor',
@@ -278,7 +294,8 @@ Return format:
       },
       {
         intent: 'result_generator',
-        words: ['result', 'merit', 'score', 'check', 'नतीजा', 'परिणाम']
+        words: ['mera result', 'result check', 'result dekho', 'merit list', 'score card',
+                'नतीजा देखो', 'परिणाम चेक', 'result aa gaya', 'merit dekho']
       }
     ];
 
@@ -289,8 +306,9 @@ Return format:
       for (const word of entry.words) {
         if (lower.includes(word)) matches++;
       }
-      const confidence = matches > 0 ? Math.min(0.3 + (matches * 0.2), 0.9) : 0;
-      if (confidence > best.confidence) {
+      // Require higher confidence — single keyword match alone shouldn't trigger routing
+      const confidence = matches > 0 ? Math.min(0.25 + (matches * 0.25), 0.9) : 0;
+      if (confidence > best.confidence && confidence >= 0.5) {
         best = { intent: entry.intent, confidence, params: {}, method: 'keyword_hardcoded' };
       }
     }
@@ -317,8 +335,8 @@ Return format:
       index++;
     }
 
-    // General chat हमेशा available रहे
-    list += `${index}. general_chat — Casual talk, greetings, or unclear messages\n`;
+    // General chat — with explicit guidance
+    list += `${index}. general_chat — Casual talk, greetings, general knowledge questions, informational queries, "who invented X", "what is Y", study material requests, opinion questions, factual questions, or anything that does NOT require a CSC service action\n`;
 
     return list;
   }
