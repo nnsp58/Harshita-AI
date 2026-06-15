@@ -39,17 +39,19 @@ const LegalDocumentEditor = ({ initialContent = '', documentTitle = 'Legal Docum
               margin: 1.5cm;
             }
             body {
-              font-family: 'Times New Roman', serif;
+              font-family: 'Times New Roman', Times, serif;
               font-size: 12pt;
-              line-height: 1.5;
+              line-height: 1.6;
               color: #000;
               background: white;
               margin: 0;
-              padding: 20px;
+              padding: 0;
             }
             .legal-document {
               max-width: 100%;
               margin: 0 auto;
+              text-align: justify;
+              white-space: pre-wrap;
             }
             h1, h2, h3 { text-align: center; margin-bottom: 20px; }
             .parties { margin: 20px 0; }
@@ -83,13 +85,19 @@ const LegalDocumentEditor = ({ initialContent = '', documentTitle = 'Legal Docum
           <style>
             @page { size: A4; margin: 1.5cm; }
             body {
-              font-family: 'Times New Roman', serif;
+              font-family: 'Times New Roman', Times, serif;
               font-size: 12pt;
               line-height: 1.6;
               color: #000;
               background: white;
+              margin: 0;
+              padding: 0;
             }
-            .legal-document { max-width: 100%; }
+            .legal-document { 
+              max-width: 100%; 
+              text-align: justify;
+              white-space: pre-wrap;
+            }
           </style>
         </head>
         <body>
@@ -199,7 +207,7 @@ const LegalDocumentEditor = ({ initialContent = '', documentTitle = 'Legal Docum
             contentEditable
             suppressContentEditableWarning
             className="min-h-[200mm] outline-none legal-content"
-            style={{ whiteSpace: 'pre-wrap' }}
+            style={{ whiteSpace: 'pre-wrap', textAlign: 'justify' }}
           >
             {/* Default content will be injected via initialContent prop */}
           </div>

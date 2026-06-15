@@ -437,46 +437,29 @@ export default function LegalDraft() {
                   💡 अपनी बात simple Hindi/English mein likhein. AI poora professional draft banayega.
                 </p>
 
-                {/* Type-specific guidance */}
-                {selectedType === 'gift_deed' && (
-                  <div className="text-[10px] bg-amber-500/10 border border-amber-500/30 rounded p-2 mb-2 text-amber-300">
-                    <strong>Gift Deed Tips:</strong> Donor, Donee (especially daughter/son), Relationship, Property details (movable + immovable), Share (50% etc.) clearly mention karein.
+                {/* Dynamic Help Text */}
+                {documentTypes.find(t => t.id === selectedType)?.helpText && (
+                  <p className="text-[11px] text-gray-400 mb-2 whitespace-pre-line">
+                    💡 {documentTypes.find(t => t.id === selectedType)?.helpText}
+                  </p>
+                )}
+
+                {/* Dynamic Guidance Card */}
+                {documentTypes.find(t => t.id === selectedType)?.guidance && (
+                  <div className="text-[10px] bg-amber-500/10 border border-amber-500/30 rounded p-2.5 mb-3 text-amber-300">
+                    <strong>{documentTypes.find(t => t.id === selectedType)?.name} Guidance:</strong>
+                    <p className="mt-1">{documentTypes.find(t => t.id === selectedType)?.guidance}</p>
                   </div>
                 )}
-                {selectedType === 'affidavit' && (
-                  <div className="text-[10px] bg-amber-500/10 border border-amber-500/30 rounded p-2 mb-2 text-amber-300">
-                    <strong>Affidavit Tips:</strong> Apna pura naam, पिता का नाम, उम्र, पूरा पता, और जिस fact ke liye affidavit hai woh clearly likhein.
-                  </div>
-                )}
-                {selectedType === 'partition_deed' && (
-                  <div className="text-[10px] bg-amber-500/10 border border-amber-500/30 rounded p-2 mb-2 text-amber-300">
-                    <strong>Partition Deed Tips:</strong> Sabhi co-owners ke naam, unke shares, property details (Khasra/Khata if available) mention karein.
-                  </div>
-                )}
-                {selectedType === 'rent_agreement' && (
-                  <div className="text-[10px] bg-amber-500/10 border border-amber-500/30 rounded p-2 mb-2 text-amber-300">
-                    <strong>Rent Agreement Tips:</strong> Landlord & Tenant details, Rent amount, Security, Duration, Payment date clearly likhein.
-                  </div>
-                )}
-                {selectedType === 'noc' && (
-                  <div className="text-[10px] bg-amber-500/10 border border-amber-500/30 rounded p-2 mb-2 text-amber-300">
-                    <strong>NOC Tips:</strong> Aapka naam, kis cheez ke liye NOC chahiye, kis authority ko dena hai — sab detail mein likhein.
-                  </div>
-                )}
-                {selectedType === 'will' && (
-                  <div className="text-[10px] bg-amber-500/10 border border-amber-500/30 rounded p-2 mb-2 text-amber-300">
-                    <strong>Will Tips:</strong> Apna naam, sab beneficiaries (rishtedar) aur unko kitna hissa dena hai — clearly likhein.
-                  </div>
-                )}
+
                 <textarea value={naturalInput} onChange={e => setNaturalInput(e.target.value)}
                   rows={4}
-                  placeholder={
-                    selectedType === 'gift_deed' ? 'Example: Main apni chal aur achal sampatti ka aadha hissa apni beti Priya ke naam karna chahta hoon. Mera naam Ramesh Kumar, S/o Mohan Lal, R/o Village X, Tehsil Y, District Z...' :
-                    selectedType === 'affidavit' ? 'Example: Mera naam Sunita Devi, S/o Ramesh Kumar, umar 35 saal, R/o Village X... Main ye declare karti hoon ki...' :
-                    selectedType === 'rent_agreement' ? 'Example: Main Ramesh (Landlord) apna ghar Kiran (Tenant) ko 8000 rupaye monthly rent par 11 months ke liye de raha hoon...' :
-                    'Apni baat simple Hindi/English mein likhein. Jitni details denge, utna accha draft banega...'
-                  }
+                  placeholder={documentTypes.find(t => t.id === selectedType)?.placeholder || 'Apni samasya yahan likhein...'}
                   className="w-full bg-[#0a0b10] border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-amber-500/50" />
+
+                <div className="mt-2 text-[10px] text-gray-500 italic">
+                  {documentTypes.find(t => t.id === selectedType)?.example}
+                </div>
 
                 <button onClick={generateDraft} disabled={loading || !naturalInput.trim()}
                   className="mt-3 w-full py-2.5 bg-amber-500 hover:bg-amber-400 disabled:opacity-30 text-black font-bold rounded-lg text-sm flex items-center justify-center gap-2">
@@ -488,27 +471,85 @@ export default function LegalDraft() {
                 </button>
               </div>
 
-                  {/* Professional Legal Document Editor */}
-                  {generatedDraft && (
-                    <div className="bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-300">
-                      <div className="bg-gray-100 px-4 py-2 border-b flex items-center justify-between">
-                        <div className="text-sm font-semibold text-gray-800 flex items-center gap-2">
-                          <Edit3 size={16} /> Professional Legal Editor
-                        </div>
-                        <button 
-                          onClick={saveDraft} 
-                          className="px-4 py-1.5 bg-amber-500 hover:bg-amber-400 text-black text-sm font-bold rounded flex items-center gap-2"
-                        >
-                          <Save size={14}/> Save Draft
-                        </button>
-                      </div>
+              {/* Editor or Rejection UI */}
+              {generatedDraft && (generatedDraft.content.startsWith('REJECTED:') || generatedDraft.content.includes('REJECTED:')) ? (
+                <div className="bg-amber-950/40 border border-amber-500/40 rounded-xl p-5 text-center space-y-3">
+                  <div className="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center mx-auto text-amber-400 text-lg font-bold">
+                    ⚠️
+                  </div>
+                  <h3 className="text-sm font-bold text-amber-400">Draft Rejected — Action Mismatch</h3>
+                  <div className="text-xs text-gray-300 max-w-md mx-auto whitespace-pre-wrap">
+                    {generatedDraft.content.replace('REJECTED:', '').trim()}
+                  </div>
+                  <div className="flex flex-wrap gap-2 justify-center pt-2">
+                    {(() => {
+                      const lower = generatedDraft.content.toLowerCase();
+                      const suggestions = [];
+                      if (lower.includes('affidavit')) suggestions.push({ id: 'affidavit', name: 'Affidavit' });
+                      if (lower.includes('gift deed')) suggestions.push({ id: 'gift_deed', name: 'Gift Deed' });
+                      if (lower.includes('partition')) suggestions.push({ id: 'partition_deed', name: 'Partition Deed' });
+                      if (lower.includes('rent agreement') || lower.includes('lease')) suggestions.push({ id: 'rent_agreement', name: 'Rent Agreement' });
+                      if (lower.includes('noc') || lower.includes('no objection')) suggestions.push({ id: 'noc', name: 'NOC' });
+                      if (lower.includes('will') || lower.includes('testament')) suggestions.push({ id: 'will', name: 'Will' });
+                      if (lower.includes('power of attorney') || lower.includes('poa')) suggestions.push({ id: 'power_of_attorney', name: 'Power of Attorney' });
+                      if (lower.includes('declaration')) suggestions.push({ id: 'declaration', name: 'Declaration' });
 
-                      <LegalDocumentEditor 
-                        initialContent={editedDraft || generatedDraft.content || ''}
-                        documentTitle={generatedDraft.title || 'Legal Draft'}
-                      />
+                      const isNoticeRecommend = lower.includes('notice') || lower.includes('cheque bounce') || lower.includes('eviction notice') || lower.includes('recovery notice') || lower.includes('defamation');
+
+                      return (
+                        <>
+                          {suggestions.map(s => (
+                            <button
+                              key={s.id}
+                              onClick={() => {
+                                setSelectedType(s.id);
+                                setGeneratedDraft(null);
+                                setEditedDraft('');
+                              }}
+                              className="px-3 py-1.5 bg-amber-600 hover:bg-amber-500 text-white font-bold rounded text-[11px] transition-all"
+                            >
+                              Switch to {s.name}
+                            </button>
+                          ))}
+                          {isNoticeRecommend && (
+                            <button
+                              onClick={() => navigate('/legal-notice')}
+                              className="px-3 py-1.5 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded text-[11px] transition-all"
+                            >
+                              Go to Legal Notice Studio
+                            </button>
+                          )}
+                          <button
+                            onClick={() => setGeneratedDraft(null)}
+                            className="px-3 py-1.5 bg-white/10 hover:bg-white/20 text-gray-300 rounded text-[11px]"
+                          >
+                            Dismiss
+                          </button>
+                        </>
+                      );
+                    })()}
+                  </div>
+                </div>
+              ) : generatedDraft ? (
+                <div className="bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-300">
+                  <div className="bg-gray-100 px-4 py-2 border-b flex items-center justify-between">
+                    <div className="text-sm font-semibold text-gray-800 flex items-center gap-2">
+                      <Edit3 size={16} /> Professional Legal Editor
                     </div>
-                  )}
+                    <button 
+                      onClick={saveDraft} 
+                      className="px-4 py-1.5 bg-amber-500 hover:bg-amber-400 text-black text-sm font-bold rounded flex items-center gap-2"
+                    >
+                      <Save size={14}/> Save Draft
+                    </button>
+                  </div>
+
+                  <LegalDocumentEditor 
+                    initialContent={editedDraft || generatedDraft.content || ''}
+                    documentTitle={generatedDraft.title || 'Legal Draft'}
+                  />
+                </div>
+              ) : null}
             </>
           ) : (
             <div className="bg-white/5 border border-white/10 rounded-xl p-12 text-center">

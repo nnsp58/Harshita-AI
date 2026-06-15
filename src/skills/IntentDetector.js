@@ -85,14 +85,6 @@ class IntentDetector {
 
   async _detectWithAI(message, lang, history = []) {
     try {
-      const client = aiProviderManager.getClient(this.name);
-      if (!client) {
-        console.log('[IntentDetector] ⚠️ कोई AI provider नहीं मिला, keyword fallback use होगा');
-        return null;
-      }
-
-      const model = aiProviderManager.getModel(this.name);
-
       // सभी उपलब्ध intents की लिस्ट बनाओ
       const availableIntents = this._buildIntentList();
 
@@ -124,11 +116,11 @@ Rules:
 Return format:
 {"intent": "intent_name", "confidence": 0.85, "params": {"key": "value"}}`;
 
-      const response = await client.chat.completions.create({
-        model,
+      const response = await aiProviderManager.createChatCompletion(this.name, {
         messages: [{ role: 'user', content: prompt }],
         temperature: 0.1,
-        max_tokens: 200
+        max_tokens: 200,
+        responseFormat: 'json'
       });
 
       let content = response.choices[0].message.content.trim();

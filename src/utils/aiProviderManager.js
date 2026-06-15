@@ -133,12 +133,12 @@ class AIProviderManager {
 
   getEffectiveProvider(agentName) {
     const preferences = {
-      'DocumentAIAgent': 'gemini',
-      'LegalDraftAgent': 'gemini',
-      'JobSearchAgent': 'openai',
+      'DocumentAIAgent': process.env.AI_DOCUMENT_PROVIDER || 'gemini',
+      'LegalDraftAgent': process.env.AI_LEGAL_PROVIDER || 'gemini',
+      'JobSearchAgent': process.env.AI_JOB_PROVIDER || 'openai',
       'UIBuilderAgent': 'groq',
       'IntentDetector': 'groq',
-      'MasterAgent': 'groq',
+      'MasterAgent': process.env.AI_CHAT_PROVIDER || 'groq',
       'default': 'groq'
     };
     return preferences[agentName] || preferences.default;
@@ -172,36 +172,76 @@ class AIProviderManager {
   }
 
   /**
-    * Create chat completion with automatic provider selection
+    * Create chat completion with automatic provider selection and fallback retry
     */
   async createChatCompletion(agentName, options = {}) {
-    const client = this.getClient(agentName);
-    if (!client) {
-      throw new Error(`No AI provider available for ${agentName}`);
+    const preferredProvider = this.getEffectiveProvider(agentName);
+    const providersToTry = [];
+
+    if (this.providers.has(preferredProvider)) {
+      providersToTry.push(preferredProvider);
     }
 
-    const actualProvider = this.getProviderOfClient(client) || 'groq';
-    const model = this.getModel(agentName, actualProvider);
-
-    try {
-      // OpenAI-compatible providers
-      // Only enforce JSON mode if explicitly requested (skills doing text generation should NOT use it)
-      const requestBody = {
-        model,
-        ...options,
-      };
-      if (options.json === true || options.responseFormat === 'json') {
-        requestBody.response_format = { type: 'json_object' };
-        delete requestBody.json;
-        delete requestBody.responseFormat;
+    // List of standard priority fallback providers
+    const priorityOrder = ['groq', 'gemini', 'openai'];
+    for (const p of priorityOrder) {
+      if (p !== preferredProvider && this.providers.has(p)) {
+        providersToTry.push(p);
       }
-      const response = await client.chat.completions.create(requestBody);
-
-      return response;
-    } catch (error) {
-      console.error(`[AIProvider] Error for ${agentName}:`, error.message);
-      throw error;
     }
+
+    // Add any leftover providers
+    for (const p of this.providers.keys()) {
+      if (!providersToTry.includes(p)) {
+        providersToTry.push(p);
+      }
+    }
+
+    if (providersToTry.length === 0) {
+      throw new Error(`No AI providers available at all. Set at least one API key.`);
+    }
+
+    const modelFallbacks = {
+      'llama-3.3-70b-versatile': ['llama-3.1-8b-instant', 'mixtral-8x7b-32768'],
+      'gemini-2.0-flash': ['gemini-1.5-flash', 'gemini-1.5-pro'],
+      'gpt-4': ['gpt-4o-mini', 'gpt-3.5-turbo'],
+      'gpt-3.5-turbo': ['gpt-4o-mini']
+    };
+
+    let lastError = null;
+    for (const provider of providersToTry) {
+      const client = this.providers.get(provider);
+      const primaryModel = this.getModel(agentName, provider);
+      const modelsToTry = [primaryModel, ...(modelFallbacks[primaryModel] || [])];
+
+      for (const model of modelsToTry) {
+        try {
+          console.log(`[AIProvider] Attempting completion for ${agentName} using provider ${provider} with model ${model}...`);
+          
+          // Prepare request body options
+          const requestBody = {
+            model,
+            ...options,
+          };
+
+          if (options.json === true || options.responseFormat === 'json') {
+            requestBody.response_format = { type: 'json_object' };
+            delete requestBody.json;
+            delete requestBody.responseFormat;
+          }
+
+          const response = await client.chat.completions.create(requestBody);
+          console.log(`[AIProvider] Successfully generated completion for ${agentName} using provider ${provider} and model ${model}.`);
+          return response;
+        } catch (error) {
+          console.warn(`[AIProvider] Model ${model} on provider ${provider} failed for ${agentName}: ${error.message}`);
+          lastError = error;
+        }
+      }
+    }
+
+    console.error(`[AIProvider] All attempted models and providers failed for ${agentName}.`);
+    throw lastError || new Error(`All AI providers and models failed for ${agentName}`);
   }
 }
 

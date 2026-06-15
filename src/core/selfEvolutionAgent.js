@@ -5,7 +5,7 @@ const { cognitiveTrainer } = require('./cognitiveTrainer');
 
 class SelfEvolutionAgent {
     constructor() {
-        this.learningLogPath = path.join(process.cwd(), 'logs', 'learning_collector.json');
+        this.learningLogPath = path.join(process.cwd(), 'data', 'learning', 'interactions.json');
         this.failuresLogPath = path.join(process.cwd(), 'data', 'learning', 'failures.json');
         this.newAgentsPath = path.join(process.cwd(), 'src', 'agents', 'evolved');
         if (!fs.existsSync(this.newAgentsPath)) fs.mkdirSync(this.newAgentsPath, { recursive: true });
@@ -32,8 +32,34 @@ class SelfEvolutionAgent {
             }
         }
 
-        const systemErrors = allLogs.filter(l => l.status === 'failed' || l.error || !l.success);
-        const totalErrors = [...systemErrors, ...failureLogs];
+        // Read user feedback logs
+        const feedbackLogPath = path.join(process.cwd(), 'data', 'learning', 'feedback.json');
+        let feedbackLogs = [];
+        if (fs.existsSync(feedbackLogPath)) {
+            try {
+                feedbackLogs = JSON.parse(fs.readFileSync(feedbackLogPath, 'utf8'));
+            } catch (e) {
+                console.warn('[SelfEvolution] Failed to read feedback logs:', e.message);
+            }
+        }
+
+        // Filter for negative feedbacks
+        const negativeFeedbacks = feedbackLogs.filter(f => f.rating === 'negative' || f.rating === 1 || f.rating === 'down');
+        const feedbackErrors = [];
+        for (const fb of negativeFeedbacks) {
+            // Find corresponding interaction
+            const match = allLogs.find(log => log.id === fb.interactionId);
+            if (match) {
+                feedbackErrors.push({
+                    skill: match.skill || match.intent || 'general',
+                    input: match.input || match.userInput,
+                    error: `User Negative Feedback: ${fb.comment || 'Disliked response'}`
+                });
+            }
+        }
+
+        const systemErrors = allLogs.filter(l => l.status === 'failed' || l.error || l.success === false);
+        const totalErrors = [...systemErrors, ...failureLogs, ...feedbackErrors];
 
         if (totalErrors.length > 0) {
             console.log(`🧠 [SelfEvolution] Found ${totalErrors.length} total issues. Commencing Cognitive Auditing and Prompt Patching...`);
@@ -53,14 +79,6 @@ class SelfEvolutionAgent {
      * dynamically into cognitive_patches.json.
      */
     async auditAndPatchSkills(errors) {
-        const client = aiProviderManager.getClient('SelfEvolutionAgent');
-        const model = aiProviderManager.getModel('SelfEvolutionAgent');
-        
-        if (!client) {
-            console.warn('[SelfEvolution] AI provider unavailable for cognitive auditing.');
-            return;
-        }
-
         // Group errors by skill
         const skillErrors = {};
         for (const err of errors) {
@@ -90,11 +108,10 @@ Return ONLY valid JSON format:
 }`;
 
             try {
-                const response = await client.chat.completions.create({
-                    model,
+                const response = await aiProviderManager.createChatCompletion('SelfEvolutionAgent', {
                     messages: [{ role: 'user', content: prompt }],
                     temperature: 0.2,
-                    response_format: { type: 'json_object' }
+                    responseFormat: 'json'
                 });
 
                 const content = response.choices[0].message.content.trim();
@@ -127,14 +144,10 @@ Return ONLY valid JSON format:
         Return ONLY valid JSON: { "action": "create_agent" | "fix_existing", "agentName": "Name", "code": "..." }`;
 
         try {
-            const client = aiProviderManager.getClient('SelfEvolutionAgent');
-            const model = aiProviderManager.getModel('SelfEvolutionAgent');
-            
-            const response = await client.chat.completions.create({
-                model,
+            const response = await aiProviderManager.createChatCompletion('SelfEvolutionAgent', {
                 messages: [{ role: 'user', content: prompt }],
                 temperature: 0.2,
-                response_format: { type: 'json_object' }
+                responseFormat: 'json'
             });
 
             const plan = JSON.parse(response.choices[0].message.content.trim());

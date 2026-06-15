@@ -2,6 +2,7 @@
  * UIBuilderSkill — डायनेमिक UI और कंपोनेंट जनरेशन
  */
 const { BaseSkill } = require('./BaseSkill');
+const { UIBuilderAgent } = require('../agents/uiBuilderAgent');
 
 class UIBuilderSkill extends BaseSkill {
   constructor() {
@@ -22,10 +23,45 @@ class UIBuilderSkill extends BaseSkill {
       hinglish: ['naya dashboard banao', 'ui design karo', 'component add karo']
     };
     this.requiredAgents = ['uiBuilderAgent'];
+    this.agent = new UIBuilderAgent();
   }
 
   async execute(context) {
-    return this._reply('🎨 UI बिल्डर मोड सक्रिय है।\n\nआप मुझे बता सकते हैं कि आपको किस तरह का लेआउट चाहिए (जैसे: "3 कार्ड वाला ग्रिड" या "डार्क थीम चार्ट")।', { action: 'ui_design_start' });
+    const { message } = context;
+    const text = message || '';
+
+    // Check if the query is a descriptive request or a generic hello/menu request
+    const isDescriptive = text.length > 20 || /(menu|sidebar|layout|theme|grid|panel|columns|rows|panel|button|form|input|chart|table|visual)/i.test(text);
+
+    if (!isDescriptive) {
+      return this._reply('🎨 UI बिल्डर मोड सक्रिय है।\n\nआप मुझे बता सकते हैं कि आपको किस तरह का लेआउट चाहिए (जैसे: "3 कार्ड वाला ग्रिड" या "डार्क थीम चार्ट")।', { action: 'ui_design_start' });
+    }
+
+    try {
+      // Determine pageType if possible
+      let pageType = 'custom';
+      if (/dashboard|डैशबोर्ड/i.test(text)) pageType = 'dashboard';
+      else if (/form|फॉर्म/i.test(text)) pageType = 'form';
+      else if (/report|रिपोर्ट/i.test(text)) pageType = 'report';
+      else if (/portfolio/i.test(text)) pageType = 'portfolio';
+      else if (/tool|कैलकुलेटर/i.test(text)) pageType = 'tool';
+      else if (/landing|लैंडिंग/i.test(text)) pageType = 'landing';
+
+      const result = await this.agent.generatePage(text, pageType, {}, { language: 'both' });
+
+      if (result.success) {
+        return this._reply(`[रूटिंग सफल] ${result.message}`, {
+          action: 'ui_design_success',
+          filePath: result.filePath,
+          fileName: result.fileName
+        });
+      } else {
+        return this._reply(`[रूटिंग सफल] ❌ UI generation failed: ${result.message}`);
+      }
+    } catch (err) {
+      console.error('[UIBuilderSkill] Error generating UI page:', err.message);
+      return this._reply(`[रूटिंग सफल] ❌ Error: UI builder task failed. Details: ${err.message}`);
+    }
   }
 }
 

@@ -19,7 +19,7 @@ export default function UpgradeNotification() {
 
   useEffect(() => {
     // Connect to socket
-    const socket = socketIO(import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:3001', {
+    const socket = socketIO(import.meta.env.PROD ? window.location.origin : (import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:3001'), {
       transports: ['websocket', 'polling'],
       autoConnect: true,
     })

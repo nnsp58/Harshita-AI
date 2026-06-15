@@ -85,6 +85,7 @@ const setupSocketHandlers = (io) => {
           skill: response.skill,
           data: response.data,
           action: response.action || response.data || null,
+          interactionId: response.interactionId || null,
         });
 
       } catch (error) {
@@ -93,6 +94,26 @@ const setupSocketHandlers = (io) => {
           type: 'ai',
           message: `⚠️ Error: ${error.message}. Try rephrasing.`,
         });
+      }
+    });
+
+    socket.on('submitFeedback', async (data) => {
+      try {
+        const { interactionId, rating, comment } = data;
+        console.log(`[Socket] Feedback received from user ${socket.userId} for interaction ${interactionId}: ${rating}`);
+        const { learningEngine } = require('../../core/learningEngine');
+        learningEngine.recordFeedback(interactionId, rating, comment || '');
+        
+        // If negative rating, trigger self-healing immediately
+        if (rating === 'negative' || rating === 1 || rating === 'down') {
+          const { SelfEvolutionAgent } = require('../../core/selfEvolutionAgent');
+          const evolutionAgent = new SelfEvolutionAgent();
+          evolutionAgent.analyzeAndEvolve().catch(err => {
+            console.error('[SelfEvolution] Failed on negative feedback:', err.message);
+          });
+        }
+      } catch (err) {
+        console.error('[Socket] submitFeedback error:', err.message);
       }
     });
 

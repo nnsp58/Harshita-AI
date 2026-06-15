@@ -41,6 +41,7 @@ export function useSocket() {
         message: data.message || data.text || '',
         timestamp: new Date().toISOString(),
         action: data.action || null,
+        interactionId: data.interactionId || null,
       }
       setMessages((prev) => [...prev, msg])
     })
@@ -96,5 +97,13 @@ export function useSocket() {
     return false
   }, [])
 
-  return { socket: socketRef.current, isConnected, sendCommand, messages, setMessages }
+  const submitFeedback = useCallback((interactionId, rating, comment = '') => {
+    if (socketRef.current && socketRef.current.connected) {
+      socketRef.current.emit('submitFeedback', { interactionId, rating, comment })
+      return true
+    }
+    return false
+  }, [])
+
+  return { socket: socketRef.current, isConnected, sendCommand, submitFeedback, messages, setMessages }
 }

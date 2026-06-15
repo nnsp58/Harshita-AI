@@ -215,7 +215,16 @@ STEP 12: PLACEHOLDER ELIMINATION ENGINE. NEVER leave internal prompt variables l
 - [पैन संख्या / PAN No.: ____________________]
 - [तारीख / Date: ____________________]
 STEP 13: QUALITY CHECK (Internal Chain-of-Thought). Before final output verify.
-STEP 14: FAIL SAFE. If confidence below 80%, do not generate. Ask clarification.
+STEP 14: LEGAL REASONING ENGINE. Before generating any document:
+1. Extract facts.
+2. Determine actual legal matter.
+3. Calculate confidence score for the selected Document Type.
+4. Compare with selected document type.
+5. If mismatch > 20% (Confidence < 80%):
+   - DO NOT GENERATE the document.
+   - Output ONLY a warning starting exactly with "REJECTED:"
+   - Suggest the correct document.
+   Never force facts into the selected template. Never rewrite money dispute as defamation. Never rewrite contractor dispute as tenancy dispute.
 FINAL RULE: Harshita AI must think like Lawyer, Legal Drafting Expert, Court Clerk, Notary Assistant. Not a simple template generator.`;
 
     // ========== MASTER SENIOR ADVOCATE PROMPT ==========
@@ -402,7 +411,7 @@ Output ONLY the final legal document. No other text.`;
         const hasSignatureBlock = /हस्ताक्षर|signature|sign/i.test(draft);
         const hasVerification = /सत्यापन|verification|verified/i.test(draft);
         
-        if ((!hasSignatureBlock || !hasVerification) && retryCount < 1) {
+        if (!draft.includes('REJECTED') && (!hasSignatureBlock || !hasVerification) && retryCount < 1) {
           console.log('[LegalDraftSkill] Quality check failed — auto-retrying...');
           return this._generateWithAI(userInput, docType, retryCount + 1);
         }
@@ -410,10 +419,12 @@ Output ONLY the final legal document. No other text.`;
       }
 
       // If draft too short, retry once
-      if (retryCount < 1) {
+      if (draft && !draft.includes('REJECTED') && retryCount < 1) {
         console.log('[LegalDraftSkill] Draft too short — auto-retrying...');
         return this._generateWithAI(userInput, docType, retryCount + 1);
       }
+      
+      return draft;
     } catch (err) {
       console.error('[LegalDraftSkill] AI call error:', err.message);
     }

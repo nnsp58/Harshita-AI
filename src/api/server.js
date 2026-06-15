@@ -170,6 +170,27 @@ const masterAgent = new MasterAgent(io);
 app.set('masterAgent', masterAgent);
 console.log('🧠 MasterAgent V2 active — Multi-skill routing enabled');
 
+// Initialize NightlyUpgrader — scheduled auto-upgrade
+const { NightlyUpgrader } = require('../core/nightlyUpgrader');
+try {
+  const nightlyUpgrader = new NightlyUpgrader({
+    mode: process.env.UPGRADE_MODE || 'window',
+    startHour: parseInt(process.env.UPGRADE_START_HOUR) ?? 23,
+    startMinute: parseInt(process.env.UPGRADE_START_MIN) ?? 30,
+    endHour: parseInt(process.env.UPGRADE_END_HOUR) ?? 0,
+    endMinute: parseInt(process.env.UPGRADE_END_MIN) ?? 30,
+    notifyMinutesBefore: parseInt(process.env.UPGRADE_NOTIFY_MIN) ?? 30,
+    finalWarningMinutes: parseInt(process.env.UPGRADE_FINAL_WARN_MIN) ?? 5,
+    skillRegistry: masterAgent.registry,
+    io: io
+  });
+  nightlyUpgrader.start();
+  app.set('nightlyUpgrader', nightlyUpgrader);
+  console.log('🌙 NightlyUpgrader started — auto-learning scheduled');
+} catch (err) {
+  console.warn('⚠️ NightlyUpgrader unavailable:', err.message);
+}
+
 // Security middleware
 app.use(helmet({
   crossOriginResourcePolicy: { policy: 'cross-origin' },
@@ -361,6 +382,52 @@ app.get('/api/dashboard/stats', async (req, res) => {
     stats.queue = queueStats;
   }
   res.json(stats);
+});
+
+// Public schedule info — for UI to display (UpgradeNotification.jsx)
+app.get('/api/learning/schedule', (req, res) => {
+  const upgrader = req.app.get('nightlyUpgrader');
+  if (!upgrader) {
+    return res.json({
+      success: true,
+      data: {
+        mode: 'window',
+        windowStart: '23:30',
+        windowEnd: '00:30',
+        isInMaintenance: false,
+        minutesUntilUpgrade: 120,
+        lastRun: null
+      }
+    });
+  }
+  res.json({
+    success: true,
+    data: upgrader.getSchedule()
+  });
+});
+
+// Learning stats — for LearningInsights.jsx admin page
+app.get('/api/learning/stats', (req, res) => {
+  const upgrader = req.app.get('nightlyUpgrader');
+  const lastUpgrade = upgrader?.lastRunResult || null;
+  res.json({
+    success: true,
+    data: {
+      lastUpgrade: lastUpgrade,
+      learning: {
+        totalSessions: 0,
+        avgConfidence: 0,
+        skillsImproved: 0,
+        lastTrained: lastUpgrade?.startedAt || null
+      },
+      conversations: {
+        total: 0,
+        positive: 0,
+        negative: 0,
+        neutral: 0
+      }
+    }
+  });
 });
 
 // PDF Processing for TA/DA Learning

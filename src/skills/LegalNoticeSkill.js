@@ -245,7 +245,8 @@ Notice Type Detected: ${noticeTitle}
 Mode: ${isAdvocateMode ? 'Advocate Notice (Sent by advocate on behalf of client)' : 'Self Legal Notice (Sent directly by sender)'}
 
 === 9-STEP LEGAL NOTICE PROTOCOL ===
-STEP 1: Detect Notice Type (Money Recovery, Property Dispute, Cheque Bounce, Eviction, Contract Breach, Defamation, Consumer Complaint, etc.)
+STEP 1: Detect Notice Type (Money Recovery, Property Dispute, Cheque Bounce, Eviction, Contract Breach, Construction Dispute, Defamation, Consumer Complaint, etc.)
+        If keywords like 'theka', 'contractor', 'construction', 'makan banana', 'building work', 'advance payment', 'work abandoned' are present -> Classify as Construction Contract Breach Notice. NEVER Rent Agreement.
 STEP 2: Extract Parties (Sender, Receiver, Father Name, Village, District, State)
 STEP 3: Extract Claim (Money, Property, Compensation, Refund, Performance)
 STEP 4: Generate Cause of Action (Who hired whom, agreement, default, loss)
@@ -254,6 +255,18 @@ STEP 6: Advocate Mode Detection (Use Self Legal Notice formatting if Advocate Mo
 STEP 7: Limitation Review (Calculate elapsed years. Show warning "Limitation review recommended" if potentially time barred)
 STEP 8: Auto Capitalization (deepchand -> Deepchand, meer singh -> Meer Singh, uttar pradesh -> Uttar Pradesh)
 STEP 9: Professional Legal Language (Suitable for Advocate, Civil Court, Consumer Forum, Government Submission)
+
+=== LEGAL REASONING ENGINE ===
+Before generating any document:
+Step 1: Extract facts.
+Step 2: Determine actual legal matter.
+Step 3: Calculate confidence score for the selected Notice Type.
+Step 4: Compare with selected document type.
+Step 5: If mismatch > 20% (Confidence < 80%):
+        - DO NOT GENERATE the document.
+        - Output ONLY a warning starting exactly with "REJECTED:"
+        - Suggest the correct document.
+        Never force facts into the selected template. Never rewrite money dispute as defamation. Never rewrite contractor dispute as tenancy dispute.
 
 === PLACEHOLDER ELIMINATION ENGINE ===
 NEVER leave internal prompt variables like [CLIENT NAME], [RESPONDENT NAME], [SPECIFIC ACTION], etc., in the final draft.
@@ -266,21 +279,23 @@ If important information is missing, DO NOT hallucinate. Use professional blank 
 - [पैन संख्या / PAN No.: ____________________]
 - [राशि / Amount: ₹__________]
 
-=== OUTPUT REQUIREMENTS ===
+=== OUTPUT REQUIREMENTS & PROFESSIONAL LAWYER MODE ===
 1. Use formal legal language with proper sections of relevant Acts.
 2. Numbered paragraphs (1, 2, 3...) describing facts.
 3. Demand clause with explicit Time limit (typically 15 days).
-4. Do not generate the letterhead or bottom signature block (it will be added by the system).
+4. Draft must be suitable for Advocate, District Court, Civil Court, Consumer Commission, Legal Notice Dispatch, Notary Review.
+5. Do not generate the letterhead or bottom signature block (it will be added by the system).
 
-=== QUALITY CHECK (MUST DO FIRST) ===
+=== NOTICE QUALITY CHECK (MUST DO FIRST) ===
 Before generating the final notice body, you MUST include a <quality_check> XML block with your internal reasoning confirming:
-- ✓ Correct document type detected
+- ✓ Correct document type detected (Reject if construction dispute classified as rent agreement)
 - ✓ Correct legal classification
-- ✓ Correct fact extraction
+- ✓ Correct fact extraction (Amount and Date match)
 - ✓ Names normalized (Auto Capitalization)
 - ✓ Dates & Amount extracted
 - ✓ No hallucinated facts
-- ✓ No leftover [BRACKET] placeholders (only ______ allowed)
+- ✓ No leftover [BRACKET] placeholders like [CLIENT NAME] or [SPECIFIC ACTION]
+- ✓ No Duplicate LEGAL NOTICE heading or Duplicate templates
 - ✓ Professional formatting
 - ✓ Suitable for advocate review
 
@@ -313,7 +328,7 @@ Do not output the letterhead. Provide the <quality_check> block, then the notice
       if (body.startsWith('```')) body = body.replace(/```(?:markdown)?/g, '').trim();
 
       // Self-healing: if too short, retry once
-      if (body.length < 200 && retryCount < 1) {
+      if (body.length < 200 && !body.includes('REJECTED') && retryCount < 1) {
         console.warn(`[LegalNoticeSkill] Notice too short (${body.length} chars). Retrying...`);
         return this._generateNoticeWithAI(userInput, noticeType, profile, isAdvocateMode, retryCount + 1);
       }

@@ -1,12 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Bot, X, Maximize2, Minimize2, Send, Mic, Paperclip, MessageSquare } from 'lucide-react';
+import { Bot, X, Maximize2, Minimize2, Send, Mic, Paperclip, MessageSquare, ThumbsUp, ThumbsDown } from 'lucide-react';
 import { useSocket } from '../../hooks/useSocket';
 
 export default function AIAssistantWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [input, setInput] = useState('');
-  const { isConnected, sendCommand, messages } = useSocket();
+  const [ratings, setRatings] = useState({});
+  const { isConnected, sendCommand, submitFeedback, messages } = useSocket();
   const messagesEndRef = useRef(null);
 
   const toggleWidget = () => setIsOpen(!isOpen);
@@ -25,6 +26,12 @@ export default function AIAssistantWidget() {
     if (!input.trim()) return;
     sendCommand(input);
     setInput('');
+  };
+
+  const handleFeedback = (interactionId, rating) => {
+    if (ratings[interactionId]) return;
+    submitFeedback(interactionId, rating);
+    setRatings(prev => ({ ...prev, [interactionId]: rating }));
   };
 
   if (!isOpen) {
@@ -83,7 +90,7 @@ export default function AIAssistantWidget() {
           </div>
         ) : (
           messages.map((msg, i) => (
-            <div key={i} className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}>
+            <div key={i} className={`flex flex-col ${msg.type === 'user' ? 'items-end' : 'items-start'}`}>
               <div className={`max-w-[85%] rounded-2xl px-4 py-2 text-sm ${
                 msg.type === 'user' 
                   ? 'bg-indigo-600 text-white rounded-br-none' 
@@ -91,6 +98,29 @@ export default function AIAssistantWidget() {
               }`}>
                 {msg.message || msg.text}
               </div>
+              {msg.type !== 'user' && msg.interactionId && (
+                <div className="flex items-center gap-2 mt-1 ml-2 text-slate-400">
+                  <button 
+                    type="button" 
+                    onClick={() => handleFeedback(msg.interactionId, 'positive')}
+                    disabled={ratings[msg.interactionId] !== undefined}
+                    className={`hover:text-green-400 transition-colors p-1 rounded ${ratings[msg.interactionId] === 'positive' ? 'text-green-400 bg-green-500/10' : ''}`}
+                  >
+                    <ThumbsUp size={14} />
+                  </button>
+                  <button 
+                    type="button" 
+                    onClick={() => handleFeedback(msg.interactionId, 'negative')}
+                    disabled={ratings[msg.interactionId] !== undefined}
+                    className={`hover:text-red-400 transition-colors p-1 rounded ${ratings[msg.interactionId] === 'negative' ? 'text-red-400 bg-red-500/10' : ''}`}
+                  >
+                    <ThumbsDown size={14} />
+                  </button>
+                  {ratings[msg.interactionId] && (
+                    <span className="text-[10px] text-slate-500">Feedback sent</span>
+                  )}
+                </div>
+              )}
             </div>
           ))
         )}

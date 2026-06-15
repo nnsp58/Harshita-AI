@@ -102,7 +102,41 @@ class MasterAgent {
       console.log(`   🚀 Executing: ${skill.displayName} (${skill.name})`);
 
       const context = this._buildContext(userId, cmd, detection, options);
-      const result = await skill.execute(context);
+      let result;
+      let success = true;
+      try {
+        result = await skill.execute(context);
+        if (!result || result.type === 'error' || result.success === false) {
+          success = false;
+        }
+      } catch (err) {
+        success = false;
+        result = { type: 'error', message: err.message };
+      }
+
+      // Record interaction in learningEngine
+      const { learningEngine } = require('../core/learningEngine');
+      const interactionId = learningEngine.learn(skill.name, userId, cmd, result, success);
+      if (result) {
+        result.interactionId = interactionId;
+      }
+
+      // If it failed, trigger self-healing (SelfEvolutionAgent)
+      if (!success) {
+        setTimeout(async () => {
+          try {
+            const { SelfEvolutionAgent } = require('../core/selfEvolutionAgent');
+            const evolutionAgent = new SelfEvolutionAgent();
+            await evolutionAgent.analyzeAndEvolve();
+          } catch (evoErr) {
+            console.error('[SelfEvolution] Trigger failed:', evoErr.message);
+          }
+        }, 1000);
+      }
+
+      if (result.type === 'error') {
+        throw new Error(result.message);
+      }
 
       // ── Step 5: History में result भी जोड़ो ──
       this._addToHistory(userId, 'ai', result.message, detection.intent);

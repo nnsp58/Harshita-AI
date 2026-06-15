@@ -56,14 +56,14 @@ class DocumentOcrSkill extends BaseSkill {
 
     // कौन सा document type detect हुआ
     let docType = params?.documentType || 'general';
-    if (text.includes('aadhaar') || text.includes('आधार') || text.includes('aadhar')) docType = 'aadhaar';
-    else if (text.includes('pan') || text.includes('पैन')) docType = 'pan';
-    else if (text.includes('voter') || text.includes('मतदाता') || text.includes('epic')) docType = 'voter_id';
-    else if (text.includes('driving') || text.includes('license') || text.includes('dl') || text.includes('लाइसेंस')) docType = 'driving_license';
-    else if (text.includes('passport') || text.includes('पासपोर्ट')) docType = 'passport';
-    else if (text.includes('marksheet') || text.includes('मार्कशीट')) docType = 'marksheet';
-    else if (text.includes('caste') || text.includes('जाति')) docType = 'caste';
-    else if (text.includes('degree') || text.includes('डिग्री')) docType = 'degree';
+    if (/\baadhar\b|\baadhaar\b/i.test(text) || text.includes('आधार')) docType = 'aadhaar';
+    else if (/\bpan\b|\bpancard\b/i.test(text) || text.includes('पैन')) docType = 'pan';
+    else if (/\bvoter\b/i.test(text) || text.includes('मतदाता') || text.includes('epic')) docType = 'voter_id';
+    else if (/\bdriving\b|\blicense\b|\bdl\b/i.test(text) || text.includes('लाइसेंस')) docType = 'driving_license';
+    else if (/\bpassport\b/i.test(text) || text.includes('पासपोर्ट')) docType = 'passport';
+    else if (/\bmarksheet\b/i.test(text) || text.includes('मार्कशीट')) docType = 'marksheet';
+    else if (/\bcaste\b/i.test(text) || text.includes('जाति')) docType = 'caste';
+    else if (/\bdegree\b/i.test(text) || text.includes('डिग्री')) docType = 'degree';
 
     // Document type बताया — upload करवाओ
     if (docType !== 'general') {

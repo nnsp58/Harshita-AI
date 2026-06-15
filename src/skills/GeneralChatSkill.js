@@ -92,8 +92,18 @@ class GeneralChatSkill extends BaseSkill {
       );
     }
 
-    // किसने बनाया / Who created / banaya / father / founder
-    if (/banaya|बनाया|banane.*wala|बनाने.*वाला|creator|created.*by|kisne banaya|कौन.*बनाया|developed.*by|owner|maalik|मालिक|n-dizi|n dizi|father|founder|papa|dad|baap|pita|parent/i.test(text)) {
+    // किसने बनाया / Who created / banaya / father / founder of Harshita AI specifically
+    const isAboutMeCreator = (
+      // "kisne banaya" / "who created" / "owner" combined with "harshita" or "tumhe" or "you" or "aap"
+      (/(?:tumhe|aap|you|harshita|app|bot|assistant|website|system|engine|here|this).*(?:banaya|बनाया|banane|created|developed|creator|father|founder|owner|maalik|मालिक|papa)/i.test(text)) ||
+      (/(?:banaya|बनाया|banane|created|developed|creator|father|founder|owner|maalik|मालिक|papa).*(?:tumhe|aap|you|harshita|app|bot|assistant|website|system)/i.test(text)) ||
+      // Or explicitly mentions n-dizi
+      /n-dizi|n dizi/i.test(text) ||
+      // Or simple "who created you" or "your owner"
+      ((/(?:who|kisne|कौन).*(?:creator|owner|maalik|father|maker)/i.test(text)) && /(?:you|your|aap|tum)/i.test(text))
+    ) && !/(?:telephone|phone|computer|taj|bulb|electricity|aeroplane|america|india|gravity|steam|engine|radio|tv|television|camera|zero|math|gravity|force)/i.test(text);
+
+    if (isAboutMeCreator) {
       return this._reply(
         'मैं अपने मालिक या टीम का नाम तो नहीं जानती, लेकिन आप उनसे इस लिंक पर संपर्क कर सकते हैं:\n\n' +
         '🔗 **[टीम से संपर्क करें](/contact)**\n\n' +
@@ -115,15 +125,11 @@ class GeneralChatSkill extends BaseSkill {
 
     // AI Fallback — कोई भी random बात (smart conversational reply)
     try {
-      const client = aiProviderManager.getClient('MasterAgent');
-      if (client) {
-        const model = aiProviderManager.getModel('MasterAgent');
-        
-        // Build message history
-        const messages = [
-          {
-            role: 'system',
-            content: `You are Harshita AI — an intelligent assistant designed for Indian Common Service Centers (CSC), VLEs, government employees (Police, Railway, etc.) and citizens.
+      // Build message history
+      const messages = [
+        {
+          role: 'system',
+          content: `You are Harshita AI — an intelligent assistant designed for Indian Common Service Centers (CSC), VLEs, government employees (Police, Railway, etc.) and citizens.
 
 ABOUT YOU (Harshita AI):
 - Name: Harshita AI
@@ -143,39 +149,38 @@ YOUR PERSONALITY:
 - If the user explicitly asks you to open a link/website, and you know the URL from the history, output 'NAVIGATE_TO: [URL]' at the very end of your message.
 
 Keep replies under 80 words. Be professional and context-aware.`
+        }
+      ];
+
+      if (context.history && context.history.length > 0) {
+        context.history.slice(-5).forEach(h => {
+          if (h.message && h.message !== message) {
+            messages.push({ role: h.role === 'user' ? 'user' : 'assistant', content: h.message });
           }
-        ];
-
-        if (context.history && context.history.length > 0) {
-          context.history.slice(-5).forEach(h => {
-            if (h.message && h.message !== message) {
-              messages.push({ role: h.role === 'user' ? 'user' : 'assistant', content: h.message });
-            }
-          });
-        }
-        
-        messages.push({ role: 'user', content: message });
-
-        const response = await client.chat.completions.create({
-          model,
-          messages: messages,
-          temperature: 0.6,
-          max_tokens: 250
         });
-
-        let aiMessage = response.choices[0].message.content;
-        let actionParams = {};
-
-        // Check if AI decided to navigate
-        const navMatch = aiMessage.match(/NAVIGATE_TO:\s*(https?:\/\/[^\s]+)/);
-        if (navMatch) {
-          actionParams.navigate = navMatch[1];
-          aiMessage = aiMessage.replace(navMatch[0], '').trim();
-        }
-
-        return this._reply(aiMessage, actionParams);
       }
+      
+      messages.push({ role: 'user', content: message });
+
+      const response = await aiProviderManager.createChatCompletion('MasterAgent', {
+        messages: messages,
+        temperature: 0.6,
+        max_tokens: 250
+      });
+
+      let aiMessage = response.choices[0].message.content;
+      let actionParams = {};
+
+      // Check if AI decided to navigate
+      const navMatch = aiMessage.match(/NAVIGATE_TO:\s*(https?:\/\/[^\s]+)/);
+      if (navMatch) {
+        actionParams.navigate = navMatch[1];
+        aiMessage = aiMessage.replace(navMatch[0], '').trim();
+      }
+
+      return this._reply(aiMessage, actionParams);
     } catch (e) {
+      console.error('[GeneralChatSkill] AI conversational fallback failed:', e.message);
       // AI not available — use static fallback
     }
 

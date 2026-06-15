@@ -197,17 +197,9 @@ ${options.style ? `\nSTYLE PREFERENCE: ${options.style}` : ''}
 Return the complete HTML code only. No explanations.`;
 
     try {
-      const client = aiProviderManager.getClient(this.name);
-      if (!client) {
-        // Fallback to template-based generation
-        return this._generateFromTemplate(prompt, pageType, data);
-      }
+      console.log(`[UIBuilderAgent] Using AI to generate page...`);
 
-      const model = aiProviderManager.getModel(this.name);
-      console.log(`[UIBuilderAgent] Using AI: ${model}`);
-
-      const completion = await client.chat.completions.create({
-        model,
+      const completion = await aiProviderManager.createChatCompletion(this.name, {
         messages: [
           { role: 'system', content: systemPrompt },
           { role: 'user', content: userPrompt }
@@ -275,14 +267,9 @@ Make it reusable and well-documented with comments.
 Use modern CSS (flexbox, grid, variables, animations).`;
 
     try {
-      const client = aiProviderManager.getClient(this.name);
-      if (!client) {
-        return { success: false, message: 'No AI provider available for component generation.' };
-      }
+      console.log(`[UIBuilderAgent] Using AI to generate component...`);
 
-      const model = aiProviderManager.getModel(this.name);
-      const completion = await client.chat.completions.create({
-        model,
+      const completion = await aiProviderManager.createChatCompletion(this.name, {
         messages: [
           { role: 'system', content: systemPrompt },
           { role: 'user', content: `Create this component: ${prompt}` }
@@ -328,14 +315,9 @@ Follow best practices and modern patterns.
 Return ONLY the code, no explanations.`;
 
     try {
-      const client = aiProviderManager.getClient(this.name);
-      if (!client) {
-        return { success: false, message: 'No AI provider available.' };
-      }
+      console.log(`[UIBuilderAgent] Using AI to generate code...`);
 
-      const model = aiProviderManager.getModel(this.name);
-      const completion = await client.chat.completions.create({
-        model,
+      const completion = await aiProviderManager.createChatCompletion(this.name, {
         messages: [
           { role: 'system', content: systemPrompt },
           { role: 'user', content: prompt }
