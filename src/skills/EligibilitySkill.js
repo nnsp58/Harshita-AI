@@ -17,8 +17,8 @@ class EligibilitySkill extends BaseSkill {
     this.name = 'eligibility_check';
     this.displayName = 'पात्रता जाँच';
     this.displayNameEn = 'Eligibility Check';
-    this.description = 'सरकारी योजनाओं और नौकरियों की पात्रता जाँचना';
-    this.descriptionEn = 'Check eligibility for government schemes and jobs';
+    this.description = 'उपयोगकर्ता की स्वयं की सरकारी योजनाओं या नौकरियों की पात्रता जाँचना (जैसे: "क्या मैं SSC के लिए योग्य हूँ?")। ध्यान दें: सामान्य ज्ञान/नियमों के प्रश्नों (जैसे: "क्या सरकारी नौकरी के लिए 12 पास होना ज़रूरी है") के लिए इसका उपयोग न करें — उन्हें general_chat में भेजें।';
+    this.descriptionEn = 'Checking user\'s personal eligibility for a specific scheme or job (e.g., "Am I eligible for SSC?"). NOT for general informational questions about requirements or rules (e.g. "is 12th pass necessary for government jobs") — send those to general_chat.';
     this.version = '2.0.0';
     this.category = 'government';
     this.canRunOffline = false;

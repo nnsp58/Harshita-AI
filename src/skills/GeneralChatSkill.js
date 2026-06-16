@@ -38,9 +38,21 @@ class GeneralChatSkill extends BaseSkill {
     }
 
     // कौन हो / परिचय / kaun ho / kya kar sakti ho / capabilities
-    if (text.includes('kaun') || text.includes('कौन') || text.includes('who') || text.includes('about') ||
-        text.includes('kya kar') || text.includes('क्या कर') || text.includes('capabilit') ||
-        text.includes('skills') || text.includes('काबिलियत') || text.includes('kabiliyat')) {
+    const isBotIntroRequest = (
+      // Strict word matching for English capabilities of the bot
+      /\b(who are you|who is this|who is harshita|what can you do|what do you do|your capabilities|your skills|about you|help menu)\b/i.test(text) ||
+      // Checks to ensure "who" or "about" is referring to the bot itself
+      ((text.includes('who') || text.includes('about') || text.includes('skills') || text.includes('capabilit')) && 
+       /\b(you|your|harshita|assistant|bot)\b/i.test(text)) ||
+      // Hindi/Hinglish queries asking "who are you" or "what do you do"
+      /\b(kaun ho|kaun hai|kon ho|kon h|kaun h|kya kar sakti|kya kar sakte|kabiliyat|kya kaam)\b/i.test(text) ||
+      // Explicit Hindi word match with context
+      (text.includes('कौन') && /\b(तुम|आप|हर्षिता)\b/i.test(text)) ||
+      (text.includes('क्या कर') && /\b(सकती|सकते|सकतीं|काम)\b/i.test(text)) ||
+      (text.includes('काबिलियत') || text.includes('kabiliyat'))
+    );
+
+    if (isBotIntroRequest) {
       return this._reply(
         '🤖 *Harshita AI — Aapki CSC Smart Assistant*\n\n' +
         '👨‍💻 *Created by:* **n-dizi team**\n' +
