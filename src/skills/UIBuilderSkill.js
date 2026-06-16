@@ -30,8 +30,10 @@ class UIBuilderSkill extends BaseSkill {
     const { message } = context;
     const text = message || '';
 
-    // Check if the query is a descriptive request or a generic hello/menu request
-    const isDescriptive = text.length > 20 || /(menu|sidebar|layout|theme|grid|panel|columns|rows|panel|button|form|input|chart|table|visual)/i.test(text);
+    // Check if the query is a descriptive request or a generic question/capability check
+    const hasStructuralKeywords = /(menu|sidebar|layout|theme|grid|panel|column|row|button|form|input|chart|table|visual|card|color|dark|light|blue|green|red|black|white|admin|list|ग्रिड|कार्ड|डार्क|थीम|पैनल|कलर|बटन|लेआउट|चार्ट|सूची)/i.test(text);
+    const isQuestion = /(kya\s+aap|क्या\s+आप|sakte\s+ho|sakte\s+hai|sakte\s+ha|sakta\s+hu|can\s+you|how\s+to|how\s+do)/i.test(text);
+    const isDescriptive = hasStructuralKeywords || (text.length > 25 && !isQuestion);
 
     if (!isDescriptive) {
       return this._reply('🎨 UI बिल्डर मोड सक्रिय है।\n\nआप मुझे बता सकते हैं कि आपको किस तरह का लेआउट चाहिए (जैसे: "3 कार्ड वाला ग्रिड" या "डार्क थीम चार्ट")।', { action: 'ui_design_start' });
