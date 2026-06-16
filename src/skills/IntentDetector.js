@@ -119,7 +119,8 @@ CRITICAL RULES:
    - "Phone chalana sahi hai?" → general_chat
    - "naukari pane ke liye 11 me best subject konsa hai?" → general_chat (career advice / guidance / recommendations, NOT checking user's personal eligibility)
    - "kya sarkari job ke liye 12 pass hona jaruri hota h?" → general_chat (general rule / educational query, NOT an eligibility check for a specific scheme)
-   - ANY question asking for general information, career advice, facts, or recommendations → general_chat
+   - "agr school m koi teacher baccho ke dhram badle to unke sath kya hoga" → general_chat (situational / hypothetical legal query, NOT checking personal eligibility for a scheme)
+   - ANY question asking for general information, career advice, facts, situational law, or recommendations → general_chat
 3. **Only route to a specific skill when the user clearly wants to USE A SERVICE or run a structured check on their own details:**
    - "Mera SSC ka eligibility check karo" → eligibility_check (user explicitly wants to check their eligibility)
    - "Mera SSC ka result check karo" → check_result (user wants to CHECK THEIR result)
