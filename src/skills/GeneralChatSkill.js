@@ -98,7 +98,7 @@ class GeneralChatSkill extends BaseSkill {
     }
 
     // उम्र / जन्म / Age / Birthday
-    if (/age|उम्र|umar|birthday|janamdin|dob|date of birth/i.test(text) && !text.includes('mera') && !text.includes('my')) {
+    if ((/\b(age|birthday|dob|date\s+of\s+birth|umar|janamdin)\b/i.test(text) || text.includes('उम्र')) && !text.includes('mera') && !text.includes('my')) {
       return this._reply(
         '🎉 मेरा जन्मदिन **18 July** को है! \n\nमैं हमेशा जवान (Young) और आपकी मदद के लिए एक्टिव हूँ। बताइए, आज मैं आपकी क्या मदद करूँ?'
       );
