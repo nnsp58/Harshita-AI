@@ -31,7 +31,7 @@ class GeneralChatSkill extends BaseSkill {
     const text = message.toLowerCase();
 
     // नमस्ते / Hello
-    if (text.match(/^(hi|hello|hey|namaste|namaskar|नमस्ते|नमस्कार|हेलो)/)) {
+    if (text.match(/^(hi|hello|hey|namaste|namaskar)\b/i) || text.match(/^(नमस्ते|नमस्कार|हेलो)/)) {
       return this._reply(
         '🙏 नमस्ते! मैं *Harshita AI* हूँ — आपकी CSC सहायक।\n\nमैं ये सब कर सकती हूँ:\n• 📝 सरकारी फॉर्म भरना\n• 🔍 नौकरी खोजना\n• 📄 दस्तावेज़ से डेटा निकालना\n• 🧾 TA/DA प्रोसेस करना\n• ⚖️ कानूनी ड्राफ्ट बनाना\n\nबताइए क्या करना है!'
       );
