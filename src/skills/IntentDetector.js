@@ -124,35 +124,26 @@ ${availableIntents}
 ${historyContext}
 Current User Message: "${message}"
 
-CRITICAL RULES:
-1. Return ONLY raw JSON, no markdown, no explanation
-2. **GENERAL KNOWLEDGE / INFORMATIONAL QUESTIONS must ALWAYS go to "general_chat"**:
-   - "Who invented telephone?" → general_chat (NOT form_fill or result_generator)
-   - "What is velocity ratio?" → general_chat
-   - "ICSE physics question paper" → general_chat (asking for study material, NOT checking results)
+CRITICAL RULES FOR ANALYSIS:
+1. DEEP ANALYSIS REQUIRED: Read the user's message carefully. Determine their EXACT intention before routing.
+2. Return ONLY raw JSON, no markdown, no explanation.
+3. **GENERAL KNOWLEDGE / INFORMATIONAL QUESTIONS must ALWAYS go to "general_chat"**:
+   - "Who invented telephone?" → general_chat
    - "Is bungee jumping dangerous?" → general_chat
-   - "Tell me about humidity" → general_chat
    - "Vivo ka malik kaun hai?" → general_chat
    - "Phone chalana sahi hai?" → general_chat
-   - "naukari pane ke liye 11 me best subject konsa hai?" → general_chat (career advice / guidance / recommendations, NOT checking user's personal eligibility)
-   - "kya sarkari job ke liye 12 pass hona jaruri hota h?" → general_chat (general rule / educational query, NOT an eligibility check for a specific scheme)
-   - "agr school m koi teacher baccho ke dhram badle to unke sath kya hoga" → general_chat (situational / hypothetical legal query, NOT checking personal eligibility for a scheme)
-   - "in airtel service can we pay a bill of house?" → general_chat (general info about payment options, NOT a command to fill a form)
-   - "ghar me bijli wire ke through kese aati hai" → general_chat (science / how things work query, NOT a command to process a file or run a skill)
-   - "hit kam kese krta hai?" → general_chat (factual / technical question, NOT a greeting or skill action)
-   - "vo2 max dawai kis liye kam karti ha/" → general_chat (medical / health / drug queries, NOT checking personal eligibility for a scheme)
-   - ANY question asking for general information, career advice, facts, science, health, situational law, utility service information, or recommendations → general_chat
-3. **Only route to a specific skill when the user clearly wants to USE A SERVICE or run a structured check on their own details:**
-   - "Mera SSC ka eligibility check karo" → eligibility_check (user explicitly wants to check their eligibility)
-   - "Mera SSC ka result check karo" → check_result (user wants to CHECK THEIR result)
-   - "SSC ka form bharo" → form_fill (user wants to FILL a form)
-   - "Naukri dhundho railway mein" → job_search (user wants to SEARCH for jobs)
-   - "TA/DA nikalo" → tada_process (user wants to GENERATE TA/DA)
-   - "Aadhaar se data nikalo" → document_ocr (user wants to EXTRACT data)
-4. **Follow-up responses ("haan", "yes", "ok", "roll number de do") should use conversation history to determine intent.** If history has NO relevant service context, route to general_chat.
-5. **When in doubt, choose "general_chat"** — it's better to give a conversational AI answer than to route to the wrong service.
-6. Extract any useful parameters into "params".
-7. Confidence should be 0.0 to 1.0. Use LOW confidence (< 0.4) if the intent is ambiguous.
+   - "naukari pane ke liye 11 me best subject konsa hai?" → general_chat (advice, NOT skill)
+   - "kya sarkari job ke liye 12 pass hona jaruri hota h?" → general_chat (educational query)
+   - ANY question asking for general information, career advice, facts, science, health, or situational law → general_chat
+4. **Only route to a specific skill when the user clearly wants to USE A SERVICE:**
+   - "Mera SSC ka eligibility check karo" → eligibility_check
+   - "SSC ka form bharo" → form_fill
+   - "passport size photo banao" → create_passport_photo
+   - "photo compress karo" → compress_file
+5. **Follow-up responses ("haan", "yes", "ok") should use conversation history.** If history has NO relevant service context, route to general_chat.
+6. **When in doubt, choose "general_chat"** — it's better to give a conversational AI answer than to route to the wrong service.
+7. Extract any useful parameters into "params".
+8. Confidence should be 0.0 to 1.0. Use LOW confidence (< 0.4) if the intent is ambiguous.
 
 Return format:
 {"intent": "intent_name", "confidence": 0.85, "params": {"key": "value"}}`;
