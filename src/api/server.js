@@ -109,6 +109,15 @@ try {
   promotionManager = new PromotionManager(whatsappAgent, telegramAgent, emailService);
   app.set('promotionManager', promotionManager);
   console.log('🌐 Omnichannel Promotion Manager ready (WhatsApp + Telegram + Email)');
+
+  // Initialize Daily Analytics Reporter
+  const { DailyReporter } = require('../core/dailyReporter');
+  DailyReporter.init({
+    telegramAgent,
+    whatsappAgent,
+    adminNumbers: ['919024094191'] // Using user's potential admin number or fallback
+  });
+
 } catch (err) {
   console.warn('⚠️ Omnichannel Agents unavailable:', err.message);
 }

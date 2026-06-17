@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { BarChart3, Users, MessageSquare, FileText, ChevronLeft, ChevronRight } from 'lucide-react'
 import PassportPhotoMaker from './tools/PassportPhotoMaker'
 import FileCompressor from './tools/FileCompressor'
@@ -19,34 +19,74 @@ export default function Dashboard() {
     { id: 'tools', label: 'Tools Hub', icon: FileText }
   ]
 
+  const [analyticsData, setAnalyticsData] = useState(null);
+
+  useEffect(() => {
+    if (activeView === 'analytics') {
+      fetch('/api/analytics')
+        .then(res => res.json())
+        .then(data => setAnalyticsData(data))
+        .catch(err => console.error('Failed to fetch analytics', err));
+      
+      // Track dashboard visit
+      fetch('/api/analytics/track', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ event: 'dashboard_visit' })
+      }).catch(() => {});
+    }
+  }, [activeView]);
+
   const renderContent = () => {
     switch (activeView) {
       case 'analytics':
         return (
           <div className="p-6">
-            <h2 className="text-2xl font-bold mb-4">Analytics Dashboard</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                <h3 className="text-sm font-medium text-gray-500">Total Tasks</h3>
-                <p className="text-3xl font-bold text-blue-600 mt-2">125</p>
-                <div className="mt-2 text-xs text-green-500 font-medium">↑ 12% from last week</div>
+            <h2 className="text-2xl font-bold mb-4">Harshita AI Analytics</h2>
+            {!analyticsData ? (
+              <div className="animate-pulse flex space-x-4">
+                <div className="flex-1 space-y-4 py-1">
+                  <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+                  <div className="space-y-2">
+                    <div className="h-4 bg-gray-200 rounded"></div>
+                    <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+                  </div>
+                </div>
               </div>
-              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                <h3 className="text-sm font-medium text-gray-500">Completed</h3>
-                <p className="text-3xl font-bold text-green-600 mt-2">98</p>
-                <div className="mt-2 text-xs text-gray-400">78.4% completion rate</div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-2xl shadow-lg text-white">
+                  <h3 className="text-blue-100 font-medium">Total Tasks Completed</h3>
+                  <p className="text-4xl font-bold mt-2">{analyticsData.totalTasks}</p>
+                </div>
+                <div className="bg-gradient-to-br from-green-500 to-green-600 p-6 rounded-2xl shadow-lg text-white">
+                  <h3 className="text-green-100 font-medium">Success Rate</h3>
+                  <p className="text-4xl font-bold mt-2">{analyticsData.successRate}</p>
+                </div>
+                <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-6 rounded-2xl shadow-lg text-white">
+                  <h3 className="text-purple-100 font-medium">Today's Visitors</h3>
+                  <p className="text-4xl font-bold mt-2">{analyticsData.dailyActiveUsers}</p>
+                </div>
+                
+                <div className="col-span-1 md:col-span-2 lg:col-span-3 mt-6 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                  <h3 className="text-lg font-bold text-gray-800 mb-4">Top Tools Used</h3>
+                  {analyticsData.topTools && analyticsData.topTools.length > 0 ? (
+                    <div className="space-y-4">
+                      {analyticsData.topTools.map((tool, idx) => (
+                        <div key={idx} className="flex justify-between items-center p-4 bg-gray-50 rounded-xl">
+                          <span className="font-medium text-gray-700">{tool.id}</span>
+                          <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full font-bold text-sm">
+                            {tool.count} uses
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-gray-500">No tools used today.</p>
+                  )}
+                </div>
               </div>
-              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                <h3 className="text-sm font-medium text-gray-500">In Progress</h3>
-                <p className="text-3xl font-bold text-yellow-600 mt-2">12</p>
-                <div className="mt-2 text-xs text-gray-400">Active sessions</div>
-              </div>
-              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                <h3 className="text-sm font-medium text-gray-500">Success Rate</h3>
-                <p className="text-3xl font-bold text-purple-600 mt-2">92%</p>
-                <div className="mt-2 text-xs text-purple-400 font-medium">High performance</div>
-              </div>
-            </div>
+            )}
           </div>
         )
       case 'operators':

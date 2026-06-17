@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Video, Music, Upload, Download, RefreshCw, Film } from 'lucide-react';
+import { trackToolUsage } from '../utils/analytics';
 import { FFmpeg } from '@ffmpeg/ffmpeg';
 import { fetchFile, toBlobURL } from '@ffmpeg/util';
 
@@ -132,6 +133,7 @@ const Converter = ({ type, ffmpegRef }) => {
       const url = URL.createObjectURL(new Blob([data.buffer], { type: \`\${type}/\${targetFormat}\` }));
       setResultUrl(url);
       setProgress(100);
+      trackToolUsage('MediaConverter');
 
     } catch (err) {
       console.error(err);

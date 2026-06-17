@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Upload, FileImage, Download, RefreshCw, Settings2, Trash2 } from 'lucide-react';
+import { trackToolUsage } from '../utils/analytics';
 
 const FileCompressor = ({ onClose }) => {
   const [files, setFiles] = useState([]);
@@ -106,6 +107,7 @@ const FileCompressor = ({ onClose }) => {
   };
 
   const downloadAll = () => {
+    trackToolUsage('FileCompressor');
     files.filter(f => f.status === 'completed').forEach((file, i) => {
       setTimeout(() => {
         const a = document.createElement('a');

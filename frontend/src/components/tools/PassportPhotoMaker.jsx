@@ -3,6 +3,7 @@ import Cropper from 'react-cropper';
 import 'cropperjs/dist/cropper.css';
 import { Camera, Upload, Crop, Maximize, Settings2, Download, CheckCircle2, RefreshCw } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { trackToolUsage } from '../utils/analytics';
 
 const PassportPhotoMaker = ({ onClose }) => {
   const [image, setImage] = useState(null);
@@ -122,8 +123,9 @@ const PassportPhotoMaker = ({ onClose }) => {
 
   const downloadSheet = () => {
     if (!canvasRef.current) return;
+    trackToolUsage('PassportPhotoMaker', true);
     const link = document.createElement('a');
-    link.download = \`Passport_Sheet_\${Date.now()}.jpg\`;
+    link.download = `Passport_Sheet_${Date.now()}.jpg`;
     link.href = canvasRef.current.toDataURL('image/jpeg', 0.95);
     link.click();
   };
