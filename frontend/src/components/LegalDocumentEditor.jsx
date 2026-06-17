@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Printer, Download, Copy, Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight, AlignJustify } from 'lucide-react';
 
-const LegalDocumentEditor = ({ initialContent = '', documentTitle = 'Legal Document' }) => {
+const LegalDocumentEditor = ({ initialContent = '', documentTitle = 'Legal Document', onChange }) => {
   const editorRef = useRef(null);
   const [fontSize, setFontSize] = useState(12);
 
@@ -16,12 +16,18 @@ const LegalDocumentEditor = ({ initialContent = '', documentTitle = 'Legal Docum
   const applyFormat = (command, value = null) => {
     document.execCommand(command, false, value);
     editorRef.current.focus();
+    if (onChange) {
+      onChange(editorRef.current.innerHTML);
+    }
   };
 
   const changeFontSize = (size) => {
     setFontSize(size);
     document.execCommand('fontSize', false, '7'); // 7 = 12px in execCommand
     editorRef.current.focus();
+    if (onChange) {
+      onChange(editorRef.current.innerHTML);
+    }
   };
 
   // Print Document
@@ -208,6 +214,11 @@ const LegalDocumentEditor = ({ initialContent = '', documentTitle = 'Legal Docum
             suppressContentEditableWarning
             className="min-h-[200mm] outline-none legal-content"
             style={{ whiteSpace: 'pre-wrap', textAlign: 'justify' }}
+            onInput={(e) => {
+              if (onChange) {
+                onChange(e.currentTarget.innerHTML);
+              }
+            }}
           >
             {/* Default content will be injected via initialContent prop */}
           </div>

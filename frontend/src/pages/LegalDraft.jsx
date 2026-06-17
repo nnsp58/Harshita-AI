@@ -547,6 +547,7 @@ export default function LegalDraft() {
                   <LegalDocumentEditor 
                     initialContent={editedDraft || generatedDraft.content || ''}
                     documentTitle={generatedDraft.title || 'Legal Draft'}
+                    onChange={setEditedDraft}
                   />
                 </div>
               ) : null}
