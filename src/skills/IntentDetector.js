@@ -123,7 +123,8 @@ CRITICAL RULES:
    - "in airtel service can we pay a bill of house?" → general_chat (general info about payment options, NOT a command to fill a form)
    - "ghar me bijli wire ke through kese aati hai" → general_chat (science / how things work query, NOT a command to process a file or run a skill)
    - "hit kam kese krta hai?" → general_chat (factual / technical question, NOT a greeting or skill action)
-   - ANY question asking for general information, career advice, facts, science, situational law, utility service information, or recommendations → general_chat
+   - "vo2 max dawai kis liye kam karti ha/" → general_chat (medical / health / drug queries, NOT checking personal eligibility for a scheme)
+   - ANY question asking for general information, career advice, facts, science, health, situational law, utility service information, or recommendations → general_chat
 3. **Only route to a specific skill when the user clearly wants to USE A SERVICE or run a structured check on their own details:**
    - "Mera SSC ka eligibility check karo" → eligibility_check (user explicitly wants to check their eligibility)
    - "Mera SSC ka result check karo" → check_result (user wants to CHECK THEIR result)
