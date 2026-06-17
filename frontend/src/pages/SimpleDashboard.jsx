@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { useStore } from '../store'
 import { useSocket } from '../hooks/useSocket'
+import api from '../services/api'
 import VoiceInput from '../components/VoiceInput'
 import {
   FileText, Briefcase, Users, Upload, Calculator, Gavel,
@@ -35,7 +36,7 @@ const SERVICES = [
 export default function SimpleDashboard() {
   const navigate = useNavigate()
   const { user, stats, agents, jobs, initialize, logout } = useStore()
-  const { isConnected, sendCommand, messages } = useSocket()
+  const { isConnected, sendCommand, messages, setMessages } = useSocket()
   const [leftWidth, setLeftWidth] = useState(220)
   const [rightWidth, setRightWidth] = useState(360)
   const [leftCollapsed, setLeftCollapsed] = useState(false)
@@ -155,7 +156,7 @@ export default function SimpleDashboard() {
         {/* Right Panel */}
         {!rightCollapsed && (
           <div className="hidden lg:block shrink-0 overflow-hidden" style={{ width: rightWidth }}>
-<RightChatPanel messages={messages} onSend={sendCommand} isConnected={isConnected} user={user} jobs={jobs} />
+<RightChatPanel messages={messages} setMessages={setMessages} onSend={sendCommand} isConnected={isConnected} user={user} jobs={jobs} />
           </div>
         )}
 
@@ -163,7 +164,7 @@ export default function SimpleDashboard() {
         <div className="flex-1 lg:hidden overflow-hidden">
           {mobileTab === 'left' && <LeftServicesPanel services={SERVICES} onServiceClick={handleServiceClick} />}
           {mobileTab === 'center' && <CenterDashboardPanel stats={stats} agents={agents} jobs={jobs} onServiceClick={handleServiceClick} />}
-          {mobileTab === 'right' && <RightChatPanel messages={messages} onSend={sendCommand} isConnected={isConnected} user={user} jobs={jobs} />}
+          {mobileTab === 'right' && <RightChatPanel messages={messages} setMessages={setMessages} onSend={sendCommand} isConnected={isConnected} user={user} jobs={jobs} />}
         </div>
       </div>
     </div>
@@ -402,7 +403,7 @@ function StatCard({ title, value, icon: Icon, color }) {
 }
 
 // ============ RIGHT CHAT PANEL ============
-function RightChatPanel({ messages, onSend, isConnected, user, jobs = [] }) {
+function RightChatPanel({ messages, setMessages, onSend, isConnected, user, jobs = [] }) {
   const navigate = useNavigate()
   const [input, setInput] = useState('')
   const [isThinking, setIsThinking] = useState(false)
@@ -412,6 +413,31 @@ function RightChatPanel({ messages, onSend, isConnected, user, jobs = [] }) {
   const messagesEndRef = useRef(null)
   const fileInputRef = useRef(null)
   const imgInputRef = useRef(null)
+
+  const loadChatHistory = async () => {
+    try {
+      const res = await api.get('/auth/chat/history')
+      if (res.data && res.data.success) {
+        const historyMsgs = res.data.data.map(m => ({
+          id: m.id || (Date.now() + Math.random()),
+          type: m.type,
+          message: m.message,
+          timestamp: m.timestamp || new Date().toISOString(),
+          skill: m.skill,
+          success: m.success
+        }))
+        if (historyMsgs.length === 0) {
+          alert('कोई पुरानी चैट हिस्ट्री नहीं मिली।')
+          return
+        }
+        setMessages(historyMsgs)
+        alert(`✅ ${historyMsgs.length} पुरानी चैट संदेश लोड किए गए!`)
+      }
+    } catch (err) {
+      console.error('Failed to load chat history:', err)
+      alert('चैट हिस्ट्री लोड करने में विफल: ' + (err.response?.data?.error || err.message))
+    }
+  }
 
   useEffect(() => { messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' }) }, [messages])
   useEffect(() => {
@@ -490,7 +516,14 @@ function RightChatPanel({ messages, onSend, isConnected, user, jobs = [] }) {
       <div className="px-4 py-3 border-b border-white/10">
         <div className="flex items-center justify-between mb-2">
           <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Harshita AI Chat</h2>
-          <span className={`w-2 h-2 rounded-full ${isConnected ? 'bg-green-400' : 'bg-red-400'}`} />
+          <div className="flex items-center gap-2">
+            {setMessages && (
+              <button type="button" onClick={loadChatHistory} className="text-[9px] bg-white/5 hover:bg-white/10 hover:text-white border border-white/10 text-amber-400 px-2 py-0.5 rounded transition-all flex items-center gap-1 font-bold">
+                📜 Load History
+              </button>
+            )}
+            <span className={`w-2 h-2 rounded-full ${isConnected ? 'bg-green-400' : 'bg-red-400'}`} />
+          </div>
         </div>
         <div className="flex items-center gap-1 bg-white/5 rounded-lg p-0.5">
           {modes.map((m) => {
