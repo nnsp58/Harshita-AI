@@ -33,10 +33,10 @@ class FileProcessorSkill extends BaseSkill {
 
     // Refined keywords — use multi-word phrases to avoid broad matches
     this.keywords = {
-      hi: ['फाइल छोटी करो', 'कंप्रेस करो', 'कन्वर्ट करो', 'फोटो छोटी', 'पीडीएफ बनाओ', 'साइज कम करो'],
-      en: ['compress file', 'convert file', 'resize image', 'reduce size', 'image to pdf', 'compress pdf'],
-      hinglish: ['file chhoti karo', 'pdf me badlo', 'photo size kam karo', 'file compress karo',
-                 'image resize karo', 'photo ko pdf banao']
+      hi: ['फाइल छोटी करो', 'कंप्रेस करो', 'फाइल कन्वर्ट करो', 'पीडीएफ बनाओ', 'फाइल साइज कम करो'],
+      en: ['compress file', 'convert file', 'reduce file size', 'image to pdf', 'compress pdf'],
+      hinglish: ['file chhoti karo', 'pdf me badlo', 'file size kam karo', 'file compress karo',
+                 'photo ko pdf banao']
     };
     this.requiredAgents = ['fileProcessorAgent', 'pdfProcessorAgent'];
 
@@ -54,6 +54,15 @@ class FileProcessorSkill extends BaseSkill {
     // If user uploaded a file (via params or context)
     if (params?.filePath || params?.fileName) {
       return this._handleUploadedFile(params);
+    }
+
+    // If the request explicitly asks for passport or joint photo, it was misrouted.
+    // Advise the user to open the tools hub or route internally.
+    if (/passport|पासपोर्ट|joint|जॉइंट/i.test(text)) {
+      return this._reply(
+        '📸 *Passport Photo Maker*\n\nमैंने पासपोर्ट/जॉइंट फोटो टूल खोल दिया है।',
+        { mode: 'open_tool', toolName: 'PassportPhotoMaker', toolProps: { defaultType: 'portrait' } }
+      );
     }
 
     // Compress request
