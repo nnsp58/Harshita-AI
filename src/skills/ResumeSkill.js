@@ -45,8 +45,11 @@ class ResumeSkill extends BaseSkill {
 
         const buffer = await generateResumePDF(data);
         const fileName = `resume_${userId}_${Date.now()}.pdf`;
-        const filePath = path.join(process.cwd(), 'exports', 'resumes', fileName);
+        const dirPath = path.join(process.cwd(), 'exports', 'resumes');
+        const filePath = path.join(dirPath, fileName);
         
+        // Ensure directory exists (prevents ENOENT crash on fresh deployments)
+        fs.mkdirSync(dirPath, { recursive: true });
         fs.writeFileSync(filePath, buffer);
 
         return this._reply(

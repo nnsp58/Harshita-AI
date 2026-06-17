@@ -1,5 +1,11 @@
 import { useState } from 'react'
 import { BarChart3, Users, MessageSquare, FileText, ChevronLeft, ChevronRight } from 'lucide-react'
+import PassportPhotoMaker from './tools/PassportPhotoMaker'
+import FileCompressor from './tools/FileCompressor'
+import TranslatorTool from './tools/TranslatorTool'
+import UtilityTools from './tools/UtilityTools'
+import DocumentConverter from './tools/DocumentConverter'
+import MediaConverter from './tools/MediaConverter'
 
 export default function Dashboard() {
   const [activeView, setActiveView] = useState('analytics')
@@ -9,7 +15,8 @@ export default function Dashboard() {
     { id: 'analytics', label: 'Analytics', icon: BarChart3 },
     { id: 'operators', label: 'Operators', icon: Users },
     { id: 'team-chat', label: 'Team Chat', icon: MessageSquare },
-    { id: 'logs', label: 'Logs', icon: FileText }
+    { id: 'logs', label: 'Logs', icon: FileText },
+    { id: 'tools', label: 'Tools Hub', icon: FileText }
   ]
 
   const renderContent = () => {
@@ -135,6 +142,24 @@ export default function Dashboard() {
                   <span className="text-gray-700">Task completed: Generate report - Business Plan</span>
                 </div>
               </div>
+            </div>
+          </div>
+        )
+      case 'tools':
+        return (
+          <div className="p-6">
+            <h2 className="text-2xl font-bold mb-6">Tools Hub</h2>
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 items-start mb-8">
+              <PassportPhotoMaker />
+              <FileCompressor />
+            </div>
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 items-start mb-8">
+              <TranslatorTool />
+              <UtilityTools />
+            </div>
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 items-start">
+              <DocumentConverter />
+              <MediaConverter />
             </div>
           </div>
         )

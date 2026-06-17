@@ -235,13 +235,17 @@ class BaseSkill {
 
   /**
    * Collaborative Cognitive Action: Query another specialized skill from the registry.
+   * Uses a lazy singleton to avoid re-creating the registry on every call.
    */
   async queryOtherSkill(targetSkillName, context) {
     try {
-      const { SkillRegistry } = require('./SkillRegistry');
-      const registry = new SkillRegistry();
-      await registry.autoLoad();
-      const targetSkill = registry.getSkill(targetSkillName);
+      // Use module-level singleton — never create a fresh registry per call
+      if (!BaseSkill._sharedRegistry) {
+        const { SkillRegistry } = require('./SkillRegistry');
+        BaseSkill._sharedRegistry = new SkillRegistry();
+        await BaseSkill._sharedRegistry.autoLoad();
+      }
+      const targetSkill = BaseSkill._sharedRegistry.getSkill(targetSkillName);
       if (targetSkill) {
         return await targetSkill.execute(context);
       }
@@ -249,6 +253,14 @@ class BaseSkill {
       console.warn(`[BaseSkill] Failed to collaborate with ${targetSkillName}:`, e.message);
     }
     return null;
+  }
+
+  /**
+   * Inject the shared registry from outside (called by SkillRegistry after autoLoad)
+   * This avoids circular loading — SkillRegistry sets itself as the shared registry.
+   */
+  static setSharedRegistry(registry) {
+    BaseSkill._sharedRegistry = registry;
   }
 }
 

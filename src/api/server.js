@@ -91,6 +91,28 @@ try {
   console.warn('⚠️ WhatsApp Agent unavailable:', err.message);
 }
 
+// Initialize TelegramAgent and Omnichannel Promos
+const { TelegramAgent } = require('../agents/telegramAgent');
+const { EmailService } = require('../core/emailService');
+const { PromotionManager } = require('../core/promotionManager');
+
+let telegramAgent = null;
+let promotionManager = null;
+try {
+  telegramAgent = new TelegramAgent();
+  telegramAgent.start(); // Auto-starts if token is available
+  app.set('telegramAgent', telegramAgent);
+
+  const emailService = new EmailService();
+  app.set('emailService', emailService);
+
+  promotionManager = new PromotionManager(whatsappAgent, telegramAgent, emailService);
+  app.set('promotionManager', promotionManager);
+  console.log('🌐 Omnichannel Promotion Manager ready (WhatsApp + Telegram + Email)');
+} catch (err) {
+  console.warn('⚠️ Omnichannel Agents unavailable:', err.message);
+}
+
 // PRD 3: Initialize ProactiveAgent — Hermes-style proactive suggestions
 // Sends alerts for: expiring documents, matching jobs, incomplete applications
 const { ProactiveAgent } = require('../core/proactiveAgent');

@@ -68,6 +68,9 @@ class SkillRegistry {
       }
 
       this.isLoaded = true;
+      // Wire up the shared registry so BaseSkill.queryOtherSkill() reuses this instance
+      BaseSkill.setSharedRegistry(this);
+
       console.log(`\n   📊 कुल ${this.skills.size} स्किल्स लोड हुईं | ${this.intentMap.size} intents mapped`);
       console.log('═══════════════════════════════════════════════\n');
 

@@ -15,6 +15,7 @@
  */
 
 const { aiProviderManager } = require('../utils/aiProviderManager');
+const { SecuritySkill } = require('./SecuritySkill');
 
 class IntentDetector {
   constructor(skillRegistry) {
@@ -43,6 +44,22 @@ class IntentDetector {
     }
 
     const cleanMessage = userMessage.trim();
+
+    // ── Step 0: Security Pre-Scan (HIGHEST PRIORITY) ──
+    // Runs BEFORE cache, AI, or keywords — blocks dangerous queries immediately
+    const securityResult = SecuritySkill.scanMessage(cleanMessage);
+    if (securityResult) {
+      return {
+        intent: 'illegal_activity',
+        confidence: 1.0,
+        skill: 'security_guardrail',
+        skillDisplayName: 'Suraksha Guardrail',
+        params: {},
+        method: 'security_scan',
+        blocked: true,
+        blockedResponse: securityResult,
+      };
+    }
 
     // Cache check
     const cacheKey = cleanMessage.toLowerCase().substring(0, 100);

@@ -16,6 +16,7 @@ const qrcode = require('qrcode-terminal');
 const { DocumentAIAgent } = require('./documentAIAgent');
 const { LanguageEngine } = require('../core/languageEngine');
 const { CommunityAgent } = require('../core/communityAgent');
+const { SpamFilter } = require('../core/spamFilter');
 const axios = require('axios');
 const path = require('path');
 const fs = require('fs');
@@ -27,6 +28,7 @@ class WhatsAppAgent {
     this.isInitialized = false;
     this.whitelistedGroups = process.env.WHATSAPP_GROUPS ? process.env.WHATSAPP_GROUPS.split(',') : [];
     this.languageEngine = new LanguageEngine();
+    this.spamFilter = new SpamFilter();
     this.client = null;
     this.isReady = false;
     this.sessions = new Map(); // phone -> { step, collectedData, lang }
@@ -99,6 +101,13 @@ class WhatsAppAgent {
     const phone = msg.from; // e.g. "918765432100@c.us"
     const text = msg.body?.toLowerCase() || '';
     
+    // 3.5. Anti-Spam / Anti-Promo Filter
+    const spamCheck = this.spamFilter.evaluate(text);
+    if (spamCheck.isPromo) {
+      console.log(`[WhatsApp] 🛑 Blocked Promotional Message from ${phone}. Reason: ${spamCheck.reason}`);
+      return; // Ignore promotional message
+    }
+
     console.log(`[WhatsApp] Message from ${phone}: ${msg.hasMedia ? '[Media]' : text}`);
     
     // If media (photo/PDF), process it
