@@ -56,8 +56,8 @@ class IntentDetector {
       return result;
     }
 
-    // "application likhni hai principal ko" → application_writer (letter writing)
-    if (/application.*(?:likh|लिख|principal|headmaster|sir|madam)|(?:likh|लिख).*application/i.test(lowerMessage)) {
+    // "application likhni hai principal ko" or school/leave application -> application_writer (letter writing)
+    if (/application.*(?:likh|लिख|principal|headmaster|sir|madam)|(?:likh|लिख).*application|prarthna.*patra|प्रार्थना.*पत्र|chutti|अवकाश/i.test(lowerMessage)) {
       const result = { intent: 'application_writer', confidence: 1.0, params: {}, method: 'hardcoded_override' };
       const skill = this.registry.findByIntent('application_writer');
       if (skill) { result.skill = skill.name; result.skillDisplayName = skill.displayName; }
