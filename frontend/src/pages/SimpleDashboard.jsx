@@ -500,7 +500,29 @@ function RightChatPanel({ messages, setMessages, onSend, isConnected, user, jobs
     if (!isRecording) setTimeout(() => { setIsRecording(false); setInput('Voice message recorded...') }, 3000)
   }
   const handleFileUpload = (e) => { const f = e.target.files?.[0]; if (f) { onSend(`[File: ${f.name}]`); setIsThinking(true) } }
-  const handleImageUpload = (e) => { const f = e.target.files?.[0]; if (f) { onSend(`[Image: ${f.name}]`); setIsThinking(true) } }
+  const handleImageUpload = async (e) => { 
+    const f = e.target.files?.[0]; 
+    if (f) { 
+      setIsThinking(true);
+      setMessages(prev => [...prev, { id: Date.now(), type: 'user', message: `[Uploading Image: ${f.name}]...` }]);
+      const formData = new FormData();
+      formData.append('file', f);
+      try {
+        const res = await api.post('/ocr/process', formData, {
+          headers: { 'Content-Type': 'multipart/form-data' }
+        });
+        if (res.data && res.data.success && res.data.text) {
+          // Pass the extracted text silently to MasterAgent to process it
+          onSend(`[Image Uploaded: ${f.name}]\n\nOCR Extracted Text:\n"""\n${res.data.text}\n"""\n\nIs application/document ko padhein aur iske aadhar par process karein ya form/draft tayyar karein.`);
+        } else {
+          onSend(`[Image: ${f.name}]`);
+        }
+      } catch (err) {
+        console.error('OCR failed:', err);
+        onSend(`[Image: ${f.name}] (OCR Failed)`);
+      }
+    } 
+  }
   const handleScriptSend = () => { if (!scriptContent.trim()) return; onSend(`[Script]\n${scriptContent}`); setIsThinking(true); setScriptContent(''); setMode('chat') }
 
   const modes = [

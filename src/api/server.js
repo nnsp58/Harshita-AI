@@ -331,42 +331,50 @@ app.use('/api/', limiter);
 app.post('/api/ocr/process', authenticate, upload.any(), async (req, res) => {
   try {
     const hasFile = req.files && req.files.length > 0;
-    const hasBody = req.body && (req.body.documentImage || req.body.image || req.body.file);
     
-    if (!hasFile && !hasBody) {
+    if (!hasFile) {
       return res.status(400).json({
         success: false,
         error: 'No document image provided.'
       });
     }
 
-    // TC002: Validation for corrupt/non-image files using magic bytes
-    if (hasFile) {
-      const file = req.files[0];
-      const buffer = file.buffer;
-      
-      // Magic numbers: PNG (\x89PNG), JPEG (\xFF\xD8\xFF)
-      const isPng = buffer.length > 4 && buffer[0] === 0x89 && buffer[1] === 0x50 && buffer[2] === 0x4E && buffer[3] === 0x47;
-      const isJpeg = buffer.length > 3 && buffer[0] === 0xFF && buffer[1] === 0xD8 && buffer[2] === 0xFF;
-      
-      if (!isPng && !isJpeg) {
-        return res.status(400).json({
-          success: false,
-          error: 'Invalid image format. Only PNG and JPEG are supported.'
-        });
-      }
-      console.log(`   📄 OCR: Received valid ${isPng ? 'PNG' : 'JPEG'} file`);
+    const file = req.files[0];
+    const buffer = file.buffer;
+    
+    // Magic numbers: PNG (\x89PNG), JPEG (\xFF\xD8\xFF)
+    const isPng = buffer.length > 4 && buffer[0] === 0x89 && buffer[1] === 0x50 && buffer[2] === 0x4E && buffer[3] === 0x47;
+    const isJpeg = buffer.length > 3 && buffer[0] === 0xFF && buffer[1] === 0xD8 && buffer[2] === 0xFF;
+    
+    if (!isPng && !isJpeg) {
+      return res.status(400).json({
+        success: false,
+        error: 'Invalid image format. Only PNG and JPEG are supported.'
+      });
     }
+    console.log(`   📄 OCR: Received valid ${isPng ? 'PNG' : 'JPEG'} file`);
+
+    // Temporarily save buffer to disk to let Tesseract process it
+    const fs = require('fs');
+    const path = require('path');
+    const os = require('os');
+    const tmpFilePath = path.join(os.tmpdir(), `upload_${Date.now()}_${file.originalname}`);
+    fs.writeFileSync(tmpFilePath, buffer);
+
+    const { DocumentAIAgent } = require('../agents/documentAIAgent');
+    const docAgent = new DocumentAIAgent();
+    const result = await docAgent.extractTextFromImage(tmpFilePath);
+    
+    // Cleanup temp file
+    try { fs.unlinkSync(tmpFilePath); } catch (e) {}
 
     res.json({
       success: true,
-      data: {
-        name: "DEMO USER",
-        id_number: "1234-5678-9012",
-        type: "aadhaar"
-      }
+      text: result.text,
+      confidence: result.confidence
     });
   } catch (error) {
+    console.error('[OCR] Error:', error);
     res.status(500).json({ error: error.message });
   }
 });
