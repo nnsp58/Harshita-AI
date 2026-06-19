@@ -95,7 +95,8 @@ RULES:
 3. Language: Generate the application primarily in Hindi, as it is most commonly used in Indian government offices. If the user explicitly asks for English, write in English. If the user's prompt is mixed, default to highly formal Hindi.
 4. Professional Tone: Use words like "सविनय निवेदन है कि", "अत: आपसे विनम्र निवेदन है", "कृपा करें" in Hindi.
 5. No Hallucinations: Do not invent names or addresses. Use blank lines (_______________) for missing information.
-6. Output ONLY the drafted application. Do not include any chatty text before or after the application.`;
+6. NEVER format as an affidavit (शपथ पत्र/Affidavit). This is a simple formal application/letter (प्रार्थना पत्र). DO NOT include stamp paper reference numbers, witnesses, first/second party, or legal swearing/affirmation headers.
+7. Output ONLY the drafted application. Do not include any chatty text before or after the application.`;
 
     const userPrompt = `User Request: "${userInput}"
 
