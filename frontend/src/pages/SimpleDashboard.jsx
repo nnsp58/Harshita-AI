@@ -43,23 +43,26 @@ export default function SimpleDashboard() {
   const [rightCollapsed, setRightCollapsed] = useState(false)
   const [mobileTab, setMobileTab] = useState('center')
   const [resizing, setResizing] = useState(null)
+  const [activeFile, setActiveFile] = useState(null) // { url: string, name: string, type: string }
   const containerRef = useRef(null)
 
   const SERVICES_LIST = SERVICES // alias
 
   // Service click → Direct page open (user requirement)
   const handleServiceClick = useCallback((service) => {
-    // If service has a route, open the page directly
     if (service.route) {
       navigate(service.route)
       return
     }
-
-    // Fallback only for services without route (pure chat)
     setMobileTab('right')
     const cmd = `${service.title} kaise use karein?`
     sendCommand(cmd)
   }, [sendCommand, navigate])
+
+  const handlePreviewFile = useCallback((fileObj) => {
+    setActiveFile(fileObj);
+    setMobileTab('center');
+  }, []);
 
   useEffect(() => { initialize() }, [initialize])
   const handleLogout = () => { logout(); navigate('/login', { replace: true }) }
@@ -69,7 +72,6 @@ export default function SimpleDashboard() {
     if (messages.length > 0) {
       const lastMsg = messages[messages.length - 1]
       if (lastMsg.type === 'ai' && lastMsg.action && lastMsg.action.navigate) {
-        // Delay slightly for smooth transition
         setTimeout(() => {
           if (lastMsg.action.navigate.startsWith('http')) {
             window.location.href = lastMsg.action.navigate
@@ -148,7 +150,11 @@ export default function SimpleDashboard() {
 
         {/* Center Panel */}
         <div className="flex-1 min-w-0 hidden lg:flex flex-col">
-          <CenterDashboardPanel stats={stats} agents={agents} jobs={jobs} onServiceClick={handleServiceClick} />
+          {activeFile ? (
+            <FileViewerPanel file={activeFile} onClose={() => setActiveFile(null)} />
+          ) : (
+            <CenterDashboardPanel stats={stats} agents={agents} jobs={jobs} onServiceClick={handleServiceClick} />
+          )}
         </div>
 
         {/* Right Resize Handle */}
@@ -156,15 +162,17 @@ export default function SimpleDashboard() {
         {/* Right Panel */}
         {!rightCollapsed && (
           <div className="hidden lg:block shrink-0 overflow-hidden" style={{ width: rightWidth }}>
-<RightChatPanel messages={messages} setMessages={setMessages} onSend={sendCommand} isConnected={isConnected} user={user} jobs={jobs} />
+            <RightChatPanel messages={messages} setMessages={setMessages} onSend={sendCommand} isConnected={isConnected} user={user} jobs={jobs} onPreviewFile={handlePreviewFile} />
           </div>
         )}
 
         {/* Mobile */}
         <div className="flex-1 lg:hidden overflow-hidden">
           {mobileTab === 'left' && <LeftServicesPanel services={SERVICES} onServiceClick={handleServiceClick} />}
-          {mobileTab === 'center' && <CenterDashboardPanel stats={stats} agents={agents} jobs={jobs} onServiceClick={handleServiceClick} />}
-          {mobileTab === 'right' && <RightChatPanel messages={messages} setMessages={setMessages} onSend={sendCommand} isConnected={isConnected} user={user} jobs={jobs} />}
+          {mobileTab === 'center' && (
+            activeFile ? <FileViewerPanel file={activeFile} onClose={() => setActiveFile(null)} /> : <CenterDashboardPanel stats={stats} agents={agents} jobs={jobs} onServiceClick={handleServiceClick} />
+          )}
+          {mobileTab === 'right' && <RightChatPanel messages={messages} setMessages={setMessages} onSend={sendCommand} isConnected={isConnected} user={user} jobs={jobs} onPreviewFile={handlePreviewFile} />}
         </div>
       </div>
     </div>
@@ -499,10 +507,22 @@ function RightChatPanel({ messages, setMessages, onSend, isConnected, user, jobs
     setIsRecording(!isRecording)
     if (!isRecording) setTimeout(() => { setIsRecording(false); setInput('Voice message recorded...') }, 3000)
   }
-  const handleFileUpload = (e) => { const f = e.target.files?.[0]; if (f) { onSend(`[File: ${f.name}]`); setIsThinking(true) } }
+  const handleFileUpload = (e) => { 
+    const f = e.target.files?.[0]; 
+    if (f) { 
+      if (onPreviewFile) {
+        onPreviewFile({ url: URL.createObjectURL(f), name: f.name, type: f.type || 'application/octet-stream' });
+      }
+      onSend(`[File: ${f.name}]`); 
+      setIsThinking(true);
+    } 
+  }
   const handleImageUpload = async (e) => { 
     const f = e.target.files?.[0]; 
     if (f) { 
+      if (onPreviewFile) {
+        onPreviewFile({ url: URL.createObjectURL(f), name: f.name, type: f.type || 'image/jpeg' });
+      }
       setIsThinking(true);
       setMessages(prev => [...prev, { id: Date.now(), type: 'user', message: `[Uploading Image: ${f.name}]...` }]);
       const formData = new FormData();
@@ -512,7 +532,6 @@ function RightChatPanel({ messages, setMessages, onSend, isConnected, user, jobs
           headers: { 'Content-Type': 'multipart/form-data' }
         });
         if (res.data && res.data.success && res.data.text) {
-          // Pass the extracted text silently to MasterAgent to process it
           onSend(`[Image Uploaded: ${f.name}]\n\nOCR Extracted Text:\n"""\n${res.data.text}\n"""\n\nIs application/document ko padhein aur iske aadhar par process karein ya form/draft tayyar karein.`);
         } else {
           onSend(`[Image: ${f.name}]`);
@@ -738,6 +757,53 @@ function RightChatPanel({ messages, setMessages, onSend, isConnected, user, jobs
           </div>
         </div>
       )}
+    </div>
+  )
+}
+
+// ============ FILE VIEWER PANEL ============
+function FileViewerPanel({ file, onClose }) {
+  const isImage = file.type.startsWith('image/')
+  const isVideo = file.type.startsWith('video/')
+  const isPDF = file.type === 'application/pdf'
+  
+  return (
+    <div className="h-full flex flex-col bg-[#020617] animate-in fade-in duration-300">
+      <div className="flex items-center justify-between p-4 border-b border-white/10 bg-[#0f111a] shrink-0">
+        <div className="flex items-center gap-3 overflow-hidden">
+          <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center shrink-0">
+            <FileText size={16} className="text-blue-400" />
+          </div>
+          <div className="min-w-0">
+            <h2 className="text-sm font-bold text-white truncate">{file.name}</h2>
+            <p className="text-[10px] text-gray-500 uppercase truncate">{file.type}</p>
+          </div>
+        </div>
+        <button onClick={onClose} className="p-2 hover:bg-red-500/20 hover:text-red-400 rounded-lg transition-colors shrink-0">
+          <X size={16} className="text-gray-400 hover:text-red-400" />
+        </button>
+      </div>
+      <div className="flex-1 bg-black/40 overflow-hidden flex items-center justify-center relative p-4">
+        {isImage && (
+          <img src={file.url} alt={file.name} className="max-w-full max-h-full object-contain rounded-lg shadow-2xl" />
+        )}
+        {isVideo && (
+          <video src={file.url} controls className="max-w-full max-h-full rounded-lg shadow-2xl" />
+        )}
+        {isPDF && (
+          <iframe src={file.url} className="w-full h-full rounded-lg bg-white" title={file.name} />
+        )}
+        {!isImage && !isVideo && !isPDF && (
+          <div className="text-center bg-white/5 p-8 rounded-2xl border border-white/10">
+            <FileText size={48} className="mx-auto text-gray-500 mb-4" />
+            <p className="text-white font-medium mb-1">Preview not available</p>
+            <p className="text-xs text-gray-500 mb-4">This file type cannot be previewed directly.</p>
+            <a href={file.url} download={file.name} className="px-4 py-2 bg-amber-500 text-black text-xs font-bold rounded-lg hover:bg-amber-400 transition-colors inline-block">
+              Download File
+            </a>
+          </div>
+        )}
+      </div>
     </div>
   )
 }
