@@ -223,8 +223,17 @@ class MasterAgent {
   }
 
   _parseTaskData(intent, message, context) {
-    // Simplified parsing for brevity, should be expanded in real use
-    return { ...context };
+    // Basic parsing to ensure agents receive the query
+    const taskData = { ...context, message, query: message };
+
+    if (intent === 'jobsearch') {
+      taskData.action = 'search_jobs';
+      taskData.userQualification = message;
+    } else if (intent === 'ticket') {
+      taskData.action = 'search_trains';
+    }
+
+    return taskData;
   }
 
   _getRequiredFields(intent, taskData) {
