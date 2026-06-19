@@ -207,7 +207,9 @@ function ResizeHandle({ onMouseDown, onToggle, collapsed, dir }) {
 // ============ MESSAGE RENDER HELPER ============
 export function renderMessageText(text) {
   if (!text) return null;
-  const parts = text.split(/(\[[^\]]+\]\(https?:\/\/[^)]+\))/g);
+  // Strip leading routing status prefix if present
+  const cleanedText = text.replace(/^\[[^\]]*रूटिंग[^\]]*\]\s*/, '');
+  const parts = cleanedText.split(/(\[[^\]]+\]\(https?:\/\/[^)]+\))/g);
   return (
     <p className="break-words whitespace-pre-wrap">
       {parts.map((part, i) => {

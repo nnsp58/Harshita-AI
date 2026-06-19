@@ -97,7 +97,7 @@ export default function RightPanel({ messages, onSendCommand, isConnected }) {
                   ? 'bg-navy-800/50 text-navy-200 border border-navy-700/50'
                   : 'bg-white/5 text-gray-300 rounded-bl-none'
               }`}>
-                <p className="break-words whitespace-pre-wrap">{msg.message}</p>
+                <p className="break-words whitespace-pre-wrap">{msg.message?.replace(/^\[[^\]]*रूटिंग[^\]]*\]\s*/, '')}</p>
                 <span className="text-[9px] text-gray-500 mt-1 block">
                   {new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                 </span>

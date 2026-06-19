@@ -172,3 +172,139 @@ export default function Settings() {
      </div>
    )
  }
+
+// ============ PROFILE TAB ============
+function ProfileTab({ profile, setProfile, onSave, user }) {
+  const handleChange = (e) => {
+    setProfile(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  return (
+    <div className="bg-white/5 border border-white/10 rounded-xl p-6 space-y-4">
+      <h3 className="text-sm font-bold text-white mb-2">CSC Center Profile / प्रोफाइल</h3>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="flex flex-col gap-1">
+          <label className="text-[10px] text-gray-500 font-bold uppercase">Center Name / केंद्र का नाम</label>
+          <input type="text" name="cscName" value={profile.cscName} onChange={handleChange} className="bg-[#0f111a] border border-white/10 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-amber-500 text-white" />
+        </div>
+        <div className="flex flex-col gap-1">
+          <label className="text-[10px] text-gray-500 font-bold uppercase">Owner Name / संचालक का नाम</label>
+          <input type="text" name="ownerName" value={profile.ownerName} onChange={handleChange} className="bg-[#0f111a] border border-white/10 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-amber-500 text-white" />
+        </div>
+        <div className="flex flex-col gap-1">
+          <label className="text-[10px] text-gray-500 font-bold uppercase">Email / ईमेल</label>
+          <input type="email" name="email" value={profile.email} onChange={handleChange} className="bg-[#0f111a] border border-white/10 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-amber-500 text-white" />
+        </div>
+        <div className="flex flex-col gap-1">
+          <label className="text-[10px] text-gray-500 font-bold uppercase">Phone Number / मोबाइल नंबर</label>
+          <input type="text" name="phone" value={profile.phone} onChange={handleChange} className="bg-[#0f111a] border border-white/10 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-amber-500 text-white" />
+        </div>
+        <div className="flex flex-col gap-1 md:col-span-2">
+          <label className="text-[10px] text-gray-500 font-bold uppercase">Address / पता</label>
+          <textarea name="address" value={profile.address} onChange={handleChange} rows="2" className="bg-[#0f111a] border border-white/10 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-amber-500 text-white resize-none" />
+        </div>
+        <div className="flex flex-col gap-1">
+          <label className="text-[10px] text-gray-500 font-bold uppercase">District / जिला</label>
+          <input type="text" name="district" value={profile.district} onChange={handleChange} className="bg-[#0f111a] border border-white/10 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-amber-500 text-white" />
+        </div>
+        <div className="flex flex-col gap-1">
+          <label className="text-[10px] text-gray-500 font-bold uppercase">Pincode / पिनकोड</label>
+          <input type="text" name="pincode" value={profile.pincode} onChange={handleChange} className="bg-[#0f111a] border border-white/10 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-amber-500 text-white" />
+        </div>
+      </div>
+      <button onClick={onSave} className="flex items-center gap-2 px-4 py-2 bg-amber-500 hover:bg-amber-400 text-black font-bold rounded-lg text-xs transition-all mt-4">
+        Save Profile / सुरक्षित करें
+      </button>
+    </div>
+  );
+}
+
+// ============ PREFERENCES TAB ============
+function PreferencesTab({ darkMode, toggleDarkMode, notifications, saveNotifications }) {
+  return (
+    <div className="bg-white/5 border border-white/10 rounded-xl p-6 space-y-6">
+      <div className="flex items-center justify-between">
+        <div>
+          <h3 className="text-xs font-bold text-white">Appearance / प्रदर्शन</h3>
+          <p className="text-[10px] text-gray-500">Dark/Light theme toggle</p>
+        </div>
+        <button onClick={toggleDarkMode} className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-amber-400">
+          {darkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}
+        </button>
+      </div>
+
+      <div className="space-y-3 pt-4 border-t border-white/10">
+        <h3 className="text-xs font-bold text-white mb-2">Notification Preferences / सूचनाएं</h3>
+        {[
+          { key: 'email_alerts', label: 'Email Notifications / ईमेल सूचनाएं' },
+          { key: 'whatsapp_alerts', label: 'WhatsApp Alerts / व्हाट्सएप सूचनाएं' },
+          { key: 'system_alerts', label: 'System Telemetry Alerts / सिस्टम टेलीमेट्री' }
+        ].map(item => (
+          <div key={item.key} className="flex items-center justify-between py-1">
+            <span className="text-xs text-gray-300">{item.label}</span>
+            <input type="checkbox" checked={!!notifications[item.key]} onChange={e => saveNotifications(item.key, e.target.checked)} className="accent-amber-500 w-4 h-4 rounded" />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ============ INTEGRATIONS TAB ============
+function IntegrationsTab({ waStatus, waLoading, onConnectWA, networkStatus }) {
+  return (
+    <div className="bg-white/5 border border-white/10 rounded-xl p-6 space-y-6">
+      <h3 className="text-xs font-bold text-white">Integrations & Connectors / एकीकरण</h3>
+      
+      <div className="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/5">
+        <div className="flex flex-col">
+          <span className="text-xs font-medium text-gray-200">WhatsApp Web Bot Integration</span>
+          <span className="text-[9px] text-gray-500">Auto-collect candidate documents via WhatsApp messages</span>
+        </div>
+        <div className="flex items-center gap-3">
+          <span className={`text-[10px] ${waStatus.isReady ? 'text-emerald-500' : 'text-gray-500'}`}>
+            {waStatus.isReady ? 'Connected' : 'Disconnected'}
+          </span>
+          {!waStatus.isReady && (
+            <button onClick={onConnectWA} disabled={waLoading} className="px-3 py-1 bg-amber-500 hover:bg-amber-400 text-black font-bold rounded text-[10px] transition-colors">
+              {waLoading ? 'Connecting...' : 'Connect WhatsApp'}
+            </button>
+          )}
+        </div>
+      </div>
+
+      <div className="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/5">
+        <div className="flex flex-col">
+          <span className="text-xs font-medium text-gray-200">System Latency & Network Guard</span>
+          <span className="text-[9px] text-gray-500">Auto-rescue and connection health telemetry</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className={`text-[10px] ${networkStatus.online ? 'text-emerald-500' : 'text-rose-500'}`}>
+            {networkStatus.online ? 'Stable Connect' : 'Offline'}
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ============ SECURITY TAB ============
+function SecurityTab({ user }) {
+  return (
+    <div className="bg-white/5 border border-white/10 rounded-xl p-6 space-y-4">
+      <h3 className="text-xs font-bold text-white">Security & API Gateway / सुरक्षा</h3>
+      <div className="flex justify-between items-center py-2 border-b border-white/5">
+        <span className="text-xs text-gray-300">Biometric Gateway Access</span>
+        <span className="text-[10px] bg-emerald-500/20 text-emerald-400 font-bold px-2 py-0.5 rounded-full">ACTIVE</span>
+      </div>
+      <div className="flex justify-between items-center py-2 border-b border-white/5">
+        <span className="text-xs text-gray-300">Encryption Method</span>
+        <span className="text-[10px] text-gray-400 font-mono">AES-256-GCM</span>
+      </div>
+      <div className="flex justify-between items-center py-2">
+        <span className="text-xs text-gray-300">API Key Rotation Schedule</span>
+        <span className="text-[10px] text-amber-400">Every 7 Days</span>
+      </div>
+    </div>
+  );
+}

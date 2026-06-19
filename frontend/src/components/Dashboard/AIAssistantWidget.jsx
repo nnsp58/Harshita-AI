@@ -96,7 +96,7 @@ export default function AIAssistantWidget() {
                   ? 'bg-indigo-600 text-white rounded-br-none' 
                   : 'bg-slate-800 text-slate-200 rounded-bl-none border border-slate-700'
               }`}>
-                {msg.message || msg.text}
+                {(msg.message || msg.text)?.replace(/^\[[^\]]*रूटिंग[^\]]*\]\s*/, '')}
               </div>
               {msg.type !== 'user' && msg.interactionId && (
                 <div className="flex items-center gap-2 mt-1 ml-2 text-slate-400">
