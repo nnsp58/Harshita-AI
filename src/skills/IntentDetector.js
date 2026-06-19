@@ -56,9 +56,11 @@ class IntentDetector {
       return result;
     }
 
-    // "application likhni hai principal ko" → general_chat (letter writing)
+    // "application likhni hai principal ko" → application_writer (letter writing)
     if (/application.*(?:likh|लिख|principal|headmaster|sir|madam)|(?:likh|लिख).*application/i.test(lowerMessage)) {
-      const result = { intent: 'general_chat', confidence: 1.0, params: { task: 'write_application_letter' }, method: 'hardcoded_override' };
+      const result = { intent: 'application_writer', confidence: 1.0, params: {}, method: 'hardcoded_override' };
+      const skill = this.registry.findByIntent('application_writer');
+      if (skill) { result.skill = skill.name; result.skillDisplayName = skill.displayName; }
       this.cache.set(cacheKey, { result, timestamp: Date.now() });
       return result;
     }
@@ -297,6 +299,10 @@ Return format:
         intent: 'general_chat',
         words: ['hello', 'hi', 'namaste', 'kaise ho', 'help', 'kaun ho',
                 'नमस्ते', 'हेलो', 'कैसे हो', 'मदद', 'कौन हो', 'thank', 'धन्यवाद']
+      },
+      {
+        intent: 'self_healing',
+        words: ['self healing', 'healing', 'theek karo', 'evolve', 'galtiyan', 'sudharo']
       },
       {
         intent: 'whatsapp',
