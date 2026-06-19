@@ -17,13 +17,14 @@ class PhotoMakerSkill extends BaseSkill {
     this.version = '2.0.0';
     this.category = 'utility';
     this.canRunOffline = true;
-    this.priority = 4;
+    this.priority = 9; // Higher than DocumentOCR (8) to win passport photo routing
     
     this.intents = ['create_passport_photo', 'create_joint_photo'];
     this.keywords = {
-      hi: ['पासपोर्ट फोटो', 'जॉइंट फोटो', 'फोटो बनाओ', 'पासपोर्ट साइज़'],
-      en: ['passport photo', 'joint photo', 'passport size', 'photo sheet'],
-      hinglish: ['passport photo banao', 'joint photo chahiye', 'photo size karna hai']
+      hi: ['पासपोर्ट फोटो', 'जॉइंट फोटो', 'फोटो बनाओ', 'पासपोर्ट साइज़', 'पासपोर्ट साइज', 'फोटो शीट'],
+      en: ['passport photo', 'joint photo', 'passport size', 'photo sheet', 'passport photo maker', 'photo banao'],
+      hinglish: ['passport photo banao', 'passport banao', 'joint photo chahiye', 'photo size karna hai',
+                 'passport size photo', 'passport wali photo', 'photo banana hai', 'passport size photo banao']
     };
   }
 

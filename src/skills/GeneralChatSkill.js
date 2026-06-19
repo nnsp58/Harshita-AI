@@ -33,7 +33,7 @@ class GeneralChatSkill extends BaseSkill {
     // नमस्ते / Hello
     if (text.match(/^(hi|hello|hey|namaste|namaskar)\b/i) || text.match(/^(नमस्ते|नमस्कार|हेलो)/)) {
       return this._reply(
-        '🙏 नमस्ते! मैं *Harshita AI* हूँ — आपकी CSC सहायक।\n\nमैं ये सब कर सकती हूँ:\n• 📝 सरकारी फॉर्म भरना\n• 🔍 नौकरी खोजना\n• 📄 दस्तावेज़ से डेटा निकालना\n• 🧾 TA/DA प्रोसेस करना\n• ⚖️ कानूनी ड्राफ्ट बनाना\n\nबताइए क्या करना है!'
+        'नमस्कार। मैं Harshita AI हूँ — आपकी उन्नत (Advanced) CSC और एंटरप्राइज सहायक।\n\nमैं निम्नलिखित कार्यों में आपकी सहायता कर सकती हूँ:\n• ऑटोमेटेड फॉर्म फिलिंग (Automated Form Filling)\n• कानूनी दस्तावेज़ ड्राफ्टिंग (Legal Drafting)\n• डेटा एक्सट्रैक्शन एवं OCR (Data Extraction)\n• करियर और जॉब सर्च विश्लेषण\n\nकृपया बताएं कि मैं आपके लिए कौन सी प्रक्रिया आरंभ करूँ?'
       );
     }
 
@@ -54,53 +54,29 @@ class GeneralChatSkill extends BaseSkill {
 
     if (isBotIntroRequest) {
       return this._reply(
-        '🤖 *Harshita AI — Aapki CSC Smart Assistant*\n\n' +
-        '👨‍💻 *Created by:* **n-dizi team**\n' +
-        '🇮🇳 *Made in India* for CSC operators, VLEs, citizens & government employees\n\n' +
-        '🎯 *Mere Skills (22+ specialized AI agents):*\n\n' +
-        '*1. सरकारी सेवाएं (Government):*\n' +
-        '• 📝 Form Auto-fill — SSC, Railway, Army, Banking, Police\n' +
-        '• 🍚 Ration Card — status, search, naya banaye\n' +
-        '• 🏞️ Land Record — खसरा खतौनी निकालें\n' +
-        '• 🎓 Result Tracker — परीक्षा परिणाम\n' +
-        '• ✓ Eligibility Check — पात्रता जाँच\n\n' +
-        '*2. Documents:*\n' +
-        '• 🔍 Document OCR — Aadhaar/PAN/Marksheet se data extract\n' +
-        '• 📄 File Processor — PDF/Excel handling\n' +
-        '• 📊 Project Report — Business reports auto-generate\n\n' +
-        '*3. Career & Jobs:*\n' +
-        '• 🔍 Job Search — सरकारी नौकरियाँ खोज\n' +
-        '• 📋 Resume/Biodata Builder\n' +
-        '• 📦 Bulk Import — 100+ candidates Excel/PDF se\n\n' +
-        '*4. Legal:*\n' +
-        '• ⚖️ Legal Draft — Affidavit, Gift Deed, NOC, Partition, Will\n' +
-        '• 📜 Legal Notice — Advocate letterhead par professional notice\n\n' +
-        '*5. Police/Government Employees:*\n' +
-        '• 🧾 TA-DA Naksha — यात्रा भत्ता auto-fill (multi-day DA support)\n\n' +
-        '*6. Communication:*\n' +
-        '• 📱 WhatsApp Bot — messages, broadcast, auto-reply\n' +
-        '• 💬 General Chat — Hindi/English/Hinglish\n' +
-        '• 📝 Notepad — quick notes\n\n' +
-        '*7. Automation:*\n' +
-        '• 🎫 Ticket Booking — IRCTC, etc.\n' +
-        '• 🎨 UI Builder\n' +
-        '• ✅ Data Validator\n' +
-        '• 🌐 Web Learning\n' +
-        '• 📡 Network Monitor\n\n' +
-        '🌟 *Special Features:*\n' +
-        '• 🎙️ Voice input (Hindi-IN)\n' +
-        '• 🌐 13+ Indian languages\n' +
-        '• 🧠 Self-learning (daily upgrade at night)\n' +
-        '• 💾 Conversation memory\n' +
-        '• 🔔 Proactive alerts (document expiry, job match)\n\n' +
-        'बताइए, आज कौन सा काम करना है?'
+        '**Harshita AI — Enterprise Virtual Assistant**\n\n' +
+        'मैं n-dizi टीम द्वारा विकसित एक उन्नत AI सिस्टम हूँ, जिसे विशेष रूप से CSC ऑपरेटरों, VLEs, और सरकारी विभागों की कार्यक्षमता (Efficiency) बढ़ाने के लिए डिज़ाइन किया गया है।\n\n' +
+        '**मेरी मुख्य क्षमताएं (Core Capabilities):**\n\n' +
+        '*1. ई-गवर्नेंस एवं ऑटोमेशन:*\n' +
+        '• फॉर्म ऑटो-फिलिंग (SSC, Railway, Banking, Police)\n' +
+        '• राशन कार्ड और भूलेख (Land Records) डेटा रिट्रीवल\n' +
+        '• TA-DA क्लेम ऑटोमेशन\n\n' +
+        '*2. दस्तावेज़ एवं कानूनी (Document & Legal):*\n' +
+        '• AI OCR (Aadhaar/PAN/Marksheet)\n' +
+        '• स्वचालित कानूनी ड्राफ्टिंग (Affidavit, Gift Deed, NOC)\n' +
+        '• लीगल नोटिस और प्रोजेक्ट रिपोर्ट जनरेशन\n\n' +
+        '*3. संचार एवं प्रबंधन (Communication & Management):*\n' +
+        '• ओमनी-चैनल ब्रॉडकास्ट (WhatsApp, Telegram, Email)\n' +
+        '• बल्क कैंडिडेट इम्पोर्ट और डेटा वैलिडेशन\n' +
+        '• एक्टिव नेटवर्क और सिस्टम मॉनिटरिंग\n\n' +
+        'मेरा आर्किटेक्चर 22 से अधिक स्वतंत्र AI एजेंट्स (Autonomous Agents) पर आधारित है, जो बैकग्राउंड में निरंतर कार्य करते हैं। कृपया निर्देश दें कि मैं किस कार्यप्रणाली में आपकी सहायता करूँ?'
       );
     }
 
     // उम्र / जन्म / Age / Birthday
     if ((/\b(age|birthday|dob|date\s+of\s+birth|umar|janamdin)\b/i.test(text) || text.includes('उम्र')) && !text.includes('mera') && !text.includes('my')) {
       return this._reply(
-        '🎉 मेरा जन्मदिन **18 July** को है! \n\nमैं हमेशा जवान (Young) और आपकी मदद के लिए एक्टिव हूँ। बताइए, आज मैं आपकी क्या मदद करूँ?'
+        'मेरी सिस्टम इनिशियलाइजेशन (Initialization) तिथि 18 जुलाई है। एक उन्नत AI होने के नाते, मेरा मुख्य उद्देश्य निरंतर सीखना और आपके कार्यों को ऑटोमेट करना है। मैं आपकी कैसे सहायता कर सकती हूँ?'
       );
     }
 
@@ -117,22 +93,22 @@ class GeneralChatSkill extends BaseSkill {
 
     if (isAboutMeCreator) {
       return this._reply(
-        'मैं अपने मालिक या टीम का नाम तो नहीं जानती, लेकिन आप उनसे इस लिंक पर संपर्क कर सकते हैं:\n\n' +
-        '🔗 **[टीम से संपर्क करें](/contact)**\n\n' +
-        'आपको एक फॉर्म भरना होगा जिसमें आपकी पूरी डिटेल्स माँगी जाएंगी, जिसके बाद टीम आपसे खुद संपर्क कर लेगी। 😊'
+        'मुझे n-dizi टीम द्वारा विकसित किया गया है। यदि आप मेरी इंजीनियरिंग टीम या प्रबंधन से संपर्क करना चाहते हैं, तो कृपया निम्नलिखित लिंक का उपयोग करें:\n\n' +
+        '🔗 **[संपर्क प्रपत्र (Contact Form)](/contact)**\n\n' +
+        'अपनी व्यावसायिक जानकारी प्रदान करें, और संबंधित अधिकारी आपसे संपर्क करेंगे।'
       );
     }
 
     // मदद / Help
     if (text.includes('help') || text.includes('मदद') || text.includes('madad')) {
       return this._reply(
-        '❓ मदद चाहिए? ये बोलकर देखें:\n\n🔍 "SSC की नौकरी दिखाओ"\n📝 "Railway का फॉर्म भरो"\n📄 "आधार से डेटा निकालो"\n🧾 "TA/DA बनाओ"\n🍚 "राशन कार्ड बनवाओ"\n⚖️ "शपथपत्र बनाओ"\n🏞️ "खसरा खतौनी निकालो"\n\nआप हिंदी, English या Hinglish — कुछ भी बोल सकते हैं!'
+        'सिस्टम सहायता (System Help): मैं कई प्रकार की सेवाओं को निष्पादित कर सकती हूँ। आप मुझे सीधे निर्देश दे सकते हैं, जैसे:\n\n• "नवीनतम SSC वैकेंसियों का विश्लेषण करें"\n• "आधार कार्ड से डेटा एक्सट्रेक्ट करें"\n• "एक कानूनी शपथपत्र (Affidavit) ड्राफ्ट करें"\n• "टीए/डीए (TA/DA) क्लेम तैयार करें"\n\nकृपया अपना निर्देश स्पष्ट रूप से प्रदान करें।'
       );
     }
 
     // धन्यवाद
     if (text.includes('thank') || text.includes('धन्यवाद') || text.includes('shukriya') || text.includes('शुक्रिया')) {
-      return this._reply('🙏 आपका स्वागत है! कोई और मदद चाहिए तो बेझिझक पूछें।');
+      return this._reply('आपका स्वागत है। यदि कोई अन्य कार्य शेष है, तो कृपया मुझे सूचित करें।');
     }
 
     // AI Fallback — कोई भी random बात (smart conversational reply)
@@ -205,7 +181,7 @@ Keep replies under 80 words. Be professional and context-aware.`
       // AI not available — use static fallback
     }
 
-    return this._reply(`क्षमा करें, मुझे यह कमांड समझ नहीं आई (Ambiguous/Unsupported Command): "${message}"\n\nक्या आप इनमें से कुछ करना चाहते हैं?\n• सरकारी फॉर्म भरना\n• नौकरी खोजना\n• दस्तावेज़ प्रोसेस करना\n\nकृपया साफ़ शब्दों में बताएं!`);
+    return this._reply(`मुझे खेद है, यह कमांड मेरे वर्तमान ऑपरेशनल पैरामीटर्स (Operational Parameters) के बाहर है या स्पष्ट नहीं है: "${message}"\n\nकृपया अपने निर्देश को स्पष्ट करें या मुझे किसी विशिष्ट प्रक्रिया (जैसे: डेटा एक्सट्रैक्शन, फॉर्म फाइलिंग, या लीगल ड्राफ्टिंग) के लिए निर्देशित करें।`);
   }
 }
 

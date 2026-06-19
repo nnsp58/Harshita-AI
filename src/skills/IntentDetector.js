@@ -44,6 +44,24 @@ class IntentDetector {
     }
 
     const cleanMessage = userMessage.trim();
+    const lowerMessage = cleanMessage.toLowerCase();
+
+    // ── Step 0A: HARDCODED OVERRIDES (Highest priority for known misrouted patterns) ──
+    // "passport photo banao", "passport size photo", etc. → ALWAYS PhotoMaker, never OCR
+    if (/passport.*(?:photo|size|banao|banana|फोटो|साइज़|साइज|बनाओ|बनाना)|photo.*passport|पासपोर्ट.*(?:फोटो|साइज़|साइज|बनाओ)/i.test(lowerMessage)) {
+      const result = { intent: 'create_passport_photo', confidence: 1.0, params: {}, method: 'hardcoded_override' };
+      const skill = this.registry.findByIntent('create_passport_photo');
+      if (skill) { result.skill = skill.name; result.skillDisplayName = skill.displayName; }
+      this.cache.set(cacheKey, { result, timestamp: Date.now() });
+      return result;
+    }
+
+    // "application likhni hai principal ko" → general_chat (letter writing)
+    if (/application.*(?:likh|लिख|principal|headmaster|sir|madam)|(?:likh|लिख).*application/i.test(lowerMessage)) {
+      const result = { intent: 'general_chat', confidence: 1.0, params: { task: 'write_application_letter' }, method: 'hardcoded_override' };
+      this.cache.set(cacheKey, { result, timestamp: Date.now() });
+      return result;
+    }
 
     // ── Step 0: Security Pre-Scan (HIGHEST PRIORITY) ──
     // Runs BEFORE cache, AI, or keywords — blocks dangerous queries immediately
@@ -128,13 +146,13 @@ CRITICAL RULES FOR ANALYSIS:
 1. DEEP ANALYSIS REQUIRED: Read the user's message carefully. Determine their EXACT intention before routing.
 2. Return ONLY raw JSON, no markdown, no explanation.
 3. **GENERAL KNOWLEDGE / INFORMATIONAL QUESTIONS must ALWAYS go to "general_chat"**:
+   - "abhi harshita ai kitne agent kaam kar rahe hai" → general_chat
+   - "tell me about your agents" → general_chat
    - "Who invented telephone?" → general_chat
    - "Is bungee jumping dangerous?" → general_chat
-   - "Vivo ka malik kaun hai?" → general_chat
-   - "Phone chalana sahi hai?" → general_chat
    - "naukari pane ke liye 11 me best subject konsa hai?" → general_chat (advice, NOT skill)
    - "kya sarkari job ke liye 12 pass hona jaruri hota h?" → general_chat (educational query)
-   - ANY question asking for general information, career advice, facts, science, health, or situational law → general_chat
+   - ANY question asking about Harshita AI, agents, general information, career advice, facts, science, health, or situational law → general_chat
 4. **Only route to a specific skill when the user clearly wants to USE A SERVICE:**
    - "Mera SSC ka eligibility check karo" → eligibility_check
    - "SSC ka form bharo" → form_fill
@@ -233,8 +251,8 @@ Return format:
       },
       {
         intent: 'form_fill',
-        words: ['form', 'fill', 'bharo', 'apply', 'application', 'registration', 'register',
-                'फॉर्म', 'भरो', 'भरना', 'भरवाओ', 'आवेदन', 'अप्लाई', 'form bharo', 'form bharwao']
+        words: ['form', 'fill', 'bharo', 'apply online', 'registration', 'register',
+                'फॉर्म', 'भरो', 'भरना', 'भरवाओ', 'आवेदन पत्र', 'अप्लाई', 'form bharo', 'form bharwao']
       },
       {
         intent: 'ration_card',
