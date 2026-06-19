@@ -46,6 +46,8 @@ class IntentDetector {
     const cleanMessage = userMessage.trim();
     const lowerMessage = cleanMessage.toLowerCase();
 
+    const cacheKey = cleanMessage.toLowerCase().substring(0, 100);
+
     // ── Step 0A: HARDCODED OVERRIDES (Highest priority for known misrouted patterns) ──
     // "passport photo banao", "passport size photo", etc. → ALWAYS PhotoMaker, never OCR
     if (/passport.*(?:photo|size|banao|banana|फोटो|साइज़|साइज|बनाओ|बनाना)|photo.*passport|पासपोर्ट.*(?:फोटो|साइज़|साइज|बनाओ)/i.test(lowerMessage)) {
@@ -82,7 +84,6 @@ class IntentDetector {
     }
 
     // Cache check
-    const cacheKey = cleanMessage.toLowerCase().substring(0, 100);
     const cached = this.cache.get(cacheKey);
     if (cached && (Date.now() - cached.timestamp) < this.cacheTTL) {
       return { ...cached.result, method: 'cache' };
