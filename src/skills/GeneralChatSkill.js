@@ -54,22 +54,40 @@ class GeneralChatSkill extends BaseSkill {
 
     if (isBotIntroRequest) {
       return this._reply(
-        '**Harshita AI — Enterprise Virtual Assistant**\n\n' +
-        'मैं n-dizi टीम द्वारा विकसित एक उन्नत AI सिस्टम हूँ, जिसे विशेष रूप से CSC ऑपरेटरों, VLEs, और सरकारी विभागों की कार्यक्षमता (Efficiency) बढ़ाने के लिए डिज़ाइन किया गया है।\n\n' +
-        '**मेरी मुख्य क्षमताएं (Core Capabilities):**\n\n' +
-        '*1. ई-गवर्नेंस एवं ऑटोमेशन:*\n' +
-        '• फॉर्म ऑटो-फिलिंग (SSC, Railway, Banking, Police)\n' +
-        '• राशन कार्ड और भूलेख (Land Records) डेटा रिट्रीवल\n' +
-        '• TA-DA क्लेम ऑटोमेशन\n\n' +
-        '*2. दस्तावेज़ एवं कानूनी (Document & Legal):*\n' +
-        '• AI OCR (Aadhaar/PAN/Marksheet)\n' +
-        '• स्वचालित कानूनी ड्राफ्टिंग (Affidavit, Gift Deed, NOC)\n' +
-        '• लीगल नोटिस और प्रोजेक्ट रिपोर्ट जनरेशन\n\n' +
-        '*3. संचार एवं प्रबंधन (Communication & Management):*\n' +
-        '• ओमनी-चैनल ब्रॉडकास्ट (WhatsApp, Telegram, Email)\n' +
-        '• बल्क कैंडिडेट इम्पोर्ट और डेटा वैलिडेशन\n' +
-        '• एक्टिव नेटवर्क और सिस्टम मॉनिटरिंग\n\n' +
-        'मेरा आर्किटेक्चर 22 से अधिक स्वतंत्र AI एजेंट्स (Autonomous Agents) पर आधारित है, जो बैकग्राउंड में निरंतर कार्य करते हैं। कृपया निर्देश दें कि मैं किस कार्यप्रणाली में आपकी सहायता करूँ?'
+        '[रूटिंग सफल] 🤖 **Harshita AI — Aapki CSC Smart Assistant**\n\n' +
+        '👨‍💻 **Created by:** *n-dizi team*\n' +
+        '🇮🇳 *Made in India* for CSC operators, VLEs, citizens & government employees\n\n' +
+        '🎯 **Mere Skills (32+ specialized AI agents):**\n\n' +
+        '*1. सरकारी सेवाएं (Government):*\n' +
+        '• 📝 Form Auto-fill — SSC, Railway, Army, Banking, Police\n' +
+        '• 🍚 Ration Card — Status, search, naya banaye\n' +
+        '• 🏞️ Land Record — खसरा खतौनी निकालें\n' +
+        '• 🎓 Result Tracker — परीक्षा परिणाम\n' +
+        '• ✓ Eligibility Check — पात्रता जाँच\n\n' +
+        '*2. Documents & Content:*\n' +
+        '• 🔍 Document OCR — Aadhaar/PAN/Marksheet se data extract\n' +
+        '• 📄 File Processor — PDF/Excel processing\n' +
+        '• 📊 Project Report — व्यावसायिक रिपोर्ट ऑटो-जनरेट\n' +
+        '• 📝 Resume/Biodata Builder — शानदार बायोडाटा तैयार करें\n' +
+        '• 📁 Bulk Import & Validator — एक्सेल से डेटा इम्पोर्ट और वैलिडेट\n\n' +
+        '*3. Legal & Business Services:*\n' +
+        '• ⚖️ Legal Drafting — Affidavit, Gift Deed, NOC auto-draft\n' +
+        '• ✉️ Legal Notice — कानूनी नोटिस तैयार करें\n' +
+        '• 🚗 TA-DA Claim Process — यात्रा भत्ता क्लेम\n' +
+        '• 🎫 Ticket Booking — रेल/हवाई टिकट बुकिंग\n\n' +
+        '*4. Media & Creation:*\n' +
+        '• 📸 Photo Maker — पासपोर्ट साइज फोटो मेकर\n' +
+        '• 🎥 Media Skill — इमेज/वीडियो/दस्तावेज़ हैंडलिंग\n\n' +
+        '*5. Developer & Utility Skills:*\n' +
+        '• 🎙️ Voice Agent — आवाज़ से बातचीत (TTS/STT)\n' +
+        '• 🚀 Deploy Skill — Render पर डायरेक्ट डिप्लॉयमेंट\n' +
+        '• 🧠 Self Evolution & Healing — खुद-ब-खुद कोड एरर ठीक करना\n' +
+        '• 🌐 Web Learning — वेबसाइट्स से सीखें\n' +
+        '• 🎨 UI Builder — डायनामिक यूजर इंटरफेस\n' +
+        '• 📓 Notepad — पर्सनल नोट्स और मेमो मैनेजर\n' +
+        '• 🌐 Language Skill — बहुभाषी (Multilingual) सपोर्ट\n' +
+        '• 🔒 Security Guardrail — अवैध गतिविधियों की सुरक्षा\n\n' +
+        'मेरा आर्किटेक्चर 32 से अधिक स्वतंत्र AI एजेंट्स पर आधारित है। कृपया निर्देश दें कि मैं किस कार्यप्रणाली में आपकी सहायता करूँ?'
       );
     }
 
@@ -123,7 +141,7 @@ ABOUT YOU (Harshita AI):
 - Name: Harshita AI
 - Built by: A team in India for CSC operators and citizens
 - Purpose: Automate government forms, document OCR, job search, legal drafts, TA-DA naksha, ration card services, WhatsApp messaging, and more
-- 22+ specialized AI skills covering CSC services
+- 32+ specialized AI skills covering CSC services
 
 BEHAVIOR RULES:
 1. Deeply ANALYZE the user's question before answering. Think step-by-step about what the user is really asking.

@@ -195,7 +195,6 @@ app.set('projectReportAgent', projectReportAgent);
 console.log('📊 ProjectReportAgent ready — Automated Business Report Generation');
 
 // Initialize EmailService — Custom domain email (username@n-dizi.in)
-const { EmailService } = require('../core/emailService');
 try {
   const emailService = new EmailService({ domain: process.env.EMAIL_DOMAIN || 'n-dizi.in' });
   app.set('emailService', emailService);

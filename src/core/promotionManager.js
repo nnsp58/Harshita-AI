@@ -89,7 +89,7 @@ class PromotionManager {
     for (const email of emailAddresses) {
       try {
         await this.emailService.sendMail({
-          from: \`admin@\${this.emailService.domain}\`,
+          from: `admin@${this.emailService.domain}`,
           to: email,
           subject: 'Harshita AI — आपका नया AI सहायक',
           body: this.promoMessageText,

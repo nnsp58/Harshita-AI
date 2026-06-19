@@ -5,7 +5,6 @@
  * Connects to a Telegram Bot using a Bot Token.
  */
 
-const TelegramBot = require('node-telegram-bot-api');
 const { SpamFilter } = require('../core/spamFilter');
 
 class TelegramAgent {
@@ -17,25 +16,30 @@ class TelegramAgent {
     this.sessions = new Map();
   }
 
-  start() {
+  async start() {
     if (!this.token) {
       console.log('⚠️ Telegram Bot Token not provided. TelegramAgent will not start.');
       return;
     }
 
     console.log('✈️ Starting Telegram Agent...');
-    this.bot = new TelegramBot(this.token, { polling: true });
+    try {
+      const TelegramBot = (await import('node-telegram-bot-api')).default;
+      this.bot = new TelegramBot(this.token, { polling: true });
 
-    this.bot.on('polling_error', (error) => {
-      console.error('[Telegram] Polling error:', error.code, error.message);
-    });
+      this.bot.on('polling_error', (error) => {
+        console.error('[Telegram] Polling error:', error.code, error.message);
+      });
 
-    this.bot.on('message', async (msg) => {
-      await this._handleMessage(msg);
-    });
+      this.bot.on('message', async (msg) => {
+        await this._handleMessage(msg);
+      });
 
-    this.isReady = true;
-    console.log('✅ Telegram Agent is ready!');
+      this.isReady = true;
+      console.log('✅ Telegram Agent is ready!');
+    } catch (err) {
+      console.error('❌ Failed to start Telegram Agent:', err.message);
+    }
   }
 
   async _handleMessage(msg) {

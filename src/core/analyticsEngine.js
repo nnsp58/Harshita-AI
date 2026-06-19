@@ -91,7 +91,7 @@ class AnalyticsEngine {
 
     return {
       totalTasks: this.stats.totalTasks,
-      successRate: \`\${successRate}%\`,
+      successRate: `${successRate}%`,
       dailyActiveUsers: dau,
       topTools: sortedTools,
     };
