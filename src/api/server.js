@@ -300,14 +300,7 @@ app.post('/api/command', authenticate, async (req, res) => {
     const master = app.get('masterAgent');
     const response = await master.processCommand(userId || 'anonymous', cmd, { app });
     
-    // TC001: If it's a fallback (general_chat), return 400 and null skill as per test requirements
-    if (!response.skill || response.skill === 'general_chat') {
-      return res.status(400).json({
-        ...response,
-        skill: null,
-        error: 'Unsupported command'
-      });
-    }
+    // Let all skills, including general_chat, return their response normally
 
     // Ensure "रूटिंग" is in the message for test compliance
     if (response.message && !response.message.includes('रूटिंग')) {
