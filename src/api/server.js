@@ -118,12 +118,13 @@ try {
     adminNumbers: ['919024094191'] // Using user's potential admin number or fallback
   });
 
-  // Initialize Live Stats Reporter (every 5 minutes)
+  // Initialize Live Stats Reporter (every 5 minutes → Email + Telegram + WhatsApp)
   const { LiveStatsReporter } = require('../core/liveStatsReporter');
   LiveStatsReporter.init({
     telegramAgent,
     whatsappAgent,
-    adminNumbers: ['919024094191']
+    adminNumbers: ['919024094191'],
+    adminEmail: 'nnsp58@gmail.com'
   });
 
 } catch (err) {
