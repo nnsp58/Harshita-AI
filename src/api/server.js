@@ -118,6 +118,14 @@ try {
     adminNumbers: ['919024094191'] // Using user's potential admin number or fallback
   });
 
+  // Initialize Live Stats Reporter (every 5 minutes)
+  const { LiveStatsReporter } = require('../core/liveStatsReporter');
+  LiveStatsReporter.init({
+    telegramAgent,
+    whatsappAgent,
+    adminNumbers: ['919024094191']
+  });
+
 } catch (err) {
   console.warn('⚠️ Omnichannel Agents unavailable:', err.message);
 }
