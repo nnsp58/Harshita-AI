@@ -55,11 +55,28 @@ class FormFillSkill extends BaseSkill {
     // कौन सी सर्विस चाहिए
     let serviceType = params?.serviceType || null;
     if (!serviceType) {
-      for (const key of Object.keys(this.services)) {
-        if (text.includes(key)) {
-          serviceType = key;
-          break;
+      const serviceAliases = {
+        ssc: ['ssc', 'एसएससी'],
+        army: ['army', 'सेना', 'आर्मी'],
+        railway: ['railway', 'रेलवे', 'rrb'],
+        banking: ['banking', 'बैंक', 'बैंकिंग', 'ibps', 'sbi'],
+        police: ['police', 'पुलिस'],
+        defence: ['navy', 'air force', 'वायु सेना', 'नौसेना', 'airforce'],
+        postal: ['post', 'डाक', 'postal', 'post office', 'पोस्ट'],
+        apprenticeship: ['apprenticeship', 'शिक्षुता'],
+        stateSsc: ['upsssc', 'अधीनस्थ'],
+        ration: ['ration', 'राशन', 'रैशन']
+      };
+
+      for (const [key, aliases] of Object.entries(serviceAliases)) {
+        for (const alias of aliases) {
+          const regex = new RegExp(`(?:^|[^a-zA-Z0-9\\u0900-\\u097F])${alias}(?:$|[^a-zA-Z0-9\\u0900-\\u097F])`, 'i');
+          if (regex.test(text)) {
+            serviceType = key;
+            break;
+          }
         }
+        if (serviceType) break;
       }
     }
 

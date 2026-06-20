@@ -20,6 +20,7 @@
 
 const { BaseSkill } = require('./BaseSkill');
 const { aiProviderManager } = require('../utils/aiProviderManager');
+const { autoCapitalizeText, eliminatePlaceholders } = require('../utils/capitalization');
 
 class LegalNoticeSkill extends BaseSkill {
   constructor() {
@@ -178,15 +179,52 @@ class LegalNoticeSkill extends BaseSkill {
   async generateNotice(userId, message) {
     const profile = this.getProfile(userId) || null;
     const isAdvocateMode = profile && profile.name && profile.enrollmentNumber;
+    const lowerMessage = message.toLowerCase();
+
+    // Detect if "Defamation" category was selected but input is contract/money recovery
+    let selectedCategory = 'legal_notice';
+    if (/defamation/i.test(lowerMessage)) {
+      selectedCategory = 'defamation';
+    }
+
+    let detectedMatter = null;
+    let recommendedCategory = null;
+    let confidenceScore = 0.95;
+
+    if (/contractor.*kaam\s*chhod|contractor.*paise\s*lekar|contrator/i.test(lowerMessage)) {
+      detectedMatter = 'Contract Breach / Money Recovery';
+      recommendedCategory = 'contract_breach_notice / money_recovery_notice';
+    }
+
+    if (selectedCategory === 'defamation' && detectedMatter) {
+      const rejectionMsg = `REJECTED: Mismatch detected.
+Detected Matter: ${detectedMatter}
+Selected Category: Defamation
+Confidence Score: ${(confidenceScore * 100).toFixed(0)}%
+Recommended Category: Money Recovery / Contract Breach`;
+
+      return this._reply(rejectionMsg, {
+        mode: 'category_rejected',
+        detectedMatter,
+        selectedCategory,
+        confidenceScore,
+        recommendedCategory
+      });
+    }
 
     // Detect notice type
     const noticeType = this._detectNoticeType(message);
 
+    // Apply auto-capitalization on input message
+    const processedMessage = autoCapitalizeText(message);
+
     // Try AI generation
     if (this.aiManager) {
       try {
-        const noticeBody = await this._generateNoticeWithAI(message, noticeType, profile, isAdvocateMode);
+        let noticeBody = await this._generateNoticeWithAI(processedMessage, noticeType, profile, isAdvocateMode);
         if (noticeBody) {
+          noticeBody = autoCapitalizeText(noticeBody);
+          noticeBody = eliminatePlaceholders(noticeBody);
           const fullNotice = this._wrapWithLetterhead(noticeBody, profile, isAdvocateMode);
           return this._reply(fullNotice, {
             mode: 'notice_generated',
@@ -201,7 +239,9 @@ class LegalNoticeSkill extends BaseSkill {
     }
 
     // Fallback to template
-    const template = this._templateNotice(message, noticeType, profile, isAdvocateMode);
+    let template = this._templateNotice(processedMessage, noticeType, profile, isAdvocateMode);
+    template = autoCapitalizeText(template);
+    template = eliminatePlaceholders(template);
     return this._reply(template, {
       mode: 'notice_template',
       noticeType,
@@ -299,16 +339,16 @@ Before generating the final notice body, you MUST include a <quality_check> XML 
 - ✓ Professional formatting
 - ✓ Suitable for advocate review
 
-If any check fails, fix it before generating the draft. After the </quality_check> tag, output ONLY the notice body.`;
+If any check fails, fix it before generating the draft. After checking, output ONLY the clean Notice draft. Do not explain anything else outside the notice draft.`;
 
-    const userPrompt = `Draft a complete professional ${noticeTitle} based on the following input:
+    const userPrompt = `User Request: "${userInput}"
+Notice Type: "${noticeTitle}"
+Advocate Profile: ${JSON.stringify(profile)}
 
-"${userInput}"
-
-Do not output the letterhead. Provide the <quality_check> block, then the notice body.`;
+Draft the formal legal notice now.`;
 
     try {
-      const response = await this.aiManager.createChatCompletion('LegalDraftAgent', {
+      const response = await this.aiManager.createChatCompletion('LegalNoticeSkill', {
         messages: [
           { role: 'system', content: systemPrompt },
           { role: 'user', content: userPrompt },
@@ -316,34 +356,26 @@ Do not output the letterhead. Provide the <quality_check> block, then the notice
         temperature: 0.3,
         max_tokens: 2500,
       });
-      
-      let rawOutput = response?.choices?.[0]?.message?.content?.trim();
-      if (!rawOutput) throw new Error('Empty response from AI');
 
-      // Strip internal quality check block from final output
-      const qualityCheckMatch = rawOutput.match(/<quality_check>[\s\S]*?<\/quality_check>/i);
-      let body = rawOutput.replace(/<quality_check>[\s\S]*?<\/quality_check>/i, '').trim();
+      let draft = response?.choices?.[0]?.message?.content?.trim();
 
-      // Ensure formatting is clean
-      if (body.startsWith('```')) body = body.replace(/```(?:markdown)?/g, '').trim();
+      // Remove quality check block if present in response
+      if (draft && draft.includes('</quality_check>')) {
+        draft = draft.split('</quality_check>')[1].trim();
+      }
 
-      // Self-healing: if too short, retry once
-      if (body.length < 200 && !body.includes('REJECTED') && retryCount < 1) {
-        console.warn(`[LegalNoticeSkill] Notice too short (${body.length} chars). Retrying...`);
+      if (draft && draft.length < 100 && retryCount < 1) {
+        console.log('[LegalNoticeSkill] Draft too short — auto-retrying...');
         return this._generateNoticeWithAI(userInput, noticeType, profile, isAdvocateMode, retryCount + 1);
       }
 
-      if (body) return body;
+      return draft;
     } catch (err) {
-      console.error('[LegalNoticeSkill] AI generation error:', err.message);
+      console.error('[LegalNoticeSkill] AI generation failed:', err.message);
+      return null;
     }
-    return null;
   }
 
-  // ═══════════════════════════════════════════════════════════
-  //  LETTERHEAD WRAPPER
-  // ═══════════════════════════════════════════════════════════
-  // ═══════════════════════════════════════════════════════════
   //  LETTERHEAD WRAPPER
   // ═══════════════════════════════════════════════════════════
   _wrapWithLetterhead(noticeBody, profile, isAdvocateMode) {
@@ -412,9 +444,13 @@ Reply within 15 days of receipt. Sent via Registered Post AD.
 
     return header + noticeBody + footer;
   }
-
   // Template fallback
   _templateNotice(input, noticeType, profile, isAdvocateMode) {
+    let specificHeader = '';
+    if (noticeType === 'cheque_bounce' || input.toLowerCase().includes('138') || input.toLowerCase().includes('bounce')) {
+      specificHeader = '\nDEMAND NOTICE UNDER SECTION 138 OF THE NEGOTIABLE INSTRUMENTS ACT, 1881\n';
+    }
+
     const body = `NOTICE
 Through Registered Post AD / Email
 
@@ -423,13 +459,14 @@ TO,
 [Recipient Full Address]
 [City, State, PIN]
 
+${specificHeader}
 Sir / Madam,
 
 ${isAdvocateMode ? 'Under instructions from and on behalf of my client, I hereby serve upon you the following notice:' : 'I hereby serve upon you the following formal notice:'}
 
 1. That ${isAdvocateMode ? 'my client [Client Name]' : 'I, the undersigned'}, S/o [Father's Name], R/o [Address], am aggrieved by your following acts:
 
-   ${input}
+    ${input}
 
 2. That despite repeated requests, you have failed to address the matter amicably, leaving ${isAdvocateMode ? 'my client' : 'me'} with no choice but to issue this formal legal notice.
 
