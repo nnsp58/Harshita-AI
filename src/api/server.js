@@ -23,6 +23,7 @@ const upload = multer({ storage: multer.memoryStorage() });
 const quietStartup = process.env.QUIET_STARTUP === '1';
 
 const app = express();
+app.set('trust proxy', 1);
 const server = http.createServer(app);
 
 // API mode active - Static serving disabled
