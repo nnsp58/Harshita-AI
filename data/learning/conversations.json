@@ -874,5 +874,103 @@
     ],
     "createdAt": "2026-05-24T01:37:17.048Z",
     "lastActive": "2026-05-24T01:37:17.049Z"
+  },
+  "test_user:legal_notice": {
+    "userId": "test_user",
+    "skill": "legal_notice",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Contractor paise lekar bhaag gaya. selected category: defamation",
+        "timestamp": "2026-06-19T18:53:43.791Z"
+      },
+      {
+        "role": "assistant",
+        "content": "REJECTED: Mismatch detected.\nDetected Matter: Contract Breach / Money Recovery\nSelected Category: Defamation\nConfidence Score: 95%\nRecommended Category: Money Recovery / Contract Breach",
+        "timestamp": "2026-06-19T18:53:43.792Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Cheque bounce notice to Ramesh Kumar for 50000 INR. Sender is Meer Singh.",
+        "timestamp": "2026-06-19T18:53:44.315Z"
+      },
+      {
+        "role": "assistant",
+        "content": "\n═══════════════════════════════════════════════════════════════\n                        Legal Notice\n═══════════════════════════════════════════════════════════════\n\nDate: 20/6/2026\nPlace: ____________________\n\nNotice\nThrough Registered Post Ad / Email\n\nTO,\n____________________\n____________________\n____________________\n\nSir / Madam,\n\nI Hereby Serve Upon You the Following Formal Notice:\n\n1. That I, the Undersigned, S/o ____________________, R/o ____________________, am Aggrieved by Your Following Acts:\n\n   Cheque Bounce Notice to Ramesh Kumar for 50000 Inr. Sender is Meer Singh.\n\n2. That Despite Repeated Requests, You Have Failed to Address the Matter Amicably, Leaving me With No Choice but to Issue This Formal Legal Notice.\n\n3. That Your Aforesaid acts/omissions Have Caused Mental Agony, Financial Loss, and Harassment, for Which You are Legally Liable.\n\n4. I Hereby Call Upon You to:\n   a) Cease and Desist From the Aforementioned Acts Immediately;\n   B) Make Good the Loss Caused;\n   C) Send a Written Reply to This Notice Within 15 (Fifteen) Days From the Date of Receipt;\n   D) Comply With the Demands Stated Above.\n\n5. Take Notice That in Case You Fail to Comply With the Above Demands Within the Stipulated Time, I Shall be Constrained to Initiate Appropriate Civil and/or Criminal Proceedings Against You in the Competent Court of Law, at Your Sole Risk, Costs, and Consequences.\n\n\n\nTake Notice Accordingly.\n\nYours Faithfully,\n\n═══════════════════════════════════════════════════════════════\n\n                                          ____________________\n                                          Sender's Name: ____________________\n                                          आधार संख्या / Aadhaar No.: ____________________\n                                          पैन संख्या / Pan No.: ____________________\n                                          Contact: ____________________\n\n═══════════════════════════════════════════════════════════════\nNote: This is a Formal Legal Notice",
+        "timestamp": "2026-06-19T18:53:44.315Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-06-19T18:53:43.786Z",
+    "lastActive": "2026-06-19T18:53:44.315Z"
+  },
+  "test_user:legal_draft": {
+    "userId": "test_user",
+    "skill": "legal_draft",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Marksheet gum ho gayi. selected category: gift_deed",
+        "timestamp": "2026-06-19T18:53:43.865Z"
+      },
+      {
+        "role": "assistant",
+        "content": "REJECTED: Mismatch detected.\nDetected Matter: Lost Documents\nSelected Category: Gift Deed\nConfidence Score: 95%\nRecommended Category: Affidavit",
+        "timestamp": "2026-06-19T18:53:43.865Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Naam parivartan ke liye shapath patra. Nar Narayan Singh putra Meer Singh.",
+        "timestamp": "2026-06-19T18:53:44.298Z"
+      },
+      {
+        "role": "assistant",
+        "content": "शपथ पत्र / Affidavit\n═══════════════════════════════════════════════════════════════════════════════\n\nमैं, ____________________, पुत्र / पुत्री ____________________, आयु ____________________ वर्ष, निवासी ____________________,\nआधार संख्या ____________________, सत्यनिष्ठा से शपथ लेकर निम्नलिखित घोषणा करता/करती हूँ:\n\nI, ____________________, S/o ____________________, Aged ____________________ Years, R/o ____________________,\nAadhaar No. ____________________, Do Hereby Solemnly Affirm and Declare As Under:\n\nविषय / Subject:\nNaam Parivartan ke Liye Shapath Patra. Nar Narayan Singh putra Meer Singh.\n\nघोषणा / Declaration:\n1. यह कि उपरोक्त कथन मेरी व्यक्तिगत जानकारी, विश्वास और सत्य के अनुसार पूर्णतः सही है।\n2. यह कि मैंने इस शपथ पत्र में कोई भी तथ्य जानबूझकर छुपाया या विकृत नहीं किया है।\n3. यह कि यह शपथ पत्र विधिक प्रयोजनों हेतु निष्पादित किया जा रहा है।\n\nसत्यापन / Verification:\nसत्यापित किया जाता है कि उपरोक्त पैरा 1 से 3 तक के कथन मेरी जानकारी और विश्वास के अनुसार सत्य हैं तथा इनमें कुछ भी असत्य नहीं है।\n\nदिनांक / Date: 20/6/2026                              स्थान / Place: ____________\n\nशपथकर्ता / Deponent\nनाम: ___________________________\nहस्ताक्षर: _______________________\n\n═══════════════════════════════════════════════════════════════════════════════\nनोट: इस शपथ पत्र को नोटरी पब्लिक से सत्यापित करवाना अनिवार्य है।",
+        "timestamp": "2026-06-19T18:53:44.298Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-06-19T18:53:43.865Z",
+    "lastActive": "2026-06-19T18:53:44.298Z"
+  },
+  "test_user:application_writer": {
+    "userId": "test_user",
+    "skill": "application_writer",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Atal residential school principal ko 7 din ki chutti. Applicant is Nar Narayan Singh.",
+        "timestamp": "2026-06-19T18:53:44.339Z"
+      },
+      {
+        "role": "assistant",
+        "content": "सेवा में,\n\n[अधिकारी का पदनाम / Designation]\n[कार्यालय/विभाग का नाम / Department Name]\n[शहर/जिला / City/District]\n\nविषय: Atal residential school principal ko 7 din ki chutti. Applicant is Nar Narayan Singh. के सन्दर्भ में प्रार्थना पत्र।\n\nमहोदय,\n\nसविनय निवेदन है कि मैं [आपका नाम], [पिता/पति का नाम] का निवासी हूँ। मेरा पता [पूरा पता] है।\n\nमैं आपका ध्यान उपरोक्त विषय की ओर आकृष्ट करना चाहता हूँ। (यहाँ अपनी समस्या या अनुरोध का विस्तार से वर्णन करें... Atal residential school principal ko 7 din ki chutti. Applicant is Nar Narayan Singh.)\n\nअत: आपसे विनम्र निवेदन है कि कृपया मेरी समस्या का जल्द से जल्द निवारण करने की कृपा करें। मैं सदैव आपका आभारी रहूँगा।\n\nसधन्यवाद,\n\nदिनांक: 20/6/2026\n\nभवदीय / प्रार्थी,\nहस्ताक्षर: ___________________\nनाम: _______________________\nपता: _______________________\nमोबाइल: ____________________",
+        "timestamp": "2026-06-19T18:53:44.339Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-06-19T18:53:44.338Z",
+    "lastActive": "2026-06-19T18:53:44.339Z"
+  },
+  "test_user:general_chat": {
+    "userId": "test_user",
+    "skill": "general_chat",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Apni sabhi skills batao",
+        "timestamp": "2026-06-19T18:53:44.348Z"
+      },
+      {
+        "role": "assistant",
+        "content": "[रूटिंग सफल] 🤖 **Harshita AI — Platform Capabilities & Skill Discovery**\n\n📊 **Total Skill Count:** 31 Active AI Skills\n\n### 📁 Categories & Sub-Skills:\n\n#### 1. ⚖️ Legal & Drafting Services\n- **कानूनी ड्राफ्ट (legal_draft)**: Affidavit, Gift Deed, Partition Deed, Rent Agreement, NOC, Declaration, Power of Attorney, Will.\n  *Example*: \"Apni property wife ke naam gift karni hai\"\n- **कानूनी नोटिस (legal_notice)**: Money Recovery, Defamation, Property Dispute, Cheque Bounce, Eviction, Contract Breach, Consumer Complaint.\n  *Example*: \"Cheque bounce notice to Ramesh for 50000 INR\"\n- **प्रार्थना पत्र (application_writer)**: Government applications, leave/official letters, representations.\n  *Example*: \"Atal awasya school principal ko 7 din ki chutti ki application\"\n\n#### 2. 📝 Government Services\n- **फॉर्म ऑटो-फिल (form_fill)**: SSC, Railway, Banking online form helper.\n- **पात्रता जाँच (eligibility_check)**: Direct qualification checks.\n- **राशन कार्ड (ration_card)**: BPL/APL card applications.\n- **भूलेख (land_record)**: Khasra, Khatauni land records.\n- **रिजल्ट ट्रैकर (result_generator)**: SSC, CBSE merit list / score checks.\n\n#### 3. 🔍 Documents & Content Engines\n- **दस्तावेज़ OCR (document_ocr)**: Text extraction from Aadhaar, PAN, marksheets.\n- **फाइल प्रोसेसर (file_processor)**: PDF/Excel manipulation.\n- **प्रोजेक्ट रिपोर्ट (project_report)**: PMEGP/Mudra business reports.\n- **रिज्यूमे मेकर (resume_maker)**: Professional CV/biodata generation.\n- **डेटा वैलिडेटर (validator)**: Automated CSV/Excel audits.\n- **बल्क इम्पोर्ट (bulk_import)**: Direct batch processing.\n\n#### 4. 🚗 Business & Media Utility\n- **TA/DA प्रोसेसर (tada_process)**: Travel allowance calculations.\n- **टिकट बुकिंग (ticket_booking)**: Train/Bus ticket booking aid.\n- **पासपोर्ट फोटो मेकर (photo_maker)**: Passport size crop and print layout creation.\n- **मीडिया कन्वर्टर (media_converter)**: Image compression and conversions.\n\n#### 5. 🤖 Core Agent & Development\n- **Voice Assistant (voice_agent)**: M",
+        "timestamp": "2026-06-19T18:53:44.348Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-06-19T18:53:44.348Z",
+    "lastActive": "2026-06-19T18:53:44.348Z"
   }
 }

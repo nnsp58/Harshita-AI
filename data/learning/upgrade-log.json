@@ -317,5 +317,251 @@
     "completedAt": "2026-05-27T18:10:21.305Z",
     "durationMs": 83,
     "success": true
+  },
+  {
+    "startedAt": "2026-06-19T18:00:45.131Z",
+    "tasks": [
+      {
+        "name": "flush_data",
+        "success": true,
+        "durationMs": 5,
+        "result": {
+          "saved": true
+        }
+      },
+      {
+        "name": "prune_conversations",
+        "success": true,
+        "durationMs": 0,
+        "result": {
+          "removed": 0
+        }
+      },
+      {
+        "name": "learn_keywords",
+        "success": true,
+        "durationMs": 11,
+        "result": {
+          "sessionsAnalyzed": 16,
+          "keywordsLearned": 63
+        }
+      },
+      {
+        "name": "upgrade_skills",
+        "success": true,
+        "durationMs": 4,
+        "result": {
+          "skillsUpgraded": 6,
+          "totalSkills": 31
+        }
+      },
+      {
+        "name": "analyze_failures",
+        "success": true,
+        "durationMs": 0,
+        "result": {
+          "failurePatternsFound": 0,
+          "top5": []
+        }
+      },
+      {
+        "name": "cognitive_evolution",
+        "success": true,
+        "durationMs": 2333,
+        "result": {
+          "evolved": true,
+          "reason": "Cognitive self-training completed successfully"
+        }
+      },
+      {
+        "name": "generate_stats",
+        "success": true,
+        "durationMs": 4,
+        "result": {
+          "learning": {
+            "totalInteractions": 80,
+            "totalFeedback": 0,
+            "totalFailures": 0,
+            "successRate": 96.3,
+            "skillsLearned": 13,
+            "patternsDiscovered": 0,
+            "topSkills": [
+              {
+                "skill": "legal_draft",
+                "count": 33
+              },
+              {
+                "skill": "tada_process",
+                "count": 9
+              },
+              {
+                "skill": "general_chat",
+                "count": 7
+              },
+              {
+                "skill": "job_search",
+                "count": 7
+              },
+              {
+                "skill": "legal_notice",
+                "count": 6
+              },
+              {
+                "skill": "land_record",
+                "count": 5
+              },
+              {
+                "skill": "undefined",
+                "count": 3
+              },
+              {
+                "skill": "whatsapp",
+                "count": 2
+              },
+              {
+                "skill": "ration_card",
+                "count": 2
+              },
+              {
+                "skill": "eligibility_check",
+                "count": 2
+              }
+            ]
+          },
+          "conversations": {
+            "totalSessions": 16,
+            "totalMessages": 136,
+            "uniqueUsers": 3,
+            "uniqueSkills": 13
+          }
+        }
+      }
+    ],
+    "completedAt": "2026-06-19T18:00:47.489Z",
+    "durationMs": 2359,
+    "success": true
+  },
+  {
+    "startedAt": "2026-06-19T18:30:34.206Z",
+    "tasks": [
+      {
+        "name": "flush_data",
+        "success": true,
+        "durationMs": 13,
+        "result": {
+          "saved": true
+        }
+      },
+      {
+        "name": "prune_conversations",
+        "success": true,
+        "durationMs": 1,
+        "result": {
+          "removed": 0
+        }
+      },
+      {
+        "name": "learn_keywords",
+        "success": true,
+        "durationMs": 15,
+        "result": {
+          "sessionsAnalyzed": 16,
+          "keywordsLearned": 63
+        }
+      },
+      {
+        "name": "upgrade_skills",
+        "success": true,
+        "durationMs": 7,
+        "result": {
+          "skillsUpgraded": 10,
+          "totalSkills": 31
+        }
+      },
+      {
+        "name": "analyze_failures",
+        "success": true,
+        "durationMs": 2,
+        "result": {
+          "failurePatternsFound": 0,
+          "top5": []
+        }
+      },
+      {
+        "name": "cognitive_evolution",
+        "success": true,
+        "durationMs": 8108,
+        "result": {
+          "evolved": true,
+          "reason": "Cognitive self-training completed successfully"
+        }
+      },
+      {
+        "name": "generate_stats",
+        "success": true,
+        "durationMs": 9,
+        "result": {
+          "learning": {
+            "totalInteractions": 80,
+            "totalFeedback": 0,
+            "totalFailures": 0,
+            "successRate": 96.3,
+            "skillsLearned": 13,
+            "patternsDiscovered": 0,
+            "topSkills": [
+              {
+                "skill": "legal_draft",
+                "count": 33
+              },
+              {
+                "skill": "tada_process",
+                "count": 9
+              },
+              {
+                "skill": "general_chat",
+                "count": 7
+              },
+              {
+                "skill": "job_search",
+                "count": 7
+              },
+              {
+                "skill": "legal_notice",
+                "count": 6
+              },
+              {
+                "skill": "land_record",
+                "count": 5
+              },
+              {
+                "skill": "undefined",
+                "count": 3
+              },
+              {
+                "skill": "whatsapp",
+                "count": 2
+              },
+              {
+                "skill": "ration_card",
+                "count": 2
+              },
+              {
+                "skill": "eligibility_check",
+                "count": 2
+              }
+            ]
+          },
+          "conversations": {
+            "totalSessions": 16,
+            "totalMessages": 136,
+            "uniqueUsers": 3,
+            "uniqueSkills": 13
+          }
+        }
+      }
+    ],
+    "completedAt": "2026-06-19T18:30:42.363Z",
+    "durationMs": 8158,
+    "success": true
   }
 ]

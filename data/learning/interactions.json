@@ -764,5 +764,59 @@
     "output": "???? ?? ?? ?? ???? ?? ??, ?? ???? ?? ??? ?? ?? ?? ?? ?? ??? ?? ?? ???? ?? ?? ?? ?? ?? ?? ?? ?? ???? ?? ?? ?? ??? ?? ?? ?? ?? ?? ?? ???? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?",
     "success": true,
     "timestamp": "2026-05-24T01:37:17.049Z"
+  },
+  {
+    "id": "test_user_1781895223792_uqek8b4",
+    "userId": "test_user",
+    "skill": "legal_notice",
+    "input": "Contractor paise lekar bhaag gaya. selected category: defamation",
+    "output": "REJECTED: Mismatch detected.\nDetected Matter: Contract Breach / Money Recovery\nSelected Category: Defamation\nConfidence Score: 95%\nRecommended Category: Money Recovery / Contract Breach",
+    "success": true,
+    "timestamp": "2026-06-19T18:53:43.793Z"
+  },
+  {
+    "id": "test_user_1781895223865_88f419e",
+    "userId": "test_user",
+    "skill": "legal_draft",
+    "input": "Marksheet gum ho gayi. selected category: gift_deed",
+    "output": "REJECTED: Mismatch detected.\nDetected Matter: Lost Documents\nSelected Category: Gift Deed\nConfidence Score: 95%\nRecommended Category: Affidavit",
+    "success": true,
+    "timestamp": "2026-06-19T18:53:43.865Z"
+  },
+  {
+    "id": "test_user_1781895224298_lknk5hw",
+    "userId": "test_user",
+    "skill": "legal_draft",
+    "input": "Naam parivartan ke liye shapath patra. Nar Narayan Singh putra Meer Singh.",
+    "output": "शपथ पत्र / Affidavit\n═══════════════════════════════════════════════════════════════════════════════\n\nमैं, ____________________, पुत्र / पुत्री ____________________, आयु ____________________ वर्ष, निव",
+    "success": true,
+    "timestamp": "2026-06-19T18:53:44.298Z"
+  },
+  {
+    "id": "test_user_1781895224315_ol0yh8k",
+    "userId": "test_user",
+    "skill": "legal_notice",
+    "input": "Cheque bounce notice to Ramesh Kumar for 50000 INR. Sender is Meer Singh.",
+    "output": "\n═══════════════════════════════════════════════════════════════\n                        Legal Notice\n═══════════════════════════════════════════════════════════════\n\nDate: 20/6/2026\nPlace: __________",
+    "success": true,
+    "timestamp": "2026-06-19T18:53:44.315Z"
+  },
+  {
+    "id": "test_user_1781895224339_f9uytfg",
+    "userId": "test_user",
+    "skill": "application_writer",
+    "input": "Atal residential school principal ko 7 din ki chutti. Applicant is Nar Narayan Singh.",
+    "output": "सेवा में,\n\n[अधिकारी का पदनाम / Designation]\n[कार्यालय/विभाग का नाम / Department Name]\n[शहर/जिला / City/District]\n\nविषय: Atal residential school principal ko 7 din ki chutti. Applicant is Nar Narayan S",
+    "success": true,
+    "timestamp": "2026-06-19T18:53:44.339Z"
+  },
+  {
+    "id": "test_user_1781895224348_q1mj1tr",
+    "userId": "test_user",
+    "skill": "general_chat",
+    "input": "Apni sabhi skills batao",
+    "output": "[रूटिंग सफल] 🤖 **Harshita AI — Platform Capabilities & Skill Discovery**\n\n📊 **Total Skill Count:** 31 Active AI Skills\n\n### 📁 Categories & Sub-Skills:\n\n#### 1. ⚖️ Legal & Drafting Services\n- **कानू",
+    "success": true,
+    "timestamp": "2026-06-19T18:53:44.348Z"
   }
 ]

@@ -14,6 +14,7 @@
 
 const { BaseSkill } = require('./BaseSkill');
 const { aiProviderManager } = require('../utils/aiProviderManager');
+const { autoCapitalizeText, eliminatePlaceholders } = require('../utils/capitalization');
 
 class LegalDraftSkill extends BaseSkill {
   constructor() {
@@ -53,6 +54,72 @@ class LegalDraftSkill extends BaseSkill {
     const userIdSafe = userId || 'anon';
     let session = this.sessions.get(userIdSafe);
 
+    // Detect selected/incoming category
+    let selectedCategory = context.params?.docType || null;
+    const lowerMessage = message.toLowerCase();
+    
+    if (!selectedCategory) {
+      if (/gift\s*deed|दान\s*विलेख/i.test(lowerMessage)) selectedCategory = 'gift_deed';
+      else if (/noc|अनापत्ति/i.test(lowerMessage)) selectedCategory = 'noc';
+      else if (/rent|किराया/i.test(lowerMessage)) selectedCategory = 'rent_agreement';
+      else if (/partition|बंटवारा/i.test(lowerMessage)) selectedCategory = 'partition_deed';
+      else if (/will|वसीयत/i.test(lowerMessage)) selectedCategory = 'will';
+      else if (/power\s*of\s*attorney|मुख्तारनामा/i.test(lowerMessage)) selectedCategory = 'power_of_attorney';
+      else if (/name\s*change|नाम\s*परिवर्तन/i.test(lowerMessage)) selectedCategory = 'name_change';
+      else if (/declaration/i.test(lowerMessage)) selectedCategory = 'declaration';
+      else if (/defamation/i.test(lowerMessage)) selectedCategory = 'defamation';
+      else selectedCategory = 'affidavit';
+    }
+
+    // Run Legal Matter Detection Engine first
+    let detectedMatter = null;
+    let recommendedCategory = null;
+    let confidenceScore = 0.95;
+
+    if (/marksheet\s*gum|10th.*12th.*marksheet|gum\s*ho\s*gayi/i.test(lowerMessage)) {
+      detectedMatter = 'Lost Documents';
+      recommendedCategory = 'affidavit';
+    } else if (/contractor.*kaam\s*chhod|contractor.*paise\s*lekar|contrator/i.test(lowerMessage)) {
+      detectedMatter = 'Contract Breach / Money Recovery';
+      recommendedCategory = 'contract_breach_notice / money_recovery_notice';
+    } else if (/kirayedar.*khali/i.test(lowerMessage)) {
+      detectedMatter = 'Eviction Matter';
+      recommendedCategory = 'eviction_notice';
+    } else if (/jhoothe\s*aarop|false\s*allegations/i.test(lowerMessage)) {
+      detectedMatter = 'Defamation Matter';
+      recommendedCategory = 'defamation_notice';
+    } else if (/bijli\s*ki\s*line|electricity/i.test(lowerMessage)) {
+      detectedMatter = 'Electricity Complaint';
+      recommendedCategory = 'application_writer';
+    }
+
+    // Wrong Category Rejection logic
+    if (selectedCategory && detectedMatter) {
+      let isMismatch = false;
+      if (selectedCategory === 'defamation' && (detectedMatter.includes('Money Recovery') || detectedMatter.includes('Contract'))) {
+        isMismatch = true;
+      }
+      if (selectedCategory === 'gift_deed' && detectedMatter === 'Lost Documents') {
+        isMismatch = true;
+      }
+
+      if (isMismatch) {
+        const rejectionMsg = `REJECTED: Mismatch detected.
+Detected Matter: ${detectedMatter}
+Selected Category: ${selectedCategory === 'gift_deed' ? 'Gift Deed' : selectedCategory === 'defamation' ? 'Defamation' : selectedCategory}
+Confidence Score: ${(confidenceScore * 100).toFixed(0)}%
+Recommended Category: ${recommendedCategory === 'affidavit' ? 'Affidavit' : recommendedCategory}`;
+        
+        return this._reply(rejectionMsg, {
+          mode: 'category_rejected',
+          detectedMatter,
+          selectedCategory,
+          confidenceScore,
+          recommendedCategory
+        });
+      }
+    }
+
     // Detect document type
     const docType = this._detectDocumentType(message);
 
@@ -66,19 +133,20 @@ class LegalDraftSkill extends BaseSkill {
       this.sessions.set(userIdSafe, session);
     }
 
-    // For now, if we are in collecting stage, ask for key details (simple version)
-    // In next iterations we will make this smarter
     if (session.stage === 'collecting') {
-      // Very basic: if message has some details, store and ask for more
-      // For demo, we will move to generation quickly
       session.stage = 'ready';
       this.sessions.set(userIdSafe, session);
     }
 
-    // Generate using AI (with collected info if any)
+    // Apply auto-capitalization on input message
+    const processedMessage = autoCapitalizeText(message);
+
+    // Generate using AI
     try {
-      const draft = await this._generateWithAI(message, docType);
+      let draft = await this._generateWithAI(processedMessage, docType);
       if (draft) {
+        draft = autoCapitalizeText(draft);
+        draft = eliminatePlaceholders(draft);
         this.sessions.delete(userIdSafe); // clear after generation
         return this._reply(draft, {
           mode: 'legal_generated',
@@ -92,7 +160,9 @@ class LegalDraftSkill extends BaseSkill {
     }
 
     // Fallback
-    const fallback = this._generateFromTemplate(message, docType);
+    let fallback = this._generateFromTemplate(processedMessage, docType);
+    fallback = autoCapitalizeText(fallback);
+    fallback = eliminatePlaceholders(fallback);
     this.sessions.delete(userIdSafe);
     return this._reply(fallback, {
       mode: 'legal_generated_template',
