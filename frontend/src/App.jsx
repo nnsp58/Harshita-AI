@@ -6,6 +6,7 @@ import UpgradeNotification from './components/UpgradeNotification'
 import SimpleDashboard from './pages/SimpleDashboard'
 import DashboardSaaS from './pages/DashboardSaaS'
 import Login from './pages/Login'
+import PublicHome from './pages/PublicHome'
 
 // Lazy load other pages
 const WorkspaceDashboard = lazy(() => import('./components/Dashboard/WorkspaceDashboard'))
@@ -88,14 +89,7 @@ function App() {
       }>
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route
-            path="/"
-            element={
-              <ProtectedRoute>
-                <SimpleDashboard />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/" element={<PublicHome />} />
           <Route
             path="/dashboard"
             element={

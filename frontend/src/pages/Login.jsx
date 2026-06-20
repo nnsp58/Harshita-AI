@@ -28,7 +28,7 @@ export default function Login() {
       setAuth(token, user)
       
       console.log('Login successful, navigating...')
-      navigate('/', { replace: true })
+      navigate('/dashboard', { replace: true })
     } catch (err) {
       console.error('Login error:', err)
       setError(err.response?.data?.error || 'Login failed. Please check credentials.')
@@ -47,7 +47,7 @@ export default function Login() {
       
       setAuth(token, user)
       console.log('Google Login successful')
-      navigate('/', { replace: true })
+      navigate('/dashboard', { replace: true })
     } catch (err) {
       console.error('Google Login error:', err)
       setError(err.response?.data?.error || 'Google Login failed.')
