@@ -59,8 +59,10 @@ export default function PublicHome() {
           </div>
           <nav className="hidden md:flex items-center gap-8 text-sm text-gray-400 font-medium">
             <a href="#features" className="hover:text-indigo-400 transition-colors">Features</a>
+            <a href="#draft-tools" className="hover:text-indigo-400 transition-colors">Premium Tools</a>
             <a href="#tools" className="hover:text-indigo-400 transition-colors">Converters</a>
-            <a href="#faq" className="hover:text-indigo-400 transition-colors">FAQs</a>
+            <Link to="/faq" className="hover:text-indigo-400 transition-colors">FAQs</Link>
+            <Link to="/blog" className="hover:text-indigo-400 transition-colors">Blog</Link>
             <Link to="/contact" className="hover:text-indigo-400 transition-colors">Contact</Link>
           </nav>
           <div className="flex items-center gap-4">
@@ -122,6 +124,45 @@ export default function PublicHome() {
               Contact Support
             </Link>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Premium AI Drafting Tools Directory */}
+      <section id="draft-tools" className="py-20 px-4 sm:px-8 border-t border-white/5 bg-[#0b0d19]/30">
+        <div className="max-w-7xl mx-auto space-y-12">
+          <div className="text-center max-w-2xl mx-auto space-y-3">
+            <span className="text-xs font-bold text-amber-500 uppercase tracking-widest">Premium Legal & Business Solutions</span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">AI Drafting Assistants</h2>
+            <p className="text-sm text-gray-400">Generate court-ready agreements, legal notices, and certificates in minutes with our zero-placeholder quality gates.</p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { icon: '⚖️', name: 'Affidavit Generator', desc: 'Create legally valid name change, lost marksheet, and address affidavits.', slug: 'affidavit-generator' },
+              { icon: '✉️', name: 'Legal Notice Generator', desc: 'Draft professional demand letters for cheque bounce, recovery, and disputes.', slug: 'legal-notice-generator' },
+              { icon: '📝', name: 'Prarthna Patra Writer', desc: 'Hindi applications for block tehsils, police complaints, and SDM offices.', slug: 'prarthna-patra-writer' },
+              { icon: '🏠', name: 'Rent Agreement Builder', desc: 'Construct customized tenant-landlord agreements with state stamp rules.', slug: 'rent-agreement-generator' },
+              { icon: '🎁', name: 'Gift Deed Generator', desc: 'Voluntary property gift deeds for blood relatives with tax exemptions.', slug: 'gift-deed-generator' },
+              { icon: '🗺️', name: 'Partition Deed Builder', desc: 'Draft agreements to divide joint family property among co-owners.', slug: 'partition-deed-generator' },
+              { icon: '🤝', name: 'Power of Attorney GPA/SPA', desc: 'Authorize representation rights for property, RTO, or legal matters.', slug: 'power-of-attorney-generator' },
+              { icon: '📜', name: 'Will (Wasiyat) Builder', desc: 'Ensure asset succession with secure executor and witness covenants.', slug: 'will-generator' }
+            ].map((tool, idx) => (
+              <Link 
+                key={idx} 
+                to={`/tools/${tool.slug}`}
+                className="group p-6 rounded-2xl bg-[#0f111a] border border-white/5 hover:border-amber-500/30 transition-all duration-300 shadow-xl flex flex-col justify-between hover:scale-[1.02] hover:shadow-amber-500/5"
+              >
+                <div className="space-y-4">
+                  <span className="text-3xl block group-hover:scale-110 transition-transform origin-left">{tool.icon}</span>
+                  <h3 className="font-bold text-white text-base group-hover:text-amber-400 transition-colors">{tool.name}</h3>
+                  <p className="text-xs text-gray-400 leading-relaxed line-clamp-3">{tool.desc}</p>
+                </div>
+                <div className="flex items-center gap-1.5 text-xs text-amber-500 font-bold mt-6 pt-4 border-t border-white/[0.02]">
+                  Explore Details <ChevronRight size={12} className="group-hover:translate-x-1 transition-transform" />
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -243,22 +284,27 @@ export default function PublicHome() {
             </p>
           </div>
           <div>
-            <h4 className="font-bold text-white mb-4">Product</h4>
+            <h4 className="font-bold text-white mb-4">Drafting Tools</h4>
             <ul className="space-y-2 text-xs">
-              <li><a href="#features" className="hover:text-white transition-colors">Features</a></li>
-              <li><a href="#tools" className="hover:text-white transition-colors">Converters Directory</a></li>
-              <li><Link to="/login" className="hover:text-white transition-colors">Operator Login</Link></li>
+              <li><Link to="/tools/affidavit-generator" className="hover:text-white transition-colors">Affidavit Generator</Link></li>
+              <li><Link to="/tools/legal-notice-generator" className="hover:text-white transition-colors">Legal Notice Agent</Link></li>
+              <li><Link to="/tools/prarthna-patra-writer" className="hover:text-white transition-colors">Prarthna Patra Writer</Link></li>
+              <li><Link to="/tools/rent-agreement-generator" className="hover:text-white transition-colors">Rent Agreement Builder</Link></li>
+              <li><Link to="/tools/will-generator" className="hover:text-white transition-colors">Will (Wasiyat) Builder</Link></li>
             </ul>
           </div>
           <div>
-            <h4 className="font-bold text-white mb-4">Support & Contact</h4>
+            <h4 className="font-bold text-white mb-4">Knowledge Base</h4>
             <ul className="space-y-2 text-xs">
+              <li><Link to="/faq" className="hover:text-white transition-colors">Frequently Asked FAQs</Link></li>
+              <li><Link to="/blog" className="hover:text-white transition-colors">Official Blog Posts</Link></li>
+              <li><Link to="/seo/how-to-write-affidavit" className="hover:text-white transition-colors">How to Write Affidavit</Link></li>
+              <li><Link to="/seo/how-to-write-legal-notice" className="hover:text-white transition-colors">How to Write Legal Notice</Link></li>
               <li><Link to="/contact" className="hover:text-white transition-colors">Contact Support Form</Link></li>
-              <li><a href="mailto:contact@n-dizi.in" className="hover:text-white transition-colors">contact@n-dizi.in</a></li>
             </ul>
           </div>
           <div>
-            <h4 className="font-bold text-white mb-4">Legal & Compliance</h4>
+            <h4 className="font-bold text-white mb-4">Compliance</h4>
             <ul className="space-y-2 text-xs">
               <li><a href="/about.html" className="hover:text-white transition-colors">About Us</a></li>
               <li><a href="/privacy-policy.html" className="hover:text-white transition-colors">Privacy Policy</a></li>

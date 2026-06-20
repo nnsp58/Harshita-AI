@@ -27,6 +27,13 @@ const ServicePage = lazy(() => import('./pages/ServicePage'))
 const AdvocateProfile = lazy(() => import('./pages/AdvocateProfile'))
 const ContactUs = lazy(() => import('./pages/ContactUs'))
 
+// AdSense Content & SEO Pages
+const ToolLanding = lazy(() => import('./pages/ToolLanding'))
+const SeoArticle = lazy(() => import('./pages/SeoArticle'))
+const BlogList = lazy(() => import('./pages/BlogList'))
+const BlogPost = lazy(() => import('./pages/BlogPost'))
+const FaqList = lazy(() => import('./pages/FaqList'))
+
 // Admin pages
 const ControlDashboard = lazy(() => import('./pages/admin/ControlDashboard'))
 const UsersControl = lazy(() => import('./pages/admin/UsersControl'))
@@ -255,6 +262,24 @@ function App() {
 
           {/* Contact Us Form */}
           <Route path="/contact" element={<ContactUs />} />
+
+          {/* AdSense SEO & Content Routes */}
+          <Route path="/faq" element={<FaqList />} />
+          <Route path="/blog" element={<BlogList />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/seo/:slug" element={<SeoArticle />} />
+          <Route path="/tools/:slug" element={<ToolLanding />} />
+          
+          {/* Money Page Aliases */}
+          <Route path="/affidavit-generator" element={<ToolLanding />} />
+          <Route path="/legal-notice-generator" element={<ToolLanding />} />
+          <Route path="/prarthna-patra-writer" element={<ToolLanding />} />
+          <Route path="/rent-agreement-generator" element={<ToolLanding />} />
+          <Route path="/gift-deed-generator" element={<ToolLanding />} />
+          <Route path="/partition-deed-generator" element={<ToolLanding />} />
+          <Route path="/power-of-attorney-generator" element={<ToolLanding />} />
+          <Route path="/will-generator" element={<ToolLanding />} />
+          <Route path="/noc-generator" element={<ToolLanding />} />
 
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
