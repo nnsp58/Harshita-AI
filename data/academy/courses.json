@@ -1,0 +1,2500 @@
+[
+  {
+    "id": "level-1",
+    "name": "Level 1 – AI Beginner",
+    "nameHi": "लेवल 1 – एआई बिगिनर",
+    "duration": "5 Days",
+    "lessonsCount": 5,
+    "status": "Active",
+    "progress": 0,
+    "description": "Master the absolute basics of artificial intelligence. Get comfortable with ChatGPT, Google Gemini, and learn how to apply AI to solve daily study, teaching, and administrative problems.",
+    "certificationTitle": "Certified AI User",
+    "certificationCriteria": [
+      "Complete all 5 Lessons in this level",
+      "Pass all quizzes with correct feedback scores",
+      "Submit the practical assignment script text",
+      "Complete and submit the level mini-project"
+    ],
+    "capstoneProject": {
+      "title": "Capstone: Build a complete Certified AI User project solution",
+      "description": "Construct and test an end-to-end workflow applying the topics in this level. Submit your code plan or prompt library notes.",
+      "requirements": [
+        "List inputs, constraints, and instructions clearly",
+        "Provide test outputs showing self-healing checks"
+      ]
+    },
+    "modules": [
+      {
+        "id": 1,
+        "title": "Module 1 - Core Mastery",
+        "assignment": "Use ChatGPT and Gemini to outline a detailed schedule for learning a new skill in 30 days.",
+        "miniProject": "Create a personal learning planner comparing response formats from ChatGPT and Gemini.",
+        "quiz": [
+          {
+            "question": "What is the primary difference between ChatGPT and Google Gemini?",
+            "options": [
+              "ChatGPT is made by OpenAI; Gemini is made by Google and runs on native multimodal inputs",
+              "ChatGPT is only in Hindi; Gemini is only in English",
+              "Gemini does not require internet connection",
+              "There is no difference"
+            ],
+            "correctOption": 0
+          },
+          {
+            "question": "What is an LLM?",
+            "options": [
+              "Logical List Maker",
+              "Large Language Model",
+              "Lite Logic Mapper",
+              "Local Loop Manager"
+            ],
+            "correctOption": 1
+          }
+        ],
+        "lessons": [
+          {
+            "id": "level-1-l1",
+            "title": "What is AI?",
+            "duration": "08:45",
+            "description": "Comprehensive guide to What is AI?. Learn definitions, study real cases, run terminal demonstrations, and complete drills.",
+            "learningObjectives": [
+              "Analyze the foundational definition of What is AI?.",
+              "Apply step-by-step procedures to resolve workflow tasks.",
+              "Master the tools and configurations required for What is AI?."
+            ],
+            "theory": "In this lesson on What is AI?, we break down concepts using simple, plain terms. For example, think of an AI model like a smart library clerk. If you ask for 'a book', the clerk will guess. But if you request 'a 19th-century romance book written by an Indian author', you get exactly what you need. That is the essence of structuring inputs. We explain terms simply so that beginners can build correct habits without needing advanced coding knowledge.",
+            "examples": "Case Study: An agency implementing What is AI? techniques resolved data discrepancies in under 3 minutes, cutting administrative backlogs by over 50% while improving satisfaction ratings.",
+            "demonstration": "1. Open your workspace control panel.\n2. Configure the setting: set variables.\n3. Input text: test string.\n4. Execute compilation and observe outputs.\n5. Verify that logs report success.",
+            "assignment": "Assignment Sheet: Draft a detailed 1-page report applying What is AI? to one daily task in your study or professional work. Highlight inputs and constraints.",
+            "quiz": [
+              {
+                "question": "What is the main goal of learning What is AI??",
+                "options": [
+                  "To increase work speed and improve content quality using AI features",
+                  "To configure hardware chips",
+                  "To study assembly code compilers",
+                  "None of the above"
+                ],
+                "correctOption": 0
+              },
+              {
+                "question": "Which element is recommended to get good outputs in What is AI??",
+                "options": [
+                  "Vague keywords with no structure",
+                  "Clear context, strict instructions, and output style guidelines",
+                  "Leaving settings at blank defaults",
+                  "Running operations offline only"
+                ],
+                "correctOption": 1
+              }
+            ],
+            "summary": "Summary of What is AI?:\n- Studied core terminology and analogical definitions.\n- Reviewed a practical case study showing efficiency benefits.\n- Ran setup instructions to test outcomes.\n- Practice exercises will reinforce retention.",
+            "videoScript": {
+              "hook": "Ever struggled with What is AI?? Today we look at how to master it step-by-step for absolute beginners!",
+              "introduction": "Welcome back. This is Harshita AI Academy. In this video, we cover What is AI? theory and live demo configurations.",
+              "mainTeaching": "The fundamental point behind What is AI? is layout and constraint design. Setting limits ensures consistency.",
+              "demonstration": "Watch my screen: I trigger the workflow and check verification scores. Notice the output format.",
+              "assignment": "Your task is to write your own prompts checklist and test them inside the dashboard console.",
+              "summary": "Thanks for watching. Complete the lesson quiz and assignment. In the next video, we advance to next level!"
+            },
+            "slideContent": [
+              {
+                "title": "Lesson: What is AI?",
+                "content": [
+                  "Topic introduction",
+                  "Core goals of this session"
+                ],
+                "visualPrompt": "Flowchart showing user request going to Harshita AI engine."
+              },
+              {
+                "title": "Core Theory",
+                "content": [
+                  "Analogical explanation",
+                  "Avoiding mistakes"
+                ],
+                "visualPrompt": "Comparison table showing Bad setup vs Good setup."
+              },
+              {
+                "title": "Live Demo",
+                "content": [
+                  "Workspace setup",
+                  "Compiling results"
+                ],
+                "visualPrompt": "Screenshot of terminal logs displaying successful validation status."
+              }
+            ],
+            "practiceExercises": [
+              "Exercise 1: Write down 3 business use cases for What is AI?.",
+              "Exercise 2: Set up custom files and verify compilation codes."
+            ],
+            "notesPdfLink": "/data/academy/notes/level-1-l1.pdf"
+          },
+          {
+            "id": "level-1-l2",
+            "title": "Using ChatGPT",
+            "duration": "10:20",
+            "description": "Comprehensive guide to Using ChatGPT. Learn definitions, study real cases, run terminal demonstrations, and complete drills.",
+            "learningObjectives": [
+              "Analyze the foundational definition of Using ChatGPT.",
+              "Apply step-by-step procedures to resolve workflow tasks.",
+              "Master the tools and configurations required for Using ChatGPT."
+            ],
+            "theory": "In this lesson on Using ChatGPT, we break down concepts using simple, plain terms. For example, think of an AI model like a smart library clerk. If you ask for 'a book', the clerk will guess. But if you request 'a 19th-century romance book written by an Indian author', you get exactly what you need. That is the essence of structuring inputs. We explain terms simply so that beginners can build correct habits without needing advanced coding knowledge.",
+            "examples": "Case Study: An agency implementing Using ChatGPT techniques resolved data discrepancies in under 3 minutes, cutting administrative backlogs by over 50% while improving satisfaction ratings.",
+            "demonstration": "1. Open your workspace control panel.\n2. Configure the setting: set variables.\n3. Input text: test string.\n4. Execute compilation and observe outputs.\n5. Verify that logs report success.",
+            "assignment": "Assignment Sheet: Draft a detailed 1-page report applying Using ChatGPT to one daily task in your study or professional work. Highlight inputs and constraints.",
+            "quiz": [
+              {
+                "question": "What is the main goal of learning Using ChatGPT?",
+                "options": [
+                  "To increase work speed and improve content quality using AI features",
+                  "To configure hardware chips",
+                  "To study assembly code compilers",
+                  "None of the above"
+                ],
+                "correctOption": 0
+              },
+              {
+                "question": "Which element is recommended to get good outputs in Using ChatGPT?",
+                "options": [
+                  "Vague keywords with no structure",
+                  "Clear context, strict instructions, and output style guidelines",
+                  "Leaving settings at blank defaults",
+                  "Running operations offline only"
+                ],
+                "correctOption": 1
+              }
+            ],
+            "summary": "Summary of Using ChatGPT:\n- Studied core terminology and analogical definitions.\n- Reviewed a practical case study showing efficiency benefits.\n- Ran setup instructions to test outcomes.\n- Practice exercises will reinforce retention.",
+            "videoScript": {
+              "hook": "Ever struggled with Using ChatGPT? Today we look at how to master it step-by-step for absolute beginners!",
+              "introduction": "Welcome back. This is Harshita AI Academy. In this video, we cover Using ChatGPT theory and live demo configurations.",
+              "mainTeaching": "The fundamental point behind Using ChatGPT is layout and constraint design. Setting limits ensures consistency.",
+              "demonstration": "Watch my screen: I trigger the workflow and check verification scores. Notice the output format.",
+              "assignment": "Your task is to write your own prompts checklist and test them inside the dashboard console.",
+              "summary": "Thanks for watching. Complete the lesson quiz and assignment. In the next video, we advance to next level!"
+            },
+            "slideContent": [
+              {
+                "title": "Lesson: Using ChatGPT",
+                "content": [
+                  "Topic introduction",
+                  "Core goals of this session"
+                ],
+                "visualPrompt": "Flowchart showing user request going to Harshita AI engine."
+              },
+              {
+                "title": "Core Theory",
+                "content": [
+                  "Analogical explanation",
+                  "Avoiding mistakes"
+                ],
+                "visualPrompt": "Comparison table showing Bad setup vs Good setup."
+              },
+              {
+                "title": "Live Demo",
+                "content": [
+                  "Workspace setup",
+                  "Compiling results"
+                ],
+                "visualPrompt": "Screenshot of terminal logs displaying successful validation status."
+              }
+            ],
+            "practiceExercises": [
+              "Exercise 1: Write down 3 business use cases for Using ChatGPT.",
+              "Exercise 2: Set up custom files and verify compilation codes."
+            ],
+            "notesPdfLink": "/data/academy/notes/level-1-l2.pdf"
+          },
+          {
+            "id": "level-1-l3",
+            "title": "Using Gemini",
+            "duration": "11:15",
+            "description": "Comprehensive guide to Using Gemini. Learn definitions, study real cases, run terminal demonstrations, and complete drills.",
+            "learningObjectives": [
+              "Analyze the foundational definition of Using Gemini.",
+              "Apply step-by-step procedures to resolve workflow tasks.",
+              "Master the tools and configurations required for Using Gemini."
+            ],
+            "theory": "In this lesson on Using Gemini, we break down concepts using simple, plain terms. For example, think of an AI model like a smart library clerk. If you ask for 'a book', the clerk will guess. But if you request 'a 19th-century romance book written by an Indian author', you get exactly what you need. That is the essence of structuring inputs. We explain terms simply so that beginners can build correct habits without needing advanced coding knowledge.",
+            "examples": "Case Study: An agency implementing Using Gemini techniques resolved data discrepancies in under 3 minutes, cutting administrative backlogs by over 50% while improving satisfaction ratings.",
+            "demonstration": "1. Open your workspace control panel.\n2. Configure the setting: set variables.\n3. Input text: test string.\n4. Execute compilation and observe outputs.\n5. Verify that logs report success.",
+            "assignment": "Assignment Sheet: Draft a detailed 1-page report applying Using Gemini to one daily task in your study or professional work. Highlight inputs and constraints.",
+            "quiz": [
+              {
+                "question": "What is the main goal of learning Using Gemini?",
+                "options": [
+                  "To increase work speed and improve content quality using AI features",
+                  "To configure hardware chips",
+                  "To study assembly code compilers",
+                  "None of the above"
+                ],
+                "correctOption": 0
+              },
+              {
+                "question": "Which element is recommended to get good outputs in Using Gemini?",
+                "options": [
+                  "Vague keywords with no structure",
+                  "Clear context, strict instructions, and output style guidelines",
+                  "Leaving settings at blank defaults",
+                  "Running operations offline only"
+                ],
+                "correctOption": 1
+              }
+            ],
+            "summary": "Summary of Using Gemini:\n- Studied core terminology and analogical definitions.\n- Reviewed a practical case study showing efficiency benefits.\n- Ran setup instructions to test outcomes.\n- Practice exercises will reinforce retention.",
+            "videoScript": {
+              "hook": "Ever struggled with Using Gemini? Today we look at how to master it step-by-step for absolute beginners!",
+              "introduction": "Welcome back. This is Harshita AI Academy. In this video, we cover Using Gemini theory and live demo configurations.",
+              "mainTeaching": "The fundamental point behind Using Gemini is layout and constraint design. Setting limits ensures consistency.",
+              "demonstration": "Watch my screen: I trigger the workflow and check verification scores. Notice the output format.",
+              "assignment": "Your task is to write your own prompts checklist and test them inside the dashboard console.",
+              "summary": "Thanks for watching. Complete the lesson quiz and assignment. In the next video, we advance to next level!"
+            },
+            "slideContent": [
+              {
+                "title": "Lesson: Using Gemini",
+                "content": [
+                  "Topic introduction",
+                  "Core goals of this session"
+                ],
+                "visualPrompt": "Flowchart showing user request going to Harshita AI engine."
+              },
+              {
+                "title": "Core Theory",
+                "content": [
+                  "Analogical explanation",
+                  "Avoiding mistakes"
+                ],
+                "visualPrompt": "Comparison table showing Bad setup vs Good setup."
+              },
+              {
+                "title": "Live Demo",
+                "content": [
+                  "Workspace setup",
+                  "Compiling results"
+                ],
+                "visualPrompt": "Screenshot of terminal logs displaying successful validation status."
+              }
+            ],
+            "practiceExercises": [
+              "Exercise 1: Write down 3 business use cases for Using Gemini.",
+              "Exercise 2: Set up custom files and verify compilation codes."
+            ],
+            "notesPdfLink": "/data/academy/notes/level-1-l3.pdf"
+          },
+          {
+            "id": "level-1-l4",
+            "title": "Daily AI Tasks",
+            "duration": "09:30",
+            "description": "Comprehensive guide to Daily AI Tasks. Learn definitions, study real cases, run terminal demonstrations, and complete drills.",
+            "learningObjectives": [
+              "Analyze the foundational definition of Daily AI Tasks.",
+              "Apply step-by-step procedures to resolve workflow tasks.",
+              "Master the tools and configurations required for Daily AI Tasks."
+            ],
+            "theory": "In this lesson on Daily AI Tasks, we break down concepts using simple, plain terms. For example, think of an AI model like a smart library clerk. If you ask for 'a book', the clerk will guess. But if you request 'a 19th-century romance book written by an Indian author', you get exactly what you need. That is the essence of structuring inputs. We explain terms simply so that beginners can build correct habits without needing advanced coding knowledge.",
+            "examples": "Case Study: An agency implementing Daily AI Tasks techniques resolved data discrepancies in under 3 minutes, cutting administrative backlogs by over 50% while improving satisfaction ratings.",
+            "demonstration": "1. Open your workspace control panel.\n2. Configure the setting: set variables.\n3. Input text: test string.\n4. Execute compilation and observe outputs.\n5. Verify that logs report success.",
+            "assignment": "Assignment Sheet: Draft a detailed 1-page report applying Daily AI Tasks to one daily task in your study or professional work. Highlight inputs and constraints.",
+            "quiz": [
+              {
+                "question": "What is the main goal of learning Daily AI Tasks?",
+                "options": [
+                  "To increase work speed and improve content quality using AI features",
+                  "To configure hardware chips",
+                  "To study assembly code compilers",
+                  "None of the above"
+                ],
+                "correctOption": 0
+              },
+              {
+                "question": "Which element is recommended to get good outputs in Daily AI Tasks?",
+                "options": [
+                  "Vague keywords with no structure",
+                  "Clear context, strict instructions, and output style guidelines",
+                  "Leaving settings at blank defaults",
+                  "Running operations offline only"
+                ],
+                "correctOption": 1
+              }
+            ],
+            "summary": "Summary of Daily AI Tasks:\n- Studied core terminology and analogical definitions.\n- Reviewed a practical case study showing efficiency benefits.\n- Ran setup instructions to test outcomes.\n- Practice exercises will reinforce retention.",
+            "videoScript": {
+              "hook": "Ever struggled with Daily AI Tasks? Today we look at how to master it step-by-step for absolute beginners!",
+              "introduction": "Welcome back. This is Harshita AI Academy. In this video, we cover Daily AI Tasks theory and live demo configurations.",
+              "mainTeaching": "The fundamental point behind Daily AI Tasks is layout and constraint design. Setting limits ensures consistency.",
+              "demonstration": "Watch my screen: I trigger the workflow and check verification scores. Notice the output format.",
+              "assignment": "Your task is to write your own prompts checklist and test them inside the dashboard console.",
+              "summary": "Thanks for watching. Complete the lesson quiz and assignment. In the next video, we advance to next level!"
+            },
+            "slideContent": [
+              {
+                "title": "Lesson: Daily AI Tasks",
+                "content": [
+                  "Topic introduction",
+                  "Core goals of this session"
+                ],
+                "visualPrompt": "Flowchart showing user request going to Harshita AI engine."
+              },
+              {
+                "title": "Core Theory",
+                "content": [
+                  "Analogical explanation",
+                  "Avoiding mistakes"
+                ],
+                "visualPrompt": "Comparison table showing Bad setup vs Good setup."
+              },
+              {
+                "title": "Live Demo",
+                "content": [
+                  "Workspace setup",
+                  "Compiling results"
+                ],
+                "visualPrompt": "Screenshot of terminal logs displaying successful validation status."
+              }
+            ],
+            "practiceExercises": [
+              "Exercise 1: Write down 3 business use cases for Daily AI Tasks.",
+              "Exercise 2: Set up custom files and verify compilation codes."
+            ],
+            "notesPdfLink": "/data/academy/notes/level-1-l4.pdf"
+          },
+          {
+            "id": "level-1-l5",
+            "title": "AI for Students",
+            "duration": "12:05",
+            "description": "Comprehensive guide to AI for Students. Learn definitions, study real cases, run terminal demonstrations, and complete drills.",
+            "learningObjectives": [
+              "Analyze the foundational definition of AI for Students.",
+              "Apply step-by-step procedures to resolve workflow tasks.",
+              "Master the tools and configurations required for AI for Students."
+            ],
+            "theory": "In this lesson on AI for Students, we break down concepts using simple, plain terms. For example, think of an AI model like a smart library clerk. If you ask for 'a book', the clerk will guess. But if you request 'a 19th-century romance book written by an Indian author', you get exactly what you need. That is the essence of structuring inputs. We explain terms simply so that beginners can build correct habits without needing advanced coding knowledge.",
+            "examples": "Case Study: An agency implementing AI for Students techniques resolved data discrepancies in under 3 minutes, cutting administrative backlogs by over 50% while improving satisfaction ratings.",
+            "demonstration": "1. Open your workspace control panel.\n2. Configure the setting: set variables.\n3. Input text: test string.\n4. Execute compilation and observe outputs.\n5. Verify that logs report success.",
+            "assignment": "Assignment Sheet: Draft a detailed 1-page report applying AI for Students to one daily task in your study or professional work. Highlight inputs and constraints.",
+            "quiz": [
+              {
+                "question": "What is the main goal of learning AI for Students?",
+                "options": [
+                  "To increase work speed and improve content quality using AI features",
+                  "To configure hardware chips",
+                  "To study assembly code compilers",
+                  "None of the above"
+                ],
+                "correctOption": 0
+              },
+              {
+                "question": "Which element is recommended to get good outputs in AI for Students?",
+                "options": [
+                  "Vague keywords with no structure",
+                  "Clear context, strict instructions, and output style guidelines",
+                  "Leaving settings at blank defaults",
+                  "Running operations offline only"
+                ],
+                "correctOption": 1
+              }
+            ],
+            "summary": "Summary of AI for Students:\n- Studied core terminology and analogical definitions.\n- Reviewed a practical case study showing efficiency benefits.\n- Ran setup instructions to test outcomes.\n- Practice exercises will reinforce retention.",
+            "videoScript": {
+              "hook": "Ever struggled with AI for Students? Today we look at how to master it step-by-step for absolute beginners!",
+              "introduction": "Welcome back. This is Harshita AI Academy. In this video, we cover AI for Students theory and live demo configurations.",
+              "mainTeaching": "The fundamental point behind AI for Students is layout and constraint design. Setting limits ensures consistency.",
+              "demonstration": "Watch my screen: I trigger the workflow and check verification scores. Notice the output format.",
+              "assignment": "Your task is to write your own prompts checklist and test them inside the dashboard console.",
+              "summary": "Thanks for watching. Complete the lesson quiz and assignment. In the next video, we advance to next level!"
+            },
+            "slideContent": [
+              {
+                "title": "Lesson: AI for Students",
+                "content": [
+                  "Topic introduction",
+                  "Core goals of this session"
+                ],
+                "visualPrompt": "Flowchart showing user request going to Harshita AI engine."
+              },
+              {
+                "title": "Core Theory",
+                "content": [
+                  "Analogical explanation",
+                  "Avoiding mistakes"
+                ],
+                "visualPrompt": "Comparison table showing Bad setup vs Good setup."
+              },
+              {
+                "title": "Live Demo",
+                "content": [
+                  "Workspace setup",
+                  "Compiling results"
+                ],
+                "visualPrompt": "Screenshot of terminal logs displaying successful validation status."
+              }
+            ],
+            "practiceExercises": [
+              "Exercise 1: Write down 3 business use cases for AI for Students.",
+              "Exercise 2: Set up custom files and verify compilation codes."
+            ],
+            "notesPdfLink": "/data/academy/notes/level-1-l5.pdf"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "level-2",
+    "name": "Level 2 – Prompt Engineering Specialist",
+    "nameHi": "लेवल 2 – प्रॉम्प्ट इंजीनियरिंग स्पेशलिस्ट",
+    "duration": "5 Days",
+    "lessonsCount": 5,
+    "status": "Active",
+    "progress": 0,
+    "description": "Learn the core principles of prompting. Understand instructions, constraints, context formatting, and master role prompting, few-shot prompting, and Chain of Thought thinking.",
+    "certificationTitle": "Certified Prompt Engineer",
+    "certificationCriteria": [
+      "Complete all 5 Lessons in this level",
+      "Pass all quizzes with correct feedback scores",
+      "Submit the practical assignment script text",
+      "Complete and submit the level mini-project"
+    ],
+    "capstoneProject": {
+      "title": "Capstone: Build a complete Certified Prompt Engineer project solution",
+      "description": "Construct and test an end-to-end workflow applying the topics in this level. Submit your code plan or prompt library notes.",
+      "requirements": [
+        "List inputs, constraints, and instructions clearly",
+        "Provide test outputs showing self-healing checks"
+      ]
+    },
+    "modules": [
+      {
+        "id": 2,
+        "title": "Module 2 - Core Mastery",
+        "assignment": "Write a professional system prompt that turns the model into an experienced legal draft editor.",
+        "miniProject": "Develop a template library of 5 reusable system prompts for business analytics.",
+        "quiz": [
+          {
+            "question": "What does 'Few-Shot Prompting' mean?",
+            "options": [
+              "Providing a few input-output examples in the prompt to demonstrate the desired format",
+              "Limiting the model output tokens count",
+              "Using very short keywords in the input",
+              "Running the prompt only a few times"
+            ],
+            "correctOption": 0
+          },
+          {
+            "question": "Why do we use Chain of Thought (CoT) prompting?",
+            "options": [
+              "To force the model to think step-by-step and show its logic for reasoning tasks",
+              "To decrease response time",
+              "To link multiple accounts together",
+              "To translate outputs to other languages"
+            ],
+            "correctOption": 0
+          }
+        ],
+        "lessons": [
+          {
+            "id": "level-2-l1",
+            "title": "Prompt Structure",
+            "duration": "10:15",
+            "description": "Comprehensive guide to Prompt Structure. Learn definitions, study real cases, run terminal demonstrations, and complete drills.",
+            "learningObjectives": [
+              "Analyze the foundational definition of Prompt Structure.",
+              "Apply step-by-step procedures to resolve workflow tasks.",
+              "Master the tools and configurations required for Prompt Structure."
+            ],
+            "theory": "In this lesson on Prompt Structure, we break down concepts using simple, plain terms. For example, think of an AI model like a smart library clerk. If you ask for 'a book', the clerk will guess. But if you request 'a 19th-century romance book written by an Indian author', you get exactly what you need. That is the essence of structuring inputs. We explain terms simply so that beginners can build correct habits without needing advanced coding knowledge.",
+            "examples": "Case Study: An agency implementing Prompt Structure techniques resolved data discrepancies in under 3 minutes, cutting administrative backlogs by over 50% while improving satisfaction ratings.",
+            "demonstration": "1. Open your workspace control panel.\n2. Configure the setting: set variables.\n3. Input text: test string.\n4. Execute compilation and observe outputs.\n5. Verify that logs report success.",
+            "assignment": "Assignment Sheet: Draft a detailed 1-page report applying Prompt Structure to one daily task in your study or professional work. Highlight inputs and constraints.",
+            "quiz": [
+              {
+                "question": "What is the main goal of learning Prompt Structure?",
+                "options": [
+                  "To increase work speed and improve content quality using AI features",
+                  "To configure hardware chips",
+                  "To study assembly code compilers",
+                  "None of the above"
+                ],
+                "correctOption": 0
+              },
+              {
+                "question": "Which element is recommended to get good outputs in Prompt Structure?",
+                "options": [
+                  "Vague keywords with no structure",
+                  "Clear context, strict instructions, and output style guidelines",
+                  "Leaving settings at blank defaults",
+                  "Running operations offline only"
+                ],
+                "correctOption": 1
+              }
+            ],
+            "summary": "Summary of Prompt Structure:\n- Studied core terminology and analogical definitions.\n- Reviewed a practical case study showing efficiency benefits.\n- Ran setup instructions to test outcomes.\n- Practice exercises will reinforce retention.",
+            "videoScript": {
+              "hook": "Ever struggled with Prompt Structure? Today we look at how to master it step-by-step for absolute beginners!",
+              "introduction": "Welcome back. This is Harshita AI Academy. In this video, we cover Prompt Structure theory and live demo configurations.",
+              "mainTeaching": "The fundamental point behind Prompt Structure is layout and constraint design. Setting limits ensures consistency.",
+              "demonstration": "Watch my screen: I trigger the workflow and check verification scores. Notice the output format.",
+              "assignment": "Your task is to write your own prompts checklist and test them inside the dashboard console.",
+              "summary": "Thanks for watching. Complete the lesson quiz and assignment. In the next video, we advance to next level!"
+            },
+            "slideContent": [
+              {
+                "title": "Lesson: Prompt Structure",
+                "content": [
+                  "Topic introduction",
+                  "Core goals of this session"
+                ],
+                "visualPrompt": "Flowchart showing user request going to Harshita AI engine."
+              },
+              {
+                "title": "Core Theory",
+                "content": [
+                  "Analogical explanation",
+                  "Avoiding mistakes"
+                ],
+                "visualPrompt": "Comparison table showing Bad setup vs Good setup."
+              },
+              {
+                "title": "Live Demo",
+                "content": [
+                  "Workspace setup",
+                  "Compiling results"
+                ],
+                "visualPrompt": "Screenshot of terminal logs displaying successful validation status."
+              }
+            ],
+            "practiceExercises": [
+              "Exercise 1: Write down 3 business use cases for Prompt Structure.",
+              "Exercise 2: Set up custom files and verify compilation codes."
+            ],
+            "notesPdfLink": "/data/academy/notes/level-2-l1.pdf"
+          },
+          {
+            "id": "level-2-l2",
+            "title": "Context Engineering",
+            "duration": "11:30",
+            "description": "Comprehensive guide to Context Engineering. Learn definitions, study real cases, run terminal demonstrations, and complete drills.",
+            "learningObjectives": [
+              "Analyze the foundational definition of Context Engineering.",
+              "Apply step-by-step procedures to resolve workflow tasks.",
+              "Master the tools and configurations required for Context Engineering."
+            ],
+            "theory": "In this lesson on Context Engineering, we break down concepts using simple, plain terms. For example, think of an AI model like a smart library clerk. If you ask for 'a book', the clerk will guess. But if you request 'a 19th-century romance book written by an Indian author', you get exactly what you need. That is the essence of structuring inputs. We explain terms simply so that beginners can build correct habits without needing advanced coding knowledge.",
+            "examples": "Case Study: An agency implementing Context Engineering techniques resolved data discrepancies in under 3 minutes, cutting administrative backlogs by over 50% while improving satisfaction ratings.",
+            "demonstration": "1. Open your workspace control panel.\n2. Configure the setting: set variables.\n3. Input text: test string.\n4. Execute compilation and observe outputs.\n5. Verify that logs report success.",
+            "assignment": "Assignment Sheet: Draft a detailed 1-page report applying Context Engineering to one daily task in your study or professional work. Highlight inputs and constraints.",
+            "quiz": [
+              {
+                "question": "What is the main goal of learning Context Engineering?",
+                "options": [
+                  "To increase work speed and improve content quality using AI features",
+                  "To configure hardware chips",
+                  "To study assembly code compilers",
+                  "None of the above"
+                ],
+                "correctOption": 0
+              },
+              {
+                "question": "Which element is recommended to get good outputs in Context Engineering?",
+                "options": [
+                  "Vague keywords with no structure",
+                  "Clear context, strict instructions, and output style guidelines",
+                  "Leaving settings at blank defaults",
+                  "Running operations offline only"
+                ],
+                "correctOption": 1
+              }
+            ],
+            "summary": "Summary of Context Engineering:\n- Studied core terminology and analogical definitions.\n- Reviewed a practical case study showing efficiency benefits.\n- Ran setup instructions to test outcomes.\n- Practice exercises will reinforce retention.",
+            "videoScript": {
+              "hook": "Ever struggled with Context Engineering? Today we look at how to master it step-by-step for absolute beginners!",
+              "introduction": "Welcome back. This is Harshita AI Academy. In this video, we cover Context Engineering theory and live demo configurations.",
+              "mainTeaching": "The fundamental point behind Context Engineering is layout and constraint design. Setting limits ensures consistency.",
+              "demonstration": "Watch my screen: I trigger the workflow and check verification scores. Notice the output format.",
+              "assignment": "Your task is to write your own prompts checklist and test them inside the dashboard console.",
+              "summary": "Thanks for watching. Complete the lesson quiz and assignment. In the next video, we advance to next level!"
+            },
+            "slideContent": [
+              {
+                "title": "Lesson: Context Engineering",
+                "content": [
+                  "Topic introduction",
+                  "Core goals of this session"
+                ],
+                "visualPrompt": "Flowchart showing user request going to Harshita AI engine."
+              },
+              {
+                "title": "Core Theory",
+                "content": [
+                  "Analogical explanation",
+                  "Avoiding mistakes"
+                ],
+                "visualPrompt": "Comparison table showing Bad setup vs Good setup."
+              },
+              {
+                "title": "Live Demo",
+                "content": [
+                  "Workspace setup",
+                  "Compiling results"
+                ],
+                "visualPrompt": "Screenshot of terminal logs displaying successful validation status."
+              }
+            ],
+            "practiceExercises": [
+              "Exercise 1: Write down 3 business use cases for Context Engineering.",
+              "Exercise 2: Set up custom files and verify compilation codes."
+            ],
+            "notesPdfLink": "/data/academy/notes/level-2-l2.pdf"
+          },
+          {
+            "id": "level-2-l3",
+            "title": "Role Prompting",
+            "duration": "12:45",
+            "description": "Comprehensive guide to Role Prompting. Learn definitions, study real cases, run terminal demonstrations, and complete drills.",
+            "learningObjectives": [
+              "Analyze the foundational definition of Role Prompting.",
+              "Apply step-by-step procedures to resolve workflow tasks.",
+              "Master the tools and configurations required for Role Prompting."
+            ],
+            "theory": "In this lesson on Role Prompting, we break down concepts using simple, plain terms. For example, think of an AI model like a smart library clerk. If you ask for 'a book', the clerk will guess. But if you request 'a 19th-century romance book written by an Indian author', you get exactly what you need. That is the essence of structuring inputs. We explain terms simply so that beginners can build correct habits without needing advanced coding knowledge.",
+            "examples": "Case Study: An agency implementing Role Prompting techniques resolved data discrepancies in under 3 minutes, cutting administrative backlogs by over 50% while improving satisfaction ratings.",
+            "demonstration": "1. Open your workspace control panel.\n2. Configure the setting: set variables.\n3. Input text: test string.\n4. Execute compilation and observe outputs.\n5. Verify that logs report success.",
+            "assignment": "Assignment Sheet: Draft a detailed 1-page report applying Role Prompting to one daily task in your study or professional work. Highlight inputs and constraints.",
+            "quiz": [
+              {
+                "question": "What is the main goal of learning Role Prompting?",
+                "options": [
+                  "To increase work speed and improve content quality using AI features",
+                  "To configure hardware chips",
+                  "To study assembly code compilers",
+                  "None of the above"
+                ],
+                "correctOption": 0
+              },
+              {
+                "question": "Which element is recommended to get good outputs in Role Prompting?",
+                "options": [
+                  "Vague keywords with no structure",
+                  "Clear context, strict instructions, and output style guidelines",
+                  "Leaving settings at blank defaults",
+                  "Running operations offline only"
+                ],
+                "correctOption": 1
+              }
+            ],
+            "summary": "Summary of Role Prompting:\n- Studied core terminology and analogical definitions.\n- Reviewed a practical case study showing efficiency benefits.\n- Ran setup instructions to test outcomes.\n- Practice exercises will reinforce retention.",
+            "videoScript": {
+              "hook": "Ever struggled with Role Prompting? Today we look at how to master it step-by-step for absolute beginners!",
+              "introduction": "Welcome back. This is Harshita AI Academy. In this video, we cover Role Prompting theory and live demo configurations.",
+              "mainTeaching": "The fundamental point behind Role Prompting is layout and constraint design. Setting limits ensures consistency.",
+              "demonstration": "Watch my screen: I trigger the workflow and check verification scores. Notice the output format.",
+              "assignment": "Your task is to write your own prompts checklist and test them inside the dashboard console.",
+              "summary": "Thanks for watching. Complete the lesson quiz and assignment. In the next video, we advance to next level!"
+            },
+            "slideContent": [
+              {
+                "title": "Lesson: Role Prompting",
+                "content": [
+                  "Topic introduction",
+                  "Core goals of this session"
+                ],
+                "visualPrompt": "Flowchart showing user request going to Harshita AI engine."
+              },
+              {
+                "title": "Core Theory",
+                "content": [
+                  "Analogical explanation",
+                  "Avoiding mistakes"
+                ],
+                "visualPrompt": "Comparison table showing Bad setup vs Good setup."
+              },
+              {
+                "title": "Live Demo",
+                "content": [
+                  "Workspace setup",
+                  "Compiling results"
+                ],
+                "visualPrompt": "Screenshot of terminal logs displaying successful validation status."
+              }
+            ],
+            "practiceExercises": [
+              "Exercise 1: Write down 3 business use cases for Role Prompting.",
+              "Exercise 2: Set up custom files and verify compilation codes."
+            ],
+            "notesPdfLink": "/data/academy/notes/level-2-l3.pdf"
+          },
+          {
+            "id": "level-2-l4",
+            "title": "Few Shot Prompting",
+            "duration": "13:20",
+            "description": "Comprehensive guide to Few Shot Prompting. Learn definitions, study real cases, run terminal demonstrations, and complete drills.",
+            "learningObjectives": [
+              "Analyze the foundational definition of Few Shot Prompting.",
+              "Apply step-by-step procedures to resolve workflow tasks.",
+              "Master the tools and configurations required for Few Shot Prompting."
+            ],
+            "theory": "In this lesson on Few Shot Prompting, we break down concepts using simple, plain terms. For example, think of an AI model like a smart library clerk. If you ask for 'a book', the clerk will guess. But if you request 'a 19th-century romance book written by an Indian author', you get exactly what you need. That is the essence of structuring inputs. We explain terms simply so that beginners can build correct habits without needing advanced coding knowledge.",
+            "examples": "Case Study: An agency implementing Few Shot Prompting techniques resolved data discrepancies in under 3 minutes, cutting administrative backlogs by over 50% while improving satisfaction ratings.",
+            "demonstration": "1. Open your workspace control panel.\n2. Configure the setting: set variables.\n3. Input text: test string.\n4. Execute compilation and observe outputs.\n5. Verify that logs report success.",
+            "assignment": "Assignment Sheet: Draft a detailed 1-page report applying Few Shot Prompting to one daily task in your study or professional work. Highlight inputs and constraints.",
+            "quiz": [
+              {
+                "question": "What is the main goal of learning Few Shot Prompting?",
+                "options": [
+                  "To increase work speed and improve content quality using AI features",
+                  "To configure hardware chips",
+                  "To study assembly code compilers",
+                  "None of the above"
+                ],
+                "correctOption": 0
+              },
+              {
+                "question": "Which element is recommended to get good outputs in Few Shot Prompting?",
+                "options": [
+                  "Vague keywords with no structure",
+                  "Clear context, strict instructions, and output style guidelines",
+                  "Leaving settings at blank defaults",
+                  "Running operations offline only"
+                ],
+                "correctOption": 1
+              }
+            ],
+            "summary": "Summary of Few Shot Prompting:\n- Studied core terminology and analogical definitions.\n- Reviewed a practical case study showing efficiency benefits.\n- Ran setup instructions to test outcomes.\n- Practice exercises will reinforce retention.",
+            "videoScript": {
+              "hook": "Ever struggled with Few Shot Prompting? Today we look at how to master it step-by-step for absolute beginners!",
+              "introduction": "Welcome back. This is Harshita AI Academy. In this video, we cover Few Shot Prompting theory and live demo configurations.",
+              "mainTeaching": "The fundamental point behind Few Shot Prompting is layout and constraint design. Setting limits ensures consistency.",
+              "demonstration": "Watch my screen: I trigger the workflow and check verification scores. Notice the output format.",
+              "assignment": "Your task is to write your own prompts checklist and test them inside the dashboard console.",
+              "summary": "Thanks for watching. Complete the lesson quiz and assignment. In the next video, we advance to next level!"
+            },
+            "slideContent": [
+              {
+                "title": "Lesson: Few Shot Prompting",
+                "content": [
+                  "Topic introduction",
+                  "Core goals of this session"
+                ],
+                "visualPrompt": "Flowchart showing user request going to Harshita AI engine."
+              },
+              {
+                "title": "Core Theory",
+                "content": [
+                  "Analogical explanation",
+                  "Avoiding mistakes"
+                ],
+                "visualPrompt": "Comparison table showing Bad setup vs Good setup."
+              },
+              {
+                "title": "Live Demo",
+                "content": [
+                  "Workspace setup",
+                  "Compiling results"
+                ],
+                "visualPrompt": "Screenshot of terminal logs displaying successful validation status."
+              }
+            ],
+            "practiceExercises": [
+              "Exercise 1: Write down 3 business use cases for Few Shot Prompting.",
+              "Exercise 2: Set up custom files and verify compilation codes."
+            ],
+            "notesPdfLink": "/data/academy/notes/level-2-l4.pdf"
+          },
+          {
+            "id": "level-2-l5",
+            "title": "Chain of Thought",
+            "duration": "14:10",
+            "description": "Comprehensive guide to Chain of Thought. Learn definitions, study real cases, run terminal demonstrations, and complete drills.",
+            "learningObjectives": [
+              "Analyze the foundational definition of Chain of Thought.",
+              "Apply step-by-step procedures to resolve workflow tasks.",
+              "Master the tools and configurations required for Chain of Thought."
+            ],
+            "theory": "In this lesson on Chain of Thought, we break down concepts using simple, plain terms. For example, think of an AI model like a smart library clerk. If you ask for 'a book', the clerk will guess. But if you request 'a 19th-century romance book written by an Indian author', you get exactly what you need. That is the essence of structuring inputs. We explain terms simply so that beginners can build correct habits without needing advanced coding knowledge.",
+            "examples": "Case Study: An agency implementing Chain of Thought techniques resolved data discrepancies in under 3 minutes, cutting administrative backlogs by over 50% while improving satisfaction ratings.",
+            "demonstration": "1. Open your workspace control panel.\n2. Configure the setting: set variables.\n3. Input text: test string.\n4. Execute compilation and observe outputs.\n5. Verify that logs report success.",
+            "assignment": "Assignment Sheet: Draft a detailed 1-page report applying Chain of Thought to one daily task in your study or professional work. Highlight inputs and constraints.",
+            "quiz": [
+              {
+                "question": "What is the main goal of learning Chain of Thought?",
+                "options": [
+                  "To increase work speed and improve content quality using AI features",
+                  "To configure hardware chips",
+                  "To study assembly code compilers",
+                  "None of the above"
+                ],
+                "correctOption": 0
+              },
+              {
+                "question": "Which element is recommended to get good outputs in Chain of Thought?",
+                "options": [
+                  "Vague keywords with no structure",
+                  "Clear context, strict instructions, and output style guidelines",
+                  "Leaving settings at blank defaults",
+                  "Running operations offline only"
+                ],
+                "correctOption": 1
+              }
+            ],
+            "summary": "Summary of Chain of Thought:\n- Studied core terminology and analogical definitions.\n- Reviewed a practical case study showing efficiency benefits.\n- Ran setup instructions to test outcomes.\n- Practice exercises will reinforce retention.",
+            "videoScript": {
+              "hook": "Ever struggled with Chain of Thought? Today we look at how to master it step-by-step for absolute beginners!",
+              "introduction": "Welcome back. This is Harshita AI Academy. In this video, we cover Chain of Thought theory and live demo configurations.",
+              "mainTeaching": "The fundamental point behind Chain of Thought is layout and constraint design. Setting limits ensures consistency.",
+              "demonstration": "Watch my screen: I trigger the workflow and check verification scores. Notice the output format.",
+              "assignment": "Your task is to write your own prompts checklist and test them inside the dashboard console.",
+              "summary": "Thanks for watching. Complete the lesson quiz and assignment. In the next video, we advance to next level!"
+            },
+            "slideContent": [
+              {
+                "title": "Lesson: Chain of Thought",
+                "content": [
+                  "Topic introduction",
+                  "Core goals of this session"
+                ],
+                "visualPrompt": "Flowchart showing user request going to Harshita AI engine."
+              },
+              {
+                "title": "Core Theory",
+                "content": [
+                  "Analogical explanation",
+                  "Avoiding mistakes"
+                ],
+                "visualPrompt": "Comparison table showing Bad setup vs Good setup."
+              },
+              {
+                "title": "Live Demo",
+                "content": [
+                  "Workspace setup",
+                  "Compiling results"
+                ],
+                "visualPrompt": "Screenshot of terminal logs displaying successful validation status."
+              }
+            ],
+            "practiceExercises": [
+              "Exercise 1: Write down 3 business use cases for Chain of Thought.",
+              "Exercise 2: Set up custom files and verify compilation codes."
+            ],
+            "notesPdfLink": "/data/academy/notes/level-2-l5.pdf"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "level-3",
+    "name": "Level 3 – AI Content Creator",
+    "nameHi": "लेवल 3 – एआई कंटेंट क्रिएटर",
+    "duration": "5 Days",
+    "lessonsCount": 4,
+    "status": "Active",
+    "progress": 0,
+    "description": "Transform your content workflow. Learn how to outline SEO articles, script engaging videos, compose social media posts, and optimize search rankings using generative models.",
+    "certificationTitle": "Certified AI Creator",
+    "certificationCriteria": [
+      "Complete all 4 Lessons in this level",
+      "Pass all quizzes with correct feedback scores",
+      "Submit the practical assignment script text",
+      "Complete and submit the level mini-project"
+    ],
+    "capstoneProject": {
+      "title": "Capstone: Build a complete Certified AI Creator project solution",
+      "description": "Construct and test an end-to-end workflow applying the topics in this level. Submit your code plan or prompt library notes.",
+      "requirements": [
+        "List inputs, constraints, and instructions clearly",
+        "Provide test outputs showing self-healing checks"
+      ]
+    },
+    "modules": [
+      {
+        "id": 3,
+        "title": "Module 3 - Core Mastery",
+        "assignment": "Write a full 1200-word blog post about \"AI in agriculture\" with custom headers and meta details.",
+        "miniProject": "Build a week-long multi-channel brand launch content campaign blueprint.",
+        "quiz": [
+          {
+            "question": "What are the core elements of a viral video script Hook?",
+            "options": [
+              "Identifying a painful problem and promising a clear, immediate outcome in under 5 seconds",
+              "A lengthy biography of the speaker",
+              "A description of video recording hardware",
+              "Background music details only"
+            ],
+            "correctOption": 0
+          },
+          {
+            "question": "How should you include keywords for SEO Optimization?",
+            "options": [
+              "Integrate key phrases naturally into headers (H1, H2) and summary descriptions",
+              "Write the keyword 1000 times at the bottom of the page in white text",
+              "Rename the website title after the keyword",
+              "None of the above"
+            ],
+            "correctOption": 0
+          }
+        ],
+        "lessons": [
+          {
+            "id": "level-3-l1",
+            "title": "Blog Creation",
+            "duration": "11:45",
+            "description": "Comprehensive guide to Blog Creation. Learn definitions, study real cases, run terminal demonstrations, and complete drills.",
+            "learningObjectives": [
+              "Analyze the foundational definition of Blog Creation.",
+              "Apply step-by-step procedures to resolve workflow tasks.",
+              "Master the tools and configurations required for Blog Creation."
+            ],
+            "theory": "In this lesson on Blog Creation, we break down concepts using simple, plain terms. For example, think of an AI model like a smart library clerk. If you ask for 'a book', the clerk will guess. But if you request 'a 19th-century romance book written by an Indian author', you get exactly what you need. That is the essence of structuring inputs. We explain terms simply so that beginners can build correct habits without needing advanced coding knowledge.",
+            "examples": "Case Study: An agency implementing Blog Creation techniques resolved data discrepancies in under 3 minutes, cutting administrative backlogs by over 50% while improving satisfaction ratings.",
+            "demonstration": "1. Open your workspace control panel.\n2. Configure the setting: set variables.\n3. Input text: test string.\n4. Execute compilation and observe outputs.\n5. Verify that logs report success.",
+            "assignment": "Assignment Sheet: Draft a detailed 1-page report applying Blog Creation to one daily task in your study or professional work. Highlight inputs and constraints.",
+            "quiz": [
+              {
+                "question": "What is the main goal of learning Blog Creation?",
+                "options": [
+                  "To increase work speed and improve content quality using AI features",
+                  "To configure hardware chips",
+                  "To study assembly code compilers",
+                  "None of the above"
+                ],
+                "correctOption": 0
+              },
+              {
+                "question": "Which element is recommended to get good outputs in Blog Creation?",
+                "options": [
+                  "Vague keywords with no structure",
+                  "Clear context, strict instructions, and output style guidelines",
+                  "Leaving settings at blank defaults",
+                  "Running operations offline only"
+                ],
+                "correctOption": 1
+              }
+            ],
+            "summary": "Summary of Blog Creation:\n- Studied core terminology and analogical definitions.\n- Reviewed a practical case study showing efficiency benefits.\n- Ran setup instructions to test outcomes.\n- Practice exercises will reinforce retention.",
+            "videoScript": {
+              "hook": "Ever struggled with Blog Creation? Today we look at how to master it step-by-step for absolute beginners!",
+              "introduction": "Welcome back. This is Harshita AI Academy. In this video, we cover Blog Creation theory and live demo configurations.",
+              "mainTeaching": "The fundamental point behind Blog Creation is layout and constraint design. Setting limits ensures consistency.",
+              "demonstration": "Watch my screen: I trigger the workflow and check verification scores. Notice the output format.",
+              "assignment": "Your task is to write your own prompts checklist and test them inside the dashboard console.",
+              "summary": "Thanks for watching. Complete the lesson quiz and assignment. In the next video, we advance to next level!"
+            },
+            "slideContent": [
+              {
+                "title": "Lesson: Blog Creation",
+                "content": [
+                  "Topic introduction",
+                  "Core goals of this session"
+                ],
+                "visualPrompt": "Flowchart showing user request going to Harshita AI engine."
+              },
+              {
+                "title": "Core Theory",
+                "content": [
+                  "Analogical explanation",
+                  "Avoiding mistakes"
+                ],
+                "visualPrompt": "Comparison table showing Bad setup vs Good setup."
+              },
+              {
+                "title": "Live Demo",
+                "content": [
+                  "Workspace setup",
+                  "Compiling results"
+                ],
+                "visualPrompt": "Screenshot of terminal logs displaying successful validation status."
+              }
+            ],
+            "practiceExercises": [
+              "Exercise 1: Write down 3 business use cases for Blog Creation.",
+              "Exercise 2: Set up custom files and verify compilation codes."
+            ],
+            "notesPdfLink": "/data/academy/notes/level-3-l1.pdf"
+          },
+          {
+            "id": "level-3-l2",
+            "title": "Social Media",
+            "duration": "10:30",
+            "description": "Comprehensive guide to Social Media. Learn definitions, study real cases, run terminal demonstrations, and complete drills.",
+            "learningObjectives": [
+              "Analyze the foundational definition of Social Media.",
+              "Apply step-by-step procedures to resolve workflow tasks.",
+              "Master the tools and configurations required for Social Media."
+            ],
+            "theory": "In this lesson on Social Media, we break down concepts using simple, plain terms. For example, think of an AI model like a smart library clerk. If you ask for 'a book', the clerk will guess. But if you request 'a 19th-century romance book written by an Indian author', you get exactly what you need. That is the essence of structuring inputs. We explain terms simply so that beginners can build correct habits without needing advanced coding knowledge.",
+            "examples": "Case Study: An agency implementing Social Media techniques resolved data discrepancies in under 3 minutes, cutting administrative backlogs by over 50% while improving satisfaction ratings.",
+            "demonstration": "1. Open your workspace control panel.\n2. Configure the setting: set variables.\n3. Input text: test string.\n4. Execute compilation and observe outputs.\n5. Verify that logs report success.",
+            "assignment": "Assignment Sheet: Draft a detailed 1-page report applying Social Media to one daily task in your study or professional work. Highlight inputs and constraints.",
+            "quiz": [
+              {
+                "question": "What is the main goal of learning Social Media?",
+                "options": [
+                  "To increase work speed and improve content quality using AI features",
+                  "To configure hardware chips",
+                  "To study assembly code compilers",
+                  "None of the above"
+                ],
+                "correctOption": 0
+              },
+              {
+                "question": "Which element is recommended to get good outputs in Social Media?",
+                "options": [
+                  "Vague keywords with no structure",
+                  "Clear context, strict instructions, and output style guidelines",
+                  "Leaving settings at blank defaults",
+                  "Running operations offline only"
+                ],
+                "correctOption": 1
+              }
+            ],
+            "summary": "Summary of Social Media:\n- Studied core terminology and analogical definitions.\n- Reviewed a practical case study showing efficiency benefits.\n- Ran setup instructions to test outcomes.\n- Practice exercises will reinforce retention.",
+            "videoScript": {
+              "hook": "Ever struggled with Social Media? Today we look at how to master it step-by-step for absolute beginners!",
+              "introduction": "Welcome back. This is Harshita AI Academy. In this video, we cover Social Media theory and live demo configurations.",
+              "mainTeaching": "The fundamental point behind Social Media is layout and constraint design. Setting limits ensures consistency.",
+              "demonstration": "Watch my screen: I trigger the workflow and check verification scores. Notice the output format.",
+              "assignment": "Your task is to write your own prompts checklist and test them inside the dashboard console.",
+              "summary": "Thanks for watching. Complete the lesson quiz and assignment. In the next video, we advance to next level!"
+            },
+            "slideContent": [
+              {
+                "title": "Lesson: Social Media",
+                "content": [
+                  "Topic introduction",
+                  "Core goals of this session"
+                ],
+                "visualPrompt": "Flowchart showing user request going to Harshita AI engine."
+              },
+              {
+                "title": "Core Theory",
+                "content": [
+                  "Analogical explanation",
+                  "Avoiding mistakes"
+                ],
+                "visualPrompt": "Comparison table showing Bad setup vs Good setup."
+              },
+              {
+                "title": "Live Demo",
+                "content": [
+                  "Workspace setup",
+                  "Compiling results"
+                ],
+                "visualPrompt": "Screenshot of terminal logs displaying successful validation status."
+              }
+            ],
+            "practiceExercises": [
+              "Exercise 1: Write down 3 business use cases for Social Media.",
+              "Exercise 2: Set up custom files and verify compilation codes."
+            ],
+            "notesPdfLink": "/data/academy/notes/level-3-l2.pdf"
+          },
+          {
+            "id": "level-3-l3",
+            "title": "YouTube Scripts",
+            "duration": "14:15",
+            "description": "Comprehensive guide to YouTube Scripts. Learn definitions, study real cases, run terminal demonstrations, and complete drills.",
+            "learningObjectives": [
+              "Analyze the foundational definition of YouTube Scripts.",
+              "Apply step-by-step procedures to resolve workflow tasks.",
+              "Master the tools and configurations required for YouTube Scripts."
+            ],
+            "theory": "In this lesson on YouTube Scripts, we break down concepts using simple, plain terms. For example, think of an AI model like a smart library clerk. If you ask for 'a book', the clerk will guess. But if you request 'a 19th-century romance book written by an Indian author', you get exactly what you need. That is the essence of structuring inputs. We explain terms simply so that beginners can build correct habits without needing advanced coding knowledge.",
+            "examples": "Case Study: An agency implementing YouTube Scripts techniques resolved data discrepancies in under 3 minutes, cutting administrative backlogs by over 50% while improving satisfaction ratings.",
+            "demonstration": "1. Open your workspace control panel.\n2. Configure the setting: set variables.\n3. Input text: test string.\n4. Execute compilation and observe outputs.\n5. Verify that logs report success.",
+            "assignment": "Assignment Sheet: Draft a detailed 1-page report applying YouTube Scripts to one daily task in your study or professional work. Highlight inputs and constraints.",
+            "quiz": [
+              {
+                "question": "What is the main goal of learning YouTube Scripts?",
+                "options": [
+                  "To increase work speed and improve content quality using AI features",
+                  "To configure hardware chips",
+                  "To study assembly code compilers",
+                  "None of the above"
+                ],
+                "correctOption": 0
+              },
+              {
+                "question": "Which element is recommended to get good outputs in YouTube Scripts?",
+                "options": [
+                  "Vague keywords with no structure",
+                  "Clear context, strict instructions, and output style guidelines",
+                  "Leaving settings at blank defaults",
+                  "Running operations offline only"
+                ],
+                "correctOption": 1
+              }
+            ],
+            "summary": "Summary of YouTube Scripts:\n- Studied core terminology and analogical definitions.\n- Reviewed a practical case study showing efficiency benefits.\n- Ran setup instructions to test outcomes.\n- Practice exercises will reinforce retention.",
+            "videoScript": {
+              "hook": "Ever struggled with YouTube Scripts? Today we look at how to master it step-by-step for absolute beginners!",
+              "introduction": "Welcome back. This is Harshita AI Academy. In this video, we cover YouTube Scripts theory and live demo configurations.",
+              "mainTeaching": "The fundamental point behind YouTube Scripts is layout and constraint design. Setting limits ensures consistency.",
+              "demonstration": "Watch my screen: I trigger the workflow and check verification scores. Notice the output format.",
+              "assignment": "Your task is to write your own prompts checklist and test them inside the dashboard console.",
+              "summary": "Thanks for watching. Complete the lesson quiz and assignment. In the next video, we advance to next level!"
+            },
+            "slideContent": [
+              {
+                "title": "Lesson: YouTube Scripts",
+                "content": [
+                  "Topic introduction",
+                  "Core goals of this session"
+                ],
+                "visualPrompt": "Flowchart showing user request going to Harshita AI engine."
+              },
+              {
+                "title": "Core Theory",
+                "content": [
+                  "Analogical explanation",
+                  "Avoiding mistakes"
+                ],
+                "visualPrompt": "Comparison table showing Bad setup vs Good setup."
+              },
+              {
+                "title": "Live Demo",
+                "content": [
+                  "Workspace setup",
+                  "Compiling results"
+                ],
+                "visualPrompt": "Screenshot of terminal logs displaying successful validation status."
+              }
+            ],
+            "practiceExercises": [
+              "Exercise 1: Write down 3 business use cases for YouTube Scripts.",
+              "Exercise 2: Set up custom files and verify compilation codes."
+            ],
+            "notesPdfLink": "/data/academy/notes/level-3-l3.pdf"
+          },
+          {
+            "id": "level-3-l4",
+            "title": "Marketing Content",
+            "duration": "12:20",
+            "description": "Comprehensive guide to Marketing Content. Learn definitions, study real cases, run terminal demonstrations, and complete drills.",
+            "learningObjectives": [
+              "Analyze the foundational definition of Marketing Content.",
+              "Apply step-by-step procedures to resolve workflow tasks.",
+              "Master the tools and configurations required for Marketing Content."
+            ],
+            "theory": "In this lesson on Marketing Content, we break down concepts using simple, plain terms. For example, think of an AI model like a smart library clerk. If you ask for 'a book', the clerk will guess. But if you request 'a 19th-century romance book written by an Indian author', you get exactly what you need. That is the essence of structuring inputs. We explain terms simply so that beginners can build correct habits without needing advanced coding knowledge.",
+            "examples": "Case Study: An agency implementing Marketing Content techniques resolved data discrepancies in under 3 minutes, cutting administrative backlogs by over 50% while improving satisfaction ratings.",
+            "demonstration": "1. Open your workspace control panel.\n2. Configure the setting: set variables.\n3. Input text: test string.\n4. Execute compilation and observe outputs.\n5. Verify that logs report success.",
+            "assignment": "Assignment Sheet: Draft a detailed 1-page report applying Marketing Content to one daily task in your study or professional work. Highlight inputs and constraints.",
+            "quiz": [
+              {
+                "question": "What is the main goal of learning Marketing Content?",
+                "options": [
+                  "To increase work speed and improve content quality using AI features",
+                  "To configure hardware chips",
+                  "To study assembly code compilers",
+                  "None of the above"
+                ],
+                "correctOption": 0
+              },
+              {
+                "question": "Which element is recommended to get good outputs in Marketing Content?",
+                "options": [
+                  "Vague keywords with no structure",
+                  "Clear context, strict instructions, and output style guidelines",
+                  "Leaving settings at blank defaults",
+                  "Running operations offline only"
+                ],
+                "correctOption": 1
+              }
+            ],
+            "summary": "Summary of Marketing Content:\n- Studied core terminology and analogical definitions.\n- Reviewed a practical case study showing efficiency benefits.\n- Ran setup instructions to test outcomes.\n- Practice exercises will reinforce retention.",
+            "videoScript": {
+              "hook": "Ever struggled with Marketing Content? Today we look at how to master it step-by-step for absolute beginners!",
+              "introduction": "Welcome back. This is Harshita AI Academy. In this video, we cover Marketing Content theory and live demo configurations.",
+              "mainTeaching": "The fundamental point behind Marketing Content is layout and constraint design. Setting limits ensures consistency.",
+              "demonstration": "Watch my screen: I trigger the workflow and check verification scores. Notice the output format.",
+              "assignment": "Your task is to write your own prompts checklist and test them inside the dashboard console.",
+              "summary": "Thanks for watching. Complete the lesson quiz and assignment. In the next video, we advance to next level!"
+            },
+            "slideContent": [
+              {
+                "title": "Lesson: Marketing Content",
+                "content": [
+                  "Topic introduction",
+                  "Core goals of this session"
+                ],
+                "visualPrompt": "Flowchart showing user request going to Harshita AI engine."
+              },
+              {
+                "title": "Core Theory",
+                "content": [
+                  "Analogical explanation",
+                  "Avoiding mistakes"
+                ],
+                "visualPrompt": "Comparison table showing Bad setup vs Good setup."
+              },
+              {
+                "title": "Live Demo",
+                "content": [
+                  "Workspace setup",
+                  "Compiling results"
+                ],
+                "visualPrompt": "Screenshot of terminal logs displaying successful validation status."
+              }
+            ],
+            "practiceExercises": [
+              "Exercise 1: Write down 3 business use cases for Marketing Content.",
+              "Exercise 2: Set up custom files and verify compilation codes."
+            ],
+            "notesPdfLink": "/data/academy/notes/level-3-l4.pdf"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "level-4",
+    "name": "Level 4 – AI Image & Video Creator",
+    "nameHi": "लेवल 4 – एआई इमेज और वीडियो मेकर",
+    "duration": "5 Days",
+    "lessonsCount": 5,
+    "status": "Active",
+    "progress": 0,
+    "description": "Explore the creative bounds of generative media. Master lighting and aspect control in Flux, design persistent characters, plan scenes, and compile story videos using TTS synthesis and FFmpeg.",
+    "certificationTitle": "Certified AI Image & Video Creator",
+    "certificationCriteria": [
+      "Complete all 5 Lessons in this level",
+      "Pass all quizzes with correct feedback scores",
+      "Submit the practical assignment script text",
+      "Complete and submit the level mini-project"
+    ],
+    "capstoneProject": {
+      "title": "Capstone: Build a complete Certified AI Image & Video Creator project solution",
+      "description": "Construct and test an end-to-end workflow applying the topics in this level. Submit your code plan or prompt library notes.",
+      "requirements": [
+        "List inputs, constraints, and instructions clearly",
+        "Provide test outputs showing self-healing checks"
+      ]
+    },
+    "modules": [
+      {
+        "id": 4,
+        "title": "Module 4 - Core Mastery",
+        "assignment": "Write 10 specific image prompts utilizing descriptors for lighting, lenses, and textures.",
+        "miniProject": "Compile a 3-scene vertical story video with subtitles and background scoring.",
+        "quiz": [
+          {
+            "question": "What is a Seed in image generators (like Flux / SDXL)?",
+            "options": [
+              "A random number initializer that allows replication of image layouts and styles",
+              "The filename extension",
+              "The canvas height",
+              "An API authorization token"
+            ],
+            "correctOption": 0
+          },
+          {
+            "question": "How do you burn subtitles on Windows using FFmpeg?",
+            "options": [
+              "By applying the subtitles filter (`subtitles=file.srt`) alongside proper path escape formatting",
+              "By editing the MP4 metadata properties manually",
+              "By taking screenshots of each scene",
+              "It is done automatically by VLC player"
+            ],
+            "correctOption": 0
+          }
+        ],
+        "lessons": [
+          {
+            "id": "level-4-l1",
+            "title": "Image Prompting",
+            "duration": "11:10",
+            "description": "Comprehensive guide to Image Prompting. Learn definitions, study real cases, run terminal demonstrations, and complete drills.",
+            "learningObjectives": [
+              "Analyze the foundational definition of Image Prompting.",
+              "Apply step-by-step procedures to resolve workflow tasks.",
+              "Master the tools and configurations required for Image Prompting."
+            ],
+            "theory": "In this lesson on Image Prompting, we break down concepts using simple, plain terms. For example, think of an AI model like a smart library clerk. If you ask for 'a book', the clerk will guess. But if you request 'a 19th-century romance book written by an Indian author', you get exactly what you need. That is the essence of structuring inputs. We explain terms simply so that beginners can build correct habits without needing advanced coding knowledge.",
+            "examples": "Case Study: An agency implementing Image Prompting techniques resolved data discrepancies in under 3 minutes, cutting administrative backlogs by over 50% while improving satisfaction ratings.",
+            "demonstration": "1. Open your workspace control panel.\n2. Configure the setting: set variables.\n3. Input text: test string.\n4. Execute compilation and observe outputs.\n5. Verify that logs report success.",
+            "assignment": "Assignment Sheet: Draft a detailed 1-page report applying Image Prompting to one daily task in your study or professional work. Highlight inputs and constraints.",
+            "quiz": [
+              {
+                "question": "What is the main goal of learning Image Prompting?",
+                "options": [
+                  "To increase work speed and improve content quality using AI features",
+                  "To configure hardware chips",
+                  "To study assembly code compilers",
+                  "None of the above"
+                ],
+                "correctOption": 0
+              },
+              {
+                "question": "Which element is recommended to get good outputs in Image Prompting?",
+                "options": [
+                  "Vague keywords with no structure",
+                  "Clear context, strict instructions, and output style guidelines",
+                  "Leaving settings at blank defaults",
+                  "Running operations offline only"
+                ],
+                "correctOption": 1
+              }
+            ],
+            "summary": "Summary of Image Prompting:\n- Studied core terminology and analogical definitions.\n- Reviewed a practical case study showing efficiency benefits.\n- Ran setup instructions to test outcomes.\n- Practice exercises will reinforce retention.",
+            "videoScript": {
+              "hook": "Ever struggled with Image Prompting? Today we look at how to master it step-by-step for absolute beginners!",
+              "introduction": "Welcome back. This is Harshita AI Academy. In this video, we cover Image Prompting theory and live demo configurations.",
+              "mainTeaching": "The fundamental point behind Image Prompting is layout and constraint design. Setting limits ensures consistency.",
+              "demonstration": "Watch my screen: I trigger the workflow and check verification scores. Notice the output format.",
+              "assignment": "Your task is to write your own prompts checklist and test them inside the dashboard console.",
+              "summary": "Thanks for watching. Complete the lesson quiz and assignment. In the next video, we advance to next level!"
+            },
+            "slideContent": [
+              {
+                "title": "Lesson: Image Prompting",
+                "content": [
+                  "Topic introduction",
+                  "Core goals of this session"
+                ],
+                "visualPrompt": "Flowchart showing user request going to Harshita AI engine."
+              },
+              {
+                "title": "Core Theory",
+                "content": [
+                  "Analogical explanation",
+                  "Avoiding mistakes"
+                ],
+                "visualPrompt": "Comparison table showing Bad setup vs Good setup."
+              },
+              {
+                "title": "Live Demo",
+                "content": [
+                  "Workspace setup",
+                  "Compiling results"
+                ],
+                "visualPrompt": "Screenshot of terminal logs displaying successful validation status."
+              }
+            ],
+            "practiceExercises": [
+              "Exercise 1: Write down 3 business use cases for Image Prompting.",
+              "Exercise 2: Set up custom files and verify compilation codes."
+            ],
+            "notesPdfLink": "/data/academy/notes/level-4-l1.pdf"
+          },
+          {
+            "id": "level-4-l2",
+            "title": "Character Design",
+            "duration": "12:50",
+            "description": "Comprehensive guide to Character Design. Learn definitions, study real cases, run terminal demonstrations, and complete drills.",
+            "learningObjectives": [
+              "Analyze the foundational definition of Character Design.",
+              "Apply step-by-step procedures to resolve workflow tasks.",
+              "Master the tools and configurations required for Character Design."
+            ],
+            "theory": "In this lesson on Character Design, we break down concepts using simple, plain terms. For example, think of an AI model like a smart library clerk. If you ask for 'a book', the clerk will guess. But if you request 'a 19th-century romance book written by an Indian author', you get exactly what you need. That is the essence of structuring inputs. We explain terms simply so that beginners can build correct habits without needing advanced coding knowledge.",
+            "examples": "Case Study: An agency implementing Character Design techniques resolved data discrepancies in under 3 minutes, cutting administrative backlogs by over 50% while improving satisfaction ratings.",
+            "demonstration": "1. Open your workspace control panel.\n2. Configure the setting: set variables.\n3. Input text: test string.\n4. Execute compilation and observe outputs.\n5. Verify that logs report success.",
+            "assignment": "Assignment Sheet: Draft a detailed 1-page report applying Character Design to one daily task in your study or professional work. Highlight inputs and constraints.",
+            "quiz": [
+              {
+                "question": "What is the main goal of learning Character Design?",
+                "options": [
+                  "To increase work speed and improve content quality using AI features",
+                  "To configure hardware chips",
+                  "To study assembly code compilers",
+                  "None of the above"
+                ],
+                "correctOption": 0
+              },
+              {
+                "question": "Which element is recommended to get good outputs in Character Design?",
+                "options": [
+                  "Vague keywords with no structure",
+                  "Clear context, strict instructions, and output style guidelines",
+                  "Leaving settings at blank defaults",
+                  "Running operations offline only"
+                ],
+                "correctOption": 1
+              }
+            ],
+            "summary": "Summary of Character Design:\n- Studied core terminology and analogical definitions.\n- Reviewed a practical case study showing efficiency benefits.\n- Ran setup instructions to test outcomes.\n- Practice exercises will reinforce retention.",
+            "videoScript": {
+              "hook": "Ever struggled with Character Design? Today we look at how to master it step-by-step for absolute beginners!",
+              "introduction": "Welcome back. This is Harshita AI Academy. In this video, we cover Character Design theory and live demo configurations.",
+              "mainTeaching": "The fundamental point behind Character Design is layout and constraint design. Setting limits ensures consistency.",
+              "demonstration": "Watch my screen: I trigger the workflow and check verification scores. Notice the output format.",
+              "assignment": "Your task is to write your own prompts checklist and test them inside the dashboard console.",
+              "summary": "Thanks for watching. Complete the lesson quiz and assignment. In the next video, we advance to next level!"
+            },
+            "slideContent": [
+              {
+                "title": "Lesson: Character Design",
+                "content": [
+                  "Topic introduction",
+                  "Core goals of this session"
+                ],
+                "visualPrompt": "Flowchart showing user request going to Harshita AI engine."
+              },
+              {
+                "title": "Core Theory",
+                "content": [
+                  "Analogical explanation",
+                  "Avoiding mistakes"
+                ],
+                "visualPrompt": "Comparison table showing Bad setup vs Good setup."
+              },
+              {
+                "title": "Live Demo",
+                "content": [
+                  "Workspace setup",
+                  "Compiling results"
+                ],
+                "visualPrompt": "Screenshot of terminal logs displaying successful validation status."
+              }
+            ],
+            "practiceExercises": [
+              "Exercise 1: Write down 3 business use cases for Character Design.",
+              "Exercise 2: Set up custom files and verify compilation codes."
+            ],
+            "notesPdfLink": "/data/academy/notes/level-4-l2.pdf"
+          },
+          {
+            "id": "level-4-l3",
+            "title": "Story Videos",
+            "duration": "14:40",
+            "description": "Comprehensive guide to Story Videos. Learn definitions, study real cases, run terminal demonstrations, and complete drills.",
+            "learningObjectives": [
+              "Analyze the foundational definition of Story Videos.",
+              "Apply step-by-step procedures to resolve workflow tasks.",
+              "Master the tools and configurations required for Story Videos."
+            ],
+            "theory": "In this lesson on Story Videos, we break down concepts using simple, plain terms. For example, think of an AI model like a smart library clerk. If you ask for 'a book', the clerk will guess. But if you request 'a 19th-century romance book written by an Indian author', you get exactly what you need. That is the essence of structuring inputs. We explain terms simply so that beginners can build correct habits without needing advanced coding knowledge.",
+            "examples": "Case Study: An agency implementing Story Videos techniques resolved data discrepancies in under 3 minutes, cutting administrative backlogs by over 50% while improving satisfaction ratings.",
+            "demonstration": "1. Open your workspace control panel.\n2. Configure the setting: set variables.\n3. Input text: test string.\n4. Execute compilation and observe outputs.\n5. Verify that logs report success.",
+            "assignment": "Assignment Sheet: Draft a detailed 1-page report applying Story Videos to one daily task in your study or professional work. Highlight inputs and constraints.",
+            "quiz": [
+              {
+                "question": "What is the main goal of learning Story Videos?",
+                "options": [
+                  "To increase work speed and improve content quality using AI features",
+                  "To configure hardware chips",
+                  "To study assembly code compilers",
+                  "None of the above"
+                ],
+                "correctOption": 0
+              },
+              {
+                "question": "Which element is recommended to get good outputs in Story Videos?",
+                "options": [
+                  "Vague keywords with no structure",
+                  "Clear context, strict instructions, and output style guidelines",
+                  "Leaving settings at blank defaults",
+                  "Running operations offline only"
+                ],
+                "correctOption": 1
+              }
+            ],
+            "summary": "Summary of Story Videos:\n- Studied core terminology and analogical definitions.\n- Reviewed a practical case study showing efficiency benefits.\n- Ran setup instructions to test outcomes.\n- Practice exercises will reinforce retention.",
+            "videoScript": {
+              "hook": "Ever struggled with Story Videos? Today we look at how to master it step-by-step for absolute beginners!",
+              "introduction": "Welcome back. This is Harshita AI Academy. In this video, we cover Story Videos theory and live demo configurations.",
+              "mainTeaching": "The fundamental point behind Story Videos is layout and constraint design. Setting limits ensures consistency.",
+              "demonstration": "Watch my screen: I trigger the workflow and check verification scores. Notice the output format.",
+              "assignment": "Your task is to write your own prompts checklist and test them inside the dashboard console.",
+              "summary": "Thanks for watching. Complete the lesson quiz and assignment. In the next video, we advance to next level!"
+            },
+            "slideContent": [
+              {
+                "title": "Lesson: Story Videos",
+                "content": [
+                  "Topic introduction",
+                  "Core goals of this session"
+                ],
+                "visualPrompt": "Flowchart showing user request going to Harshita AI engine."
+              },
+              {
+                "title": "Core Theory",
+                "content": [
+                  "Analogical explanation",
+                  "Avoiding mistakes"
+                ],
+                "visualPrompt": "Comparison table showing Bad setup vs Good setup."
+              },
+              {
+                "title": "Live Demo",
+                "content": [
+                  "Workspace setup",
+                  "Compiling results"
+                ],
+                "visualPrompt": "Screenshot of terminal logs displaying successful validation status."
+              }
+            ],
+            "practiceExercises": [
+              "Exercise 1: Write down 3 business use cases for Story Videos.",
+              "Exercise 2: Set up custom files and verify compilation codes."
+            ],
+            "notesPdfLink": "/data/academy/notes/level-4-l3.pdf"
+          },
+          {
+            "id": "level-4-l4",
+            "title": "YouTube Shorts",
+            "duration": "13:15",
+            "description": "Comprehensive guide to YouTube Shorts. Learn definitions, study real cases, run terminal demonstrations, and complete drills.",
+            "learningObjectives": [
+              "Analyze the foundational definition of YouTube Shorts.",
+              "Apply step-by-step procedures to resolve workflow tasks.",
+              "Master the tools and configurations required for YouTube Shorts."
+            ],
+            "theory": "In this lesson on YouTube Shorts, we break down concepts using simple, plain terms. For example, think of an AI model like a smart library clerk. If you ask for 'a book', the clerk will guess. But if you request 'a 19th-century romance book written by an Indian author', you get exactly what you need. That is the essence of structuring inputs. We explain terms simply so that beginners can build correct habits without needing advanced coding knowledge.",
+            "examples": "Case Study: An agency implementing YouTube Shorts techniques resolved data discrepancies in under 3 minutes, cutting administrative backlogs by over 50% while improving satisfaction ratings.",
+            "demonstration": "1. Open your workspace control panel.\n2. Configure the setting: set variables.\n3. Input text: test string.\n4. Execute compilation and observe outputs.\n5. Verify that logs report success.",
+            "assignment": "Assignment Sheet: Draft a detailed 1-page report applying YouTube Shorts to one daily task in your study or professional work. Highlight inputs and constraints.",
+            "quiz": [
+              {
+                "question": "What is the main goal of learning YouTube Shorts?",
+                "options": [
+                  "To increase work speed and improve content quality using AI features",
+                  "To configure hardware chips",
+                  "To study assembly code compilers",
+                  "None of the above"
+                ],
+                "correctOption": 0
+              },
+              {
+                "question": "Which element is recommended to get good outputs in YouTube Shorts?",
+                "options": [
+                  "Vague keywords with no structure",
+                  "Clear context, strict instructions, and output style guidelines",
+                  "Leaving settings at blank defaults",
+                  "Running operations offline only"
+                ],
+                "correctOption": 1
+              }
+            ],
+            "summary": "Summary of YouTube Shorts:\n- Studied core terminology and analogical definitions.\n- Reviewed a practical case study showing efficiency benefits.\n- Ran setup instructions to test outcomes.\n- Practice exercises will reinforce retention.",
+            "videoScript": {
+              "hook": "Ever struggled with YouTube Shorts? Today we look at how to master it step-by-step for absolute beginners!",
+              "introduction": "Welcome back. This is Harshita AI Academy. In this video, we cover YouTube Shorts theory and live demo configurations.",
+              "mainTeaching": "The fundamental point behind YouTube Shorts is layout and constraint design. Setting limits ensures consistency.",
+              "demonstration": "Watch my screen: I trigger the workflow and check verification scores. Notice the output format.",
+              "assignment": "Your task is to write your own prompts checklist and test them inside the dashboard console.",
+              "summary": "Thanks for watching. Complete the lesson quiz and assignment. In the next video, we advance to next level!"
+            },
+            "slideContent": [
+              {
+                "title": "Lesson: YouTube Shorts",
+                "content": [
+                  "Topic introduction",
+                  "Core goals of this session"
+                ],
+                "visualPrompt": "Flowchart showing user request going to Harshita AI engine."
+              },
+              {
+                "title": "Core Theory",
+                "content": [
+                  "Analogical explanation",
+                  "Avoiding mistakes"
+                ],
+                "visualPrompt": "Comparison table showing Bad setup vs Good setup."
+              },
+              {
+                "title": "Live Demo",
+                "content": [
+                  "Workspace setup",
+                  "Compiling results"
+                ],
+                "visualPrompt": "Screenshot of terminal logs displaying successful validation status."
+              }
+            ],
+            "practiceExercises": [
+              "Exercise 1: Write down 3 business use cases for YouTube Shorts.",
+              "Exercise 2: Set up custom files and verify compilation codes."
+            ],
+            "notesPdfLink": "/data/academy/notes/level-4-l4.pdf"
+          },
+          {
+            "id": "level-4-l5",
+            "title": "Reels Automation",
+            "duration": "15:30",
+            "description": "Comprehensive guide to Reels Automation. Learn definitions, study real cases, run terminal demonstrations, and complete drills.",
+            "learningObjectives": [
+              "Analyze the foundational definition of Reels Automation.",
+              "Apply step-by-step procedures to resolve workflow tasks.",
+              "Master the tools and configurations required for Reels Automation."
+            ],
+            "theory": "In this lesson on Reels Automation, we break down concepts using simple, plain terms. For example, think of an AI model like a smart library clerk. If you ask for 'a book', the clerk will guess. But if you request 'a 19th-century romance book written by an Indian author', you get exactly what you need. That is the essence of structuring inputs. We explain terms simply so that beginners can build correct habits without needing advanced coding knowledge.",
+            "examples": "Case Study: An agency implementing Reels Automation techniques resolved data discrepancies in under 3 minutes, cutting administrative backlogs by over 50% while improving satisfaction ratings.",
+            "demonstration": "1. Open your workspace control panel.\n2. Configure the setting: set variables.\n3. Input text: test string.\n4. Execute compilation and observe outputs.\n5. Verify that logs report success.",
+            "assignment": "Assignment Sheet: Draft a detailed 1-page report applying Reels Automation to one daily task in your study or professional work. Highlight inputs and constraints.",
+            "quiz": [
+              {
+                "question": "What is the main goal of learning Reels Automation?",
+                "options": [
+                  "To increase work speed and improve content quality using AI features",
+                  "To configure hardware chips",
+                  "To study assembly code compilers",
+                  "None of the above"
+                ],
+                "correctOption": 0
+              },
+              {
+                "question": "Which element is recommended to get good outputs in Reels Automation?",
+                "options": [
+                  "Vague keywords with no structure",
+                  "Clear context, strict instructions, and output style guidelines",
+                  "Leaving settings at blank defaults",
+                  "Running operations offline only"
+                ],
+                "correctOption": 1
+              }
+            ],
+            "summary": "Summary of Reels Automation:\n- Studied core terminology and analogical definitions.\n- Reviewed a practical case study showing efficiency benefits.\n- Ran setup instructions to test outcomes.\n- Practice exercises will reinforce retention.",
+            "videoScript": {
+              "hook": "Ever struggled with Reels Automation? Today we look at how to master it step-by-step for absolute beginners!",
+              "introduction": "Welcome back. This is Harshita AI Academy. In this video, we cover Reels Automation theory and live demo configurations.",
+              "mainTeaching": "The fundamental point behind Reels Automation is layout and constraint design. Setting limits ensures consistency.",
+              "demonstration": "Watch my screen: I trigger the workflow and check verification scores. Notice the output format.",
+              "assignment": "Your task is to write your own prompts checklist and test them inside the dashboard console.",
+              "summary": "Thanks for watching. Complete the lesson quiz and assignment. In the next video, we advance to next level!"
+            },
+            "slideContent": [
+              {
+                "title": "Lesson: Reels Automation",
+                "content": [
+                  "Topic introduction",
+                  "Core goals of this session"
+                ],
+                "visualPrompt": "Flowchart showing user request going to Harshita AI engine."
+              },
+              {
+                "title": "Core Theory",
+                "content": [
+                  "Analogical explanation",
+                  "Avoiding mistakes"
+                ],
+                "visualPrompt": "Comparison table showing Bad setup vs Good setup."
+              },
+              {
+                "title": "Live Demo",
+                "content": [
+                  "Workspace setup",
+                  "Compiling results"
+                ],
+                "visualPrompt": "Screenshot of terminal logs displaying successful validation status."
+              }
+            ],
+            "practiceExercises": [
+              "Exercise 1: Write down 3 business use cases for Reels Automation.",
+              "Exercise 2: Set up custom files and verify compilation codes."
+            ],
+            "notesPdfLink": "/data/academy/notes/level-4-l5.pdf"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "level-5",
+    "name": "Level 5 – AI Agent Builder",
+    "nameHi": "लेवल 5 – एआई एजेंट बिल्डर",
+    "duration": "5 Days",
+    "lessonsCount": 4,
+    "status": "Active",
+    "progress": 0,
+    "description": "Step into the future of autonomous systems. Configure agents that reason in loops, build multi-agent networks with coordinator structures, and design self-healing recovery actions.",
+    "certificationTitle": "Certified AI Agent Builder",
+    "certificationCriteria": [
+      "Complete all 4 Lessons in this level",
+      "Pass all quizzes with correct feedback scores",
+      "Submit the practical assignment script text",
+      "Complete and submit the level mini-project"
+    ],
+    "capstoneProject": {
+      "title": "Capstone: Build a complete Certified AI Agent Builder project solution",
+      "description": "Construct and test an end-to-end workflow applying the topics in this level. Submit your code plan or prompt library notes.",
+      "requirements": [
+        "List inputs, constraints, and instructions clearly",
+        "Provide test outputs showing self-healing checks"
+      ]
+    },
+    "modules": [
+      {
+        "id": 5,
+        "title": "Module 5 - Core Mastery",
+        "assignment": "Draw a flowchart mapping a document audit workflow coordinated by an orchestrator agent.",
+        "miniProject": "Design a self-healing loop script that parses command outputs and rewrites configuration files on error.",
+        "quiz": [
+          {
+            "question": "What defines an AI Agent?",
+            "options": [
+              "An autonomous process that perceives environment state, reasons in a loop (like ReAct), and calls tools",
+              "A simple API link template",
+              "A static chat bot script",
+              "An antivirus database program"
+            ],
+            "correctOption": 0
+          },
+          {
+            "question": "In multi-agent systems, what is the role of the Orchestrator?",
+            "options": [
+              "To coordinate tasks, allocate sub-goals, and aggregate results from worker nodes",
+              "To save records to database logs",
+              "To serve HTML scripts to browsers",
+              "To encrypt API security keys"
+            ],
+            "correctOption": 0
+          }
+        ],
+        "lessons": [
+          {
+            "id": "level-5-l1",
+            "title": "AI Agents",
+            "duration": "12:35",
+            "description": "Comprehensive guide to AI Agents. Learn definitions, study real cases, run terminal demonstrations, and complete drills.",
+            "learningObjectives": [
+              "Analyze the foundational definition of AI Agents.",
+              "Apply step-by-step procedures to resolve workflow tasks.",
+              "Master the tools and configurations required for AI Agents."
+            ],
+            "theory": "In this lesson on AI Agents, we break down concepts using simple, plain terms. For example, think of an AI model like a smart library clerk. If you ask for 'a book', the clerk will guess. But if you request 'a 19th-century romance book written by an Indian author', you get exactly what you need. That is the essence of structuring inputs. We explain terms simply so that beginners can build correct habits without needing advanced coding knowledge.",
+            "examples": "Case Study: An agency implementing AI Agents techniques resolved data discrepancies in under 3 minutes, cutting administrative backlogs by over 50% while improving satisfaction ratings.",
+            "demonstration": "1. Open your workspace control panel.\n2. Configure the setting: set variables.\n3. Input text: test string.\n4. Execute compilation and observe outputs.\n5. Verify that logs report success.",
+            "assignment": "Assignment Sheet: Draft a detailed 1-page report applying AI Agents to one daily task in your study or professional work. Highlight inputs and constraints.",
+            "quiz": [
+              {
+                "question": "What is the main goal of learning AI Agents?",
+                "options": [
+                  "To increase work speed and improve content quality using AI features",
+                  "To configure hardware chips",
+                  "To study assembly code compilers",
+                  "None of the above"
+                ],
+                "correctOption": 0
+              },
+              {
+                "question": "Which element is recommended to get good outputs in AI Agents?",
+                "options": [
+                  "Vague keywords with no structure",
+                  "Clear context, strict instructions, and output style guidelines",
+                  "Leaving settings at blank defaults",
+                  "Running operations offline only"
+                ],
+                "correctOption": 1
+              }
+            ],
+            "summary": "Summary of AI Agents:\n- Studied core terminology and analogical definitions.\n- Reviewed a practical case study showing efficiency benefits.\n- Ran setup instructions to test outcomes.\n- Practice exercises will reinforce retention.",
+            "videoScript": {
+              "hook": "Ever struggled with AI Agents? Today we look at how to master it step-by-step for absolute beginners!",
+              "introduction": "Welcome back. This is Harshita AI Academy. In this video, we cover AI Agents theory and live demo configurations.",
+              "mainTeaching": "The fundamental point behind AI Agents is layout and constraint design. Setting limits ensures consistency.",
+              "demonstration": "Watch my screen: I trigger the workflow and check verification scores. Notice the output format.",
+              "assignment": "Your task is to write your own prompts checklist and test them inside the dashboard console.",
+              "summary": "Thanks for watching. Complete the lesson quiz and assignment. In the next video, we advance to next level!"
+            },
+            "slideContent": [
+              {
+                "title": "Lesson: AI Agents",
+                "content": [
+                  "Topic introduction",
+                  "Core goals of this session"
+                ],
+                "visualPrompt": "Flowchart showing user request going to Harshita AI engine."
+              },
+              {
+                "title": "Core Theory",
+                "content": [
+                  "Analogical explanation",
+                  "Avoiding mistakes"
+                ],
+                "visualPrompt": "Comparison table showing Bad setup vs Good setup."
+              },
+              {
+                "title": "Live Demo",
+                "content": [
+                  "Workspace setup",
+                  "Compiling results"
+                ],
+                "visualPrompt": "Screenshot of terminal logs displaying successful validation status."
+              }
+            ],
+            "practiceExercises": [
+              "Exercise 1: Write down 3 business use cases for AI Agents.",
+              "Exercise 2: Set up custom files and verify compilation codes."
+            ],
+            "notesPdfLink": "/data/academy/notes/level-5-l1.pdf"
+          },
+          {
+            "id": "level-5-l2",
+            "title": "Multi-Agent Systems",
+            "duration": "15:10",
+            "description": "Comprehensive guide to Multi-Agent Systems. Learn definitions, study real cases, run terminal demonstrations, and complete drills.",
+            "learningObjectives": [
+              "Analyze the foundational definition of Multi-Agent Systems.",
+              "Apply step-by-step procedures to resolve workflow tasks.",
+              "Master the tools and configurations required for Multi-Agent Systems."
+            ],
+            "theory": "In this lesson on Multi-Agent Systems, we break down concepts using simple, plain terms. For example, think of an AI model like a smart library clerk. If you ask for 'a book', the clerk will guess. But if you request 'a 19th-century romance book written by an Indian author', you get exactly what you need. That is the essence of structuring inputs. We explain terms simply so that beginners can build correct habits without needing advanced coding knowledge.",
+            "examples": "Case Study: An agency implementing Multi-Agent Systems techniques resolved data discrepancies in under 3 minutes, cutting administrative backlogs by over 50% while improving satisfaction ratings.",
+            "demonstration": "1. Open your workspace control panel.\n2. Configure the setting: set variables.\n3. Input text: test string.\n4. Execute compilation and observe outputs.\n5. Verify that logs report success.",
+            "assignment": "Assignment Sheet: Draft a detailed 1-page report applying Multi-Agent Systems to one daily task in your study or professional work. Highlight inputs and constraints.",
+            "quiz": [
+              {
+                "question": "What is the main goal of learning Multi-Agent Systems?",
+                "options": [
+                  "To increase work speed and improve content quality using AI features",
+                  "To configure hardware chips",
+                  "To study assembly code compilers",
+                  "None of the above"
+                ],
+                "correctOption": 0
+              },
+              {
+                "question": "Which element is recommended to get good outputs in Multi-Agent Systems?",
+                "options": [
+                  "Vague keywords with no structure",
+                  "Clear context, strict instructions, and output style guidelines",
+                  "Leaving settings at blank defaults",
+                  "Running operations offline only"
+                ],
+                "correctOption": 1
+              }
+            ],
+            "summary": "Summary of Multi-Agent Systems:\n- Studied core terminology and analogical definitions.\n- Reviewed a practical case study showing efficiency benefits.\n- Ran setup instructions to test outcomes.\n- Practice exercises will reinforce retention.",
+            "videoScript": {
+              "hook": "Ever struggled with Multi-Agent Systems? Today we look at how to master it step-by-step for absolute beginners!",
+              "introduction": "Welcome back. This is Harshita AI Academy. In this video, we cover Multi-Agent Systems theory and live demo configurations.",
+              "mainTeaching": "The fundamental point behind Multi-Agent Systems is layout and constraint design. Setting limits ensures consistency.",
+              "demonstration": "Watch my screen: I trigger the workflow and check verification scores. Notice the output format.",
+              "assignment": "Your task is to write your own prompts checklist and test them inside the dashboard console.",
+              "summary": "Thanks for watching. Complete the lesson quiz and assignment. In the next video, we advance to next level!"
+            },
+            "slideContent": [
+              {
+                "title": "Lesson: Multi-Agent Systems",
+                "content": [
+                  "Topic introduction",
+                  "Core goals of this session"
+                ],
+                "visualPrompt": "Flowchart showing user request going to Harshita AI engine."
+              },
+              {
+                "title": "Core Theory",
+                "content": [
+                  "Analogical explanation",
+                  "Avoiding mistakes"
+                ],
+                "visualPrompt": "Comparison table showing Bad setup vs Good setup."
+              },
+              {
+                "title": "Live Demo",
+                "content": [
+                  "Workspace setup",
+                  "Compiling results"
+                ],
+                "visualPrompt": "Screenshot of terminal logs displaying successful validation status."
+              }
+            ],
+            "practiceExercises": [
+              "Exercise 1: Write down 3 business use cases for Multi-Agent Systems.",
+              "Exercise 2: Set up custom files and verify compilation codes."
+            ],
+            "notesPdfLink": "/data/academy/notes/level-5-l2.pdf"
+          },
+          {
+            "id": "level-5-l3",
+            "title": "Self-Healing Systems",
+            "duration": "16:05",
+            "description": "Comprehensive guide to Self-Healing Systems. Learn definitions, study real cases, run terminal demonstrations, and complete drills.",
+            "learningObjectives": [
+              "Analyze the foundational definition of Self-Healing Systems.",
+              "Apply step-by-step procedures to resolve workflow tasks.",
+              "Master the tools and configurations required for Self-Healing Systems."
+            ],
+            "theory": "In this lesson on Self-Healing Systems, we break down concepts using simple, plain terms. For example, think of an AI model like a smart library clerk. If you ask for 'a book', the clerk will guess. But if you request 'a 19th-century romance book written by an Indian author', you get exactly what you need. That is the essence of structuring inputs. We explain terms simply so that beginners can build correct habits without needing advanced coding knowledge.",
+            "examples": "Case Study: An agency implementing Self-Healing Systems techniques resolved data discrepancies in under 3 minutes, cutting administrative backlogs by over 50% while improving satisfaction ratings.",
+            "demonstration": "1. Open your workspace control panel.\n2. Configure the setting: set variables.\n3. Input text: test string.\n4. Execute compilation and observe outputs.\n5. Verify that logs report success.",
+            "assignment": "Assignment Sheet: Draft a detailed 1-page report applying Self-Healing Systems to one daily task in your study or professional work. Highlight inputs and constraints.",
+            "quiz": [
+              {
+                "question": "What is the main goal of learning Self-Healing Systems?",
+                "options": [
+                  "To increase work speed and improve content quality using AI features",
+                  "To configure hardware chips",
+                  "To study assembly code compilers",
+                  "None of the above"
+                ],
+                "correctOption": 0
+              },
+              {
+                "question": "Which element is recommended to get good outputs in Self-Healing Systems?",
+                "options": [
+                  "Vague keywords with no structure",
+                  "Clear context, strict instructions, and output style guidelines",
+                  "Leaving settings at blank defaults",
+                  "Running operations offline only"
+                ],
+                "correctOption": 1
+              }
+            ],
+            "summary": "Summary of Self-Healing Systems:\n- Studied core terminology and analogical definitions.\n- Reviewed a practical case study showing efficiency benefits.\n- Ran setup instructions to test outcomes.\n- Practice exercises will reinforce retention.",
+            "videoScript": {
+              "hook": "Ever struggled with Self-Healing Systems? Today we look at how to master it step-by-step for absolute beginners!",
+              "introduction": "Welcome back. This is Harshita AI Academy. In this video, we cover Self-Healing Systems theory and live demo configurations.",
+              "mainTeaching": "The fundamental point behind Self-Healing Systems is layout and constraint design. Setting limits ensures consistency.",
+              "demonstration": "Watch my screen: I trigger the workflow and check verification scores. Notice the output format.",
+              "assignment": "Your task is to write your own prompts checklist and test them inside the dashboard console.",
+              "summary": "Thanks for watching. Complete the lesson quiz and assignment. In the next video, we advance to next level!"
+            },
+            "slideContent": [
+              {
+                "title": "Lesson: Self-Healing Systems",
+                "content": [
+                  "Topic introduction",
+                  "Core goals of this session"
+                ],
+                "visualPrompt": "Flowchart showing user request going to Harshita AI engine."
+              },
+              {
+                "title": "Core Theory",
+                "content": [
+                  "Analogical explanation",
+                  "Avoiding mistakes"
+                ],
+                "visualPrompt": "Comparison table showing Bad setup vs Good setup."
+              },
+              {
+                "title": "Live Demo",
+                "content": [
+                  "Workspace setup",
+                  "Compiling results"
+                ],
+                "visualPrompt": "Screenshot of terminal logs displaying successful validation status."
+              }
+            ],
+            "practiceExercises": [
+              "Exercise 1: Write down 3 business use cases for Self-Healing Systems.",
+              "Exercise 2: Set up custom files and verify compilation codes."
+            ],
+            "notesPdfLink": "/data/academy/notes/level-5-l3.pdf"
+          },
+          {
+            "id": "level-5-l4",
+            "title": "Workflow Design",
+            "duration": "14:20",
+            "description": "Comprehensive guide to Workflow Design. Learn definitions, study real cases, run terminal demonstrations, and complete drills.",
+            "learningObjectives": [
+              "Analyze the foundational definition of Workflow Design.",
+              "Apply step-by-step procedures to resolve workflow tasks.",
+              "Master the tools and configurations required for Workflow Design."
+            ],
+            "theory": "In this lesson on Workflow Design, we break down concepts using simple, plain terms. For example, think of an AI model like a smart library clerk. If you ask for 'a book', the clerk will guess. But if you request 'a 19th-century romance book written by an Indian author', you get exactly what you need. That is the essence of structuring inputs. We explain terms simply so that beginners can build correct habits without needing advanced coding knowledge.",
+            "examples": "Case Study: An agency implementing Workflow Design techniques resolved data discrepancies in under 3 minutes, cutting administrative backlogs by over 50% while improving satisfaction ratings.",
+            "demonstration": "1. Open your workspace control panel.\n2. Configure the setting: set variables.\n3. Input text: test string.\n4. Execute compilation and observe outputs.\n5. Verify that logs report success.",
+            "assignment": "Assignment Sheet: Draft a detailed 1-page report applying Workflow Design to one daily task in your study or professional work. Highlight inputs and constraints.",
+            "quiz": [
+              {
+                "question": "What is the main goal of learning Workflow Design?",
+                "options": [
+                  "To increase work speed and improve content quality using AI features",
+                  "To configure hardware chips",
+                  "To study assembly code compilers",
+                  "None of the above"
+                ],
+                "correctOption": 0
+              },
+              {
+                "question": "Which element is recommended to get good outputs in Workflow Design?",
+                "options": [
+                  "Vague keywords with no structure",
+                  "Clear context, strict instructions, and output style guidelines",
+                  "Leaving settings at blank defaults",
+                  "Running operations offline only"
+                ],
+                "correctOption": 1
+              }
+            ],
+            "summary": "Summary of Workflow Design:\n- Studied core terminology and analogical definitions.\n- Reviewed a practical case study showing efficiency benefits.\n- Ran setup instructions to test outcomes.\n- Practice exercises will reinforce retention.",
+            "videoScript": {
+              "hook": "Ever struggled with Workflow Design? Today we look at how to master it step-by-step for absolute beginners!",
+              "introduction": "Welcome back. This is Harshita AI Academy. In this video, we cover Workflow Design theory and live demo configurations.",
+              "mainTeaching": "The fundamental point behind Workflow Design is layout and constraint design. Setting limits ensures consistency.",
+              "demonstration": "Watch my screen: I trigger the workflow and check verification scores. Notice the output format.",
+              "assignment": "Your task is to write your own prompts checklist and test them inside the dashboard console.",
+              "summary": "Thanks for watching. Complete the lesson quiz and assignment. In the next video, we advance to next level!"
+            },
+            "slideContent": [
+              {
+                "title": "Lesson: Workflow Design",
+                "content": [
+                  "Topic introduction",
+                  "Core goals of this session"
+                ],
+                "visualPrompt": "Flowchart showing user request going to Harshita AI engine."
+              },
+              {
+                "title": "Core Theory",
+                "content": [
+                  "Analogical explanation",
+                  "Avoiding mistakes"
+                ],
+                "visualPrompt": "Comparison table showing Bad setup vs Good setup."
+              },
+              {
+                "title": "Live Demo",
+                "content": [
+                  "Workspace setup",
+                  "Compiling results"
+                ],
+                "visualPrompt": "Screenshot of terminal logs displaying successful validation status."
+              }
+            ],
+            "practiceExercises": [
+              "Exercise 1: Write down 3 business use cases for Workflow Design.",
+              "Exercise 2: Set up custom files and verify compilation codes."
+            ],
+            "notesPdfLink": "/data/academy/notes/level-5-l4.pdf"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "level-6",
+    "name": "Level 6 – AI Business Professional",
+    "nameHi": "लेवल 6 – एआई बिजनेस और फ्रीलांसिंग",
+    "duration": "5 Days",
+    "lessonsCount": 5,
+    "status": "Active",
+    "progress": 0,
+    "description": "Monetize your AI expertise. Set up freelance profiles, audit business workflows, build subscriber SaaS products, deploy code on Render, and fully understand the Harshita AI ecosystem.",
+    "certificationTitle": "Certified Harshita AI Master",
+    "certificationCriteria": [
+      "Complete all 5 Lessons in this level",
+      "Pass all quizzes with correct feedback scores",
+      "Submit the practical assignment script text",
+      "Complete and submit the level mini-project"
+    ],
+    "capstoneProject": {
+      "title": "Capstone: Build a complete Certified Harshita AI Master project solution",
+      "description": "Construct and test an end-to-end workflow applying the topics in this level. Submit your code plan or prompt library notes.",
+      "requirements": [
+        "List inputs, constraints, and instructions clearly",
+        "Provide test outputs showing self-healing checks"
+      ]
+    },
+    "modules": [
+      {
+        "id": 6,
+        "title": "Module 6 - Core Mastery",
+        "assignment": "Write a professional consulting proposal showing how local agencies can automate record entry.",
+        "miniProject": "Build and audit a complete self-healing deployment routine inside the Harshita AI console.",
+        "quiz": [
+          {
+            "question": "What is the primary strategy behind Phase 1 of the Harshita AI Academy Business Strategy?",
+            "options": [
+              "Prioritize user adoption and trust via free tools and education before charging subscriptions",
+              "Charge high prices immediately to recoup setup fees",
+              "Target institutional enterprise financing only",
+              "Limit system access to administrators"
+            ],
+            "correctOption": 0
+          },
+          {
+            "question": "What makes a custom conversational skill audit successful in Harshita AI?",
+            "options": [
+              "Passing all build compiles, path validation, and intent detection test scripts",
+              "Updating database fields manually",
+              "Publishing code without checking compilation errors",
+              "Deleting log records regularly"
+            ],
+            "correctOption": 0
+          }
+        ],
+        "lessons": [
+          {
+            "id": "level-6-l1",
+            "title": "Freelancing",
+            "duration": "13:10",
+            "description": "Comprehensive guide to Freelancing. Learn definitions, study real cases, run terminal demonstrations, and complete drills.",
+            "learningObjectives": [
+              "Analyze the foundational definition of Freelancing.",
+              "Apply step-by-step procedures to resolve workflow tasks.",
+              "Master the tools and configurations required for Freelancing."
+            ],
+            "theory": "In this lesson on Freelancing, we break down concepts using simple, plain terms. For example, think of an AI model like a smart library clerk. If you ask for 'a book', the clerk will guess. But if you request 'a 19th-century romance book written by an Indian author', you get exactly what you need. That is the essence of structuring inputs. We explain terms simply so that beginners can build correct habits without needing advanced coding knowledge.",
+            "examples": "Case Study: An agency implementing Freelancing techniques resolved data discrepancies in under 3 minutes, cutting administrative backlogs by over 50% while improving satisfaction ratings.",
+            "demonstration": "1. Open your workspace control panel.\n2. Configure the setting: set variables.\n3. Input text: test string.\n4. Execute compilation and observe outputs.\n5. Verify that logs report success.",
+            "assignment": "Assignment Sheet: Draft a detailed 1-page report applying Freelancing to one daily task in your study or professional work. Highlight inputs and constraints.",
+            "quiz": [
+              {
+                "question": "What is the main goal of learning Freelancing?",
+                "options": [
+                  "To increase work speed and improve content quality using AI features",
+                  "To configure hardware chips",
+                  "To study assembly code compilers",
+                  "None of the above"
+                ],
+                "correctOption": 0
+              },
+              {
+                "question": "Which element is recommended to get good outputs in Freelancing?",
+                "options": [
+                  "Vague keywords with no structure",
+                  "Clear context, strict instructions, and output style guidelines",
+                  "Leaving settings at blank defaults",
+                  "Running operations offline only"
+                ],
+                "correctOption": 1
+              }
+            ],
+            "summary": "Summary of Freelancing:\n- Studied core terminology and analogical definitions.\n- Reviewed a practical case study showing efficiency benefits.\n- Ran setup instructions to test outcomes.\n- Practice exercises will reinforce retention.",
+            "videoScript": {
+              "hook": "Ever struggled with Freelancing? Today we look at how to master it step-by-step for absolute beginners!",
+              "introduction": "Welcome back. This is Harshita AI Academy. In this video, we cover Freelancing theory and live demo configurations.",
+              "mainTeaching": "The fundamental point behind Freelancing is layout and constraint design. Setting limits ensures consistency.",
+              "demonstration": "Watch my screen: I trigger the workflow and check verification scores. Notice the output format.",
+              "assignment": "Your task is to write your own prompts checklist and test them inside the dashboard console.",
+              "summary": "Thanks for watching. Complete the lesson quiz and assignment. In the next video, we advance to next level!"
+            },
+            "slideContent": [
+              {
+                "title": "Lesson: Freelancing",
+                "content": [
+                  "Topic introduction",
+                  "Core goals of this session"
+                ],
+                "visualPrompt": "Flowchart showing user request going to Harshita AI engine."
+              },
+              {
+                "title": "Core Theory",
+                "content": [
+                  "Analogical explanation",
+                  "Avoiding mistakes"
+                ],
+                "visualPrompt": "Comparison table showing Bad setup vs Good setup."
+              },
+              {
+                "title": "Live Demo",
+                "content": [
+                  "Workspace setup",
+                  "Compiling results"
+                ],
+                "visualPrompt": "Screenshot of terminal logs displaying successful validation status."
+              }
+            ],
+            "practiceExercises": [
+              "Exercise 1: Write down 3 business use cases for Freelancing.",
+              "Exercise 2: Set up custom files and verify compilation codes."
+            ],
+            "notesPdfLink": "/data/academy/notes/level-6-l1.pdf"
+          },
+          {
+            "id": "level-6-l2",
+            "title": "Consulting",
+            "duration": "14:50",
+            "description": "Comprehensive guide to Consulting. Learn definitions, study real cases, run terminal demonstrations, and complete drills.",
+            "learningObjectives": [
+              "Analyze the foundational definition of Consulting.",
+              "Apply step-by-step procedures to resolve workflow tasks.",
+              "Master the tools and configurations required for Consulting."
+            ],
+            "theory": "In this lesson on Consulting, we break down concepts using simple, plain terms. For example, think of an AI model like a smart library clerk. If you ask for 'a book', the clerk will guess. But if you request 'a 19th-century romance book written by an Indian author', you get exactly what you need. That is the essence of structuring inputs. We explain terms simply so that beginners can build correct habits without needing advanced coding knowledge.",
+            "examples": "Case Study: An agency implementing Consulting techniques resolved data discrepancies in under 3 minutes, cutting administrative backlogs by over 50% while improving satisfaction ratings.",
+            "demonstration": "1. Open your workspace control panel.\n2. Configure the setting: set variables.\n3. Input text: test string.\n4. Execute compilation and observe outputs.\n5. Verify that logs report success.",
+            "assignment": "Assignment Sheet: Draft a detailed 1-page report applying Consulting to one daily task in your study or professional work. Highlight inputs and constraints.",
+            "quiz": [
+              {
+                "question": "What is the main goal of learning Consulting?",
+                "options": [
+                  "To increase work speed and improve content quality using AI features",
+                  "To configure hardware chips",
+                  "To study assembly code compilers",
+                  "None of the above"
+                ],
+                "correctOption": 0
+              },
+              {
+                "question": "Which element is recommended to get good outputs in Consulting?",
+                "options": [
+                  "Vague keywords with no structure",
+                  "Clear context, strict instructions, and output style guidelines",
+                  "Leaving settings at blank defaults",
+                  "Running operations offline only"
+                ],
+                "correctOption": 1
+              }
+            ],
+            "summary": "Summary of Consulting:\n- Studied core terminology and analogical definitions.\n- Reviewed a practical case study showing efficiency benefits.\n- Ran setup instructions to test outcomes.\n- Practice exercises will reinforce retention.",
+            "videoScript": {
+              "hook": "Ever struggled with Consulting? Today we look at how to master it step-by-step for absolute beginners!",
+              "introduction": "Welcome back. This is Harshita AI Academy. In this video, we cover Consulting theory and live demo configurations.",
+              "mainTeaching": "The fundamental point behind Consulting is layout and constraint design. Setting limits ensures consistency.",
+              "demonstration": "Watch my screen: I trigger the workflow and check verification scores. Notice the output format.",
+              "assignment": "Your task is to write your own prompts checklist and test them inside the dashboard console.",
+              "summary": "Thanks for watching. Complete the lesson quiz and assignment. In the next video, we advance to next level!"
+            },
+            "slideContent": [
+              {
+                "title": "Lesson: Consulting",
+                "content": [
+                  "Topic introduction",
+                  "Core goals of this session"
+                ],
+                "visualPrompt": "Flowchart showing user request going to Harshita AI engine."
+              },
+              {
+                "title": "Core Theory",
+                "content": [
+                  "Analogical explanation",
+                  "Avoiding mistakes"
+                ],
+                "visualPrompt": "Comparison table showing Bad setup vs Good setup."
+              },
+              {
+                "title": "Live Demo",
+                "content": [
+                  "Workspace setup",
+                  "Compiling results"
+                ],
+                "visualPrompt": "Screenshot of terminal logs displaying successful validation status."
+              }
+            ],
+            "practiceExercises": [
+              "Exercise 1: Write down 3 business use cases for Consulting.",
+              "Exercise 2: Set up custom files and verify compilation codes."
+            ],
+            "notesPdfLink": "/data/academy/notes/level-6-l2.pdf"
+          },
+          {
+            "id": "level-6-l3",
+            "title": "SaaS Building",
+            "duration": "16:20",
+            "description": "Comprehensive guide to SaaS Building. Learn definitions, study real cases, run terminal demonstrations, and complete drills.",
+            "learningObjectives": [
+              "Analyze the foundational definition of SaaS Building.",
+              "Apply step-by-step procedures to resolve workflow tasks.",
+              "Master the tools and configurations required for SaaS Building."
+            ],
+            "theory": "In this lesson on SaaS Building, we break down concepts using simple, plain terms. For example, think of an AI model like a smart library clerk. If you ask for 'a book', the clerk will guess. But if you request 'a 19th-century romance book written by an Indian author', you get exactly what you need. That is the essence of structuring inputs. We explain terms simply so that beginners can build correct habits without needing advanced coding knowledge.",
+            "examples": "Case Study: An agency implementing SaaS Building techniques resolved data discrepancies in under 3 minutes, cutting administrative backlogs by over 50% while improving satisfaction ratings.",
+            "demonstration": "1. Open your workspace control panel.\n2. Configure the setting: set variables.\n3. Input text: test string.\n4. Execute compilation and observe outputs.\n5. Verify that logs report success.",
+            "assignment": "Assignment Sheet: Draft a detailed 1-page report applying SaaS Building to one daily task in your study or professional work. Highlight inputs and constraints.",
+            "quiz": [
+              {
+                "question": "What is the main goal of learning SaaS Building?",
+                "options": [
+                  "To increase work speed and improve content quality using AI features",
+                  "To configure hardware chips",
+                  "To study assembly code compilers",
+                  "None of the above"
+                ],
+                "correctOption": 0
+              },
+              {
+                "question": "Which element is recommended to get good outputs in SaaS Building?",
+                "options": [
+                  "Vague keywords with no structure",
+                  "Clear context, strict instructions, and output style guidelines",
+                  "Leaving settings at blank defaults",
+                  "Running operations offline only"
+                ],
+                "correctOption": 1
+              }
+            ],
+            "summary": "Summary of SaaS Building:\n- Studied core terminology and analogical definitions.\n- Reviewed a practical case study showing efficiency benefits.\n- Ran setup instructions to test outcomes.\n- Practice exercises will reinforce retention.",
+            "videoScript": {
+              "hook": "Ever struggled with SaaS Building? Today we look at how to master it step-by-step for absolute beginners!",
+              "introduction": "Welcome back. This is Harshita AI Academy. In this video, we cover SaaS Building theory and live demo configurations.",
+              "mainTeaching": "The fundamental point behind SaaS Building is layout and constraint design. Setting limits ensures consistency.",
+              "demonstration": "Watch my screen: I trigger the workflow and check verification scores. Notice the output format.",
+              "assignment": "Your task is to write your own prompts checklist and test them inside the dashboard console.",
+              "summary": "Thanks for watching. Complete the lesson quiz and assignment. In the next video, we advance to next level!"
+            },
+            "slideContent": [
+              {
+                "title": "Lesson: SaaS Building",
+                "content": [
+                  "Topic introduction",
+                  "Core goals of this session"
+                ],
+                "visualPrompt": "Flowchart showing user request going to Harshita AI engine."
+              },
+              {
+                "title": "Core Theory",
+                "content": [
+                  "Analogical explanation",
+                  "Avoiding mistakes"
+                ],
+                "visualPrompt": "Comparison table showing Bad setup vs Good setup."
+              },
+              {
+                "title": "Live Demo",
+                "content": [
+                  "Workspace setup",
+                  "Compiling results"
+                ],
+                "visualPrompt": "Screenshot of terminal logs displaying successful validation status."
+              }
+            ],
+            "practiceExercises": [
+              "Exercise 1: Write down 3 business use cases for SaaS Building.",
+              "Exercise 2: Set up custom files and verify compilation codes."
+            ],
+            "notesPdfLink": "/data/academy/notes/level-6-l3.pdf"
+          },
+          {
+            "id": "level-6-l4",
+            "title": "Client Projects",
+            "duration": "15:15",
+            "description": "Comprehensive guide to Client Projects. Learn definitions, study real cases, run terminal demonstrations, and complete drills.",
+            "learningObjectives": [
+              "Analyze the foundational definition of Client Projects.",
+              "Apply step-by-step procedures to resolve workflow tasks.",
+              "Master the tools and configurations required for Client Projects."
+            ],
+            "theory": "In this lesson on Client Projects, we break down concepts using simple, plain terms. For example, think of an AI model like a smart library clerk. If you ask for 'a book', the clerk will guess. But if you request 'a 19th-century romance book written by an Indian author', you get exactly what you need. That is the essence of structuring inputs. We explain terms simply so that beginners can build correct habits without needing advanced coding knowledge.",
+            "examples": "Case Study: An agency implementing Client Projects techniques resolved data discrepancies in under 3 minutes, cutting administrative backlogs by over 50% while improving satisfaction ratings.",
+            "demonstration": "1. Open your workspace control panel.\n2. Configure the setting: set variables.\n3. Input text: test string.\n4. Execute compilation and observe outputs.\n5. Verify that logs report success.",
+            "assignment": "Assignment Sheet: Draft a detailed 1-page report applying Client Projects to one daily task in your study or professional work. Highlight inputs and constraints.",
+            "quiz": [
+              {
+                "question": "What is the main goal of learning Client Projects?",
+                "options": [
+                  "To increase work speed and improve content quality using AI features",
+                  "To configure hardware chips",
+                  "To study assembly code compilers",
+                  "None of the above"
+                ],
+                "correctOption": 0
+              },
+              {
+                "question": "Which element is recommended to get good outputs in Client Projects?",
+                "options": [
+                  "Vague keywords with no structure",
+                  "Clear context, strict instructions, and output style guidelines",
+                  "Leaving settings at blank defaults",
+                  "Running operations offline only"
+                ],
+                "correctOption": 1
+              }
+            ],
+            "summary": "Summary of Client Projects:\n- Studied core terminology and analogical definitions.\n- Reviewed a practical case study showing efficiency benefits.\n- Ran setup instructions to test outcomes.\n- Practice exercises will reinforce retention.",
+            "videoScript": {
+              "hook": "Ever struggled with Client Projects? Today we look at how to master it step-by-step for absolute beginners!",
+              "introduction": "Welcome back. This is Harshita AI Academy. In this video, we cover Client Projects theory and live demo configurations.",
+              "mainTeaching": "The fundamental point behind Client Projects is layout and constraint design. Setting limits ensures consistency.",
+              "demonstration": "Watch my screen: I trigger the workflow and check verification scores. Notice the output format.",
+              "assignment": "Your task is to write your own prompts checklist and test them inside the dashboard console.",
+              "summary": "Thanks for watching. Complete the lesson quiz and assignment. In the next video, we advance to next level!"
+            },
+            "slideContent": [
+              {
+                "title": "Lesson: Client Projects",
+                "content": [
+                  "Topic introduction",
+                  "Core goals of this session"
+                ],
+                "visualPrompt": "Flowchart showing user request going to Harshita AI engine."
+              },
+              {
+                "title": "Core Theory",
+                "content": [
+                  "Analogical explanation",
+                  "Avoiding mistakes"
+                ],
+                "visualPrompt": "Comparison table showing Bad setup vs Good setup."
+              },
+              {
+                "title": "Live Demo",
+                "content": [
+                  "Workspace setup",
+                  "Compiling results"
+                ],
+                "visualPrompt": "Screenshot of terminal logs displaying successful validation status."
+              }
+            ],
+            "practiceExercises": [
+              "Exercise 1: Write down 3 business use cases for Client Projects.",
+              "Exercise 2: Set up custom files and verify compilation codes."
+            ],
+            "notesPdfLink": "/data/academy/notes/level-6-l4.pdf"
+          },
+          {
+            "id": "level-6-l5",
+            "title": "Monetization",
+            "duration": "14:40",
+            "description": "Comprehensive guide to Monetization. Learn definitions, study real cases, run terminal demonstrations, and complete drills.",
+            "learningObjectives": [
+              "Analyze the foundational definition of Monetization.",
+              "Apply step-by-step procedures to resolve workflow tasks.",
+              "Master the tools and configurations required for Monetization."
+            ],
+            "theory": "In this lesson on Monetization, we break down concepts using simple, plain terms. For example, think of an AI model like a smart library clerk. If you ask for 'a book', the clerk will guess. But if you request 'a 19th-century romance book written by an Indian author', you get exactly what you need. That is the essence of structuring inputs. We explain terms simply so that beginners can build correct habits without needing advanced coding knowledge.",
+            "examples": "Case Study: An agency implementing Monetization techniques resolved data discrepancies in under 3 minutes, cutting administrative backlogs by over 50% while improving satisfaction ratings.",
+            "demonstration": "1. Open your workspace control panel.\n2. Configure the setting: set variables.\n3. Input text: test string.\n4. Execute compilation and observe outputs.\n5. Verify that logs report success.",
+            "assignment": "Assignment Sheet: Draft a detailed 1-page report applying Monetization to one daily task in your study or professional work. Highlight inputs and constraints.",
+            "quiz": [
+              {
+                "question": "What is the main goal of learning Monetization?",
+                "options": [
+                  "To increase work speed and improve content quality using AI features",
+                  "To configure hardware chips",
+                  "To study assembly code compilers",
+                  "None of the above"
+                ],
+                "correctOption": 0
+              },
+              {
+                "question": "Which element is recommended to get good outputs in Monetization?",
+                "options": [
+                  "Vague keywords with no structure",
+                  "Clear context, strict instructions, and output style guidelines",
+                  "Leaving settings at blank defaults",
+                  "Running operations offline only"
+                ],
+                "correctOption": 1
+              }
+            ],
+            "summary": "Summary of Monetization:\n- Studied core terminology and analogical definitions.\n- Reviewed a practical case study showing efficiency benefits.\n- Ran setup instructions to test outcomes.\n- Practice exercises will reinforce retention.",
+            "videoScript": {
+              "hook": "Ever struggled with Monetization? Today we look at how to master it step-by-step for absolute beginners!",
+              "introduction": "Welcome back. This is Harshita AI Academy. In this video, we cover Monetization theory and live demo configurations.",
+              "mainTeaching": "The fundamental point behind Monetization is layout and constraint design. Setting limits ensures consistency.",
+              "demonstration": "Watch my screen: I trigger the workflow and check verification scores. Notice the output format.",
+              "assignment": "Your task is to write your own prompts checklist and test them inside the dashboard console.",
+              "summary": "Thanks for watching. Complete the lesson quiz and assignment. In the next video, we advance to next level!"
+            },
+            "slideContent": [
+              {
+                "title": "Lesson: Monetization",
+                "content": [
+                  "Topic introduction",
+                  "Core goals of this session"
+                ],
+                "visualPrompt": "Flowchart showing user request going to Harshita AI engine."
+              },
+              {
+                "title": "Core Theory",
+                "content": [
+                  "Analogical explanation",
+                  "Avoiding mistakes"
+                ],
+                "visualPrompt": "Comparison table showing Bad setup vs Good setup."
+              },
+              {
+                "title": "Live Demo",
+                "content": [
+                  "Workspace setup",
+                  "Compiling results"
+                ],
+                "visualPrompt": "Screenshot of terminal logs displaying successful validation status."
+              }
+            ],
+            "practiceExercises": [
+              "Exercise 1: Write down 3 business use cases for Monetization.",
+              "Exercise 2: Set up custom files and verify compilation codes."
+            ],
+            "notesPdfLink": "/data/academy/notes/level-6-l5.pdf"
+          }
+        ]
+      }
+    ]
+  }
+]

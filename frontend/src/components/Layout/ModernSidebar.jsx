@@ -11,7 +11,9 @@ import {
   HelpCircle,
   Menu,
   X,
-  LogOut
+  LogOut,
+  Video,
+  GraduationCap
 } from 'lucide-react';
 import { useStore } from '../../store';
 
@@ -21,11 +23,13 @@ const SECTIONS = [
     items: [
       { name: 'Dashboard', icon: LayoutDashboard, route: '/dashboard' },
       { name: 'AI Assistant', icon: Bot, route: '/service/ai-assistant' },
+      { name: 'AI Academy', icon: GraduationCap, route: '/academy' },
     ]
   },
   {
     title: 'Services',
     items: [
+      { name: 'Story Video', icon: Video, route: '/story-video' },
       { name: 'Legal Tools', icon: Scale, route: '/legal-draft' },
       { name: 'Career Tools', icon: Briefcase, route: '/resume-builder' },
       { name: 'Business Tools', icon: Building2, route: '/service/business' },

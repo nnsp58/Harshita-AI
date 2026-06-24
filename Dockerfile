@@ -11,6 +11,7 @@ RUN apk add --no-cache \
     poppler-utils \
     sqlite \
     redis \
+    ffmpeg \
     && rm -rf /var/cache/apk/*
 
 # Create app directory

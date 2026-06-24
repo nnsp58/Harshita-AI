@@ -201,7 +201,8 @@ const login = async (req, res, next) => {
           email: user.email,
           name: user.name,
           role: user.role,
-          csc_id: user.csc_id
+          csc_id: user.csc_id,
+          preferences: user.preferences
         },
         csc: cscInfo,
         token,
@@ -273,7 +274,7 @@ const googleLogin = async (req, res, next) => {
       token: authToken,
       refreshToken,
       data: {
-        user: { id: user.id, email: user.email, name: user.name, role: user.role, csc_id: user.csc_id },
+        user: { id: user.id, email: user.email, name: user.name, role: user.role, csc_id: user.csc_id, preferences: user.preferences },
         csc: cscInfo,
         token: authToken,
         refreshToken
@@ -445,6 +446,45 @@ const resetPassword = async (req, res, next) => {
   }
 };
 
+const updatePreferences = async (req, res, next) => {
+  try {
+    const { preferences } = req.body;
+    const userId = req.userId;
+
+    if (!preferences) {
+      throw ApiError.badRequest('Preferences data required');
+    }
+
+    const db = await getPrisma();
+    let updatedUser = null;
+
+    if (db) {
+      updatedUser = await db.user.update({
+        where: { id: userId },
+        data: { preferences },
+        select: { id: true, email: true, name: true, role: true, is_active: true, csc_id: true, preferences: true }
+      });
+    } else {
+      // In memory fallback
+      for (const [email, user] of inMemoryUsers) {
+        if (user.id === userId) {
+          user.preferences = preferences;
+          updatedUser = user;
+          break;
+        }
+      }
+    }
+
+    res.json({
+      success: true,
+      message: 'Preferences updated successfully',
+      data: updatedUser
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   register,
   login,
@@ -454,6 +494,7 @@ module.exports = {
   getCurrentUser,
   forgotPassword,
   resetPassword,
+  updatePreferences,
   inMemoryUsers,
   getInMemoryUsers,
   getInMemoryTokens

@@ -75,34 +75,268 @@ router.get('/control/users', requireRole('superadmin'), async (req, res) => {
   }
 });
 
-// Skills list with usage stats
-router.get('/control/skills', requireRole('superadmin', 'csc_admin'), (req, res) => {
+// Skills list with usage stats & status audit
+router.get('/control/skills', requireRole('superadmin', 'csc_admin'), async (req, res) => {
   try {
+    const { SelfEvolutionAgent } = require('../../core/selfEvolutionAgent');
+    const agent = new SelfEvolutionAgent();
+    const audit = await agent.checkSkills();
+
     const masterAgent = req.app.get('masterAgent');
     const registry = masterAgent?.registry;
     if (!registry) return res.json({ success: false, error: 'Skill registry not ready' });
 
-    const skills = registry.getAllSkills().map(s => {
-      const insights = learningEngine.getSkillInsights(s.name);
-      return {
-        name: s.name,
-        displayName: s.displayName,
-        category: s.category,
-        version: s.version,
-        intents: s.intents.length,
-        keywords: (s.keywords.hi?.length || 0) + (s.keywords.en?.length || 0) + (s.keywords.hinglish?.length || 0),
-        usageCount: s.usageCount,
-        successRate: insights.successRate,
-        learnedKeywords: insights.learnedKeywords.length,
-        canRunOffline: s.canRunOffline,
-      };
-    });
+    // Read files dynamically
+    const fs = require('fs');
+    const path = require('path');
+    const skillsDir = path.join(__dirname, '../../skills');
+    const files = fs.readdirSync(skillsDir).filter(f => f.endsWith('Skill.js') && f !== 'BaseSkill.js');
 
-    res.json({ success: true, data: skills });
+    const skillsList = [];
+
+    // Map of loaded skills
+    const loadedSkills = new Map();
+    for (const s of registry.getAllSkills()) {
+      loadedSkills.set(s.name, s);
+    }
+
+    // Process files found in directory (including broken/disabled)
+    const BaseSkillClass = require('../../skills/BaseSkill').BaseSkill;
+
+    for (const file of files) {
+      const filePath = path.join(skillsDir, file);
+      let skillName = file.replace('.js', '');
+      let displayName = file.replace('Skill.js', '');
+      let category = 'general';
+      let description = 'Unknown';
+      let status = 'Active';
+      let version = '1.0.0';
+      let requiredAPIs = [];
+      let inputType = 'Text';
+      let outputType = 'Text';
+      let canRunOffline = false;
+      let usageCount = 0;
+      let successRate = 100;
+      let intentsCount = 0;
+      let keywordsCount = 0;
+
+      try {
+        const module = require(filePath);
+        const SkillClass = Object.values(module).find(
+          v => typeof v === 'function' && v.prototype instanceof BaseSkillClass
+        );
+        if (SkillClass) {
+          const instance = new SkillClass();
+          skillName = instance.name || skillName;
+          displayName = instance.displayName || instance.displayNameEn || displayName;
+          category = instance.category || category;
+          description = instance.description || instance.descriptionEn || description;
+          version = instance.version || version;
+          requiredAPIs = instance.requiredAPIs || [];
+          inputType = instance.inputType || 'Text';
+          outputType = instance.outputType || 'Text';
+          canRunOffline = instance.canRunOffline || false;
+          intentsCount = instance.intents ? instance.intents.length : 0;
+          keywordsCount = instance.keywords ? (instance.keywords.hi?.length || 0) + (instance.keywords.en?.length || 0) + (instance.keywords.hinglish?.length || 0) : 0;
+
+          // Check status
+          if (instance.disabled) {
+            status = 'Disabled';
+          } else if (instance.inDevelopment || instance.in_development || instance.status === 'in_development') {
+            status = 'In Development';
+          } else if (instance.category === 'security' || instance.name === 'security_guardrail' || instance.hidden) {
+            status = 'Hidden';
+          } else {
+            status = 'Active';
+          }
+
+          // usage info from live memory if active
+          const activeInstance = loadedSkills.get(skillName);
+          if (activeInstance) {
+            usageCount = activeInstance.usageCount;
+            const insights = learningEngine.getSkillInsights(skillName);
+            successRate = insights.successRate;
+          }
+        } else {
+          status = 'Broken';
+          description = 'No BaseSkill subclass exported';
+        }
+      } catch (err) {
+        status = 'Broken';
+        description = `Broken / Syntax Error: ${err.message}`;
+      }
+
+      skillsList.push({
+        name: skillName,
+        displayName,
+        category,
+        description,
+        status,
+        version,
+        requiredAPIs,
+        inputType,
+        outputType,
+        canRunOffline,
+        usageCount,
+        successRate,
+        intentsCount,
+        keywordsCount
+      });
+    }
+
+    // Add missing skills from audit list
+    for (const missing of audit.missingList) {
+      skillsList.push({
+        name: missing.intent,
+        displayName: `Missing: ${missing.intent}`,
+        category: 'unknown',
+        description: `This intent is mapped in overrides/keywords but its matching Skill file is missing.`,
+        status: 'Missing',
+        version: '0.0.0',
+        requiredAPIs: [],
+        inputType: 'Text',
+        outputType: 'Text',
+        canRunOffline: false,
+        usageCount: 0,
+        successRate: 0,
+        intentsCount: 1,
+        keywordsCount: 0
+      });
+    }
+
+    res.json({
+      success: true,
+      data: skillsList,
+      summary: {
+        totalRegistered: audit.totalRegistered,
+        totalActive: audit.activeCount,
+        totalInDevelopment: audit.devCount,
+        totalDisabled: audit.disabledCount,
+        totalBroken: audit.brokenCount,
+        totalHidden: audit.hiddenCount,
+        totalMissing: audit.missingCount
+      }
+    });
   } catch (e) {
     res.status(500).json({ success: false, error: e.message });
   }
 });
+
+// Self-Healing Status Overview
+router.get('/control/self-healing', requireRole('superadmin'), async (req, res) => {
+  try {
+    const { SelfEvolutionAgent } = require('../../core/selfEvolutionAgent');
+    const agent = new SelfEvolutionAgent();
+    const report = await agent.getHealthReport();
+    res.json({ success: true, data: report });
+  } catch (e) {
+    res.status(500).json({ success: false, error: e.message });
+  }
+});
+
+// Run Manual Self-Healing Scan
+router.post('/control/self-healing/scan', requireRole('superadmin'), async (req, res) => {
+  try {
+    const { SelfEvolutionAgent } = require('../../core/selfEvolutionAgent');
+    const agent = new SelfEvolutionAgent();
+    
+    // Run scan async in background
+    agent.scanProject()
+      .then(rep => console.log('🧬 [SelfHealing] Manual scan completed.'))
+      .catch(err => console.error('🧬 [SelfHealing] Manual scan failed:', err.message));
+      
+    res.json({ success: true, message: 'Self-healing diagnostic scan initiated in background.' });
+  } catch (e) {
+    res.status(500).json({ success: false, error: e.message });
+  }
+});
+
+// Git status and deployment metrics
+router.get('/control/git/status', requireRole('superadmin'), async (req, res) => {
+  try {
+    const manager = require('../../core/gitDeployManager');
+    const status = await manager.getStatus();
+    res.json({ success: true, data: status });
+  } catch (e) {
+    res.status(500).json({ success: false, error: e.message });
+  }
+});
+
+// Commit and push safety checked pipeline
+router.post('/control/git/commit-push', requireRole('superadmin'), async (req, res) => {
+  try {
+    const { commitMessage } = req.body;
+    const manager = require('../../core/gitDeployManager');
+
+    // Run in background and broadcast status via Socket.IO
+    const io = req.app.get('io');
+    const broadcastProgress = (progress) => {
+      if (io) io.emit('git_progress', { progress });
+    };
+
+    manager.validateCommitAndPush(commitMessage, broadcastProgress)
+      .then(result => {
+        if (io) io.emit('git_complete', { success: true, commitMsg: result.commitMsg });
+      })
+      .catch(err => {
+        if (io) io.emit('git_complete', { success: false, error: err.message });
+      });
+
+    res.json({ success: true, message: 'Deployment pipeline validation started.' });
+  } catch (e) {
+    res.status(500).json({ success: false, error: e.message });
+  }
+});
+
+// Trigger Render deployment hook manually
+router.post('/control/git/deploy', requireRole('superadmin'), async (req, res) => {
+  try {
+    const manager = require('../../core/gitDeployManager');
+    const io = req.app.get('io');
+    const broadcast = (msg) => {
+      if (io) io.emit('git_progress', { progress: msg });
+    };
+
+    const triggered = await manager.triggerRenderDeploy(broadcast);
+    res.json({ success: triggered, message: triggered ? 'Render deploy triggered!' : 'Hook trigger failed or URL not set.' });
+  } catch (e) {
+    res.status(500).json({ success: false, error: e.message });
+  }
+});
+
+// Revert last commit
+router.post('/control/git/rollback', requireRole('superadmin'), async (req, res) => {
+  try {
+    const manager = require('../../core/gitDeployManager');
+    
+    // run async
+    manager.autoRollback('Manual administrator requested rollback')
+      .then(() => console.log('🚨 Manual rollback complete'))
+      .catch(e => console.error('🚨 Manual rollback failed:', e.message));
+
+    res.json({ success: true, message: 'Rollback and redeployment process started.' });
+  } catch (e) {
+    res.status(500).json({ success: false, error: e.message });
+  }
+});
+
+// Update Developer Credentials settings
+router.post('/control/git/settings', requireRole('superadmin'), async (req, res) => {
+  try {
+    const { RENDER_DEPLOY_HOOK_URL, RENDER_API_KEY, RENDER_SERVICE_ID, gitRemote } = req.body;
+    const manager = require('../../core/gitDeployManager');
+
+    if (RENDER_DEPLOY_HOOK_URL !== undefined) await manager.setDeploySetting('RENDER_DEPLOY_HOOK_URL', RENDER_DEPLOY_HOOK_URL);
+    if (RENDER_API_KEY !== undefined) await manager.setDeploySetting('RENDER_API_KEY', RENDER_API_KEY);
+    if (RENDER_SERVICE_ID !== undefined) await manager.setDeploySetting('RENDER_SERVICE_ID', RENDER_SERVICE_ID);
+    if (gitRemote !== undefined) await manager.setDeploySetting('gitRemote', gitRemote);
+
+    res.json({ success: true, message: 'Settings saved successfully.' });
+  } catch (e) {
+    res.status(500).json({ success: false, error: e.message });
+  }
+});
+
 
 // System health
 router.get('/control/health', requireRole('superadmin'), (req, res) => {

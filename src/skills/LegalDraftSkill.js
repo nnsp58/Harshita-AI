@@ -321,15 +321,17 @@ ${langInstruction}
     if (docType === 'gift_deed') {
       typeSpecificRules = `
 === GIFT DEED (दान विलेख) - SENIOR ADVOCATE RULES ===
-- Clearly identify Donor (दानकर्ता) and Donee (दानग्रहीता).
-- Extract exact relationship (especially if "पुत्री / बेटी / Daughter").
+- Clearly identify Donor (दानकर्ता) and Donee(s) (दानग्रहीता/दानग्रहीतागण).
+- If multiple Donees are mentioned (e.g. wife and daughter together, like Geeta and Harshita), include BOTH in the Donee section (e.g., Donee 1: wife Geeta, Donee 2: daughter Harshita) with their respective names.
+- Extract details from Roman/Hinglish text. If names/places are given in English/Roman script (e.g., "nar narayan singh", "meer singh", "geeta", "harshita", "sikhera"), convert/transliterate them correctly to Devanagari Hindi for the Hindi part (e.g. नर नारायण सिंह, मीर सिंह, गीता, हर्षिता, सीखेरा) and proper capitalized Title Case in the English part (e.g. Nar Narayan Singh, Meer Singh, Geeta, Harshita, Sikhera).
+- DO NOT leave placeholders like [Name], [नाम], or [Address] for details that are provided in the prompt. Extract and print them exactly.
 - Detect Property Type: Movable + Immovable (चल एवं अचल सम्पत्ति).
-- Extract Share Percentage (50%, आधा हिस्सा, etc.).
+- Extract Share details: if the user gifts "apni sari sampatti" (all property), it means 100% of the donor's properties. If multiple donees, they hold it in equal shares (50% each or as specified).
 - Must include: Natural Love & Affection Clause, Absolute Ownership Clause, No Consideration Clause, Possession Transfer Clause.
 - Add Registration & Stamp Duty reminder.
 - Use proper revenue language: "स्थायी रूप से हस्तांतरित", "बिना किसी प्रतिफल के" etc.
 - Structure must have strong WHEREAS recitals explaining love/affection and ownership.
-- Include Donor's Aadhaar/PAN placeholder if not provided.`;
+- Include Donor's and Donees' Aadhaar/PAN placeholder if not provided in the input, but fill the names and relationships completely.`;
     } else if (docType === 'affidavit') {
       typeSpecificRules = `
 === AFFIDAVIT (शपथ पत्र) - SENIOR ADVOCATE RULES ===

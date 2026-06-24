@@ -115,6 +115,7 @@ model User {
   name          String
   role          UserRole  @default(operator)
   is_active     Boolean   @default(true) @map("is_active")
+  preferences   Json?     @map("preferences")
   created_at    DateTime  @default(now()) @map("created_at")
   updated_at    DateTime  @updatedAt @map("updated_at")
 
@@ -300,3 +301,57 @@ model RefreshToken {
   @@index([user_id])
   @@map("refresh_tokens")
 }
+
+model StoryVideo {
+  id             String    @id @default(uuid())
+  title          String
+  story          String
+  language       String
+  duration       Int
+  status         String    @default("pending") // pending, processing, completed, failed
+  error          String?
+  style          String?
+  voiceType      String?   @map("voice_type")
+  
+  videoPath      String?   @map("video_path")
+  srtPath        String?   @map("srt_path")
+  
+  scenes         Json?     @map("scenes")
+  metadata       Json?     @map("metadata")
+  
+  created_at     DateTime  @default(now()) @map("created_at")
+  updated_at     DateTime  @updatedAt @map("updated_at")
+
+  user_id        String?   @map("user_id")
+  csc_id         String?   @map("csc_id")
+  
+  @@map("story_videos")
+}
+
+model SystemSetting {
+  id         String   @id @default(uuid())
+  key        String   @unique
+  value      String
+  created_at DateTime @default(now()) @map("created_at")
+  updated_at DateTime @updatedAt @map("updated_at")
+
+  @@map("system_settings")
+}
+
+model ImprovementRegistry {
+  id               String   @id @default(uuid())
+  issue            String
+  severity         String   @default("warning")
+  moduleName       String   @map("module_name") // Technical, Feature, UX, SEO, Deployment, Skills
+  rootCause        String   @map("root_cause")
+  suggestedFix     String?  @map("suggested_fix")
+  autoFixAvailable Boolean  @default(false) @map("auto_fix_available")
+  fixApplied       String   @map("fix_applied")
+  status           String   // "detected", "fixed", "pending_repair", "failed_repair"
+  created_at       DateTime @default(now()) @map("created_at")
+  updated_at       DateTime @updatedAt @map("updated_at")
+
+  @@map("improvement_registries")
+}
+
+

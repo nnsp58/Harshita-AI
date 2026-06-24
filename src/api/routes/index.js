@@ -19,8 +19,13 @@ const notificationRoutes = require('./notifications');
 const emailRoutes = require('./email');
 const contactRoutes = require('./contact');
 const analyticsRoutes = require('./analytics');
+const settingRoutes = require('./settings');
+const storyVideoRoutes = require('./storyVideo');
+const academyRoutes = require('./academy');
+const selfHealingRoutes = require('./selfHealing');
 
 router.use('/auth', authRoutes);
+router.use('/self-healing', selfHealingRoutes);
 router.use('/candidate', candidateRoutes);
 router.use('/job', jobRoutes);
 router.use('/document', documentRoutes);
@@ -36,6 +41,9 @@ router.use('/notifications', notificationRoutes);
 router.use('/email', emailRoutes);
 router.use('/contact', contactRoutes);
 router.use('/analytics', analyticsRoutes);
+router.use('/settings', settingRoutes);
+router.use('/story-video', storyVideoRoutes);
+router.use('/academy', academyRoutes);
 
 // API info endpoint
 router.get('/', (req, res) => {

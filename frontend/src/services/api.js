@@ -56,6 +56,11 @@ export const authAPI = {
   googleLogin: (data) => api.post('/auth/google', data),
   logout: () => api.post('/auth/logout'),
   me: () => api.get('/auth/me'),
+  updatePreferences: (preferences) => api.post('/auth/preferences', { preferences }),
+}
+
+export const selfHealingAPI = {
+  runAudit: () => api.get('/self-healing/audit'),
 }
 
 // Agent APIs

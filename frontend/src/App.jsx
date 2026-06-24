@@ -26,6 +26,7 @@ const ITRFiling = lazy(() => import('./pages/ITRFiling'))
 const ServicePage = lazy(() => import('./pages/ServicePage'))
 const AdvocateProfile = lazy(() => import('./pages/AdvocateProfile'))
 const ContactUs = lazy(() => import('./pages/ContactUs'))
+const StoryVideoDashboard = lazy(() => import('./pages/StoryVideoDashboard'))
 
 // AdSense Content & SEO Pages
 const ToolLanding = lazy(() => import('./pages/ToolLanding'))
@@ -42,6 +43,10 @@ const LearningInsights = lazy(() => import('./pages/admin/LearningInsights'))
 const SystemHealth = lazy(() => import('./pages/admin/SystemHealth'))
 const CscDashboard = lazy(() => import('./pages/admin/CscDashboard'))
 const VleDashboard = lazy(() => import('./pages/admin/VleDashboard'))
+const SelfHealingCenter = lazy(() => import('./pages/admin/SelfHealingCenter'))
+const DeveloperCenter = lazy(() => import('./pages/admin/DeveloperCenter'))
+const AcademyDashboard = lazy(() => import('./pages/AcademyDashboard'))
+
 
 // Role-based admin route
 function AdminRoute({ children, allow }) {
@@ -229,6 +234,22 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/story-video"
+            element={
+              <ProtectedRoute>
+                <StoryVideoDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/academy"
+            element={
+              <ProtectedRoute>
+                <AcademyDashboard />
+              </ProtectedRoute>
+            }
+          />
 
           {/* Generic service page — handles form-filling, job-search, ration-card, whatsapp, ai-assistant, document-ocr */}
           <Route
@@ -244,6 +265,8 @@ function App() {
           <Route path="/admin/control" element={<AdminRoute allow={['superadmin']}><ControlDashboard /></AdminRoute>} />
           <Route path="/admin/control/users" element={<AdminRoute allow={['superadmin']}><UsersControl /></AdminRoute>} />
           <Route path="/admin/control/skills" element={<AdminRoute allow={['superadmin', 'csc_admin']}><SkillsControl /></AdminRoute>} />
+          <Route path="/admin/control/self-healing" element={<AdminRoute allow={['superadmin']}><SelfHealingCenter /></AdminRoute>} />
+          <Route path="/admin/control/developer-center" element={<AdminRoute allow={['superadmin']}><DeveloperCenter /></AdminRoute>} />
           <Route path="/admin/control/learning" element={<AdminRoute allow={['superadmin']}><LearningInsights /></AdminRoute>} />
           <Route path="/admin/control/health" element={<AdminRoute allow={['superadmin']}><SystemHealth /></AdminRoute>} />
 

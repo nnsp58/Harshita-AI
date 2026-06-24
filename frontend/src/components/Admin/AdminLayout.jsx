@@ -2,14 +2,17 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useStore } from '../../store'
 import {
   Shield, Users, Activity, Settings, ArrowLeft, LogOut,
-  Brain, Zap, BarChart3, MessageSquare, Briefcase, Server
+  Brain, Zap, BarChart3, MessageSquare, Briefcase, Server,
+  HeartPulse, Code2
 } from 'lucide-react'
 
 const NAV_BY_ROLE = {
   superadmin: [
     { id: 'overview', label: 'System Overview', icon: Activity, path: '/admin/control' },
     { id: 'users', label: 'All Users', icon: Users, path: '/admin/control/users' },
-    { id: 'skills', label: 'Skills Control', icon: Zap, path: '/admin/control/skills' },
+    { id: 'skills', label: 'All Skills', icon: Zap, path: '/admin/control/skills' },
+    { id: 'self-healing', label: 'Self-Healing Center', icon: HeartPulse, path: '/admin/control/self-healing' },
+    { id: 'developer', label: 'Developer Center', icon: Code2, path: '/admin/control/developer-center' },
     { id: 'learning', label: 'AI Learning', icon: Brain, path: '/admin/control/learning' },
     { id: 'health', label: 'System Health', icon: Server, path: '/admin/control/health' },
   ],
@@ -25,6 +28,7 @@ const NAV_BY_ROLE = {
     { id: 'earnings', label: 'Earnings', icon: BarChart3, path: '/admin/vle/earnings' },
   ],
 }
+
 
 export default function AdminLayout({ children, title }) {
   const navigate = useNavigate()

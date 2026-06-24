@@ -109,4 +109,10 @@ router.get(
   }
 );
 
+router.post(
+  '/preferences',
+  authenticate,
+  authController.updatePreferences
+);
+
 module.exports = router;

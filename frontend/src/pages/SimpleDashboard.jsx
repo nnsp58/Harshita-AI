@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { useStore } from '../store'
 import { useSocket } from '../hooks/useSocket'
-import api from '../services/api'
+import api, { authAPI } from '../services/api'
 import VoiceInput from '../components/VoiceInput'
 import {
   FileText, Briefcase, Users, Upload, Calculator, Gavel,
@@ -13,10 +13,11 @@ import {
   ChevronRight, Zap, IndianRupee,
   Send, Mic, MicOff, Image, Code, Paperclip,
   PanelLeftClose, PanelRightClose, MessageSquare, LayoutGrid, Monitor,
-  GripVertical
+  GripVertical, Video
 } from 'lucide-react'
 
 const SERVICES = [
+  { id: 'story-video', title: 'Story Video', titleHi: 'कहानी से कार्टून', icon: Video, color: 'bg-indigo-600', route: '/story-video' },
   { id: 'form-filling', title: 'Form Filling', titleHi: 'फॉर्म भरना', icon: FormInput, color: 'bg-blue-500', route: '/service/form-filling' },
   { id: 'document-scan', title: 'Document Scan', titleHi: 'दस्तावेज़ स्कैन', icon: ScanText, color: 'bg-purple-500', route: '/documents' },
   { id: 'job-search', title: 'Job Search', titleHi: 'नौकरी खोजें', icon: Search, color: 'bg-green-500', route: '/service/job-search' },
@@ -35,7 +36,7 @@ const SERVICES = [
 // ============ MAIN COMPONENT ============
 export default function SimpleDashboard() {
   const navigate = useNavigate()
-  const { user, stats, agents, jobs, initialize, logout } = useStore()
+  const { user, stats, agents, jobs, initialize, logout, setAuth } = useStore()
   const { isConnected, sendCommand, messages, setMessages } = useSocket()
   const [leftWidth, setLeftWidth] = useState(220)
   const [rightWidth, setRightWidth] = useState(360)
@@ -44,9 +45,82 @@ export default function SimpleDashboard() {
   const [mobileTab, setMobileTab] = useState('center')
   const [resizing, setResizing] = useState(null)
   const [activeFile, setActiveFile] = useState(null) // { url: string, name: string, type: string }
+  const [showOnboarding, setShowOnboarding] = useState(false)
   const containerRef = useRef(null)
 
   const SERVICES_LIST = SERVICES // alias
+
+  const userGoal = user?.preferences?.goal || 'general';
+
+  // Open Onboarding Modal if preferences.goal is missing
+  useEffect(() => {
+    if (user && (!user.preferences || !user.preferences.goal)) {
+      setShowOnboarding(true)
+    }
+  }, [user])
+
+  const handleSelectGoal = async (goal) => {
+    try {
+      const response = await authAPI.updatePreferences({ goal })
+      if (response.data && response.data.success) {
+        const token = useStore.getState().token
+        setAuth(token, response.data.data)
+        setShowOnboarding(false)
+      }
+    } catch (err) {
+      console.error('Failed to save preferences:', err)
+    }
+  }
+
+  // Customise services list based on user goal preference
+  const getCustomizedServices = () => {
+    const defaultServices = [...SERVICES];
+    if (userGoal === 'legal') {
+      return [
+        defaultServices.find(s => s.id === 'legal-draft'),
+        defaultServices.find(s => s.id === 'legal-notice'),
+        defaultServices.find(s => s.id === 'itr-filing'),
+        defaultServices.find(s => s.id === 'tada'),
+        ...defaultServices.filter(s => !['legal-draft', 'legal-notice', 'itr-filing', 'tada'].includes(s.id))
+      ].filter(Boolean);
+    }
+    if (userGoal === 'creator') {
+      return [
+        defaultServices.find(s => s.id === 'story-video'),
+        defaultServices.find(s => s.id === 'document-scan'),
+        defaultServices.find(s => s.id === 'ai-assistant'),
+        ...defaultServices.filter(s => !['story-video', 'document-scan', 'ai-assistant'].includes(s.id))
+      ].filter(Boolean);
+    }
+    if (userGoal === 'student') {
+      return [
+        { id: 'academy', title: 'Academy & Courses', titleHi: 'एकेडमी व कोर्सेज', icon: FileText, color: 'bg-gradient-to-r from-cyan-500 to-blue-600', route: '/academy' },
+        defaultServices.find(s => s.id === 'resume-builder'),
+        defaultServices.find(s => s.id === 'ai-assistant'),
+        ...defaultServices.filter(s => !['resume-builder', 'ai-assistant'].includes(s.id))
+      ].filter(Boolean);
+    }
+    if (userGoal === 'business') {
+      return [
+        defaultServices.find(s => s.id === 'itr-filing'),
+        defaultServices.find(s => s.id === 'tada'),
+        defaultServices.find(s => s.id === 'ration-card'),
+        defaultServices.find(s => s.id === 'whatsapp'),
+        ...defaultServices.filter(s => !['itr-filing', 'tada', 'ration-card', 'whatsapp'].includes(s.id))
+      ].filter(Boolean);
+    }
+    if (userGoal === 'developer') {
+      return [
+        { id: 'self-healing', title: 'Self Healing Center', titleHi: 'स्व-सुधार केंद्र', icon: Bot, color: 'bg-emerald-600', route: '/admin/control/self-healing' },
+        defaultServices.find(s => s.id === 'ai-assistant'),
+        defaultServices.find(s => s.id === 'bulk-import'),
+        ...defaultServices.filter(s => !['bulk-import', 'ai-assistant'].includes(s.id))
+      ].filter(Boolean);
+    }
+    return defaultServices;
+  };
+
+  const customizedServices = getCustomizedServices();
 
   // Service click → Direct page open (user requirement)
   const handleServiceClick = useCallback((service) => {
@@ -142,7 +216,7 @@ export default function SimpleDashboard() {
         {/* Left Panel */}
         {!leftCollapsed && (
           <div className="hidden lg:block shrink-0 overflow-hidden" style={{ width: leftWidth }}>
-            <LeftServicesPanel services={SERVICES} onServiceClick={handleServiceClick} />
+            <LeftServicesPanel services={customizedServices} onServiceClick={handleServiceClick} />
           </div>
         )}
         {/* Left Resize Handle */}
@@ -153,7 +227,7 @@ export default function SimpleDashboard() {
           {activeFile ? (
             <FileViewerPanel file={activeFile} onClose={() => setActiveFile(null)} />
           ) : (
-            <CenterDashboardPanel stats={stats} agents={agents} jobs={jobs} onServiceClick={handleServiceClick} />
+            <CenterDashboardPanel stats={stats} agents={agents} jobs={jobs} onServiceClick={handleServiceClick} goal={userGoal} quickActions={customizedQuickActions} />
           )}
         </div>
 
@@ -168,13 +242,63 @@ export default function SimpleDashboard() {
 
         {/* Mobile */}
         <div className="flex-1 lg:hidden overflow-hidden">
-          {mobileTab === 'left' && <LeftServicesPanel services={SERVICES} onServiceClick={handleServiceClick} />}
+          {mobileTab === 'left' && <LeftServicesPanel services={customizedServices} onServiceClick={handleServiceClick} />}
           {mobileTab === 'center' && (
-            activeFile ? <FileViewerPanel file={activeFile} onClose={() => setActiveFile(null)} /> : <CenterDashboardPanel stats={stats} agents={agents} jobs={jobs} onServiceClick={handleServiceClick} />
+            activeFile ? <FileViewerPanel file={activeFile} onClose={() => setActiveFile(null)} /> : <CenterDashboardPanel stats={stats} agents={agents} jobs={jobs} onServiceClick={handleServiceClick} goal={userGoal} quickActions={customizedQuickActions} />
           )}
           {mobileTab === 'right' && <RightChatPanel messages={messages} setMessages={setMessages} onSend={sendCommand} isConnected={isConnected} user={user} jobs={jobs} onPreviewFile={handlePreviewFile} />}
         </div>
       </div>
+
+      {/* ONBOARDING GOAL MODAL OVERLAY */}
+      <AnimatePresence>
+        {showOnboarding && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4">
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="w-full max-w-xl bg-slate-900/80 border border-white/10 rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl relative"
+            >
+              <div className="text-center space-y-2">
+                <div className="w-16 h-16 mx-auto rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
+                  <Bot size={32} />
+                </div>
+                <h2 className="text-xl sm:text-2xl font-bold text-white tracking-wide">
+                  Welcome to Harshita AI! / स्वागत है!
+                </h2>
+                <p className="text-xs text-gray-400 max-w-md mx-auto font-medium">
+                  What would you like to do with Harshita AI? Please select your primary focus to customize your experience.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                {[
+                  { id: 'creator', label: 'Content Creator', labelHi: 'कंटेंट क्रिएटर', desc: 'Create videos, stories, audio & blog posts.', emoji: '🎬' },
+                  { id: 'student', label: 'Student', labelHi: 'विद्यार्थी', desc: 'Learn AI basics, take quizzes & earn certificates.', emoji: '🎓' },
+                  { id: 'business', label: 'Business Owner', labelHi: 'व्यापारी', desc: 'Manage tax filings, calculate routes & campaigns.', emoji: '💼' },
+                  { id: 'legal', label: 'Legal User', labelHi: 'वकील / कानून', desc: 'Draft legal agreements, deeds & notices.', emoji: '⚖️' },
+                  { id: 'developer', label: 'Developer', labelHi: 'डेवलपर', desc: 'Monitor platform health, APIs & databases.', emoji: '💻' },
+                  { id: 'general', label: 'General User', labelHi: 'सामान्य उपयोगकर्ता', desc: 'Access full dashboard and all AI utilities.', emoji: '✨' },
+                ].map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => handleSelectGoal(item.id)}
+                    className="p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-indigo-500/40 hover:bg-white/10 transition-all text-left flex flex-col justify-between group"
+                  >
+                    <div>
+                      <span className="text-2xl block mb-2">{item.emoji}</span>
+                      <h3 className="text-xs font-bold text-gray-200 group-hover:text-indigo-400 transition-colors">{item.label}</h3>
+                      <p className="text-[10px] text-gray-400">{item.labelHi}</p>
+                    </div>
+                    <p className="text-[9px] text-gray-500 mt-2 line-clamp-2 leading-relaxed">{item.desc}</p>
+                  </button>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
@@ -315,9 +439,52 @@ function LeftServicesPanel({ services, onServiceClick }) {
 }
 
 // ============ CENTER PANEL ============
-function CenterDashboardPanel({ stats, agents, jobs, onServiceClick }) {
+function CenterDashboardPanel({ stats, agents, jobs, onServiceClick, goal = 'general', quickActions = [] }) {
   const activeAgents = agents.filter(a => a.status === 'active' || a.status === 'running').length
   const pendingJobs = jobs.filter(j => j.status === 'pending' || j.status === 'queued').length
+
+  const getRecommendedSkills = () => {
+    const skillsList = {
+      creator: [
+        { name: 'Story Screenplay Director', nameHi: 'स्टोरी स्क्रीनप्ले डायरेक्टर', desc: 'Convert script into scene breakdowns with camera details.' },
+        { name: 'Wan-Fast Video Engine', nameHi: 'वान-फ़ास्ट वीडियो इंजन', desc: 'Create high quality vertical formats using Pollinations AI.' },
+        { name: 'Bilingual Subtitle Mix', nameHi: 'द्विभाषी सबटाइटल्स मिक्स', desc: 'Overlay Hindi/English voice and caption tracks onto video.' },
+        { name: 'Flux Cinematic Prompting', nameHi: 'फ्लक्स सिनेमैटिक प्रॉम्प्टिंग', desc: 'Generate prompts for realistic human animations.' }
+      ],
+      legal: [
+        { name: 'Demand Draft Notice Agent', nameHi: 'लॉ नोटिस ड्राफ्टिंग', desc: 'Prepare formal court notices for recovery and disputes.' },
+        { name: 'Affidavit Affirmation Oath', nameHi: 'एफिडेविट शपथ पत्र', desc: 'Swear identity, name change, or marksheet lost forms.' },
+        { name: 'Wasiyat inheritance distributions', nameHi: 'वसीयतनामा बिल्डर', desc: 'Assign property rights securely to relative Donees.' },
+        { name: 'NOC consent generators', nameHi: 'अनापत्ति प्रमाण पत्र', desc: 'Draft no-objection clearances for state agencies.' }
+      ],
+      student: [
+        { name: 'Prompt Engineering Tutor', nameHi: 'प्रॉम्प्ट इंजीनियरिंग ट्यूटर', desc: 'Learn Role prompting, chain of thought, few shot basic rules.' },
+        { name: 'Interactive Slide Decks', nameHi: 'इंटरैक्टिव स्लाइड शो', desc: 'Review educational slides and module assignments.' },
+        { name: 'Instant Quiz Grader', nameHi: 'क्विज स्कोरर', desc: 'Take MCQ questions and evaluate final certificate criteria.' },
+        { name: 'Syllabus Scheduler', nameHi: 'कोर्स शेड्यूलर', desc: 'Track your daily 30-day curriculum completion logs.' }
+      ],
+      business: [
+        { name: 'Income Tax Return filer', nameHi: 'ITR टैक्स फाइलिंग', desc: 'Calculate income sources and prepare Form 16 logs.' },
+        { name: 'TA-DA naksha route mapping', nameHi: 'TA-DA भत्ता कैलकुलेटर', desc: 'Compute police/VVIP travel routes and generate map grids.' },
+        { name: 'Ration card database inspector', nameHi: 'राशन कार्ड ट्रैकर', desc: 'Verify household distributions and state quotas.' },
+        { name: 'WhatsApp Web auto campaigns', nameHi: 'व्हाट्सएप ऑटो कैम्पेन', desc: 'Reach customers with zero Meta API setups.' }
+      ],
+      developer: [
+        { name: 'Self Evolution system check', nameHi: 'स्व-सुधार प्रणाली चेक', desc: 'Run diagnostics health audits and auto-fix SEO errors.' },
+        { name: 'Prisma DB migration push', nameHi: 'प्रिज्मा डेटाबेस पुश', desc: 'Sync SQLite local files and generate node packages.' },
+        { name: 'Render platform logs tracker', nameHi: 'रेंडर डिप्लॉय ट्रैकर', desc: 'Fetch Git commit messages and branch info.' },
+        { name: 'API balance HUD checker', nameHi: 'एपीआई बैलेंस चेकर', desc: 'Check key status for Gemini, OpenAI, and ElevenLabs.' }
+      ],
+      general: [
+        { name: 'Universal translation skill', nameHi: 'यूनिवर्सल ट्रांसलेशन', desc: 'Translate paragraphs between 50+ languages.' },
+        { name: 'PDF image converters', nameHi: 'पीडीएफ इमेज कन्वर्टर', desc: 'Extract JPG grids from documents in sandbox.' },
+        { name: 'Voice agent reader', nameHi: 'आवाज़ पहचान कर्ता', desc: 'Voice command processor and text reader.' }
+      ]
+    };
+    return skillsList[goal] || skillsList.general;
+  };
+
+  const recommendedSkills = getRecommendedSkills();
 
   return (
     <div className="h-full flex flex-col bg-[#020617] overflow-y-auto">
@@ -332,14 +499,7 @@ function CenterDashboardPanel({ stats, agents, jobs, onServiceClick }) {
             <Zap size={16} className="text-amber-400" /> Quick Actions / त्वरित कार्य
           </h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-            {[
-              { id: 'form-filling', label: 'New Form', labelHi: 'नया फॉर्म', icon: FormInput, color: 'from-blue-500 to-blue-700' },
-              { id: 'document-scan', label: 'Upload Doc', labelHi: 'डॉक अपलोड', icon: Upload, color: 'from-purple-500 to-purple-700' },
-              { id: 'job-search', label: 'Find Jobs', labelHi: 'नौकरी खोजें', icon: Search, color: 'from-green-500 to-green-700' },
-              { id: 'candidates', label: 'Candidates', labelHi: 'उम्मीदवार', icon: Users, color: 'from-teal-500 to-teal-700' },
-              { id: 'resume-builder', label: 'Resume', labelHi: 'रिज्यूमे', icon: FileText, color: 'from-orange-500 to-orange-700' },
-              { id: 'itr-filing', label: 'ITR File', labelHi: 'ITR फाइल', icon: IndianRupee, color: 'from-emerald-500 to-emerald-700' },
-            ].map((action) => {
+            {quickActions.map((action) => {
               const Icon = action.icon
               return (
                 <motion.button key={action.label} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
@@ -353,6 +513,25 @@ function CenterDashboardPanel({ stats, agents, jobs, onServiceClick }) {
                 </motion.button>
               )
             })}
+          </div>
+        </div>
+
+        {/* Recommended Skills Section */}
+        <div>
+          <h3 className="text-sm font-bold text-white mb-3 flex items-center gap-2">
+            <Bot size={16} className="text-indigo-400" /> Recommended Skills / अनुशंसित कौशल
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {recommendedSkills.map((skill, idx) => (
+              <div key={idx} className="p-3 rounded-xl bg-white/5 border border-white/5 hover:border-indigo-500/30 hover:bg-white/10 transition-all text-left">
+                <div className="flex items-center justify-between mb-1.5">
+                  <p className="text-xs font-bold text-indigo-400">{skill.name}</p>
+                  <span className="text-[9px] bg-indigo-500/10 text-indigo-400 font-bold px-1.5 py-0.5 rounded">Active</span>
+                </div>
+                <p className="text-[10px] text-gray-300 font-medium mb-0.5">{skill.nameHi}</p>
+                <p className="text-[9px] text-gray-500">{skill.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -391,6 +570,37 @@ function CenterDashboardPanel({ stats, agents, jobs, onServiceClick }) {
               <p className="text-xs text-gray-500">No recent activity / कोई गतिविधि नहीं</p>
             </div>
           )}
+        </div>
+
+        {/* AdSense & SEO Compliance Pages */}
+        <div>
+          <h3 className="text-sm font-bold text-white mb-3 flex items-center gap-2">
+            <Globe size={16} className="text-indigo-400" /> AdSense & SEO Pages / वेबसाइट अनिवार्य पृष्ठ
+          </h3>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {[
+              { label: 'Privacy Policy', labelHi: 'गोपनीयता नीति', href: '/privacy-policy.html' },
+              { label: 'Terms of Service', labelHi: 'सेवा की शर्तें', href: '/terms.html' },
+              { label: 'Disclaimer', labelHi: 'अस्वीकरण नीति', href: '/disclaimer.html' },
+              { label: 'About Us', labelHi: 'हमारे बारे में', href: '/about.html' },
+              { label: 'Contact Us', labelHi: 'संपर्क फ़ॉर्म', route: '/contact' },
+              { label: 'FAQ Directory', labelHi: 'अक्सर पूछे जाने वाले प्रश्न', route: '/faq' },
+              { label: 'Robots.txt', labelHi: 'रोबोट्स फ़ाइल', href: '/robots.txt' },
+              { label: 'Sitemap.xml', labelHi: 'साइटमैप फ़ाइल', href: '/sitemap.xml' }
+            ].map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={link.route ? (e) => { e.preventDefault(); navigate(link.route) } : undefined}
+                target={link.href ? "_blank" : undefined}
+                rel={link.href ? "noopener noreferrer" : undefined}
+                className="p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-indigo-500/30 hover:bg-white/10 transition-all text-left block group"
+              >
+                <p className="text-xs font-medium text-gray-300 group-hover:text-amber-400 transition-colors">{link.label}</p>
+                <p className="text-[10px] text-gray-600">{link.labelHi}</p>
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </div>

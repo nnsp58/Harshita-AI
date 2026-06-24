@@ -238,6 +238,7 @@ export default function LegalDraft() {
   const [previewDraft, setPreviewDraft] = useState(null)
   const [language, setLanguage] = useState('both') // 'hi', 'en', 'both'
   const [copied, setCopied] = useState(false)
+  const isEditorActive = generatedDraft && !generatedDraft.content.startsWith('REJECTED:') && !generatedDraft.content.includes('REJECTED:');
 
   // Generate draft using AI
   const generateDraft = async () => {
@@ -366,37 +367,39 @@ export default function LegalDraft() {
 
       <div className="max-w-7xl mx-auto p-4 grid grid-cols-1 lg:grid-cols-12 gap-4">
         {/* LEFT: Templates */}
-        <div className="lg:col-span-3 bg-white/5 border border-white/10 rounded-xl p-3 h-fit lg:sticky lg:top-20">
-          <h2 className="text-xs font-bold mb-3 flex items-center gap-2 text-gray-300">
-            <FileText size={14}/> Document Type / दस्तावेज़ प्रकार
-          </h2>
-          <div className="space-y-1.5">
-            {documentTypes.map(type => (
-              <button key={type.id} onClick={() => {
-                  setSelectedType(type.id)
-                  setNaturalInput('')
-                  setGeneratedDraft(null)
-                  setEditedDraft('')
-                }}
-                className={`w-full p-2.5 rounded-lg border text-left transition-all ${
-                  selectedType === type.id
-                    ? 'border-amber-500/50 bg-amber-500/10'
-                    : 'border-white/10 hover:border-white/20 hover:bg-white/5'
-                }`}>
-                <div className="flex items-start gap-2">
-                  <span className="text-lg">{type.icon}</span>
-                  <div className="min-w-0">
-                    <p className="text-xs font-medium truncate">{type.name}</p>
-                    <p className="text-[9px] text-gray-500 mt-0.5 line-clamp-2">{type.desc}</p>
+        {!isEditorActive && (
+          <div className="lg:col-span-3 bg-white/5 border border-white/10 rounded-xl p-3 h-fit lg:sticky lg:top-20">
+            <h2 className="text-xs font-bold mb-3 flex items-center gap-2 text-gray-300">
+              <FileText size={14}/> Document Type / दस्तावेज़ प्रकार
+            </h2>
+            <div className="space-y-1.5">
+              {documentTypes.map(type => (
+                <button key={type.id} onClick={() => {
+                    setSelectedType(type.id)
+                    setNaturalInput('')
+                    setGeneratedDraft(null)
+                    setEditedDraft('')
+                  }}
+                  className={`w-full p-2.5 rounded-lg border text-left transition-all ${
+                    selectedType === type.id
+                      ? 'border-amber-500/50 bg-amber-500/10'
+                      : 'border-white/10 hover:border-white/20 hover:bg-white/5'
+                  }`}>
+                  <div className="flex items-start gap-2">
+                    <span className="text-lg">{type.icon}</span>
+                    <div className="min-w-0">
+                      <p className="text-xs font-medium truncate">{type.name}</p>
+                      <p className="text-[9px] text-gray-500 mt-0.5 line-clamp-2">{type.desc}</p>
+                    </div>
                   </div>
-                </div>
-              </button>
-            ))}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* CENTER: Input + Generated Draft */}
-        <div className="lg:col-span-6 space-y-4">
+        <div className={isEditorActive ? "lg:col-span-12 space-y-4" : "lg:col-span-6 space-y-4"}>
           {selectedType ? (
             <>
               {/* AI Input Box */}
@@ -536,12 +539,20 @@ export default function LegalDraft() {
                     <div className="text-sm font-semibold text-gray-800 flex items-center gap-2">
                       <Edit3 size={16} /> Professional Legal Editor
                     </div>
-                    <button 
-                      onClick={saveDraft} 
-                      className="px-4 py-1.5 bg-amber-500 hover:bg-amber-400 text-black text-sm font-bold rounded flex items-center gap-2"
-                    >
-                      <Save size={14}/> Save Draft
-                    </button>
+                    <div className="flex gap-2">
+                      <button 
+                        onClick={() => setGeneratedDraft(null)} 
+                        className="px-3 py-1.5 bg-gray-200 hover:bg-gray-300 text-gray-800 text-sm font-bold rounded flex items-center gap-1.5"
+                      >
+                        <X size={14}/> Close
+                      </button>
+                      <button 
+                        onClick={saveDraft} 
+                        className="px-4 py-1.5 bg-amber-500 hover:bg-amber-400 text-black text-sm font-bold rounded flex items-center gap-2"
+                      >
+                        <Save size={14}/> Save Draft
+                      </button>
+                    </div>
                   </div>
 
                   <LegalDocumentEditor 
@@ -562,39 +573,41 @@ export default function LegalDraft() {
         </div>
 
         {/* RIGHT: Recent Drafts */}
-        <div className="lg:col-span-3">
-          <div className="bg-white/5 border border-white/10 rounded-xl p-3 h-fit lg:sticky lg:top-20">
-            <h2 className="text-xs font-bold mb-3 flex items-center gap-2 text-gray-300">
-              <Save size={14}/> Recent Drafts ({drafts.length})
-            </h2>
-            {drafts.length === 0 ? (
-              <p className="text-[10px] text-gray-500 italic">कोई saved draft नहीं</p>
-            ) : (
-              <div className="space-y-1.5 max-h-[60vh] overflow-y-auto">
-                {drafts.map(draft => (
-                  <div key={draft.id} className="bg-white/5 border border-white/10 rounded-lg p-2.5 hover:border-amber-500/30">
-                    <p className="text-xs font-medium truncate">{draft.title || draft.typeName}</p>
-                    <p className="text-[9px] text-gray-500">{draft.createdAt}</p>
-                    <div className="flex items-center gap-1 mt-1.5">
-                      <button onClick={() => setPreviewDraft(draft)} title="Preview"
-                        className="flex-1 p-1 bg-amber-500/10 hover:bg-amber-500/20 rounded text-[10px] text-amber-400 flex items-center justify-center gap-1">
-                        <Eye size={10}/> View
-                      </button>
-                      <button onClick={() => downloadDraft(draft)} title="Download"
-                        className="p-1.5 bg-white/5 hover:bg-white/10 rounded">
-                        <Download size={10} className="text-gray-400"/>
-                      </button>
-                      <button onClick={() => deleteDraft(draft.id)} title="Delete"
-                        className="p-1.5 bg-red-500/10 hover:bg-red-500/20 rounded">
-                        <Trash2 size={10} className="text-red-400"/>
-                      </button>
+        {!isEditorActive && (
+          <div className="lg:col-span-3">
+            <div className="bg-white/5 border border-white/10 rounded-xl p-3 h-fit lg:sticky lg:top-20">
+              <h2 className="text-xs font-bold mb-3 flex items-center gap-2 text-gray-300">
+                <Save size={14}/> Recent Drafts ({drafts.length})
+              </h2>
+              {drafts.length === 0 ? (
+                <p className="text-[10px] text-gray-500 italic">कोई saved draft नहीं</p>
+              ) : (
+                <div className="space-y-1.5 max-h-[60vh] overflow-y-auto">
+                  {drafts.map(draft => (
+                    <div key={draft.id} className="bg-white/5 border border-white/10 rounded-lg p-2.5 hover:border-amber-500/30">
+                      <p className="text-xs font-medium truncate">{draft.title || draft.typeName}</p>
+                      <p className="text-[9px] text-gray-500">{draft.createdAt}</p>
+                      <div className="flex items-center gap-1 mt-1.5">
+                        <button onClick={() => setPreviewDraft(draft)} title="Preview"
+                          className="flex-1 p-1 bg-amber-500/10 hover:bg-amber-500/20 rounded text-[10px] text-amber-400 flex items-center justify-center gap-1">
+                          <Eye size={10}/> View
+                        </button>
+                        <button onClick={() => downloadDraft(draft)} title="Download"
+                          className="p-1.5 bg-white/5 hover:bg-white/10 rounded">
+                          <Download size={10} className="text-gray-400"/>
+                        </button>
+                        <button onClick={() => deleteDraft(draft.id)} title="Delete"
+                          className="p-1.5 bg-red-500/10 hover:bg-red-500/20 rounded">
+                          <Trash2 size={10} className="text-red-400"/>
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-            )}
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* PREVIEW MODAL */}

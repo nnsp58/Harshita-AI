@@ -581,6 +581,10 @@ app.post('/api/project-report/generate', async (req, res) => {
   }
 });
 
+// Serve generated story videos statically
+const dataPath = path.join(__dirname, '../../data');
+app.use('/data', express.static(dataPath));
+
 // Serve Frontend Statically (Single-App Deployment)
 const frontendPath = path.join(__dirname, '../../frontend/dist');
 app.use(express.static(frontendPath));
@@ -642,7 +646,33 @@ ensureDatabaseConnection().then(() => {
     console.log(`🚀 CSC API Server running on port ${PORT}`);
     console.log(`📡 WebSocket server ready`);
     console.log(`🔒 Environment: ${process.env.NODE_ENV || 'development'}`);
+    
+    // Startup Self-Healing Diagnostics (non-blocking)
+    if (process.env.NODE_ENV !== 'test') {
+      const { runSystemAudit } = require('./controllers/selfHealingController');
+      runSystemAudit()
+        .then(rep => console.log(`🧬 [SelfHealing] Startup diagnostics complete. System Health Score: ${rep.healthScores.global}/100.`))
+        .catch(err => console.error('🧬 [SelfHealing] Startup scan failed:', err.message));
+
+      // Schedule daily cron audit (every 24 hours at midnight)
+      try {
+        const cron = require('node-cron');
+        cron.schedule('0 0 * * *', async () => {
+          try {
+            console.log('🧬 [SelfHealing] Running scheduled daily diagnostics audit...');
+            const rep = await runSystemAudit();
+            console.log(`🧬 [SelfHealing] Scheduled audit complete. System Health: ${rep.healthScores.global}/100.`);
+          } catch (err) {
+            console.error('🧬 [SelfHealing] Scheduled audit failed:', err.message);
+          }
+        });
+        console.log('⏰ [Scheduler] Registered daily Self-Healing audit cron job');
+      } catch (cronErr) {
+        console.error('⚠️ [Scheduler] Failed to register cron job:', cronErr.message);
+      }
+    }
   });
 });
+
 
 module.exports = { app, server, io };

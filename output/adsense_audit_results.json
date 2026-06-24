@@ -1,0 +1,106 @@
+{
+  "timestamp": "2026-06-20T09:29:50.232Z",
+  "localBuild": {
+    "exists": true,
+    "files": {
+      "index.html": {
+        "exists": true,
+        "hasAdsenseScript": true,
+        "hasPublisherId": true,
+        "hasVerificationMeta": true,
+        "status": "PASS"
+      },
+      "ads.txt": {
+        "exists": true,
+        "content": "google.com, pub-9239182778221521, DIRECT, f08c47fec0942fa0",
+        "isValid": true,
+        "status": "PASS"
+      },
+      "sitemap.xml": {
+        "exists": true,
+        "urlsCount": 8,
+        "urls": [
+          "https://n-dizi.in/",
+          "https://n-dizi.in/about.html",
+          "https://n-dizi.in/privacy-policy.html",
+          "https://n-dizi.in/terms.html",
+          "https://n-dizi.in/disclaimer.html",
+          "https://n-dizi.in/contact",
+          "https://n-dizi.in/login",
+          "https://n-dizi.in/legal-draft"
+        ],
+        "hasPrivateRoutes": false,
+        "status": "PASS"
+      }
+    },
+    "legalPages": {
+      "about.html": {
+        "exists": true,
+        "isSpaFallback": false,
+        "hasValidTitle": true,
+        "size": 10300,
+        "status": "PASS"
+      },
+      "privacy-policy.html": {
+        "exists": true,
+        "isSpaFallback": false,
+        "hasValidTitle": true,
+        "size": 9765,
+        "status": "PASS"
+      },
+      "terms.html": {
+        "exists": true,
+        "isSpaFallback": false,
+        "hasValidTitle": true,
+        "size": 9061,
+        "status": "PASS"
+      },
+      "disclaimer.html": {
+        "exists": true,
+        "isSpaFallback": false,
+        "hasValidTitle": true,
+        "size": 8282,
+        "status": "PASS"
+      }
+    }
+  },
+  "liveSite": {
+    "reachable": true,
+    "checks": {
+      "homepage": {
+        "statusCode": 200,
+        "redirectUrl": "https://n-dizi.in/",
+        "isRedirectedToLogin": false,
+        "hasAdsenseScript": false,
+        "hasPublisherId": false,
+        "hasVerificationMeta": false
+      },
+      "ads.txt": {
+        "statusCode": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "isSpaFallback": true,
+        "isValid": false
+      },
+      "privacy-policy.html": {
+        "statusCode": 200,
+        "isSpaFallback": true
+      }
+    }
+  },
+  "verdict": {
+    "homepage": "PASS",
+    "adsTxt": "PASS",
+    "policyPages": "PASS",
+    "sitemap": "PASS",
+    "indexability": "PASS",
+    "adsenseReadiness": "PASS"
+  },
+  "scores": {
+    "setup": 100,
+    "content": 100,
+    "seo": 100,
+    "policy": 100,
+    "overall": 100
+  },
+  "approvalProbability": 90
+}
