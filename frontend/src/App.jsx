@@ -34,6 +34,7 @@ const SeoArticle = lazy(() => import('./pages/SeoArticle'))
 const BlogList = lazy(() => import('./pages/BlogList'))
 const BlogPost = lazy(() => import('./pages/BlogPost'))
 const FaqList = lazy(() => import('./pages/FaqList'))
+const HarshitaAiInfo = lazy(() => import('./pages/HarshitaAiInfo'))
 
 // Admin pages
 const ControlDashboard = lazy(() => import('./pages/admin/ControlDashboard'))
@@ -292,6 +293,7 @@ function App() {
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/seo/:slug" element={<SeoArticle />} />
           <Route path="/tools/:slug" element={<ToolLanding />} />
+          <Route path="/harshita-ai" element={<HarshitaAiInfo />} />
           
           {/* Money Page Aliases */}
           <Route path="/affidavit-generator" element={<ToolLanding />} />

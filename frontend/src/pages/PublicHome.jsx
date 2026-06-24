@@ -314,7 +314,7 @@ export default function PublicHome() {
           </div>
         </div>
         <div className="max-w-7xl mx-auto pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
-          <span>&copy; {new Date().getFullYear()} N-Dizi AI. All rights reserved.</span>
+          <span>&copy; 2026 Harshita AI by n-dizi.in. All rights reserved.</span>
           <div className="flex items-center gap-6">
             <a href="/robots.txt" className="hover:text-white transition-colors">robots.txt</a>
             <a href="/sitemap.xml" className="hover:text-white transition-colors">sitemap.xml</a>
