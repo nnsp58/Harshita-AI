@@ -31,18 +31,21 @@ class LegalDraftSkill extends BaseSkill {
     this.intents = [
       'legal_draft', 'affidavit', 'agreement', 'legal_document', 'gift_deed', 'noc',
       'partition_deed', 'will', 'police_complaint', 'rti', 'consumer_complaint',
-      'electricity_complaint', 'revenue_application', 'pension_application', 'court_draft'
+      'electricity_complaint', 'revenue_application', 'pension_application', 'court_draft',
+      'prayer_letter', 'application', 'draft', 'representation', 'complaint', 'notice', 'undertaking'
     ];
     this.keywords = {
       hi: ['कानूनी', 'ड्राफ्ट', 'शपथपत्र', 'एफिडेविट', 'अनुबंध', 'वकील', 'कानून',
            'दान विलेख', 'गिफ्ट डीड', 'बंटवारा', 'पार्टीशन', 'अनापत्ति', 'NOC',
            'किराया', 'वसीयत', 'मुख्तारनामा', 'सम्पत्ति', 'पत्नी', 'नाम परिवर्तन',
            'पुलिस', 'शिकायत', 'एफआईआर', 'थाना', 'सूचना का अधिकार', 'आरटीआई',
-           'उपभोक्ता', 'बिजली', 'विद्युत', 'राजस्व', 'पेंशन', 'न्यायालय'],
+           'उपभोक्ता', 'बिजली', 'विद्युत', 'राजस्व', 'पेंशन', 'न्यायालय',
+           'प्रार्थना पत्र', 'आवेदन पत्र', 'मसौदा', 'अभ्यावेदन', 'नोटिस', 'वचनबद्धता'],
       en: ['legal', 'draft', 'affidavit', 'agreement', 'contract', 'lawyer', 'notary',
            'gift deed', 'partition', 'noc', 'will', 'power of attorney', 'rent agreement',
            'declaration', 'sworn statement', 'police complaint', 'fir', 'rti',
-           'consumer complaint', 'electricity', 'revenue', 'pension', 'court'],
+           'consumer complaint', 'electricity', 'revenue', 'pension', 'court',
+           'prayer letter', 'application', 'representation', 'notice', 'undertaking'],
       hinglish: ['legal draft banao', 'affidavit banao', 'agreement likho', 'kanuni document',
                   'gift deed banao', 'partition deed', 'wife ke naam', 'patni ke naam',
                   'sampatti transfer', 'naam change', 'noc banao', 'rent agreement',
@@ -56,7 +59,7 @@ class LegalDraftSkill extends BaseSkill {
 
   async execute(context) {
     const { message, userId } = context;
-    if (!message || message.length < 5) {
+    if (!message) {
       return this._reply(this._getHelpMessage(), { mode: 'legal_menu' });
     }
 
@@ -212,10 +215,17 @@ Recommended Category: ${recommendedCategory === 'affidavit' ? 'Affidavit' : reco
   _detectDocumentType(text) {
     const lower = text.toLowerCase();
     const patterns = [
+      { type: 'prayer_letter', match: /prayer\s*letter|प्रार्थना\s*पत्र|prarthna|prathna/i },
+      { type: 'application', match: /application|आवेदन/i },
+      { type: 'representation', match: /representation|अभ्यावेदन/i },
+      { type: 'complaint', match: /complaint\s*letter|शिकायत\s*पत्र|shikayat/i },
+      { type: 'notice', match: /notice|नोटिस/i },
+      { type: 'undertaking', match: /undertaking|वचनबद्धता/i },
+      { type: 'draft', match: /draft|मसौदा/i },
       { type: 'gift_deed', match: /gift\s*deed|दान\s*विलेख|patni\s*ke\s*naam|पत्नी\s*के\s*नाम|wife.*naam|sampatti.*transfer|husband.*naam|पति\s*के\s*नाम/i },
       { type: 'partition_deed', match: /partition|बंटवारा|पार्टीशन|baantwara|baantna|sampatti\s*baant|sampatti\s*bantwara|property\s*bantwara|property\s*divide|baant\s*do|baant\s*dena|baant\s*karna|sampatti\s*baant\s*do/i },
       { type: 'noc', match: /\bnoc\b|no\s*objection|अनापत्ति|nopatti/i },
-      { type: 'rent_agreement', match: /rent|किराया|kiraya|tenant|rental|lease/i },
+      { type: 'rent_agreement', match: /rent|किराया|kiraya|tenant|rental|lease|agreement|अनुबंध/i },
       { type: 'will', match: /\bwill\b|वसीयत|wasiyat|testament/i },
       { type: 'power_of_attorney', match: /power\s*of\s*attorney|मुख्तारनामा|poa\b/i },
       { type: 'name_change', match: /naam\s*change|नाम\s*परिवर्तन|name\s*change/i },
@@ -232,7 +242,7 @@ Recommended Category: ${recommendedCategory === 'affidavit' ? 'Affidavit' : reco
     for (const p of patterns) {
       if (p.match.test(lower)) return p.type;
     }
-    return 'affidavit'; // default fallback
+    return 'draft'; // default fallback for PRD-021
   }
 
   // ═══════════════════════════════════════════════════════════
@@ -279,6 +289,13 @@ Recommended Category: ${recommendedCategory === 'affidavit' ? 'Affidavit' : reco
       revenue_application: 'Revenue Application (राजस्व विभाग आवेदन)',
       pension_application: 'Pension Application (पेंशन आवेदन)',
       court_draft: 'Court Draft (न्यायालय मसौदा)',
+      prayer_letter: 'Prayer Letter (प्रार्थना पत्र)',
+      application: 'Application (आवेदन पत्र)',
+      draft: 'Draft (मसौदा)',
+      representation: 'Representation (अभ्यावेदन)',
+      complaint: 'Complaint Letter (शिकायत पत्र)',
+      notice: 'Legal Notice (विधिक नोटिस)',
+      undertaking: 'Undertaking (वचनबद्धता)'
     };
 
     const docName = docNames[docType] || 'Legal Affidavit';
@@ -321,12 +338,12 @@ STEP 6: DOCUMENT SPECIFIC SKILLS.
 - NOC: No Objection Statement, Permission, Authority Consent.
 - POWER OF ATTORNEY: Principal, Attorney Holder, Authority Scope, Duration, Restrictions.
 - WILL: Testator, Assets, Beneficiaries, Distribution, Witness Clause.
-STEP 7: MISSING INFORMATION ENGINE. Never hallucinate. If required information missing, generate placeholders (do not invent facts).
+STEP 7: MISSING INFORMATION ENGINE (CRITICAL RULE). NEVER ask the user to provide missing information or more details. If required information (like applicant name, address, amounts, exact dates) is missing, AUTOMATICALLY insert professional placeholders (e.g., "[____________________]"). Always use today's date automatically unless the user specifies otherwise. DO NOT stop the generation process.
 STEP 8: LEGAL NOTICE ENGINE. Generate Parties, Facts, Cause Of Action, Demand, Time Limit, Legal Consequences.
 STEP 9: LIMITATION REVIEW. Extract dates. Check potential limitation issue. Show: "Legal review recommended" if potentially time barred (do not stop draft generation).
 STEP 10: PROFESSIONAL LANGUAGE ENGINE. Draft quality must be suitable for Advocate, Notary, Oath Commissioner, Tehsil, SDM, Collector, District Court, Civil Court, Consumer Commission, Government Department.
 STEP 11: BILINGUAL ENGINE. Hindi, English, Hindi + English (must match).
-STEP 12: PLACEHOLDER ELIMINATION ENGINE. NEVER leave internal prompt variables like [CLIENT NAME], [RESPONDENT NAME], [SPECIFIC ACTION] in the final draft. If info missing, DO NOT hallucinate. Use professional blank lines:
+STEP 12: PLACEHOLDER ELIMINATION ENGINE. NEVER leave internal prompt variables like [CLIENT NAME] or [RESPONDENT NAME]. Use professional blank lines:
 - [नाम / Name: ____________________]
 - [पिता का नाम / Father's Name: ____________________]
 - [पूरा पता / Full Address: ____________________]
@@ -344,7 +361,7 @@ STEP 14: LEGAL REASONING ENGINE. Before generating any document:
    - Output ONLY a warning starting exactly with "REJECTED:"
    - Suggest the correct document.
    Never force facts into the selected template. Never rewrite money dispute as defamation. Never rewrite contractor dispute as tenancy dispute.
-FINAL RULE: Harshita AI must think like Lawyer, Legal Drafting Expert, Court Clerk, Notary Assistant. Not a simple template generator.`;
+FINAL RULE: Harshita AI must think like Lawyer, Legal Drafting Expert, Court Clerk, Notary Assistant. Not a simple template generator. NEVER ask the user follow-up questions. Always generate the requested draft with placeholders if needed.`;
 
     // ========== MASTER SENIOR ADVOCATE PROMPT ==========
     const baseRules = `

@@ -63,7 +63,15 @@ export function useSocket() {
           text.includes('AGREEMENT') ||
           text.includes('RESUME') ||
           text.includes('INVOICE') ||
-          text.includes('REPORT');
+          text.includes('REPORT') ||
+          text.includes('COMPLAINT') ||
+          text.includes('REPRESENTATION') ||
+          text.includes('UNDERTAKING') ||
+          text.includes('DRAFT') ||
+          text.includes('मसौदा') ||
+          text.includes('अभ्यावेदन') ||
+          text.includes('शिकायत') ||
+          text.includes('आवेदन');
 
         if (containsDocumentKeywords) {
           isDocument = true;
@@ -89,7 +97,7 @@ export function useSocket() {
           const notifyMsg = {
             id: Date.now() + Math.random(),
             type: 'system',
-            message: 'Your document has been created successfully. Opening in Document Workspace... Ready for editing.',
+            message: '✅ Document Generated Successfully. Opening A4 Workspace...',
             timestamp: new Date().toISOString()
           };
           setMessages((prev) => [...prev, notifyMsg]);
