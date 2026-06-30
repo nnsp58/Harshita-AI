@@ -25,7 +25,7 @@ export function useSocket() {
     })
 
     socketRef.current = socket
-    setSocketInstance(socket)
+    setTimeout(() => setSocketInstance(socket), 0)
 
     socket.on('connect', () => {
       setIsConnected(true)

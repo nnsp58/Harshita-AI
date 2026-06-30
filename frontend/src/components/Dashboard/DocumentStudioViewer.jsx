@@ -7,11 +7,10 @@ import {
 } from 'lucide-react';
 import { saveAs } from 'file-saver';
 import { Document, Packer, Paragraph, TextRun, AlignmentType } from 'docx';
-import { jsPDF } from 'jspdf';
 
 export default function DocumentStudioViewer() {
-  const { currentDocument, setCurrentDocument, responseMode, setResponseMode, documentHistory } = useStore();
-  const [isEditing, setIsEditing] = useState(true);
+  const { currentDocument, setCurrentDocument, setResponseMode, documentHistory } = useStore();
+  const [isEditing] = useState(true);
   const [fontSize, setFontSize] = useState('12pt');
   const [fontFamily, setFontFamily] = useState('Noto Serif Devanagari, Noto Serif, Times New Roman, serif');
   const [isFullscreen, setIsFullscreen] = useState(false);

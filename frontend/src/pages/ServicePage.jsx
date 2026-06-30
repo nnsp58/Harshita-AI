@@ -168,7 +168,9 @@ export default function ServicePage() {
   useEffect(() => {
     if (messages?.length > 0) {
       const last = messages[messages.length - 1]
-      if ((last.type === 'ai' || last.type === 'system') && isThinking) setIsThinking(false)
+      if ((last.type === 'ai' || last.type === 'system') && isThinking) {
+        setTimeout(() => setIsThinking(false), 0)
+      }
 
       // 🔀 Navigate action — skill wants to open a page (e.g. WhatsApp Web)
       if (last.type === 'ai' && last.action?.navigate) {
@@ -181,7 +183,7 @@ export default function ServicePage() {
         }, 1500)
       }
     }
-  }, [messages, navigate])
+  }, [messages, navigate, isThinking])
 
   if (!config) {
     return (
