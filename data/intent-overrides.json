@@ -1,0 +1,28 @@
+[
+  {
+    "pattern": "marksheet\\s*gum|10th.*12th.*marksheet|gum\\s*ho\\s*gayi",
+    "flags": "i",
+    "intent": "affidavit",
+    "params": { "docType": "affidavit" }
+  },
+  {
+    "pattern": "contractor.*kaam\\s*chhod|contractor.*paise\\s*lekar|contrator|kirayedar.*khali|jhoothe\\s*aarop|false\\s*allegations",
+    "flags": "i",
+    "intent": "legal_notice"
+  },
+  {
+    "pattern": "bijli\\s*ki\\s*line|electricity",
+    "flags": "i",
+    "intent": "application_writer"
+  },
+  {
+    "pattern": "passport.*(?:photo|size|banao|banana|फोटो|साइज़|साइज|बनाओ|बनाना)|photo.*passport|पासपोर्ट.*(?:फोटो|साइज़|साइज|बनाओ)",
+    "flags": "i",
+    "intent": "create_passport_photo"
+  },
+  {
+    "pattern": "application.*(?:likh|लिख|principal|headmaster|sir|madam)|(?:likh|लिख).*application|prarthna.*patra|प्रार्थना.*पत्र|chutti|अवकाश",
+    "flags": "i",
+    "intent": "application_writer"
+  }
+]

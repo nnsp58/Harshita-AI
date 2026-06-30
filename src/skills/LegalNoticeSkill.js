@@ -348,6 +348,9 @@ Advocate Profile: ${JSON.stringify(profile)}
 Draft the formal legal notice now.`;
 
     try {
+      if (process.env.FORCE_OFFLINE === 'true') {
+        throw new Error('Offline mode active - HASA routing to Template Engine');
+      }
       const response = await this.aiManager.createChatCompletion('LegalNoticeSkill', {
         messages: [
           { role: 'system', content: systemPrompt },

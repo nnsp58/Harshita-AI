@@ -17,6 +17,7 @@ const { ControllerAgent } = require('../agents/controllerAgent');
 const { NetworkMonitorAgent } = require('../agents/networkMonitorAgent');
 const { WhatsAppAgent } = require('../agents/whatsAppAgent');
 const { prisma } = require('../models/database');
+const { systemMonitor } = require('../utils/SystemMonitor');
 const path = require('path');
 const multer = require('multer');
 const upload = multer({ storage: multer.memoryStorage() });
@@ -80,6 +81,9 @@ app.set('controllerAgent', controllerAgent);
 const networkMonitor = new NetworkMonitorAgent(io);
 networkMonitor.start();
 app.set('networkMonitor', networkMonitor);
+
+// Initialize HASA SystemMonitor (PRD: Survival & Health Architecture)
+systemMonitor.start();
 
 // Initialize WhatsAppAgent (PRD: Chat Agent) — lazy start, connects via QR on demand
 // Cost: ₹0 — uses whatsapp-web.js (no Meta API needed)
@@ -298,7 +302,7 @@ app.post('/api/command', authenticate, async (req, res) => {
     }
     
     const master = app.get('masterAgent');
-    const response = await master.processCommand(userId || 'anonymous', cmd, { app });
+    const response = await master.processCommand(userId || 'anonymous', cmd, { app, context: req.body.context });
     
     // Let all skills, including general_chat, return their response normally
 

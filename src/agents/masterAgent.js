@@ -18,6 +18,9 @@
 
 const { SkillRegistry } = require('../skills/SkillRegistry');
 const { IntentDetector } = require('../skills/IntentDetector');
+const { selfHealingEngine } = require('../core/SelfHealingEngine');
+const { verificationEngine } = require('../core/VerificationEngine');
+const { memoryEngine } = require('../core/MemoryEngine');
 
 class MasterAgent {
   constructor(io) {
@@ -181,8 +184,17 @@ Rules & Persona:
               lastExecutedSkill = skillName;
               try {
                 const context = this._buildContext(userId, toolMessage, { intent: skill.intents[0] || skillName, confidence: 1.0 }, options);
-                const skillResult = await skill.execute(context);
                 
+                // V2: Execute with Self Healing
+                let skillResult = await selfHealingEngine.executeWithHealing(skill, context, this.registry);
+                
+                // V2: Verify result
+                const verifyResult = await verificationEngine.verify(skill, context, skillResult);
+                if (!verifyResult.verified && verifyResult.confidence === 0) {
+                   console.warn(`   [MasterAgent Loop] Verification failed for ${skillName}:`, verifyResult.issues);
+                   skillResult = skill._error(`Validation Error: ${verifyResult.issues.join(', ')}`);
+                }
+
                 const skillReply = typeof skillResult === 'string' ? skillResult : (skillResult?.message || JSON.stringify(skillResult));
                 console.log(`   [MasterAgent Loop] Tool Result: ${skillReply.substring(0, 80)}...`);
 
@@ -290,7 +302,16 @@ Rules & Persona:
       let result;
       let success = true;
       try {
-        result = await skill.execute(context);
+        // V2: Execute with Self Healing
+        result = await selfHealingEngine.executeWithHealing(skill, context, this.registry);
+        
+        // V2: Verify result
+        const verifyResult = await verificationEngine.verify(skill, context, result);
+        if (!verifyResult.verified && verifyResult.confidence === 0) {
+           console.warn(`   [MasterAgent Fallback] Verification failed for ${skill.name}:`, verifyResult.issues);
+           result = skill._error(`Validation Error: ${verifyResult.issues.join(', ')}`);
+        }
+
         if (!result || result.type === 'error' || result.success === false) {
           success = false;
         }
@@ -355,13 +376,21 @@ Rules & Persona:
   // ═══════════════════════════════════════════════════════════
 
   _buildContext(userId, message, detection, options = {}) {
+    // Merge frontend context (docType, language, skill) into params
+    const frontendContext = options.context || {};
+    const detectedParams = detection.params || {};
+    
+    // Inject User Profile from MemoryEngine
+    const userProfile = memoryEngine.getUserProfile(userId);
+
     return {
       userId,
       message,
       intent: detection.intent,
       confidence: detection.confidence,
-      params: detection.params || {},
-      lang: options.lang || 'hi',
+      params: { ...detectedParams, ...frontendContext },
+      lang: frontendContext.language || options.lang || userProfile.preferences.language || 'hi',
+      userProfile, // V2: Pass full memory profile to skills
       io: this.io,
       app: options.app || null,
       audioPath: options.audioPath || null,

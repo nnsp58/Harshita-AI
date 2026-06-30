@@ -18,11 +18,14 @@
  *   - Successful patterns yaad rahte hain
  */
 
+const crypto = require('crypto');
 const { learningEngine } = require('../core/learningEngine');
+const { GenericInputSchema, SkillOutputSchema } = require('./SkillSchema');
 
 class BaseSkill {
   constructor() {
     // ─── स्किल की पहचान (Identity) ───
+    this.skillId = crypto.randomUUID(); // Auto-generated unique identifier
     this.name = '';                  // यूनिक ID, जैसे: 'job_search'
     this.displayName = '';           // दिखाने के लिए नाम: 'नौकरी खोज'
     this.displayNameEn = '';         // English नाम: 'Job Search'
@@ -52,6 +55,17 @@ class BaseSkill {
     this.requiredAgents = [];        // कौन से एजेंट्स चाहिए: ['documentAIAgent']
     this.requiredAPIs = [];          // कौन से API keys चाहिए: ['GROQ_API_KEY']
     this.requiredServices = [];      // कौन सी सर्विसेज़: ['redis', 'prisma']
+    this.dependencies = [];          // Other skill names required
+
+    // ─── v2 Validation & Execution Rules ───
+    this.inputSchema = GenericInputSchema; // Zod schema for input
+    this.outputSchema = SkillOutputSchema; // Zod schema for output
+    this.validationRules = [];             // Post-execution verification rules
+    this.confidenceThreshold = 0.8;        // Minimum confidence to auto-execute
+    this.fallbackAgent = null;             // Backup agent
+    this.testCases = [];                   // Built-in test inputs/outputs
+    this.examplePrompts = [];              // Example user messages
+    this.learningRules = {};               // Skill-specific learning config
 
     // ─── Runtime State ───
     this.isLoaded = false;
@@ -78,6 +92,30 @@ class BaseSkill {
    */
   async execute(context) {
     throw new Error(`⚠️ ${this.name}: execute() method implement नहीं किया गया!`);
+  }
+
+  /**
+   * Post-execution verification
+   * VerificationEngine is responsible for calling this.
+   */
+  async verify(result) {
+    // Override in subclass to implement specific verification
+    return { verified: true, confidence: 1.0, issues: [] };
+  }
+
+  /**
+   * Input validation using Zod schema
+   */
+  validateInput(params) {
+    if (!this.inputSchema) return { success: true, data: params };
+    return this.inputSchema.safeParse(params);
+  }
+
+  /**
+   * Return the input schema for UI generation or AI tool calling
+   */
+  getInputSchema() {
+    return this.inputSchema;
   }
 
   // ═══════════════════════════════════════════════════════════

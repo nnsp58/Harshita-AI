@@ -198,6 +198,20 @@ export const useStore = create(
       currentTask: null,
       chatMessages: [],
       activityLog: [],
+      responseMode: 'CHAT',
+      currentDocument: null,
+      documentHistory: [],
+      setResponseMode: (mode) => set({ responseMode: mode }),
+      setCurrentDocument: (doc) => set((state) => {
+        const history = state.documentHistory || [];
+        const isDuplicate = doc ? history.some(h => h.content === doc.content) : true;
+        return {
+          currentDocument: doc,
+          responseMode: doc ? 'DOCUMENT' : state.responseMode,
+          documentHistory: doc && !isDuplicate ? [...history, doc] : history
+        };
+      }),
+      clearDocument: () => set({ currentDocument: null, responseMode: 'CHAT' }),
       addChatMessage: (msg) => set((state) => ({
         chatMessages: [...state.chatMessages, msg]
       })),
@@ -264,6 +278,9 @@ export const useStore = create(
         trialStartDate: state.trialStartDate,
         subscriptionMode: state.subscriptionMode,
         operators: state.operators,
+        responseMode: state.responseMode,
+        currentDocument: state.currentDocument,
+        documentHistory: state.documentHistory,
       }),
       onRehydrateStorage: () => (state) => {
         // Ensure isAuthenticated is set based on token after rehydration

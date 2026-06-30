@@ -8,7 +8,7 @@ import api from '../services/api'
 import {
   LayoutDashboard, Video, Film, Settings as SettingsIcon, Shield,
   ArrowLeft, Download, Trash2, RefreshCw, Key, Play, X, Info,
-  AlertTriangle, CheckCircle, Database, Terminal, FileVideo, Cpu, Sparkles
+  AlertTriangle, CheckCircle, Database, Terminal, FileVideo, Cpu, Sparkles, Eye
 } from 'lucide-react'
 
 // Base URL helper to play assets locally and in prod
@@ -25,7 +25,7 @@ export default function StoryVideoDashboard() {
   const { user } = useStore()
   const { socket, isConnected } = useSocket()
 
-  const [activeTab, setActiveTab] = useState('dashboard')
+  const [activeTab, setActiveTab] = useState('generator')
   const [loading, setLoading] = useState(false)
   const [videos, setVideos] = useState([])
   const [apiKeys, setApiKeys] = useState({
@@ -402,82 +402,202 @@ export default function StoryVideoDashboard() {
 
           {/* TAB 2: STORY GENERATOR COMPONENT */}
           {activeTab === 'generator' && (
-            <div className="bg-white/5 border border-white/10 rounded-xl p-5 space-y-4">
-              <div className="border-b border-white/10 pb-2">
-                <h3 className="text-sm font-bold text-white">Create New Cartoon Video / वीडियो निर्माण</h3>
-                <p className="text-[10px] text-gray-500">Paste your short story or prompt to automatically generate voiceover and video.</p>
+            <div className="space-y-4">
+              <div className="bg-white/5 border border-white/10 rounded-xl p-5 space-y-4">
+                <div className="border-b border-white/10 pb-2">
+                  <h3 className="text-sm font-bold text-white">Create New Cartoon Video / वीडियो निर्माण</h3>
+                  <p className="text-[10px] text-gray-500">Paste your short story or prompt to automatically generate voiceover and video.</p>
+                </div>
+
+                <form onSubmit={handleGenerate} className="space-y-4">
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Paste Story text / कहानी यहाँ लिखें</label>
+                    <textarea value={story} onChange={e => setStory(e.target.value)} rows={6} required
+                      placeholder="एक गरीब किसान को रास्ते में सोने का सिक्का मिला। वह बहुत ईमानदार था, उसने उसे..."
+                      className="bg-[#0f111a] border border-white/10 rounded-xl p-3 text-xs focus:outline-none focus:border-indigo-500 text-white placeholder-gray-600 resize-none font-medium" />
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    {/* Language Selector */}
+                    <div className="flex flex-col gap-1">
+                      <label className="text-[10px] text-gray-400 font-bold uppercase">Language / भाषा</label>
+                      <select value={language} onChange={e => setLanguage(e.target.value)} className="bg-[#0f111a] border border-white/10 rounded-lg p-2.5 text-xs text-white">
+                        <option value="Hindi">Hindi (हिंदी)</option>
+                        <option value="English">English (अंग्रेजी)</option>
+                      </select>
+                    </div>
+
+                    {/* Duration Selector */}
+                    <div className="flex flex-col gap-1">
+                      <label className="text-[10px] text-gray-400 font-bold uppercase">Duration / समय सीमा</label>
+                      <select value={duration} onChange={e => setDuration(e.target.value)} className="bg-[#0f111a] border border-white/10 rounded-lg p-2.5 text-xs text-white">
+                        <option value="15">15 Seconds (Short Demo)</option>
+                        <option value="30">30 Seconds (YouTube Short)</option>
+                        <option value="60">60 Seconds (Instagram Reel)</option>
+                        <option value="90">90 Seconds (Facebook Reel)</option>
+                      </select>
+                    </div>
+
+                    {/* Image Style Selector */}
+                    <div className="flex flex-col gap-1">
+                      <label className="text-[10px] text-gray-400 font-bold uppercase">Video Style / वीडियो स्टाइल</label>
+                      <select value={style} onChange={e => setStyle(e.target.value)} className="bg-[#0f111a] border border-white/10 rounded-lg p-2.5 text-xs text-white">
+                        <option value="Cartoon">Cartoon Style</option>
+                        <option value="Realistic">Realistic Film Style</option>
+                        <option value="Kids Story">Kids Fables Illustration</option>
+                        <option value="Pixar Style">Pixar 3D Render</option>
+                        <option value="Disney Style">Classic Disney 2D</option>
+                        <option value="Anime Style">Japanese Anime Style</option>
+                      </select>
+                    </div>
+
+                    {/* Voice Type Selector */}
+                    <div className="flex flex-col gap-1">
+                      <label className="text-[10px] text-gray-400 font-bold uppercase">Narration Voice / आवाज़</label>
+                      <select value={voiceType} onChange={e => setVoiceType(e.target.value)} className="bg-[#0f111a] border border-white/10 rounded-lg p-2.5 text-xs text-white">
+                        <option value="Hindi Male">Hindi Male (पुरुष)</option>
+                        <option value="Hindi Female">Hindi Female (महिला)</option>
+                        <option value="English Male">English Male (Male)</option>
+                        <option value="English Female">English Female (Female)</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="pt-2">
+                    <button type="submit" disabled={loading}
+                      className="w-full py-3 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-lg shadow-indigo-600/20 transition-all">
+                      {loading ? (
+                        <>
+                          <RefreshCw size={14} className="animate-spin" /> Task Queue Running...
+                        </>
+                      ) : (
+                        <>
+                          <Video size={14} /> Generate Video / वीडियो निर्माण शुरू करें
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </form>
               </div>
 
-              <form onSubmit={handleGenerate} className="space-y-4">
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Paste Story text / कहानी यहाँ लिखें</label>
-                  <textarea value={story} onChange={e => setStory(e.target.value)} rows={6} required
-                    placeholder="एक गरीब किसान को रास्ते में सोने का सिक्का मिला। वह बहुत ईमानदार था, उसने उसे..."
-                    className="bg-[#0f111a] border border-white/10 rounded-xl p-3 text-xs focus:outline-none focus:border-indigo-500 text-white placeholder-gray-600 resize-none font-medium" />
+              {/* Processing Progress Status HUD */}
+              {generationProgress && (
+                <div className="bg-white/5 border border-white/10 rounded-xl p-5 space-y-4">
+                  <div className="flex items-center justify-between border-b border-white/10 pb-2">
+                    <div>
+                      <h4 className="text-xs font-bold flex items-center gap-1.5 text-indigo-400">
+                        {generationProgress.stage === 'completed' ? (
+                          <CheckCircle size={14} className="text-emerald-400 animate-bounce" />
+                        ) : generationProgress.stage === 'error' ? (
+                          <AlertTriangle size={14} className="text-red-400" />
+                        ) : (
+                          <RefreshCw size={14} className="animate-spin" />
+                        )}
+                        {generationProgress.stage === 'completed' 
+                          ? 'Video Generated Successfully!' 
+                          : generationProgress.stage === 'error' 
+                            ? 'Generation Failed' 
+                            : 'AI Video Pipeline Running...'}
+                      </h4>
+                      <p className="text-[9px] text-gray-500 mt-0.5">Task ID: {generationProgress.id}</p>
+                    </div>
+                    <span className="text-xs font-bold text-indigo-400">{generationProgress.progress}%</span>
+                  </div>
+
+                  {/* Progress Line */}
+                  <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
+                    <div className="bg-indigo-500 h-full transition-all duration-500" style={{ width: `${generationProgress.progress}%` }}></div>
+                  </div>
+
+                  {/* Dynamic checklist step items */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                    {[
+                      { id: 'analysis', label: 'Analyzing Story...' },
+                      { id: 'scenes', label: 'Generating Scenes...' },
+                      { id: 'characters', label: 'Creating Characters...' },
+                      { id: 'video', label: 'Generating Video...' },
+                      { id: 'voice', label: 'Generating Voice...' },
+                      { id: 'subtitles', label: 'Creating Subtitles...' },
+                      { id: 'rendering', label: 'Rendering Video...' },
+                      { id: 'finalizing', label: 'Finalizing...' }
+                    ].map((step) => {
+                      const stepStages = ['analysis', 'scenes', 'characters', 'video', 'voice', 'subtitles', 'rendering', 'finalizing'];
+                      const currentStageIndex = stepStages.indexOf(generationProgress.stage);
+                      const thisStepIndex = stepStages.indexOf(step.id);
+                      
+                      let stepStatus = 'pending'; // pending, active, completed, error
+                      
+                      if (generationProgress.stage === 'error') {
+                        if (thisStepIndex === currentStageIndex) {
+                          stepStatus = 'error';
+                        } else if (thisStepIndex < currentStageIndex) {
+                          stepStatus = 'completed';
+                        }
+                      } else if (generationProgress.stage === 'completed') {
+                        stepStatus = 'completed';
+                      } else {
+                        if (thisStepIndex === currentStageIndex) {
+                          stepStatus = 'active';
+                        } else if (thisStepIndex < currentStageIndex) {
+                          stepStatus = 'completed';
+                        }
+                      }
+
+                      return (
+                        <div key={step.id} className="flex items-center gap-2.5 px-3 py-2.5 bg-black/20 rounded-lg border border-white/5 transition-all">
+                          {stepStatus === 'completed' && <CheckCircle size={14} className="text-emerald-400 shrink-0" />}
+                          {stepStatus === 'active' && <RefreshCw size={14} className="text-indigo-400 animate-spin shrink-0" />}
+                          {stepStatus === 'pending' && <div className="w-3.5 h-3.5 rounded-full border border-gray-600 shrink-0" />}
+                          {stepStatus === 'error' && <X size={14} className="text-red-400 shrink-0" />}
+                          <span className={`text-[11px] ${
+                            stepStatus === 'completed' ? 'text-gray-300 font-medium' :
+                            stepStatus === 'active' ? 'text-indigo-400 font-bold' :
+                            stepStatus === 'error' ? 'text-red-400 font-bold' : 'text-gray-600'
+                          }`}>
+                            {step.label}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Self-healing error report with root cause details */}
+                  {generationProgress.error && (
+                    <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl space-y-2 text-xs text-red-400 animate-in fade-in duration-300">
+                      <div className="flex items-start gap-2">
+                        <AlertTriangle size={16} className="shrink-0 mt-0.5 text-red-500" />
+                        <div>
+                          <strong className="block text-red-300">Self-Healing Diagnostic Report</strong>
+                          <p className="mt-1 leading-relaxed">{generationProgress.error}</p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Completed Preview Board */}
+                  {generationProgress.stage === 'completed' && generationProgress.videoUrl && (
+                    <div className="pt-4 border-t border-white/10 flex flex-col md:flex-row gap-4 items-center justify-between animate-in slide-in-from-bottom duration-500">
+                      <div className="flex items-center gap-2">
+                        <CheckCircle className="text-emerald-400" size={18} />
+                        <div>
+                          <p className="text-xs font-bold text-white">Your video is ready to download!</p>
+                          <span className="text-[10px] text-gray-500">1080x1920 (YouTube Shorts / Reels compatible)</span>
+                        </div>
+                      </div>
+                      <div className="flex gap-2 w-full md:w-auto">
+                        <button onClick={() => setPlayingVideo(getAssetUrl(generationProgress.videoUrl))}
+                          className="flex-1 md:flex-none px-4 py-2 bg-indigo-600 hover:bg-indigo-500 font-bold text-white rounded-lg text-xs flex items-center justify-center gap-1.5 shadow-md shadow-indigo-600/20 transition-all">
+                          <Play size={12}/> Play Preview
+                        </button>
+                        <a href={getAssetUrl(generationProgress.videoUrl)} download
+                          className="flex-1 md:flex-none px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/10 font-bold text-white rounded-lg text-xs flex items-center justify-center gap-1.5 transition-all">
+                          <Download size={12}/> Download MP4
+                        </a>
+                      </div>
+                    </div>
+                  )}
                 </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                  {/* Language Selector */}
-                  <div className="flex flex-col gap-1">
-                    <label className="text-[10px] text-gray-400 font-bold uppercase">Language / भाषा</label>
-                    <select value={language} onChange={e => setLanguage(e.target.value)} className="bg-[#0f111a] border border-white/10 rounded-lg p-2.5 text-xs text-white">
-                      <option value="Hindi">Hindi (हिंदी)</option>
-                      <option value="English">English (अंग्रेजी)</option>
-                    </select>
-                  </div>
-
-                  {/* Duration Selector */}
-                  <div className="flex flex-col gap-1">
-                    <label className="text-[10px] text-gray-400 font-bold uppercase">Duration / समय सीमा</label>
-                    <select value={duration} onChange={e => setDuration(e.target.value)} className="bg-[#0f111a] border border-white/10 rounded-lg p-2.5 text-xs text-white">
-                      <option value="15">15 Seconds (Short Demo)</option>
-                      <option value="30">30 Seconds (YouTube Short)</option>
-                      <option value="60">60 Seconds (Instagram Reel)</option>
-                      <option value="90">90 Seconds (Facebook Reel)</option>
-                    </select>
-                  </div>
-
-                  {/* Image Style Selector */}
-                  <div className="flex flex-col gap-1">
-                    <label className="text-[10px] text-gray-400 font-bold uppercase">Video Style / वीडियो स्टाइल</label>
-                    <select value={style} onChange={e => setStyle(e.target.value)} className="bg-[#0f111a] border border-white/10 rounded-lg p-2.5 text-xs text-white">
-                      <option value="Cartoon">Cartoon Style</option>
-                      <option value="Realistic">Realistic Film Style</option>
-                      <option value="Kids Story">Kids Fables Illustration</option>
-                      <option value="Pixar Style">Pixar 3D Render</option>
-                      <option value="Disney Style">Classic Disney 2D</option>
-                      <option value="Anime Style">Japanese Anime Style</option>
-                    </select>
-                  </div>
-
-
-                  {/* Voice Type Selector */}
-                  <div className="flex flex-col gap-1">
-                    <label className="text-[10px] text-gray-400 font-bold uppercase">Narration Voice / आवाज़</label>
-                    <select value={voiceType} onChange={e => setVoiceType(e.target.value)} className="bg-[#0f111a] border border-white/10 rounded-lg p-2.5 text-xs text-white">
-                      <option value="Hindi Male">Hindi Male (पुरुष)</option>
-                      <option value="Hindi Female">Hindi Female (महिला)</option>
-                      <option value="English Male">English Male (Male)</option>
-                      <option value="English Female">English Female (Female)</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="pt-2">
-                  <button type="submit" disabled={loading}
-                    className="w-full py-3 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-lg shadow-indigo-600/20 transition-all">
-                    {loading ? (
-                      <>
-                        <RefreshCw size={14} className="animate-spin" /> Task Queue Running...
-                      </>
-                    ) : (
-                      <>
-                        <Video size={14} /> Generate Cartoon Video / वीडियो निर्माण शुरू करें
-                      </>
-                    )}
-                  </button>
-                </div>
-              </form>
+              )}
             </div>
           )}
 

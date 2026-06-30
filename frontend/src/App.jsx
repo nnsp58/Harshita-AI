@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { HelmetProvider } from 'react-helmet-async'
 import { useStore } from './store'
 
 import UpgradeNotification from './components/UpgradeNotification'
@@ -36,6 +37,24 @@ const BlogPost = lazy(() => import('./pages/BlogPost'))
 const FaqList = lazy(() => import('./pages/FaqList'))
 const HarshitaAiInfo = lazy(() => import('./pages/HarshitaAiInfo'))
 
+// NEW: AdSense Phase Pages
+const AboutUs = lazy(() => import('./pages/public/AboutUs'))
+const PrivacyPolicy = lazy(() => import('./pages/public/PrivacyPolicy'))
+const TermsConditions = lazy(() => import('./pages/public/TermsConditions'))
+const Disclaimer = lazy(() => import('./pages/public/Disclaimer'))
+const RefundPolicy = lazy(() => import('./pages/public/RefundPolicy'))
+const CookiePolicy = lazy(() => import('./pages/public/CookiePolicy'))
+const CopyrightPolicy = lazy(() => import('./pages/public/CopyrightPolicy'))
+const CommunityGuidelines = lazy(() => import('./pages/public/CommunityGuidelines'))
+const HelpCenter = lazy(() => import('./pages/public/HelpCenter'))
+const Pricing = lazy(() => import('./pages/public/Pricing'))
+const Features = lazy(() => import('./pages/public/Features'))
+const AiSkills = lazy(() => import('./pages/public/AiSkills'))
+const Services = lazy(() => import('./pages/public/Services'))
+const Careers = lazy(() => import('./pages/public/Careers'))
+const ReleaseNotes = lazy(() => import('./pages/public/ReleaseNotes'))
+const Changelog = lazy(() => import('./pages/public/Changelog'))
+
 // Admin pages
 const ControlDashboard = lazy(() => import('./pages/admin/ControlDashboard'))
 const UsersControl = lazy(() => import('./pages/admin/UsersControl'))
@@ -47,6 +66,8 @@ const VleDashboard = lazy(() => import('./pages/admin/VleDashboard'))
 const SelfHealingCenter = lazy(() => import('./pages/admin/SelfHealingCenter'))
 const DeveloperCenter = lazy(() => import('./pages/admin/DeveloperCenter'))
 const AcademyDashboard = lazy(() => import('./pages/AcademyDashboard'))
+const AnalyticsDashboard = lazy(() => import('./pages/admin/AnalyticsDashboard'))
+const SystemControl = lazy(() => import('./pages/admin/SystemControl'))
 
 
 // Role-based admin route
@@ -93,8 +114,9 @@ function App() {
   }, [logout]);
 
   return (
-    <BrowserRouter>
-      <UpgradeNotification />
+    <HelmetProvider>
+      <BrowserRouter>
+        <UpgradeNotification />
       <Suspense fallback={
         <div className="min-h-screen bg-[#020617] flex items-center justify-center">
           <div className="w-8 h-8 border-4 border-indigo-500/30 border-t-indigo-500 rounded-full animate-spin"></div>
@@ -270,6 +292,8 @@ function App() {
           <Route path="/admin/control/developer-center" element={<AdminRoute allow={['superadmin']}><DeveloperCenter /></AdminRoute>} />
           <Route path="/admin/control/learning" element={<AdminRoute allow={['superadmin']}><LearningInsights /></AdminRoute>} />
           <Route path="/admin/control/health" element={<AdminRoute allow={['superadmin']}><SystemHealth /></AdminRoute>} />
+          <Route path="/admin/analytics" element={<AdminRoute allow={['superadmin']}><AnalyticsDashboard /></AdminRoute>} />
+          <Route path="/admin/system" element={<AdminRoute allow={['superadmin']}><SystemControl /></AdminRoute>} />
 
           {/* CSC Admin (or superadmin) */}
           <Route path="/admin/csc" element={<AdminRoute allow={['csc_admin', 'superadmin']}><CscDashboard /></AdminRoute>} />
@@ -306,10 +330,29 @@ function App() {
           <Route path="/will-generator" element={<ToolLanding />} />
           <Route path="/noc-generator" element={<ToolLanding />} />
 
+          {/* New AdSense/SEO Routes */}
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsConditions />} />
+          <Route path="/disclaimer" element={<Disclaimer />} />
+          <Route path="/refund-policy" element={<RefundPolicy />} />
+          <Route path="/cookie-policy" element={<CookiePolicy />} />
+          <Route path="/copyright" element={<CopyrightPolicy />} />
+          <Route path="/community" element={<CommunityGuidelines />} />
+          <Route path="/help" element={<HelpCenter />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/features" element={<Features />} />
+          <Route path="/ai-skills" element={<AiSkills />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/careers" element={<Careers />} />
+          <Route path="/release-notes" element={<ReleaseNotes />} />
+          <Route path="/changelog" element={<Changelog />} />
+
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
+    </HelmetProvider>
   )
 }
 

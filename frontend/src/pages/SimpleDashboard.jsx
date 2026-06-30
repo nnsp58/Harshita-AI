@@ -5,6 +5,7 @@ import { useStore } from '../store'
 import { useSocket } from '../hooks/useSocket'
 import api, { authAPI } from '../services/api'
 import VoiceInput from '../components/VoiceInput'
+import DocumentEditorPanel from '../components/DocumentEditorPanel'
 import {
   FileText, Briefcase, Users, Upload, Calculator, Gavel,
   CreditCard, Search, Bot, LogOut, Settings,
@@ -36,7 +37,7 @@ const SERVICES = [
 // ============ MAIN COMPONENT ============
 export default function SimpleDashboard() {
   const navigate = useNavigate()
-  const { user, stats, agents, jobs, initialize, logout, setAuth } = useStore()
+  const { user, stats, agents, jobs, initialize, logout, setAuth, responseMode } = useStore()
   const { isConnected, sendCommand, messages, setMessages } = useSocket()
   const [leftWidth, setLeftWidth] = useState(220)
   const [rightWidth, setRightWidth] = useState(360)
@@ -224,7 +225,9 @@ export default function SimpleDashboard() {
 
         {/* Center Panel */}
         <div className="flex-1 min-w-0 hidden lg:flex flex-col">
-          {activeFile ? (
+          {responseMode === 'DOCUMENT' ? (
+            <DocumentEditorPanel />
+          ) : activeFile ? (
             <FileViewerPanel file={activeFile} onClose={() => setActiveFile(null)} />
           ) : (
             <CenterDashboardPanel stats={stats} agents={agents} jobs={jobs} onServiceClick={handleServiceClick} goal={userGoal} quickActions={customizedQuickActions} />
@@ -244,7 +247,13 @@ export default function SimpleDashboard() {
         <div className="flex-1 lg:hidden overflow-hidden">
           {mobileTab === 'left' && <LeftServicesPanel services={customizedServices} onServiceClick={handleServiceClick} />}
           {mobileTab === 'center' && (
-            activeFile ? <FileViewerPanel file={activeFile} onClose={() => setActiveFile(null)} /> : <CenterDashboardPanel stats={stats} agents={agents} jobs={jobs} onServiceClick={handleServiceClick} goal={userGoal} quickActions={customizedQuickActions} />
+            responseMode === 'DOCUMENT' ? (
+              <DocumentEditorPanel />
+            ) : activeFile ? (
+              <FileViewerPanel file={activeFile} onClose={() => setActiveFile(null)} />
+            ) : (
+              <CenterDashboardPanel stats={stats} agents={agents} jobs={jobs} onServiceClick={handleServiceClick} goal={userGoal} quickActions={customizedQuickActions} />
+            )
           )}
           {mobileTab === 'right' && <RightChatPanel messages={messages} setMessages={setMessages} onSend={sendCommand} isConnected={isConnected} user={user} jobs={jobs} onPreviewFile={handlePreviewFile} />}
         </div>
@@ -623,7 +632,7 @@ function StatCard({ title, value, icon: Icon, color }) {
 }
 
 // ============ RIGHT CHAT PANEL ============
-function RightChatPanel({ messages, setMessages, onSend, isConnected, user, jobs = [] }) {
+function RightChatPanel({ messages, setMessages, onSend, isConnected, user, jobs = [], onPreviewFile }) {
   const navigate = useNavigate()
   const [input, setInput] = useState('')
   const [isThinking, setIsThinking] = useState(false)
@@ -835,6 +844,20 @@ function RightChatPanel({ messages, setMessages, onSend, isConnected, user, jobs
                   msg.type === 'user' ? 'bg-amber-600 text-white rounded-br-none' : 'bg-white/5 text-gray-300 rounded-bl-none border border-white/10'
                 }`}>
                   {renderMessageText(msg.message)}
+                  {msg.type !== 'user' && msg.message && msg.message.length > 60 && (
+                    <button
+                      type="button"
+                      onClick={() => onPreviewFile?.({
+                        name: msg.skill ? `Response: ${msg.skill}` : 'AI Response Summary',
+                        type: 'text/markdown',
+                        content: msg.message,
+                        url: '#'
+                      })}
+                      className="mt-2 flex items-center justify-center gap-1.5 text-[10px] text-amber-400 hover:text-amber-300 transition-colors font-semibold border border-amber-500/20 bg-amber-500/5 hover:bg-amber-500/10 px-2 py-1 rounded"
+                    >
+                      <Monitor size={10} /> Open in Center / सेंटर में खोलें
+                    </button>
+                  )}
                   <span className="text-[9px] text-gray-500 mt-1 block">{new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                 </div>
                 {msg.type === 'user' && (
@@ -978,6 +1001,7 @@ function FileViewerPanel({ file, onClose }) {
   const isImage = file.type.startsWith('image/')
   const isVideo = file.type.startsWith('video/')
   const isPDF = file.type === 'application/pdf'
+  const isText = file.type.startsWith('text/') || file.type === 'application/json' || file.type === 'text/markdown'
   
   return (
     <div className="h-full flex flex-col bg-[#020617] animate-in fade-in duration-300">
@@ -995,17 +1019,26 @@ function FileViewerPanel({ file, onClose }) {
           <X size={16} className="text-gray-400 hover:text-red-400" />
         </button>
       </div>
-      <div className="flex-1 bg-black/40 overflow-hidden flex items-center justify-center relative p-4">
+      <div className="flex-1 bg-black/40 overflow-y-auto relative p-4 sm:p-6">
         {isImage && (
-          <img src={file.url} alt={file.name} className="max-w-full max-h-full object-contain rounded-lg shadow-2xl" />
+          <div className="w-full h-full flex items-center justify-center">
+            <img src={file.url} alt={file.name} className="max-w-full max-h-full object-contain rounded-lg shadow-2xl" />
+          </div>
         )}
         {isVideo && (
-          <video src={file.url} controls className="max-w-full max-h-full rounded-lg shadow-2xl" />
+          <div className="w-full h-full flex items-center justify-center">
+            <video src={file.url} controls className="max-w-full max-h-full rounded-lg shadow-2xl" />
+          </div>
         )}
         {isPDF && (
           <iframe src={file.url} className="w-full h-full rounded-lg bg-white" title={file.name} />
         )}
-        {!isImage && !isVideo && !isPDF && (
+        {isText && (
+          <div className="bg-[#0f111a] border border-white/10 rounded-2xl p-6 shadow-xl max-w-3xl mx-auto text-sm text-gray-300 leading-relaxed whitespace-pre-wrap select-text">
+            {file.content}
+          </div>
+        )}
+        {!isImage && !isVideo && !isPDF && !isText && (
           <div className="text-center bg-white/5 p-8 rounded-2xl border border-white/10">
             <FileText size={48} className="mx-auto text-gray-500 mb-4" />
             <p className="text-white font-medium mb-1">Preview not available</p>

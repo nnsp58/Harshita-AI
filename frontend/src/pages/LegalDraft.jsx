@@ -18,6 +18,13 @@ const documentTypes = [
   { id: 'declaration', name: 'Declaration / घोषणा', icon: '✍️', desc: 'General purpose declaration' },
   { id: 'power_of_attorney', name: 'Power of Attorney / मुख्तारनामा', icon: '⚖️', desc: 'Legal authorization' },
   { id: 'will', name: 'Will / वसीयत', icon: '📜', desc: 'Last will and testament' },
+  { id: 'police_complaint', name: 'Police Complaint / पुलिस शिकायत', icon: '🚔', desc: 'FIR / Police station application' },
+  { id: 'rti', name: 'RTI Application / सूचना का अधिकार', icon: '🔍', desc: 'Right to Information application' },
+  { id: 'consumer_complaint', name: 'Consumer Complaint / उपभोक्ता शिकायत', icon: '🛒', desc: 'Consumer forum complaint' },
+  { id: 'electricity_complaint', name: 'Electricity Complaint / बिजली शिकायत', icon: '⚡', desc: 'Electricity department complaint' },
+  { id: 'revenue_application', name: 'Revenue Application / राजस्व आवेदन', icon: '🏛️', desc: 'Tehsil / SDM / DM application' },
+  { id: 'pension_application', name: 'Pension Application / पेंशन आवेदन', icon: '👴', desc: 'Old age / widow / disability pension' },
+  { id: 'court_draft', name: 'Court Draft / न्यायालय मसौदा', icon: '🏗️', desc: 'Court filing and petition drafts' },
 ]
 
 const STORAGE_KEY = 'harshita_legal_drafts'

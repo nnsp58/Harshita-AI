@@ -37,6 +37,22 @@ async function main() {
   });
   console.log('✅ Created admin user:', admin.email);
 
+  // Create superadmin user
+  const superPassword = await bcrypt.hash('super123', 12);
+  const superadmin = await prisma.user.upsert({
+    where: { email: 'superadmin@csc.gov.in' },
+    update: {},
+    create: {
+      email: 'superadmin@csc.gov.in',
+      password_hash: superPassword,
+      name: 'Super Admin',
+      role: 'superadmin',
+      is_active: true,
+      csc_id: csc.id
+    }
+  });
+  console.log('✅ Created superadmin user:', superadmin.email);
+
   // Create VLE user
   const vlePassword = await bcrypt.hash('vle123456', 12);
   const vle = await prisma.user.upsert({

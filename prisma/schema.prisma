@@ -126,6 +126,11 @@ model User {
   jobs          Job[]
   reviews       Review[]
   documents     Document[]
+  contacts      Contact[]
+  contact_groups ContactGroup[]
+  message_logs  MessageLog[]
+  conversation_memories ConversationMemory[]
+  scheduled_automations ScheduledAutomation[]
 
   @@index([csc_id])
   @@map("users")
@@ -354,4 +359,99 @@ model ImprovementRegistry {
   @@map("improvement_registries")
 }
 
+model SkillUsage {
+  id            String   @id @default(uuid())
+  user_id       String   @map("user_id")
+  skill_name    String   @map("skill_name")
+  agent_name    String   @map("agent_name")
+  request_time  DateTime @default(now()) @map("request_time")
+  response_time Int      @map("response_time") // In milliseconds
+  success       Boolean  @default(true)
+  error_message String?  @map("error_message")
+  created_at    DateTime @default(now()) @map("created_at")
 
+  @@map("skill_usage")
+}
+
+model Contact {
+  id           String   @id @default(uuid())
+  user_id      String   @map("user_id")
+  phone        String   @unique
+  name         String
+  relationship String?  // e.g. "father", "sdo", "lawyer"
+  is_favorite  Boolean  @default(false) @map("is_favorite")
+  preferences  Json?
+  created_at   DateTime @default(now()) @map("created_at")
+  updated_at   DateTime @updatedAt @map("updated_at")
+
+  user         User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@index([user_id])
+  @@index([relationship])
+  @@map("contacts")
+}
+
+model ContactGroup {
+  id          String   @id @default(uuid())
+  user_id     String   @map("user_id")
+  name        String
+  description String?
+  created_at  DateTime @default(now()) @map("created_at")
+  
+  user        User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@index([user_id])
+  @@map("contact_groups")
+}
+
+model MessageLog {
+  id           String   @id @default(uuid())
+  user_id      String   @map("user_id")
+  contact_id   String?  @map("contact_id")
+  recipient    String
+  direction    String   @default("outbound") // inbound, outbound
+  content      String
+  media_url    String?  @map("media_url")
+  status       String   @default("sent") // sent, delivered, read, failed
+  error_msg    String?  @map("error_msg")
+  created_at   DateTime @default(now()) @map("created_at")
+
+  user         User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@index([user_id])
+  @@index([recipient])
+  @@map("message_logs")
+}
+
+model ConversationMemory {
+  id           String   @id @default(uuid())
+  user_id      String   @map("user_id")
+  context_key  String   @map("context_key") // e.g., "whatsapp_preferences"
+  data         Json
+  created_at   DateTime @default(now()) @map("created_at")
+  updated_at   DateTime @updatedAt @map("updated_at")
+
+  user         User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@index([user_id])
+  @@unique([user_id, context_key])
+  @@map("conversation_memory")
+}
+
+model ScheduledAutomation {
+  id              String   @id @default(uuid())
+  user_id         String   @map("user_id")
+  job_type        String   // "festival", "reminder", "broadcast"
+  cron_expression String?  @map("cron_expression")
+  schedule_time   DateTime? @map("schedule_time")
+  payload         Json
+  status          String   @default("active") // "active", "completed", "failed", "paused"
+  created_at      DateTime @default(now()) @map("created_at")
+  updated_at      DateTime @updatedAt @map("updated_at")
+
+  user            User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@index([user_id])
+  @@index([status])
+  @@map("scheduled_automations")
+}

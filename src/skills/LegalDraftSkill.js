@@ -24,21 +24,30 @@ class LegalDraftSkill extends BaseSkill {
     this.displayNameEn = 'Legal Document Generator (AI)';
     this.description = 'AI से कोई भी कानूनी दस्तावेज़ बनाना — affidavit, gift deed, NOC, agreement, will आदि';
     this.descriptionEn = 'AI-powered automatic legal document generation';
-    this.version = '2.1.0';
+    this.version = '3.0.0';
     this.category = 'document';
     this.canRunOffline = false;
     this.priority = 7;
-    this.intents = ['legal_draft', 'affidavit', 'agreement', 'legal_document', 'gift_deed', 'noc', 'partition_deed', 'will'];
+    this.intents = [
+      'legal_draft', 'affidavit', 'agreement', 'legal_document', 'gift_deed', 'noc',
+      'partition_deed', 'will', 'police_complaint', 'rti', 'consumer_complaint',
+      'electricity_complaint', 'revenue_application', 'pension_application', 'court_draft'
+    ];
     this.keywords = {
       hi: ['कानूनी', 'ड्राफ्ट', 'शपथपत्र', 'एफिडेविट', 'अनुबंध', 'वकील', 'कानून',
            'दान विलेख', 'गिफ्ट डीड', 'बंटवारा', 'पार्टीशन', 'अनापत्ति', 'NOC',
-           'किराया', 'वसीयत', 'मुख्तारनामा', 'सम्पत्ति', 'पत्नी', 'नाम परिवर्तन'],
+           'किराया', 'वसीयत', 'मुख्तारनामा', 'सम्पत्ति', 'पत्नी', 'नाम परिवर्तन',
+           'पुलिस', 'शिकायत', 'एफआईआर', 'थाना', 'सूचना का अधिकार', 'आरटीआई',
+           'उपभोक्ता', 'बिजली', 'विद्युत', 'राजस्व', 'पेंशन', 'न्यायालय'],
       en: ['legal', 'draft', 'affidavit', 'agreement', 'contract', 'lawyer', 'notary',
            'gift deed', 'partition', 'noc', 'will', 'power of attorney', 'rent agreement',
-           'declaration', 'sworn statement'],
+           'declaration', 'sworn statement', 'police complaint', 'fir', 'rti',
+           'consumer complaint', 'electricity', 'revenue', 'pension', 'court'],
       hinglish: ['legal draft banao', 'affidavit banao', 'agreement likho', 'kanuni document',
-                 'gift deed banao', 'partition deed', 'wife ke naam', 'patni ke naam',
-                 'sampatti transfer', 'naam change', 'noc banao', 'rent agreement']
+                  'gift deed banao', 'partition deed', 'wife ke naam', 'patni ke naam',
+                  'sampatti transfer', 'naam change', 'noc banao', 'rent agreement',
+                  'police complaint likho', 'fir darj karo', 'rti lagao',
+                  'bijli ki shikayat', 'pension ke liye', 'thana mein report']
     };
 
     this.aiManager = aiProviderManager;
@@ -52,6 +61,24 @@ class LegalDraftSkill extends BaseSkill {
     }
 
     const userIdSafe = userId || 'anon';
+
+    // ── SMART APPLICANT MODIFIER DETECTION ──
+    // Detect if the draft should be written on behalf of someone else
+    const lowerMsg = message.toLowerCase();
+    let applicantModifier = null;
+    if (/पत्नी\s*की\s*तरफ\s*से|wife\s*ki\s*taraf\s*se|patni\s*ki\s*taraf/i.test(lowerMsg)) {
+      applicantModifier = 'wife'; // Draft as wife/spouse
+    } else if (/पिता\s*की\s*तरफ\s*से|father\s*ki\s*taraf|pita\s*ki\s*taraf/i.test(lowerMsg)) {
+      applicantModifier = 'father';
+    } else if (/माता\s*की\s*तरफ\s*से|mother\s*ki\s*taraf|mata\s*ki\s*taraf/i.test(lowerMsg)) {
+      applicantModifier = 'mother';
+    } else if (/वकील\s*की\s*तरफ\s*से|advocate.*taraf|through\s*advocate|through\s*lawyer/i.test(lowerMsg)) {
+      applicantModifier = 'advocate';
+    } else if (/भाई\s*की\s*तरफ\s*से|brother\s*ki\s*taraf|bhai\s*ki\s*taraf/i.test(lowerMsg)) {
+      applicantModifier = 'brother';
+    } else if (/बहन\s*की\s*तरफ\s*से|sister\s*ki\s*taraf|behen\s*ki\s*taraf/i.test(lowerMsg)) {
+      applicantModifier = 'sister';
+    }
     let session = this.sessions.get(userIdSafe);
 
     // Detect selected/incoming category
@@ -68,6 +95,14 @@ class LegalDraftSkill extends BaseSkill {
       else if (/name\s*change|नाम\s*परिवर्तन/i.test(lowerMessage)) selectedCategory = 'name_change';
       else if (/declaration/i.test(lowerMessage)) selectedCategory = 'declaration';
       else if (/defamation/i.test(lowerMessage)) selectedCategory = 'defamation';
+      // ── NEW document types ──
+      else if (/police|पुलिस|fir|एफआईआर|थाना|thana/i.test(lowerMessage)) selectedCategory = 'police_complaint';
+      else if (/rti|सूचना\s*का\s*अधिकार|आरटीआई|right\s*to\s*information/i.test(lowerMessage)) selectedCategory = 'rti';
+      else if (/consumer|उपभोक्ता|ग्राहक/i.test(lowerMessage)) selectedCategory = 'consumer_complaint';
+      else if (/electricity|बिजली|विद्युत|bijli/i.test(lowerMessage)) selectedCategory = 'electricity_complaint';
+      else if (/revenue|राजस्व|लेखपाल|तहसील/i.test(lowerMessage)) selectedCategory = 'revenue_application';
+      else if (/pension|पेंशन|वृद्धावस्था|विधवा|divyang/i.test(lowerMessage)) selectedCategory = 'pension_application';
+      else if (/court|न्यायालय|अदालत|कोर्ट/i.test(lowerMessage)) selectedCategory = 'court_draft';
       else selectedCategory = 'affidavit';
     }
 
@@ -143,7 +178,7 @@ Recommended Category: ${recommendedCategory === 'affidavit' ? 'Affidavit' : reco
 
     // Generate using AI
     try {
-      let draft = await this._generateWithAI(processedMessage, docType);
+      let draft = await this._generateWithAI(processedMessage, docType, 0, applicantModifier);
       if (draft) {
         draft = autoCapitalizeText(draft);
         draft = eliminatePlaceholders(draft);
@@ -184,6 +219,13 @@ Recommended Category: ${recommendedCategory === 'affidavit' ? 'Affidavit' : reco
       { type: 'will', match: /\bwill\b|वसीयत|wasiyat|testament/i },
       { type: 'power_of_attorney', match: /power\s*of\s*attorney|मुख्तारनामा|poa\b/i },
       { type: 'name_change', match: /naam\s*change|नाम\s*परिवर्तन|name\s*change/i },
+      { type: 'police_complaint', match: /police|पुलिस|fir|एफआईआर|थाना|thana/i },
+      { type: 'rti', match: /rti|सूचना\s*का\s*अधिकार|आरटीआई|right\s*to\s*information/i },
+      { type: 'consumer_complaint', match: /consumer|उपभोक्ता|ग्राहक/i },
+      { type: 'electricity_complaint', match: /electricity|बिजली|विद्युत|bijli/i },
+      { type: 'revenue_application', match: /revenue|राजस्व|लेखपाल|तहसील/i },
+      { type: 'pension_application', match: /pension|पेंशन|वृद्धावस्था|विधवा|divyang/i },
+      { type: 'court_draft', match: /court|न्यायालय|अदालत|कोर्ट/i },
       { type: 'affidavit', match: /affidavit|शपथ.*पत्र|एफिडेविट|sworn|घोषणा/i },
       { type: 'declaration', match: /declaration|घोषणा|declar/i },
     ];
@@ -196,7 +238,7 @@ Recommended Category: ${recommendedCategory === 'affidavit' ? 'Affidavit' : reco
   // ═══════════════════════════════════════════════════════════
   //  AI-POWERED DRAFT GENERATION (with 20-Point Quality Engine)
   // ═══════════════════════════════════════════════════════════
-  async _generateWithAI(userInput, docType, retryCount = 0) {
+  async _generateWithAI(userInput, docType, retryCount = 0, applicantModifier = null) {
     if (!this.aiManager) return null;
 
     let targetLang = 'both';
@@ -230,6 +272,13 @@ Recommended Category: ${recommendedCategory === 'affidavit' ? 'Affidavit' : reco
       name_change: 'Name Change Affidavit',
       affidavit: 'Affidavit (शपथ पत्र)',
       declaration: 'Declaration (घोषणा पत्र)',
+      police_complaint: 'Police Complaint (पुलिस शिकायत / FIR Application)',
+      rti: 'RTI Application (सूचना का अधिकार आवेदन)',
+      consumer_complaint: 'Consumer Complaint (उपभोक्ता शिकायत)',
+      electricity_complaint: 'Electricity Complaint (विद्युत विभाग शिकायत)',
+      revenue_application: 'Revenue Application (राजस्व विभाग आवेदन)',
+      pension_application: 'Pension Application (पेंशन आवेदन)',
+      court_draft: 'Court Draft (न्यायालय मसौदा)',
     };
 
     const docName = docNames[docType] || 'Legal Affidavit';
@@ -405,6 +454,89 @@ ${langInstruction}
 - Include Gazette notification reference placeholder.
 - Add newspaper publication clause.
 - Include list of documents where name change applies (Aadhaar, PAN, Bank, School, etc.).`;
+    } else if (docType === 'police_complaint') {
+      typeSpecificRules = `
+=== POLICE COMPLAINT / FIR APPLICATION (पुलिस शिकायत) - SENIOR ADVOCATE RULES ===
+- THIS IS A FORMAL APPLICATION (प्रार्थना पत्र) TO THE POLICE STATION.
+- Use official Government Application format: सेवा में, श्रीमान थाना प्रभारी..., विषय..., महोदय..., सविनय निवेदन..., प्रार्थना खंड..., प्रार्थी.
+- Auto-detect the police station name from user input (e.g. "थाना ककोड़" → थाना प्रभारी ककोड़).
+- Extract the EXACT amounts, dates, and incident details. Never invent or modify the monetary amounts.
+- Include FIR registration request if applicable.
+- Include relevant IPC/BNS sections if identifiable from the facts (e.g. theft → Section 379 IPC / Section 303 BNS).
+- Prayer clause: Request FIR registration + investigation + recovery + action against accused.
+- Include applicant details block: Name, Father's Name, Address, Mobile, Aadhaar placeholder.`;
+    } else if (docType === 'rti') {
+      typeSpecificRules = `
+=== RTI APPLICATION (सूचना का अधिकार आवेदन) - SENIOR ADVOCATE RULES ===
+- Follow RTI Act 2005 format strictly.
+- Address to the PIO (Public Information Officer) of the relevant department.
+- Format numbered information points clearly.
+- Include application fee reference (₹10 postal order / court fee stamp).
+- Add "RTI Act 2005, Section 6(1)" reference.
+- Include applicant details with Aadhaar placeholder.
+- If department is unclear from user input, use a professional placeholder.`;
+    } else if (docType === 'consumer_complaint') {
+      typeSpecificRules = `
+=== CONSUMER COMPLAINT (उपभोक्ता शिकायत) - SENIOR ADVOCATE RULES ===
+- Address to District Consumer Disputes Redressal Forum / Commission.
+- Identify Complainant and Opposite Party clearly.
+- Include invoice/bill/receipt reference placeholders.
+- Cite Consumer Protection Act 2019 sections.
+- Include compensation demand and relief sought.
+- Include affidavit of complainant placeholder.
+- Prayer clause: specific relief + compensation + costs.`;
+    } else if (docType === 'electricity_complaint') {
+      typeSpecificRules = `
+=== ELECTRICITY COMPLAINT (विद्युत विभाग शिकायत) - SENIOR ADVOCATE RULES ===
+- THIS IS A FORMAL APPLICATION TO THE ELECTRICITY DEPARTMENT.
+- Address to Executive Engineer / अधिशासी अभियंता, Electricity Department.
+- Use official Government Application format: सेवा में..., विषय..., महोदय..., सविनय निवेदन...
+- Include consumer number / meter number placeholder.
+- Extract the specific complaint (overcharging, no supply, faulty meter, new connection, etc.).
+- Include bill amount references if mentioned.
+- Prayer clause: request immediate action on the complaint.`;
+    } else if (docType === 'revenue_application') {
+      typeSpecificRules = `
+=== REVENUE APPLICATION (राजस्व विभाग आवेदन) - SENIOR ADVOCATE RULES ===
+- Address to appropriate revenue officer: Tehsildar / SDM / Collector / Lekhpal.
+- Use official Government Application format.
+- Include Khasra, Khata, Plot numbers if mentioned.
+- Include property survey details and boundaries if available.
+- Reference relevant revenue laws (UP Revenue Code, etc.).
+- Common categories: mutation, demarcation, encroachment removal, land record correction.
+- Prayer clause: specific revenue action requested.`;
+    } else if (docType === 'pension_application') {
+      typeSpecificRules = `
+=== PENSION APPLICATION (पेंशन आवेदन) - SENIOR ADVOCATE RULES ===
+- Address to District Social Welfare Officer / जिला समाज कल्याण अधिकारी.
+- Detect pension type: Old Age (वृद्धावस्था), Widow (विधवा), Disability (दिव्यांग).
+- Include age proof placeholder, income certificate placeholder.
+- Include bank account details placeholder (account number, IFSC, branch).
+- Include BPL/APL status if relevant.
+- Prayer clause: approval and disbursement of pension.`;
+    } else if (docType === 'court_draft') {
+      typeSpecificRules = `
+=== COURT DRAFT (न्यायालय मसौदा) - SENIOR ADVOCATE RULES ===
+- Identify court type: Civil Court, Family Court, Consumer Court, Criminal Court.
+- Include case number placeholder if not provided.
+- Follow court filing format: IN THE COURT OF..., CASE NO..., PARTIES..., FACTS..., PRAYER.
+- Use professional court language.
+- Include vakalatnama reference if applicable.
+- Include court fee stamp placeholder.`;
+    }
+
+    // ── SMART APPLICANT MODIFIER INJECTION ──
+    let applicantInstruction = '';
+    if (applicantModifier) {
+      const modifierMap = {
+        wife: 'The application/draft must be written AS IF THE WIFE is the applicant. The applicant section must show the wife\'s name and identity details. The husband is the complainant\'s spouse, not the applicant. Use "मैं [पत्नी का नाम], पत्नी श्री [पति का नाम]" format.',
+        father: 'The application/draft must be written AS IF THE FATHER is the applicant. Use "मैं [पिता का नाम], पिता [बच्चे का नाम]" format.',
+        mother: 'The application/draft must be written AS IF THE MOTHER is the applicant. Use "मैं [माता का नाम], माता [बच्चे का नाम]" format.',
+        advocate: 'The application/draft must be written BY AN ADVOCATE on behalf of the client. Include vakalatnama reference. Use "मेरे मुवक्किल [नाम]" and advocate signature block.',
+        brother: 'The application/draft must be written AS IF THE BROTHER is the applicant on behalf of the family.',
+        sister: 'The application/draft must be written AS IF THE SISTER is the applicant on behalf of the family.'
+      };
+      applicantInstruction = `\n\n=== APPLICANT MODIFIER (MANDATORY) ===\n${modifierMap[applicantModifier]}\nThis is NON-NEGOTIABLE. The applicant identity MUST reflect this modifier.`;
     }
 
     const systemPrompt = `You are a senior advocate with 20+ years of experience in Indian law.
@@ -412,6 +544,7 @@ ${langInstruction}
 ${baseRules}
 
 ${typeSpecificRules}
+${applicantInstruction}
 
 === STEP 13: QUALITY CHECK (MANDATORY BEFORE OUTPUT) ===
 Before writing the final document, you MUST perform this internal quality check in your thinking:
@@ -462,6 +595,9 @@ STEP-BY-STEP TASK (FOLLOW STRICTLY):
 Output ONLY the final legal document. No other text.`;
 
     try {
+      if (process.env.FORCE_OFFLINE === 'true') {
+        throw new Error('Offline mode active - HASA routing to Template Engine');
+      }
       const response = await this.aiManager.createChatCompletion('LegalDraftAgent', {
         messages: [
           { role: 'system', content: systemPrompt },
@@ -481,11 +617,28 @@ Output ONLY the final legal document. No other text.`;
       // Self-healing: If draft is too short or missing key elements, retry once
       if (draft && draft.length > 200) {
         const hasSignatureBlock = /हस्ताक्षर|signature|sign/i.test(draft);
-        const hasVerification = /सत्यापन|verification|verified/i.test(draft);
+        const hasVerification = /सत्यापन|verification|verified|प्रार्थी|भवदीय/i.test(draft);
         
-        if (!draft.includes('REJECTED') && (!hasSignatureBlock || !hasVerification) && retryCount < 1) {
-          console.log('[LegalDraftSkill] Quality check failed — auto-retrying...');
-          return this._generateWithAI(userInput, docType, retryCount + 1);
+        // Enhanced self-review: check for amount/date preservation
+        const inputAmounts = userInput.match(/₹[\d,.]+|\d+,\d+|रुपये\s*\d+/g) || [];
+        let amountsPreserved = true;
+        for (const amt of inputAmounts) {
+          const numericPart = amt.replace(/[₹,रुपये\s]/g, '');
+          if (numericPart && !draft.includes(numericPart)) {
+            amountsPreserved = false;
+            break;
+          }
+        }
+
+        // Check applicant modifier compliance
+        let modifierCompliant = true;
+        if (applicantModifier === 'wife' && !/पत्नी|wife/i.test(draft)) {
+          modifierCompliant = false;
+        }
+        
+        if (!draft.includes('REJECTED') && (!hasSignatureBlock || !hasVerification || !amountsPreserved || !modifierCompliant) && retryCount < 1) {
+          console.log(`[LegalDraftSkill] Quality check failed (sig:${hasSignatureBlock}, ver:${hasVerification}, amt:${amountsPreserved}, mod:${modifierCompliant}) — auto-retrying...`);
+          return this._generateWithAI(userInput, docType, retryCount + 1, applicantModifier);
         }
         return draft;
       }
@@ -493,7 +646,7 @@ Output ONLY the final legal document. No other text.`;
       // If draft too short, retry once
       if (draft && !draft.includes('REJECTED') && retryCount < 1) {
         console.log('[LegalDraftSkill] Draft too short — auto-retrying...');
-        return this._generateWithAI(userInput, docType, retryCount + 1);
+        return this._generateWithAI(userInput, docType, retryCount + 1, applicantModifier);
       }
       
       return draft;
@@ -514,6 +667,13 @@ Output ONLY the final legal document. No other text.`;
       noc: this._nocTemplate(userInput, today),
       rent_agreement: this._rentAgreementTemplate(userInput, today),
       partition_deed: this._partitionTemplate(userInput, today),
+      police_complaint: this._policeComplaintTemplate(userInput, today),
+      rti: this._rtiTemplate(userInput, today),
+      consumer_complaint: this._consumerComplaintTemplate(userInput, today),
+      electricity_complaint: this._electricityComplaintTemplate(userInput, today),
+      revenue_application: this._revenueApplicationTemplate(userInput, today),
+      pension_application: this._pensionApplicationTemplate(userInput, today),
+      court_draft: this._courtDraftTemplate(userInput, today),
     };
     return templates[docType] || templates.affidavit;
   }
@@ -648,6 +808,245 @@ I am issuing this NOC of my own free will, with full knowledge and understanding
 ═══════════════════════════════════════════════════════`;
   }
 
+  // ═══════════════════════════════════════════════════════════
+  //  NEW TEMPLATE FALLBACKS (Application/Government Format)
+  // ═══════════════════════════════════════════════════════════
+
+  _policeComplaintTemplate(input, date) {
+    return `सेवा में,
+
+श्रीमान थाना प्रभारी
+[थाना का नाम / Police Station Name]
+[जिला / District]
+
+विषय: ${input} — के सम्बन्ध में शिकायत / प्राथमिकी दर्ज कराने हेतु प्रार्थना पत्र
+
+महोदय,
+
+सविनय निवेदन है कि मैं [नाम / Name], पुत्र/पत्नी [पिता/पति का नाम],
+निवासी [पूरा पता / Full Address], मोबाइल: [____________________],
+आधार संख्या: [____________________]।
+
+मेरे साथ उपरोक्त विषय से सम्बन्धित घटना हुई है जिसका विवरण निम्नवत है:
+
+(यहाँ घटना का पूरा विवरण: ${input})
+
+अतः श्रीमान जी से विनम्र निवेदन है कि उपरोक्त तथ्यों को दृष्टिगत रखते हुए मेरी शिकायत पर प्राथमिकी (FIR) दर्ज करने तथा आवश्यक कार्यवाही करने की कृपा करें।
+
+दिनांक / Date: ${date}
+स्थान / Place: ____________________
+
+भवदीय / प्रार्थी,
+हस्ताक्षर: ____________________
+नाम: ____________________
+पिता/पति का नाम: ____________________
+पता: ____________________
+मोबाइल: ____________________
+
+═══════════════════════════════════════════════════════════════════════════════`;
+  }
+
+  _rtiTemplate(input, date) {
+    return `सेवा में,
+
+जनसूचना अधिकारी (PIO)
+[विभाग का नाम / Department Name]
+[कार्यालय का पता / Office Address]
+
+विषय: सूचना का अधिकार अधिनियम, 2005 की धारा 6(1) के अन्तर्गत सूचना प्राप्त करने हेतु आवेदन
+
+महोदय,
+
+मैं, [नाम / Name], पुत्र/पुत्री [पिता का नाम], निवासी [पूरा पता],
+सूचना का अधिकार अधिनियम, 2005 की धारा 6(1) के अन्तर्गत निम्नलिखित सूचना प्राप्त करना चाहता/चाहती हूँ:
+
+${input}
+
+कृपया उपरोक्त सूचना 30 दिनों के अन्दर उपलब्ध कराने की कृपा करें।
+
+आवेदन शुल्क: ₹10 (कोर्ट फी स्टाम्प / पोस्टल ऑर्डर संलग्न)
+
+दिनांक: ${date}
+
+प्रार्थी,
+हस्ताक्षर: ____________________
+नाम: ____________________
+पता: ____________________
+मोबाइल: ____________________
+
+═══════════════════════════════════════════════════════════════════════════════`;
+  }
+
+  _consumerComplaintTemplate(input, date) {
+    return `जिला उपभोक्ता विवाद प्रतितोष आयोग
+[जिला / District]
+
+शिकायत क्रमांक: ______ / ______
+
+परिवादी / COMPLAINANT:
+[नाम], पुत्र/पुत्री [पिता का नाम], निवासी [पता]
+
+बनाम / VS
+
+विपक्षी / OPPOSITE PARTY:
+[कम्पनी/व्यक्ति का नाम], [पता]
+
+विषय: ${input}
+
+तथ्य / FACTS:
+1. ${input}
+2. (अतिरिक्त तथ्य यहाँ भरें)
+
+मांगी गई राहत / RELIEF SOUGHT:
+1. क्षतिपूर्ति / Compensation: ₹____________________
+2. मानसिक एवं शारीरिक पीड़ा के लिए: ₹____________________
+3. वाद व्यय / Cost of litigation: ₹____________________
+
+दिनांक: ${date}
+
+परिवादी / Complainant
+हस्ताक्षर: ____________________
+नाम: ____________________
+
+═══════════════════════════════════════════════════════════════════════════════`;
+  }
+
+  _electricityComplaintTemplate(input, date) {
+    return `सेवा में,
+
+श्रीमान अधिशासी अभियंता
+विद्युत वितरण खण्ड
+[विभाग/खण्ड का नाम]
+[जिला / District]
+
+विषय: ${input} — के सम्बन्ध में शिकायत / प्रार्थना पत्र
+
+महोदय,
+
+सविनय निवेदन है कि मैं [नाम], पुत्र/पुत्री [पिता का नाम],
+निवासी [पूरा पता], उपभोक्ता संख्या: [____________________],
+मीटर संख्या: [____________________]।
+
+मेरी उपरोक्त विषय से सम्बन्धित शिकायत है:
+${input}
+
+अतः श्रीमान जी से विनम्र निवेदन है कि कृपया मेरी शिकायत पर शीघ्र कार्यवाही करें।
+
+दिनांक: ${date}
+
+भवदीय / प्रार्थी,
+हस्ताक्षर: ____________________
+नाम: ____________________
+उपभोक्ता संख्या: ____________________
+पता: ____________________
+मोबाइल: ____________________
+
+═══════════════════════════════════════════════════════════════════════════════`;
+  }
+
+  _revenueApplicationTemplate(input, date) {
+    return `सेवा में,
+
+श्रीमान [तहसीलदार / उपजिलाधिकारी / जिलाधिकारी]
+[तहसील / जनपद का नाम]
+
+विषय: ${input} — के सम्बन्ध में प्रार्थना पत्र
+
+महोदय,
+
+सविनय निवेदन है कि मैं [नाम], पुत्र/पुत्री [पिता का नाम],
+निवासी [ग्राम / मोहल्ला], [पोस्ट], [तहसील], [जनपद]।
+
+मेरी उपरोक्त विषय से सम्बन्धित प्रार्थना है:
+${input}
+
+खसरा संख्या: ____________________
+खाता संख्या: ____________________
+रकबा: ____________________
+
+अतः श्रीमान जी से विनम्र निवेदन है कि उपरोक्त तथ्यों को दृष्टिगत रखते हुए आवश्यक कार्यवाही करने की कृपा करें।
+
+दिनांक: ${date}
+
+भवदीय / प्रार्थी,
+हस्ताक्षर: ____________________
+नाम: ____________________
+पिता का नाम: ____________________
+पता: ____________________
+
+═══════════════════════════════════════════════════════════════════════════════`;
+  }
+
+  _pensionApplicationTemplate(input, date) {
+    return `सेवा में,
+
+श्रीमान जिला समाज कल्याण अधिकारी
+[जनपद / District]
+
+विषय: ${input} — पेंशन स्वीकृत / पुनः प्रारम्भ किए जाने हेतु प्रार्थना पत्र
+
+महोदय,
+
+सविनय निवेदन है कि मैं [नाम], पुत्र/पत्नी [पिता/पति का नाम],
+आयु [____] वर्ष, निवासी [पूरा पता],
+आधार संख्या: [____________________]।
+
+${input}
+
+बैंक खाता विवरण:
+खाता संख्या: ____________________
+IFSC कोड: ____________________
+शाखा: ____________________
+
+अतः श्रीमान जी से विनम्र निवेदन है कि मेरी पेंशन स्वीकृत / पुनः प्रारम्भ करने की कृपा करें।
+
+दिनांक: ${date}
+
+भवदीय / प्रार्थी,
+हस्ताक्षर: ____________________
+नाम: ____________________
+आयु: ____________________
+पता: ____________________
+
+═══════════════════════════════════════════════════════════════════════════════`;
+  }
+
+  _courtDraftTemplate(input, date) {
+    return `IN THE COURT OF [न्यायालय का नाम / Court Name]
+[जनपद / District]
+
+वाद संख्या / Case No.: ______ / ______
+
+वादी / PLAINTIFF:
+[नाम], पुत्र/पुत्री [पिता का नाम], निवासी [पता]
+
+बनाम / VS
+
+प्रतिवादी / DEFENDANT:
+[नाम], [पता]
+
+विषय / SUBJECT: ${input}
+
+तथ्य / FACTS:
+1. ${input}
+2. (अतिरिक्त तथ्य)
+
+प्रार्थना / PRAYER:
+अतः यह निवेदन है कि न्यायालय कृपया उचित आदेश पारित करने की कृपा करें।
+
+दिनांक: ${date}
+
+वादी / Plaintiff
+हस्ताक्षर: ____________________
+नाम: ____________________
+
+अधिवक्ता / Advocate (if applicable)
+नाम: ____________________
+बार काउंसिल नं.: ____________________
+
+═══════════════════════════════════════════════════════════════════════════════`;
+  }
+
   _partitionTemplate(input, date) {
     return `बंटवारा विलेख / PARTITION DEED
 ═══════════════════════════════════════════════════════
@@ -678,6 +1077,11 @@ I am issuing this NOC of my own free will, with full knowledge and understanding
 • "Vasiyat banani hai" → Will
 • "Property bantwara karna hai bhai-bahan mein" → Partition Deed
 • "Vakil ke through legal notice bhejo" → Legal Notice
+• "थाना में रिपोर्ट लिखवानी है" → Police Complaint
+• "RTI लगानी है" → RTI Application
+• "बिजली विभाग को शिकायत" → Electricity Complaint
+• "पेंशन के लिए आवेदन" → Pension Application
+• "उपभोक्ता शिकायत दर्ज करनी है" → Consumer Complaint
 
 मैं AI से professional draft generate कर दूंगा। आप उसे edit, save, print कर सकते हैं।`;
   }

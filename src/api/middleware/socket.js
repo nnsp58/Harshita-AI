@@ -76,7 +76,78 @@ const setupSocketHandlers = (io) => {
           await new Promise(r => setTimeout(r, 1500));
         }
 
-        const response = await masterAgent.processCommand(socket.userId, cmd, { userId: socket.userId, app: io._app });
+        const startTime = Date.now();
+        
+        // HASA: Search local RAG knowledge repository first to reduce API dependency
+        const { localKnowledgeRag } = require('../../utils/LocalKnowledgeRag');
+        const ragMatch = localKnowledgeRag.search(cmd);
+        let response;
+        
+        if (process.env.FORCE_OFFLINE === 'true') {
+          const lowerCmd = cmd.toLowerCase();
+          const docType = lowerCmd.includes('notice') ? 'legal_notice' :
+                          lowerCmd.includes('affidavit') || lowerCmd.includes('shapath') ? 'affidavit' :
+                          lowerCmd.includes('agreement') || lowerCmd.includes('rent') ? 'rent_agreement' :
+                          lowerCmd.includes('deed') || lowerCmd.includes('gift') ? 'gift_deed' :
+                          lowerCmd.includes('noc') ? 'noc' :
+                          lowerCmd.includes('complaint') || lowerCmd.includes('fir') ? 'complaint' : null;
+                          
+          if (docType) {
+            const { templateEngine } = require('../../utils/TemplateEngine');
+            const documentContent = templateEngine.generate(docType, { name: 'Advocate Ramesh', purpose: 'General Purpose' });
+            response = {
+              type: 'ai',
+              message: `[रूटिंग सफल] ${documentContent}`,
+              skill: `${docType}_generator`
+            };
+          }
+        }
+        
+        if (!response) {
+          if (ragMatch) {
+            response = {
+              type: 'ai',
+              message: `[रूटिंग सफल] ${ragMatch}`,
+              skill: 'local_rag'
+            };
+          } else {
+            response = await masterAgent.processCommand(socket.userId, cmd, { userId: socket.userId, app: io._app });
+          }
+        }
+        
+        const responseTime = Date.now() - startTime;
+
+        const skillName = response.skill || 'general_chat';
+        let agentName = 'Research Agent';
+        if (skillName.includes('notice') || skillName.includes('affidavit') || skillName.includes('agreement') || skillName.includes('deed') || skillName.includes('will') || skillName.includes('noc') || skillName.includes('legal') || skillName.includes('security') || skillName.includes('court') || skillName.includes('document')) {
+          agentName = 'Legal Agent';
+        } else if (skillName.includes('seo') || skillName.includes('blog') || skillName.includes('article') || skillName.includes('marketing')) {
+          agentName = 'SEO Agent';
+        } else if (skillName.includes('video') || skillName.includes('story') || skillName.includes('youtube')) {
+          agentName = 'Video Agent';
+        } else if (skillName.includes('website') || skillName.includes('portfolio') || skillName.includes('html') || skillName.includes('landing')) {
+          agentName = 'Website Builder Agent';
+        }
+
+        // Save skill usage in DB
+        try {
+          const { prisma: dbClient } = require('../../models/database');
+          if (dbClient) {
+            await dbClient.skillUsage.create({
+              data: {
+                user_id: socket.userId,
+                skill_name: skillName,
+                agent_name: agentName,
+                request_time: new Date(startTime),
+                response_time: responseTime,
+                success: !response.message.toLowerCase().includes('error') && !response.message.toLowerCase().includes('असमर्थ'),
+                error_message: response.message.toLowerCase().includes('error') ? response.message.substring(0, 255) : null
+              }
+            });
+          }
+        } catch (dbErr) {
+          console.error('[Socket DB Logging Error]:', dbErr.message);
+        }
 
         // Emit AI reply to chat — include action data for navigation/UI actions
         socket.emit('logUpdate', {
@@ -90,6 +161,25 @@ const setupSocketHandlers = (io) => {
 
       } catch (error) {
         console.error('[Socket] Command error:', error.message);
+        
+        // Log failure to DB
+        try {
+          const { prisma: dbClient } = require('../../models/database');
+          if (dbClient) {
+            await dbClient.skillUsage.create({
+              data: {
+                user_id: socket.userId,
+                skill_name: 'unknown_command_error',
+                agent_name: 'Research Agent',
+                request_time: new Date(),
+                response_time: 0,
+                success: false,
+                error_message: error.message.substring(0, 255)
+              }
+            });
+          }
+        } catch (dbErr) {}
+
         socket.emit('logUpdate', {
           type: 'ai',
           message: `⚠️ Error: ${error.message}. Try rephrasing.`,
@@ -120,6 +210,22 @@ const setupSocketHandlers = (io) => {
     socket.on('fileUpload', (data) => {
       console.log(`File upload from ${socket.userId}: ${data.name}`);
       socket.emit('logUpdate', { type: 'ai', message: `File "${data.name}" uploaded and processed.` });
+    });
+
+    socket.on('whatsapp_send_document', async (data) => {
+      try {
+        const { whatsappSuperEngine } = require('../../core/WhatsAppSuperEngine');
+        const { recipient, base64Data, mimeType, filename } = data;
+        
+        console.log(`[Socket] WhatsApp Send Document request from ${socket.userId} to ${recipient}`);
+        
+        await whatsappSuperEngine.dispatchMessage(socket.userId, recipient, 'Here is the generated document.', base64Data, mimeType, filename);
+        
+        socket.emit('notification', { message: 'Document shared to WhatsApp successfully.' });
+      } catch (err) {
+        console.error('[Socket] whatsapp_send_document error:', err.message);
+        socket.emit('notification', { message: `WhatsApp Error: ${err.message}` });
+      }
     });
 
     socket.on('adminBroadcast', (msg) => {

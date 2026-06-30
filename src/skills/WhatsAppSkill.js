@@ -11,6 +11,7 @@
 
 const { BaseSkill } = require('./BaseSkill');
 const { AISkillHelper } = require('./AISkillHelper');
+const { whatsappSuperEngine } = require('../core/WhatsAppSuperEngine');
 
 class WhatsAppSkill extends BaseSkill {
   constructor() {
@@ -26,17 +27,17 @@ class WhatsAppSkill extends BaseSkill {
     this.priority = 8;
 
     this.intents = ['whatsapp_send', 'whatsapp_status', 'send_message', 'whatsapp_connect',
-                    'whatsapp_disconnect', 'whatsapp_broadcast', 'whatsapp_read'];
+                    'whatsapp_disconnect', 'whatsapp_broadcast', 'whatsapp_read', 'whatsapp_schedule'];
 
     this.keywords = {
       hi: ['व्हाट्सएप', 'मैसेज', 'भेजो', 'whatsapp', 'कनेक्ट', 'संदेश',
-           'ब्रॉडकास्ट', 'सबको भेजो', 'कांटैक्ट', 'qr', 'क्यूआर'],
+           'ब्रॉडकास्ट', 'सबको भेजो', 'कांटैक्ट', 'qr', 'क्यूआर', 'रिमाइंडर', 'शेड्यूल'],
       en: ['whatsapp', 'message', 'send', 'connect', 'broadcast',
-           'wa', 'qr code', 'disconnect', 'logout', 'contacts', 'inbox'],
+           'wa', 'qr code', 'disconnect', 'logout', 'contacts', 'inbox', 'schedule', 'remind'],
       hinglish: ['whatsapp karo', 'message bhej do', 'whatsapp connect karo',
                  'qr code dikhao', 'whatsapp number par bhejo', 'broadcast karo',
                  'sabko message bhejo', 'wa pe bhejo', 'whatsapp inbox dikhao',
-                 'unread messages dikhao', 'auto reply set karo']
+                 'unread messages dikhao', 'auto reply set karo', 'kal bhej dena', 'reminder set karo']
     };
   }
 
@@ -49,8 +50,7 @@ class WhatsAppSkill extends BaseSkill {
     const text = message.toLowerCase();
 
     // Check connection status
-    const whatsapp = app?.get?.('whatsappAgent');
-    const isConnected = whatsapp?.isReady || false;
+    const isConnected = whatsappSuperEngine.isReady || false;
 
     // Connect / QR
     if (/connect|qr|कनेक्ट|क्यूआर|जोड़ो/.test(text)) {
@@ -61,7 +61,7 @@ class WhatsAppSkill extends BaseSkill {
         );
       }
       // Trigger start (non-blocking)
-      try { whatsapp?.start?.().catch(() => {}); } catch {}
+      try { whatsappSuperEngine.start().catch(() => {}); } catch {}
       return this._reply(
         `📱 *WhatsApp Web खोल रहे हैं...*\n\n` +
         `🌐 Browser में WhatsApp Web open हो रहा है।\n\n` +
@@ -90,12 +90,12 @@ class WhatsAppSkill extends BaseSkill {
         const promoMsg = this._getPromoMessage();
         
         try {
-          // Try to find and send to the group
-          const chats = await whatsapp?.client?.getChats?.();
-          const targetGroup = chats?.find(c => c.isGroup && c.name.toLowerCase().includes(groupName.toLowerCase()));
+          // Try to find and send to the group (using simple string match for phase 1 web mode fallback)
+          const chats = await whatsappSuperEngine.client?.getChats?.() || [];
+          const targetGroup = chats.find(c => c.isGroup && c.name.toLowerCase().includes(groupName.toLowerCase()));
           
           if (targetGroup) {
-            await whatsapp._sendMessage(targetGroup.id._serialized, promoMsg);
+            await whatsappSuperEngine.client.sendMessage(targetGroup.id._serialized, promoMsg);
             return this._reply(
               `✅ *प्रचार सफल!*\n\n📱 Group: *${targetGroup.name}*\n💬 Professional message भेज दिया गया!\n\nGroup के सदस्य अब Harshita AI के बारे में जान पाएंगे। 🎉`,
               { mode: 'promo_sent', groupName: targetGroup.name }
@@ -144,7 +144,7 @@ class WhatsAppSkill extends BaseSkill {
     // Disconnect
     if (/disconnect|logout|डिस्कनेक्ट|hatao/.test(text)) {
       if (!isConnected) return this._reply(`पहले से disconnected है।`);
-      try { await whatsapp?.client?.logout?.() } catch {}
+      try { await whatsappSuperEngine.client?.logout?.() } catch {}
       return this._reply(`👋 WhatsApp disconnected.`);
     }
 
@@ -161,30 +161,55 @@ class WhatsAppSkill extends BaseSkill {
         userInput: message,
         skillName: 'whatsapp',
         fields: [
-          { key: 'phone', desc: 'Phone number (10 digits)' },
-          { key: 'messageText', desc: 'Message content' },
-          { key: 'recipientName', desc: 'Recipient name (optional)' },
+          { key: 'recipient', desc: 'Phone number, contact name, or relationship (e.g. Papa, SDO, 9876543210)' },
+          { key: 'messageText', desc: 'Message content' }
         ],
         context: pastContext,
       });
 
-      const { phone, messageText } = aiResult.entities || {};
-      if (!phone || !messageText) {
+      const { recipient, messageText } = aiResult.entities || {};
+      if (!recipient || !messageText) {
         return this._reply(
           `📝 Message भेजने के लिए बताएं:\n\n` +
-          `Format: "9876543210 par 'hello aapka kaam ho gaya' bhej do"\n\n` +
-          `${phone ? `Phone: ${phone} ✓` : '⚠️ Phone number missing'}\n` +
+          `Format: "Papa ko 'hello' bhej do" या "9876543210 par message bhejo"\n\n` +
+          `${recipient ? `Recipient: ${recipient} ✓` : '⚠️ Recipient missing'}\n` +
           `${messageText ? `Message: "${messageText}" ✓` : '⚠️ Message text missing'}`,
-          { mode: 'awaiting_send_details', collected: { phone, messageText } }
+          { mode: 'awaiting_send_details', collected: { recipient, messageText } }
         );
       }
 
+      // Check if it's a scheduled message or reminder
+      const isScheduled = /kal|parso|baad|baje|tomorrow|schedule|remind|रिमाइंडर/i.test(text);
+
+      if (isScheduled) {
+        // Simple Phase 2 scheduling implementation
+        const scheduleTime = new Date();
+        scheduleTime.setMinutes(scheduleTime.getMinutes() + 5); // Default 5 mins for proof of concept
+        
+        try {
+          const { prisma } = require('../models/database');
+          await prisma.scheduledAutomation.create({
+            data: {
+              user_id: userIdSafe,
+              job_type: 'reminder',
+              schedule_time: scheduleTime,
+              payload: JSON.stringify({ recipient, message: messageText })
+            }
+          });
+          return this._reply(
+            `⏰ Scheduled!\n\nMessage "${messageText.substring(0,20)}..." scheduled for ${recipient}.`
+          );
+        } catch(e) {
+          return this._reply(`❌ Schedule failed: ${e.message}`);
+        }
+      }
+
+      // Normal immediate send
       try {
-        const fullPhone = phone.startsWith('91') ? phone : `91${phone}`;
-        await whatsapp._sendMessage(`${fullPhone}@c.us`, messageText);
+        const result = await whatsappSuperEngine.dispatchMessage(userIdSafe, recipient, messageText);
         return this._reply(
-          `✅ Message भेज दिया!\n\n📞 ${phone}\n💬 "${messageText.substring(0, 80)}${messageText.length > 80 ? '...' : ''}"`,
-          { mode: 'sent', phone, messageText }
+          `✅ Message भेज दिया!\n\n📞 ${result.contact.name || result.contact.phone}\n💬 "${messageText.substring(0, 80)}${messageText.length > 80 ? '...' : ''}"`,
+          { mode: 'sent', phone: result.contact.phone, messageText }
         );
       } catch (err) {
         return this._reply(`❌ Send failed: ${err.message}`);
@@ -194,12 +219,12 @@ class WhatsAppSkill extends BaseSkill {
     // Read inbox
     if (/inbox|received|incoming|आये|messages/.test(text)) {
       if (!isConnected) return this._reply(`पहले WhatsApp connect करें।`);
-      const sessions = whatsapp?.sessions;
+      const sessions = whatsappSuperEngine.sessions;
       if (!sessions || sessions.size === 0) {
         return this._reply(`📭 अभी कोई active conversation नहीं है।`);
       }
       const list = [...sessions.entries()].slice(0, 10).map(([phone, data]) => {
-        return `• ${phone.replace('@c.us', '')} — ${Object.keys(data.collectedData || {}).length} docs`;
+        return `• ${phone.replace('@c.us', '')} — ${data.lastMsg.substring(0, 20)}`;
       }).join('\n');
       return this._reply(`📥 *Active Conversations:*\n\n${list}`);
     }

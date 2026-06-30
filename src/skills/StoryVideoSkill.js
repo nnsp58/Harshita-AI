@@ -86,24 +86,73 @@ class StoryVideoSkill extends BaseSkill {
   /**
    * E2E Generation Pipeline
    */
+  /**
+   * Helper to run an operation with automatic retries and root-cause error parsing
+   */
+  async retryOperation(operation, name, retries = 3, delay = 2000) {
+    let attempt = 0;
+    while (attempt < retries) {
+      try {
+        return await operation();
+      } catch (err) {
+        attempt++;
+        console.warn(`[StoryVideoSkill] Attempt ${attempt} for "${name}" failed: ${err.message}`);
+        if (attempt >= retries) {
+          let rootCause = err.message;
+          let suggestion = 'Please check backend logs and verify network configuration.';
+          
+          if (err.response) {
+            const status = err.response.status;
+            const data = err.response.data;
+            if (status === 401) {
+              suggestion = `Invalid or unauthorized API key used for ${name}. Verify key configuration in Settings.`;
+            } else if (status === 429) {
+              suggestion = `Rate limit reached or quota exhausted for ${name}. Try again later.`;
+            } else if (data && data.error && data.error.message) {
+              rootCause = data.error.message;
+            }
+          } else if (err.code === 'ENOTFOUND' || err.code === 'ETIMEDOUT') {
+            suggestion = 'Network timeout or DNS failure. Check internet connection or API endpoint accessibility.';
+          } else if (err.message.includes('FFmpeg')) {
+            suggestion = 'FFmpeg binary execution failed. Ensure system dependencies are correctly loaded.';
+          }
+          
+          const finalErr = new Error(`${name} failed after ${retries} attempts. Root Cause: ${rootCause}. Suggestion: ${suggestion}`);
+          finalErr.rootCause = rootCause;
+          finalErr.suggestion = suggestion;
+          throw finalErr;
+        }
+        await new Promise(resolve => setTimeout(resolve, delay));
+      }
+    }
+  }
+
+  /**
+   * E2E Generation Pipeline
+   */
   async runPipeline(id, data, io) {
     const updateProgress = async (stage, progress, message, extra = {}) => {
       console.log(`[StoryVideoSkill] Video ${id} - ${stage} (${progress}%): ${message}`);
       if (io) {
         io.emit('story-video-progress', { id, stage, progress, message, ...extra });
       }
-      // Update DB progress periodically
-      if (prisma && (progress === 100 || stage === 'completed')) {
-        return; // Handled separately
-      }
     };
 
     const projectDir = path.join(__dirname, `../../data/story-video/${id}`);
     fs.mkdirSync(projectDir, { recursive: true });
 
-    // Step 1: Story analysis & scene planning
-    await updateProgress('analysis', 10, 'Analyzing story and planning scenes...');
-    const scenes = await this.generateSceneBreakdown(data.story, data.language, data.duration, data.style);
+    // Step 1: Story analysis
+    await updateProgress('analysis', 10, 'Analyzing Story...');
+    
+    // Step 2: Generating Scenes
+    await updateProgress('scenes', 20, 'Generating Scenes...');
+    
+    // Step 3: Creating Characters
+    await updateProgress('characters', 30, 'Creating Characters...');
+    
+    const scenes = await this.retryOperation(async () => {
+      return await this.generateSceneBreakdown(data.story, data.language, data.duration, data.style);
+    }, 'Story Analysis & Scene Breakdown');
     
     await prisma.storyVideo.update({
       where: { id },
@@ -125,24 +174,29 @@ class StoryVideoSkill extends BaseSkill {
       }
     });
 
-    // Step 2: Asset generation loop
     const sceneAssets = [];
     const totalScenes = scenes.scenes.length;
-    await updateProgress('generation', 30, `Planned ${totalScenes} scenes. Starting image & audio generation...`);
 
+    // Step 4: Generating Video
+    await updateProgress('video', 50, 'Generating Video...');
+    
     for (let i = 0; i < totalScenes; i++) {
       const scene = scenes.scenes[i];
       const sceneNum = scene.sceneNumber || (i + 1);
       
-      await updateProgress('generation', 30 + Math.floor((i / totalScenes) * 40), `Generating assets for Scene ${sceneNum}/${totalScenes}...`);
+      await updateProgress('video', 50 + Math.floor((i / totalScenes) * 10), `Generating Video: Scene ${sceneNum}/${totalScenes}...`);
 
-      // 3. Generate Scene Image
       const imgPath = path.join(projectDir, `scene_${sceneNum}.jpg`);
-      await this.generateSceneImage(scene.imagePrompt, data.style, imgPath);
+      await this.retryOperation(async () => {
+        await this.generateSceneImage(scene.imagePrompt, data.style, imgPath);
+      }, `Image Generation for Scene ${sceneNum}`);
 
-      // 4. Generate Narration Audio
+      // Step 5: Generating Voice
+      await updateProgress('voice', 70, `Generating Voice: Scene ${sceneNum}/${totalScenes}...`);
       const audioPath = path.join(projectDir, `scene_${sceneNum}.mp3`);
-      await this.generateNarration(scene.narration, data.voiceType, audioPath);
+      await this.retryOperation(async () => {
+        await this.generateNarration(scene.narration, data.voiceType, audioPath);
+      }, `Voice Narration for Scene ${sceneNum}`);
 
       // Get exact audio duration
       let audioDuration = 5.0; // fallback
@@ -198,15 +252,20 @@ class StoryVideoSkill extends BaseSkill {
       }
     });
 
-    // Step 5: Subtitle SRT file creation
-    await updateProgress('subtitles', 75, 'Generating synchronized subtitles (SRT)...');
+    // Step 6: Creating Subtitles
+    await updateProgress('subtitles', 80, 'Creating Subtitles...');
     const srtPath = path.join(projectDir, 'subtitles.srt');
     this.createSRTFile(sceneAssets, srtPath);
 
-    // Step 6: FFmpeg Video Compilation
-    await updateProgress('rendering', 80, 'Rendering scene clips and merging final video...');
+    // Step 7: Rendering Video
+    await updateProgress('rendering', 90, 'Rendering Video...');
     const finalMp4Path = path.join(projectDir, 'final.mp4');
-    await this.compileVideoFFmpeg(sceneAssets, srtPath, finalMp4Path, projectDir);
+    
+    // Step 8: Finalizing
+    await updateProgress('finalizing', 95, 'Finalizing...');
+    await this.retryOperation(async () => {
+      await this.compileVideoFFmpeg(sceneAssets, srtPath, finalMp4Path, projectDir);
+    }, 'FFmpeg Video Composition & Audio Mixing');
 
     // Save final status
     await prisma.storyVideo.update({

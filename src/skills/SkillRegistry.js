@@ -14,12 +14,17 @@
 
 const fs = require('fs');
 const path = require('path');
+const { EventEmitter } = require('events');
 const { BaseSkill } = require('./BaseSkill');
 
-class SkillRegistry {
+class SkillRegistry extends EventEmitter {
   constructor() {
+    super();
     this.skills = new Map();       // name → skill instance
     this.intentMap = new Map();    // intent → skill name
+    this.skillCategories = new Map(); // category → Set(skill name)
+    this.disabledSkills = new Set();  // disabled skill names
+    this.executionHistory = [];       // global execution log (in-memory, moves to DB later)
     this.isLoaded = false;
   }
 
@@ -106,6 +111,13 @@ class SkillRegistry {
     // Store the skill
     this.skills.set(skill.name, skill);
 
+    // Update Category Map
+    const category = skill.category || 'general';
+    if (!this.skillCategories.has(category)) {
+      this.skillCategories.set(category, new Set());
+    }
+    this.skillCategories.get(category).add(skill.name);
+
     // Map all its intents
     for (const intent of skill.intents) {
       // अगर intent पहले से किसी और स्किल पर mapped है,
@@ -146,10 +158,26 @@ class SkillRegistry {
           context.similarPast = skill._findSimilarPast ? skill._findSimilarPast(userId, userMessage, 3) : [];
         }
 
+        const startTime = Date.now();
         response = await originalExecute(context);
+        const executionTime = Date.now() - startTime;
 
         // Determine success based on response type
         if (response?.type === 'error') success = false;
+
+        // Record global history & emit event
+        const logEntry = {
+          skill: skill.name,
+          userId,
+          timestamp: new Date().toISOString(),
+          success,
+          executionTime,
+          message: userMessage
+        };
+        // using arrow func instead of `this` binding inside wrapper
+        if (BaseSkill._sharedRegistry) {
+          BaseSkill._sharedRegistry._logExecution(logEntry);
+        }
       } catch (err) {
         success = false;
         response = { type: 'error', message: `${skill.displayName}: ${err.message}`, skill: skill.name };
@@ -222,7 +250,55 @@ class SkillRegistry {
    * Offline चल सकने वाली स्किल्स
    */
   getOfflineSkills() {
-    return this.getAllSkills().filter(s => s.canRunOffline);
+    return this.getAllSkills().filter(s => s.canRunOffline && !this.disabledSkills.has(s.name));
+  }
+
+  // ═══════════════════════════════════════════════════════════
+  //  v2.0 Features (Toggle, Search, Logs)
+  // ═══════════════════════════════════════════════════════════
+
+  enableSkill(name) {
+    if (this.skills.has(name)) {
+      this.disabledSkills.delete(name);
+      return true;
+    }
+    return false;
+  }
+
+  disableSkill(name) {
+    if (this.skills.has(name)) {
+      this.disabledSkills.add(name);
+      return true;
+    }
+    return false;
+  }
+
+  searchSkills(query) {
+    if (!query) return this.getAllSkills();
+    const lowerQuery = query.toLowerCase();
+    return this.getAllSkills().filter(s => {
+      if (this.disabledSkills.has(s.name)) return false;
+      return s.name.toLowerCase().includes(lowerQuery) ||
+             s.displayName.toLowerCase().includes(lowerQuery) ||
+             (s.description && s.description.toLowerCase().includes(lowerQuery)) ||
+             s.intents.some(i => i.toLowerCase().includes(lowerQuery));
+    });
+  }
+
+  _logExecution(entry) {
+    this.executionHistory.unshift(entry);
+    if (this.executionHistory.length > 1000) {
+      this.executionHistory.pop();
+    }
+    this.emit('skill_executed', entry);
+  }
+
+  getSkillLogs(name, limit = 50) {
+    return this.executionHistory.filter(log => log.skill === name).slice(0, limit);
+  }
+
+  getExecutionHistory(limit = 100) {
+    return this.executionHistory.slice(0, limit);
   }
 
   // ═══════════════════════════════════════════════════════════

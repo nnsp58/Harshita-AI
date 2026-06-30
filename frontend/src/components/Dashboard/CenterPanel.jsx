@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Play, Upload, Search, FileText, Zap, Clock } from 'lucide-react'
 import { useStore } from '../../store'
+import DocumentStudioViewer from './DocumentStudioViewer'
 
 const quickActions = [
   { id: 'automation', label: 'Start Automation', icon: Zap, color: 'from-maroon-500 to-maroon-700', command: 'start automation' },
@@ -120,7 +121,11 @@ function ActivityFeed({ activityLog }) {
 }
 
 export default function CenterPanel({ onAction }) {
-  const { currentTask, activityLog } = useStore()
+  const { currentTask, activityLog, responseMode } = useStore()
+
+  if (responseMode === 'DOCUMENT') {
+    return <DocumentStudioViewer />;
+  }
 
   return (
     <div className="h-full flex flex-col bg-[#020617] overflow-hidden">

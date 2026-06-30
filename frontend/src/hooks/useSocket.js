@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { io } from 'socket.io-client'
+import { useStore } from '../store'
+import { isDocumentType } from '../utils/DocumentClassifier'
 
 const SOCKET_URL = import.meta.env.PROD ? window.location.origin : (import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:3001')
 
@@ -7,6 +9,7 @@ export function useSocket() {
   const [isConnected, setIsConnected] = useState(false)
   const [messages, setMessages] = useState([])
   const socketRef = useRef(null)
+  const { setCurrentDocument, setResponseMode, responseMode } = useStore()
 
   useEffect(() => {
     const token = localStorage.getItem('token')
@@ -31,19 +34,72 @@ export function useSocket() {
     })
 
     socket.on('logUpdate', (data) => {
-      // Server echoes user commands back as { type: 'user', message: cmd }.
-      // sendCommand() already added the user message locally, so skip the echo
-      // to prevent duplicate user bubbles in chat.
       if (data && data.type === 'user') return
+      const text = data.message || data.text || ''
       const msg = {
         id: Date.now() + Math.random(),
         type: data.type || 'ai',
-        message: data.message || data.text || '',
+        message: text,
         timestamp: new Date().toISOString(),
         action: data.action || null,
         interactionId: data.interactionId || null,
       }
-      setMessages((prev) => [...prev, msg])
+      // Do not push the message immediately if it might be a document
+      // setMessages((prev) => [...prev, msg])
+
+      // Auto routing / self healing: Detect if response is a document
+      let isDocument = false;
+      if ((data.type === 'ai' || !data.type) && text.length > 100) {
+        const containsDocumentKeywords = isDocumentType(text) || 
+          text.includes('AFFIDAVIT') || 
+          text.includes('शपथ पत्र') || 
+          text.includes('RENT AGREEMENT') || 
+          text.includes('LEGAL NOTICE') || 
+          text.includes('GIFT DEED') ||
+          text.includes('WILL') ||
+          text.includes('NOC') ||
+          text.includes('APPLICATION') ||
+          text.includes('प्रार्थना पत्र') ||
+          text.includes('AGREEMENT') ||
+          text.includes('RESUME') ||
+          text.includes('INVOICE') ||
+          text.includes('REPORT');
+
+        if (containsDocumentKeywords) {
+          isDocument = true;
+          // Extract title (first line or a clean default title)
+          const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+          let title = 'Legal Document';
+          if (lines.length > 0) {
+            title = lines[0].replace(/[#*=_]/g, '').trim().substring(0, 50);
+          }
+          
+          const cleanContent = text;
+          
+          // Re-route to A4 Document Workspace
+          setCurrentDocument({
+            title: title || 'Generated Document',
+            content: cleanContent,
+            type: title.toLowerCase().includes('notice') ? 'notice' : 'document',
+            timestamp: new Date().toISOString()
+          });
+          setResponseMode('DOCUMENT');
+
+          // Add a notification bubble to let the user know
+          const notifyMsg = {
+            id: Date.now() + Math.random(),
+            type: 'system',
+            message: 'Your document has been created successfully. Opening in Document Workspace... Ready for editing.',
+            timestamp: new Date().toISOString()
+          };
+          setMessages((prev) => [...prev, notifyMsg]);
+        }
+      }
+
+      if (!isDocument) {
+        setMessages((prev) => [...prev, msg]);
+      }
+
     })
 
     socket.on('job_update', (data) => {
@@ -105,5 +161,13 @@ export function useSocket() {
     return false
   }, [])
 
-  return { socket: socketRef.current, isConnected, sendCommand, submitFeedback, messages, setMessages }
+  const sendData = useCallback((eventName, data) => {
+    if (socketRef.current && socketRef.current.connected) {
+      socketRef.current.emit(eventName, data)
+      return true
+    }
+    return false
+  }, [])
+
+  return { socket: socketRef.current, isConnected, sendCommand, submitFeedback, sendData, messages, setMessages }
 }
