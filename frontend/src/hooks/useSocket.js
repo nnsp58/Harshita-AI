@@ -8,8 +8,9 @@ const SOCKET_URL = import.meta.env.PROD ? window.location.origin : (import.meta.
 export function useSocket() {
   const [isConnected, setIsConnected] = useState(false)
   const [messages, setMessages] = useState([])
+  const [socketInstance, setSocketInstance] = useState(null)
   const socketRef = useRef(null)
-  const { setCurrentDocument, setResponseMode, responseMode } = useStore()
+  const { setCurrentDocument, setResponseMode } = useStore()
 
   useEffect(() => {
     const token = localStorage.getItem('token')
@@ -24,6 +25,7 @@ export function useSocket() {
     })
 
     socketRef.current = socket
+    setSocketInstance(socket)
 
     socket.on('connect', () => {
       setIsConnected(true)
@@ -143,8 +145,9 @@ export function useSocket() {
     return () => {
       socket.disconnect()
       socketRef.current = null
+      setSocketInstance(null)
     }
-  }, [])
+  }, [setCurrentDocument, setResponseMode])
 
   const sendCommand = useCallback((cmd) => {
     if (socketRef.current && socketRef.current.connected) {
@@ -177,5 +180,5 @@ export function useSocket() {
     return false
   }, [])
 
-  return { socket: socketRef.current, isConnected, sendCommand, submitFeedback, sendData, messages, setMessages }
+  return { socket: socketInstance, isConnected, sendCommand, submitFeedback, sendData, messages, setMessages }
 }

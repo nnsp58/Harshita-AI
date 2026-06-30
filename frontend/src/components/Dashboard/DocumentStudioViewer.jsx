@@ -306,7 +306,7 @@ export default function DocumentStudioViewer() {
                       className="w-full text-left px-3 py-2 hover:bg-slate-700 text-xs text-gray-300 border-b border-white/5 truncate last:border-b-0"
                     >
                       {doc.title || `Draft version ${idx + 1}`}
-                      <span className="block text-[10px] text-gray-500">{new Date(doc.timestamp || Date.now()).toLocaleTimeString()}</span>
+                      <span className="block text-[10px] text-gray-500">{new Date(doc.timestamp).toLocaleTimeString()}</span>
                     </button>
                   ))
                 )}

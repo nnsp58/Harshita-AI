@@ -1,8 +1,8 @@
 # COMPREHENSIVE SKILLS & DEPENDENT AGENTS HEALTH REPORT
 
 **DATE:** June 20, 2026  
-**TOTAL SKILLS IDENTIFIED:** 32  
-**HEALTHY SKILLS:** 32  
+**TOTAL SKILLS IDENTIFIED:** 36  
+**HEALTHY SKILLS:** 36  
 **BROKEN/INCOMPLETE SKILLS:** 0  
 **OVERALL STATUS:** 🟢 ALL PASS  
 
@@ -10,7 +10,7 @@
 
 ## Executive Summary
 
-We performed a deep-scan audit of all **32** conversational skill scripts located under `src/skills/`. Each skill was dynamically required, instantiated, and validated against its declared agent dependencies in `src/agents/` to identify loading issues, missing files, or routing gaps.
+We performed a deep-scan audit of all **36** conversational skill scripts located under `src/skills/`. Each skill was dynamically required, instantiated, and validated against its declared agent dependencies in `src/agents/` to identify loading issues, missing files, or routing gaps.
 
 All syntax problems in the codebase, including a major unclosed template literal in `LegalNoticeSkill.js`, have been repaired. Every single registered skill now compiles and initializes successfully.
 
@@ -28,11 +28,14 @@ All syntax problems in the codebase, including a major unclosed template literal
 | `FileProcessorSkill.js` | फाइल प्रोसेसर | utility | `fileProcessorAgent` (🟢)<br>`pdfProcessorAgent` (🟢) | 🟢 PASS | Healthy and validated.
 | `FormFillSkill.js` | फॉर्म ऑटो-भरना | automation | `controllerAgent` (🟢)<br>`browserAgent` (🟢) | 🟢 PASS | Healthy and validated.
 | `GeneralChatSkill.js` | सामान्य बातचीत | utility | None | 🟢 PASS | Healthy and validated.
+| `GeometrySkill.js` | जमीन और एरिया नापी (Geometry) | geometry | None | 🟢 PASS | Healthy and validated.
 | `JobSearchSkill.js` | नौकरी खोज | government | None | 🟢 PASS | Healthy and validated.
+| `LandMeasurementSkill.js` | जमीन बंटवारा और पैमाइश | geometry | None | 🟢 PASS | Healthy and validated.
 | `LandRecordSkill.js` | भूलेख / ज़मीन रिकॉर्ड | government | `landRecordAgent` (🟢) | 🟢 PASS | Healthy and validated.
 | `LanguageSkill.js` | यूनिवर्सल ट्रांसलेटर | utility | None | 🟢 PASS | Healthy and validated.
 | `LegalDraftSkill.js` | कानूनी ड्राफ्ट | document | None | 🟢 PASS | Healthy and validated.
 | `LegalNoticeSkill.js` | कानूनी नोटिस (वकील) | document | None | 🟢 PASS | Healthy and validated.
+| `MathSkill.js` | गणित और कैलकुलेटर | math | None | 🟢 PASS | Healthy and validated.
 | `MediaSkill.js` | मीडिया कन्वर्टर | utility | None | 🟢 PASS | Healthy and validated.
 | `NetworkMonitorSkill.js` | नेटवर्क मॉनिटर | system | `networkMonitorAgent` (🟢) | 🟢 PASS | Healthy and validated.
 | `NotepadSkill.js` | नोटपैड / लिखावट | utility | None | 🟢 PASS | Healthy and validated.
@@ -47,6 +50,7 @@ All syntax problems in the codebase, including a major unclosed template literal
 | `TadaSkill.js` | TA/DA प्रोसेसर | government | `pdfProcessorAgent` (🟢) | 🟢 PASS | Healthy and validated.
 | `TicketBookingSkill.js` | टिकट बुकिंग | utility | `ticketBookingAgent` (🟢) | 🟢 PASS | Healthy and validated.
 | `UIBuilderSkill.js` | UI बिल्डर | system | `uiBuilderAgent` (🟢) | 🟢 PASS | Healthy and validated.
+| `UnitConversionSkill.js` | यूनिट कनवर्टर (Unit Converter) | conversion | None | 🟢 PASS | Healthy and validated.
 | `UtilitySkill.js` | यूटिलिटी टूल्स | utility | None | 🟢 PASS | Healthy and validated.
 | `ValidatorSkill.js` | डेटा वैलिडेटर | system | `validatorAgent` (🟢) | 🟢 PASS | Healthy and validated.
 | `VoiceAgentSkill.js` | Voice Assistant | utility | None | 🟢 PASS | Healthy and validated.

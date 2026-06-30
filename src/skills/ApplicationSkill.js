@@ -137,7 +137,7 @@ Support Government (Electricity, Water, Road, Pension, Scholarship, Ration Card,
 5. LANGUAGE RULES:
 Use formal, respectful, and official Hindi (government style) unless English is explicitly requested. Keep the output ready for direct printing on A4 size.
 
-6. Output ONLY the drafted application. Do not include any conversational chatty text before or after the application.`;
+6. Output ONLY the drafted application. NEVER use markdown formatting (like **, ##, or bullet points) inside the document. The output must be pure plain text formatted with proper line breaks and spaces, identical to a printed government letter. Do not include any conversational chatty text before or after the application.`;
 
     const userPrompt = `User Request: "${userInput}"
 

@@ -1,12 +1,11 @@
-import { useEffect } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
 import {
   ArrowLeft, Send, Bot, FormInput, Search, CreditCard, Phone,
   ScanText, FileText, Briefcase
 } from 'lucide-react'
-import { useState, useRef } from 'react'
-import { useStore } from '../store'
 import { useSocket } from '../hooks/useSocket'
 import VoiceInput from '../components/VoiceInput'
 import { renderMessageText } from './SimpleDashboard'
@@ -133,12 +132,26 @@ const SERVICE_CONFIGS = {
     ],
     welcome: 'Advocate letterhead पर professional legal notice बनाएं। पहली बार use कर रहे हैं तो "advocate profile setup karo" बोलें।',
   },
+  'application_writer': {
+    title: 'Application Writer / प्रार्थना पत्र',
+    icon: FileText,
+    color: 'from-amber-500 to-amber-700',
+    description: 'DM, SDM, Tehsildar, Police ya school ke liye prarthna patra likhein',
+    descriptionHi: 'डीएम, एसडीएम, तहसीलदार, पुलिस या स्कूल के लिए प्रार्थना पत्र लिखें',
+    intent: 'application_writer',
+    suggestions: [
+      'DM ko ganda paani aane ki shikayat likho',
+      'SHO ko bike chori hone ki FIR application likho',
+      'Principal ko fees chhoot ke liye application',
+      'BDO ko tubewell kharab hone ki application',
+    ],
+    welcome: 'मुझसे कोई भी प्रार्थना पत्र (Application) लिखवाएं — बस अपनी बात बोलिए, AI poora professional draft बना देगा।',
+  },
 }
 
 export default function ServicePage() {
   const { serviceId } = useParams()
   const navigate = useNavigate()
-  const { user } = useStore()
   const { sendCommand, messages, isConnected } = useSocket()
   const [input, setInput] = useState('')
   const [isThinking, setIsThinking] = useState(false)
@@ -155,7 +168,7 @@ export default function ServicePage() {
   useEffect(() => {
     if (messages?.length > 0) {
       const last = messages[messages.length - 1]
-      if (last.type === 'ai' || last.type === 'system') setIsThinking(false)
+      if ((last.type === 'ai' || last.type === 'system') && isThinking) setIsThinking(false)
 
       // 🔀 Navigate action — skill wants to open a page (e.g. WhatsApp Web)
       if (last.type === 'ai' && last.action?.navigate) {
@@ -287,7 +300,7 @@ export default function ServicePage() {
           <VoiceInput
             lang="hi-IN"
             onResult={(text) => setInput(prev => (prev ? prev + ' ' : '') + text)}
-            onInterim={(text) => { /* could show live preview */ }}
+            onInterim={() => { /* could show live preview */ }}
           />
           <input
             type="text"
