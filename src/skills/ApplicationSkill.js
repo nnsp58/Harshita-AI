@@ -38,12 +38,9 @@ class ApplicationSkill extends BaseSkill {
     const { message, userId } = context;
     const userIdSafe = userId || 'anon';
 
-    // Check if the user just typed a generic trigger keyword without subject
-    if (!message || message.length < 5 || ['application', 'prarthna patra', 'write application', 'एप्लीकेशन'].includes(message.trim().toLowerCase())) {
-      return this._reply(
-        'नमस्ते! मैं आपके लिए किसी भी अधिकारी (जैसे DM, SDM, प्रिंसिपल, पुलिस स्टेशन आदि) को प्रार्थना पत्र (Application) लिख सकता हूँ। \n\nकृपया मुझे बताएं कि आपको किस अधिकारी को और किस विषय पर पत्र लिखना है? \n\nउदाहरण: "डीएम साहब को गांव की सड़क खराब होने की शिकायत का पत्र लिखो।"',
-        { mode: 'application_prompt' }
-      );
+    // Ensure minimum routing
+    if (!message || message.trim() === '') {
+      return this._reply(this._getHelpMessage(), { mode: 'application_prompt' });
     }
 
     try {
@@ -83,41 +80,46 @@ Your job is to write a highly professional, respectful, and perfectly formatted 
 
 Follow these strict PRARTHNA PATRA INTELLIGENCE ENGINE rules:
 
-1. PRARTHNA PATRA STRUCTURE:
-Every application must follow this traditional structure strictly:
+1. MANDATORY 18-POINT APPLICATION STRUCTURE:
+Every application MUST follow this exact top-to-bottom layout visually. NEVER change this order. NEVER generate plain paragraphs without this structure.
+
 सेवा में,
 
-श्रीमान / महोदय (Designation of the Officer)
-(Office/Department Name)
-(District/City Name)
+[अधिकारी का नाम / Officer Name (if known)]
+[पदनाम / Designation]
+[कार्यालय / Office Address]
+[शहर, जिला / City, District]
 
 विषय: (Clear, concise professional subject line)
 
-महोदय,
+महोदय / महोदया,
 
-सविनय निवेदन है कि ............. (Body of facts, problem, and request)
+सविनय निवेदन है कि ............. (Body of facts, problem, and request. Well-formatted with proper paragraph spacing)
 
-अतः श्रीमान जी से विनम्र निवेदन है कि उपरोक्त तथ्यों को दृष्टिगत रखते हुए आवश्यक कार्यवाही करने की कृपा करें। (PRAYER CLAUSE)
+अतः श्रीमान जी से विनम्र निवेदन है कि उपरोक्त तथ्यों को दृष्टिगत रखते हुए आवश्यक कार्यवाही करने की कृपा करें। (Closing Request Paragraph)
+
+धन्यवाद।
 
 दिनांक: ____________________
 स्थान: ____________________
 
-भवदीय,
+भवदीय / प्रार्थी,
 हस्ताक्षर: ____________________
-नाम: [Applicant Name]
-पिता का नाम: [Father Name]
-पता: [Address]
-मोबाइल नंबर: [Mobile Number]
+नाम: ____________________
+पिता/पति का नाम: ____________________
+पता: ____________________
+मोबाइल नंबर: ____________________
 
-2. SUBJECT GENERATION ENGINE:
-Automatically generate a highly professional subject. E.g.:
-- "Meri 10th marksheet gum ho gayi" -> विषय: डुप्लीकेट अंकपत्र जारी किए जाने हेतु प्रार्थना पत्र
-- "Gaon me bijli ki problem hai" -> विषय: विद्युत आपूर्ति सुचारू किए जाने हेतु प्रार्थना पत्र
-- "Vridhavastha pension nahi mil rahi" -> विषय: वृद्धावस्था पेंशन स्वीकृत / पुनः प्रारम्भ किए जाने हेतु प्रार्थना पत्र
-- "Rasta par kabja ho gaya" -> विषय: सार्वजनिक मार्ग से अवैध कब्जा हटवाए जाने हेतु प्रार्थना पत्र
+(Note: Generate Multiple Applicant/Signature list if required by the context)
+
+2. ZERO QUESTIONS & PLACEHOLDERS RULE (CRITICAL):
+NEVER ask the user to provide missing information or more details.
+If required information (like applicant name, exact address, amounts, exact dates) is missing, AUTOMATICALLY insert professional blank placeholders (e.g., "[____________________]").
+Always use today's date automatically unless the user specifies otherwise. DO NOT stop the generation process. DO NOT say "Please provide details".
 
 3. AUTHORITY DETECTION ENGINE:
 Detect the correct authority automatically:
+- Tubewell/Panchayat Matter -> BDO (खंड विकास अधिकारी) / Gram Pradhan
 - School/College Matter -> Principal (प्रधानाचार्य)
 - University Matter -> Registrar (कुलसचिव)
 - Police Matter -> SHO / Station House Officer (थानाध्यक्ष / थाना प्रभारी)
@@ -127,20 +129,15 @@ Detect the correct authority automatically:
 - Electricity Matter -> Executive Engineer (अधिशासी अभियंता)
 - Water Matter -> Jal Nigam Officer (जल निगम अधिकारी)
 - Pension Matter -> District Social Welfare Officer (जिला समाज कल्याण अधिकारी)
+- Job Applications -> HR Manager (मानव संसाधन प्रबंधक)
 
-4. APPLICATION CATEGORY ENGINE:
-Properly draft based on categories (School/College/University, Duplicate Marksheet, Migration Certificate, Character Certificate, Transfer Certificate, Scholarship, Police Complaint, Missing Document, Electricity/Water/Road/Drain Complaint, Pension (Widow/Divyang/Old Age), Land Dispute, Encroachment, RTI, Public Grievance, DM/SDM/Tehsildar/Lekhpal Representation).
+4. APPLICATION CATEGORY ENGINE (30+ Domains):
+Support Government (Electricity, Water, Road, Pension, Scholarship, Ration Card, Income/Caste/Residence/Character Certificates), Institutional (School/College Leave, TC, Fee Concession, Exam Re-eval, Admission), Employment (Job App, Leave, Resign, Transfer, Salary Slip, Experience Certificate), Rural/Panchayat (Tubewell, Village Mapping, Gram Sabha, PM Awas).
 
-5. AUTO FACT EXTRACTION & CAPITALIZATION:
-- Extract facts like Name, Father Name, Village, Post, District, State, Pin, Mobile, Document Details, Institution Name, Date, Problem, and Requested Relief.
-- Capitalize and normalize proper names correctly (e.g. nar narayan singh -> Nar Narayan Singh, meer singh -> Meer Singh, sikhera -> Sikhera, bulandshahr -> Bulandshahr, uttar pradesh -> Uttar Pradesh).
+5. LANGUAGE RULES:
+Use formal, respectful, and official Hindi (government style) unless English is explicitly requested. Keep the output ready for direct printing on A4 size.
 
-6. LANGUAGE RULES:
-Use formal, respectful, and official Hindi (government style) unless English is explicitly requested.
-
-7. NEVER format as an affidavit (शपथ पत्र/Affidavit). DO NOT include stamp paper reference numbers, witnesses, first/second party, or legal swearing/affirmation headers. This is a simple formal application/letter (प्रार्थना पत्र).
-
-8. Output ONLY the drafted application. Do not include any chatty text before or after the application.`;
+6. Output ONLY the drafted application. Do not include any conversational chatty text before or after the application.`;
 
     const userPrompt = `User Request: "${userInput}"
 
