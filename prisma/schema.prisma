@@ -131,6 +131,9 @@ model User {
   message_logs  MessageLog[]
   conversation_memories ConversationMemory[]
   scheduled_automations ScheduledAutomation[]
+  subscriptions Subscription[]
+  transactions  Transaction[]
+  invoices      Invoice[]
 
   @@index([csc_id])
   @@map("users")
@@ -454,4 +457,59 @@ model ScheduledAutomation {
   @@index([user_id])
   @@index([status])
   @@map("scheduled_automations")
+}
+
+model Subscription {
+  id           String   @id @default(uuid())
+  user_id      String   @map("user_id")
+  plan_type    String   // free, premium, professional
+  start_date   DateTime @default(now()) @map("start_date")
+  end_date     DateTime @map("end_date")
+  is_active    Boolean  @default(true) @map("is_active")
+  auto_renew   Boolean  @default(false) @map("auto_renew")
+  created_at   DateTime @default(now()) @map("created_at")
+  updated_at   DateTime @updatedAt @map("updated_at")
+
+  user         User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  transactions Transaction[]
+
+  @@index([user_id])
+  @@map("subscriptions")
+}
+
+model Transaction {
+  id             String   @id @default(uuid())
+  user_id        String   @map("user_id")
+  subscription_id String? @map("subscription_id")
+  payment_id     String   @unique @map("payment_id") // Razorpay payment ID
+  order_id       String?  @unique @map("order_id") // Razorpay order ID
+  amount         Float
+  currency       String   @default("INR")
+  status         String   // success, failed, refunded, pending
+  payment_method String?  @map("payment_method") // upi, card, netbanking
+  created_at     DateTime @default(now()) @map("created_at")
+
+  user           User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  subscription   Subscription? @relation(fields: [subscription_id], references: [id], onDelete: SetNull)
+  invoice        Invoice?
+
+  @@index([user_id])
+  @@index([status])
+  @@map("transactions")
+}
+
+model Invoice {
+  id             String   @id @default(uuid())
+  transaction_id String   @unique @map("transaction_id")
+  user_id        String   @map("user_id")
+  invoice_number String   @unique @map("invoice_number")
+  amount         Float
+  billing_details Json?   @map("billing_details")
+  created_at     DateTime @default(now()) @map("created_at")
+
+  transaction    Transaction @relation(fields: [transaction_id], references: [id], onDelete: Cascade)
+  user           User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@index([user_id])
+  @@map("invoices")
 }

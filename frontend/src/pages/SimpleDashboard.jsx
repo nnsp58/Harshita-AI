@@ -396,6 +396,11 @@ function DashboardHeader({ user, onLogout, onSettings }) {
         <LiveClock />
       </div>
       <div className="flex items-center gap-3 min-w-[160px] justify-end">
+        <button onClick={() => navigate('/pricing')}
+          title="Upgrade to Premium"
+          className="hidden sm:flex items-center gap-1 px-2.5 py-1.5 bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 rounded-lg text-[10px] font-bold hover:bg-indigo-500/20">
+          ⭐ Upgrade
+        </button>
         <button onClick={() => navigate('/admin')}
           title="Admin Dashboard"
           className="hidden sm:flex items-center gap-1 px-2.5 py-1.5 bg-amber-500/10 border border-amber-500/30 text-amber-400 rounded-lg text-[10px] font-bold hover:bg-amber-500/20">
