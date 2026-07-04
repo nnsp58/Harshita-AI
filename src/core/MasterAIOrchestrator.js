@@ -1,24 +1,8 @@
 const { aiProviderManager } = require('../utils/aiProviderManager');
 const outputRouter = require('./OutputRouter');
-
-// Lazy loading agents as per Performance Rules
-const agentRegistry = {
-  'ApplicationAgent': () => require('../agents/ApplicationAgent'),
-  'PDFAgent': () => require('../agents/PDFAgent'),
-  'LegalAgent': () => require('../agents/LegalAgent'),
-  'TranslationAgent': () => require('../agents/TranslationAgent'),
-  'DeployAgent': () => require('../agents/DeployAgent'),
-  'DocumentOcrAgent': () => require('../agents/DocumentOcrAgent'),
-  'FormFillAgent': () => require('../agents/FormFillAgent'),
-  'GeneralChatAgent': () => require('../agents/GeneralChatAgent'),
-  'MathAgent': () => require('../agents/MathAgent'),
-  'NotepadAgent': () => require('../agents/NotepadAgent'),
-  'PhotoMakerAgent': () => require('../agents/PhotoMakerAgent'),
-  'ResumeAgent': () => require('../agents/ResumeAgent'),
-  'StoryVideoAgent': () => require('../agents/StoryVideoAgent'),
-  'TadaAgent': () => require('../agents/TadaAgent'),
-  'VoiceAgent': () => require('../agents/VoiceAgent'),
-};
+const agentRegistry = require('./AgentRegistry');
+const skillRegistry = require('./SkillRegistry');
+const dynamicWrapperFactory = require('./DynamicWrapperFactory');
 
 class MasterAIOrchestrator {
   constructor() {
@@ -43,33 +27,27 @@ class MasterAIOrchestrator {
       }
 
       // Phase 3 & 4: Multi-Agent Coordination Loop
-      let currentAgentName = routeInfo.selectedAgent;
+      let currentAgent = this.resolveAgent(routeInfo);
       let currentInput = userInput;
       let finalResult = null;
       let loopCount = 0;
       
       // Coordinate multiple agents sequentially (e.g. ResumeAgent -> PDFAgent)
-      while (currentAgentName && loopCount < 5) {
+      while (currentAgent && loopCount < 5) {
         loopCount++;
-        const agent = this.loadAgent(currentAgentName);
         
-        if (!agent) {
-          throw new Error(`Agent ${currentAgentName} not found.`);
-        }
-
         // Execute the agent
-        const agentResponse = await agent.execute(currentInput, { userId });
+        const agentResponse = await currentAgent.execute(currentInput, { userId });
         
         // Handle Error Recovery
         if (agentResponse.status === 'error') {
-           console.error(`[MasterAI] Agent ${currentAgentName} failed:`, agentResponse.warnings);
-           // Fallback logic could go here. For now, abort.
+           console.error(`[MasterAI] Agent ${currentAgent.name} failed:`, agentResponse.warnings);
            return { success: false, message: "Error processing request.", mode: 'chat' };
         }
 
         // If the agent requires another agent to finish the task
         if (agentResponse.requiredNextAgent) {
-          currentAgentName = agentResponse.requiredNextAgent;
+          currentAgent = agentRegistry.getAgent(agentResponse.requiredNextAgent)?.instance;
           currentInput = agentResponse.output; // Pass output to next agent
         } else {
           // Task completed
@@ -133,11 +111,25 @@ OUTPUT FORMAT (Strict JSON):
     }
   }
 
-  loadAgent(agentName) {
-    if (agentRegistry[agentName]) {
-      return agentRegistry[agentName](); // Lazy load
+  resolveAgent(routeInfo) {
+    if (!routeInfo.skillId) {
+      // Fallback if no skill detected
+      return agentRegistry.getAgent('GeneralChatAgent')?.instance;
     }
-    return null;
+
+    const skill = skillRegistry.getSkill(routeInfo.skillId);
+    if (!skill) return null;
+
+    // PRD-024 Phase 3: Capability Matching
+    const existingAgent = agentRegistry.findAgentForSkill(skill.id, skill.capabilitiesRequired);
+    if (existingAgent) {
+      console.log(`[MasterAI] Reusing existing agent: ${existingAgent.id}`);
+      return existingAgent.instance;
+    }
+
+    // PRD-024 Phase 4: Dynamic Wrapper System
+    console.log(`[MasterAI] No agent found. Creating dynamic wrapper for skill: ${skill.id}`);
+    return dynamicWrapperFactory.createWrapperForSkill(skill);
   }
 }
 

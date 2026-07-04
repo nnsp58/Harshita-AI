@@ -3,16 +3,11 @@ class BaseAgent {
     this.name = name;
   }
 
-  /**
-   * Standardized Agent Communication Protocol
-   * Every agent must implement this method and return the exact structure below.
-   * 
-   * @param {Object} input - Input data for the agent
-   * @param {Object} context - Session or global context
-   * @returns {Object} AgentResponse
-   */
+  Initialize() {
+    return true;
+  }
+
   async execute(input, context) {
-    // Default implementation returns a fallback
     return this.createResponse({
       status: 'error',
       confidenceScore: 0,
@@ -22,18 +17,31 @@ class BaseAgent {
     });
   }
 
-  /**
-   * Helper to format response according to PRD-023 Standard Protocol
-   */
+  Validate(input) {
+    return !!input;
+  }
+
+  Report() {
+    return { name: this.name, status: 'Active' };
+  }
+
+  HealthCheck() {
+    return true;
+  }
+
+  Capabilities() {
+    return [];
+  }
+
   createResponse({ status, confidenceScore, output, warnings = [], suggestions = [], requiredNextAgent = null }) {
     return {
       agentName: this.name,
-      status, // 'success' | 'error' | 'clarification'
-      confidenceScore, // 0 - 100
-      output, // String or Object
-      warnings, // Array of strings
-      suggestions, // Array of strings
-      requiredNextAgent // String or null
+      status, 
+      confidenceScore, 
+      output, 
+      warnings, 
+      suggestions, 
+      requiredNextAgent 
     };
   }
 }
