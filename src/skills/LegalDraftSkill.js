@@ -16,6 +16,7 @@ const { BaseSkill } = require('./BaseSkill');
 const { aiProviderManager } = require('../utils/aiProviderManager');
 const { autoCapitalizeText, eliminatePlaceholders } = require('../utils/capitalization');
 const { documentIntelligence, DOCUMENT_CATEGORIES } = require('./DocumentIntelligenceEngine');
+const legalVerificationEngine = require('./LegalVerificationEngine');
 
 class LegalDraftSkill extends BaseSkill {
   constructor() {
@@ -179,27 +180,58 @@ Recommended Category: ${recommendedCategory === 'affidavit' ? 'Affidavit' : reco
       session = {
         docType,
         collected: {},
-        stage: 'collecting'
+        stage: 'verifying_facts',
+        facts: {}
       };
       this.sessions.set(userIdSafe, session);
     }
 
-    if (session.stage === 'collecting') {
-      session.stage = 'ready';
-      this.sessions.set(userIdSafe, session);
+    // PRD-021: Legal Verification Engine Loop
+    if (session.stage === 'verifying_facts') {
+      const evaluation = await legalVerificationEngine.evaluateFacts(message, session.facts);
+      
+      // Update facts in session
+      session.facts = { ...session.facts, ...evaluation.facts };
+      
+      if (!evaluation.complete) {
+        // Facts are missing or contradictory. Ask user for clarification.
+        this.sessions.set(userIdSafe, session);
+        const questionMsg = await legalVerificationEngine.generateQuestions(evaluation);
+        return this._reply(questionMsg, {
+          mode: 'legal_verification',
+          docType,
+          missing: evaluation.missing,
+        });
+      } else {
+        // Facts are complete. Move to generation.
+        session.stage = 'ready';
+        this.sessions.set(userIdSafe, session);
+      }
     }
 
     // Apply auto-capitalization on input message
     const processedMessage = autoCapitalizeText(message);
 
+    // Generate Risk Assessment
+    let riskMsg = "";
+    if (session.facts && Object.keys(session.facts).length > 0) {
+       riskMsg = await legalVerificationEngine.generateRiskAssessment(session.facts);
+    }
+
     // Generate using AI
     try {
-      let draft = await this._generateWithAI(processedMessage, docType, 0, applicantModifier);
+      // Inject verified facts into the prompt generation
+      const enrichedMessage = `Verified Facts:\n${JSON.stringify(session.facts || {})}\n\nUser Request: ${processedMessage}`;
+      let draft = await this._generateWithAI(enrichedMessage, docType, 0, applicantModifier);
       if (draft) {
         draft = autoCapitalizeText(draft);
         draft = eliminatePlaceholders(draft);
         this.sessions.delete(userIdSafe); // clear after generation
-        return this._reply(draft, {
+        
+        // Prepend risk message to draft
+        const finalResponse = riskMsg ? `⚠️ **कानूनी विश्लेषण (Legal Risk Assessment):**\n${riskMsg}\n\n---\n\n${draft}` : draft;
+        
+        return this._reply(finalResponse, {
           mode: 'legal_generated',
           docType,
           editable: true,
@@ -374,7 +406,7 @@ STEP 14: LEGAL REASONING ENGINE. Before generating any document:
    - Output ONLY a warning starting exactly with "REJECTED:"
    - Suggest the correct document.
    Never force facts into the selected template. Never rewrite money dispute as defamation. Never rewrite contractor dispute as tenancy dispute.
-FINAL RULE: Harshita AI must think like Lawyer, Legal Drafting Expert, Court Clerk, Notary Assistant. Not a simple template generator. NEVER ask the user follow-up questions. Always generate the requested draft with placeholders if needed.`;
+FINAL RULE: Harshita AI must think like Lawyer, Legal Drafting Expert, Court Clerk, Notary Assistant. Use the provided Verified Facts as the absolute truth. Do not invent missing financial contradictions.`;
 
     // ========== MASTER SENIOR ADVOCATE PROMPT ==========
     const baseRules = `
@@ -397,7 +429,20 @@ ${langInstruction}
 
     let typeSpecificRules = '';
 
-    if (docType === 'gift_deed') {
+    if (docType === 'notice') {
+      typeSpecificRules = `
+=== LEGAL NOTICE (विधिक नोटिस) - STRICT COMPLIANCE RULES ===
+1. SUBJECT LINE IS MANDATORY: Must clearly state the purpose (e.g. "विषय: मकान निर्माण हेतु दी गई राशि ₹42,000 की वापसी के संबंध में विधिक नोटिस।").
+2. SENDER ROLE: Clearly indicate at the top if it is "Through Advocate" (अधिवक्ता के माध्यम से) or "Self-issued Legal Notice" (स्वयं प्रेषित विधिक नोटिस).
+3. TIMELINE: Explicitly list the dates (e.g., when money was given, work started, work abandoned, payment demanded).
+4. LEGAL GROUND: State the exact violation (e.g., Breach of Contract, Misappropriation, Fraud).
+5. CLEAR DEMAND: Must include a specific time limit and exact amount (e.g., "आप इस नोटिस की प्राप्ति से 15 दिनों के भीतर ₹42,000 का भुगतान करें").
+6. PAYMENT MODE: Specify how to pay (Cash/Bank Transfer/UPI).
+7. LEGAL CONSEQUENCES: Specify exactly what action will be taken if unpaid (e.g., Civil Suit, Recovery Suit, Costs of Litigation).
+8. EVIDENCE: Mention the evidence relied upon (Agreement, WhatsApp, Witnesses).
+9. SIGNATURE BLOCK: ONLY Name, Address, Mobile, Signature. NEVER ask for Aadhar or PAN in a Legal Notice signature block.
+10. LANGUAGE: Strict adherence to either Hindi or English (NO mixing) unless Bilingual is specifically requested.`;
+    } else if (docType === 'gift_deed') {
       typeSpecificRules = `
 === GIFT DEED (दान विलेख) - SENIOR ADVOCATE RULES ===
 - Clearly identify Donor (दानकर्ता) and Donee(s) (दानग्रहीता/दानग्रहीतागण).
