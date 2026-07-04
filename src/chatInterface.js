@@ -6,11 +6,11 @@
  */
 
 const readline = require('readline');
-const { MasterAgent } = require('./core/masterAgent');
+const masterAIOrchestrator = require('./core/MasterAIOrchestrator');
 
 class ChatInterface {
   constructor() {
-    this.masterAgent = new MasterAgent();
+    this.masterOrchestrator = masterAIOrchestrator;
     this.rl = null;
     this.currentUserId = 'default_user';
     this.running = false;
@@ -29,21 +29,18 @@ class ChatInterface {
 ║    ██╔══╝  ██║   ██║██╔══██╗██║ ███╔╝  ██║   ██║██║╚██╗██║ ║
 ║    ██║     ╚██████╔╝██║  ██║██║███████╗╚██████╔╝██║ ╚████║ ║
 ║    ╚═╝      ╚═════╝ ╚═╝  ╚═╝╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═══╝ ║
-║                  CSC AUTOMATION SYSTEM                   ║
+║                  HARSHITA AI ORCHESTRATOR                ║
 ║                                                           ║
 ╚═══════════════════════════════════════════════════════════╝
     `);
 
     console.log(`
-📋 Welcome to n-dizi CSC Automation System!
+📋 Welcome to Harshita AI Operating System!
    
-🔹 Type 'help' to see available commands
-🔹 Type 'plan' to view subscription plans  
-🔹 Type 'status' to check your account
+🔹 Type your request naturally (e.g. "Leave application likho")
 🔹 Type 'exit' or 'quit' to leave
-🔹 Type 'subscribe <plan>' to activate subscription
 
-Starting service...
+Starting Master AI Orchestrator...
     `);
 
     this.rl = readline.createInterface({
@@ -58,6 +55,11 @@ Starting service...
     this.rl.on('line', async (line) => {
       const input = line.trim();
       
+      if (input === 'exit' || input === 'quit') {
+        this.rl.close();
+        return;
+      }
+      
       if (input) {
         await this.handleInput(input);
       }
@@ -68,7 +70,7 @@ Starting service...
     });
 
     this.rl.on('close', () => {
-      console.log('\n👋 Goodbye! Thanks for using n-dizi CSC Automation.');
+      console.log('\n👋 Goodbye! Thanks for using Harshita AI.');
       process.exit(0);
     });
 
@@ -82,7 +84,8 @@ Starting service...
    * Handle user input
    */
   async handleInput(input) {
-    const response = await this.masterAgent.processMessage(this.currentUserId, input);
+    console.log("🧠 [MasterAI] Processing request...");
+    const response = await this.masterOrchestrator.processRequest(this.currentUserId, input);
     this.displayResponse(response);
   }
 
@@ -91,47 +94,31 @@ Starting service...
    */
   displayResponse(response) {
     console.log('');
+    if (response.warnings && response.warnings.length > 0) {
+      console.log('⚠️ Warnings:', response.warnings.join(', '));
+    }
 
-    switch (response.type) {
-      case 'access_denied':
-        console.log('⚠️ ' + response.message);
+    switch (response.mode) {
+      case 'legal_generated':
+        console.log('✅ Legal Draft Ready [A4 Workspace Opened]');
+        console.log('\n' + response.message);
         break;
 
-      case 'success':
-        console.log('✅ ' + response.message);
+      case 'code_editor':
+        console.log('✅ Code Ready [Code Editor Opened]');
+        console.log('\n' + response.message);
+        break;
+
+      case 'chat':
+        console.log('💬 ' + response.message);
         break;
 
       case 'error':
         console.log('❌ ' + response.message);
         break;
 
-      case 'info':
-        console.log(response.message);
-        break;
-
-      case 'manual_required':
-        console.log(response.message);
-        console.log('\n' + response.instruction);
-        break;
-
-      case 'collecting_input':
-        console.log('📝 ' + response.message);
-        break;
-
-      case 'result':
-        if (response.success) {
-          console.log('✅ ' + response.message);
-        } else {
-          console.log('❌ ' + response.message);
-        }
-        if (response.data) {
-          console.log('\n📋 Details:');
-          console.log(JSON.stringify(response.data, null, 2));
-        }
-        break;
-
       default:
-        console.log(response.message || 'Response received.');
+        console.log('✅ ' + (response.message || 'Done.'));
     }
   }
 
