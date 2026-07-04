@@ -17,6 +17,10 @@ import {
   GripVertical, Video
 } from 'lucide-react'
 
+import Fuse from 'fuse.js'
+import { AGENTS, CATEGORIES } from '../data/agents'
+import AgentStudioPanel from '../components/Dashboard/AgentStudioPanel'
+
 const SERVICES = [
   { id: 'story-video', title: 'Story Video', titleHi: 'कहानी से कार्टून', icon: Video, color: 'bg-indigo-600', route: '/story-video' },
   { id: 'form-filling', title: 'Form Filling', titleHi: 'फॉर्म भरना', icon: FormInput, color: 'bg-blue-500', route: '/service/form-filling' },
@@ -47,6 +51,7 @@ export default function SimpleDashboard() {
   const [resizing, setResizing] = useState(null)
   const [activeFile, setActiveFile] = useState(null) // { url: string, name: string, type: string }
   const [showOnboarding, setShowOnboarding] = useState(false)
+  const [selectedAgent, setSelectedAgent] = useState(null) // PRD-UI selected agent
   const containerRef = useRef(null)
 
   const SERVICES_LIST = SERVICES // alias
@@ -216,8 +221,14 @@ export default function SimpleDashboard() {
       <div ref={containerRef} className="flex-1 flex overflow-hidden">
         {/* Left Panel */}
         {!leftCollapsed && (
-          <div className="hidden lg:block shrink-0 overflow-hidden" style={{ width: leftWidth }}>
-            <LeftServicesPanel services={customizedServices} onServiceClick={handleServiceClick} />
+          <div className="hidden lg:flex flex-col shrink-0 overflow-hidden" style={{ width: leftWidth }}>
+            <LeftServicesPanel 
+              selectedAgent={selectedAgent} 
+              setSelectedAgent={(agent) => {
+                setSelectedAgent(agent);
+                if (agent) setMobileTab('center'); // Switch to center for mobile
+              }} 
+            />
           </div>
         )}
         {/* Left Resize Handle */}
@@ -229,6 +240,15 @@ export default function SimpleDashboard() {
             <DocumentEditorPanel />
           ) : activeFile ? (
             <FileViewerPanel file={activeFile} onClose={() => setActiveFile(null)} />
+          ) : selectedAgent ? (
+            <AgentStudioPanel 
+              agent={selectedAgent} 
+              onGenerate={(prompt) => {
+                setMobileTab('right');
+                sendCommand(prompt);
+              }}
+              onEditInWorkspace={() => setResponseMode('DOCUMENT')}
+            />
           ) : (
             <CenterDashboardPanel stats={stats} agents={agents} jobs={jobs} onServiceClick={handleServiceClick} goal={userGoal} quickActions={customizedQuickActions} />
           )}
@@ -245,12 +265,29 @@ export default function SimpleDashboard() {
 
         {/* Mobile */}
         <div className="flex-1 lg:hidden overflow-hidden">
-          {mobileTab === 'left' && <LeftServicesPanel services={customizedServices} onServiceClick={handleServiceClick} />}
+          {mobileTab === 'left' && (
+            <LeftServicesPanel 
+              selectedAgent={selectedAgent} 
+              setSelectedAgent={(agent) => {
+                setSelectedAgent(agent);
+                if (agent) setMobileTab('center');
+              }} 
+            />
+          )}
           {mobileTab === 'center' && (
             responseMode === 'DOCUMENT' ? (
               <DocumentEditorPanel />
             ) : activeFile ? (
               <FileViewerPanel file={activeFile} onClose={() => setActiveFile(null)} />
+            ) : selectedAgent ? (
+              <AgentStudioPanel 
+                agent={selectedAgent} 
+                onGenerate={(prompt) => {
+                  setMobileTab('right');
+                  sendCommand(prompt);
+                }}
+                onEditInWorkspace={() => setResponseMode('DOCUMENT')}
+              />
             ) : (
               <CenterDashboardPanel stats={stats} agents={agents} jobs={jobs} onServiceClick={handleServiceClick} goal={userGoal} quickActions={customizedQuickActions} />
             )
@@ -424,33 +461,104 @@ function DashboardHeader({ user, onLogout, onSettings }) {
 }
 
 // ============ LEFT PANEL ============
-function LeftServicesPanel({ services, onServiceClick }) {
+function LeftServicesPanel({ selectedAgent, setSelectedAgent }) {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [activeCategory, setActiveCategory] = useState('all');
+
+  // Fuse.js search
+  const fuse = new Fuse(AGENTS, {
+    keys: ['name', 'nameHi', 'description', 'category'],
+    threshold: 0.3,
+    ignoreLocation: true
+  });
+
+  let filteredAgents = AGENTS;
+  if (searchQuery) {
+    const results = fuse.search(searchQuery);
+    filteredAgents = results.map(r => r.item);
+  }
+  
+  if (activeCategory !== 'all') {
+    filteredAgents = filteredAgents.filter(a => a.category === activeCategory);
+  }
+
   return (
-    <div className="h-full flex flex-col bg-[#0a0b10] border-r border-white/10 overflow-hidden">
-      <div className="px-4 py-3 border-b border-white/10">
-        <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Services / सेवाएं</h2>
-        <p className="text-[9px] text-gray-600 mt-1">Click → Chat me result milega</p>
+    <div className="h-full flex flex-col bg-[#0a0b10] border-r border-white/10 overflow-hidden text-white">
+      {/* Search Header */}
+      <div className="p-4 border-b border-white/10 shrink-0">
+        <h2 className="text-xs font-bold text-gray-300 uppercase tracking-wider mb-3">All Agents ({AGENTS.length})</h2>
+        <div className="relative">
+          <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
+          <input 
+            type="text" 
+            placeholder="Search Agent..." 
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full bg-[#111421] border border-white/10 rounded-lg pl-8 pr-3 py-2 text-xs focus:outline-none focus:border-indigo-500/50"
+          />
+        </div>
       </div>
-      <div className="flex-1 overflow-y-auto px-2 py-2 space-y-1">
-        {services.map((service) => {
-          const Icon = service.icon
-          return (
-            <button key={service.id} onClick={() => onServiceClick(service)}
-              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white/5 transition-all group text-left">
-              <div className={`w-8 h-8 rounded-lg ${service.color} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform`}>
-                <Icon size={16} className="text-white" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-xs font-medium text-gray-300 group-hover:text-white truncate">{service.title}</p>
-                <p className="text-[10px] text-gray-600">{service.titleHi}</p>
-              </div>
-            </button>
-          )
-        })}
+
+      {/* Categories Horizontal Scroll */}
+      <div className="flex gap-2 overflow-x-auto p-3 shrink-0 custom-scrollbar border-b border-white/5">
+        {CATEGORIES.map(cat => (
+          <button 
+            key={cat.id}
+            onClick={() => setActiveCategory(cat.id)}
+            className={`px-3 py-1 rounded-full text-[10px] font-medium whitespace-nowrap transition-colors border ${
+              activeCategory === cat.id 
+                ? 'bg-indigo-600 border-indigo-500 text-white' 
+                : 'bg-[#111421] border-white/10 text-gray-400 hover:text-white'
+            }`}
+          >
+            {cat.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Agent List */}
+      <div className="flex-1 overflow-y-auto p-2 space-y-1 custom-scrollbar">
+        {filteredAgents.length > 0 ? (
+          filteredAgents.map((agent) => {
+            const Icon = agent.icon;
+            const isSelected = selectedAgent?.id === agent.id;
+            return (
+              <button 
+                key={agent.id} 
+                onClick={() => setSelectedAgent(agent)}
+                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all group text-left ${
+                  isSelected ? 'bg-indigo-600/20 border border-indigo-500/30' : 'hover:bg-white/5 border border-transparent'
+                }`}
+              >
+                <div className={`w-8 h-8 rounded-lg ${agent.color} flex items-center justify-center shrink-0 ${isSelected ? 'scale-110' : 'group-hover:scale-105'} transition-transform`}>
+                  {Icon && <Icon size={16} className="text-white" />}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex justify-between items-center">
+                    <p className={`text-xs font-bold truncate ${isSelected ? 'text-indigo-400' : 'text-gray-300 group-hover:text-white'}`}>
+                      {agent.name}
+                    </p>
+                    {agent.isPremium && (
+                      <span className="text-[8px] bg-amber-500/20 text-amber-500 px-1.5 py-0.5 rounded ml-1 shrink-0 font-bold">
+                        PRO
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-[10px] text-gray-500 truncate mt-0.5">{agent.description}</p>
+                </div>
+              </button>
+            )
+          })
+        ) : (
+          <div className="text-center py-6">
+            <p className="text-xs text-gray-500">No agents found.</p>
+          </div>
+        )}
       </div>
     </div>
   )
 }
+
 
 // ============ CENTER PANEL ============
 function CenterDashboardPanel({ stats, agents, jobs, onServiceClick, goal = 'general', quickActions = [] }) {

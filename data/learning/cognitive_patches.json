@@ -2,32 +2,34 @@
   "skills": {
     "jobsearch": {
       "successGuidelines": [
-        "Develop a comprehensive knowledge graph of job search terms, including abbreviations and acronyms like 'ssc' and 'gd', to improve query understanding",
-        "Establish a feedback loop to continuously update and refine the agent's understanding of job search queries based on user interactions and error reports",
+        "Ensure the input prompt is clear and specific about the job search query, including the type of job and the source or location.",
+        "Implement a natural language processing (NLP) module to better understand and parse user inputs, reducing ambiguity.",
+        "Develop a comprehensive database of job search keywords and phrases to improve the agent's ability to recognize and respond to various job search queries.",
         "Ensure the agent's natural language processing (NLP) module is updated with the latest job search-related keywords and phrases",
-        "Implement a robust intent identification system to accurately detect user queries related to job searching",
-        "Develop a comprehensive knowledge graph of job search platforms, including government websites like SSC, to provide accurate results"
+        "Develop a comprehensive knowledge graph that includes various job search platforms, keywords, and phrases to improve the agent's understanding and response generation capabilities"
       ],
       "failureCorrections": [
-        "Avoid unknown failures by logging and analyzing specific error messages to identify root causes and implement targeted corrections",
-        "Improve input validation to handle out-of-vocabulary words, typos, and ambiguous queries, ensuring the agent can gracefully handle unexpected inputs",
-        "Avoid unknown failures by logging and analyzing user queries that result in errors, and use this data to fine-tune the agent's NLP model",
-        "Improve the agent's error handling mechanism to provide informative error messages instead of generic 'unknown failure' responses"
+        "Improve the agent's error handling mechanism to provide informative error messages instead of generic 'unknown failure' responses",
+        "To avoid unknown failures, implement robust error handling mechanisms that provide detailed error messages or suggestions for correcting the input.",
+        "Conduct thorough testing with diverse job search queries to identify and fix potential bugs or areas of improvement in the agent's skill.",
+        "Avoid unknown failures by integrating a fallback mechanism that redirects users to a generic job search page or provides alternative search options when the agent is unable to understand the input",
+        "Improve error handling by providing users with suggestions for rephrasing their queries or offering examples of successful job search queries to help them reformulate their input"
       ]
     },
     "eligibility": {
       "successGuidelines": [
-        "Implement robust error handling mechanisms to catch and resolve unknown failures",
-        "Establish a comprehensive knowledge base for the agent to accurately determine eligibility status",
-        "Define clear input parameters for the 'eligibility' skill to prevent ambiguous requests",
-        "Implement a robust error handling mechanism to provide detailed error messages instead of generic 'unknown failure' errors",
-        "Establish a comprehensive testing framework to identify and address potential failure points before deployment"
+        "Establish a comprehensive testing framework to identify and address potential failure points before deployment",
+        "Define clear intent for user inputs to avoid ambiguity",
+        "Implement robust error handling mechanisms for unknown failures",
+        "Define clear intent for the 'eligibility' skill to handle specific user queries",
+        "Implement a robust error handling mechanism to catch and log specific error messages instead of 'unknown failure'"
       ],
       "failureCorrections": [
-        "Avoid using generic error messages and instead provide specific failure reasons",
-        "Regularly update and refine the agent's training data to prevent knowledge gaps",
-        "Verify that the input 'Check status' is a valid and well-formed request that aligns with the expected input format for the 'eligibility' skill",
-        "Enhance the error logging system to capture and report specific error details, enabling more effective debugging and issue resolution"
+        "Enhance the error logging system to capture and report specific error details, enabling more effective debugging and issue resolution",
+        "Use specific error codes instead of generic 'unknown failure' messages",
+        "Develop a comprehensive logging system to track and analyze errors",
+        "Ensure the agent's training data includes a diverse range of user inputs to improve intent recognition and reduce ambiguity",
+        "Regularly review and update the agent's knowledge base to prevent outdated or incorrect information from causing errors"
       ]
     }
   },
@@ -59,6 +61,6 @@
     ]
   },
   "meta": {
-    "lastUpdate": "2026-06-24T18:30:21.282Z"
+    "lastUpdate": "2026-07-02T18:30:21.968Z"
   }
 }

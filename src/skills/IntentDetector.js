@@ -1,10 +1,12 @@
 /**
- * IntentDetector (v2) — Confidence-Tiered AI Intent Detection
+ * IntentDetector (v3) — Confidence-Tiered AI Intent Detection
+ * PRD-021: Added Document Intelligence fast-path
  */
 const fs = require('fs');
 const path = require('path');
 const { aiProviderManager } = require('../utils/aiProviderManager');
 const { SecuritySkill } = require('./SecuritySkill');
+const { documentIntelligence } = require('./DocumentIntelligenceEngine');
 
 class IntentDetector {
   constructor(skillRegistry) {
@@ -67,6 +69,35 @@ class IntentDetector {
         this.cache.set(cacheKey, { result, timestamp: Date.now() });
         return result;
       }
+    }
+
+    // Step 1.5: PRD-021 Document Intelligence Fast-Path
+    // If DocumentIntelligenceEngine classifies with high confidence, skip AI call
+    const docClassification = documentIntelligence.classify(cleanMessage);
+    if (docClassification && docClassification.confidence >= 0.80) {
+      const docResult = {
+        intent: docClassification.intent,
+        confidence: docClassification.confidence,
+        params: {
+          docCategory: docClassification.category,
+          docType: docClassification.subType,
+          authority: docClassification.authority,
+          department: docClassification.department,
+          authorityInfo: docClassification.authorityInfo,
+          departmentInfo: docClassification.departmentInfo,
+          language: docClassification.language,
+          classification: docClassification,
+        },
+        method: 'document_intelligence',
+      };
+      const skill = this.registry.findByIntent(docResult.intent);
+      if (skill) {
+        docResult.skill = skill.name;
+        docResult.skillDisplayName = skill.displayName;
+      }
+      this.cache.set(cacheKey, { result: docResult, timestamp: Date.now() });
+      console.log(`[IntentDetector] PRD-021 Fast-Path: ${docClassification.category} → ${docClassification.intent} (${(docClassification.confidence * 100).toFixed(0)}%)`);
+      return docResult;
     }
 
     // Step 2: Advanced Pattern Detection (e.g. Geometry)

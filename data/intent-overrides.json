@@ -1,28 +1,301 @@
 [
   {
-    "pattern": "marksheet\\s*gum|10th.*12th.*marksheet|gum\\s*ho\\s*gayi",
+    "pattern": "प्रार्थना\\s*पत्र|prarthna\\s*patra|prathna\\s*patra|prayer\\s*letter",
     "flags": "i",
-    "intent": "affidavit",
-    "params": { "docType": "affidavit" }
+    "intent": "application_writer",
+    "params": { "docCategory": "prayer_letter" }
   },
   {
-    "pattern": "contractor.*kaam\\s*chhod|contractor.*paise\\s*lekar|contrator|kirayedar.*khali|jhoothe\\s*aarop|false\\s*allegations",
+    "pattern": "(?:dm|डीएम|जिलाधिकारी|collector|कलेक्टर)\\s*(?:ko|को|ke|sahab)",
     "flags": "i",
-    "intent": "legal_notice"
+    "intent": "application_writer",
+    "params": { "docCategory": "prayer_letter", "authority": "dm" }
   },
   {
-    "pattern": "bijli\\s*ki\\s*line|electricity",
+    "pattern": "(?:sdm|एसडीएम|उपजिलाधिकारी)\\s*(?:ko|को|ke|sahab)",
     "flags": "i",
-    "intent": "application_writer"
+    "intent": "application_writer",
+    "params": { "docCategory": "prayer_letter", "authority": "sdm" }
+  },
+  {
+    "pattern": "(?:sdo|एसडीओ|उपखण्ड\\s*अधिकारी)\\s*(?:ko|को|ke|sahab)",
+    "flags": "i",
+    "intent": "application_writer",
+    "params": { "docCategory": "prayer_letter", "authority": "sdo" }
+  },
+  {
+    "pattern": "(?:bdo|बीडीओ|खंड\\s*विकास)\\s*(?:ko|को|ke|sahab)",
+    "flags": "i",
+    "intent": "application_writer",
+    "params": { "docCategory": "prayer_letter", "authority": "bdo" }
+  },
+  {
+    "pattern": "(?:tehsildar|तहसीलदार)\\s*(?:ko|को|ke|sahab)",
+    "flags": "i",
+    "intent": "application_writer",
+    "params": { "docCategory": "prayer_letter", "authority": "tehsildar" }
+  },
+  {
+    "pattern": "(?:sp|एसपी|पुलिस\\s*अधीक्षक)\\s*(?:ko|को|ke|sahab)",
+    "flags": "i",
+    "intent": "application_writer",
+    "params": { "docCategory": "prayer_letter", "authority": "sp" }
+  },
+  {
+    "pattern": "(?:thana\\s*prabhari|थाना\\s*प्रभारी|sho)\\s*(?:ko|को|ke|sahab)",
+    "flags": "i",
+    "intent": "application_writer",
+    "params": { "docCategory": "prayer_letter", "authority": "sho" }
+  },
+  {
+    "pattern": "(?:nagar\\s*palika|नगर\\s*पालिका|municipal)\\s*(?:ko|को|mein|में)",
+    "flags": "i",
+    "intent": "application_writer",
+    "params": { "docCategory": "prayer_letter", "department": "municipal" }
+  },
+  {
+    "pattern": "(?:gram\\s*pradhan|ग्राम\\s*प्रधान|sarpanch|सरपंच|panchayat|पंचायत)\\s*(?:ko|को|mein|में)",
+    "flags": "i",
+    "intent": "application_writer",
+    "params": { "docCategory": "prayer_letter", "authority": "gram_pradhan" }
+  },
+  {
+    "pattern": "(?:bank\\s*manager|शाखा\\s*प्रबंधक|बैंक.*मैनेजर)\\s*(?:ko|को|ke)",
+    "flags": "i",
+    "intent": "application_writer",
+    "params": { "docCategory": "prayer_letter", "authority": "bank_manager" }
+  },
+  {
+    "pattern": "application\\s*(?:likh|लिख|banao|बनाओ)|आवेदन\\s*(?:लिख|बनाओ)|aavedan\\s*(?:likh|banao)",
+    "flags": "i",
+    "intent": "application_writer",
+    "params": { "docCategory": "application" }
+  },
+  {
+    "pattern": "आवेदन\\s*पत्र|aavedan\\s*patra|application\\s*(?:form|letter)",
+    "flags": "i",
+    "intent": "application_writer",
+    "params": { "docCategory": "application" }
+  },
+  {
+    "pattern": "(?:leave|छुट्टी|chutti|अवकाश)\\s*(?:application|आवेदन|ke\\s*liye|का\\s*पत्र)",
+    "flags": "i",
+    "intent": "application_writer",
+    "params": { "docCategory": "application", "subType": "leave_application" }
+  },
+  {
+    "pattern": "(?:admission|दाखिला|प्रवेश)\\s*(?:application|आवेदन|ke\\s*liye|form)",
+    "flags": "i",
+    "intent": "application_writer",
+    "params": { "docCategory": "application", "subType": "admission_application" }
+  },
+  {
+    "pattern": "(?:transfer\\s*certificate|tc|टीसी|स्थानांतरण)",
+    "flags": "i",
+    "intent": "application_writer",
+    "params": { "docCategory": "application", "subType": "tc_application" }
+  },
+  {
+    "pattern": "(?:scholarship|छात्रवृत्ति|chatravritti)",
+    "flags": "i",
+    "intent": "application_writer",
+    "params": { "docCategory": "application", "subType": "scholarship_application" }
+  },
+  {
+    "pattern": "(?:income\\s*certificate|आय\\s*प्रमाण\\s*पत्र|aay\\s*praman)",
+    "flags": "i",
+    "intent": "application_writer",
+    "params": { "docCategory": "application", "subType": "income_certificate" }
+  },
+  {
+    "pattern": "(?:caste\\s*certificate|जाति\\s*प्रमाण\\s*पत्र|jaati\\s*praman)",
+    "flags": "i",
+    "intent": "application_writer",
+    "params": { "docCategory": "application", "subType": "caste_certificate" }
+  },
+  {
+    "pattern": "(?:residence\\s*certificate|निवास\\s*प्रमाण\\s*पत्र|niwas\\s*praman)",
+    "flags": "i",
+    "intent": "application_writer",
+    "params": { "docCategory": "application", "subType": "residence_certificate" }
+  },
+  {
+    "pattern": "(?:character\\s*certificate|चरित्र\\s*प्रमाण\\s*पत्र|charitra\\s*praman)",
+    "flags": "i",
+    "intent": "application_writer",
+    "params": { "docCategory": "application", "subType": "character_certificate" }
+  },
+  {
+    "pattern": "(?:pension|पेंशन|वृद्धावस्था|विधवा|divyang|दिव्यांग)\\s*(?:application|आवेदन|ke\\s*liye|hetu)",
+    "flags": "i",
+    "intent": "application_writer",
+    "params": { "docCategory": "application", "subType": "pension_application" }
+  },
+  {
+    "pattern": "(?:resign|इस्तीफा|istifa)\\s*(?:letter|पत्र|application)",
+    "flags": "i",
+    "intent": "application_writer",
+    "params": { "docCategory": "application", "subType": "resignation_letter" }
+  },
+  {
+    "pattern": "marksheet\\s*gum|certificate\\s*kho|गुम\\s*हो\\s*गय|खो\\s*गय|lost\\s*document|lost\\s*certificate",
+    "flags": "i",
+    "intent": "legal_draft",
+    "params": { "docCategory": "affidavit", "docType": "affidavit" }
+  },
+  {
+    "pattern": "शपथ\\s*पत्र|एफिडेविट|affidavit|shapath\\s*patra|sapath\\s*patra",
+    "flags": "i",
+    "intent": "legal_draft",
+    "params": { "docCategory": "affidavit", "docType": "affidavit" }
+  },
+  {
+    "pattern": "naam\\s*change|नाम\\s*परिवर्तन|name\\s*change",
+    "flags": "i",
+    "intent": "legal_draft",
+    "params": { "docCategory": "affidavit", "docType": "name_change" }
+  },
+  {
+    "pattern": "rti|आरटीआई|सूचना\\s*का\\s*अधिकार|right\\s*to\\s*information|soochna\\s*ka\\s*adhikar|rti\\s*lagao",
+    "flags": "i",
+    "intent": "legal_draft",
+    "params": { "docCategory": "rti", "docType": "rti" }
+  },
+  {
+    "pattern": "शिकायत\\s*पत्र|shikayat\\s*patra|complaint\\s*letter",
+    "flags": "i",
+    "intent": "legal_draft",
+    "params": { "docCategory": "complaint", "docType": "complaint" }
+  },
+  {
+    "pattern": "(?:bijli|बिजली|विद्युत|electricity)\\s*(?:shikayat|शिकायत|complaint|समस्या)",
+    "flags": "i",
+    "intent": "legal_draft",
+    "params": { "docCategory": "complaint", "docType": "electricity_complaint" }
+  },
+  {
+    "pattern": "(?:shikayat|शिकायत|complaint)\\s*(?:bijli|बिजली|विद्युत|electricity)",
+    "flags": "i",
+    "intent": "legal_draft",
+    "params": { "docCategory": "complaint", "docType": "electricity_complaint" }
+  },
+  {
+    "pattern": "(?:paani|पानी|water|जल|nalkoop|नलकूप|handpump|हैंडपंप)\\s*(?:shikayat|शिकायत|complaint)",
+    "flags": "i",
+    "intent": "legal_draft",
+    "params": { "docCategory": "complaint", "docType": "complaint" }
+  },
+  {
+    "pattern": "(?:sadak|सड़क|road)\\s*(?:shikayat|शिकायत|complaint|kharab|खराब)",
+    "flags": "i",
+    "intent": "legal_draft",
+    "params": { "docCategory": "complaint", "docType": "complaint" }
+  },
+  {
+    "pattern": "consumer.*(?:complaint|शिकायत)|उपभोक्ता.*शिकायत",
+    "flags": "i",
+    "intent": "legal_draft",
+    "params": { "docCategory": "complaint", "docType": "consumer_complaint" }
+  },
+  {
+    "pattern": "(?:police|पुलिस|fir|एफआईआर|थाना|thana).*(?:complaint|शिकायत|report|रिपोर्ट|darj)",
+    "flags": "i",
+    "intent": "legal_draft",
+    "params": { "docCategory": "complaint", "docType": "police_complaint" }
+  },
+  {
+    "pattern": "undertaking|वचनबद्धता|वचन\\s*पत्र|vachan\\s*patra",
+    "flags": "i",
+    "intent": "legal_draft",
+    "params": { "docCategory": "undertaking", "docType": "undertaking" }
+  },
+  {
+    "pattern": "representation|अभ्यावेदन|abhyavedan|ज्ञापन|memorandum",
+    "flags": "i",
+    "intent": "legal_draft",
+    "params": { "docCategory": "representation", "docType": "representation" }
+  },
+  {
+    "pattern": "legal\\s*notice|कानूनी\\s*नोटिस|vakil.*notice|वकील.*नोटिस|advocate.*notice",
+    "flags": "i",
+    "intent": "legal_notice",
+    "params": { "docCategory": "notice" }
+  },
+  {
+    "pattern": "cheque\\s*bounce|चेक\\s*बाउंस|section\\s*138",
+    "flags": "i",
+    "intent": "legal_notice",
+    "params": { "docCategory": "notice", "subType": "cheque_bounce_notice" }
+  },
+  {
+    "pattern": "eviction|बेदखली|kirayedar.*khali|tenant.*vacate",
+    "flags": "i",
+    "intent": "legal_notice",
+    "params": { "docCategory": "notice", "subType": "eviction_notice" }
+  },
+  {
+    "pattern": "(?:contractor.*kaam\\s*chhod|contractor.*paise|kirayedar.*khali|jhoothe\\s*aarop|false\\s*allegations)",
+    "flags": "i",
+    "intent": "legal_notice",
+    "params": { "docCategory": "notice" }
+  },
+  {
+    "pattern": "(?:draft|ड्राफ्ट|मसौदा)\\s*(?:bana|बना|likh|लिख)",
+    "flags": "i",
+    "intent": "legal_draft",
+    "params": { "docCategory": "draft", "docType": "draft" }
+  },
+  {
+    "pattern": "rent\\s*agreement|किराया.*(?:अनुबंध|एग्रीमेंट)|kiraya.*agreement",
+    "flags": "i",
+    "intent": "legal_draft",
+    "params": { "docCategory": "agreement", "docType": "rent_agreement" }
+  },
+  {
+    "pattern": "gift\\s*deed|दान\\s*विलेख|sampatti.*transfer|patni.*naam|पत्नी.*नाम",
+    "flags": "i",
+    "intent": "legal_draft",
+    "params": { "docCategory": "agreement", "docType": "gift_deed" }
+  },
+  {
+    "pattern": "partition|बंटवारा|पार्टीशन|property.*divide",
+    "flags": "i",
+    "intent": "legal_draft",
+    "params": { "docCategory": "agreement", "docType": "partition_deed" }
+  },
+  {
+    "pattern": "noc|no\\s*objection|अनापत्ति",
+    "flags": "i",
+    "intent": "legal_draft",
+    "params": { "docCategory": "agreement", "docType": "noc" }
+  },
+  {
+    "pattern": "will|वसीयत|wasiyat|testament",
+    "flags": "i",
+    "intent": "legal_draft",
+    "params": { "docCategory": "agreement", "docType": "will" }
+  },
+  {
+    "pattern": "power\\s*of\\s*attorney|मुख्तारनामा|mukhtarnama",
+    "flags": "i",
+    "intent": "legal_draft",
+    "params": { "docCategory": "agreement", "docType": "power_of_attorney" }
+  },
+  {
+    "pattern": "revenue|राजस्व|लेखपाल|mutation|नामांतरण",
+    "flags": "i",
+    "intent": "legal_draft",
+    "params": { "docCategory": "application", "docType": "revenue_application" }
+  },
+  {
+    "pattern": "(?:court|न्यायालय|अदालत|कोर्ट).*(?:draft|मसौदा|petition|याचिका)",
+    "flags": "i",
+    "intent": "legal_draft",
+    "params": { "docCategory": "draft", "docType": "court_draft" }
   },
   {
     "pattern": "passport.*(?:photo|size|banao|banana|फोटो|साइज़|साइज|बनाओ|बनाना)|photo.*passport|पासपोर्ट.*(?:फोटो|साइज़|साइज|बनाओ)",
     "flags": "i",
     "intent": "create_passport_photo"
-  },
-  {
-    "pattern": "application.*(?:likh|लिख|principal|headmaster|sir|madam)|(?:likh|लिख).*application|prarthna.*patra|प्रार्थना.*पत्र|chutti|अवकाश",
-    "flags": "i",
-    "intent": "application_writer"
   }
 ]

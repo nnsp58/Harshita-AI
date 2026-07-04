@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { io } from 'socket.io-client'
 import { useStore } from '../store'
-import { isDocumentType } from '../utils/DocumentClassifier'
+import { isDocumentType, classifyDocumentCategory, getDocumentTitle } from '../utils/DocumentClassifier'
 
 const SOCKET_URL = import.meta.env.PROD ? window.location.origin : (import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:3001')
 
@@ -46,60 +46,34 @@ export function useSocket() {
         action: data.action || null,
         interactionId: data.interactionId || null,
       }
-      // Do not push the message immediately if it might be a document
-      // setMessages((prev) => [...prev, msg])
 
-      // Auto routing / self healing: Detect if response is a document
+      // PRD-021: Enhanced Document Auto-Routing
       let isDocument = false;
       if ((data.type === 'ai' || !data.type) && text.length > 100) {
-        const containsDocumentKeywords = isDocumentType(text) || 
-          text.includes('AFFIDAVIT') || 
-          text.includes('शपथ पत्र') || 
-          text.includes('RENT AGREEMENT') || 
-          text.includes('LEGAL NOTICE') || 
-          text.includes('GIFT DEED') ||
-          text.includes('WILL') ||
-          text.includes('NOC') ||
-          text.includes('APPLICATION') ||
-          text.includes('प्रार्थना पत्र') ||
-          text.includes('AGREEMENT') ||
-          text.includes('RESUME') ||
-          text.includes('INVOICE') ||
-          text.includes('REPORT') ||
-          text.includes('COMPLAINT') ||
-          text.includes('REPRESENTATION') ||
-          text.includes('UNDERTAKING') ||
-          text.includes('DRAFT') ||
-          text.includes('मसौदा') ||
-          text.includes('अभ्यावेदन') ||
-          text.includes('शिकायत') ||
-          text.includes('आवेदन');
-
-        if (containsDocumentKeywords) {
+        // Use the enhanced DocumentClassifier
+        const docClassification = classifyDocumentCategory(text);
+        
+        if (docClassification.isDocument || isDocumentType(text)) {
           isDocument = true;
-          // Extract title (first line or a clean default title)
-          const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
-          let title = 'Legal Document';
-          if (lines.length > 0) {
-            title = lines[0].replace(/[#*=_]/g, '').trim().substring(0, 50);
-          }
           
-          const cleanContent = text;
+          // Get a clean, categorized title
+          const title = docClassification.title || getDocumentTitle(text);
           
           // Re-route to A4 Document Workspace
           setCurrentDocument({
             title: title || 'Generated Document',
-            content: cleanContent,
-            type: title.toLowerCase().includes('notice') ? 'notice' : 'document',
+            content: text,
+            type: docClassification.category || 'document',
+            category: docClassification.category,
             timestamp: new Date().toISOString()
           });
           setResponseMode('DOCUMENT');
 
-          // Add a notification bubble to let the user know
+          // PRD-021: Only show success notification in chat, never the full document
           const notifyMsg = {
             id: Date.now() + Math.random(),
             type: 'system',
-            message: '✅ Document Generated Successfully. Opening A4 Workspace...',
+            message: `✅ Document Generated Successfully.\n📄 ${title}\nOpening A4 Workspace...`,
             timestamp: new Date().toISOString()
           };
           setMessages((prev) => [...prev, notifyMsg]);

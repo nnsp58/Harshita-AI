@@ -1,0 +1,128 @@
+{
+  "version": "1.0.0",
+  "description": "Indian Document Template Metadata Library — PRD-021",
+  "categories": {
+    "draft": {
+      "displayName": "मसौदा / Draft",
+      "description": "Editable version, not final, may contain placeholders",
+      "outputFormat": "A4_WORKSPACE",
+      "subTypes": {
+        "general_draft": { "name": "General Draft / सामान्य मसौदा", "fields": ["subject", "content"] },
+        "court_draft": { "name": "Court Draft / न्यायालय मसौदा", "fields": ["court_name", "case_number", "parties", "subject"] },
+        "reply_draft": { "name": "Reply Draft / जवाबी मसौदा", "fields": ["original_reference", "subject", "content"] }
+      }
+    },
+    "application": {
+      "displayName": "आवेदन पत्र / Application",
+      "description": "Formal request submitted to authority",
+      "outputFormat": "A4_WORKSPACE",
+      "subTypes": {
+        "leave_application": { "name": "Leave Application / अवकाश आवेदन", "fields": ["leave_type", "from_date", "to_date", "reason"], "authority": "principal" },
+        "admission_application": { "name": "Admission Application / प्रवेश आवेदन", "fields": ["class", "school_name", "student_name"], "authority": "principal" },
+        "tc_application": { "name": "TC Application / स्थानांतरण प्रमाण पत्र", "fields": ["student_name", "class", "reason"], "authority": "principal" },
+        "scholarship_application": { "name": "Scholarship Application / छात्रवृत्ति आवेदन", "fields": ["scheme_name", "student_name", "income"], "authority": "principal" },
+        "fee_concession_application": { "name": "Fee Concession / शुल्क छूट", "fields": ["student_name", "class", "reason"], "authority": "principal" },
+        "income_certificate": { "name": "Income Certificate / आय प्रमाण पत्र", "fields": ["applicant_name", "father_name", "annual_income"], "authority": "tehsildar", "department": "revenue" },
+        "caste_certificate": { "name": "Caste Certificate / जाति प्रमाण पत्र", "fields": ["applicant_name", "caste", "father_name"], "authority": "tehsildar", "department": "revenue" },
+        "residence_certificate": { "name": "Residence Certificate / निवास प्रमाण पत्र", "fields": ["applicant_name", "address", "years_of_residence"], "authority": "tehsildar", "department": "revenue" },
+        "character_certificate": { "name": "Character Certificate / चरित्र प्रमाण पत्र", "fields": ["applicant_name", "purpose"], "authority": "principal" },
+        "job_application": { "name": "Job Application / नौकरी आवेदन", "fields": ["position", "company", "qualification"] },
+        "resignation_letter": { "name": "Resignation Letter / इस्तीफा पत्र", "fields": ["employee_name", "designation", "last_date", "reason"] },
+        "pension_application": { "name": "Pension Application / पेंशन आवेदन", "fields": ["pension_type", "applicant_name", "age", "income"], "authority": "dswdo", "department": "welfare" },
+        "general_application": { "name": "General Application / सामान्य आवेदन", "fields": ["subject", "authority", "content"] },
+        "experience_certificate": { "name": "Experience Certificate / अनुभव प्रमाण पत्र", "fields": ["employee_name", "designation", "period"] }
+      }
+    },
+    "prayer_letter": {
+      "displayName": "प्रार्थना पत्र / Prayer Letter",
+      "description": "Formal request to government officer",
+      "outputFormat": "A4_WORKSPACE",
+      "subTypes": {
+        "government_prayer": { "name": "Government Prayer Letter / सरकारी प्रार्थना पत्र", "fields": ["authority", "subject", "applicant_details"] },
+        "revenue_prayer": { "name": "Revenue Prayer / राजस्व प्रार्थना पत्र", "authority": "tehsildar", "department": "revenue", "fields": ["subject", "khasra", "village"] },
+        "police_prayer": { "name": "Police Prayer / पुलिस प्रार्थना पत्र", "authority": "sp", "department": "police", "fields": ["subject", "incident_details"] },
+        "municipal_prayer": { "name": "Municipal Prayer / नगर पालिका प्रार्थना", "department": "municipal", "fields": ["subject", "ward", "locality"] },
+        "panchayat_prayer": { "name": "Panchayat Prayer / पंचायत प्रार्थना", "authority": "gram_pradhan", "department": "panchayat", "fields": ["subject", "village"] },
+        "bank_prayer": { "name": "Bank Prayer / बैंक प्रार्थना पत्र", "authority": "bank_manager", "department": "bank", "fields": ["account_number", "subject"] },
+        "general_prayer": { "name": "General Prayer Letter / सामान्य प्रार्थना पत्र", "fields": ["authority", "subject"] }
+      }
+    },
+    "complaint": {
+      "displayName": "शिकायत पत्र / Complaint Letter",
+      "description": "Formal complaint to authority or department",
+      "outputFormat": "A4_WORKSPACE",
+      "subTypes": {
+        "police_complaint": { "name": "Police Complaint / पुलिस शिकायत", "authority": "sho", "department": "police", "fields": ["incident", "date", "location", "accused"] },
+        "electricity_complaint": { "name": "Electricity Complaint / विद्युत शिकायत", "authority": "executive_engineer", "department": "electricity", "fields": ["problem", "meter_number", "location"] },
+        "water_complaint": { "name": "Water Complaint / जल शिकायत", "authority": "executive_engineer", "department": "water", "fields": ["problem", "location"] },
+        "road_complaint": { "name": "Road Complaint / सड़क शिकायत", "department": "pwd", "fields": ["problem", "road_name", "location"] },
+        "consumer_complaint": { "name": "Consumer Complaint / उपभोक्ता शिकायत", "fields": ["product_service", "company", "issue", "bill_number"] },
+        "general_complaint": { "name": "General Complaint / सामान्य शिकायत", "fields": ["subject", "authority", "details"] }
+      }
+    },
+    "representation": {
+      "displayName": "अभ्यावेदन / Representation",
+      "description": "Formal representation to authority by group of citizens",
+      "outputFormat": "A4_WORKSPACE",
+      "subTypes": {
+        "government_representation": { "name": "Government Representation / सरकारी अभ्यावेदन", "fields": ["authority", "subject", "demands", "signatories"] }
+      }
+    },
+    "notice": {
+      "displayName": "नोटिस / Notice",
+      "description": "Legal notice through advocate",
+      "outputFormat": "A4_WORKSPACE",
+      "subTypes": {
+        "legal_notice": { "name": "Legal Notice / कानूनी नोटिस", "fields": ["sender", "recipient", "subject", "demands"] },
+        "cheque_bounce_notice": { "name": "Cheque Bounce Notice / चेक बाउंस नोटिस (धारा 138)", "fields": ["cheque_number", "amount", "bank", "date"] },
+        "eviction_notice": { "name": "Eviction Notice / बेदखली नोटिस", "fields": ["tenant_name", "property_address", "reason"] },
+        "recovery_notice": { "name": "Recovery Notice / वसूली नोटिस", "fields": ["debtor_name", "amount", "reason"] },
+        "defamation_notice": { "name": "Defamation Notice / मानहानि नोटिस", "fields": ["accused", "defamatory_act", "demand"] },
+        "general_notice": { "name": "General Notice / सामान्य नोटिस", "fields": ["recipient", "subject", "content"] }
+      }
+    },
+    "affidavit": {
+      "displayName": "शपथ पत्र / Affidavit",
+      "description": "Sworn statement for legal/official purposes",
+      "outputFormat": "A4_WORKSPACE",
+      "subTypes": {
+        "general_affidavit": { "name": "General Affidavit / सामान्य शपथ पत्र", "fields": ["deponent_name", "father_name", "address", "purpose"] },
+        "lost_document_affidavit": { "name": "Lost Document Affidavit / गुम दस्तावेज़ शपथ पत्र", "fields": ["document_name", "document_number", "loss_details"] },
+        "name_change_affidavit": { "name": "Name Change Affidavit / नाम परिवर्तन शपथ पत्र", "fields": ["old_name", "new_name", "reason"] },
+        "dob_correction_affidavit": { "name": "DOB Correction Affidavit / जन्मतिथि सुधार शपथ पत्र", "fields": ["old_dob", "correct_dob", "document_reference"] }
+      }
+    },
+    "agreement": {
+      "displayName": "अनुबंध / विलेख / Agreement",
+      "description": "Legal agreement or deed between parties",
+      "outputFormat": "A4_WORKSPACE",
+      "subTypes": {
+        "rent_agreement": { "name": "Rent Agreement / किराया अनुबंध", "fields": ["landlord", "tenant", "property_address", "monthly_rent", "duration"] },
+        "gift_deed": { "name": "Gift Deed / दान विलेख", "fields": ["donor", "donee", "property_details", "relationship"] },
+        "partition_deed": { "name": "Partition Deed / बंटवारा विलेख", "fields": ["parties", "property_details", "shares"] },
+        "noc": { "name": "No Objection Certificate / अनापत्ति प्रमाण पत्र", "fields": ["issuer", "beneficiary", "purpose"] },
+        "will": { "name": "Will / वसीयत", "fields": ["testator", "beneficiaries", "property_details"] },
+        "power_of_attorney": { "name": "Power of Attorney / मुख्तारनामा", "fields": ["principal", "attorney", "powers_granted"] },
+        "general_agreement": { "name": "General Agreement / सामान्य अनुबंध", "fields": ["party1", "party2", "terms"] }
+      }
+    },
+    "undertaking": {
+      "displayName": "वचनबद्धता / Undertaking",
+      "description": "Formal promise or commitment",
+      "outputFormat": "A4_WORKSPACE",
+      "subTypes": {
+        "general_undertaking": { "name": "General Undertaking / सामान्य वचनबद्धता", "fields": ["person_name", "commitment", "consequences"] }
+      }
+    },
+    "rti": {
+      "displayName": "सूचना का अधिकार / RTI Application",
+      "description": "Right to Information application under RTI Act 2005",
+      "outputFormat": "A4_WORKSPACE",
+      "subTypes": {
+        "rti_application": { "name": "RTI Application / सूचना का अधिकार आवेदन", "fields": ["authority", "information_sought", "period"] }
+      }
+    }
+  },
+  "totalCategories": 10,
+  "totalSubTypes": 56
+}

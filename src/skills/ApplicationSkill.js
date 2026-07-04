@@ -8,6 +8,7 @@
 const { BaseSkill } = require('./BaseSkill');
 const { aiProviderManager } = require('../utils/aiProviderManager');
 const { autoCapitalizeText, eliminatePlaceholders } = require('../utils/capitalization');
+const { documentIntelligence, AUTHORITY_MAP, DEPARTMENT_MAP } = require('./DocumentIntelligenceEngine');
 
 class ApplicationSkill extends BaseSkill {
   constructor() {
@@ -43,11 +44,18 @@ class ApplicationSkill extends BaseSkill {
       return this._reply(this._getHelpMessage(), { mode: 'application_prompt' });
     }
 
+    // PRD-021: Extract classification params for authority/department injection
+    const classification = context.params?.classification || null;
+    const authorityKey = context.params?.authority || null;
+    const departmentKey = context.params?.department || null;
+    const authorityInfo = context.params?.authorityInfo || (authorityKey && AUTHORITY_MAP[authorityKey]) || null;
+    const departmentInfo = context.params?.departmentInfo || (departmentKey && DEPARTMENT_MAP[departmentKey]) || null;
+
     try {
       this._reply('मैं आपके विषय पर एक प्रोफेशनल प्रार्थना पत्र तैयार कर रहा हूँ। कृपया 10-15 सेकंड प्रतीक्षा करें...', null, 'processing');
       
       const processedInput = autoCapitalizeText(message);
-      let draft = await this._generateApplication(processedInput);
+      let draft = await this._generateApplication(processedInput, authorityInfo, departmentInfo);
       
       if (draft) {
         draft = autoCapitalizeText(draft);
@@ -63,7 +71,7 @@ class ApplicationSkill extends BaseSkill {
     }
 
     // Fallback if AI fails
-    const fallback = this._generateFallbackTemplate(message);
+    const fallback = this._generateFallbackTemplate(message, authorityInfo, departmentInfo);
     return this._reply(fallback, {
       mode: 'application_generated_template',
       editable: true,
@@ -72,8 +80,17 @@ class ApplicationSkill extends BaseSkill {
     });
   }
 
-  async _generateApplication(userInput, retryCount = 0) {
+  async _generateApplication(userInput, authorityInfo = null, departmentInfo = null, retryCount = 0) {
     if (!this.aiManager) return null;
+
+    // PRD-021: Build authority-specific instruction if available
+    let authorityInstruction = '';
+    if (authorityInfo) {
+      authorityInstruction = `\n\n=== AUTHORITY DETECTION (PRD-021 AUTO-DETECTED) ===\nThe application MUST be addressed to: ${authorityInfo.title} (${authorityInfo.titleEn})\nUse this exact designation in the "सेवा में" section. Do NOT guess or use a generic officer.`;
+    }
+    if (departmentInfo) {
+      authorityInstruction += `\nDepartment: ${departmentInfo.name} (${departmentInfo.nameEn})`;
+    }
 
     const systemPrompt = `You are an expert Indian Government / Official document writer, experienced clerk, advocate, and government application writer.
 Your job is to write a highly professional, respectful, and perfectly formatted formal application (प्रार्थना पत्र) based on the user's request.
@@ -136,6 +153,7 @@ Support Government (Electricity, Water, Road, Pension, Scholarship, Ration Card,
 
 5. LANGUAGE RULES:
 Use formal, respectful, and official Hindi (government style) unless English is explicitly requested. Keep the output ready for direct printing on A4 size.
+${authorityInstruction}
 
 6. Output ONLY the drafted application. NEVER use markdown formatting (like **, ##, or bullet points) inside the document. The output must be pure plain text formatted with proper line breaks and spaces, identical to a printed government letter. Do not include any conversational chatty text before or after the application.`;
 
@@ -168,12 +186,14 @@ Draft the formal application now.`;
     }
   }
 
-  _generateFallbackTemplate(subject) {
+  _generateFallbackTemplate(subject, authorityInfo = null, departmentInfo = null) {
     const today = new Date().toLocaleDateString('hi-IN');
+    const officerLine = authorityInfo ? `श्रीमान ${authorityInfo.title}` : '[अधिकारी का पदनाम / Designation]';
+    const deptLine = departmentInfo ? departmentInfo.name : '[कार्यालय/विभाग का नाम / Department Name]';
     return `सेवा में,
 
-[अधिकारी का पदनाम / Designation]
-[कार्यालय/विभाग का नाम / Department Name]
+${officerLine}
+${deptLine}
 [शहर/जिला / City/District]
 
 विषय: ${subject} के सन्दर्भ में प्रार्थना पत्र।

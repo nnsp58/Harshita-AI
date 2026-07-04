@@ -15,6 +15,7 @@
 const { BaseSkill } = require('./BaseSkill');
 const { aiProviderManager } = require('../utils/aiProviderManager');
 const { autoCapitalizeText, eliminatePlaceholders } = require('../utils/capitalization');
+const { documentIntelligence, DOCUMENT_CATEGORIES } = require('./DocumentIntelligenceEngine');
 
 class LegalDraftSkill extends BaseSkill {
   constructor() {
@@ -64,6 +65,10 @@ class LegalDraftSkill extends BaseSkill {
     }
 
     const userIdSafe = userId || 'anon';
+
+    // ── PRD-021: Use DocumentIntelligenceEngine classification if available ──
+    const classification = context.params?.classification || null;
+    const docCategoryFromParams = context.params?.docCategory || context.params?.docType || null;
 
     // ── SMART APPLICANT MODIFIER DETECTION ──
     // Detect if the draft should be written on behalf of someone else
@@ -158,8 +163,16 @@ Recommended Category: ${recommendedCategory === 'affidavit' ? 'Affidavit' : reco
       }
     }
 
-    // Detect document type
-    const docType = this._detectDocumentType(message);
+    // PRD-021: Use classification from DocumentIntelligenceEngine if available
+    let docType;
+    if (docCategoryFromParams) {
+      // Map PRD-021 category to internal docType
+      docType = this._mapCategoryToDocType(docCategoryFromParams, message);
+      console.log(`[LegalDraftSkill] PRD-021: Using classified docType: ${docType} (from category: ${docCategoryFromParams})`);
+    } else {
+      // Detect document type from natural language input
+      docType = this._detectDocumentType(message);
+    }
 
     // If no active session or new document type, start fresh
     if (!session || session.docType !== docType) {
@@ -691,8 +704,75 @@ Output ONLY the final legal document. No other text.`;
       revenue_application: this._revenueApplicationTemplate(userInput, today),
       pension_application: this._pensionApplicationTemplate(userInput, today),
       court_draft: this._courtDraftTemplate(userInput, today),
+      prayer_letter: this._prayerLetterTemplate(userInput, today),
+      complaint: this._generalComplaintTemplate(userInput, today),
+      representation: this._representationTemplate(userInput, today),
+      undertaking: this._undertakingTemplate(userInput, today),
+      draft: this._generalDraftTemplate(userInput, today),
+      application: this._generalApplicationTemplate(userInput, today),
+      notice: this._generalNoticeTemplate(userInput, today),
     };
     return templates[docType] || templates.affidavit;
+  }
+
+  // ═══════════════════════════════════════════════════════════
+  //  PRD-021: Category → DocType Mapper
+  // ═══════════════════════════════════════════════════════════
+  _mapCategoryToDocType(category, message) {
+    // Direct match if it's already a valid docType
+    const directTypes = ['gift_deed', 'affidavit', 'noc', 'rent_agreement', 'partition_deed',
+      'police_complaint', 'rti', 'consumer_complaint', 'electricity_complaint',
+      'revenue_application', 'pension_application', 'court_draft', 'prayer_letter',
+      'application', 'draft', 'complaint', 'notice', 'representation', 'undertaking',
+      'name_change', 'will', 'power_of_attorney', 'declaration'];
+    if (directTypes.includes(category)) return category;
+
+    // Map PRD-021 categories to docTypes
+    const categoryMap = {
+      'general_prayer': 'prayer_letter',
+      'government_prayer': 'prayer_letter',
+      'revenue_prayer': 'prayer_letter',
+      'police_prayer': 'prayer_letter',
+      'municipal_prayer': 'prayer_letter',
+      'panchayat_prayer': 'prayer_letter',
+      'bank_prayer': 'prayer_letter',
+      'general_application': 'application',
+      'school_application': 'application',
+      'leave_application': 'application',
+      'admission_application': 'application',
+      'tc_application': 'application',
+      'scholarship_application': 'application',
+      'fee_concession_application': 'application',
+      'income_certificate_application': 'application',
+      'caste_certificate_application': 'application',
+      'residence_certificate_application': 'application',
+      'character_certificate_application': 'application',
+      'job_application': 'application',
+      'resignation_letter': 'application',
+      'experience_certificate_application': 'application',
+      'general_complaint': 'complaint',
+      'water_complaint': 'complaint',
+      'road_complaint': 'complaint',
+      'general_draft': 'draft',
+      'general_affidavit': 'affidavit',
+      'lost_document_affidavit': 'affidavit',
+      'name_change_affidavit': 'name_change',
+      'dob_correction_affidavit': 'affidavit',
+      'rti_application': 'rti',
+      'general_agreement': 'rent_agreement',
+      'legal_notice': 'notice',
+      'cheque_bounce_notice': 'notice',
+      'eviction_notice': 'notice',
+      'recovery_notice': 'notice',
+      'defamation_notice': 'notice',
+      'general_notice': 'notice',
+      'general_undertaking': 'undertaking',
+      'government_representation': 'representation',
+    };
+    if (categoryMap[category]) return categoryMap[category];
+
+    // Fallback to detection from message
+    return this._detectDocumentType(message);
   }
 
   _giftDeedTemplate(input, date) {
@@ -1079,6 +1159,233 @@ IFSC कोड: ____________________
 [All parties agree to division as per mutual understanding]
 
 ═══════════════════════════════════════════════════════`;
+  }
+
+  // ═══════════════════════════════════════════════════════════
+  //  PRD-021: NEW TEMPLATE FALLBACKS
+  // ═══════════════════════════════════════════════════════════
+
+  _prayerLetterTemplate(input, date) {
+    return `सेवा में,
+
+श्रीमान [अधिकारी का पदनाम / Officer Designation]
+[कार्यालय / विभाग का नाम / Office/Department]
+[जिला / District]
+
+विषय: ${input} — के सम्बन्ध में प्रार्थना पत्र
+
+महोदय,
+
+सविनय निवेदन है कि मैं [नाम / Name], पुत्र/पुत्री/पत्नी [पिता/पति का नाम],
+निवासी [ग्राम/मोहल्ला], [पोस्ट], [तहसील], [जनपद],
+मोबाइल: [____________________], आधार संख्या: [____________________]।
+
+उपरोक्त विषय के सम्बन्ध में आपसे निवेदन है कि:
+
+${input}
+
+अतः श्रीमान जी से सविनय प्रार्थना है कि उपरोक्त तथ्यों को दृष्टिगत रखते हुए मेरी प्रार्थना पर सहानुभूतिपूर्वक विचार करते हुए आवश्यक कार्यवाही करने की कृपा करें। आपकी अति कृपा होगी।
+
+सधन्यवाद।
+
+दिनांक: ${date}
+स्थान: ____________________
+
+भवदीय / प्रार्थी,
+हस्ताक्षर: ____________________
+नाम: ____________________
+पिता/पति का नाम: ____________________
+पता: ____________________
+मोबाइल: ____________________
+
+═══════════════════════════════════════════════════════════════════════════════`;
+  }
+
+  _generalComplaintTemplate(input, date) {
+    return `सेवा में,
+
+श्रीमान [अधिकारी का पदनाम / Officer Designation]
+[विभाग / Department]
+[जिला / District]
+
+विषय: ${input} — के सम्बन्ध में शिकायत पत्र
+
+महोदय,
+
+सविनय निवेदन है कि मैं [नाम / Name], पुत्र/पुत्री/पत्नी [पिता/पति का नाम],
+निवासी [पूरा पता / Full Address],
+मोबाइल: [____________________]।
+
+मैं आपका ध्यान निम्नलिखित शिकायत की ओर आकृष्ट करना चाहता/चाहती हूँ:
+
+${input}
+
+अतः श्रीमान जी से विनम्र निवेदन है कि मेरी शिकायत पर शीघ्र कार्यवाही करने की कृपा करें।
+
+दिनांक: ${date}
+
+भवदीय / शिकायतकर्ता,
+हस्ताक्षर: ____________________
+नाम: ____________________
+पता: ____________________
+मोबाइल: ____________________
+
+═══════════════════════════════════════════════════════════════════════════════`;
+  }
+
+  _representationTemplate(input, date) {
+    return `अभ्यावेदन / REPRESENTATION
+═══════════════════════════════════════════════════════
+
+सेवा में,
+
+श्रीमान [अधिकारी का पदनाम / Officer Designation]
+[विभाग / Department]
+[जिला / District]
+
+विषय: ${input} — के सम्बन्ध में अभ्यावेदन
+
+महोदय,
+
+हम निम्नलिखित नागरिक / ग्रामवासी / आवेदक अपना अभ्यावेदन प्रस्तुत करते हैं:
+
+${input}
+
+उपरोक्त तथ्यों को दृष्टिगत रखते हुए हम निम्नलिखित मांग करते हैं:
+
+1. [मांग / Demand 1]
+2. [मांग / Demand 2]
+3. [मांग / Demand 3]
+
+कृपया हमारे अभ्यावेदन पर सहानुभूतिपूर्वक विचार करने की कृपा करें।
+
+दिनांक: ${date}
+
+हस्ताक्षरकर्ता / Signatories:
+1. नाम: ____________________ हस्ताक्षर: ____________________
+2. नाम: ____________________ हस्ताक्षर: ____________________
+3. नाम: ____________________ हस्ताक्षर: ____________________
+
+═══════════════════════════════════════════════════════════════════════════════`;
+  }
+
+  _undertakingTemplate(input, date) {
+    return `वचनबद्धता / UNDERTAKING
+═══════════════════════════════════════════════════════
+
+मैं, [नाम / Name], पुत्र/पुत्री/पत्नी [पिता/पति का नाम],
+आयु [____] वर्ष, निवासी [पूरा पता],
+आधार संख्या: [____________________],
+
+एतद्द्वारा वचनबद्धता देता/देती हूँ कि:
+
+${input}
+
+मैं पूर्ण रूप से वचनबद्ध हूँ कि उपरोक्त शर्तों / बातों का पालन करूंगा/करूंगी। यदि मेरे द्वारा इस वचनबद्धता का उल्लंघन किया जाता है, तो मेरे विरुद्ध नियमानुसार कार्यवाही की जा सकती है।
+
+यह वचनबद्धता मैंने अपनी स्वतंत्र इच्छा से, बिना किसी दबाव या बाध्यता के दी है।
+
+दिनांक: ${date}
+स्थान: ____________________
+
+वचनबद्ध व्यक्ति / Person giving Undertaking:
+हस्ताक्षर: ____________________
+नाम: ____________________
+पता: ____________________
+
+साक्षी / Witness 1: ____________________
+साक्षी / Witness 2: ____________________
+
+═══════════════════════════════════════════════════════════════════════════════`;
+  }
+
+  _generalDraftTemplate(input, date) {
+    return `मसौदा / DRAFT
+═══════════════════════════════════════════════════════
+
+दिनांक: ${date}
+
+विषय: ${input}
+
+═══════════════════════════════════════════════════════
+
+${input}
+
+(यह मसौदा संपादन योग्य है। कृपया आवश्यक परिवर्तन करें।)
+(This draft is editable. Please make necessary changes.)
+
+हस्ताक्षर: ____________________
+नाम: ____________________
+दिनांक: ${date}
+
+═══════════════════════════════════════════════════════════════════════════════`;
+  }
+
+  _generalApplicationTemplate(input, date) {
+    return `सेवा में,
+
+श्रीमान [अधिकारी / Officer]
+[विभाग / संस्थान / Department]
+[जिला / शहर / City]
+
+विषय: ${input} — के सन्दर्भ में आवेदन पत्र
+
+महोदय / महोदया,
+
+सविनय निवेदन है कि मैं [नाम / Name], पुत्र/पुत्री/पत्नी [पिता/पति का नाम],
+निवासी [पूरा पता / Full Address],
+मोबाइल: [____________________]।
+
+${input}
+
+अतः आपसे विनम्र निवेदन है कि कृपया मेरे आवेदन पर विचार करते हुए आवश्यक कार्यवाही करने की कृपा करें। मैं सदैव आपका/आपकी आभारी रहूँगा/रहूँगी।
+
+सधन्यवाद।
+
+दिनांक: ${date}
+स्थान: ____________________
+
+भवदीय / प्रार्थी,
+हस्ताक्षर: ____________________
+नाम: ____________________
+पिता/पति का नाम: ____________________
+पता: ____________________
+मोबाइल: ____________________
+
+═══════════════════════════════════════════════════════════════════════════════`;
+  }
+
+  _generalNoticeTemplate(input, date) {
+    return `नोटिस / NOTICE
+═══════════════════════════════════════════════════════
+
+दिनांक: ${date}
+
+प्रेषक / FROM:
+[नाम / Name]
+[पता / Address]
+
+प्रेषित / TO:
+[नाम / Name]
+[पता / Address]
+
+विषय: ${input}
+
+═══════════════════════════════════════════════════════
+
+कृपया ध्यान दें कि:
+
+${input}
+
+आपको इस नोटिस की प्राप्ति से 15 दिनों के भीतर उचित कार्यवाही करने हेतु सूचित किया जाता है।
+
+अन्यथा नियमानुसार आगामी कार्यवाही की जाएगी।
+
+हस्ताक्षर: ____________________
+नाम: ____________________
+दिनांक: ${date}
+
+═══════════════════════════════════════════════════════════════════════════════`;
   }
 
   _getHelpMessage() {
