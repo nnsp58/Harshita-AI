@@ -130,6 +130,10 @@ export default function SimpleDashboard() {
 
   // Service click → Direct page open (user requirement)
   const handleServiceClick = useCallback((service) => {
+    if (!user) {
+      navigate('/login');
+      return;
+    }
     if (service.route) {
       navigate(service.route)
       return
@@ -137,7 +141,15 @@ export default function SimpleDashboard() {
     setMobileTab('right')
     const cmd = `${service.title} kaise use karein?`
     sendCommand(cmd)
-  }, [sendCommand, navigate])
+  }, [user, sendCommand, navigate])
+
+  const handleCommandWithAuth = useCallback((cmd) => {
+    if (!user) {
+      navigate('/login');
+      return;
+    }
+    sendCommand(cmd);
+  }, [user, sendCommand, navigate]);
 
   const handlePreviewFile = useCallback((fileObj) => {
     setActiveFile(fileObj);
@@ -241,14 +253,18 @@ export default function SimpleDashboard() {
           ) : activeFile ? (
             <FileViewerPanel file={activeFile} onClose={() => setActiveFile(null)} />
           ) : selectedAgent ? (
-            <AgentStudioPanel 
-              agent={selectedAgent} 
-              onGenerate={(prompt) => {
-                setMobileTab('right');
-                sendCommand(prompt);
-              }}
-              onEditInWorkspace={() => setResponseMode('DOCUMENT')}
-            />
+              <AgentStudioPanel 
+                agent={selectedAgent} 
+                onGenerate={(prompt) => {
+                  if (!user) {
+                    navigate('/login');
+                    return;
+                  }
+                  setMobileTab('right');
+                  sendCommand(prompt);
+                }}
+                onEditInWorkspace={() => setResponseMode('DOCUMENT')}
+              />
           ) : (
             <CenterDashboardPanel stats={stats} agents={agents} jobs={jobs} onServiceClick={handleServiceClick} goal={userGoal} quickActions={customizedQuickActions} />
           )}
@@ -259,7 +275,7 @@ export default function SimpleDashboard() {
         {/* Right Panel */}
         {!rightCollapsed && (
           <div className="hidden lg:block shrink-0 overflow-hidden" style={{ width: rightWidth }}>
-            <RightChatPanel messages={messages} setMessages={setMessages} onSend={sendCommand} isConnected={isConnected} user={user} jobs={jobs} onPreviewFile={handlePreviewFile} />
+            <RightChatPanel messages={messages} setMessages={setMessages} onSend={handleCommandWithAuth} isConnected={isConnected} user={user} jobs={jobs} onPreviewFile={handlePreviewFile} />
           </div>
         )}
 
@@ -283,6 +299,10 @@ export default function SimpleDashboard() {
               <AgentStudioPanel 
                 agent={selectedAgent} 
                 onGenerate={(prompt) => {
+                  if (!user) {
+                    navigate('/login');
+                    return;
+                  }
                   setMobileTab('right');
                   sendCommand(prompt);
                 }}
@@ -292,7 +312,7 @@ export default function SimpleDashboard() {
               <CenterDashboardPanel stats={stats} agents={agents} jobs={jobs} onServiceClick={handleServiceClick} goal={userGoal} quickActions={customizedQuickActions} />
             )
           )}
-          {mobileTab === 'right' && <RightChatPanel messages={messages} setMessages={setMessages} onSend={sendCommand} isConnected={isConnected} user={user} jobs={jobs} onPreviewFile={handlePreviewFile} />}
+          {mobileTab === 'right' && <RightChatPanel messages={messages} setMessages={setMessages} onSend={handleCommandWithAuth} isConnected={isConnected} user={user} jobs={jobs} onPreviewFile={handlePreviewFile} />}
         </div>
       </div>
 

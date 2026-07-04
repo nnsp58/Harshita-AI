@@ -7,6 +7,17 @@ const agentRegistry = {
   'PDFAgent': () => require('../agents/PDFAgent'),
   'LegalAgent': () => require('../agents/LegalAgent'),
   'TranslationAgent': () => require('../agents/TranslationAgent'),
+  'DeployAgent': () => require('../agents/DeployAgent'),
+  'DocumentOcrAgent': () => require('../agents/DocumentOcrAgent'),
+  'FormFillAgent': () => require('../agents/FormFillAgent'),
+  'GeneralChatAgent': () => require('../agents/GeneralChatAgent'),
+  'MathAgent': () => require('../agents/MathAgent'),
+  'NotepadAgent': () => require('../agents/NotepadAgent'),
+  'PhotoMakerAgent': () => require('../agents/PhotoMakerAgent'),
+  'ResumeAgent': () => require('../agents/ResumeAgent'),
+  'StoryVideoAgent': () => require('../agents/StoryVideoAgent'),
+  'TadaAgent': () => require('../agents/TadaAgent'),
+  'VoiceAgent': () => require('../agents/VoiceAgent'),
 };
 
 class MasterAIOrchestrator {
@@ -90,6 +101,17 @@ Select the most appropriate agent to handle this task from the following list:
 - LegalAgent (for legal notices, court drafts)
 - TranslationAgent
 - CodingAgent
+- DeployAgent (for deployment tasks)
+- DocumentOcrAgent (for reading documents and images)
+- FormFillAgent (for filling forms)
+- GeneralChatAgent (for casual conversation and general queries)
+- MathAgent (for calculations, geometry, and unit conversion)
+- NotepadAgent (for taking notes)
+- PhotoMakerAgent (for generating images)
+- ResumeAgent (for building resumes)
+- StoryVideoAgent (for creating videos from stories)
+- TadaAgent (for TA/DA calculations and forms)
+- VoiceAgent (for voice interactions)
 
 OUTPUT FORMAT (Strict JSON):
 {
