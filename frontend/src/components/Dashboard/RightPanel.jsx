@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Send, Mic, Upload, User, Bot } from 'lucide-react'
+import { Send, Upload, User, Bot } from 'lucide-react'
 import { useStore } from '../../store'
+import VoiceInput from '../VoiceInput'
 
 function ThinkingIndicator() {
   return (
@@ -86,7 +87,11 @@ export default function RightPanel({ messages, onSendCommand, isConnected }) {
               className={`flex gap-2 ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}
             >
               {msg.type !== 'user' && (
-                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-maroon-500 to-gold-500 flex items-center justify-center shrink-0 mt-0.5">
+                <div className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
+                  msg.type === 'error' ? 'bg-red-700' :
+                  msg.type === 'clarification' ? 'bg-amber-700' :
+                  'bg-gradient-to-br from-maroon-500 to-gold-500'
+                }`}>
                   <Bot size={12} className="text-white" />
                 </div>
               )}
@@ -95,9 +100,21 @@ export default function RightPanel({ messages, onSendCommand, isConnected }) {
                   ? 'bg-maroon-600 text-white rounded-br-none'
                   : msg.type === 'system'
                   ? 'bg-navy-800/50 text-navy-200 border border-navy-700/50'
+                  : msg.type === 'error'
+                  ? 'bg-red-900/40 text-red-200 border border-red-700/50 rounded-bl-none'
+                  : msg.type === 'clarification'
+                  ? 'bg-amber-900/30 text-amber-100 border border-amber-700/40 rounded-bl-none'
                   : 'bg-white/5 text-gray-300 rounded-bl-none'
               }`}>
                 <p className="break-words whitespace-pre-wrap">{msg.message?.replace(/^\[[^\]]*रूटिंग[^\]]*\]\s*/, '')}</p>
+                {msg.retryable && (
+                  <button
+                    onClick={() => onSend && onSend(msg._lastCmd || '')}
+                    className="mt-2 text-[9px] text-red-300 border border-red-600/40 rounded px-2 py-0.5 hover:bg-red-900/40 transition-colors"
+                  >
+                    🔄 Retry
+                  </button>
+                )}
                 <span className="text-[9px] text-gray-500 mt-1 block">
                   {new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                 </span>
@@ -134,16 +151,21 @@ export default function RightPanel({ messages, onSendCommand, isConnected }) {
               className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-maroon-500/50 transition-colors"
             />
           </div>
-          <button
-            type="button"
-            className="p-2 rounded-lg hover:bg-white/10 transition-colors relative group"
-            title="Coming Soon"
-          >
-            <Mic size={16} className="text-gray-500" />
-            <span className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-gray-800 text-[9px] text-gray-300 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-              Coming Soon
-            </span>
-          </button>
+          <div className="shrink-0">
+            <VoiceInput
+              onResult={(text) => {
+                setInput(text)
+                // Auto submit on voice input
+                const success = onSendCommand(text.trim())
+                if (success !== false) {
+                  setIsThinking(true)
+                }
+                setInput('')
+              }}
+              onInterim={(text) => setInput(text)}
+              size="sm"
+            />
+          </div>
           <button
             type="submit"
             disabled={!input.trim()}

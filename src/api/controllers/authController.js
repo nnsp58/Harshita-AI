@@ -219,13 +219,39 @@ const googleLogin = async (req, res, next) => {
     const { token } = req.body;
     if (!token) throw ApiError.badRequest('Google token required');
 
-    const decoded = jwt.decode(token);
-    if (!decoded || !decoded.email) {
-      throw ApiError.unauthorized('Invalid Google Token');
+    let email = null;
+    let name = 'Google User';
+
+    // 1. Try to verify ID Token with Google OAuth client if configuration is real
+    try {
+      const clientId = process.env.GOOGLE_CLIENT_ID || 'dummy_client_id';
+      if (clientId && clientId !== 'dummy_client_id' && !token.startsWith('mock_')) {
+        const ticket = await googleClient.verifyIdToken({
+          idToken: token,
+          audience: clientId
+        });
+        const payload = ticket.getPayload();
+        if (payload) {
+          email = payload.email;
+          name = payload.name || 'Google User';
+        }
+      }
+    } catch (e) {
+      console.warn('⚠️ Google verifyIdToken failed, falling back to decode:', e.message);
     }
 
-    const email = decoded.email;
-    const name = decoded.name || 'Google User';
+    // 2. Fallback to decoding (useful for mock/dev environment)
+    if (!email) {
+      const decoded = jwt.decode(token);
+      if (decoded && decoded.email) {
+        email = decoded.email;
+        name = decoded.name || 'Google User';
+      }
+    }
+
+    if (!email) {
+      throw ApiError.unauthorized('Invalid Google Token');
+    }
 
     let user = await findUser(email);
     const db = await getPrisma();

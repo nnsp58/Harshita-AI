@@ -156,64 +156,10 @@
     "params": { "docCategory": "affidavit", "docType": "name_change" }
   },
   {
-    "pattern": "rti|आरटीआई|सूचना\\s*का\\s*अधिकार|right\\s*to\\s*information|soochna\\s*ka\\s*adhikar|rti\\s*lagao",
+    "pattern": "\\brti\\b|आरटीआई|सूचना\\s*का\\s*अधिकार|right\\s*to\\s*information|soochna\\s*ka\\s*adhikar|rti\\s*lagao",
     "flags": "i",
     "intent": "legal_draft",
     "params": { "docCategory": "rti", "docType": "rti" }
-  },
-  {
-    "pattern": "शिकायत\\s*पत्र|shikayat\\s*patra|complaint\\s*letter",
-    "flags": "i",
-    "intent": "legal_draft",
-    "params": { "docCategory": "complaint", "docType": "complaint" }
-  },
-  {
-    "pattern": "(?:bijli|बिजली|विद्युत|electricity)\\s*(?:shikayat|शिकायत|complaint|समस्या)",
-    "flags": "i",
-    "intent": "legal_draft",
-    "params": { "docCategory": "complaint", "docType": "electricity_complaint" }
-  },
-  {
-    "pattern": "(?:shikayat|शिकायत|complaint)\\s*(?:bijli|बिजली|विद्युत|electricity)",
-    "flags": "i",
-    "intent": "legal_draft",
-    "params": { "docCategory": "complaint", "docType": "electricity_complaint" }
-  },
-  {
-    "pattern": "(?:paani|पानी|water|जल|nalkoop|नलकूप|handpump|हैंडपंप)\\s*(?:shikayat|शिकायत|complaint)",
-    "flags": "i",
-    "intent": "legal_draft",
-    "params": { "docCategory": "complaint", "docType": "complaint" }
-  },
-  {
-    "pattern": "(?:sadak|सड़क|road)\\s*(?:shikayat|शिकायत|complaint|kharab|खराब)",
-    "flags": "i",
-    "intent": "legal_draft",
-    "params": { "docCategory": "complaint", "docType": "complaint" }
-  },
-  {
-    "pattern": "consumer.*(?:complaint|शिकायत)|उपभोक्ता.*शिकायत",
-    "flags": "i",
-    "intent": "legal_draft",
-    "params": { "docCategory": "complaint", "docType": "consumer_complaint" }
-  },
-  {
-    "pattern": "(?:police|पुलिस|fir|एफआईआर|थाना|thana).*(?:complaint|शिकायत|report|रिपोर्ट|darj)",
-    "flags": "i",
-    "intent": "legal_draft",
-    "params": { "docCategory": "complaint", "docType": "police_complaint" }
-  },
-  {
-    "pattern": "undertaking|वचनबद्धता|वचन\\s*पत्र|vachan\\s*patra",
-    "flags": "i",
-    "intent": "legal_draft",
-    "params": { "docCategory": "undertaking", "docType": "undertaking" }
-  },
-  {
-    "pattern": "representation|अभ्यावेदन|abhyavedan|ज्ञापन|memorandum",
-    "flags": "i",
-    "intent": "legal_draft",
-    "params": { "docCategory": "representation", "docType": "representation" }
   },
   {
     "pattern": "legal\\s*notice|कानूनी\\s*नोटिस|vakil.*notice|वकील.*नोटिस|advocate.*notice",
@@ -238,6 +184,60 @@
     "flags": "i",
     "intent": "legal_notice",
     "params": { "docCategory": "notice" }
+  },
+  {
+    "pattern": "शिकायत\\s*पत्र|shikayat\\s*patra|complaint\\s*letter",
+    "flags": "i",
+    "intent": "application_writer",
+    "params": { "docCategory": "complaint", "docType": "complaint" }
+  },
+  {
+    "pattern": "(?:bijli|बिजली|विद्युत|electricity)\\s*(?:shikayat|शिकायत|complaint|समस्या)",
+    "flags": "i",
+    "intent": "application_writer",
+    "params": { "docCategory": "complaint", "docType": "electricity_complaint" }
+  },
+  {
+    "pattern": "(?:shikayat|शिकायत|complaint)\\s*(?:bijli|बिजली|विद्युत|electricity)",
+    "flags": "i",
+    "intent": "application_writer",
+    "params": { "docCategory": "complaint", "docType": "electricity_complaint" }
+  },
+  {
+    "pattern": "(?:paani|पानी|water|जल|nalkoop|नलकूप|handpump|हैंडपंप)\\s*(?:shikayat|शिकायत|complaint)",
+    "flags": "i",
+    "intent": "application_writer",
+    "params": { "docCategory": "complaint", "docType": "complaint" }
+  },
+  {
+    "pattern": "(?:sadak|सड़क|road)\\s*(?:shikayat|शिकायत|complaint|kharab|खराब)",
+    "flags": "i",
+    "intent": "application_writer",
+    "params": { "docCategory": "complaint", "docType": "complaint" }
+  },
+  {
+    "pattern": "consumer.*complaint(?!.*notice)|उपभोक्ता.*शिकायत(?!.*नोटिस)",
+    "flags": "i",
+    "intent": "legal_draft",
+    "params": { "docCategory": "complaint", "docType": "consumer_complaint" }
+  },
+  {
+    "pattern": "(?:police|पुलिस|fir|एफआईआर|थाना|thana).*(?:complaint|शिकायत|report|रिपोर्ट|darj)",
+    "flags": "i",
+    "intent": "application_writer",
+    "params": { "docCategory": "complaint", "docType": "police_complaint" }
+  },
+  {
+    "pattern": "undertaking|वचनबद्धता|वचन\\s*पत्र|vachan\\s*patra",
+    "flags": "i",
+    "intent": "legal_draft",
+    "params": { "docCategory": "undertaking", "docType": "undertaking" }
+  },
+  {
+    "pattern": "representation|अभ्यावेदन|abhyavedan| ज्ञापन|memorandum",
+    "flags": "i",
+    "intent": "legal_draft",
+    "params": { "docCategory": "representation", "docType": "representation" }
   },
   {
     "pattern": "(?:draft|ड्राफ्ट|मसौदा)\\s*(?:bana|बना|likh|लिख)",

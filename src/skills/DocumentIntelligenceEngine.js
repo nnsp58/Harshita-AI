@@ -37,6 +37,7 @@ const DOCUMENT_CATEGORIES = {
   AGREEMENT: 'agreement',
   UNDERTAKING: 'undertaking',
   RTI: 'rti',
+  RESUME: 'resume',
 };
 
 // ═══════════════════════════════════════════════════════════
@@ -113,7 +114,10 @@ const DEPARTMENT_MAP = {
 const CLASSIFICATION_PATTERNS = [
 
   // ─── RTI (highest specificity) ───
-  { regex: /rti|आरटीआई|सूचना\s*का\s*अधिकार|right\s*to\s*information|soochna\s*ka\s*adhikar|rti\s*lagao|rti\s*application/i, category: DOCUMENT_CATEGORIES.RTI, subType: 'rti_application', confidence: 0.95 },
+  { regex: /\brti\b|आरटीआई|सूचना\s*का\s*अधिकार|right\s*to\s*information|soochna\s*ka\s*adhikar|rti\s*lagao/i, category: DOCUMENT_CATEGORIES.RTI, subType: 'rti_application', confidence: 0.95 },
+
+  // ─── RESUME ───
+  { regex: /\b(?:resume|cv|biodata|bio-data)\b|रिज्यूमे|बायोडाटा/i, category: DOCUMENT_CATEGORIES.RESUME, subType: 'resume', confidence: 0.95 },
 
   // ─── AFFIDAVIT (specific patterns) ───
   { regex: /शपथ\s*पत्र|एफिडेविट|affidavit|sworn\s*statement|shapath\s*patra|sapath\s*patra|notary|नोटरी|घोषणा\s*पत्र|declaration/i, category: DOCUMENT_CATEGORIES.AFFIDAVIT, subType: 'general_affidavit', confidence: 0.95 },
@@ -145,15 +149,15 @@ const CLASSIFICATION_PATTERNS = [
   { regex: /representation|अभ्यावेदन|abhyavedan|ज्ञापन|memorandum/i, category: DOCUMENT_CATEGORIES.REPRESENTATION, subType: 'government_representation', confidence: 0.90 },
 
   // ─── COMPLAINT — with authority/department detection ───
-  { regex: /(?:police|पुलिस|fir|एफआईआर|थाना|thana).*(?:complaint|शिकायत|report|रिपोर्ट|darj)/i, category: DOCUMENT_CATEGORIES.COMPLAINT, subType: 'police_complaint', authority: 'sho', department: 'police', confidence: 0.95 },
-  { regex: /(?:complaint|शिकायत|report|रिपोर्ट|darj).*(?:police|पुलिस|fir|थाना|thana)/i, category: DOCUMENT_CATEGORIES.COMPLAINT, subType: 'police_complaint', authority: 'sho', department: 'police', confidence: 0.95 },
-  { regex: /(?:bijli|बिजली|विद्युत|electricity|light|बत्ती).*(?:shikayat|शिकायत|complaint|problem|समस्या)/i, category: DOCUMENT_CATEGORIES.COMPLAINT, subType: 'electricity_complaint', authority: 'executive_engineer', department: 'electricity', confidence: 0.95 },
-  { regex: /(?:shikayat|शिकायत|complaint|problem|समस्या).*(?:bijli|बिजली|विद्युत|electricity|light|बत्ती)/i, category: DOCUMENT_CATEGORIES.COMPLAINT, subType: 'electricity_complaint', authority: 'executive_engineer', department: 'electricity', confidence: 0.95 },
+  { regex: /(?:police|पुलिस|fir|एफआईआर|थाना|thana).*(?:complaint|शिकायत|report|रिपोर्ट|darj|likh|chori|चोरी|खो|गुम)/i, category: DOCUMENT_CATEGORIES.COMPLAINT, subType: 'police_complaint', authority: 'sho', department: 'police', confidence: 0.95 },
+  { regex: /(?:complaint|शिकायत|report|रिपोर्ट|darj|likh|chori|चोरी).*(?:police|पुलिस|fir|थाना|thana)/i, category: DOCUMENT_CATEGORIES.COMPLAINT, subType: 'police_complaint', authority: 'sho', department: 'police', confidence: 0.95 },
+  { regex: /(?:bijli|बिजली|विद्युत|electricity|light|बत्ती|meter|मीटर|transformer|ट्रांसफार्मर).*(?:shikayat|शिकायत|complaint|problem|समस्या|likh|banao|nikalo)/i, category: DOCUMENT_CATEGORIES.COMPLAINT, subType: 'electricity_complaint', authority: 'executive_engineer', department: 'electricity', confidence: 0.95 },
+  { regex: /(?:shikayat|शिकायत|complaint|problem|समस्या).*(?:bijli|बिजली|विद्युत|electricity|light|बत्ती|meter|मीटर|transformer|ट्रांसफार्मर)/i, category: DOCUMENT_CATEGORIES.COMPLAINT, subType: 'electricity_complaint', authority: 'executive_engineer', department: 'electricity', confidence: 0.95 },
   { regex: /(?:paani|पानी|water|जल|nalkoop|नलकूप|handpump|हैंडपंप).*(?:shikayat|शिकायत|complaint|problem|समस्या)/i, category: DOCUMENT_CATEGORIES.COMPLAINT, subType: 'water_complaint', authority: 'executive_engineer', department: 'water', confidence: 0.90 },
   { regex: /(?:shikayat|शिकायत|complaint|problem|समस्या).*(?:paani|पानी|water|जल|nalkoop|नलकूप)/i, category: DOCUMENT_CATEGORIES.COMPLAINT, subType: 'water_complaint', authority: 'executive_engineer', department: 'water', confidence: 0.90 },
   { regex: /(?:sadak|सड़क|road|rasta|रास्ता).*(?:shikayat|शिकायत|complaint|kharab|खराब|toot|टूट)/i, category: DOCUMENT_CATEGORIES.COMPLAINT, subType: 'road_complaint', department: 'pwd', confidence: 0.90 },
   { regex: /(?:shikayat|शिकायत|complaint).*(?:sadak|सड़क|road|rasta|रास्ता)/i, category: DOCUMENT_CATEGORIES.COMPLAINT, subType: 'road_complaint', department: 'pwd', confidence: 0.90 },
-  { regex: /consumer.*complaint|उपभोक्ता.*शिकायत|ग्राहक.*शिकायत/i, category: DOCUMENT_CATEGORIES.COMPLAINT, subType: 'consumer_complaint', confidence: 0.90 },
+  { regex: /consumer.*(?:complaint|notice|forum)|upbhokta.*shikayat|grahak.*shikayat|उपभोक्ता.*शिकायत|ग्राहक.*शिकायत/i, category: DOCUMENT_CATEGORIES.COMPLAINT, subType: 'consumer_complaint', confidence: 0.95 },
   { regex: /शिकायत\s*पत्र|shikayat\s*patra|complaint\s*letter/i, category: DOCUMENT_CATEGORIES.COMPLAINT, subType: 'general_complaint', confidence: 0.85 },
 
   // ─── PRAYER LETTER — Government authority patterns ───
@@ -170,7 +174,7 @@ const CLASSIFICATION_PATTERNS = [
   { regex: /प्रार्थना\s*पत्र|prarthna\s*patra|prathna\s*patra|prayer\s*letter/i, category: DOCUMENT_CATEGORIES.PRAYER_LETTER, subType: 'general_prayer', confidence: 0.90 },
 
   // ─── APPLICATION — Education/Institutional ───
-  { regex: /(?:principal|प्रधानाचार्य|headmaster|प्रधानाध्यापक|sir|madam)\s*(?:ko|को)\s*(?:application|आवेदन|पत्र)/i, category: DOCUMENT_CATEGORIES.APPLICATION, subType: 'school_application', authority: 'principal', department: 'education', confidence: 0.95 },
+  { regex: /(?:principal|प्रधानाचार्य|headmaster|प्रधानाध्यापक|sir|madam)\s*(?:ko|को)\s*(?:application|आवेदन|पत्र|letter)/i, category: DOCUMENT_CATEGORIES.APPLICATION, subType: 'school_application', authority: 'principal', department: 'education', confidence: 0.95 },
   { regex: /(?:leave|छुट्टी|chutti|अवकाश|avkash)\s*(?:application|आवेदन|ke\s*liye|का)/i, category: DOCUMENT_CATEGORIES.APPLICATION, subType: 'leave_application', confidence: 0.95 },
   { regex: /(?:admission|दाखिला|प्रवेश|dakhila)\s*(?:application|आवेदन|ke\s*liye|form)/i, category: DOCUMENT_CATEGORIES.APPLICATION, subType: 'admission_application', department: 'education', confidence: 0.90 },
   { regex: /(?:transfer\s*certificate|tc|टीसी|स्थानांतरण\s*प्रमाण)/i, category: DOCUMENT_CATEGORIES.APPLICATION, subType: 'tc_application', department: 'education', confidence: 0.90 },
@@ -183,7 +187,7 @@ const CLASSIFICATION_PATTERNS = [
   { regex: /(?:character\s*certificate|चरित्र\s*प्रमाण\s*पत्र|charitra\s*praman)/i, category: DOCUMENT_CATEGORIES.APPLICATION, subType: 'character_certificate_application', confidence: 0.90 },
   // Employment
   { regex: /(?:job|naukri|नौकरी)\s*(?:application|आवेदन|ke\s*liye|ka\s*form)/i, category: DOCUMENT_CATEGORIES.APPLICATION, subType: 'job_application', confidence: 0.85 },
-  { regex: /(?:resign|इस्तीफा|istifa)\s*(?:letter|पत्र|application)/i, category: DOCUMENT_CATEGORIES.APPLICATION, subType: 'resignation_letter', confidence: 0.90 },
+  { regex: /(?:resign|resignation|इस्तीफा|istifa)\s*(?:letter|पत्र|application)/i, category: DOCUMENT_CATEGORIES.APPLICATION, subType: 'resignation_letter', confidence: 0.90 },
   { regex: /(?:experience\s*certificate|अनुभव\s*प्रमाण)/i, category: DOCUMENT_CATEGORIES.APPLICATION, subType: 'experience_certificate_application', confidence: 0.85 },
   // Pension
   { regex: /(?:pension|पेंशन|वृद्धावस्था|विधवा|divyang|दिव्यांग)\s*(?:application|आवेदन|ke\s*liye|hetu)/i, category: DOCUMENT_CATEGORIES.APPLICATION, subType: 'pension_application', authority: 'dswdo', department: 'welfare', confidence: 0.90 },
@@ -249,26 +253,28 @@ const CATEGORY_TO_SKILL_MAP = {
   [DOCUMENT_CATEGORIES.DRAFT]: 'legal_draft',
   [DOCUMENT_CATEGORIES.APPLICATION]: 'application_writer',
   [DOCUMENT_CATEGORIES.PRAYER_LETTER]: 'application_writer',
-  [DOCUMENT_CATEGORIES.COMPLAINT]: 'legal_draft',
+  [DOCUMENT_CATEGORIES.COMPLAINT]: 'application_writer',
   [DOCUMENT_CATEGORIES.REPRESENTATION]: 'legal_draft',
   [DOCUMENT_CATEGORIES.NOTICE]: 'legal_notice',
   [DOCUMENT_CATEGORIES.AFFIDAVIT]: 'legal_draft',
   [DOCUMENT_CATEGORIES.AGREEMENT]: 'legal_draft',
   [DOCUMENT_CATEGORIES.UNDERTAKING]: 'legal_draft',
   [DOCUMENT_CATEGORIES.RTI]: 'legal_draft',
+  [DOCUMENT_CATEGORIES.RESUME]: 'resume_maker',
 };
 
 const CATEGORY_TO_INTENT_MAP = {
   [DOCUMENT_CATEGORIES.DRAFT]: 'legal_draft',
   [DOCUMENT_CATEGORIES.APPLICATION]: 'application_writer',
   [DOCUMENT_CATEGORIES.PRAYER_LETTER]: 'application_writer',
-  [DOCUMENT_CATEGORIES.COMPLAINT]: 'legal_draft',
+  [DOCUMENT_CATEGORIES.COMPLAINT]: 'application_writer',
   [DOCUMENT_CATEGORIES.REPRESENTATION]: 'legal_draft',
   [DOCUMENT_CATEGORIES.NOTICE]: 'legal_notice',
   [DOCUMENT_CATEGORIES.AFFIDAVIT]: 'legal_draft',
   [DOCUMENT_CATEGORIES.AGREEMENT]: 'legal_draft',
   [DOCUMENT_CATEGORIES.UNDERTAKING]: 'legal_draft',
   [DOCUMENT_CATEGORIES.RTI]: 'legal_draft',
+  [DOCUMENT_CATEGORIES.RESUME]: 'resume_maker',
 };
 
 // ═══════════════════════════════════════════════════════════
@@ -331,6 +337,19 @@ class DocumentIntelligenceEngine {
     // Step 6: Map to skill and intent
     result.skill = CATEGORY_TO_SKILL_MAP[result.category] || 'legal_draft';
     result.intent = CATEGORY_TO_INTENT_MAP[result.category] || 'legal_draft';
+
+    // Special override: Consumer complaints are legal court drafts, not administrative applications
+    if (result.subType === 'consumer_complaint') {
+      if (lower.includes('notice') || lower.includes('नोटिस')) {
+        result.category = DOCUMENT_CATEGORIES.NOTICE;
+        result.subType = 'legal_notice';
+        result.skill = 'legal_notice';
+        result.intent = 'legal_notice';
+      } else {
+        result.skill = 'legal_draft';
+        result.intent = 'legal_draft';
+      }
+    }
 
     // Step 7: Detect language
     result.language = this._detectLanguage(text);

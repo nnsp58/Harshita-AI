@@ -112,9 +112,17 @@ OUTPUT FORMAT (Strict JSON):
   }
 
   resolveAgent(routeInfo) {
+    if (routeInfo.selectedAgent) {
+       const agent = agentRegistry.getAgent(routeInfo.selectedAgent);
+       if (agent && agent.instance) {
+         return agent.instance;
+       }
+    }
+    
     if (!routeInfo.skillId) {
       // Fallback if no skill detected
-      return agentRegistry.getAgent('GeneralChatAgent')?.instance;
+      const fallback = agentRegistry.getAgent('ApplicationAgent') || agentRegistry.getAgent('GeneralChatAgent');
+      return fallback?.instance || null;
     }
 
     const skill = skillRegistry.getSkill(routeInfo.skillId);

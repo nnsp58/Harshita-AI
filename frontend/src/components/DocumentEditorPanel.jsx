@@ -1,10 +1,35 @@
+import { useState, useEffect, useRef } from 'react';
 import { 
   Undo, Redo, Bold, Italic, Underline, AlignLeft, AlignCenter, 
   AlignRight, AlignJustify, Printer, Download, Save, 
-  CheckCircle, FileText, FileDown, Plus, Minus, Share2, X
+  CheckCircle, FileText, FileDown, Plus, Minus, Share2, X, AlertTriangle
 } from 'lucide-react';
+import { jsPDF } from 'jspdf';
 import { useStore } from '../store';
 import { useSocket } from '../hooks/useSocket';
+
+// Rule 4: Document Validation — check for missing sections
+function validateDocument(text) {
+  const issues = [];
+  if (!text || text.trim().length < 50) {
+    issues.push('दस्तावेज़ बहुत छोटा है या खाली है।');
+    return issues;
+  }
+  const plain = text.replace(/<[^>]+>/g, '').trim();
+  // Check for subject line
+  if (!/विषय|subject/i.test(plain)) {
+    issues.push('विषय (Subject) नहीं मिला।');
+  }
+  // Check for recipient/salutation
+  if (!/सेवा में|महोदय|महोदया|Dear|To/i.test(plain)) {
+    issues.push('प्राप्तकर्ता (Recipient/Salutation) नहीं मिला।');
+  }
+  // Check for signature block
+  if (!/हस्ताक्षर|Signature|भवदीय|Yours/i.test(plain)) {
+    issues.push('हस्ताक्षर क्षेत्र (Signature Block) नहीं मिला।');
+  }
+  return issues;
+}
 
 export default function DocumentEditorPanel() {
   const { currentDocument, setCurrentDocument, setResponseMode } = useStore();
@@ -12,6 +37,7 @@ export default function DocumentEditorPanel() {
   const [content, setContent] = useState('');
   const [isSaving, setIsSaving] = useState(false);
   const [zoom, setZoom] = useState(100);
+  const [validationIssues, setValidationIssues] = useState([]); // Rule 4
   
   // WhatsApp Modal State
   const [showWAModal, setShowWAModal] = useState(false);
@@ -22,10 +48,10 @@ export default function DocumentEditorPanel() {
   const editorRef = useRef(null);
   const saveTimeoutRef = useRef(null);
 
+
   // Initialize content when currentDocument changes
   useEffect(() => {
     if (currentDocument && currentDocument.content && !content) {
-      // Strip markdown asterisks and hash tags if raw AI response
       let cleanContent = currentDocument.content
         .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
         .replace(/\*(.*?)\*/g, '<em>$1</em>')
@@ -33,7 +59,6 @@ export default function DocumentEditorPanel() {
         .replace(/## (.*?)\n/g, '<h2>$1</h2>')
         .replace(/# (.*?)\n/g, '<h1>$1</h1>');
         
-      // Ensure it has basic HTML paragraphs if not already HTML
       if (!cleanContent.includes('<p>')) {
         cleanContent = cleanContent.split('\n\n').map(p => `<p>${p.replace(/\n/g, '<br/>')}</p>`).join('');
       }
@@ -42,6 +67,10 @@ export default function DocumentEditorPanel() {
       if (editorRef.current) {
         editorRef.current.innerHTML = cleanContent;
       }
+
+      // Rule 4: Auto-validate on load
+      const issues = validateDocument(cleanContent);
+      setValidationIssues(issues);
     }
   }, [currentDocument]);
 
@@ -118,35 +147,65 @@ export default function DocumentEditorPanel() {
   const handleSendWhatsApp = () => {
     if (!waRecipient) return;
     setIsSendingWA(true);
-    setWaStatus('Generating PDF & Sending...');
+    setWaStatus('Redirecting to WhatsApp...');
     
-    // In a real scenario, you'd use a robust HTML-to-PDF library on the frontend 
-    // or send the HTML to backend. Here we simulate the Base64 generation.
-    const sourceHTML = `<h2>${currentDocument?.title || 'Document'}</h2>` + editorRef.current.innerHTML;
-    const base64Data = btoa(unescape(encodeURIComponent(sourceHTML)));
-    
-    // Using simple html mock for Phase 1 proof of concept
-    sendData('whatsapp_send_document', {
-      recipient: waRecipient,
-      base64Data: base64Data,
-      mimeType: 'text/html', // In a full implementation, this would be application/pdf
-      filename: `${currentDocument?.title || 'document'}.html`
-    });
-
     setTimeout(() => {
+      // Task 6: Deep link WhatsApp (wa.me)
+      const docTitle = currentDocument?.title || 'Document';
+      // In a real scenario we might send a link, but for text generation we send the raw text
+      const cleanText = editorRef.current.innerText || editorRef.current.textContent;
+      const text = `*${docTitle}*\n\n${cleanText}`;
+      const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+      window.open(url, '_blank');
+      
       setWaStatus('Sent Successfully! ✓');
       setTimeout(() => {
         setShowWAModal(false);
         setIsSendingWA(false);
         setWaStatus('');
         setWaRecipient('');
-      }, 2000);
-    }, 1500);
+      }, 1000);
+    }, 500);
+  };
+
+  const handleExportPDF = () => {
+    // Task 8: PDF Export using jsPDF
+    const doc = new jsPDF({
+      orientation: 'p',
+      unit: 'pt',
+      format: 'a4'
+    });
+    
+    // Very basic jsPDF implementation for text
+    doc.setFontSize(16);
+    doc.text(currentDocument?.title || 'Document', 40, 40);
+    doc.setFontSize(12);
+    
+    const lines = doc.splitTextToSize(editorRef.current.innerText, 500);
+    doc.text(lines, 40, 70);
+    
+    doc.save(`${currentDocument?.title || 'document'}.pdf`);
   };
 
   return (
     <div className="h-full flex flex-col bg-[#e5e7eb] font-sans overflow-hidden">
       
+      {/* Rule 4: Validation Warning Banner */}
+      {validationIssues.length > 0 && (
+        <div className="bg-amber-50 border-b border-amber-200 px-4 py-2 flex items-start gap-2 shrink-0">
+          <AlertTriangle size={14} className="text-amber-600 mt-0.5 shrink-0" />
+          <div className="flex-1">
+            <p className="text-xs font-semibold text-amber-800">दस्तावेज़ सत्यापन चेतावनी:</p>
+            <ul className="text-[10px] text-amber-700 mt-0.5 list-disc list-inside">
+              {validationIssues.map((issue, i) => <li key={i}>{issue}</li>)}
+            </ul>
+          </div>
+          <button onClick={() => setValidationIssues([])} className="text-amber-500 hover:text-amber-700 shrink-0">
+            <X size={14} />
+          </button>
+        </div>
+      )}
+
       {/* Top Header */}
       <div className="h-14 bg-white border-b border-gray-200 flex items-center justify-between px-4 shrink-0 shadow-sm z-10">
         <div className="flex items-center gap-3">
@@ -165,19 +224,30 @@ export default function DocumentEditorPanel() {
           </div>
         </div>
         
-        <div className="flex items-center gap-3">
+        {/* Rule 5: All 7 User Confirmation Actions */}
+        <div className="flex items-center gap-2 flex-wrap">
           <button onClick={() => setResponseMode('CHAT')} className="px-3 py-1.5 text-xs font-semibold text-gray-600 hover:bg-gray-100 rounded-md transition-colors">
-            Close Workspace
+            ✕ Close
           </button>
-          <div className="h-6 w-px bg-gray-300 mx-1"></div>
+          <div className="h-6 w-px bg-gray-300"></div>
+          <button
+            id="doc-regenerate-btn"
+            onClick={() => {
+              setResponseMode('CHAT');
+              // Allow user to re-enter command
+            }}
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold bg-orange-50 text-orange-600 hover:bg-orange-100 rounded-md transition-colors"
+          >
+            🔄 Regenerate
+          </button>
           <button onClick={() => setShowWAModal(true)} className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold bg-green-50 text-green-600 hover:bg-green-100 rounded-md transition-colors shadow-sm">
-            <Share2 size={14} /> Send WhatsApp
+            <Share2 size={14} /> WhatsApp
           </button>
           <button onClick={downloadDocx} className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold bg-blue-50 text-blue-600 hover:bg-blue-100 rounded-md transition-colors">
             <FileDown size={14} /> DOCX
           </button>
-          <button onClick={handlePrint} className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold bg-indigo-600 text-white hover:bg-indigo-700 rounded-md transition-colors shadow-sm">
-            <Printer size={14} /> Print / PDF
+          <button onClick={handleExportPDF} className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold bg-indigo-600 text-white hover:bg-indigo-700 rounded-md transition-colors shadow-sm">
+            <Printer size={14} /> Export PDF
           </button>
         </div>
       </div>

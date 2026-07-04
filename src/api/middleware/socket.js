@@ -149,10 +149,12 @@ const setupSocketHandlers = (io) => {
           console.error('[Socket DB Logging Error]:', dbErr.message);
         }
 
-        // Emit AI reply to chat — include action data for navigation/UI actions
+        // Emit AI reply — Rule 2: if low-confidence clarification, emit special type
+        const msgText = response.message || response.text || 'Done!';
+        const isClarification = response.mode === 'chat' && response.success === false;
         socket.emit('logUpdate', {
-          type: 'ai',
-          message: response.message || response.text || 'Done!',
+          type: isClarification ? 'clarification' : 'ai',
+          message: msgText,
           skill: response.skill,
           data: response.data,
           action: response.action || response.data || null,
@@ -180,9 +182,11 @@ const setupSocketHandlers = (io) => {
           }
         } catch (dbErr) {}
 
+        // Rule 9: Human-friendly error — never expose stack traces
         socket.emit('logUpdate', {
-          type: 'ai',
-          message: `⚠️ Error: ${error.message}. Try rephrasing.`,
+          type: 'error',
+          message: '🔄 कुछ गड़बड़ हो गई। कृपया दोबारा कोशिश करें।',
+          retryable: true,
         });
       }
     });

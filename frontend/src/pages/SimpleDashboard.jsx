@@ -14,13 +14,14 @@ import {
   ChevronRight, Zap, IndianRupee,
   Send, Mic, MicOff, Image, Code, Paperclip,
   PanelLeftClose, PanelRightClose, MessageSquare, LayoutGrid, Monitor,
-  GripVertical, Video
+  GripVertical, Video, Heart, Plus, Star
 } from 'lucide-react'
 
 import Fuse from 'fuse.js'
 import { AGENTS, CATEGORIES } from '../data/agents'
 import AgentStudioPanel from '../components/Dashboard/AgentStudioPanel'
 import AdSenseWidget from '../components/AdSenseWidget'
+import LeftPanel from '../components/Dashboard/LeftPanel'
 
 const SERVICES = [
   { id: 'story-video', title: 'Story Video', titleHi: 'कहानी से कार्टून', icon: Video, color: 'bg-indigo-600', route: '/story-video' },
@@ -56,6 +57,7 @@ export default function SimpleDashboard() {
   const [activeFile, setActiveFile] = useState(null) // { url: string, name: string, type: string }
   const [showOnboarding, setShowOnboarding] = useState(false)
   const [selectedAgent, setSelectedAgent] = useState(null) // PRD-UI selected agent
+  const [showQuickActions, setShowQuickActions] = useState(false)
   const containerRef = useRef(null)
 
   const SERVICES_LIST = SERVICES // alias
@@ -233,18 +235,34 @@ export default function SimpleDashboard() {
         })}
       </div>
 
-      <AdSenseWidget slot="1234567890" format="auto" />
+      {/* Rule 11: No ads inside Document Workspace / Legal / Resume */}
+      {responseMode !== 'DOCUMENT' && (
+        <AdSenseWidget slot="1234567890" format="auto" />
+      )}
 
       {/* 3-Panel Resizable Layout */}
       <div ref={containerRef} className="flex-1 flex overflow-hidden">
         {/* Left Panel */}
         {!leftCollapsed && (
           <div className="hidden lg:flex flex-col shrink-0 overflow-hidden" style={{ width: leftWidth }}>
-            <LeftServicesPanel 
-              selectedAgent={selectedAgent} 
-              setSelectedAgent={(agent) => {
-                setSelectedAgent(agent);
-                if (agent) setMobileTab('center'); // Switch to center for mobile
+            <LeftPanel 
+              user={user}
+              onNavigate={(navData) => {
+                if (!user) { navigate('/login'); return; }
+                // Rule 1 (Universal Search) & Rule 7 (Templates): direct AI command
+                if (navData.intent === 'NATURAL_LANGUAGE_SEARCH' || navData.intent === 'TEMPLATE') {
+                  sendCommand(navData.title || navData.query);
+                  setMobileTab('right');
+                  return;
+                }
+                // Template click → build a prompt and send to AI Command Center
+                if (navData.workspace === 'Document' || navData.workspace === 'Legal') {
+                  const prompt = `${navData.title} likhna hai`;
+                  sendCommand(prompt);
+                  setMobileTab('right');
+                } else if (navData.service) {
+                  handleServiceClick({ id: navData.service, title: navData.title, route: null });
+                }
               }} 
             />
           </div>
@@ -272,7 +290,7 @@ export default function SimpleDashboard() {
                 onEditInWorkspace={() => setResponseMode('DOCUMENT')}
               />
           ) : (
-            <CenterDashboardPanel stats={stats} agents={agents} jobs={jobs} onServiceClick={handleServiceClick} goal={userGoal} quickActions={customizedQuickActions} />
+            <CenterDashboardPanel stats={stats} agents={agents} jobs={jobs} onServiceClick={handleServiceClick} goal={userGoal} quickActions={customizedServices} onSend={handleCommandWithAuth} />
           )}
         </div>
 
@@ -288,11 +306,22 @@ export default function SimpleDashboard() {
         {/* Mobile */}
         <div className="flex-1 lg:hidden overflow-hidden">
           {mobileTab === 'left' && (
-            <LeftServicesPanel 
-              selectedAgent={selectedAgent} 
-              setSelectedAgent={(agent) => {
-                setSelectedAgent(agent);
-                if (agent) setMobileTab('center');
+            <LeftPanel 
+              user={user}
+              onNavigate={(navData) => {
+                if (!user) { navigate('/login'); return; }
+                if (navData.intent === 'NATURAL_LANGUAGE_SEARCH' || navData.intent === 'TEMPLATE') {
+                  sendCommand(navData.title || navData.query);
+                  setMobileTab('center');
+                  return;
+                }
+                if (navData.workspace === 'Document' || navData.workspace === 'Legal') {
+                  const prompt = `${navData.title} likhna hai`;
+                  sendCommand(prompt);
+                } else if (navData.service) {
+                  handleServiceClick({ id: navData.service, title: navData.title, route: null });
+                }
+                setMobileTab('center');
               }} 
             />
           )}
@@ -315,7 +344,7 @@ export default function SimpleDashboard() {
                 onEditInWorkspace={() => setResponseMode('DOCUMENT')}
               />
             ) : (
-              <CenterDashboardPanel stats={stats} agents={agents} jobs={jobs} onServiceClick={handleServiceClick} goal={userGoal} quickActions={customizedQuickActions} />
+              <CenterDashboardPanel stats={stats} agents={agents} jobs={jobs} onServiceClick={handleServiceClick} goal={userGoal} quickActions={customizedServices} onSend={handleCommandWithAuth} />
             )
           )}
           {mobileTab === 'right' && <RightChatPanel messages={messages} setMessages={setMessages} onSend={handleCommandWithAuth} isConnected={isConnected} user={user} jobs={jobs} onPreviewFile={handlePreviewFile} />}
@@ -371,6 +400,45 @@ export default function SimpleDashboard() {
           </div>
         )}
       </AnimatePresence>
+
+      {/* Floating Quick Actions (PRD-034/PRD-035) */}
+      <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3 select-none">
+        {showQuickActions && (
+          <div className="flex flex-col items-end gap-2 mb-2 animate-in slide-in-from-bottom duration-200">
+            {[
+              { label: 'New Application', icon: FileText, cmd: 'प्रधानाचार्य को छुट्टी के लिए एप्लीकेशन लिखो' },
+              { label: 'Legal Notice', icon: Gavel, cmd: 'Consumer complaint notice bhejo' },
+              { label: 'Resume Builder', icon: User, cmd: 'Resume banao' },
+              { label: 'Calculator', icon: Calculator, cmd: 'Multifunction calculator' },
+              { label: 'Voice Command', icon: Mic, action: () => setMobileTab('right') }
+            ].map((act, idx) => (
+              <button
+                key={idx}
+                onClick={() => {
+                  setShowQuickActions(false);
+                  if (act.action) {
+                    act.action();
+                  } else {
+                    handleCommandWithAuth(act.cmd);
+                    setMobileTab('right');
+                  }
+                }}
+                className="flex items-center gap-2 px-4 py-2.5 bg-[#0f111a]/95 border border-white/10 hover:border-indigo-500/50 hover:bg-indigo-600 text-xs font-bold text-white rounded-xl shadow-2xl transition-all"
+              >
+                <act.icon size={13} className="text-indigo-400" />
+                <span>{act.label}</span>
+              </button>
+            ))}
+          </div>
+        )}
+        <button
+          onClick={() => setShowQuickActions(!showQuickActions)}
+          className="w-12 h-12 rounded-full bg-indigo-600 hover:bg-indigo-500 flex items-center justify-center text-white shadow-lg shadow-indigo-600/30 transition-all transform active:scale-95 hover:rotate-12"
+        >
+          <Plus size={24} className={`transition-transform duration-200 ${showQuickActions ? 'rotate-45' : ''}`} />
+        </button>
+      </div>
+
     </div>
   )
 }
@@ -470,7 +538,9 @@ function DashboardHeader({ user, onLogout, onSettings }) {
           🛡️ Admin
         </button>
         <button onClick={onSettings} className="p-2 rounded-lg hover:bg-white/10 transition-colors">
-          <Settings size={16} className="text-gray-400" />
+          <Settings size={16} className="text-gray-400">
+          </Settings>
+          {/* Old LeftServicesPanel has been fully replaced by the new Smart LeftPanel system (PRD-027 / PRD-028 Phase 2) */}
         </button>
         <div className="flex items-center gap-2">
           <div className="w-7 h-7 rounded-full bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center">
@@ -486,277 +556,443 @@ function DashboardHeader({ user, onLogout, onSettings }) {
   )
 }
 
-// ============ LEFT PANEL ============
-function LeftServicesPanel({ selectedAgent, setSelectedAgent }) {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [activeCategory, setActiveCategory] = useState('all');
-
-  // Fuse.js search
-  const fuse = new Fuse(AGENTS, {
-    keys: ['name', 'nameHi', 'description', 'category'],
-    threshold: 0.3,
-    ignoreLocation: true
-  });
-
-  let filteredAgents = AGENTS;
-  if (searchQuery) {
-    const results = fuse.search(searchQuery);
-    filteredAgents = results.map(r => r.item);
-  }
-  
-  if (activeCategory !== 'all') {
-    filteredAgents = filteredAgents.filter(a => a.category === activeCategory);
-  }
-
-  return (
-    <div className="h-full flex flex-col bg-[#0a0b10] border-r border-white/10 overflow-hidden text-white">
-      {/* Search Header */}
-      <div className="p-4 border-b border-white/10 shrink-0">
-        <h2 className="text-xs font-bold text-gray-300 uppercase tracking-wider mb-3">All Agents ({AGENTS.length})</h2>
-        <div className="relative">
-          <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
-          <input 
-            type="text" 
-            placeholder="Search Agent..." 
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-[#111421] border border-white/10 rounded-lg pl-8 pr-3 py-2 text-xs focus:outline-none focus:border-indigo-500/50"
-          />
-        </div>
-      </div>
-
-      {/* Categories Horizontal Scroll */}
-      <div className="flex gap-2 overflow-x-auto p-3 shrink-0 custom-scrollbar border-b border-white/5">
-        {CATEGORIES.map(cat => (
-          <button 
-            key={cat.id}
-            onClick={() => setActiveCategory(cat.id)}
-            className={`px-3 py-1 rounded-full text-[10px] font-medium whitespace-nowrap transition-colors border ${
-              activeCategory === cat.id 
-                ? 'bg-indigo-600 border-indigo-500 text-white' 
-                : 'bg-[#111421] border-white/10 text-gray-400 hover:text-white'
-            }`}
-          >
-            {cat.label}
-          </button>
-        ))}
-      </div>
-
-      {/* Agent List */}
-      <div className="flex-1 overflow-y-auto p-2 space-y-1 custom-scrollbar">
-        {filteredAgents.length > 0 ? (
-          filteredAgents.map((agent) => {
-            const Icon = agent.icon;
-            const isSelected = selectedAgent?.id === agent.id;
-            return (
-              <button 
-                key={agent.id} 
-                onClick={() => setSelectedAgent(agent)}
-                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all group text-left ${
-                  isSelected ? 'bg-indigo-600/20 border border-indigo-500/30' : 'hover:bg-white/5 border border-transparent'
-                }`}
-              >
-                <div className={`w-8 h-8 rounded-lg ${agent.color} flex items-center justify-center shrink-0 ${isSelected ? 'scale-110' : 'group-hover:scale-105'} transition-transform`}>
-                  {Icon && <Icon size={16} className="text-white" />}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex justify-between items-center">
-                    <p className={`text-xs font-bold truncate ${isSelected ? 'text-indigo-400' : 'text-gray-300 group-hover:text-white'}`}>
-                      {agent.name}
-                    </p>
-                    {agent.isPremium && (
-                      <span className="text-[8px] bg-amber-500/20 text-amber-500 px-1.5 py-0.5 rounded ml-1 shrink-0 font-bold">
-                        PRO
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-[10px] text-gray-500 truncate mt-0.5">{agent.description}</p>
-                </div>
-              </button>
-            )
-          })
-        ) : (
-          <div className="text-center py-6">
-            <p className="text-xs text-gray-500">No agents found.</p>
-          </div>
-        )}
-      </div>
-    </div>
-  )
-}
-
+// Old LeftServicesPanel has been fully replaced by the new Smart LeftPanel system (PRD-027 / PRD-028 Phase 2)
 
 // ============ CENTER PANEL ============
-function CenterDashboardPanel({ stats, agents, jobs, onServiceClick, goal = 'general', quickActions = [] }) {
-  const activeAgents = agents.filter(a => a.status === 'active' || a.status === 'running').length
-  const pendingJobs = jobs.filter(j => j.status === 'pending' || j.status === 'queued').length
+function CenterDashboardPanel({ stats, agents, jobs, onServiceClick, goal = 'general', quickActions = [], onSend }) {
+  const navigate = useNavigate();
+  const [activeCategory, setActiveCategory] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [showExplorer, setShowExplorer] = useState(false);
+  const [explorerSearch, setExplorerSearch] = useState('');
+  const [explorerCategory, setExplorerCategory] = useState('All');
+  
+  const [favorites, setFavorites] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem('harshita_favorites') || '[]');
+    } catch {
+      return [];
+    }
+  });
 
-  const getRecommendedSkills = () => {
-    const skillsList = {
-      creator: [
-        { name: 'Story Screenplay Director', nameHi: 'स्टोरी स्क्रीनप्ले डायरेक्टर', desc: 'Convert script into scene breakdowns with camera details.' },
-        { name: 'Wan-Fast Video Engine', nameHi: 'वान-फ़ास्ट वीडियो इंजन', desc: 'Create high quality vertical formats using Pollinations AI.' },
-        { name: 'Bilingual Subtitle Mix', nameHi: 'द्विभाषी सबटाइटल्स मिक्स', desc: 'Overlay Hindi/English voice and caption tracks onto video.' },
-        { name: 'Flux Cinematic Prompting', nameHi: 'फ्लक्स सिनेमैटिक प्रॉम्प्टिंग', desc: 'Generate prompts for realistic human animations.' }
-      ],
-      legal: [
-        { name: 'Demand Draft Notice Agent', nameHi: 'लॉ नोटिस ड्राफ्टिंग', desc: 'Prepare formal court notices for recovery and disputes.' },
-        { name: 'Affidavit Affirmation Oath', nameHi: 'एफिडेविट शपथ पत्र', desc: 'Swear identity, name change, or marksheet lost forms.' },
-        { name: 'Wasiyat inheritance distributions', nameHi: 'वसीयतनामा बिल्डर', desc: 'Assign property rights securely to relative Donees.' },
-        { name: 'NOC consent generators', nameHi: 'अनापत्ति प्रमाण पत्र', desc: 'Draft no-objection clearances for state agencies.' }
-      ],
-      student: [
-        { name: 'Prompt Engineering Tutor', nameHi: 'प्रॉम्प्ट इंजीनियरिंग ट्यूटर', desc: 'Learn Role prompting, chain of thought, few shot basic rules.' },
-        { name: 'Interactive Slide Decks', nameHi: 'इंटरैक्टिव स्लाइड शो', desc: 'Review educational slides and module assignments.' },
-        { name: 'Instant Quiz Grader', nameHi: 'क्विज स्कोरर', desc: 'Take MCQ questions and evaluate final certificate criteria.' },
-        { name: 'Syllabus Scheduler', nameHi: 'कोर्स शेड्यूलर', desc: 'Track your daily 30-day curriculum completion logs.' }
-      ],
-      business: [
-        { name: 'Income Tax Return filer', nameHi: 'ITR टैक्स फाइलिंग', desc: 'Calculate income sources and prepare Form 16 logs.' },
-        { name: 'TA-DA naksha route mapping', nameHi: 'TA-DA भत्ता कैलकुलेटर', desc: 'Compute police/VVIP travel routes and generate map grids.' },
-        { name: 'Ration card database inspector', nameHi: 'राशन कार्ड ट्रैकर', desc: 'Verify household distributions and state quotas.' },
-        { name: 'WhatsApp Web auto campaigns', nameHi: 'व्हाट्सएप ऑटो कैम्पेन', desc: 'Reach customers with zero Meta API setups.' }
-      ],
-      developer: [
-        { name: 'Self Evolution system check', nameHi: 'स्व-सुधार प्रणाली चेक', desc: 'Run diagnostics health audits and auto-fix SEO errors.' },
-        { name: 'Prisma DB migration push', nameHi: 'प्रिज्मा डेटाबेस पुश', desc: 'Sync SQLite local files and generate node packages.' },
-        { name: 'Render platform logs tracker', nameHi: 'रेंडर डिप्लॉय ट्रैकर', desc: 'Fetch Git commit messages and branch info.' },
-        { name: 'API balance HUD checker', nameHi: 'एपीआई बैलेंस चेकर', desc: 'Check key status for Gemini, OpenAI, and ElevenLabs.' }
-      ],
-      general: [
-        { name: 'Universal translation skill', nameHi: 'यूनिवर्सल ट्रांसलेशन', desc: 'Translate paragraphs between 50+ languages.' },
-        { name: 'PDF image converters', nameHi: 'पीडीएफ इमेज कन्वर्टर', desc: 'Extract JPG grids from documents in sandbox.' },
-        { name: 'Voice agent reader', nameHi: 'आवाज़ पहचान कर्ता', desc: 'Voice command processor and text reader.' }
-      ]
-    };
-    return skillsList[goal] || skillsList.general;
+  const toggleFavorite = (e, id) => {
+    e.stopPropagation();
+    setFavorites(prev => {
+      const updated = prev.includes(id) ? prev.filter(f => f !== id) : [...prev, id];
+      localStorage.setItem('harshita_favorites', JSON.stringify(updated));
+      return updated;
+    });
   };
 
-  const recommendedSkills = getRecommendedSkills();
+  const ALL_SERVICES_DATA = [
+    { id: 'leave-app', title: 'Leave Application', titleHi: 'प्रार्थना पत्र', desc: 'Write applications for school or office leave.', icon: FileText, color: 'from-blue-500 to-indigo-500', route: '/service/leave-application', categories: ['All', 'Applications', 'Education'] },
+    { id: 'legal-notice', title: 'Legal Notice', titleHi: 'कानूनी नोटिस', desc: 'Draft legal warnings and recovery notices.', icon: Gavel, color: 'from-orange-500 to-red-500', route: '/legal-notice', categories: ['All', 'Legal', 'Business'] },
+    { id: 'resume-builder', title: 'Resume Builder', titleHi: 'रिज्यूमे मेकर', desc: 'Create professional bio-data and resumes.', icon: FileText, color: 'from-purple-500 to-indigo-500', route: '/resume-builder', categories: ['All', 'Applications', 'Education'] },
+    { id: 'story-video', title: 'AI Cartoon Video', titleHi: 'कहानी से कार्टून', desc: 'Generate animated story videos with voiceovers.', icon: Video, color: 'from-pink-500 to-rose-500', route: '/story-video', categories: ['All', 'Video', 'Media'] },
+    { id: 'tada', title: 'TA-DA Calculator', titleHi: 'भत्ता कैलकुलेटर', desc: 'Compute traveling allowance maps and reports.', icon: Calculator, color: 'from-amber-500 to-orange-500', route: '/tada-naksha', categories: ['All', 'Tools', 'Government', 'CSC'] },
+    { id: 'calculator', title: 'Calculator Tools', titleHi: 'कैलकुलेटर', desc: 'Perform financial and unit conversions.', icon: Calculator, color: 'from-cyan-500 to-blue-500', route: '/tools-hub/multifunction-calculator.html', categories: ['All', 'Tools'] },
+    { id: 'form-filling', title: 'Form Filling', titleHi: 'फॉर्म भरना', desc: 'Online form application helpers.', icon: FormInput, color: 'from-blue-500 to-sky-500', route: '/service/form-filling', categories: ['All', 'Applications', 'CSC'] },
+    { id: 'bulk-import', title: 'Bulk Import', titleHi: 'बल्क अपलोड', desc: 'Import candidate datasets in bulk.', icon: Upload, color: 'from-indigo-500 to-purple-500', route: '/bulk-import', categories: ['All', 'Applications', 'CSC', 'Tools'] },
+    { id: 'candidates', title: 'Candidates Registry', titleHi: 'उम्मीदवार', desc: 'Manage applicant lists and profiles.', icon: Users, color: 'from-teal-500 to-emerald-500', route: '/candidates', categories: ['All', 'Applications', 'Business'] },
+    { id: 'ration-card', title: 'Ration Card', titleHi: 'राशन कार्ड', desc: 'Apply or verify state ration card quotas.', icon: CreditCard, color: 'from-pink-500 to-rose-500', route: '/service/ration-card', categories: ['All', 'Applications', 'Government', 'CSC'] },
+    { id: 'whatsapp', title: 'WhatsApp Blast', titleHi: 'व्हाट्सएप कैंपेन', desc: 'Send campaigns to users via WhatsApp.', icon: Phone, color: 'from-green-500 to-emerald-600', route: '/service/whatsapp', categories: ['All', 'Business', 'Tools'] },
+    { id: 'ai-assistant', title: 'AI Assistant Chat', titleHi: 'AI चैट', desc: 'Conversational assistant for any queries.', icon: Bot, color: 'from-violet-500 to-purple-600', route: '/service/ai-assistant', categories: ['All', 'Education'] },
+    { id: 'pdf-tools', title: 'PDF Tools', titleHi: 'PDF टूल्स', desc: 'Merge, split, and convert PDF formats.', icon: FileText, color: 'from-red-500 to-rose-600', route: '/tools-hub/pdf-to-word.html', categories: ['All', 'Tools', 'Media'] },
+    { id: 'image-tools', title: 'Image Editor', titleHi: 'फोटो एडिटर', desc: 'Crop, compress, and edit photos.', icon: Image, color: 'from-yellow-500 to-amber-600', route: '/tools-hub/image-compress.html', categories: ['All', 'Image', 'Media'] },
+    { id: 'document-scan', title: 'Document OCR', titleHi: 'दस्तावेज़ स्कैन', desc: 'Scan and extract print text from images.', icon: ScanText, color: 'from-purple-500 to-violet-600', route: '/documents', categories: ['All', 'Image', 'Media'] }
+  ];
+
+  const TEMPLATES_LIBRARY = [
+    { id: 'leave_app', title: 'Leave Application', titleHi: 'प्रार्थना पत्र', category: 'Applications', desc: 'School or office leave application.' },
+    { id: 'principal_app', title: 'Principal Application', titleHi: 'प्रधानाचार्य को पत्र', category: 'Applications', desc: 'Official request to school principal.' },
+    { id: 'rent_agreement', title: 'Rent Agreement', titleHi: 'किराया अनुबंध', category: 'Legal', desc: 'Tenant-landlord agreement.' },
+    { id: 'legal_notice', title: 'Legal Notice', titleHi: 'कानूनी नोटिस', category: 'Legal', desc: 'Court warning notice.' },
+    { id: 'reply_notice', title: 'Reply Notice', titleHi: 'नोटिस का जवाब', category: 'Legal', desc: 'Reply to opponent notice.' },
+    { id: 'consumer_complaint', title: 'Consumer Complaint', titleHi: 'उपभोक्ता शिकायत', category: 'Legal', desc: 'Complaint letter to consumer court.' },
+    { id: 'electricity_complaint', title: 'Electricity Complaint', titleHi: 'बिजली शिकायत', category: 'Government', desc: 'Complaint to electricity board.' },
+    { id: 'water_complaint', title: 'Water Complaint', titleHi: 'पानी की शिकायत', category: 'Government', desc: 'Complaint regarding water issues.' },
+    { id: 'poster', title: 'Poster Template', titleHi: 'पोस्टर डिज़ाइन', category: 'Media', desc: 'AI custom poster template.' },
+    { id: 'thumbnail', title: 'Thumbnail Template', titleHi: 'थंबनेल डिज़ाइन', category: 'Media', desc: 'YouTube video thumbnail template.' }
+  ];
+
+  const searchResults = searchQuery.trim()
+    ? ALL_SERVICES_DATA.filter(s =>
+        s.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        s.titleHi.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        s.desc.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : [];
+
+  const [recentDocs, setRecentDocs] = useState([]);
+  useEffect(() => {
+    try {
+      const history = JSON.parse(localStorage.getItem('harshita_doc_history') || '[]');
+      setRecentDocs(history);
+    } catch {
+      setRecentDocs([]);
+    }
+  }, []);
+
+  const CATEGORIES_LIST = [
+    'All', 'Applications', 'Legal', 'Business', 'Video', 'Image', 'Tools', 'Education', 'Government', 'CSC', 'Media'
+  ];
+
+  const filteredServices = activeCategory === 'All'
+    ? ALL_SERVICES_DATA
+    : ALL_SERVICES_DATA.filter(s => s.categories.includes(activeCategory));
+
+  const favoritesList = ALL_SERVICES_DATA.filter(s => favorites.includes(s.id));
+
+  const POPULAR_SERVICES = [
+    { id: 'leave-app', title: 'Leave Application', titleHi: 'प्रार्थना पत्र', desc: 'Write applications for school or office leave.', icon: FileText, color: 'from-blue-500 to-indigo-500', route: '/service/leave-application' },
+    { id: 'legal-notice', title: 'Legal Notice', titleHi: 'कानूनी नोटिस', desc: 'Draft legal warnings and recovery notices.', icon: Gavel, color: 'from-orange-500 to-red-500', route: '/legal-notice' },
+    { id: 'resume-builder', title: 'Resume Builder', titleHi: 'रिज्यूमे मेकर', desc: 'Create professional bio-data and resumes.', icon: FileText, color: 'from-purple-500 to-indigo-500', route: '/resume-builder' },
+    { id: 'story-video', title: 'AI Cartoon Video', titleHi: 'कहानी से कार्टून', desc: 'Generate animated story videos with voiceovers.', icon: Video, color: 'from-pink-500 to-rose-500', route: '/story-video' },
+    { id: 'tada', title: 'TA-DA Calculator', titleHi: 'भत्ता कैलकुलेटर', desc: 'Compute traveling allowance maps and reports.', icon: Calculator, color: 'from-amber-500 to-orange-500', route: '/tada-naksha' },
+    { id: 'calculator', title: 'Calculator Tools', titleHi: 'कैलकुलेटर', desc: 'Perform financial and unit conversions.', icon: Calculator, color: 'from-cyan-500 to-blue-500', route: '/tools-hub/multifunction-calculator.html' }
+  ];
 
   return (
-    <div className="h-full flex flex-col bg-[#020617] overflow-y-auto">
-      <div className="p-4 sm:p-6 space-y-6">
-        <div>
-          <h2 className="text-lg font-bold text-white">Welcome / स्वागत है 👋</h2>
-          <p className="text-xs text-gray-400 mt-1">Left se service chuno ya right mein AI se baat karo</p>
+    <div className="h-full flex flex-col bg-[#020617] overflow-y-auto select-none relative">
+      
+      {/* Search Header (Sticky) */}
+      <div className="sticky top-0 bg-[#020617]/95 backdrop-blur-md border-b border-white/5 p-4 z-40 space-y-3 shrink-0">
+        <div className="flex items-center justify-between">
+          <h2 className="text-sm font-extrabold tracking-tight text-white flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded bg-indigo-500 animate-pulse"></span>
+            Harshita AI Workspace
+          </h2>
+          <button
+            onClick={() => setShowExplorer(!showExplorer)}
+            className="px-3 py-1.5 bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 rounded-lg text-[10px] font-bold hover:bg-indigo-500/20 transition-colors"
+          >
+            📂 Template Explorer
+          </button>
         </div>
 
-        <div>
-          <h3 className="text-sm font-bold text-white mb-3 flex items-center gap-2">
-            <Zap size={16} className="text-amber-400" /> Quick Actions / त्वरित कार्य
-          </h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-            {quickActions.map((action) => {
-              const Icon = action.icon
-              return (
-                <motion.button key={action.label} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
-                  onClick={() => onServiceClick({ id: action.id, title: action.label })}
-                  className="p-3 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 transition-all text-left group">
-                  <div className={`w-9 h-9 rounded-lg bg-gradient-to-br ${action.color} flex items-center justify-center mb-2 group-hover:scale-110 transition-transform`}>
-                    <Icon size={18} className="text-white" />
-                  </div>
-                  <p className="text-xs font-medium text-gray-300">{action.label}</p>
-                  <p className="text-[10px] text-gray-600">{action.labelHi}</p>
-                </motion.button>
-              )
-            })}
+        {/* Top Search Input */}
+        <div className="relative">
+          <Search size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500" />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Universal Search (e.g. Passport Photo, Leave Application, Rent Agreement)..."
+            className="w-full bg-[#0a0b10] border border-white/10 rounded-xl py-2 pl-9 pr-4 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500/50 transition-colors"
+          />
+          {searchQuery && (
+            <button
+              onClick={() => setSearchQuery('')}
+              className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white text-xs font-bold"
+            >
+              Clear
+            </button>
+          )}
+        </div>
+
+        {/* Category Chips */}
+        <div className="flex items-center gap-2 overflow-x-auto scrollbar-none py-1">
+          {CATEGORIES_LIST.map(cat => (
+            <button
+              key={cat}
+              onClick={() => {
+                setActiveCategory(cat);
+                setShowExplorer(false);
+              }}
+              className={`px-3 py-1 rounded-full text-[9px] font-bold whitespace-nowrap border transition-all ${
+                activeCategory === cat && !showExplorer
+                  ? 'bg-indigo-600 border-indigo-500 text-white'
+                  : 'bg-white/5 border-white/5 text-gray-400 hover:border-white/10 hover:text-white'
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Explorer Modal overlay */}
+      {showExplorer && (
+        <div className="p-4 sm:p-6 bg-[#0c0d19] border-b border-white/10 space-y-4 animate-in slide-in-from-top duration-300">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="text-xs font-bold text-white">Mega Template Explorer</h3>
+              <p className="text-[9px] text-gray-500">Search and filter 100+ documents and drafting templates</p>
+            </div>
+            <button onClick={() => setShowExplorer(false)} className="text-gray-500 hover:text-white text-xs">Close ✕</button>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-2">
+            <input
+              type="text"
+              value={explorerSearch}
+              onChange={(e) => setExplorerSearch(e.target.value)}
+              placeholder="Search templates..."
+              className="flex-1 bg-[#0a0b10] border border-white/10 rounded-lg p-2 text-xs text-white placeholder-gray-600"
+            />
+            <select
+              value={explorerCategory}
+              onChange={(e) => setExplorerCategory(e.target.value)}
+              className="bg-[#0a0b10] border border-white/10 rounded-lg p-2 text-xs text-white"
+            >
+              <option value="All">All Categories</option>
+              <option value="Applications">Applications</option>
+              <option value="Legal">Legal Notice & Agreements</option>
+              <option value="Government">Government Complaints</option>
+              <option value="Media">Media Designs</option>
+            </select>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+            {TEMPLATES_LIBRARY.filter(t => 
+              (explorerCategory === 'All' || t.category === explorerCategory) &&
+              (t.title.toLowerCase().includes(explorerSearch.toLowerCase()) || t.titleHi.toLowerCase().includes(explorerSearch.toLowerCase()))
+            ).map(t => (
+              <button
+                key={t.id}
+                onClick={() => {
+                  setShowExplorer(false);
+                  onServiceClick({ id: t.id, title: t.title });
+                }}
+                className="p-2 rounded-lg bg-white/5 border border-white/5 hover:border-indigo-500/20 text-left hover:bg-white/10 transition-all"
+              >
+                <h4 className="text-xs font-bold text-gray-200 truncate">{t.title}</h4>
+                <p className="text-[9px] text-gray-500 truncate">{t.titleHi}</p>
+              </button>
+            ))}
           </div>
         </div>
+      )}
 
-        {/* Recommended Skills Section */}
-        <div>
-          <h3 className="text-sm font-bold text-white mb-3 flex items-center gap-2">
-            <Bot size={16} className="text-indigo-400" /> Recommended Skills / अनुशंसित कौशल
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {recommendedSkills.map((skill, idx) => (
-              <div key={idx} className="p-3 rounded-xl bg-white/5 border border-white/5 hover:border-indigo-500/30 hover:bg-white/10 transition-all text-left">
-                <div className="flex items-center justify-between mb-1.5">
-                  <p className="text-xs font-bold text-indigo-400">{skill.name}</p>
-                  <span className="text-[9px] bg-indigo-500/10 text-indigo-400 font-bold px-1.5 py-0.5 rounded">Active</span>
+      {/* Main Content Area */}
+      <div className="flex-1 p-4 sm:p-6 space-y-6">
+        
+        {/* Search Results Grid */}
+        {searchQuery.trim() !== '' && (
+          <div>
+            <h3 className="text-xs font-extrabold text-gray-500 uppercase tracking-widest mb-3">
+              Search Results ({searchResults.length})
+            </h3>
+            {searchResults.length > 0 ? (
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+                {searchResults.map(s => (
+                  <ServiceCard key={s.id} service={s} favorites={favorites} onToggleFavorite={toggleFavorite} onClick={onServiceClick} />
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-10 bg-white/5 rounded-xl border border-white/5">
+                <HelpCircle size={24} className="mx-auto text-gray-600 mb-2" />
+                <p className="text-xs text-gray-400">No results found for &ldquo;{searchQuery}&rdquo;</p>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Regular Layout */}
+        {searchQuery.trim() === '' && (
+          <>
+            {/* activeCategory is All -> Carousels */}
+            {activeCategory === 'All' && !showExplorer && (
+              <>
+                {/* 1. Favorites */}
+                {favoritesList.length > 0 && (
+                  <div>
+                    <h3 className="text-[10px] font-extrabold text-amber-500 uppercase tracking-widest mb-2 flex items-center gap-1">
+                      <Heart size={10} className="fill-amber-500 text-amber-500" />
+                      Pinned Favorites / पसंदीदा सेवाएँ
+                    </h3>
+                    <div className="flex items-center gap-4 overflow-x-auto scrollbar-none snap-x py-1">
+                      {favoritesList.map(s => (
+                        <div key={s.id} className="w-[180px] shrink-0 snap-start">
+                          <ServiceCard service={s} favorites={favorites} onToggleFavorite={toggleFavorite} onClick={onServiceClick} />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* 2. Popular Section (⭐ Most Used) */}
+                <div>
+                  <h3 className="text-[10px] font-extrabold text-gray-500 uppercase tracking-widest mb-2 flex items-center gap-1">
+                    <Star size={10} className="text-amber-500" />
+                    ⭐ Most Used / सर्वाधिक उपयोग
+                  </h3>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3">
+                    {POPULAR_SERVICES.map(s => (
+                      <Link
+                        key={s.id}
+                        to={s.route}
+                        className="group h-[135px] p-3 rounded-xl bg-white/5 border border-white/10 hover:border-indigo-500/20 hover:bg-white/10 transition-all flex flex-col justify-between"
+                      >
+                        <div>
+                          <s.icon size={16} className="text-indigo-400 mb-1.5" />
+                          <h4 className="text-xs font-bold text-white leading-tight truncate">{s.title}</h4>
+                          <p className="text-[9px] text-gray-500 truncate">{s.titleHi}</p>
+                          <p className="text-[9px] text-gray-400 line-clamp-1 mt-1 leading-snug">{s.desc}</p>
+                        </div>
+                        <div className="text-[9px] text-indigo-400 font-bold flex items-center gap-0.5 mt-auto">
+                          Launch <ChevronRight size={10} />
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
-                <p className="text-[10px] text-gray-300 font-medium mb-0.5">{skill.nameHi}</p>
-                <p className="text-[9px] text-gray-500">{skill.desc}</p>
+
+                {/* 3. Applications Carousel */}
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="text-[10px] font-extrabold text-gray-500 uppercase tracking-widest flex items-center gap-1">
+                      📝 Applications & Forms / प्रार्थना पत्र
+                    </h3>
+                    <button onClick={() => setActiveCategory('Applications')} className="text-[9px] text-indigo-400 hover:text-indigo-300 font-bold">
+                      View All →
+                    </button>
+                  </div>
+                  <div className="flex items-center gap-4 overflow-x-auto scrollbar-none snap-x py-1">
+                    {ALL_SERVICES_DATA.filter(s => s.categories.includes('Applications')).map(s => (
+                      <div key={s.id} className="w-[185px] shrink-0 snap-start">
+                        <ServiceCard service={s} favorites={favorites} onToggleFavorite={toggleFavorite} onClick={onServiceClick} />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* 4. Legal Notice & Drafts Carousel */}
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="text-[10px] font-extrabold text-gray-500 uppercase tracking-widest flex items-center gap-1">
+                      ⚖️ Legal & Tax Filing / कानूनी व टैक्स
+                    </h3>
+                    <button onClick={() => setActiveCategory('Legal')} className="text-[9px] text-indigo-400 hover:text-indigo-300 font-bold">
+                      View All →
+                    </button>
+                  </div>
+                  <div className="flex items-center gap-4 overflow-x-auto scrollbar-none snap-x py-1">
+                    {ALL_SERVICES_DATA.filter(s => s.categories.includes('Legal')).map(s => (
+                      <div key={s.id} className="w-[185px] shrink-0 snap-start">
+                        <ServiceCard service={s} favorites={favorites} onToggleFavorite={toggleFavorite} onClick={onServiceClick} />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* 5. Recently Used */}
+                <div>
+                  <h3 className="text-[10px] font-extrabold text-gray-500 uppercase tracking-widest mb-2 flex items-center gap-1">
+                    <Clock size={10} className="text-amber-500" />
+                    Continue Working / हाल की फ़ाइलें
+                  </h3>
+                  {recentDocs.length > 0 ? (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {recentDocs.slice(0, 4).map((doc, idx) => (
+                        <div key={idx} className="p-3 bg-white/5 border border-white/5 rounded-xl flex items-center justify-between hover:border-indigo-500/20 transition-all">
+                          <div className="flex items-center gap-3 overflow-hidden">
+                            <FileText size={16} className="text-indigo-400 shrink-0" />
+                            <div className="min-w-0">
+                              <h4 className="text-xs font-bold text-gray-200 truncate">{doc.title || doc.type || 'Draft'}</h4>
+                              <p className="text-[9px] text-gray-500 truncate">{doc.date || 'Recently created'}</p>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <span className="text-[9px] bg-emerald-500/10 text-emerald-400 font-bold px-1.5 py-0.5 rounded">80% Progress</span>
+                            <button
+                              onClick={() => {
+                                onServiceClick({ id: 'resume_builder', title: doc.title, workspace: 'Document' });
+                              }}
+                              className="text-[9px] bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-2 py-1 rounded transition-colors"
+                            >
+                              Resume
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="text-center py-6 bg-white/5 rounded-xl border border-white/5 text-gray-600 text-xs">
+                      No document history found / कोई हाल की फ़ाइल नहीं
+                    </div>
+                  )}
+                </div>
+              </>
+            )}
+
+            {/* activeCategory is NOT All -> Filtered Grid View */}
+            {activeCategory !== 'All' && (
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-xs font-extrabold text-indigo-400 uppercase tracking-widest">
+                    Category: {activeCategory}
+                  </h3>
+                  <button onClick={() => setActiveCategory('All')} className="text-[10px] text-gray-500 hover:text-white">
+                    ✕ Clear Filters
+                  </button>
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3">
+                  {filteredServices.map(s => (
+                    <ServiceCard key={s.id} service={s} favorites={favorites} onToggleFavorite={toggleFavorite} onClick={onServiceClick} />
+                  ))}
+                </div>
+              </div>
+            )}
+          </>
+        )}
+
+        {/* Quick Statistics Banner */}
+        <div className="border-t border-white/5 pt-6 mt-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 text-center">
+            {[
+              { stat: '40+ AI Agents', desc: 'Expert drafts' },
+              { stat: '100+ Templates', desc: 'Zero placeholders' },
+              { stat: '30+ Tools', desc: 'Converters & maps' },
+              { stat: 'Hindi + English', desc: 'Bilingual translation' },
+              { stat: 'Voice Enabled', desc: 'Speech typing' },
+              { stat: 'WhatsApp Ready', desc: 'Direct share' }
+            ].map((st, idx) => (
+              <div key={idx} className="p-3 bg-white/5 rounded-xl border border-white/5 animate-pulse-subtle">
+                <p className="text-xs font-bold text-indigo-400">{st.stat}</p>
+                <p className="text-[9px] text-gray-500">{st.desc}</p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Recent Activity */}
-        <div>
-          <div className="flex items-center justify-between mb-3">
-            <h3 className="text-sm font-bold text-white flex items-center gap-2">
-              <Clock size={16} className="text-amber-400" /> Recent / हाल की गतिविधि
-            </h3>
-            <button onClick={() => onServiceClick({ id: 'jobs-list', title: 'Recent Jobs' })} className="text-[10px] text-amber-400 hover:text-amber-300 flex items-center gap-1">
-              View All <ChevronRight size={12} />
-            </button>
-          </div>
-          {jobs.length > 0 ? (
-            <div className="space-y-2">
-              {jobs.slice(0, 5).map((job) => (
-                <div key={job.id} className="flex items-center justify-between p-3 bg-white/5 rounded-xl border border-white/5">
-                  <div className="flex items-center gap-3">
-                    <div className={`w-2 h-2 rounded-full ${
-                      job.status === 'completed' ? 'bg-emerald-400' : job.status === 'running' ? 'bg-blue-400 animate-pulse' : job.status === 'failed' ? 'bg-red-400' : 'bg-amber-400'
-                    }`} />
-                    <div>
-                      <p className="text-xs font-medium text-white">{job.type || job.title || 'Task'}</p>
-                      <p className="text-[10px] text-gray-500">{job.created_at ? new Date(job.created_at).toLocaleDateString('hi-IN') : 'Today'}</p>
-                    </div>
-                  </div>
-                  <span className={`text-[9px] uppercase font-bold px-2 py-0.5 rounded-full ${
-                    job.status === 'completed' ? 'bg-emerald-500/20 text-emerald-400' : job.status === 'running' ? 'bg-blue-500/20 text-blue-400' : job.status === 'failed' ? 'bg-red-500/20 text-red-400' : 'bg-amber-500/20 text-amber-400'
-                  }`}>{job.status}</span>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-6 bg-white/5 rounded-xl border border-white/5">
-              <Zap size={24} className="mx-auto text-gray-600 mb-2" />
-              <p className="text-xs text-gray-500">No recent activity / कोई गतिविधि नहीं</p>
-            </div>
-          )}
-        </div>
-
-        {/* AdSense & SEO Compliance Pages */}
-        <div>
-          <h3 className="text-sm font-bold text-white mb-3 flex items-center gap-2">
-            <Globe size={16} className="text-indigo-400" /> AdSense & SEO Pages / वेबसाइट अनिवार्य पृष्ठ
-          </h3>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            {[
-              { label: 'Privacy Policy', labelHi: 'गोपनीयता नीति', href: '/privacy-policy.html' },
-              { label: 'Terms of Service', labelHi: 'सेवा की शर्तें', href: '/terms.html' },
-              { label: 'Disclaimer', labelHi: 'अस्वीकरण नीति', href: '/disclaimer.html' },
-              { label: 'About Us', labelHi: 'हमारे बारे में', href: '/about.html' },
-              { label: 'Contact Us', labelHi: 'संपर्क फ़ॉर्म', route: '/contact' },
-              { label: 'FAQ Directory', labelHi: 'अक्सर पूछे जाने वाले प्रश्न', route: '/faq' },
-              { label: 'Robots.txt', labelHi: 'रोबोट्स फ़ाइल', href: '/robots.txt' },
-              { label: 'Sitemap.xml', labelHi: 'साइटमैप फ़ाइल', href: '/sitemap.xml' }
-            ].map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={link.route ? (e) => { e.preventDefault(); navigate(link.route) } : undefined}
-                target={link.href ? "_blank" : undefined}
-                rel={link.href ? "noopener noreferrer" : undefined}
-                className="p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-indigo-500/30 hover:bg-white/10 transition-all text-left block group"
-              >
-                <p className="text-xs font-medium text-gray-300 group-hover:text-amber-400 transition-colors">{link.label}</p>
-                <p className="text-[10px] text-gray-600">{link.labelHi}</p>
-              </a>
-            ))}
-          </div>
-        </div>
       </div>
 
-      <div className="mt-auto pt-4 border-t border-gray-800">
+      <div className="mt-auto pt-4 border-t border-gray-800 shrink-0">
         <AdSenseWidget slot="0987654321" format="fluid" />
       </div>
     </div>
-  )
+  );
+}
+
+// Reusable Compact Service Card
+function ServiceCard({ service, favorites, onToggleFavorite, onClick }) {
+  const isFav = favorites.includes(service.id);
+  return (
+    <div
+      onClick={() => onClick(service)}
+      className="group h-[135px] p-3 rounded-xl bg-white/5 border border-white/10 hover:border-indigo-500/30 hover:bg-white/10 transition-all flex flex-col justify-between cursor-pointer relative"
+    >
+      <button
+        type="button"
+        onClick={(e) => onToggleFavorite(e, service.id)}
+        className="absolute top-2 right-2 text-gray-500 hover:text-red-500 transition-colors z-10 p-1"
+      >
+        <Heart size={12} className={`${isFav ? 'text-red-500 fill-red-500' : 'text-gray-600 hover:text-red-400'}`} />
+      </button>
+      <div>
+        <div className="w-7 h-7 rounded-lg bg-indigo-500/10 flex items-center justify-center mb-1.5 group-hover:scale-105 transition-transform">
+          <service.icon size={14} className="text-indigo-400" />
+        </div>
+        <h4 className="text-xs font-bold text-white leading-tight group-hover:text-indigo-400 transition-colors truncate pr-4">
+          {service.title}
+        </h4>
+        <p className="text-[9px] text-gray-500 truncate">{service.titleHi}</p>
+        <p className="text-[9px] text-gray-400 line-clamp-1 mt-1 leading-snug">{service.desc}</p>
+      </div>
+      <div className="text-[9px] text-indigo-400 font-bold flex items-center gap-0.5 mt-auto">
+        Launch <ChevronRight size={10} className="group-hover:translate-x-0.5 transition-transform" />
+      </div>
+    </div>
+  );
 }
 
 // ============ STAT CARD ============

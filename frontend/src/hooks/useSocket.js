@@ -38,28 +38,28 @@ export function useSocket() {
     socket.on('logUpdate', (data) => {
       if (data && data.type === 'user') return
       const text = data.message || data.text || ''
+
+      // Rule 2 (Clarification) & Rule 9 (Error): pass type through unchanged
+      const msgType = data.type || 'ai';
       const msg = {
         id: Date.now() + Math.random(),
-        type: data.type || 'ai',
+        type: msgType,
         message: text,
+        retryable: data.retryable || false,
         timestamp: new Date().toISOString(),
         action: data.action || null,
         interactionId: data.interactionId || null,
       }
 
-      // PRD-021: Enhanced Document Auto-Routing
+      // PRD-021: Enhanced Document Auto-Routing (only for 'ai' type messages)
       let isDocument = false;
-      if ((data.type === 'ai' || !data.type) && text.length > 100) {
-        // Use the enhanced DocumentClassifier
+      if (msgType === 'ai' && text.length > 100) {
         const docClassification = classifyDocumentCategory(text);
         
         if (docClassification.isDocument || isDocumentType(text)) {
           isDocument = true;
-          
-          // Get a clean, categorized title
           const title = docClassification.title || getDocumentTitle(text);
           
-          // Re-route to A4 Document Workspace
           setCurrentDocument({
             title: title || 'Generated Document',
             content: text,
@@ -69,21 +69,32 @@ export function useSocket() {
           });
           setResponseMode('DOCUMENT');
 
-          // PRD-021: Only show success notification in chat, never the full document
-          const notifyMsg = {
+          // Rule 6: Save to History
+          try {
+            const history = JSON.parse(localStorage.getItem('harshita_doc_history') || '[]');
+            history.unshift({
+              id: `doc-${Date.now()}`,
+              title: title || 'Generated Document',
+              type: docClassification.category || 'document',
+              date: new Date().toISOString(),
+              status: 'Generated',
+            });
+            // Keep last 50
+            localStorage.setItem('harshita_doc_history', JSON.stringify(history.slice(0, 50)));
+          } catch (_) {}
+
+          setMessages((prev) => [...prev, {
             id: Date.now() + Math.random(),
             type: 'system',
             message: `✅ Document Generated Successfully.\n📄 ${title}\nOpening A4 Workspace...`,
             timestamp: new Date().toISOString()
-          };
-          setMessages((prev) => [...prev, notifyMsg]);
+          }]);
         }
       }
 
       if (!isDocument) {
         setMessages((prev) => [...prev, msg]);
       }
-
     })
 
     socket.on('job_update', (data) => {

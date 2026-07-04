@@ -11,6 +11,8 @@ import Footer from '../components/Footer'
 
 // Tool list data for SEO crawlability and direct links
 const TOOLS_LIST = [
+  { icon: '📷', name: 'Passport Photo Maker', desc: 'Generate standard passport size photos with smart background removal.', href: '/passport-size-photo-maker.html' },
+  { icon: '🖼️', name: 'Passport Size Maker', desc: 'Quickly resize any portrait image to official passport size specifications.', href: '/passport-size-photo-maker.html' },
   { icon: '🎵', name: 'Audio Converter', desc: 'Convert audio files to MP3, WAV, OGG formats in seconds.', href: '/audio-converter.html' },
   { icon: '📄', name: 'Document Converter', desc: 'Convert between PDF, DOCX, TXT, HTML, and JSON structures.', href: '/document-format-converter.html' },
   { icon: '🗜️', name: 'File Compressor', desc: 'Compress PDF files to optimize loading speeds and storage.', href: '/file-compressor.html' },
@@ -19,7 +21,6 @@ const TOOLS_LIST = [
   { icon: '🔄', name: 'Image Format Converter', desc: 'Convert image files to PNG, JPEG, and WebP formats.', href: '/image-format-converter.html' },
   { icon: '📑', name: 'Image to PDF', desc: 'Merge multiple image files into a single, high-quality PDF.', href: '/image-to-pdf.html' },
   { icon: '🧮', name: 'Multifunction Calculator', desc: 'Perform basic math, financial, currency, and unit conversions.', href: '/multifunction-calculator.html' },
-  { icon: '📷', name: 'Passport Photo Maker', desc: 'Generate standard passport size photos with smart background removal.', href: '/passport-size-photo-maker.html' },
   { icon: '📝', name: 'PDF to Word', desc: 'Convert read-only PDF files to fully editable Word documents.', href: '/pdf-to-word.html' },
   { icon: '🔳', name: 'QR Code Generator', desc: 'Generate unique QR codes for websites, texts, and contact details.', href: '/qr-generator.html' },
   { icon: '🔊', name: 'Speech Synthesis & Recognition', desc: 'Convert text to natural speech voice and transcribe audio files.', href: '/text-to-speech.html' },
@@ -27,6 +28,24 @@ const TOOLS_LIST = [
   { icon: '🎬', name: 'Video Converter', desc: 'Convert video clips to MP4, AVI, MKV, and MOV formats.', href: '/video-converter.html' },
   { icon: '🎙️', name: 'Voice Translator', desc: 'Translate spoken phrases and voice logs in real-time.', href: '/voice-translator.html' },
   { icon: '🔑', name: 'Password Generator', desc: 'Create secure, highly randomized passwords instantly.', href: '/password-generator.html' }
+]
+
+const DRAFTING_TOOLS = [
+  { icon: '⚖️', name: 'Passport Affidavit', desc: 'Create legally valid passport affidavits and address confirmations.', slug: 'passport-affidavit', href: '/login?prompt=Passport+Affidavit+banao' },
+  { icon: '📝', name: 'Passport Application', desc: 'Apply for fresh or renewal passports online via Passport Seva portal guidelines.', slug: 'passport-application', href: '/login?prompt=Passport+application' },
+  { icon: '⚖️', name: 'Affidavit Generator', desc: 'Create legally valid name change, lost marksheet, and address affidavits.', slug: 'affidavit-generator', href: '/login?prompt=Affidavit+banao' },
+  { icon: '✉️', name: 'Legal Notice Generator', desc: 'Draft professional demand letters for cheque bounce, recovery, and disputes.', slug: 'legal-notice-generator', href: '/login?prompt=Legal+Notice+bhejo' },
+  { icon: '📝', name: 'Prarthna Patra Writer', desc: 'Hindi applications for block tehsils, police complaints, and SDM offices.', slug: 'prarthna-patra-writer', href: '/login?prompt=Principal+ko+leave+application' },
+  { icon: '🏠', name: 'Rent Agreement Builder', desc: 'Construct customized tenant-landlord agreements with state stamp rules.', slug: 'rent-agreement-generator', href: '/login?prompt=Rent+agreement+banao' },
+  { icon: '🎁', name: 'Gift Deed Generator', desc: 'Voluntary property gift deeds for blood relatives with tax exemptions.', slug: 'gift-deed-generator', href: '/login?prompt=Gift+deed+banao' },
+  { icon: '🗺️', name: 'Partition Deed Builder', desc: 'Draft agreements to divide joint family property among co-owners.', slug: 'partition-deed-generator', href: '/login?prompt=Partition+deed+banao' },
+  { icon: '🤝', name: 'Power of Attorney GPA/SPA', desc: 'Authorize representation rights for property, RTO, or legal matters.', slug: 'power-of-attorney-generator', href: '/login?prompt=Power+of+attorney+banao' },
+  { icon: '📜', name: 'Will (Wasiyat) Builder', desc: 'Ensure asset succession with secure executor and witness covenants.', slug: 'will-generator', href: '/login?prompt=Wasiyatnama+banao' }
+]
+
+const ALL_SERVICES = [
+  ...DRAFTING_TOOLS,
+  ...TOOLS_LIST.map(t => ({ ...t, slug: t.href.replace('/', '').replace('.html', ''), category: 'Converters' }))
 ]
 
 const FAQS = [
@@ -45,17 +64,21 @@ const TESTIMONIALS = [
 
 export default function PublicHome() {
   const [searchQuery, setSearchQuery] = useState('')
-  const [aiPrompt, setAiPrompt] = useState('')
+  const [showAllDrafting, setShowAllDrafting] = useState(false)
+  const [showAllTools, setShowAllTools] = useState(false)
 
-  const filteredTools = TOOLS_LIST.filter(t => 
-    t.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    t.desc.toLowerCase().includes(searchQuery.toLowerCase())
-  )
+  // Universal Search Filter over ALL services
+  const searchResults = searchQuery.trim() 
+    ? ALL_SERVICES.filter(s => 
+        s.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+        s.desc.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : [];
 
   const handlePromptSubmit = (e) => {
     e.preventDefault();
-    if(aiPrompt.trim()) {
-      window.location.href = `/login?prompt=${encodeURIComponent(aiPrompt)}`;
+    if(searchQuery.trim()) {
+      window.location.href = `/login?prompt=${encodeURIComponent(searchQuery)}`;
     }
   }
 
@@ -96,8 +119,8 @@ export default function PublicHome() {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-4 sm:px-8 overflow-hidden">
+      {/* Hero Section with Search */}
+      <section className="relative pt-32 pb-16 px-4 sm:px-8 overflow-hidden">
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-500/10 blur-[120px] rounded-full pointer-events-none" />
         <div className="absolute top-1/3 left-1/4 -translate-y-1/2 w-[300px] h-[300px] bg-cyan-500/5 blur-[100px] rounded-full pointer-events-none" />
 
@@ -127,12 +150,12 @@ export default function PublicHome() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed"
+            className="text-sm sm:text-base text-gray-400 max-w-2xl mx-auto leading-relaxed"
           >
             Code software, draft legal documents, write government applications, generate videos, build websites, and automate your entire business—all in one place.
           </motion.p>
 
-          {/* AI Prompt Box */}
+          {/* Top Sticky Search Bar / AI Prompt Box */}
           <motion.form 
             onSubmit={handlePromptSubmit}
             initial={{ opacity: 0, y: 15 }}
@@ -146,20 +169,50 @@ export default function PublicHome() {
                 <Search size={20} className="text-indigo-400 ml-4 mr-2" />
                 <input 
                   type="text"
-                  value={aiPrompt}
-                  onChange={(e) => setAiPrompt(e.target.value)}
-                  placeholder="Ask Harshita AI to draft a document, write code, or create a video..." 
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search templates & tools (e.g. Passport, Rent Agreement, Resume)..." 
                   className="w-full bg-transparent border-none outline-none text-white placeholder-gray-500 py-3 px-2 text-sm sm:text-base"
                 />
-                <button type="submit" className="bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl px-6 py-3 font-semibold transition-colors flex items-center gap-2">
-                  Generate <ArrowRight size={16} />
+                <button type="submit" className="bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl px-5 py-3 text-sm font-semibold transition-colors flex items-center gap-1.5 shrink-0">
+                  Generate <ArrowRight size={14} />
                 </button>
               </div>
             </div>
-            <div className="flex flex-wrap justify-center gap-3 mt-4 text-xs text-gray-400">
-              <span className="cursor-pointer hover:text-indigo-400 px-3 py-1 rounded-full bg-white/5 border border-white/10" onClick={() => setAiPrompt('Draft a Rent Agreement for 11 months')}>Rent Agreement</span>
-              <span className="cursor-pointer hover:text-indigo-400 px-3 py-1 rounded-full bg-white/5 border border-white/10" onClick={() => setAiPrompt('Write a React component for a dashboard')}>Code Dashboard</span>
-              <span className="cursor-pointer hover:text-indigo-400 px-3 py-1 rounded-full bg-white/5 border border-white/10" onClick={() => setAiPrompt('Generate a marketing video for my shop')}>Create Video</span>
+            
+            {/* Real-time Universal Search Results */}
+            {searchQuery.trim() !== '' && (
+              <div className="absolute left-0 right-0 top-full mt-3 bg-[#0a0b10]/95 border border-white/15 rounded-2xl p-4 shadow-2xl z-50 text-left backdrop-blur-xl max-h-[350px] overflow-y-auto">
+                <p className="text-[11px] text-gray-500 uppercase tracking-widest font-bold mb-3">Search Results ({searchResults.length})</p>
+                {searchResults.length > 0 ? (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {searchResults.map((tool, idx) => (
+                      <Link 
+                        key={idx} 
+                        to={tool.href || `/tools/${tool.slug}`}
+                        onClick={() => setSearchQuery('')}
+                        className="flex items-center gap-3 p-2.5 rounded-xl bg-white/5 border border-white/5 hover:border-indigo-500/30 hover:bg-white/10 transition-all group"
+                      >
+                        <span className="text-2xl group-hover:scale-110 transition-transform">{tool.icon}</span>
+                        <div className="min-w-0">
+                          <h4 className="text-xs font-bold text-white group-hover:text-indigo-400 transition-colors truncate">{tool.name}</h4>
+                          <p className="text-[10px] text-gray-400 line-clamp-1">{tool.desc}</p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-6">
+                    <p className="text-xs text-gray-500">No matching services found.</p>
+                  </div>
+                )}
+              </div>
+            )}
+
+            <div className="flex flex-wrap justify-center gap-2 mt-4 text-[11px] text-gray-400">
+              <span className="cursor-pointer hover:text-indigo-400 px-3 py-1 rounded-full bg-white/5 border border-white/10" onClick={() => setSearchQuery('Passport')}>Passport Services</span>
+              <span className="cursor-pointer hover:text-indigo-400 px-3 py-1 rounded-full bg-white/5 border border-white/10" onClick={() => setSearchQuery('Rent Agreement')}>Rent Agreement</span>
+              <span className="cursor-pointer hover:text-indigo-400 px-3 py-1 rounded-full bg-white/5 border border-white/10" onClick={() => setSearchQuery('Resume')}>Resume Builder</span>
             </div>
           </motion.form>
         </div>
@@ -168,7 +221,7 @@ export default function PublicHome() {
       {/* Grid Features - Core Capabilities */}
       <section id="features" className="py-16 px-4 sm:px-8 border-t border-white/5 bg-white/[0.01]">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
+          <div className="text-center max-w-2xl mx-auto mb-12 space-y-3">
             <h2 className="text-2xl sm:text-3xl font-bold">Comprehensive AI Capabilities</h2>
             <p className="text-sm text-gray-400">Harshita AI acts as your personal team of experts across multiple domains.</p>
           </div>
@@ -206,88 +259,85 @@ export default function PublicHome() {
       </section>
 
       {/* Premium AI Drafting Tools Directory */}
-      <section id="draft-tools" className="py-20 px-4 sm:px-8 border-t border-white/5 bg-[#0b0d19]/30">
-        <div className="max-w-7xl mx-auto space-y-12">
-          <div className="text-center max-w-2xl mx-auto space-y-3">
+      <section id="draft-tools" className="py-16 px-4 sm:px-8 border-t border-white/5 bg-[#0b0d19]/30">
+        <div className="max-w-7xl mx-auto space-y-8">
+          <div className="text-center max-w-2xl mx-auto space-y-2">
             <span className="text-xs font-bold text-amber-500 uppercase tracking-widest">Legal Engine</span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">AI Drafting Assistants</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">AI Drafting Assistants</h2>
             <p className="text-sm text-gray-400">Generate court-ready agreements, legal notices, and certificates in minutes with our zero-placeholder quality gates.</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { icon: '⚖️', name: 'Affidavit Generator', desc: 'Create legally valid name change, lost marksheet, and address affidavits.', slug: 'affidavit-generator' },
-              { icon: '✉️', name: 'Legal Notice Generator', desc: 'Draft professional demand letters for cheque bounce, recovery, and disputes.', slug: 'legal-notice-generator' },
-              { icon: '📝', name: 'Prarthna Patra Writer', desc: 'Hindi applications for block tehsils, police complaints, and SDM offices.', slug: 'prarthna-patra-writer' },
-              { icon: '🏠', name: 'Rent Agreement Builder', desc: 'Construct customized tenant-landlord agreements with state stamp rules.', slug: 'rent-agreement-generator' },
-              { icon: '🎁', name: 'Gift Deed Generator', desc: 'Voluntary property gift deeds for blood relatives with tax exemptions.', slug: 'gift-deed-generator' },
-              { icon: '🗺️', name: 'Partition Deed Builder', desc: 'Draft agreements to divide joint family property among co-owners.', slug: 'partition-deed-generator' },
-              { icon: '🤝', name: 'Power of Attorney GPA/SPA', desc: 'Authorize representation rights for property, RTO, or legal matters.', slug: 'power-of-attorney-generator' },
-              { icon: '📜', name: 'Will (Wasiyat) Builder', desc: 'Ensure asset succession with secure executor and witness covenants.', slug: 'will-generator' }
-            ].map((tool, idx) => (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8 gap-4">
+            {DRAFTING_TOOLS.slice(0, showAllDrafting ? DRAFTING_TOOLS.length : 6).map((tool, idx) => (
               <Link 
                 key={idx} 
-                to={`/tools/${tool.slug}`}
-                className="group p-6 rounded-2xl bg-[#0f111a] border border-white/5 hover:border-amber-500/30 transition-all duration-300 shadow-xl flex flex-col justify-between hover:scale-[1.02] hover:shadow-amber-500/5"
+                to={tool.href || `/tools/${tool.slug}`}
+                className="group h-[140px] p-3.5 rounded-xl bg-[#0f111a] border border-white/5 hover:border-amber-500/30 transition-all duration-300 shadow-xl flex flex-col justify-between hover:scale-[1.02]"
               >
-                <div className="space-y-4">
-                  <span className="text-3xl block group-hover:scale-110 transition-transform origin-left">{tool.icon}</span>
-                  <h3 className="font-bold text-white text-base group-hover:text-amber-400 transition-colors">{tool.name}</h3>
-                  <p className="text-xs text-gray-400 leading-relaxed line-clamp-3">{tool.desc}</p>
+                <div className="space-y-1">
+                  <span className="text-2xl block group-hover:scale-110 transition-transform origin-left">{tool.icon}</span>
+                  <h3 className="font-bold text-white text-xs leading-tight group-hover:text-amber-400 transition-colors truncate">{tool.name}</h3>
+                  <p className="text-[10px] text-gray-400 line-clamp-1">{tool.desc}</p>
                 </div>
-                <div className="flex items-center gap-1.5 text-xs text-amber-500 font-bold mt-6 pt-4 border-t border-white/[0.02]">
-                  Explore Details <ChevronRight size={12} className="group-hover:translate-x-1 transition-transform" />
+                <div className="flex items-center justify-between text-[10px] text-amber-500 font-bold border-t border-white/[0.02] pt-2">
+                  <span>Launch</span>
+                  <ChevronRight size={10} className="group-hover:translate-x-0.5 transition-transform" />
                 </div>
               </Link>
             ))}
           </div>
+
+          {!showAllDrafting && DRAFTING_TOOLS.length > 6 && (
+            <div className="text-center pt-4">
+              <button 
+                onClick={() => setShowAllDrafting(true)}
+                className="px-6 py-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-xs font-semibold text-white transition-colors"
+              >
+                View All ({DRAFTING_TOOLS.length}) →
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
       {/* Programmatic Tools Directory */}
-      <section id="tools" className="py-20 px-4 sm:px-8 border-t border-white/5">
-        <div className="max-w-7xl mx-auto space-y-12">
+      <section id="tools" className="py-16 px-4 sm:px-8 border-t border-white/5">
+        <div className="max-w-7xl mx-auto space-y-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div className="space-y-3">
-              <h2 className="text-3xl font-bold tracking-tight">Free Conversion Suite</h2>
+            <div className="space-y-2">
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Free Conversion Suite</h2>
               <p className="text-sm text-gray-400 max-w-xl">Double-click or open any tool below to perform offline document, image, and voice conversion.</p>
-            </div>
-            <div className="relative w-full md:w-80">
-              <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500" />
-              <input 
-                type="text" 
-                value={searchQuery}
-                onChange={e => setSearchQuery(e.target.value)}
-                placeholder="Search 16+ tools..."
-                className="w-full bg-[#0a0b10] border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-sm focus:outline-none focus:border-indigo-500/50 text-white placeholder-gray-500 transition-colors"
-              />
             </div>
           </div>
 
-          {filteredTools.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {filteredTools.map((tool, idx) => (
-                <a 
-                  key={idx} 
-                  href={tool.href} 
-                  className="group p-6 rounded-2xl bg-[#0f111a] border border-white/5 hover:border-indigo-500/30 transition-all duration-300 shadow-xl flex flex-col justify-between hover:scale-[1.02] hover:shadow-indigo-500/5"
-                >
-                  <div className="space-y-4">
-                    <span className="text-3xl block group-hover:scale-110 transition-transform origin-left">{tool.icon}</span>
-                    <h3 className="font-bold text-white text-base group-hover:text-indigo-400 transition-colors">{tool.name}</h3>
-                    <p className="text-xs text-gray-400 leading-relaxed line-clamp-3">{tool.desc}</p>
-                  </div>
-                  <div className="flex items-center gap-1.5 text-xs text-indigo-400 font-bold mt-6 pt-4 border-t border-white/[0.02]">
-                    Launch Tool <ChevronRight size={12} className="group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </a>
-              ))}
-            </div>
-          ) : (
-            <div className="py-20 text-center border border-dashed border-white/10 rounded-2xl">
-              <HelpCircle size={40} className="mx-auto text-gray-600 mb-3" />
-              <h3 className="text-lg font-bold text-gray-400">No tools found matching your query</h3>
-              <button onClick={() => setSearchQuery('')} className="mt-3 text-indigo-400 text-sm font-semibold hover:underline">Reset Search Filters</button>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8 gap-4">
+            {TOOLS_LIST.slice(0, showAllTools ? TOOLS_LIST.length : 6).map((tool, idx) => (
+              <a 
+                key={idx} 
+                href={tool.href} 
+                className="group h-[140px] p-3.5 rounded-xl bg-[#0f111a] border border-white/5 hover:border-indigo-500/30 transition-all duration-300 shadow-xl flex flex-col justify-between hover:scale-[1.02]"
+              >
+                <div className="space-y-1">
+                  <span className="text-2xl block group-hover:scale-110 transition-transform origin-left">{tool.icon}</span>
+                  <h3 className="font-bold text-white text-xs leading-tight group-hover:text-indigo-400 transition-colors truncate">{tool.name}</h3>
+                  <p className="text-[10px] text-gray-400 line-clamp-1">{tool.desc}</p>
+                </div>
+                <div className="flex items-center justify-between text-[10px] text-indigo-400 font-bold border-t border-white/[0.02] pt-2">
+                  <span>Launch</span>
+                  <ChevronRight size={10} className="group-hover:translate-x-0.5 transition-transform" />
+                </div>
+              </a>
+            ))}
+          </div>
+
+          {!showAllTools && TOOLS_LIST.length > 6 && (
+            <div className="text-center pt-4">
+              <button 
+                onClick={() => setShowAllTools(true)}
+                className="px-6 py-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-xs font-semibold text-white transition-colors"
+              >
+                View All ({TOOLS_LIST.length}) →
+              </button>
             </div>
           )}
         </div>

@@ -291,9 +291,9 @@ export const AGENTS = [
 // Generate placeholder agents to reach 60 for UI completeness
 for(let i = AGENTS.length + 1; i <= 60; i++) {
   AGENTS.push({
-    id: \`agent-\${i}\`,
-    name: \`Agent \${i} Service\`,
-    nameHi: \`एजेंट \${i} सर्विस\`,
+    id: `agent-${i}`,
+    name: `Agent ${i} Service`,
+    nameHi: `एजेंट ${i} सर्विस`,
     description: 'Placeholder description for Agent.',
     icon: Settings,
     color: 'bg-gray-600',

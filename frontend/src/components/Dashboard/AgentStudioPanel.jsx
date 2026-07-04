@@ -4,7 +4,7 @@ import {
   ChevronRight, HelpCircle, History, Settings, FileText, 
   Download, Share2, Edit, Play, RotateCcw, Zap, BookOpen 
 } from 'lucide-react';
-import { useStore } from '../../../store';
+import { useStore } from '../../store';
 
 export default function AgentStudioPanel({ agent, onGenerate, onEditInWorkspace }) {
   const [formData, setFormData] = useState({});

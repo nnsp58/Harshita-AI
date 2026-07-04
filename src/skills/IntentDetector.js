@@ -146,8 +146,12 @@ class IntentDetector {
       return { intent: 'geo_land', confidence: 0.95, params: { raw: message }, method: 'pattern' };
     }
     // Unit Conversion Pattern (e.g. "convert to bigha", "sq ft to acre")
-    if (/\b(?:convert|badlo|to|mein|bigha|acre|hectare|sq ft|sq m)\b/i.test(message) && /\d+/.test(message)) {
+    if (/\b(?:convert|badlo|bigha|acre|hectare|sq ft|sq m)\b/i.test(message) && /\d+/.test(message)) {
       return { intent: 'convert_area', confidence: 0.9, params: { raw: message }, method: 'pattern' };
+    }
+    // Financial/Percentage Math Pattern (e.g. "GST 18%", "15% of 5000", "interest rate")
+    if (/(?:gst|emi|interest|tax|percentage|percent|interest|ब्याज|प्रतिशत|%)/i.test(message) && /\d+/.test(message)) {
+      return { intent: 'math_financial', confidence: 0.95, params: { raw: message }, method: 'pattern' };
     }
     return null;
   }

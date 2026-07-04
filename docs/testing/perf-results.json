@@ -1,0 +1,59 @@
+{
+  "timestamp": "2026-07-04T20:11:58.726Z",
+  "avgLatencyMs": 16,
+  "maxLatencyMs": 130,
+  "targetMs": 1000,
+  "passRate": "100%",
+  "results": [
+    {
+      "input": "Principal ko leave application likho",
+      "latency": 3,
+      "pass": true
+    },
+    {
+      "input": "Legal notice banao",
+      "latency": 10,
+      "pass": true
+    },
+    {
+      "input": "Resume banana hai",
+      "latency": 130,
+      "pass": true
+    },
+    {
+      "input": "GST 18% on 50000",
+      "latency": 9,
+      "pass": true
+    },
+    {
+      "input": "Affidavit banao",
+      "latency": 1,
+      "pass": true
+    },
+    {
+      "input": "DM ko shikayat patra",
+      "latency": 0,
+      "pass": true
+    },
+    {
+      "input": "Rent agreement likhna hai",
+      "latency": 0,
+      "pass": true
+    },
+    {
+      "input": "बिजली शिकायत पत्र लिखो",
+      "latency": 9,
+      "pass": true
+    },
+    {
+      "input": "SDO ko complaint",
+      "latency": 0,
+      "pass": true
+    },
+    {
+      "input": "Job application likhni hai",
+      "latency": 1,
+      "pass": true
+    }
+  ]
+}
