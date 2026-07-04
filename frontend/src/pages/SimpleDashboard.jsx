@@ -20,6 +20,7 @@ import {
 import Fuse from 'fuse.js'
 import { AGENTS, CATEGORIES } from '../data/agents'
 import AgentStudioPanel from '../components/Dashboard/AgentStudioPanel'
+import AdSenseWidget from '../components/AdSenseWidget'
 
 const SERVICES = [
   { id: 'story-video', title: 'Story Video', titleHi: 'कहानी से कार्टून', icon: Video, color: 'bg-indigo-600', route: '/story-video' },
@@ -36,6 +37,9 @@ const SERVICES = [
   { id: 'ration-card', title: 'Ration Card', titleHi: 'राशन कार्ड', icon: CreditCard, color: 'bg-pink-500', route: '/service/ration-card' },
   { id: 'whatsapp', title: 'WhatsApp', titleHi: 'व्हाट्सएप', icon: Phone, color: 'bg-green-600', route: '/service/whatsapp' },
   { id: 'ai-assistant', title: 'AI Chat', titleHi: 'AI चैट', icon: Bot, color: 'bg-violet-500', route: '/service/ai-assistant' },
+  { id: 'pdf-tools', title: 'PDF Tools', titleHi: 'PDF टूल्स', icon: FileText, color: 'bg-red-600', route: '/tools-hub/pdf-to-word.html' },
+  { id: 'calculator', title: 'Calculator', titleHi: 'कैलकुलेटर', icon: Calculator, color: 'bg-gray-600', route: '/tools-hub/multifunction-calculator.html' },
+  { id: 'image-tools', title: 'Image Editor', titleHi: 'फोटो एडिटर', icon: Image, color: 'bg-yellow-600', route: '/tools-hub/image-compress.html' }
 ]
 
 // ============ MAIN COMPONENT ============
@@ -228,6 +232,8 @@ export default function SimpleDashboard() {
           )
         })}
       </div>
+
+      <AdSenseWidget slot="1234567890" format="auto" />
 
       {/* 3-Panel Resizable Layout */}
       <div ref={containerRef} className="flex-1 flex overflow-hidden">
@@ -744,6 +750,10 @@ function CenterDashboardPanel({ stats, agents, jobs, onServiceClick, goal = 'gen
             ))}
           </div>
         </div>
+      </div>
+
+      <div className="mt-auto pt-4 border-t border-gray-800">
+        <AdSenseWidget slot="0987654321" format="fluid" />
       </div>
     </div>
   )
