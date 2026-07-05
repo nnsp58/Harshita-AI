@@ -1,6 +1,5 @@
 // frontend/src/pages/SpecialistCourse.jsx - Harshita AI Specialist Course (Video Based)
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { useStore } from '../store'
 import {
@@ -127,8 +126,8 @@ export default function SpecialistCourse() {
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed.lessons)) setCompletedLessons(parsed.lessons);
-        if (parsed.assignments) setSubmittedAssignments(parsed.assignments);
+        if (Array.isArray(parsed.lessons)) setCompletedLessons(() => parsed.lessons);
+        if (parsed.assignments) setSubmittedAssignments(() => parsed.assignments);
       } catch (e) {
         console.error('Failed to load progress', e);
       }

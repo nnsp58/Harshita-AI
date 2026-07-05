@@ -72,7 +72,7 @@ const TranslatorTool = ({ onClose }) => {
     setIsTranslating(true);
 
     try {
-      const url = \`https://translate.googleapis.com/translate_a/single?client=gtx&sl=\${sourceLang}&tl=\${targetLang}&dt=t&q=\${encodeURIComponent(sourceText)}\`;
+      const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sourceLang}&tl=${targetLang}&dt=t&q=${encodeURIComponent(sourceText)}`;
       const response = await fetch(url);
       const data = await response.json();
       

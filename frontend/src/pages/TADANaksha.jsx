@@ -75,16 +75,7 @@ function calculateFare(distance, rate) {
 }
 
 // Calculate days between two dates (inclusive — start day counts as 1)
-// Used for display purposes only
-function calculateDays(startDate, endDate) {
-  if (!startDate) return 1
-  if (!endDate) return 1
-  const start = new Date(startDate)
-  const end = new Date(endDate)
-  if (isNaN(start) || isNaN(end)) return 1
-  const diff = Math.floor((end - start) / (1000 * 60 * 60 * 24)) + 1
-  return diff > 0 ? diff : 1
-}
+// Removed unused calculateDays function
 
 // New: Smart DA Eligible Days calculation (User's confirmed rule)
 // - Same day journey → 1 day
@@ -488,16 +479,20 @@ export default function TADANaksha() {
         // Only restore if draft is fresh (< 2 hours old)
         if (ageMin < 120 && draft.journeys?.length > 0) {
           if (confirm(`पिछला draft मिला (${draft.journeys.length} entries, ${Math.round(ageMin)} min पहले). Resume करें?`)) {
-            setInfo(draft.info || info)
-            setJourneys(draft.journeys || [])
-            setForm(draft.form || getEmptyJourney())
-            setStep(draft.step || 0)
-            setEditIdx(draft.editIdx ?? null)
+            setTimeout(() => {
+              setInfo(draft.info || info)
+              setJourneys(draft.journeys || [])
+              setForm(draft.form || getEmptyJourney())
+              setStep(draft.step || 0)
+              setEditIdx(draft.editIdx ?? null)
+            }, 0)
           }
           localStorage.removeItem('harshita_tada_draft')
         }
       }
-    } catch {}
+    } catch (e) {
+      console.error('Failed to load draft', e);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -944,7 +939,7 @@ function JourneyStep({ form, setForm, editIdx, onAdd, onCancel, pno, journeys, m
 }
 
 // ===== NAKSHA PREVIEW (Landscape) =====
-function NakshaPreview({ info, journeys, onEdit, onDelete, totalDist, totalFare, totalDays, totalDA, grandTotal, hasManualDA }) {
+function NakshaPreview({ info, journeys, onEdit, onDelete, totalDist, totalFare, totalDays, totalDA, grandTotal, hasManualDA: _hasManualDA }) {
   return (
     <div className="naksha-print-wrapper flex justify-center">
       {/* Page wrapper — Legal landscape size with visible margins */}
@@ -1190,7 +1185,7 @@ function SearchSelectCreatable({ label, value, onChange, onBlur, options, placeh
 
   // Sync search when external value changes (e.g., from auto-translate or reverse button)
   useEffect(() => {
-    setSearch(value || '')
+    setTimeout(() => setSearch(value || ''), 0)
   }, [value])
 
   const filtered = useMemo(() => {

@@ -24,7 +24,7 @@ export default function SkillsControl() {
   }
 
   useEffect(() => {
-    loadSkills()
+    setTimeout(loadSkills, 0)
   }, [])
 
   const getStatusBadge = (status) => {

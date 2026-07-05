@@ -6,7 +6,7 @@ import { saveAs } from 'file-saver';
 import { jsPDF } from 'jspdf';
 
 // Initialize PDF.js worker
-pdfjsLib.GlobalWorkerOptions.workerSrc = \`https://cdnjs.cloudflare.com/ajax/libs/pdf.js/\${pdfjsLib.version}/pdf.worker.min.js\`;
+pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
 
 const DocumentConverter = ({ onClose }) => {
   const [activeTab, setActiveTab] = useState('pdf2word');

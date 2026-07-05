@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Mic, MicOff, FileText, Download, Calculator } from 'lucide-react'
-import { useStore } from '../store'
 
 export default function TADAForm() {
-  const { createJob } = useStore()
   const [input, setInput] = useState('')
   const [isListening, setIsListening] = useState(false)
   const [parsedData, setParsedData] = useState(null)

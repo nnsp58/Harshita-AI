@@ -24,15 +24,15 @@ const UtilityTools = ({ onClose }) => {
       <div className="flex border-b border-slate-200">
         <button 
           onClick={() => setActiveTab('qr')}
-          className={\`flex-1 py-4 font-semibold flex justify-center items-center gap-2 transition-colors \${activeTab === 'qr' ? 'text-purple-600 border-b-2 border-purple-600 bg-purple-50' : 'text-slate-500 hover:bg-slate-50'}\`}
+          className={`flex-1 py-4 font-semibold flex justify-center items-center gap-2 transition-colors ${activeTab === 'qr' ? 'text-purple-600 border-b-2 border-purple-600 bg-purple-50' : 'text-slate-500 hover:bg-slate-50'}`}
         ><QrCode className="w-5 h-5"/> QR Generator</button>
         <button 
           onClick={() => setActiveTab('password')}
-          className={\`flex-1 py-4 font-semibold flex justify-center items-center gap-2 transition-colors \${activeTab === 'password' ? 'text-purple-600 border-b-2 border-purple-600 bg-purple-50' : 'text-slate-500 hover:bg-slate-50'}\`}
+          className={`flex-1 py-4 font-semibold flex justify-center items-center gap-2 transition-colors ${activeTab === 'password' ? 'text-purple-600 border-b-2 border-purple-600 bg-purple-50' : 'text-slate-500 hover:bg-slate-50'}`}
         ><KeyRound className="w-5 h-5"/> Passwords</button>
         <button 
           onClick={() => setActiveTab('calc')}
-          className={\`flex-1 py-4 font-semibold flex justify-center items-center gap-2 transition-colors \${activeTab === 'calc' ? 'text-purple-600 border-b-2 border-purple-600 bg-purple-50' : 'text-slate-500 hover:bg-slate-50'}\`}
+          className={`flex-1 py-4 font-semibold flex justify-center items-center gap-2 transition-colors ${activeTab === 'calc' ? 'text-purple-600 border-b-2 border-purple-600 bg-purple-50' : 'text-slate-500 hover:bg-slate-50'}`}
         ><Calculator className="w-5 h-5"/> Calculator</button>
       </div>
 

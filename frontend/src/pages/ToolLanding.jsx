@@ -1,7 +1,6 @@
 // frontend/src/pages/ToolLanding.jsx
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate, useLocation } from 'react-router-dom'
-import { motion } from 'framer-motion'
 import { 
   ArrowLeft, CheckCircle2, PlayCircle, HelpCircle, 
   ChevronDown, ChevronUp, Bot, FileText, ArrowRight, ShieldCheck
@@ -53,7 +52,7 @@ export default function ToolLanding() {
     }
     
     const data = TOOLS_METADATA[currentSlug] || TOOLS_METADATA['affidavit-generator']
-    setTool(data)
+    setTimeout(() => setTool(data), 0)
   }, [slug, location.pathname])
 
   if (!tool) return null

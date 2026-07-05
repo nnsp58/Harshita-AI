@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { useStore } from '../../store';
+import { useState, useEffect } from 'react';
 
 export default function AgentDashboard() {
   const [agents, setAgents] = useState([]);
@@ -8,16 +7,16 @@ export default function AgentDashboard() {
   // Mock data load since this is a frontend view of the backend registry.
   // In a real scenario, this would fetch from an API route like /api/admin/registries
   useEffect(() => {
-    // Simulated fetch
-    setAgents([
-      { id: 'documentAIAgent', name: 'Document AI Agent', status: 'Active', duplicate: false },
-      { id: 'masterAgent', name: 'Master Agent', status: 'Active', duplicate: false },
-      { id: 'legalDraftAgent', name: 'Legal Draft Agent', status: 'Active', duplicate: false },
-    ]);
-    
-    setSkills([
-      { id: 'ResumeSkill', mappedAgent: 'documentAIAgent', isWrapper: false },
-      { id: 'ApplicationSkill', mappedAgent: 'documentAIAgent', isWrapper: false },
+    setTimeout(() => {
+      setAgents([
+        { id: 'documentAIAgent', name: 'Document AI Agent', status: 'Active', duplicate: false },
+        { id: 'masterAgent', name: 'Master Agent', status: 'Active', duplicate: false },
+        { id: 'legalDraftAgent', name: 'Legal Draft Agent', status: 'Active', duplicate: false },
+      ]);
+      
+      setSkills([
+        { id: 'ResumeSkill', mappedAgent: 'documentAIAgent', isWrapper: false },
+        { id: 'ApplicationSkill', mappedAgent: 'documentAIAgent', isWrapper: false },
       { id: 'MathSkill', mappedAgent: 'MathSkillWrapperAgent', isWrapper: true },
     ]);
   }, []);

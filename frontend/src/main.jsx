@@ -4,6 +4,9 @@ import './index.css'
 import App from './App.jsx'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 
+console.log("VITE_GOOGLE_CLIENT_ID:", import.meta.env.VITE_GOOGLE_CLIENT_ID);
+
+
 // Global error handler for uncaught errors
 window.onerror = function(msg, url, line) {
   console.log('Global error:', msg, 'at line:', line)

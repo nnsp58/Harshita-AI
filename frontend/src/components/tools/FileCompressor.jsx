@@ -98,7 +98,7 @@ const FileCompressor = ({ onClose }) => {
           processedSize: blob.size,
           savings: savings
         };
-      } catch (err) {
+      } catch {
         updatedFiles[i] = { ...updatedFiles[i], status: 'error' };
       }
       setFiles([...updatedFiles]);

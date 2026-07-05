@@ -1,9 +1,7 @@
 // frontend/src/pages/StoryVideoDashboard.jsx - Story To Cartoon Video Dashboard
-import { useState, useEffect, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSocket } from '../hooks/useSocket'
-import { useStore } from '../store'
 import api from '../services/api'
 import {
   LayoutDashboard, Video, Film, Settings as SettingsIcon, Shield,
@@ -22,8 +20,7 @@ const getAssetUrl = (path) => {
 
 export default function StoryVideoDashboard() {
   const navigate = useNavigate()
-  const { user } = useStore()
-  const { socket, isConnected } = useSocket()
+  const { socket } = useSocket()
 
   const [activeTab, setActiveTab] = useState('generator')
   const [loading, setLoading] = useState(false)

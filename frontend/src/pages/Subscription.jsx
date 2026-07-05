@@ -1,18 +1,27 @@
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect } from 'react'
 import { Check, Zap, Shield, Crown, Search, ShoppingCart, Info, Clock, AlertTriangle } from 'lucide-react'
 import { useStore } from '../store'
 
 export default function Subscription() {
-  const { agents, subscribedAgents, subscribeAgent, subscriptionMode, trialStartDate } = useStore()
+  const { agents, subscribedAgents, subscribeAgent, subscriptionMode } = useStore()
   const [selectedIds, setSelectedIds] = useState([])
-  const [showPlanDetails, setShowPlanDetails] = useState(false)
 
   const PRICE_PER_AGENT = 99
   const FULLY_LOADED_PRICE = 1999
   const FULL_PACK_DISCOUNT = 0.5 // 50% discount for full pack
 
-  const trialDaysLeft = Math.max(0, 7 - Math.floor((Date.now() - trialStartDate) / (24 * 60 * 60 * 1000)))
+  const [trialStartDate, setTrialStartDate] = useState(() => {
+    const saved = localStorage.getItem('trial_start_date');
+    return saved ? new Date(saved).getTime() : new Date().getTime();
+  });
+  const [trialDaysLeft, setTrialDaysLeft] = useState(() => Math.max(0, 7 - Math.floor((Date.now() - trialStartDate) / (24 * 60 * 60 * 1000))));
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTrialDaysLeft(Math.max(0, 7 - Math.floor((Date.now() - trialStartDate) / (24 * 60 * 60 * 1000))));
+    }, 60000);
+    return () => clearInterval(timer);
+  }, [trialStartDate]);
 
   const toggleAgent = (id) => {
     if (selectedIds.includes(id)) {

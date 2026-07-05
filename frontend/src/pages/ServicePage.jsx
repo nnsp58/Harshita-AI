@@ -8,7 +8,7 @@ import {
 } from 'lucide-react'
 import { useSocket } from '../hooks/useSocket'
 import VoiceInput from '../components/VoiceInput'
-import { renderMessageText } from './SimpleDashboard'
+import { renderMessageText } from '../utils/messageHelpers'
 
 // Service definitions — each service has its own page with chat preset
 const SERVICE_CONFIGS = {

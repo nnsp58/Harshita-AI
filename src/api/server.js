@@ -650,6 +650,8 @@ ensureDatabaseConnection().then(() => {
     console.log(`🚀 CSC API Server running on port ${PORT}`);
     console.log(`📡 WebSocket server ready`);
     console.log(`🔒 Environment: ${process.env.NODE_ENV || 'development'}`);
+    console.log("GOOGLE_CLIENT_ID:", process.env.GOOGLE_CLIENT_ID);
+
     
     // Startup Self-Healing Diagnostics (non-blocking)
     if (process.env.NODE_ENV !== 'test') {

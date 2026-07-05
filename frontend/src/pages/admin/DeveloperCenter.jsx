@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import AdminLayout from '../../components/Admin/AdminLayout'
 import { GitBranch, GitCommit, GitPullRequest, RefreshCw, Server, ShieldCheck, Play, ArrowLeftRight, HeartPulse, Settings } from 'lucide-react'
 import api from '../../services/api'
@@ -43,7 +43,7 @@ export default function DeveloperCenter() {
   }
 
   useEffect(() => {
-    loadStatus()
+    setTimeout(loadStatus, 0)
   }, [])
 
   // Listen for socket events during push validation

@@ -69,7 +69,7 @@ const PassportPhotoMaker = ({ onClose }) => {
         tempCanvas.width = img.width;
         tempCanvas.height = img.height;
         const tctx = tempCanvas.getContext('2d');
-        tctx.filter = \`brightness(\${settings.brightness}%) contrast(\${settings.contrast}%)\`;
+        tctx.filter = `brightness(${settings.brightness}%) contrast(${settings.contrast}%)`;
         tctx.drawImage(img, 0, 0);
         tctx.filter = 'none';
 

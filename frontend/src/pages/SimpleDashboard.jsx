@@ -22,6 +22,7 @@ import { AGENTS, CATEGORIES } from '../data/agents'
 import AgentStudioPanel from '../components/Dashboard/AgentStudioPanel'
 import AdSenseWidget from '../components/AdSenseWidget'
 import LeftPanel from '../components/Dashboard/LeftPanel'
+import { renderMessageText } from '../utils/messageHelpers'
 
 const SERVICES = [
   { id: 'story-video', title: 'Story Video', titleHi: 'कहानी से कार्टून', icon: Video, color: 'bg-indigo-600', route: '/story-video' },
@@ -46,7 +47,7 @@ const SERVICES = [
 // ============ MAIN COMPONENT ============
 export default function SimpleDashboard() {
   const navigate = useNavigate()
-  const { user, stats, agents, jobs, initialize, logout, setAuth, responseMode } = useStore()
+  const { user, stats, agents, jobs, initialize, logout, setAuth, responseMode, setResponseMode } = useStore()
   const { isConnected, sendCommand, messages, setMessages } = useSocket()
   const [leftWidth, setLeftWidth] = useState(220)
   const [rightWidth, setRightWidth] = useState(360)
@@ -468,25 +469,6 @@ function ResizeHandle({ onMouseDown, onToggle, collapsed, dir }) {
   )
 }
 
-// ============ MESSAGE RENDER HELPER ============
-export function renderMessageText(text) {
-  if (!text) return null;
-  // Strip leading routing status prefix if present
-  const cleanedText = text.replace(/^\[[^\]]*रूटिंग[^\]]*\]\s*/, '');
-  const parts = cleanedText.split(/(\[[^\]]+\]\(https?:\/\/[^)]+\))/g);
-  return (
-    <p className="break-words whitespace-pre-wrap">
-      {parts.map((part, i) => {
-        const match = part.match(/^\[([^\]]+)\]\((https?:\/\/[^)]+)\)$/);
-        if (match) {
-          return <a key={i} href={match[2]} className="text-amber-400 hover:text-amber-300 underline font-semibold">{match[1]}</a>;
-        }
-        return <span key={i}>{part}</span>;
-      })}
-    </p>
-  );
-}
-
 // ============ LIVE CLOCK ============
 function LiveClock() {
   const [time, setTime] = useState(new Date())
@@ -559,8 +541,7 @@ function DashboardHeader({ user, onLogout, onSettings }) {
 // Old LeftServicesPanel has been fully replaced by the new Smart LeftPanel system (PRD-027 / PRD-028 Phase 2)
 
 // ============ CENTER PANEL ============
-function CenterDashboardPanel({ stats, agents, jobs, onServiceClick, goal = 'general', quickActions = [], onSend }) {
-  const navigate = useNavigate();
+function CenterDashboardPanel({ stats: _stats, agents: _agents, jobs: _jobs, onServiceClick, goal = 'general', quickActions = [], onSend }) {
   const [activeCategory, setActiveCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [showExplorer, setShowExplorer] = useState(false);
@@ -625,12 +606,14 @@ function CenterDashboardPanel({ stats, agents, jobs, onServiceClick, goal = 'gen
 
   const [recentDocs, setRecentDocs] = useState([]);
   useEffect(() => {
-    try {
-      const history = JSON.parse(localStorage.getItem('harshita_doc_history') || '[]');
-      setRecentDocs(history);
-    } catch {
-      setRecentDocs([]);
-    }
+    setRecentDocs(() => {
+      try {
+        const history = JSON.parse(localStorage.getItem('harshita_doc_history') || '[]');
+        return history;
+      } catch {
+        return [];
+      }
+    });
   }, []);
 
   const CATEGORIES_LIST = [
@@ -995,23 +978,8 @@ function ServiceCard({ service, favorites, onToggleFavorite, onClick }) {
   );
 }
 
-// ============ STAT CARD ============
-function StatCard({ title, value, icon: Icon, color }) {
-  return (
-    <div className="bg-white/5 border border-white/10 rounded-xl p-3">
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="text-[10px] text-gray-500 uppercase">{title}</p>
-          <p className="text-lg font-bold text-white mt-0.5">{value}</p>
-        </div>
-        <div className={`p-2 rounded-lg ${color}`}><Icon size={18} className="text-white" /></div>
-      </div>
-    </div>
-  )
-}
-
 // ============ RIGHT CHAT PANEL ============
-function RightChatPanel({ messages, setMessages, onSend, isConnected, user, jobs = [], onPreviewFile }) {
+function RightChatPanel({ messages, setMessages, onSend, isConnected, jobs = [], onPreviewFile }) {
   const navigate = useNavigate()
   const [input, setInput] = useState('')
   const [isThinking, setIsThinking] = useState(false)
@@ -1048,41 +1016,8 @@ function RightChatPanel({ messages, setMessages, onSend, isConnected, user, jobs
   }
 
   useEffect(() => { messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' }) }, [messages])
-  useEffect(() => {
-    if (messages?.length > 0) {
-      const last = messages[messages.length - 1]
-      
-      if (last.type === 'ai' || last.type === 'system') {
-        // If AI indicates it's working in the background, keep the typing indicator for visual satisfaction
-        if (last.message && (last.message.includes('रुकें') || last.message.includes('खोज रहा हूँ') || last.message.includes('रहा हूँ'))) {
-          setIsThinking(true)
-          setTimeout(() => setIsThinking(false), 3500)
-        } else {
-          setIsThinking(false)
-        }
-      }
-
-      // 🎙️ VoiceAgentSkill support — auto speak when action.speak is true
-      if (last.type === 'ai' && last.action?.speak) {
-        const textToSpeak = last.action.text || last.message
-        speak(textToSpeak, last.action.lang || 'hi-IN')
-      }
-
-      // 🔀 Navigate action — skill wants to open a page (e.g. TADA Naksha form or WhatsApp Web)
-      if (last.type === 'ai' && last.action?.navigate) {
-        setTimeout(() => {
-          if (last.action.navigate.startsWith('http')) {
-            window.open(last.action.navigate, '_blank')
-          } else {
-            navigate(last.action.navigate)
-          }
-        }, 1500)
-      }
-    }
-  }, [messages, navigate])
-
   // Browser TTS helper (used by VoiceAgentSkill)
-  const speak = (text, lang = 'hi-IN') => {
+  const speak = useCallback((text, lang = 'hi-IN') => {
     if (!text || !('speechSynthesis' in window)) return
     try {
       window.speechSynthesis.cancel()
@@ -1094,7 +1029,37 @@ function RightChatPanel({ messages, setMessages, onSend, isConnected, user, jobs
     } catch (e) {
       console.warn('TTS failed:', e)
     }
-  }
+  }, [])
+
+  useEffect(() => {
+    if (messages?.length > 0) {
+      const last = messages[messages.length - 1]
+       
+      if (last.type === 'ai' || last.type === 'system') {
+        if (last.message && (last.message.includes('रुकें') || last.message.includes('खोज रहा हूँ') || last.message.includes('रहा हूँ'))) {
+          setTimeout(() => setIsThinking(true), 0)
+          setTimeout(() => setIsThinking(false), 3500)
+        } else {
+          setTimeout(() => setIsThinking(false), 0)
+        }
+      }
+
+      if (last.type === 'ai' && last.action?.speak) {
+        const textToSpeak = last.action.text || last.message
+        speak(textToSpeak, last.action.lang || 'hi-IN')
+      }
+
+      if (last.type === 'ai' && last.action?.navigate) {
+        setTimeout(() => {
+          if (last.action.navigate.startsWith('http')) {
+            window.open(last.action.navigate, '_blank')
+          } else {
+            navigate(last.action.navigate)
+          }
+        }, 1500)
+      }
+    }
+  }, [messages, navigate, speak])
 
   const handleSend = (e) => {
     e?.preventDefault()

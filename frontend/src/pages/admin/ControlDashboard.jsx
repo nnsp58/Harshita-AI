@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
 import AdminLayout from '../../components/Admin/AdminLayout'
 import { Activity, Users, Briefcase, Brain, MessageSquare, TrendingUp, AlertTriangle, RefreshCw, Zap } from 'lucide-react'
 import api from '../../services/api'
@@ -35,7 +34,7 @@ export default function ControlDashboard() {
     setLoading(false)
   }
 
-  useEffect(() => { load() }, [])
+  useEffect(() => { setTimeout(load, 0) }, [])
 
   const triggerUpgrade = async () => {
     if (!confirm('Manual upgrade trigger karein? System ~5 sec maintenance mode mein jayega.')) return

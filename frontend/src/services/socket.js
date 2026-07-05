@@ -41,7 +41,6 @@ class SocketService {
 
   subscribeToJob(jobId, callback) {
     if (!this.socket) return;
-    const room = `job_${jobId}`;
     this.socket.emit('join_job', jobId);
     
     // Generic handlers that can use the callback

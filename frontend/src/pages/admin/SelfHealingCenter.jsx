@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import AdminLayout from '../../components/Admin/AdminLayout'
 import { Activity, ShieldAlert, ShieldCheck, RefreshCw, AlertCircle, CheckCircle, Database, HelpCircle, Terminal, Cpu, Info } from 'lucide-react'
 import { selfHealingAPI } from '../../services/api'
-import { motion } from 'framer-motion'
 
 export default function SelfHealingCenter() {
   const [report, setReport] = useState(null)
@@ -21,7 +20,7 @@ export default function SelfHealingCenter() {
   }
 
   useEffect(() => {
-    loadReport()
+    setTimeout(loadReport, 0)
   }, [])
 
   const triggerScan = async () => {

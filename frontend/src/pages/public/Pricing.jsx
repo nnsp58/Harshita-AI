@@ -1,10 +1,8 @@
 import React from 'react';
 import SEO from '../../components/SEO';
 import { Check, X } from 'lucide-react';
-import { useStore } from '../../store';
 
 export default function Pricing() {
-  const { user } = useStore();
   const handleUpgrade = (plan) => {
     alert(`Mock Razorpay Checkout for ${plan} initiated.`);
   };
