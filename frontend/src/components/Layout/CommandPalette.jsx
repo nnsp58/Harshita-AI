@@ -6,7 +6,13 @@ const ACTIONS = [
   { id: 'dashboard', name: 'Go to Dashboard', route: '/dashboard' },
   { id: 'ai', name: 'Open AI Assistant', route: '/service/ai-assistant' },
   { id: 'legal', name: 'Create Legal Draft', route: '/legal-draft' },
+  { id: 'legal-notice', name: 'Draft Legal Notice', route: '/legal-notice' },
+  { id: 'itr', name: 'ITR Filing (Income Tax)', route: '/itr-filing' },
   { id: 'resume', name: 'Build Resume', route: '/resume-builder' },
+  { id: 'tada', name: 'TA/DA Naksha Generator', route: '/tada' },
+  { id: 'video', name: 'Story Video Creator', route: '/story-video' },
+  { id: 'academy', name: 'AI Academy (Courses)', route: '/academy' },
+  { id: 'admin', name: 'Admin Control Panel', route: '/admin' },
   { id: 'settings', name: 'Settings', route: '/settings' },
 ];
 
