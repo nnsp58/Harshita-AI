@@ -52,6 +52,7 @@ model User {
   scheduled_automations ScheduledAutomation[]
   subscriptions         Subscription[]
   transactions          Transaction[]
+  tax_profile           TaxProfile?
   csc                   CSC                   @relation(fields: [csc_id], references: [id], onDelete: Cascade)
 
   @@index([csc_id])
@@ -313,6 +314,25 @@ model MessageLog {
   @@index([recipient])
   @@map("message_logs")
 }
+
+model TaxProfile {
+  id               String   @id @default(uuid())
+  user_id          String   @unique @map("user_id")
+  pan              String?
+  aadhaar          String?
+  dob              String?
+  address          String?
+  bank_accounts    Json?    @map("bank_accounts")
+  family_info      Json?    @map("family_info")
+  nominee_info     Json?    @map("nominee_info")
+  previous_returns Json?    @map("previous_returns")
+  created_at       DateTime @default(now()) @map("created_at")
+  updated_at       DateTime @updatedAt @map("updated_at")
+  user             User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@map("tax_profiles")
+}
+
 
 model ConversationMemory {
   id          String   @id @default(uuid())
