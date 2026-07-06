@@ -972,5 +972,100 @@
     ],
     "createdAt": "2026-06-19T18:53:44.348Z",
     "lastActive": "2026-06-19T18:53:44.348Z"
+  },
+  "e01a622f-ea52-459d-9d36-13372f7b73fc:utility_tools": {
+    "userId": "e01a622f-ea52-459d-9d36-13372f7b73fc",
+    "skill": "utility_tools",
+    "messages": [
+      {
+        "role": "user",
+        "content": "itr form filling",
+        "timestamp": "2026-07-06T08:49:17.866Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🛠️ *Quick Utility Tools*\n\nमैंने यूटिलिटी हब खोल दिया है। यहाँ आप **QR Code** बना सकते हैं, **Secure Password** जनरेट कर सकते हैं, या **Calculator** का इस्तेमाल कर सकते हैं।",
+        "timestamp": "2026-07-06T08:49:17.866Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-07-06T08:49:17.866Z",
+    "lastActive": "2026-07-06T08:49:17.866Z"
+  },
+  "e01a622f-ea52-459d-9d36-13372f7b73fc:form_fill": {
+    "userId": "e01a622f-ea52-459d-9d36-13372f7b73fc",
+    "skill": "form_fill",
+    "messages": [
+      {
+        "role": "user",
+        "content": "itr form",
+        "timestamp": "2026-07-06T08:49:35.930Z"
+      },
+      {
+        "role": "assistant",
+        "content": "📋 फॉर्म ऑटो-फिलिंग सिस्टम तैयार!\n\nउपलब्ध सेवाएँ:\n• *SSC CGL/CHSL* — [ssc.gov.in](https://ssc.gov.in)\n• *Indian Army* — [joinindianarmy.nic.in](https://joinindianarmy.nic.in)\n• *Railway RRB* — [rrbcdg.gov.in](https://rrbcdg.gov.in)\n• *Banking IBPS/SBI* — [ibps.in](https://ibps.in)\n• *Police Recruitment* — [police.gov.in](https://police.gov.in)\n• *Navy/Air Force* — [joinindiannavy.gov.in](https://joinindiannavy.gov.in)\n• *India Post* — [ippbonline.com](https://ippbonline.com)\n• *Apprenticeship* — [apprenticeship.gov.in](https://apprenticeship.gov.in)\n• *UPSSSC* — [upsssc.gov.in](https://upsssc.gov.in)\n• *Ration Card* — [nfsa.gov.in](https://nfsa.gov.in)\n\nकौन सा फॉर्म भरना है बताइए!\nउदाहरण: \"SSC का फॉर्म भरो\" या \"Railway में अप्लाई करो\"",
+        "timestamp": "2026-07-06T08:49:35.930Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-07-06T08:49:35.930Z",
+    "lastActive": "2026-07-06T08:49:35.930Z"
+  },
+  "e01a622f-ea52-459d-9d36-13372f7b73fc:application_writer": {
+    "userId": "e01a622f-ea52-459d-9d36-13372f7b73fc",
+    "skill": "application_writer",
+    "messages": [
+      {
+        "role": "user",
+        "content": "itr application",
+        "timestamp": "2026-07-06T08:50:30.672Z"
+      },
+      {
+        "role": "assistant",
+        "content": "सेवा में,\nअधिशासी अभियंता आयकर विभाग\nआयकर अधिकारी कार्यालय\n____________________, ____________________\n\nविषय: आयकर विवरणी जमा करने हेतु अनुमति प्रार्थना पत्र\n\nमहोदय / महोदया,\n\nसविनय निवेदन है कि मैं ____________________ पुत्र/पुत्री ____________________ निवासी ____________________ आयकरदाता हूँ। मैंने वित्तीय वर्ष ____________________ के लिए अपना आयकर विवरणी तैयार किया है और उसे जमा करना चाहता हूँ। मेरा पैन नंबर ____________________ है और मैंने सभी आवश्यक दस्तावेजों को संलग्न किया है।\n\nअतः श्रीमान जी से विनम्र निवेदन है कि उपरोक्त तथ्यों को दृष्टिगत रखते हुए मेरी आयकर विवरणी जमा करने की अनुमति प्रदान करने की कृपा करें।\n\nधन्यवाद।\n\nदिनांक: 06 जुलाई 2026\nस्थान: ____________________\n\nभवदीय / प्रार्थी,\nहस्ताक्षर: ____________________\nनाम: ____________________\nपिता/पति का नाम: ____________________\nपता: ____________________\nमोबाइल नंबर: ____________________",
+        "timestamp": "2026-07-06T08:50:30.672Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-07-06T08:50:30.672Z",
+    "lastActive": "2026-07-06T08:50:30.672Z"
+  },
+  "e01a622f-ea52-459d-9d36-13372f7b73fc:validator": {
+    "userId": "e01a622f-ea52-459d-9d36-13372f7b73fc",
+    "skill": "validator",
+    "messages": [
+      {
+        "role": "user",
+        "content": "itr details",
+        "timestamp": "2026-07-06T08:51:04.941Z"
+      },
+      {
+        "role": "assistant",
+        "content": "✅ *डेटा वैलिडेशन सेवा (Data Validation)*\n\nमुझे कोई भी नंबर या डेटा दें, मैं तुरंत चेक कर लूँगा:\n\n📋 *सपोर्टेड डेटा:*\n• आधार नंबर (12 digit + checksum)\n• PAN नंबर (AAAAA0000A)\n• IFSC Code (ABCD0123456)\n• मोबाइल नंबर (10 digit)\n• PIN Code (6 digit)\n• Email\n• Voter ID / EPIC\n\nExample: \"Check karo 2345 6789 0123\"\nया: \"ABCDE1234F PAN valid hai?\"",
+        "timestamp": "2026-07-06T08:51:04.941Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-07-06T08:51:04.941Z",
+    "lastActive": "2026-07-06T08:51:04.941Z"
+  },
+  "e01a622f-ea52-459d-9d36-13372f7b73fc:legal_draft": {
+    "userId": "e01a622f-ea52-459d-9d36-13372f7b73fc",
+    "skill": "legal_draft",
+    "messages": [
+      {
+        "role": "user",
+        "content": "itr legal draft",
+        "timestamp": "2026-07-06T08:51:46.445Z"
+      },
+      {
+        "role": "assistant",
+        "content": "एक मजबूत दस्तावेज़ तैयार करने के लिए, कृपया कुछ और जानकारी दें (तारीख, पैसे, सबूत) और बताएँ कि ड्राफ्ट हिंदी में चाहिए या इंग्लिश में?",
+        "timestamp": "2026-07-06T08:51:46.445Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-07-06T08:51:46.445Z",
+    "lastActive": "2026-07-06T08:51:46.445Z"
   }
 }

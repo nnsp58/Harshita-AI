@@ -89,9 +89,9 @@
       "naam": 103,
       "karta": 1,
       "hoon": 1,
-      "legal": 232,
+      "legal": 233,
       "document": 37,
-      "draft": 232,
+      "draft": 233,
       "banao": 237,
       "kaunsa": 1,
       "chahiye?": 1,
@@ -180,9 +180,10 @@
       "shapath": 9,
       "patra.": 9,
       "putra": 9,
-      "singh.": 9
+      "singh.": 9,
+      "itr": 1
     },
-    "count": 291
+    "count": 292
   },
   "whatsapp": {
     "learned": {
@@ -329,9 +330,11 @@
       "मुझे": 12,
       "एसएससी": 12,
       "फॉर्म": 12,
-      "भरना": 12
+      "भरना": 12,
+      "itr": 1,
+      "form": 1
     },
-    "count": 12
+    "count": 13
   },
   "notepad": {
     "learned": {
@@ -361,8 +364,25 @@
       "applicant": 9,
       "nar": 9,
       "narayan": 9,
-      "singh.": 9
+      "singh.": 9,
+      "itr": 1,
+      "application": 1
     },
-    "count": 9
+    "count": 10
+  },
+  "utility_tools": {
+    "learned": {
+      "itr": 1,
+      "form": 1,
+      "filling": 1
+    },
+    "count": 1
+  },
+  "validator": {
+    "learned": {
+      "itr": 1,
+      "details": 1
+    },
+    "count": 1
   }
 }

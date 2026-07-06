@@ -571,10 +571,32 @@ export default function LegalDraft() {
               ) : null}
             </>
           ) : (
-            <div className="bg-white/5 border border-white/10 rounded-xl p-12 text-center">
-              <FileText size={48} className="mx-auto mb-3 text-gray-600" />
-              <h3 className="text-base font-bold mb-1">Select a Template</h3>
-              <p className="text-xs text-gray-500">Left side se document type chunein</p>
+            <div className="bg-white/5 border border-white/10 rounded-xl p-6">
+              <div className="text-center mb-6">
+                <FileText size={48} className="mx-auto mb-3 text-amber-500/50" />
+                <h3 className="text-lg font-bold mb-1">Select a Template to Begin</h3>
+                <p className="text-xs text-gray-400">Choose a document type from below or the left sidebar</p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {documentTypes.map(type => (
+                  <button 
+                    key={type.id} 
+                    onClick={() => {
+                      setSelectedType(type.id)
+                      setNaturalInput('')
+                      setGeneratedDraft(null)
+                      setEditedDraft('')
+                    }}
+                    className="p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-amber-500/10 hover:border-amber-500/30 transition-all text-left flex flex-col gap-2 group"
+                  >
+                    <span className="text-2xl group-hover:scale-110 transition-transform">{type.icon}</span>
+                    <div>
+                      <p className="text-sm font-bold text-gray-200 group-hover:text-amber-400">{type.name.split('/')[0].trim()}</p>
+                      <p className="text-[10px] text-gray-500 mt-1 line-clamp-2">{type.desc}</p>
+                    </div>
+                  </button>
+                ))}
+              </div>
             </div>
           )}
         </div>

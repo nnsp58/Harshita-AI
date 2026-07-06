@@ -83,6 +83,24 @@ export default function Login() {
               useOneTap={true}
             />
           </div>
+          
+          {/* LOCAL TEST BYPASS */}
+          {window.location.hostname === 'localhost' && (
+            <div className="flex flex-col items-center gap-2 mt-4">
+              <div className="text-gray-500 text-[10px] font-medium">
+                (Or use bypass if Google Login is still syncing)
+              </div>
+              <button 
+                onClick={() => {
+                  setAuth('dev-token', { name: 'Admin', role: 'superadmin', email: 'admin@harshita.ai' });
+                  navigate('/dashboard');
+                }}
+                className="px-6 py-2 bg-white/5 border border-white/10 text-gray-400 text-xs font-bold rounded-full hover:bg-white/10 transition-all w-full max-w-[320px]"
+              >
+                Dev Auto-Login (Bypass Google)
+              </button>
+            </div>
+          )}
         </div>
 
         <div className="text-[10px] text-gray-600">
