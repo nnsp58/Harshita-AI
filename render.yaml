@@ -2,6 +2,7 @@ services:
   - type: web
     name: harshita-ai
     env: node
+    branch: feature/subscription-engine
     buildCommand: npm install && cd frontend && npm install && npm run build
     startCommand: npm start
     envVars:
