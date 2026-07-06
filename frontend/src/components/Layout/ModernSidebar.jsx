@@ -22,7 +22,6 @@ const SECTIONS = [
     title: 'Main',
     items: [
       { name: 'Dashboard', icon: LayoutDashboard, route: '/dashboard' },
-      { name: 'AI Assistant', icon: Bot, route: '/service/ai-assistant' },
       { name: 'AI Academy', icon: GraduationCap, route: '/academy' },
     ]
   },

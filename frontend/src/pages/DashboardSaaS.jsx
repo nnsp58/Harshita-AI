@@ -99,7 +99,6 @@ export default function DashboardSaaS() {
     { id: 'resume', title: 'Resume Builder', icon: Briefcase, color: 'from-purple-500 to-pink-500', route: '/resume-builder' },
     { id: 'job', title: 'Find Jobs', icon: Search, color: 'from-emerald-400 to-teal-500', route: '/jobs' },
     { id: 'upload', title: 'Upload Documents', icon: Upload, color: 'from-orange-400 to-red-500', route: '/documents' },
-    { id: 'chat', title: 'AI Chat', icon: Bot, color: 'from-indigo-500 to-violet-500', route: '/service/ai-assistant' },
   ];
 
   const StatCard = ({ title, value, icon: Icon, trend }) => (
