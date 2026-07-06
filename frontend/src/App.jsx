@@ -129,15 +129,15 @@ function App() {
             path="/dashboard"
             element={
               <ProtectedRoute>
-                <SimpleDashboard />
+                <DashboardSaaS />
               </ProtectedRoute>
             }
           />
           <Route
-            path="/dashboard-new"
+            path="/dashboard-old"
             element={
               <ProtectedRoute>
-                <DashboardSaaS />
+                <SimpleDashboard />
               </ProtectedRoute>
             }
           />
