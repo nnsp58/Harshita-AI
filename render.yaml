@@ -10,3 +10,7 @@ services:
         value: production
       - key: PORT
         value: 10000
+      - key: GOOGLE_CLIENT_ID
+        value: 324192050296-o3da0b1e1gqv03anut0cq12ajvlu7hnq.apps.googleusercontent.com
+      - key: VITE_GOOGLE_CLIENT_ID
+        value: 324192050296-o3da0b1e1gqv03anut0cq12ajvlu7hnq.apps.googleusercontent.com
