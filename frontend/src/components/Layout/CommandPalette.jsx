@@ -75,8 +75,8 @@ export default function CommandPalette() {
         </div>
 
         <div className="max-h-80 overflow-y-auto py-2 scrollbar-hide">
-          {filteredActions.length > 0 ? (
-            <ul className="px-2 space-y-1">
+          {filteredActions.length > 0 && (
+            <ul className="px-2 space-y-1 pb-2">
               {filteredActions.map((action) => (
                 <li key={action.id}>
                   <button
@@ -92,9 +92,31 @@ export default function CommandPalette() {
                 </li>
               ))}
             </ul>
-          ) : (
+          )}
+
+          {query.trim().length > 0 && (
+            <div className="px-2 pb-2">
+              {filteredActions.length > 0 && (
+                <div className="px-2 py-2 mt-2 border-t border-slate-800 text-[10px] font-bold text-slate-500 uppercase tracking-wider">
+                  Or let AI handle it
+                </div>
+              )}
+              <button
+                className="w-full flex items-center px-3 py-3 rounded-lg text-sm text-indigo-300 bg-indigo-500/10 hover:bg-indigo-500/20 transition-all text-left border border-indigo-500/20 font-medium"
+                onClick={() => {
+                  navigate('/service/ai-assistant', { state: { initialPrompt: query } });
+                  setIsOpen(false);
+                }}
+              >
+                <Command className="mr-3 text-indigo-400" size={16} />
+                Ask Harshita AI to "{query}"
+              </button>
+            </div>
+          )}
+
+          {filteredActions.length === 0 && query.trim().length === 0 && (
             <div className="px-4 py-8 text-center text-sm text-slate-500">
-              No results found for "{query}"
+              Type a command or service name...
             </div>
           )}
         </div>
