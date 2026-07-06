@@ -1,5 +1,10 @@
 [
   {
+    "pattern": "(itr|tax return|income tax|आईटीआर|return bharo)",
+    "flags": "i",
+    "intent": "itr_filing"
+  },
+  {
     "pattern": "प्रार्थना\\s*पत्र|prarthna\\s*patra|prathna\\s*patra|prayer\\s*letter",
     "flags": "i",
     "intent": "application_writer",

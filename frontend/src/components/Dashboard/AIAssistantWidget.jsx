@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Bot, X, Maximize2, Minimize2, Send, Mic, Paperclip, MessageSquare, ThumbsUp, ThumbsDown } from 'lucide-react';
 import { useSocket } from '../../hooks/useSocket';
+import { useNavigate } from 'react-router-dom';
 
 export default function AIAssistantWidget() {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,6 +10,7 @@ export default function AIAssistantWidget() {
   const [ratings, setRatings] = useState({});
   const { isConnected, sendCommand, submitFeedback, messages } = useSocket();
   const messagesEndRef = useRef(null);
+  const navigate = useNavigate();
 
   const toggleWidget = () => setIsOpen(!isOpen);
   const toggleExpand = () => setIsExpanded(!isExpanded);
@@ -98,6 +100,16 @@ export default function AIAssistantWidget() {
               }`}>
                 {(msg.message || msg.text)?.replace(/^\[[^\]]*रूटिंग[^\]]*\]\s*/, '')}
               </div>
+              {msg.action === 'navigate' && msg.route && (
+                <div className="mt-2 w-full max-w-[85%]">
+                  <button 
+                    onClick={() => navigate(msg.route)}
+                    className="w-full py-2 bg-indigo-500 hover:bg-indigo-400 text-white font-medium rounded-lg shadow-lg shadow-indigo-500/20 transition-all active:scale-95 text-sm"
+                  >
+                    Open Workspace
+                  </button>
+                </div>
+              )}
               {msg.type !== 'user' && msg.interactionId && (
                 <div className="flex items-center gap-2 mt-1 ml-2 text-slate-400">
                   <button 

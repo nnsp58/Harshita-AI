@@ -273,6 +273,18 @@ export default function ServicePage() {
                 : 'bg-white/5 text-gray-200 rounded-bl-sm border border-white/10'
             }`}>
               {renderMessageText(msg.message)}
+              
+              {msg.action === 'navigate' && msg.route && (
+                <div className="mt-3 w-full">
+                  <button 
+                    onClick={() => window.location.href = msg.route}
+                    className="w-full py-2 bg-indigo-500 hover:bg-indigo-400 text-white font-medium rounded-lg shadow-lg shadow-indigo-500/20 transition-all active:scale-95 text-sm"
+                  >
+                    Open Workspace
+                  </button>
+                </div>
+              )}
+
               <p className="text-[9px] opacity-60 mt-1">
                 {new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
               </p>
