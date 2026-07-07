@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import { useStore } from './store'
+import SEO from './components/SEO/SEO'
 
 import UpgradeNotification from './components/UpgradeNotification'
 import SimpleDashboard from './pages/SimpleDashboard'
@@ -28,6 +29,32 @@ const ServicePage = lazy(() => import('./pages/ServicePage'))
 const AdvocateProfile = lazy(() => import('./pages/AdvocateProfile'))
 const ContactUs = lazy(() => import('./pages/ContactUs'))
 const StoryVideoDashboard = lazy(() => import('./pages/StoryVideoDashboard'))
+
+// New Workspaces (PRD-066)
+const NotFoundWorkspace = lazy(() => import('./workspaces/core/NotFoundWorkspace'))
+const ComingSoonWorkspace = lazy(() => import('./workspaces/core/ComingSoonWorkspace'))
+const PassportWorkspace = lazy(() => import('./workspaces/converter/PassportWorkspace'))
+const AudioWorkspace = lazy(() => import('./workspaces/converter/AudioWorkspace'))
+const DocumentWorkspace = lazy(() => import('./workspaces/converter/DocumentWorkspace'))
+const ImageWorkspace = lazy(() => import('./workspaces/media/ImageWorkspace'))
+const ImageFormatWorkspace = lazy(() => import('./workspaces/converter/ImageFormatWorkspace'))
+const PDFWorkspace = lazy(() => import('./workspaces/converter/PDFWorkspace'))
+const QRWorkspace = lazy(() => import('./workspaces/converter/QRWorkspace'))
+const VideoWorkspace = lazy(() => import('./workspaces/media/VideoWorkspace'))
+const VoiceWorkspace = lazy(() => import('./workspaces/converter/VoiceWorkspace'))
+const PasswordWorkspace = lazy(() => import('./workspaces/converter/PasswordWorkspace'))
+const ImageToPDFWorkspace = lazy(() => import('./workspaces/converter/ImageToPDFWorkspace'))
+const TranslatorWorkspace = lazy(() => import('./workspaces/converter/TranslatorWorkspace'))
+const CalculatorWorkspace = lazy(() => import('./workspaces/business/CalculatorWorkspace'))
+
+// Additional Workspaces (Legal, Tax, Media)
+const GiftDeedWorkspace = lazy(() => import('./workspaces/legal/GiftDeedWorkspace'))
+const NoticeWorkspace = lazy(() => import('./workspaces/legal/NoticeWorkspace'))
+const AffidavitWorkspace = lazy(() => import('./workspaces/legal/AffidavitWorkspace'))
+const ITRWorkspace = lazy(() => import('./workspaces/tax/ITRWorkspace'))
+const GSTWorkspace = lazy(() => import('./workspaces/tax/GSTWorkspace'))
+const RefundWorkspace = lazy(() => import('./workspaces/tax/RefundWorkspace'))
+const PosterWorkspace = lazy(() => import('./workspaces/media/PosterWorkspace'))
 
 // AdSense Content & SEO Pages
 const ToolLanding = lazy(() => import('./pages/ToolLanding'))
@@ -116,7 +143,8 @@ function App() {
   return (
     <HelmetProvider>
       <BrowserRouter>
-        <UpgradeNotification />
+      <SEO />
+      <UpgradeNotification />
       <Suspense fallback={
         <div className="min-h-screen bg-[#020617] flex items-center justify-center">
           <div className="w-8 h-8 border-4 border-indigo-500/30 border-t-indigo-500 rounded-full animate-spin"></div>
@@ -283,6 +311,31 @@ function App() {
               </ProtectedRoute>
             }
           />
+
+          {/* ═══════ Dedicated Workspaces (PRD-066) ═══════ */}
+          <Route path="/workspace/converter/passport" element={<ProtectedRoute><PassportWorkspace /></ProtectedRoute>} />
+          <Route path="/workspace/converter/audio" element={<ProtectedRoute><AudioWorkspace /></ProtectedRoute>} />
+          <Route path="/workspace/converter/document" element={<ProtectedRoute><DocumentWorkspace /></ProtectedRoute>} />
+          <Route path="/workspace/media/image-compress" element={<ProtectedRoute><ImageWorkspace /></ProtectedRoute>} />
+          <Route path="/workspace/converter/image-format" element={<ProtectedRoute><ImageFormatWorkspace /></ProtectedRoute>} />
+          <Route path="/workspace/converter/pdf-to-word" element={<ProtectedRoute><PDFWorkspace /></ProtectedRoute>} />
+          <Route path="/workspace/converter/image-to-pdf" element={<ProtectedRoute><ImageToPDFWorkspace /></ProtectedRoute>} />
+          <Route path="/workspace/converter/qr" element={<ProtectedRoute><QRWorkspace /></ProtectedRoute>} />
+          <Route path="/workspace/media/video" element={<ProtectedRoute><VideoWorkspace /></ProtectedRoute>} />
+          <Route path="/workspace/converter/voice" element={<ProtectedRoute><VoiceWorkspace /></ProtectedRoute>} />
+          <Route path="/workspace/converter/translator" element={<ProtectedRoute><TranslatorWorkspace /></ProtectedRoute>} />
+          <Route path="/workspace/converter/password" element={<ProtectedRoute><PasswordWorkspace /></ProtectedRoute>} />
+          <Route path="/workspace/business/calculator" element={<ProtectedRoute><CalculatorWorkspace /></ProtectedRoute>} />
+          
+          <Route path="/workspace/legal/gift-deed" element={<ProtectedRoute><GiftDeedWorkspace /></ProtectedRoute>} />
+          <Route path="/workspace/legal/notice" element={<ProtectedRoute><NoticeWorkspace /></ProtectedRoute>} />
+          <Route path="/workspace/legal/affidavit" element={<ProtectedRoute><AffidavitWorkspace /></ProtectedRoute>} />
+          <Route path="/workspace/tax/itr" element={<ProtectedRoute><ITRWorkspace /></ProtectedRoute>} />
+          <Route path="/workspace/tax/gst" element={<ProtectedRoute><GSTWorkspace /></ProtectedRoute>} />
+          <Route path="/workspace/tax/refund" element={<ProtectedRoute><RefundWorkspace /></ProtectedRoute>} />
+          <Route path="/workspace/media/poster" element={<ProtectedRoute><PosterWorkspace /></ProtectedRoute>} />
+
+          <Route path="/workspace/coming-soon" element={<ProtectedRoute><ComingSoonWorkspace /></ProtectedRoute>} />
           {/* ═══════ Admin Dashboards ═══════ */}
           {/* Superadmin only */}
           <Route path="/admin/control" element={<AdminRoute allow={['superadmin']}><ControlDashboard /></AdminRoute>} />
@@ -346,9 +399,11 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="/release-notes" element={<ReleaseNotes />} />
+          <Route path="/release-notes" element={<ReleaseNotes />} />
           <Route path="/changelog" element={<Changelog />} />
 
-          <Route path="*" element={<Navigate to="/" replace />} />
+          {/* Professional 404 Error Page (Replaces Redirect to Home) */}
+          <Route path="*" element={<NotFoundWorkspace />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

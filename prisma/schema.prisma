@@ -53,6 +53,7 @@ model User {
   subscriptions         Subscription[]
   transactions          Transaction[]
   tax_profile           TaxProfile?
+  legal_profile         LegalProfile?
   csc                   CSC                   @relation(fields: [csc_id], references: [id], onDelete: Cascade)
 
   @@index([csc_id])
@@ -316,21 +317,65 @@ model MessageLog {
 }
 
 model TaxProfile {
-  id               String   @id @default(uuid())
-  user_id          String   @unique @map("user_id")
-  pan              String?
-  aadhaar          String?
-  dob              String?
-  address          String?
-  bank_accounts    Json?    @map("bank_accounts")
-  family_info      Json?    @map("family_info")
-  nominee_info     Json?    @map("nominee_info")
-  previous_returns Json?    @map("previous_returns")
-  created_at       DateTime @default(now()) @map("created_at")
-  updated_at       DateTime @updatedAt @map("updated_at")
-  user             User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  id                 String   @id @default(uuid())
+  user_id            String   @unique @map("user_id")
+  pan                String?
+  aadhaar            String?
+  dob                String?
+  address            String?
+  occupation         String?
+  employer           String?
+  business           Boolean?
+  capital_gain       Boolean?
+  presumptive_business Boolean?
+  bank_accounts      Json?    @map("bank_accounts")
+  family_info        Json?    @map("family_info")
+  nominee_info       Json?    @map("nominee_info")
+  previous_returns   Json?    @map("previous_returns")
+  investments        Json?
+  medical_insurance  Json?    @map("medical_insurance")
+  home_loan          Json?    @map("home_loan")
+  rental_property    Json?    @map("rental_property")
+  gst_details        Json?    @map("gst_details")
+  preferred_language String?  @map("preferred_language")
+  created_at         DateTime @default(now()) @map("created_at")
+  updated_at         DateTime @updatedAt @map("updated_at")
+  user               User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@map("tax_profiles")
+}
+
+model LegalProfile {
+  id                 String   @id @default(uuid())
+  user_id            String   @unique @map("user_id")
+  primary_name       String?
+  father_name        String?
+  spouse_name        String?
+  address            String?
+  village            String?
+  tehsil             String?
+  district           String?
+  state              String?
+  advocate_details   Json?    @map("advocate_details")
+  jurisdiction       String?
+  court              String?
+  preferred_language String?  @map("preferred_language")
+  created_at         DateTime @default(now()) @map("created_at")
+  updated_at         DateTime @updatedAt @map("updated_at")
+  user               User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@map("legal_profiles")
+}
+
+model TaxAuditLog {
+  id          String   @id @default(uuid())
+  user_id     String
+  action      String
+  details     String?
+  created_at  DateTime @default(now())
+
+  @@index([user_id])
+  @@map("tax_audit_logs")
 }
 
 

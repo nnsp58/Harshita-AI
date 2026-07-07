@@ -1,5 +1,5 @@
 const { BaseSkill } = require('./BaseSkill');
-const legalEnginePipeline = require('./legal/LegalEnginePipeline');
+const { MasterLegalAgent } = require('../departments/legal/MasterLegalAgent');
 
 class LegalDraftSkill extends BaseSkill {
   constructor() {
@@ -38,10 +38,16 @@ class LegalDraftSkill extends BaseSkill {
     const userIdSafe = userId || 'anon';
 
     try {
-      // Delegate entirely to the PRD-022 Legal Engine Pipeline
-      const response = await legalEnginePipeline.processRequest(userIdSafe, message);
+      // Delegate entirely to the new MasterLegalAgent (PRD-065)
+      const masterAgent = new MasterLegalAgent();
+      const response = await masterAgent.processRequest({
+          intent: message,
+          memory: context.extractedEntities || {}
+      });
       
-      return this._reply(response.reply, {
+      let replyMessage = response.message || response.document;
+      
+      return this._reply(replyMessage, {
         mode: response.mode,
         docType: response.docType || 'general',
         editable: response.mode === 'legal_generated', // Only editable if final draft

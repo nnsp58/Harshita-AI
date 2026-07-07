@@ -39,9 +39,9 @@ const SERVICES = [
   { id: 'ration-card', title: 'Ration Card', titleHi: 'राशन कार्ड', icon: CreditCard, color: 'bg-pink-500', route: '/service/ration-card' },
   { id: 'whatsapp', title: 'WhatsApp', titleHi: 'व्हाट्सएप', icon: Phone, color: 'bg-green-600', route: '/service/whatsapp' },
   { id: 'ai-assistant', title: 'AI Chat', titleHi: 'AI चैट', icon: Bot, color: 'bg-violet-500', route: '/service/ai-assistant' },
-  { id: 'pdf-tools', title: 'PDF Tools', titleHi: 'PDF टूल्स', icon: FileText, color: 'bg-red-600', route: '/tools-hub/pdf-to-word.html' },
-  { id: 'calculator', title: 'Calculator', titleHi: 'कैलकुलेटर', icon: Calculator, color: 'bg-gray-600', route: '/tools-hub/multifunction-calculator.html' },
-  { id: 'image-tools', title: 'Image Editor', titleHi: 'फोटो एडिटर', icon: Image, color: 'bg-yellow-600', route: '/tools-hub/image-compress.html' }
+  { id: 'pdf-tools', title: 'PDF Tools', titleHi: 'PDF टूल्स', icon: FileText, color: 'bg-red-600', route: '/workspace/converter/pdf-to-word' },
+  { id: 'calculator', title: 'Calculator', titleHi: 'कैलकुलेटर', icon: Calculator, color: 'bg-gray-600', route: '/workspace/business/calculator' },
+  { id: 'image-tools', title: 'Image Editor', titleHi: 'फोटो एडिटर', icon: Image, color: 'bg-yellow-600', route: '/workspace/media/image-compress' }
 ]
 
 // ============ MAIN COMPONENT ============
@@ -571,15 +571,15 @@ function CenterDashboardPanel({ stats: _stats, agents: _agents, jobs: _jobs, onS
     { id: 'resume-builder', title: 'Resume Builder', titleHi: 'रिज्यूमे मेकर', desc: 'Create professional bio-data and resumes.', icon: FileText, color: 'from-purple-500 to-indigo-500', route: '/resume-builder', categories: ['All', 'Applications', 'Education'] },
     { id: 'story-video', title: 'AI Cartoon Video', titleHi: 'कहानी से कार्टून', desc: 'Generate animated story videos with voiceovers.', icon: Video, color: 'from-pink-500 to-rose-500', route: '/story-video', categories: ['All', 'Video', 'Media'] },
     { id: 'tada', title: 'TA-DA Calculator', titleHi: 'भत्ता कैलकुलेटर', desc: 'Compute traveling allowance maps and reports.', icon: Calculator, color: 'from-amber-500 to-orange-500', route: '/tada-naksha', categories: ['All', 'Tools', 'Government', 'CSC'] },
-    { id: 'calculator', title: 'Calculator Tools', titleHi: 'कैलकुलेटर', desc: 'Perform financial and unit conversions.', icon: Calculator, color: 'from-cyan-500 to-blue-500', route: '/tools-hub/multifunction-calculator.html', categories: ['All', 'Tools'] },
+    { id: 'calculator', title: 'Calculator Tools', titleHi: 'कैलकुलेटर', desc: 'Perform financial and unit conversions.', icon: Calculator, color: 'from-cyan-500 to-blue-500', route: '/workspace/business/calculator', categories: ['All', 'Tools'] },
     { id: 'form-filling', title: 'Form Filling', titleHi: 'फॉर्म भरना', desc: 'Online form application helpers.', icon: FormInput, color: 'from-blue-500 to-sky-500', route: '/service/form-filling', categories: ['All', 'Applications', 'CSC'] },
     { id: 'bulk-import', title: 'Bulk Import', titleHi: 'बल्क अपलोड', desc: 'Import candidate datasets in bulk.', icon: Upload, color: 'from-indigo-500 to-purple-500', route: '/bulk-import', categories: ['All', 'Applications', 'CSC', 'Tools'] },
     { id: 'candidates', title: 'Candidates Registry', titleHi: 'उम्मीदवार', desc: 'Manage applicant lists and profiles.', icon: Users, color: 'from-teal-500 to-emerald-500', route: '/candidates', categories: ['All', 'Applications', 'Business'] },
     { id: 'ration-card', title: 'Ration Card', titleHi: 'राशन कार्ड', desc: 'Apply or verify state ration card quotas.', icon: CreditCard, color: 'from-pink-500 to-rose-500', route: '/service/ration-card', categories: ['All', 'Applications', 'Government', 'CSC'] },
     { id: 'whatsapp', title: 'WhatsApp Blast', titleHi: 'व्हाट्सएप कैंपेन', desc: 'Send campaigns to users via WhatsApp.', icon: Phone, color: 'from-green-500 to-emerald-600', route: '/service/whatsapp', categories: ['All', 'Business', 'Tools'] },
     { id: 'ai-assistant', title: 'AI Assistant Chat', titleHi: 'AI चैट', desc: 'Conversational assistant for any queries.', icon: Bot, color: 'from-violet-500 to-purple-600', route: '/service/ai-assistant', categories: ['All', 'Education'] },
-    { id: 'pdf-tools', title: 'PDF Tools', titleHi: 'PDF टूल्स', desc: 'Merge, split, and convert PDF formats.', icon: FileText, color: 'from-red-500 to-rose-600', route: '/tools-hub/pdf-to-word.html', categories: ['All', 'Tools', 'Media'] },
-    { id: 'image-tools', title: 'Image Editor', titleHi: 'फोटो एडिटर', desc: 'Crop, compress, and edit photos.', icon: Image, color: 'from-yellow-500 to-amber-600', route: '/tools-hub/image-compress.html', categories: ['All', 'Image', 'Media'] },
+    { id: 'pdf-tools', title: 'PDF Tools', titleHi: 'PDF टूल्स', desc: 'Merge, split, and convert PDF formats.', icon: FileText, color: 'from-red-500 to-rose-600', route: '/workspace/converter/pdf-to-word', categories: ['All', 'Tools', 'Media'] },
+    { id: 'image-tools', title: 'Image Editor', titleHi: 'फोटो एडिटर', desc: 'Crop, compress, and edit photos.', icon: Image, color: 'from-yellow-500 to-amber-600', route: '/workspace/media/image-compress', categories: ['All', 'Image', 'Media'] },
     { id: 'document-scan', title: 'Document OCR', titleHi: 'दस्तावेज़ स्कैन', desc: 'Scan and extract print text from images.', icon: ScanText, color: 'from-purple-500 to-violet-600', route: '/documents', categories: ['All', 'Image', 'Media'] }
   ];
 
@@ -632,7 +632,7 @@ function CenterDashboardPanel({ stats: _stats, agents: _agents, jobs: _jobs, onS
     { id: 'resume-builder', title: 'Resume Builder', titleHi: 'रिज्यूमे मेकर', desc: 'Create professional bio-data and resumes.', icon: FileText, color: 'from-purple-500 to-indigo-500', route: '/resume-builder' },
     { id: 'story-video', title: 'AI Cartoon Video', titleHi: 'कहानी से कार्टून', desc: 'Generate animated story videos with voiceovers.', icon: Video, color: 'from-pink-500 to-rose-500', route: '/story-video' },
     { id: 'tada', title: 'TA-DA Calculator', titleHi: 'भत्ता कैलकुलेटर', desc: 'Compute traveling allowance maps and reports.', icon: Calculator, color: 'from-amber-500 to-orange-500', route: '/tada-naksha' },
-    { id: 'calculator', title: 'Calculator Tools', titleHi: 'कैलकुलेटर', desc: 'Perform financial and unit conversions.', icon: Calculator, color: 'from-cyan-500 to-blue-500', route: '/tools-hub/multifunction-calculator.html' }
+    { id: 'calculator', title: 'Calculator Tools', titleHi: 'कैलकुलेटर', desc: 'Perform financial and unit conversions.', icon: Calculator, color: 'from-cyan-500 to-blue-500', route: '/workspace/business/calculator' }
   ];
 
   return (
