@@ -24,7 +24,7 @@ const upload = multer({ storage: multer.memoryStorage() });
 const quietStartup = process.env.QUIET_STARTUP === '1';
 
 const app = express();
-app.set('trust proxy', 1);
+app.enable('trust proxy');
 const server = http.createServer(app);
 
 // API mode active - Static serving disabled
@@ -327,7 +327,8 @@ const limiter = rateLimit({
   max: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS) || 1000,
   message: { error: 'Too many requests, please try again later.' },
   standardHeaders: true,
-  legacyHeaders: false
+  legacyHeaders: false,
+  validate: { xForwardedForHeader: false }
 });
 
 app.use('/api/', limiter);
