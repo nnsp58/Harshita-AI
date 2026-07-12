@@ -5,7 +5,7 @@ import { useStore } from './store'
 import SEO from './components/SEO/SEO'
 
 import UpgradeNotification from './components/UpgradeNotification'
-import SimpleDashboard from './pages/SimpleDashboard'
+
 import DashboardSaaS from './pages/DashboardSaaS'
 import Login from './pages/Login'
 import PublicHome from './pages/PublicHome'
@@ -24,7 +24,7 @@ const TADAForm = lazy(() => import('./pages/TADAForm'))
 const TADANaksha = lazy(() => import('./pages/TADANaksha'))
 const LegalDraft = lazy(() => import('./pages/LegalDraft'))
 const LegalNotice = lazy(() => import('./pages/LegalNotice'))
-const ITRFiling = lazy(() => import('./pages/ITRFiling'))
+
 const ServicePage = lazy(() => import('./pages/ServicePage'))
 const AdvocateProfile = lazy(() => import('./pages/AdvocateProfile'))
 const ContactUs = lazy(() => import('./pages/ContactUs'))
@@ -92,7 +92,7 @@ const CscDashboard = lazy(() => import('./pages/admin/CscDashboard'))
 const VleDashboard = lazy(() => import('./pages/admin/VleDashboard'))
 const SelfHealingCenter = lazy(() => import('./pages/admin/SelfHealingCenter'))
 const DeveloperCenter = lazy(() => import('./pages/admin/DeveloperCenter'))
-const AcademyDashboard = lazy(() => import('./pages/AcademyDashboard'))
+
 const AnalyticsDashboard = lazy(() => import('./pages/admin/AnalyticsDashboard'))
 const SystemControl = lazy(() => import('./pages/admin/SystemControl'))
 
@@ -161,14 +161,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/dashboard-old"
-            element={
-              <ProtectedRoute>
-                <SimpleDashboard />
-              </ProtectedRoute>
-            }
-          />
+
           <Route
             path="/workspace"
             element={
@@ -277,14 +270,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/itr-filing"
-            element={
-              <ProtectedRoute>
-                <ITRFiling />
-              </ProtectedRoute>
-            }
-          />
+
           <Route
             path="/story-video"
             element={
@@ -293,14 +279,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/academy"
-            element={
-              <ProtectedRoute>
-                <AcademyDashboard />
-              </ProtectedRoute>
-            }
-          />
+
 
           {/* Generic service page — handles form-filling, job-search, ration-card, whatsapp, ai-assistant, document-ocr */}
           <Route
