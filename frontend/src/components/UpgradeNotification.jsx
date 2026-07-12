@@ -43,6 +43,7 @@ export default function UpgradeNotification() {
 
     // Poll schedule every 5 min for fallback (in case socket disconnects)
     const pollSchedule = async () => {
+      if (!navigator.onLine) return; // Prevent fetch errors when offline
       try {
         const res = await fetch('/api/learning/schedule')
         const data = await res.json()
