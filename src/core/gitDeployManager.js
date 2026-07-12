@@ -8,6 +8,15 @@ class GitDeployManager {
   constructor() {
     this.projectRoot = path.resolve(__dirname, '../../');
     this.frontendDir = path.join(this.projectRoot, 'frontend');
+    // GitHub token for authenticated push (set via GITHUB_TOKEN in .env)
+    this.githubToken = process.env.GITHUB_TOKEN || null;
+    this.githubOwner = process.env.GITHUB_REPO_OWNER || 'nnsp58';
+    this.githubRepo = process.env.GITHUB_REPO_NAME || 'Harshita-AI';
+    if (this.githubToken) {
+      console.log('✅ GitDeployManager: GitHub Token loaded for authenticated push');
+    } else {
+      console.warn('⚠️ GitDeployManager: GITHUB_TOKEN not set — push may fail without auth');
+    }
   }
 
   // Helper to execute commands in shell asynchronously
@@ -21,6 +30,19 @@ class GitDeployManager {
         }
       });
     });
+  }
+
+  /**
+   * Returns the authenticated remote URL using GITHUB_TOKEN.
+   * Format: https://<token>@github.com/<owner>/<repo>.git
+   * This avoids SSH key dependency and works in all environments.
+   */
+  getAuthenticatedRemote() {
+    if (this.githubToken) {
+      return `https://${this.githubToken}@github.com/${this.githubOwner}/${this.githubRepo}.git`;
+    }
+    // Fallback to standard origin if no token
+    return null;
   }
 
   // Get Git details and deployment status
@@ -205,7 +227,14 @@ class GitDeployManager {
       await this.runCmd(`git commit -m "${msg.replace(/"/g, '\\"')}"`);
 
       progressCallback(`Pushing commits to remote [${status.branch}]...`);
-      await this.runCmd(`git push origin ${status.branch}`);
+      
+      // Use token-authenticated remote URL if GitHub token is configured
+      const authRemote = this.getAuthenticatedRemote();
+      if (authRemote) {
+        await this.runCmd(`git push "${authRemote}" ${status.branch}`);
+      } else {
+        await this.runCmd(`git push origin ${status.branch}`);
+      }
 
       const timestamp = new Date().toISOString();
       await this.setDeploySetting('lastPushTime', timestamp);
@@ -375,7 +404,12 @@ class GitDeployManager {
       await this.runCmd('git revert HEAD --no-edit');
       
       console.log('[GitDeployManager] Pushing reverted code to remote origin...');
-      await this.runCmd(`git push origin ${status.branch}`);
+      const authRemote = this.getAuthenticatedRemote();
+      if (authRemote) {
+        await this.runCmd(`git push "${authRemote}" ${status.branch}`);
+      } else {
+        await this.runCmd(`git push origin ${status.branch}`);
+      }
 
       await this.setDeploySetting('lastDeployStatus', 'rolled_back');
       

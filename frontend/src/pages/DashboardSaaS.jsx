@@ -95,10 +95,11 @@ export default function DashboardSaaS() {
   };
 
   const quickActions = [
-    { id: 'legal', title: 'Create Affidavit', icon: FileText, color: 'from-blue-500 to-indigo-500', route: '/legal-draft' },
-    { id: 'resume', title: 'Resume Builder', icon: Briefcase, color: 'from-purple-500 to-pink-500', route: '/resume-builder' },
-    { id: 'job', title: 'Find Jobs', icon: Search, color: 'from-emerald-400 to-teal-500', route: '/jobs' },
-    { id: 'upload', title: 'Upload Documents', icon: Upload, color: 'from-orange-400 to-red-500', route: '/documents' },
+    { id: 'legal', title: 'Create Affidavit', icon: FileText, color: 'from-blue-500 to-indigo-500', route: '/workspace/legal/affidavit' },
+    { id: 'notice', title: 'Legal Notice', icon: FileText, color: 'from-purple-500 to-pink-500', route: '/workspace/legal/notice' },
+    { id: 'itr', title: 'ITR Filing', icon: Activity, color: 'from-emerald-400 to-teal-500', route: '/workspace/tax/itr' },
+    { id: 'gst', title: 'GST Calculator', icon: TrendingUp, color: 'from-orange-400 to-amber-500', route: '/workspace/tax/gst' },
+    { id: 'refund', title: 'Tax Refund', icon: Search, color: 'from-cyan-400 to-blue-500', route: '/workspace/tax/refund' },
   ];
 
   const StatCard = ({ title, value, icon: Icon, trend }) => (

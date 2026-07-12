@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { AlertCircle } from 'lucide-react'
 import { useStore } from '../store'
 import { authAPI } from '../services/api'
@@ -104,7 +104,7 @@ export default function Login() {
         </div>
 
         <div className="text-[10px] text-gray-600">
-          By signing in, you agree to our Terms and Privacy Policy.
+          By signing in, you agree to our <Link to="/terms" className="underline hover:text-gray-400 transition-colors">Terms</Link> and <Link to="/privacy-policy" className="underline hover:text-gray-400 transition-colors">Privacy Policy</Link>.
         </div>
       </motion.div>
     </div>

@@ -384,7 +384,7 @@ Output MUST be a valid JSON object matching the following schema EXACTLY (do NOT
     if (geminiKey && !success) {
       try {
         console.log('[StoryVideoSkill] Using Gemini for scene breakdown...');
-        const response = await axios.post(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiKey}`, {
+        const response = await axios.post(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiKey}`, {
           contents: [{ parts: [{ text: prompt }] }],
           generationConfig: { responseMimeType: 'application/json' }
         });

@@ -3,15 +3,17 @@
  *
  * Supports:
  *   - Groq (Llama 3.3 70B) - Fast, FREE
- *   - Gemini Flash 2.0 - High quality, paid
+ *   - Gemini Flash 2.0 - High quality, paid  [Key: gen-lang-client-0744666121]
  *   - OpenAI GPT-4 - Best reasoning, expensive
  *   - Claude (Anthropic) - Advanced reasoning, paid
  *   - DeepSeek - Coding & reasoning
  *   - Qwen - Multilingual tasks & Hindi
+ *   - HuggingFace - Hindi NLP, specialized models, embeddings
  *   - Local LLM (Ollama / vLLM) - Emergency offline backup
  */
 
 const OpenAI = require('openai');
+const https = require('https');
 
 class AIProviderManager {
   constructor() {
@@ -28,7 +30,8 @@ class AIProviderManager {
     try {
       this.providers.set('local_ollama', new OpenAI({
         apiKey: 'ollama',
-        baseURL: ollamaUrl
+        baseURL: ollamaUrl,
+        timeout: 5000 // Fail fast if Ollama is not installed locally
       }));
       this.providerStatus.set('local_ollama', { healthy: true, latency: 0, failures: 0 });
       console.log(`✅ HASA AIProvider: Local Ollama initialized at ${ollamaUrl}`);
@@ -117,6 +120,15 @@ class AIProviderManager {
       }
     }
 
+    // 8. HuggingFace (Hindi NLP, specialized models, embeddings)
+    if (process.env.HUGGINGFACE_TOKEN) {
+      // HuggingFace uses its own REST API, not OpenAI-compatible.
+      // We store the token and handle calls in huggingFaceRequest().
+      this.huggingFaceToken = process.env.HUGGINGFACE_TOKEN;
+      this.providerStatus.set('huggingface', { healthy: true, latency: 0, failures: 0 });
+      console.log('✅ HASA AIProvider: HuggingFace Inference API (fine-grained token)');
+    }
+
     console.log(`📊 HASA AI Router: ${this.providers.size} provider(s) registered`);
   }
 
@@ -145,8 +157,8 @@ class AIProviderManager {
         'default': 'llama-3.3-70b-versatile'
       },
       gemini: {
-        'default': 'gemini-2.0-flash',
-        'LegalDraftAgent': 'gemini-2.0-flash'
+        'default': 'gemini-1.5-flash',
+        'LegalDraftAgent': 'gemini-1.5-flash'
       },
       openai: {
         'default': 'gpt-4o-mini',
@@ -185,10 +197,61 @@ class AIProviderManager {
   }
 
   getAvailableProviders() {
-    return Array.from(this.providers.keys()).map(name => ({
+    const providers = Array.from(this.providers.keys()).map(name => ({
       name,
       ...this.providerStatus.get(name)
     }));
+    // Also include huggingface if token is set
+    if (this.huggingFaceToken) {
+      providers.push({ name: 'huggingface', ...this.providerStatus.get('huggingface') });
+    }
+    return providers;
+  }
+
+  /**
+   * HuggingFace Inference API request
+   * Used for: Hindi NLP, text classification, embeddings, specialized models
+   * @param {string} model - HuggingFace model ID e.g. 'ai4bharat/indic-bert'
+   * @param {Object} payload - Request body
+   */
+  async huggingFaceRequest(model, payload) {
+    if (!this.huggingFaceToken) {
+      throw new Error('HuggingFace token not configured. Set HUGGINGFACE_TOKEN in .env');
+    }
+    const url = `https://api-inference.huggingface.co/models/${model}`;
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${this.huggingFaceToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+    if (!response.ok) {
+      const err = await response.text();
+      throw new Error(`HuggingFace API error (${response.status}): ${err}`);
+    }
+    return response.json();
+  }
+
+  /**
+   * Convenience method used by MasterAIOrchestrator and agents
+   * that call aiProviderManager.generateResponse(prompt, options) directly.
+   * Routes through the normal createChatCompletion failover logic.
+   */
+  async generateResponse(prompt, options = {}) {
+    const agentName = options.agentName || 'MasterAgent';
+    const model = options.model || null;
+    const provider = options.provider || null;
+
+    const response = await this.createChatCompletion(agentName, {
+      messages: [{ role: 'user', content: prompt }],
+      temperature: options.temperature || 0.7,
+      max_tokens: options.maxTokens || 1500,
+      ...(model ? { model } : {})
+    });
+
+    return response.choices[0]?.message?.content || '';
   }
 
   /**

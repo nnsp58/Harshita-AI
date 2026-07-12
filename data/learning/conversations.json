@@ -1067,5 +1067,24 @@
     ],
     "createdAt": "2026-07-06T08:51:46.445Z",
     "lastActive": "2026-07-06T08:51:46.445Z"
+  },
+  "demo:legal_draft": {
+    "userId": "demo",
+    "skill": "legal_draft",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Legal draft banao - Affidavit / शपथ पत्र: Affidavit for Name Change from Harsh to Harshita. Language: Bilingual Hindi+English",
+        "timestamp": "2026-07-07T21:38:11.671Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Draft failed quality checks. Regenerating...",
+        "timestamp": "2026-07-07T21:38:11.672Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-07-07T21:38:11.671Z",
+    "lastActive": "2026-07-07T21:38:11.672Z"
   }
 }

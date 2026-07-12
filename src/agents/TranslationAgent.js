@@ -1,4 +1,4 @@
-const { aiProviderManager } = require('../../utils/aiProviderManager');
+const { aiProviderManager } = require('../utils/aiProviderManager');
 const BaseAgent = require('./BaseAgent');
 
 class TranslationAgent extends BaseAgent {

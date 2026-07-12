@@ -35,50 +35,146 @@ class ApplicationSkill extends BaseSkill {
     this.sessions = new Map();
   }
 
+  // ─── REQUIRED FIELDS for a proper application ──────────────────
+  // These must be collected before we can generate a good draft.
+  _getRequiredFields() {
+    return [
+      { key: 'applicantName', question: 'आपका नाम क्या है? (Aapka naam kya hai?)', hint: 'e.g. Ramesh Kumar' },
+      { key: 'authority', question: 'यह application किसको लिखनी है? जैसे Principal, DM, SDM, BDO, HR आदि।', hint: 'e.g. Principal' },
+      { key: 'subject', question: 'Application का विषय / कारण क्या है? जैसे छुट्टी, शिकायत, प्रमाण पत्र आदि।', hint: 'e.g. 5 din ki chhutti' },
+    ];
+  }
+
+  // ─── SESSION HELPERS ─────────────────────────────────────────────
+  _getSession(userId) {
+    if (!this.sessions.has(userId)) {
+      this.sessions.set(userId, { step: 'collecting', data: {}, questionIndex: 0 });
+    }
+    return this.sessions.get(userId);
+  }
+
+  _clearSession(userId) {
+    this.sessions.delete(userId);
+  }
+
+  // ─── MAIN EXECUTE — Enterprise Conversation Framework ────────────
   async execute(context) {
     const { message, userId } = context;
     const userIdSafe = userId || 'anon';
+    const msg = (message || '').trim();
 
-    // Ensure minimum routing
-    if (!message || message.trim() === '') {
+    if (!msg) {
       return this._reply(this._getHelpMessage(), { mode: 'application_prompt' });
     }
 
-    // PRD-021: Extract classification params for authority/department injection
-    const classification = context.params?.classification || null;
-    const authorityKey = context.params?.authority || null;
-    const departmentKey = context.params?.department || null;
-    const authorityInfo = context.params?.authorityInfo || (authorityKey && AUTHORITY_MAP[authorityKey]) || null;
-    const departmentInfo = context.params?.departmentInfo || (departmentKey && DEPARTMENT_MAP[departmentKey]) || null;
+    const session = this._getSession(userIdSafe);
 
-    try {
-      this._reply('मैं आपके विषय पर एक प्रोफेशनल प्रार्थना पत्र तैयार कर रहा हूँ। कृपया 10-15 सेकंड प्रतीक्षा करें...', null, 'processing');
-      
-      const processedInput = autoCapitalizeText(message);
-      let draft = await this._generateApplication(processedInput, authorityInfo, departmentInfo);
-      
-      if (draft) {
-        draft = autoCapitalizeText(draft);
-        draft = eliminatePlaceholders(draft);
-        return this._reply(draft, {
-          mode: 'application_generated',
-          editable: true,
-          originalQuery: message,
-        });
-      }
-    } catch (err) {
-      console.error('[ApplicationSkill] AI generation failed:', err.message);
+    // ── User wants to reset / cancel ──────────────────────────────
+    const resetWords = ['cancel', 'reset', 'dobara', 'रद्द', 'छोड़ो', 'start again'];
+    if (resetWords.some(w => msg.toLowerCase().includes(w))) {
+      this._clearSession(userIdSafe);
+      return this._reply('ठीक है, फिर से शुरू करते हैं। आप किस विषय पर Application लिखवाना चाहते हैं?', { mode: 'reset' });
     }
 
-    // Fallback if AI fails
-    const fallback = this._generateFallbackTemplate(message, authorityInfo, departmentInfo);
-    return this._reply(fallback, {
-      mode: 'application_generated_template',
-      editable: true,
-      originalQuery: message,
-      note: 'Generated from template (AI unavailable)',
-    });
+    const required = this._getRequiredFields();
+
+    // ── COLLECTING PHASE: gather required info one-by-one ─────────
+    if (session.step === 'collecting') {
+      // If this is first message (no data collected yet), extract what we can
+      if (session.questionIndex === 0 && Object.keys(session.data).length === 0) {
+        // Try to extract authority from the first message
+        const msg_lower = msg.toLowerCase();
+        if (msg_lower.includes('principal') || msg_lower.includes('प्रधानाचार्य')) session.data.authority = 'Principal (प्रधानाचार्य)';
+        else if (msg_lower.includes('dm ') || msg_lower.includes('जिलाधिकारी')) session.data.authority = 'DM (जिलाधिकारी)';
+        else if (msg_lower.includes('sdm') || msg_lower.includes('उपजिलाधिकारी')) session.data.authority = 'SDM (उपजिलाधिकारी)';
+        else if (msg_lower.includes('bdo') || msg_lower.includes('खंड विकास')) session.data.authority = 'BDO (खंड विकास अधिकारी)';
+
+        if (msg_lower.includes('छुट्टी') || msg_lower.includes('leave')) session.data.subject = msg_lower.includes('medical') ? 'Medical Leave (बीमारी के कारण छुट्टी)' : 'Leave Application (अवकाश हेतु आवेदन)';
+        else if (msg_lower.includes('complaint') || msg_lower.includes('शिकायत')) session.data.subject = 'शिकायत पत्र';
+        else if (msg_lower.includes('certificate') || msg_lower.includes('प्रमाण पत्र')) session.data.subject = 'प्रमाण पत्र हेतु आवेदन';
+      } else {
+        // Save the answer to the current question
+        const currentField = required.find(f => !session.data[f.key]);
+        if (currentField) {
+          session.data[currentField.key] = msg;
+        }
+      }
+
+      // Find the next missing required field
+      const nextMissing = required.find(f => !session.data[f.key]);
+      if (nextMissing) {
+        // Ask next question
+        const filledCount = Object.keys(session.data).length;
+        const totalRequired = required.length;
+        const progress = `(${filledCount}/${totalRequired} जानकारी मिली)`;
+        session.questionIndex = filledCount;
+        return this._reply(
+          `${nextMissing.question} ${progress}\n\n💡 उदाहरण: ${nextMissing.hint}`,
+          { mode: 'collecting', conversationState: 'collecting', type: 'question', field: nextMissing.key }
+        );
+      }
+
+      // All required fields collected — move to generation
+      session.step = 'generating';
+    }
+
+    // ── GENERATION PHASE: all info collected, generate draft ──────
+    if (session.step === 'generating') {
+      const collectedData = session.data;
+
+      // PRD-021: Extract classification params for authority/department injection
+      const authorityKey = context.params?.authority || null;
+      const departmentKey = context.params?.department || null;
+      const authorityInfo = context.params?.authorityInfo || (authorityKey && AUTHORITY_MAP[authorityKey]) || null;
+      const departmentInfo = context.params?.departmentInfo || (departmentKey && DEPARTMENT_MAP[departmentKey]) || null;
+
+      try {
+        this._reply('सभी जानकारी मिल गई! ✅ Application तैयार हो रही है... (10-15 सेकंड)', null, 'processing');
+
+        const enrichedInput = `
+Applicant Name: ${collectedData.applicantName || '[आवेदक का नाम]'}
+Authority: ${collectedData.authority || 'Concerned Authority'}
+Subject/Reason: ${collectedData.subject || message}
+Extra Details: ${collectedData.extraDetails || ''}
+Original Request: ${message}
+        `.trim();
+
+        const processedInput = autoCapitalizeText(enrichedInput);
+        let draft = await this._generateApplication(processedInput, authorityInfo, departmentInfo);
+
+        // Clear session after successful generation
+        this._clearSession(userIdSafe);
+
+        if (draft) {
+          draft = autoCapitalizeText(draft);
+          draft = eliminatePlaceholders(draft);
+          return this._reply(draft, {
+            mode: 'application_generated',
+            editable: true,
+            originalQuery: message,
+            collectedData,
+          });
+        }
+      } catch (err) {
+        console.error('[ApplicationSkill] AI generation failed:', err.message);
+      }
+
+      // Fallback if AI fails
+      const fallback = this._generateFallbackTemplate(session.data.subject || message, authorityInfo, departmentInfo);
+      this._clearSession(userIdSafe);
+      return this._reply(fallback, {
+        mode: 'application_generated_template',
+        editable: true,
+        originalQuery: message,
+        note: 'Template (AI unavailable)',
+      });
+    }
+
+    // Should not reach here — reset session
+    this._clearSession(userIdSafe);
+    return this._reply('कुछ गड़बड़ हो गई। दोबारा शुरू करें।', { mode: 'error' });
   }
+
 
   async _generateApplication(userInput, authorityInfo = null, departmentInfo = null, retryCount = 0) {
     if (!this.aiManager) return null;

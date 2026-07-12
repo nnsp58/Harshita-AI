@@ -28,9 +28,36 @@ router.use('/auth', authRoutes);
 router.use('/self-healing', selfHealingRoutes);
 router.use('/candidate', candidateRoutes);
 router.use('/job', jobRoutes);
+// /api/jobs alias for standard REST convention and QA test compatibility
+router.use('/jobs', jobRoutes);
 router.use('/document', documentRoutes);
 router.use('/review', reviewRoutes);
 router.use('/download', downloadRoutes);
+
+// Public agents list — no auth required (must be BEFORE router.use('/agents') to avoid shadow)
+router.get('/agents', (req, res) => {
+  try {
+    const masterAgent = req.app.get('masterAgent');
+    if (!masterAgent || !masterAgent.registry) {
+      return res.json({ agents: [], total: 0 });
+    }
+    const skills = masterAgent.registry.getAllSkills ? masterAgent.registry.getAllSkills() : [];
+    res.json({
+      agents: skills.map(s => ({
+        id: s.name,
+        displayName: s.displayName || s.name,
+        category: s.category || 'general',
+        status: 'running',
+        canRunOffline: s.canRunOffline || false,
+        intentsCount: (s.intents || []).length
+      })),
+      total: skills.length
+    });
+  } catch (e) {
+    res.json({ agents: [], total: 0, error: e.message });
+  }
+});
+
 router.use('/agents', agentRoutes);
 router.use('/whatsapp', whatsappRoutes);
 router.use('/bulk', bulkRoutes);
@@ -45,21 +72,24 @@ router.use('/settings', settingRoutes);
 router.use('/story-video', storyVideoRoutes);
 router.use('/academy', academyRoutes);
 
+
+
 // API info endpoint
 router.get('/', (req, res) => {
   res.json({
-    name: 'CSC Automation API',
-    version: '1.0.0',
-    description: 'REST API for CSC Automation System',
+    name: 'Harshita AI API',
+    version: '2.0.0',
+    description: 'Harshita AI Enterprise AI Operating System REST API',
     endpoints: {
+      health: '/api/health',
       auth: '/api/auth',
-      candidates: '/api/candidate',
-      jobs: '/api/job',
+      agents: '/api/agents',
+      jobs: '/api/jobs',
       documents: '/api/document',
-      reviews: '/api/review',
-      downloads: '/api/download'
+      command: '/api/command',
+      dashboard: '/api/dashboard/stats'
     }
   });
 });
 
-module.exports = router;
+module.exports = router;

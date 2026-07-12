@@ -247,7 +247,9 @@ app.use(helmet({
       scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://accounts.google.com", "https://*.googleapis.com"],
       scriptSrcElem: ["'self'", "'unsafe-inline'", "https://accounts.google.com", "https://*.googleapis.com"],
       frameSrc: ["'self'", "https://accounts.google.com"],
-      imgSrc: ["'self'", "data:", "https:"],
+      // blob: is required for Image Compressor, Passport Cropper, and any canvas-based
+      // tool that generates local object URLs (URL.createObjectURL)
+      imgSrc: ["'self'", "data:", "blob:", "https:"],
       styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://accounts.google.com"],
       styleSrcElem: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://accounts.google.com"],
       fontSrc: ["'self'", "https://fonts.gstatic.com", "data:"],
@@ -385,7 +387,7 @@ app.post('/api/ocr/process', authenticate, upload.any(), async (req, res) => {
 
 app.use('/api', routes);
 
-// Health check
+// Health check — both /health and /api/health supported
 app.get('/health', (req, res) => {
   res.json({
     status: 'healthy',
@@ -394,6 +396,24 @@ app.get('/health', (req, res) => {
     network: networkMonitor.getStatus()
   });
 });
+
+// /api/health — alias for monitoring tools and QA test runners
+app.get('/api/health', (req, res) => {
+  res.json({
+    status: 'healthy',
+    version: '2.0.0',
+    timestamp: new Date().toISOString(),
+    uptime: Math.round(process.uptime()) + 's',
+    providers: (() => {
+      try {
+        const { aiProviderManager } = require('../utils/aiProviderManager');
+        return aiProviderManager.getAvailableProviders().map(p => p.name);
+      } catch (e) { return []; }
+    })(),
+    network: networkMonitor.getStatus()
+  });
+});
+
 
 app.get('/debug-paths', (req, res) => {
   const fs = require('fs');

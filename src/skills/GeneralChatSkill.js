@@ -178,7 +178,7 @@ Keep replies under 80 words. Be professional and context-aware.`
       
       messages.push({ role: 'user', content: message });
 
-      const response = await aiProviderManager.createChatCompletion('MasterAgent', {
+      const response = await aiProviderManager.createChatCompletion('GeneralChatAgent', {
         messages: messages,
         temperature: 0.6,
         max_tokens: 250

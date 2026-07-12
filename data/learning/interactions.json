@@ -863,5 +863,41 @@
     "output": "एक मजबूत दस्तावेज़ तैयार करने के लिए, कृपया कुछ और जानकारी दें (तारीख, पैसे, सबूत) और बताएँ कि ड्राफ्ट हिंदी में चाहिए या इंग्लिश में?",
     "success": true,
     "timestamp": "2026-07-06T08:51:46.445Z"
+  },
+  {
+    "id": "test_user_001_1783450852815_bjcw3tf",
+    "userId": "test_user_001",
+    "skill": "application_writer",
+    "input": "बैंक मैनेजर को नई पासबुक के लिए प्रार्थना पत्र लिखो",
+    "output": "सेवा में,\nबैंक मैनेजर\nमैनेजर, ____________________ बैंक\n____________________ शाखा\n____________________, ____________________\n\nविषय: नई पासबुक जारी करने के संबंध में प्रार्थना पत्र\n\nमहोदय / महोदया,\n\nसव",
+    "success": true,
+    "timestamp": "2026-07-07T19:00:52.815Z"
+  },
+  {
+    "id": "test_user_002_1783452110177_gdgws4q",
+    "userId": "test_user_002",
+    "skill": "general_chat",
+    "input": "What is Quantum Computing?",
+    "output": "Quantum Computing is a new generation of computers that uses quantum-mechanical phenomena to perform calculations, offering faster processing for complex problems 🚀. I can navigate you to more inform",
+    "success": true,
+    "timestamp": "2026-07-07T19:21:50.177Z"
+  },
+  {
+    "id": "test_user_002_1783452298753_qrcpq4i",
+    "userId": "test_user_002",
+    "skill": "general_chat",
+    "input": "What is Quantum Computing?",
+    "output": "Quantum Computing uses quantum-mechanical phenomena for computations, unlike classical computers. It can solve complex problems efficiently 🤖.",
+    "success": true,
+    "timestamp": "2026-07-07T19:24:58.756Z"
+  },
+  {
+    "id": "demo_1783460292016_a7bf553",
+    "userId": "demo",
+    "skill": "legal_draft",
+    "input": "Legal draft banao - Affidavit / शपथ पत्र: Affidavit for Name Change from Harsh to Harshita. Language: Bilingual Hindi+English",
+    "output": "Draft failed quality checks. Regenerating...",
+    "success": true,
+    "timestamp": "2026-07-07T21:38:12.016Z"
   }
 ]

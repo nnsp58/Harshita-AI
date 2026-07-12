@@ -109,16 +109,12 @@ class IntentDetector {
       return patternResult;
     }
 
-    // Step 3: AI Detection
-    let result = await this._detectWithAI(cleanMessage, lang, history);
+    // Step 3: API/LLM Detection Removed per CTO Directive (Offline First)
+    let result = null;
 
     // Step 4: Keyword Fallback
-    if (!result || result.confidence < 0.4) {
-      const keywordResult = this._detectWithKeywords(cleanMessage);
-      if (!result || keywordResult.confidence > result.confidence) {
-        result = keywordResult;
-      }
-    }
+    const keywordResult = this._detectWithKeywords(cleanMessage);
+    result = keywordResult;
 
     // Step 5: Assign Skill
     if (result.intent && result.intent !== 'general_chat') {
@@ -168,58 +164,6 @@ class IntentDetector {
     return suggestions.slice(0, 3);
   }
 
-  async _detectWithAI(message, lang, history = []) {
-    try {
-      const availableIntents = this._buildIntentList();
-      let historyContext = '';
-      if (history && history.length > 0) {
-        historyContext = '\nRecent Conversation History:\n';
-        const recentHistory = history.slice(-3);
-        recentHistory.forEach(h => {
-          historyContext += `${h.role === 'user' ? 'User' : 'Assistant'}: ${h.message}\n`;
-        });
-      }
-
-      const prompt = `You are an intent classifier for "Harshita AI" — a Government Service AI Assistant used in Indian CSC (Common Service Centre) centers.
-The user can speak in Hindi, English, or Hinglish. Your job is to identify their INTENT.
-
-Available Intents:
-${availableIntents}
-${historyContext}
-Current User Message: "${message}"
-
-CRITICAL RULES FOR ANALYSIS:
-1. Return ONLY raw JSON, no markdown.
-2. GENERAL KNOWLEDGE MUST ALWAYS GO TO "general_chat".
-3. Follow-up responses use conversation history.
-4. Extract any useful parameters into "params".
-5. Confidence should be 0.0 to 1.0.
-
-Return format:
-{"intent": "intent_name", "confidence": 0.85, "params": {"key": "value"}}`;
-
-      const response = await aiProviderManager.createChatCompletion(this.name, {
-        messages: [{ role: 'user', content: prompt }],
-        temperature: 0.1,
-        max_tokens: 200,
-        responseFormat: 'json'
-      });
-
-      let content = response.choices[0].message.content.trim();
-      content = content.replace(/^```[\w]*\s*/, '').replace(/\s*```$/, '');
-      const parsed = JSON.parse(content);
-
-      return {
-        intent: parsed.intent || 'general_chat',
-        confidence: parsed.confidence || 0.5,
-        params: parsed.params || {},
-        method: 'ai'
-      };
-    } catch (error) {
-      console.error('[IntentDetector] AI detection failed:', error.message);
-      return null;
-    }
-  }
 
   _detectWithKeywords(message) {
     const skills = this.registry.getAllSkills();

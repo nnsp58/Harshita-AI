@@ -177,7 +177,7 @@ Output MUST be a valid JSON object matching the following structure EXACTLY (do 
     if (geminiKey && !success) {
       try {
         console.log('[CourseCreatorAgent] Querying Gemini...');
-        const response = await axios.post(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiKey}`, {
+        const response = await axios.post(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiKey}`, {
           contents: [{ parts: [{ text: prompt }] }],
           generationConfig: { responseMimeType: 'application/json' }
         });
