@@ -26,7 +26,7 @@ class SystemMonitor {
 
   async runHealthChecks() {
     console.log('[SystemMonitor] Running API health checks...');
-    const providers = ['openai', 'gemini', 'groq', 'claude', 'deepseek', 'qwen', 'local_ollama'];
+    const providers = ['openai', 'gemini', 'groq', 'deepseek', 'qwen', 'local_ollama'];
 
     for (const provider of providers) {
       if (!aiProviderManager.providers.has(provider)) {

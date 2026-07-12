@@ -5,7 +5,7 @@
  *   - Groq (Llama 3.3 70B) - Fast, FREE
  *   - Gemini Flash 2.0 - High quality, paid  [Key: gen-lang-client-0744666121]
  *   - OpenAI GPT-4 - Best reasoning, expensive
- *   - Claude (Anthropic) - Advanced reasoning, paid
+
  *   - DeepSeek - Coding & reasoning
  *   - Qwen - Multilingual tasks & Hindi
  *   - HuggingFace - Hindi NLP, specialized models, embeddings
@@ -78,19 +78,7 @@ class AIProviderManager {
       }
     }
 
-    // 5. Claude/Anthropic (OpenRouter fallback or Direct key)
-    if (process.env.ANTHROPIC_API_KEY || process.env.OPENROUTER_API_KEY) {
-      try {
-        this.providers.set('claude', new OpenAI({
-          apiKey: process.env.OPENROUTER_API_KEY || process.env.ANTHROPIC_API_KEY,
-          baseURL: process.env.OPENROUTER_API_KEY ? 'https://openrouter.ai/api/v1' : 'https://api.anthropic.com/v1'
-        }));
-        this.providerStatus.set('claude', { healthy: true, latency: 0, failures: 0 });
-        console.log('✅ HASA AIProvider: Claude (Anthropic/OpenRouter)');
-      } catch (e) {
-        console.error('❌ Failed to init Claude:', e.message);
-      }
-    }
+
 
     // 6. DeepSeek
     if (process.env.DEEPSEEK_API_KEY || process.env.OPENROUTER_API_KEY) {
@@ -164,10 +152,7 @@ class AIProviderManager {
         'default': 'gpt-4o-mini',
         'LegalDraftAgent': 'gpt-4o'
       },
-      claude: {
-        'default': 'anthropic/claude-3-haiku',
-        'LegalDraftAgent': 'anthropic/claude-3.5-sonnet'
-      },
+
       deepseek: {
         'default': 'deepseek/deepseek-chat',
         'LegalDraftAgent': 'deepseek/deepseek-r1'
@@ -261,7 +246,7 @@ class AIProviderManager {
     const preferred = this.getEffectiveProvider(agentName);
     
     // Sort priority
-    const priority = [preferred, 'groq', 'gemini', 'openai', 'claude', 'deepseek', 'qwen', 'local_ollama'];
+    const priority = [preferred, 'groq', 'gemini', 'openai', 'deepseek', 'qwen', 'local_ollama'];
     const providersToTry = [...new Set(priority)].filter(name => this.providers.has(name));
 
     let lastError = null;
