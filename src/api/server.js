@@ -331,13 +331,13 @@ const limiter = rateLimit({
   validate: { xForwardedForHeader: false }
 });
 
-app.use('/api', apiRoutes);
+app.use('/api', routes);
 
 app.get('/api/ping-version', (req, res) => {
   res.json({ version: 'V5', status: 'live' });
 });
 
-app.use('/api/pdf', pdfRoutes);
+// app.use('/api/pdf', pdfRoutes);
 // OCR Processing Endpoint
 app.post('/api/ocr/process', authenticate, upload.any(), async (req, res) => {
   try {
