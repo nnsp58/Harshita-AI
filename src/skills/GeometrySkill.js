@@ -43,16 +43,34 @@ class GeometrySkill extends BaseSkill {
   async execute(context) {
     const { message, params = {} } = context;
 
-    // Detect the specific pattern: "X front Y back Z length" (Trapezium / Irregular quad approach)
-    const frontMatch = message.match(/(?:front|फ्रंट)\s*(\d+(?:\.\d+)?)|(\d+(?:\.\d+)?)\s*(?:front|फ्रंट)/i);
-    const backMatch = message.match(/(?:back|पीछे|बैक)\s*(\d+(?:\.\d+)?)|(\d+(?:\.\d+)?)\s*(?:back|पीछे|बैक)/i);
-    const lengthMatch = message.match(/(?:length|लम्बाई|लेंथ|गहराई|depth)\s*(\d+(?:\.\d+)?)|(\d+(?:\.\d+)?)\s*(?:length|लम्बाई|लेंथ|गहराई|depth)/i);
+    const getNum = (match) => match ? parseFloat(match[1] || match[2]) : null;
 
-    if (frontMatch && backMatch && lengthMatch) {
-      const front = parseFloat(frontMatch[1] || frontMatch[2]);
-      const back = parseFloat(backMatch[1] || backMatch[2]);
-      const length = parseFloat(lengthMatch[1] || lengthMatch[2]);
+    let front = getNum(message.match(/(?:front|फ्रंट|सामने|samne|samney)[^\d]*(\d+(?:\.\d+)?)|(\d+(?:\.\d+)?)\s*(?:front|फ्रंट|सामने|samne|samney)/i));
+    let back = getNum(message.match(/(?:back|पीछे|बैक|pichhe|piche)[^\d]*(\d+(?:\.\d+)?)|(\d+(?:\.\d+)?)\s*(?:back|पीछे|बैक|pichhe|piche)/i));
+    let length = getNum(message.match(/(?:length|लम्बाई|लेंथ|गहराई|depth)[^\d]*(\d+(?:\.\d+)?)|(\d+(?:\.\d+)?)\s*(?:length|लम्बाई|लेंथ|गहराई|depth)/i));
+    let left = getNum(message.match(/(?:left|बाएं|बायीं|bayein|le left|baye)[^\d]*(\d+(?:\.\d+)?)|(\d+(?:\.\d+)?)\s*(?:left|बाएं|बायीं|bayein|le left|baye)/i));
+    let right = getNum(message.match(/(?:right|दाएं|दायीं|dayein|daye)[^\d]*(\d+(?:\.\d+)?)|(\d+(?:\.\d+)?)\s*(?:right|दाएं|दायीं|dayein|daye)/i));
 
+    const combinedSides = message.match(/(?:right|left|दायें|बायें|बाएं|दाएं)[^\d]*(?:and|aur|और|&)[^\d]*(?:right|left|दायें|बायें|बाएं|दाएं|le left)[^\d]*?(?:bhujayen|bhuja|side|ki bhuja)?[^\d]*?(\d+(?:\.\d+)?)/i);
+    if (combinedSides) {
+        if (!left) left = parseFloat(combinedSides[1]);
+        if (!right) right = parseFloat(combinedSides[1]);
+    }
+
+    if (front && back && left && right) {
+        // Average method for irregular quadrilateral
+        const areaSqFt = ((front + back) / 2) * ((left + right) / 2);
+        let reply = `आपके प्लाट की चार भुजाओं का नाप:\n`;
+        reply += `• सामने (Front): ${front} ft\n`;
+        reply += `• पीछे (Back): ${back} ft\n`;
+        reply += `• दायीं भुजा (Right): ${right} ft\n`;
+        reply += `• बायीं भुजा (Left): ${left} ft\n\n`;
+        reply += `*(औसत विधि / Average Method के अनुसार)*\n`;
+        reply += `✅ कुल क्षेत्रफल (Approx. Area): **${areaSqFt.toFixed(2)} स्क्वायर फीट (sq.ft)**\n\n`;
+        return this._reply(reply, { area: areaSqFt, unit: 'sq.ft', shape: 'irregular_quadrilateral' });
+    }
+
+    if (front && back && length) {
       // Calculate area as a Trapezium: Area = (a+b)/2 * h
       const areaSqFt = ((front + back) / 2) * length;
       
