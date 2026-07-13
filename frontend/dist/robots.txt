@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /private/
+Disallow: /admin/
+
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+Disallow: /private/
+Disallow: /admin/
+
+User-agent: Mediapartners-Google
+Allow: /
+
+Sitemap: https://n-dizi.in/sitemap.xml
+Host: https://n-dizi.in

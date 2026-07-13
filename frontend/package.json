@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "NODE_OPTIONS=--max-old-space-size=400 vite build",
+    "build:local": "vite build",
+    "build": "echo 'Skipping Vite build on Render to prevent OOM errors' && exit 0",
     "lint": "eslint .",
     "preview": "vite preview"
   },
