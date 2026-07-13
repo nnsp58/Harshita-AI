@@ -77,9 +77,12 @@ export default function ITRWorkspace() {
     }, 1000);
   };
 
-  const handleUpload = () => {
-    addMessage('Form 16 Uploaded ✅', 'user');
-    handleSend('');
+  const handleUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      addMessage(`Form 16 (${file.name}) Uploaded ✅`, 'user');
+      handleSend('');
+    }
   };
 
   const handleOpenPortal = () => {
@@ -103,9 +106,10 @@ export default function ITRWorkspace() {
         );
       case 'UPLOAD_BUTTON':
         return (
-          <button onClick={handleUpload} className="mt-3 bg-white text-indigo-700 border-2 border-dashed border-indigo-300 px-6 py-3 rounded-xl text-sm font-bold shadow-sm hover:bg-indigo-50 flex items-center gap-2 transition-colors">
+          <label className="mt-3 bg-white text-indigo-700 border-2 border-dashed border-indigo-300 px-6 py-3 rounded-xl text-sm font-bold shadow-sm hover:bg-indigo-50 flex items-center justify-center gap-2 cursor-pointer transition-colors w-max">
             <Upload size={18} /> Upload Form 16
-          </button>
+            <input type="file" accept=".pdf,.png,.jpg,.jpeg" className="hidden" onChange={handleUpload} />
+          </label>
         );
       case 'ANALYZING':
         return (
