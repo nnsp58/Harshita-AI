@@ -78,96 +78,156 @@ class MasterAgent {
     try {
       console.log(`\n🎯 [MasterAgent Orchestrator] User ${userId}: "${cmd.substring(0, 60)}..."`);
       
-      // Security Pre-Scan first
-      const { SecuritySkill } = require('../skills/SecuritySkill');
-      const securityResult = SecuritySkill.scanMessage(cmd);
-      if (securityResult) {
-        return {
-          type: 'ai',
-          message: `[रूटिंग सफल] ${securityResult}`,
-          skill: 'security_guardrail'
-        };
-      }
-
-      // FAST PATH: Local Offline Skill-Based Routing (No API Load)
-      const detectResult = await this.detector.detect(cmd, options.lang, this._getHistory(userId));
-      
-      const { ApiFirewall } = require('../utils/ApiFirewall');
-      
-      if (detectResult && detectResult.skill && detectResult.skill !== 'general_chat') {
-        const skill = this.registry.getSkill(detectResult.skill);
-        if (skill) {
-          console.log(`[MasterAgent] Offline Skill-Based Routing to: ${detectResult.skill} (Confidence: ${detectResult.confidence})`);
-          const startTime = Date.now();
+      // Conjunction split check (P0-5 Multi Intent Support)
+      const splitKeywords = /\s+(?:aur|and|&|bhi|साथ\s+ही)\s+/gi;
+      if (splitKeywords.test(cmd)) {
+        const parts = cmd.split(splitKeywords).map(p => p.trim()).filter(Boolean);
+        if (parts.length > 1) {
+          console.log(`[MasterAgent] Multi-intent detected. Splitting into ${parts.length} tasks:`, parts);
+          const results = [];
+          for (const part of parts) {
+            const res = await this._processSingleCommand(userId, part, options);
+            results.push(res);
+          }
           
-          const context = this._buildContext(userId, cmd, detectResult, options);
-          const skillResult = await selfHealingEngine.executeWithHealing(skill, context, this.registry);
-          const skillReply = typeof skillResult === 'string' ? skillResult : (skillResult?.message || JSON.stringify(skillResult));
-          
-          const execTime = Date.now() - startTime;
-          ApiFirewall.logExecution(detectResult.intent, detectResult.skill, execTime, false, 'N/A', 'Local Offline Match');
-          
+          // Combine results
+          const combinedMsg = results.map((r, i) => `[Task ${i+1}: ${parts[i]}]\n${r.message}`).join('\n\n');
           return {
-             type: 'ai',
-             message: skillReply,
-             skill: detectResult.skill,
-             data: skillResult?.data,
-             action: skillResult?.action
+            type: 'ai',
+            message: combinedMsg,
+            skill: results.map(r => r.skill).join(', '),
+            usedLLM: results.some(r => r.usedLLM),
+            data: results.map(r => r.data),
+            action: results.map(r => r.action).find(a => a !== undefined)
           };
         }
       }
 
-      // If no local skill is found, proceed to GeneralChatAgent (Department-Based Routing)
-      console.log(`[MasterAgent] No specific skill found, routing to General Chat Agent...`);
-      const generalChatSkill = this.registry.getSkill('general_chat');
-      
-      if (!generalChatSkill) {
-         return { type: 'error', message: 'General Chat Agent is unavailable.' };
-      }
-
-      const context = this._buildContext(userId, cmd, { intent: 'general_chat', confidence: 1.0 }, options);
-      const skillResult = await selfHealingEngine.executeWithHealing(generalChatSkill, context, this.registry);
-      
-      // Verification
-      const verifyResult = await verificationEngine.verify(generalChatSkill, context, skillResult);
-      let finalResult = skillResult;
-      
-      if (!verifyResult.verified && verifyResult.confidence === 0) {
-         console.warn(`[MasterAgent] Verification failed for General Chat:`, verifyResult.issues);
-         finalResult = generalChatSkill._error(`Validation Error: ${verifyResult.issues.join(', ')}`);
-      }
-
-      const skillReply = typeof finalResult === 'string' ? finalResult : (finalResult?.message || JSON.stringify(finalResult));
-      
-      let formattedMsg = skillReply;
-      if (formattedMsg && !formattedMsg.includes('रूटिंग')) {
-        formattedMsg = formattedMsg.replace(/^\[[^\]]+रूटिंग[^\]]+\]\s*/, '');
-        formattedMsg = `[रूटिंग सफल] ${formattedMsg}`;
-      }
-      
-      let finalAction = finalResult?.action || {};
-      
-      // 🎙️ GLOBAL VOICE MODE
-      const voiceSkill = this.registry.getSkill('voice_agent');
-      if (voiceSkill && typeof voiceSkill.isVoiceModeEnabled === 'function' && voiceSkill.isVoiceModeEnabled(userId)) {
-        finalAction.speak = true;
-        if (!finalAction.text) finalAction.text = formattedMsg;
-      }
-
-      return {
-         type: 'ai',
-         message: formattedMsg,
-         skill: 'general_chat',
-         data: finalResult?.data,
-         action: Object.keys(finalAction).length > 0 ? finalAction : undefined
-      };
-
-    } catch (error) {
-      console.error(`[MasterAgent] Orchestrator loop failed: ${error.message}`);
+      return this._processSingleCommand(userId, cmd, options);
+    } catch (e) {
+      console.error(`[MasterAgent] Orchestrator loop failed: ${e.message}`);
       return { type: 'error', message: 'An internal error occurred in the Master Agent.' };
     }
   }
 
+  async _processSingleCommand(userId, cmd, options = {}) {
+    // Security Pre-Scan first
+    const { SecuritySkill } = require('../skills/SecuritySkill');
+    const securityResult = SecuritySkill.scanMessage(cmd);
+    if (securityResult) {
+      return {
+        type: 'ai',
+        message: `[रूटिंग सफल] ${securityResult}`,
+        skill: 'security_guardrail',
+        usedLLM: false
+      };
+    }
+
+    // FAST PATH: Local Offline Skill-Based Routing (No API Load)
+    const detectResult = await this.detector.detect(cmd, options.lang, this._getHistory(userId));
+    const conf = Number(detectResult?.confidence) || 0;
+    
+    let matchedSkill = null;
+    if (detectResult?.skill) {
+      matchedSkill = this.registry.getSkill(detectResult.skill);
+    }
+
+    // Keyword match backup if intent didn't map to a skill (P0-7 Confidence Rule)
+    if (!matchedSkill) {
+      const bestSkill = this.registry.getAllSkills()
+        .filter(s => !this.registry.disabledSkills.has(s.name))
+        .map(s => ({ skill: s, score: s.matchKeywords(cmd) }))
+        .filter(x => x.score > 0)
+        .sort((a, b) => b.score - a.score)[0];
+        
+      if (bestSkill) {
+        matchedSkill = bestSkill.skill;
+        detectResult.skill = matchedSkill.name;
+        detectResult.intent = matchedSkill.intents[0] || matchedSkill.name;
+        detectResult.confidence = bestSkill.score;
+      }
+    }
+
+    // P0-3 & P0-6 Offline-First & LLM Guard Logic
+    if (matchedSkill && matchedSkill.canRunOffline) {
+      console.log(`[MasterAgent] Running Offline Skill: ${matchedSkill.name}`);
+      const context = this._buildContext(userId, cmd, detectResult, options);
+      const skillResult = await selfHealingEngine.executeWithHealing(matchedSkill, context, this.registry);
+      
+      const skillReply = typeof skillResult === 'string' ? skillResult : (skillResult?.message || JSON.stringify(skillResult));
+      this._addToHistory(userId, 'user', cmd, detectResult.intent);
+      this._addToHistory(userId, 'assistant', skillReply, detectResult.intent);
+
+      return {
+         type: 'ai',
+         message: skillReply,
+         skill: matchedSkill.name,
+         usedLLM: false, // Strict LLM Guard
+         data: skillResult?.data,
+         action: skillResult?.action
+      };
+    }
+
+    // Execute standard online skill if matched
+    if (matchedSkill) {
+      console.log(`[MasterAgent] Running Skill: ${matchedSkill.name} (Confidence: ${conf})`);
+      const context = this._buildContext(userId, cmd, detectResult, options);
+      const skillResult = await selfHealingEngine.executeWithHealing(matchedSkill, context, this.registry);
+      
+      const skillReply = typeof skillResult === 'string' ? skillResult : (skillResult?.message || JSON.stringify(skillResult));
+      this._addToHistory(userId, 'user', cmd, detectResult.intent);
+      this._addToHistory(userId, 'assistant', skillReply, detectResult.intent);
+
+      return {
+         type: 'ai',
+         message: skillReply,
+         skill: matchedSkill.name,
+         usedLLM: matchedSkill.requiresLLM || false,
+         data: skillResult?.data,
+         action: skillResult?.action
+      };
+    }
+
+    // Fallback to General Chat (LLM)
+    console.log(`[MasterAgent] Routing to General Chat Agent (LLM Fallback)...`);
+    const generalChatSkill = this.registry.getSkill('general_chat');
+    
+    if (!generalChatSkill) {
+       return { type: 'error', message: 'General Chat Agent is unavailable.' };
+    }
+
+    const context = this._buildContext(userId, cmd, { intent: 'general_chat', confidence: 1.0 }, options);
+    const skillResult = await selfHealingEngine.executeWithHealing(generalChatSkill, context, this.registry);
+    
+    const skillReply = typeof skillResult === 'string' ? skillResult : (skillResult?.message || JSON.stringify(skillResult));
+    
+    let formattedMsg = skillReply;
+    if (formattedMsg && !formattedMsg.includes('रूटिंग')) {
+      formattedMsg = formattedMsg.replace(/^\[[^\]]+रूटिंग[^\]]+\]\s*/, '');
+      formattedMsg = `[रूटिंग सफल] ${formattedMsg}`;
+    }
+    
+    this._addToHistory(userId, 'user', cmd, 'general_chat');
+    this._addToHistory(userId, 'assistant', formattedMsg, 'general_chat');
+
+    let finalAction = skillResult?.action || {};
+    
+    // 🎙️ GLOBAL VOICE MODE
+    const voiceSkill = this.registry.getSkill('voice_agent');
+    if (voiceSkill && typeof voiceSkill.isVoiceModeEnabled === 'function' && voiceSkill.isVoiceModeEnabled(userId)) {
+      finalAction.speak = true;
+      if (!finalAction.text) finalAction.text = formattedMsg;
+    }
+
+    return {
+       type: 'ai',
+       message: formattedMsg,
+       skill: 'general_chat',
+       usedLLM: true,
+       data: skillResult?.data,
+       action: Object.keys(finalAction).length > 0 ? finalAction : undefined
+    };
+  }
 
   // ═══════════════════════════════════════════════════════════
   //  Context Builder — Skill को सारी जानकारी देने के लिए

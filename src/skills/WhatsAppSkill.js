@@ -53,7 +53,7 @@ class WhatsAppSkill extends BaseSkill {
     const isConnected = whatsappSuperEngine.isReady || false;
 
     // Connect / QR
-    if (/connect|qr|कनेक्ट|क्यूआर|जोड़ो/.test(text)) {
+    if (/\b(?:connect|qr|कनेक्ट|क्यूआर|जोड़ो)\b/.test(text)) {
       if (isConnected) {
         return this._reply(
           `✅ WhatsApp पहले से connected है!\n\n📱 Active sessions: ${whatsapp?.sessions?.size || 0}\n\nअब message भेज सकते हैं।\n\n💡 *Harshita AI का प्रचार करना है?*\n"WhatsApp prachar karo" बोलें — मैं आपके group में professional message भेज दूंगी!`,

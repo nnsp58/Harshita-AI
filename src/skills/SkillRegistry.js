@@ -79,8 +79,38 @@ class SkillRegistry extends EventEmitter {
       console.log(`\n   📊 कुल ${this.skills.size} स्किल्स लोड हुईं | ${this.intentMap.size} intents mapped`);
       console.log('═══════════════════════════════════════════════\n');
 
+      await this.runStartupSelfTests();
+
     } catch (error) {
       console.error('[SkillRegistry] ❌ Auto-load failed:', error.message);
+    }
+  }
+
+  async runStartupSelfTests() {
+    console.log('\n   🧪 Running Startup Self-Tests for all skills...');
+    for (const [name, skill] of this.skills.entries()) {
+      try {
+        if (skill.testCases && skill.testCases.length > 0) {
+          const tc = skill.testCases[0];
+          const mockContext = {
+            userId: 'self-test',
+            message: tc.input || 'test',
+            session: {},
+            options: { lang: 'en' }
+          };
+          const res = await skill.execute(mockContext);
+          if (res) {
+            console.log(`      ✅ ${skill.displayName} self-test passed.`);
+          } else {
+            throw new Error('Self-test returned empty response');
+          }
+        } else {
+          console.log(`      ✅ ${skill.displayName} passed (no test cases, loaded).`);
+        }
+      } catch (err) {
+        console.error(`      ❌ ${skill.displayName} self-test failed: ${err.message}`);
+        this.disabledSkills.add(skill.name); // Mark unavailable
+      }
     }
   }
 
@@ -210,14 +240,55 @@ class SkillRegistry extends EventEmitter {
    * @returns {BaseSkill|null}
    */
   findByIntent(intent) {
-    const skillName = this.intentMap.get(intent);
+    if (!intent) return null;
+    const lowerIntent = intent.toLowerCase();
+    
+    // Explicit Canonical/Alias Map for strict resolution (P0-2)
+    const aliasToNameMap = {
+      'math': 'math_skill',
+      'math_skill': 'math_skill',
+      'calculator': 'math_skill',
+      'geometry': 'math_skill',
+      'trigonometry': 'math_skill',
+      'land_area': 'math_skill',
+      'percentage': 'math_skill',
+      'math_arithmetic': 'math_skill',
+      'math_geometry': 'math_skill',
+      'math_land': 'math_skill',
+      'math_finance': 'math_skill',
+      'math_algebra': 'math_skill',
+      'math_calculus': 'math_skill',
+      'math_converter': 'math_skill',
+      'math_statistics': 'math_skill',
+      'math_trigonometry': 'math_skill',
+      'math_mensuration': 'math_skill',
+      
+      'legal_notice': 'legal_notice',
+      'legal_draft': 'legal_draft',
+      'application_writer': 'application_writer',
+      'resume_maker': 'resume_maker',
+      'general_chat': 'general_chat'
+    };
+
+    const resolvedName = aliasToNameMap[lowerIntent];
+    if (resolvedName && this.skills.has(resolvedName)) {
+      return this.skills.get(resolvedName);
+    }
+    
+    // 1. Direct name lookup (canonical identifiers)
+    if (this.skills.has(lowerIntent)) {
+      return this.skills.get(lowerIntent);
+    }
+    
+    // 2. Intent Map lookup
+    const skillName = this.intentMap.get(lowerIntent);
     if (skillName) {
       return this.skills.get(skillName) || null;
     }
 
-    // Fuzzy match — अगर exact match न मिले
+    // 3. Fallback fuzzy check on name or intents
     for (const [name, skill] of this.skills) {
-      if (skill.canHandle(intent)) {
+      if (name.toLowerCase() === lowerIntent || skill.name.toLowerCase() === lowerIntent || skill.canHandle(lowerIntent)) {
         return skill;
       }
     }

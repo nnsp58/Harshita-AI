@@ -33,6 +33,11 @@ class BaseSkill {
     this.descriptionEn = '';         // What it does (English)
     this.version = '1.0.0';
     this.author = 'Harshita-AI';
+    
+    // PRD-012 Architecture Refactor Properties
+    this.visible = false;           // default hidden from dashboard
+    this.type = 'system';           // default 'system'
+    this.route = '';                // frontend route if visible is true
 
     // ─── इरादे (Intents) जो यह स्किल संभालती है ───
     this.intents = [];               // जैसे: ['job_search', 'find_vacancy', 'naukri_dhundho']
@@ -56,6 +61,16 @@ class BaseSkill {
     this.requiredAPIs = [];          // कौन से API keys चाहिए: ['GROQ_API_KEY']
     this.requiredServices = [];      // कौन सी सर्विसेज़: ['redis', 'prisma']
     this.dependencies = [];          // Other skill names required
+
+    // ─── PRD-CORE-001 Metadata ───
+    this.department = 'General';     // Routing department
+    this.requiresInternet = false;
+    this.requiresLogin = false;
+    this.requiresBrowser = false;
+    this.requiresOCR = false;
+    this.requiresMemory = false;
+    this.requiresLLM = false;        // LLM fallback needed
+    this.queryType = 'both';         // 'information', 'execution', 'both'
 
     // ─── v2 Validation & Execution Rules ───
     this.inputSchema = GenericInputSchema; // Zod schema for input
@@ -135,7 +150,7 @@ class BaseSkill {
    */
   matchKeywords(text) {
     if (!text) return 0;
-    const lower = text.toLowerCase();
+    const normalized = text.normalize('NFC').toLowerCase();
     let matches = 0;
     let totalKeywords = 0;
 
@@ -143,7 +158,11 @@ class BaseSkill {
       const keywords = this.keywords[lang] || [];
       totalKeywords += keywords.length;
       for (const keyword of keywords) {
-        if (lower.includes(keyword.toLowerCase())) {
+        const kNorm = keyword.normalize('NFC').toLowerCase();
+        if (kNorm.length === 0) continue;
+        const escaped = kNorm.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+        const regex = new RegExp(`(?:^|[^a-zA-Z0-9\u0900-\u097F])${escaped}(?:$|[^a-zA-Z0-9\u0900-\u097F])`, 'i');
+        if (regex.test(normalized)) {
           matches++;
         }
       }
@@ -190,8 +209,19 @@ class BaseSkill {
       requiresGPU: this.requiresGPU,
       priority: this.priority,
       category: this.category,
+      department: this.department,
+      requiresInternet: this.requiresInternet,
+      requiresLogin: this.requiresLogin,
+      requiresBrowser: this.requiresBrowser,
+      requiresOCR: this.requiresOCR,
+      requiresMemory: this.requiresMemory,
+      requiresLLM: this.requiresLLM,
+      queryType: this.queryType,
       isLoaded: this.isLoaded,
-      usageCount: this.usageCount
+      usageCount: this.usageCount,
+      visible: this.visible,
+      type: this.type,
+      route: this.route
     };
   }
 
