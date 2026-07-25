@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+﻿import React, { useState, useEffect, useRef } from 'react';
 import { Languages, Volume2, Mic, ArrowRightLeft, Copy, RefreshCw, Trash2 } from 'lucide-react';
 
 const TranslatorTool = ({ onClose }) => {
@@ -155,7 +155,7 @@ const TranslatorTool = ({ onClose }) => {
                 <button onClick={() => setSourceText('')} className="p-2 hover:text-red-500 hover:bg-red-50 rounded-lg transition" title="Clear">
                   <Trash2 className="w-5 h-5" />
                 </button>
-                <button onClick={toggleListening} className={\`p-2 rounded-lg transition \${isListening ? 'bg-red-100 text-red-600 animate-pulse' : 'hover:bg-blue-50 hover:text-blue-600'}\`} title="Voice Input">
+                <button onClick={toggleListening} className={`p-2 rounded-lg transition \${isListening ? 'bg-red-100 text-red-600 animate-pulse' : 'hover:bg-blue-50 hover:text-blue-600'}`} title="Voice Input">
                   <Mic className="w-5 h-5" />
                 </button>
                 <button onClick={() => speakText(sourceText, sourceLang === 'auto' ? 'en' : sourceLang)} className="p-2 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition" title="Listen">

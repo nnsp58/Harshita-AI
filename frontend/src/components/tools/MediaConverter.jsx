@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
+﻿import React, { useState, useRef, useEffect } from 'react';
 import { Video, Music, Upload, Download, RefreshCw, Film } from 'lucide-react';
-import { trackToolUsage } from '../utils/analytics';
+
 import { FFmpeg } from '@ffmpeg/ffmpeg';
 import { fetchFile, toBlobURL } from '@ffmpeg/util';
 
@@ -21,8 +21,8 @@ const MediaConverter = ({ onClose }) => {
     });
 
     await ffmpeg.load({
-      coreURL: await toBlobURL(\`\${baseURL}/ffmpeg-core.js\`, 'text/javascript'),
-      wasmURL: await toBlobURL(\`\${baseURL}/ffmpeg-core.wasm\`, 'application/wasm'),
+      coreURL: await toBlobURL(`\${baseURL}/ffmpeg-core.js`, 'text/javascript'),
+      wasmURL: await toBlobURL(`\${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
     });
     
     setIsLoaded(true);
@@ -52,11 +52,11 @@ const MediaConverter = ({ onClose }) => {
       <div className="flex border-b border-slate-200">
         <button 
           onClick={() => setActiveTab('video')}
-          className={\`flex-1 py-4 font-semibold flex justify-center items-center gap-2 transition-colors \${activeTab === 'video' ? 'text-rose-600 border-b-2 border-rose-600 bg-rose-50' : 'text-slate-500 hover:bg-slate-50'}\`}
+          className={`flex-1 py-4 font-semibold flex justify-center items-center gap-2 transition-colors \${activeTab === 'video' ? 'text-rose-600 border-b-2 border-rose-600 bg-rose-50' : 'text-slate-500 hover:bg-slate-50'}`}
         ><Video className="w-5 h-5"/> Video Converter</button>
         <button 
           onClick={() => setActiveTab('audio')}
-          className={\`flex-1 py-4 font-semibold flex justify-center items-center gap-2 transition-colors \${activeTab === 'audio' ? 'text-rose-600 border-b-2 border-rose-600 bg-rose-50' : 'text-slate-500 hover:bg-slate-50'}\`}
+          className={`flex-1 py-4 font-semibold flex justify-center items-center gap-2 transition-colors \${activeTab === 'audio' ? 'text-rose-600 border-b-2 border-rose-600 bg-rose-50' : 'text-slate-500 hover:bg-slate-50'}`}
         ><Music className="w-5 h-5"/> Audio Converter</button>
       </div>
 
@@ -96,7 +96,7 @@ const Converter = ({ type, ffmpegRef }) => {
       setResultUrl(null);
       setProgress(0);
     } else {
-      alert(\`Please upload a valid \${type} file.\`);
+      alert(`Please upload a valid \${type} file.`);
     }
   };
 
@@ -107,8 +107,8 @@ const Converter = ({ type, ffmpegRef }) => {
 
     try {
       const ffmpeg = ffmpegRef.current;
-      const inputName = \`input.\${file.name.split('.').pop()}\`;
-      const outputName = \`output.\${targetFormat}\`;
+      const inputName = `input.\${file.name.split('.').pop()}`;
+      const outputName = `output.\${targetFormat}`;
 
       // Listen to progress
       ffmpeg.on('progress', ({ progress, time }) => {
@@ -130,7 +130,7 @@ const Converter = ({ type, ffmpegRef }) => {
 
       // Read output
       const data = await ffmpeg.readFile(outputName);
-      const url = URL.createObjectURL(new Blob([data.buffer], { type: \`\${type}/\${targetFormat}\` }));
+      const url = URL.createObjectURL(new Blob([data.buffer], { type: `\${type}/\${targetFormat}` }));
       setResultUrl(url);
       setProgress(100);
       trackToolUsage('MediaConverter');
@@ -147,12 +147,12 @@ const Converter = ({ type, ffmpegRef }) => {
     <div className="max-w-2xl mx-auto space-y-6">
       <div 
         className="border-3 border-dashed border-rose-200 rounded-xl p-8 text-center hover:bg-rose-50 transition cursor-pointer"
-        onClick={() => document.getElementById(\`\${type}Input\`).click()}
+        onClick={() => document.getElementById(`\${type}Input`).click()}
       >
         <Upload className="w-12 h-12 text-rose-600 mx-auto mb-3" />
-        <h3 className="text-lg font-semibold text-slate-800">{file ? file.name : \`Upload \${type.charAt(0).toUpperCase() + type.slice(1)} File\`}</h3>
-        <p className="text-slate-500 text-sm mt-1">{file ? \`\${(file.size/1024/1024).toFixed(2)} MB\` : 'Click to select (max 100MB)'}</p>
-        <input type="file" id={\`\${type}Input\`} hidden accept={\`\${type}/*\`} onChange={handleFile} />
+        <h3 className="text-lg font-semibold text-slate-800">{file ? file.name : `Upload \${type.charAt(0).toUpperCase() + type.slice(1)} File`}</h3>
+        <p className="text-slate-500 text-sm mt-1">{file ? `\${(file.size/1024/1024).toFixed(2)} MB` : 'Click to select (max 100MB)'}</p>
+        <input type="file" id={`\${type}Input`} hidden accept={`\${type}/*`} onChange={handleFile} />
       </div>
 
       {file && !resultUrl && (
@@ -164,7 +164,7 @@ const Converter = ({ type, ffmpegRef }) => {
                 <button 
                   key={fmt}
                   onClick={() => setTargetFormat(fmt)}
-                  className={\`px-6 py-2 rounded-full font-medium border-2 transition-all \${targetFormat === fmt ? 'border-rose-600 bg-rose-600 text-white' : 'border-slate-200 bg-white text-slate-600 hover:border-rose-300'}\`}
+                  className={`px-6 py-2 rounded-full font-medium border-2 transition-all \${targetFormat === fmt ? 'border-rose-600 bg-rose-600 text-white' : 'border-slate-200 bg-white text-slate-600 hover:border-rose-300'}`}
                 >
                   {fmt.toUpperCase()}
                 </button>
@@ -180,12 +180,12 @@ const Converter = ({ type, ffmpegRef }) => {
             {isProcessing && (
               <div 
                 className="absolute left-0 top-0 bottom-0 bg-white/20 transition-all duration-300" 
-                style={{ width: \`\${progress}%\` }}
+                style={{ width: `\${progress}%` }}
               />
             )}
             <span className="relative flex items-center gap-2">
               {isProcessing ? <RefreshCw className="w-5 h-5 animate-spin" /> : <Film className="w-5 h-5" />}
-              {isProcessing ? \`Converting... \${progress}%\` : \`Convert to \${targetFormat.toUpperCase()}\`}
+              {isProcessing ? `Converting... \${progress}%` : `Convert to \${targetFormat.toUpperCase()}`}
             </span>
           </button>
         </div>
@@ -199,7 +199,7 @@ const Converter = ({ type, ffmpegRef }) => {
           <div className="flex gap-4 justify-center">
             <a 
               href={resultUrl} 
-              download={\`converted_\${Date.now()}.\${targetFormat}\`}
+              download={`converted_\${Date.now()}.\${targetFormat}`}
               className="px-8 py-3 bg-green-600 hover:bg-green-700 text-white rounded-xl font-bold shadow-lg shadow-green-200 transition-all flex items-center gap-2"
             >
               <Download className="w-5 h-5" /> Download File

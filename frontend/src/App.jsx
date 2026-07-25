@@ -33,19 +33,7 @@ const StoryVideoDashboard = lazy(() => import('./pages/StoryVideoDashboard'))
 // New Workspaces (PRD-066)
 const NotFoundWorkspace = lazy(() => import('./workspaces/core/NotFoundWorkspace'))
 const ComingSoonWorkspace = lazy(() => import('./workspaces/core/ComingSoonWorkspace'))
-const PassportWorkspace = lazy(() => import('./workspaces/converter/PassportWorkspace'))
-const AudioWorkspace = lazy(() => import('./workspaces/converter/AudioWorkspace'))
-const DocumentWorkspace = lazy(() => import('./workspaces/converter/DocumentWorkspace'))
-const ImageWorkspace = lazy(() => import('./workspaces/media/ImageWorkspace'))
-const ImageFormatWorkspace = lazy(() => import('./workspaces/converter/ImageFormatWorkspace'))
-const PDFWorkspace = lazy(() => import('./workspaces/converter/PDFWorkspace'))
-const QRWorkspace = lazy(() => import('./workspaces/converter/QRWorkspace'))
-const VideoWorkspace = lazy(() => import('./workspaces/media/VideoWorkspace'))
-const VoiceWorkspace = lazy(() => import('./workspaces/converter/VoiceWorkspace'))
-const PasswordWorkspace = lazy(() => import('./workspaces/converter/PasswordWorkspace'))
-const ImageToPDFWorkspace = lazy(() => import('./workspaces/converter/ImageToPDFWorkspace'))
-const TranslatorWorkspace = lazy(() => import('./workspaces/converter/TranslatorWorkspace'))
-const CalculatorWorkspace = lazy(() => import('./workspaces/business/CalculatorWorkspace'))
+
 
 // Additional Workspaces (Legal, Tax, Media)
 const GiftDeedWorkspace = lazy(() => import('./workspaces/legal/GiftDeedWorkspace'))
@@ -55,6 +43,16 @@ const ITRWorkspace = lazy(() => import('./workspaces/tax/ITRWorkspace'))
 const GSTWorkspace = lazy(() => import('./workspaces/tax/GSTWorkspace'))
 const RefundWorkspace = lazy(() => import('./workspaces/tax/RefundWorkspace'))
 const PosterWorkspace = lazy(() => import('./workspaces/media/PosterWorkspace'))
+const CalculatorWorkspace = lazy(() => import('./workspaces/business/CalculatorWorkspace'))
+const ImageWorkspace = lazy(() => import('./workspaces/media/ImageWorkspace'))
+
+// Converter Tool Components (for /workspace/converter/* routes)
+// PassportPhotoMaker uses cropperjs which has build issues — redirected to Coming Soon
+const DocumentConverter = lazy(() => import('./components/tools/DocumentConverter'))
+const FileCompressor = lazy(() => import('./components/tools/FileCompressor'))
+const MediaConverter = lazy(() => import('./components/tools/MediaConverter'))
+const TranslatorTool = lazy(() => import('./components/tools/TranslatorTool'))
+const UtilityTools = lazy(() => import('./components/tools/UtilityTools'))
 
 // AdSense Content & SEO Pages
 const ToolLanding = lazy(() => import('./pages/ToolLanding'))
@@ -292,19 +290,7 @@ function App() {
           />
 
           {/* ═══════ Dedicated Workspaces (PRD-066) ═══════ */}
-          <Route path="/workspace/converter/passport" element={<ProtectedRoute><PassportWorkspace /></ProtectedRoute>} />
-          <Route path="/workspace/converter/audio" element={<ProtectedRoute><AudioWorkspace /></ProtectedRoute>} />
-          <Route path="/workspace/converter/document" element={<ProtectedRoute><DocumentWorkspace /></ProtectedRoute>} />
-          <Route path="/workspace/media/image-compress" element={<ProtectedRoute><ImageWorkspace /></ProtectedRoute>} />
-          <Route path="/workspace/converter/image-format" element={<ProtectedRoute><ImageFormatWorkspace /></ProtectedRoute>} />
-          <Route path="/workspace/converter/pdf-to-word" element={<ProtectedRoute><PDFWorkspace /></ProtectedRoute>} />
-          <Route path="/workspace/converter/image-to-pdf" element={<ProtectedRoute><ImageToPDFWorkspace /></ProtectedRoute>} />
-          <Route path="/workspace/converter/qr" element={<ProtectedRoute><QRWorkspace /></ProtectedRoute>} />
-          <Route path="/workspace/media/video" element={<ProtectedRoute><VideoWorkspace /></ProtectedRoute>} />
-          <Route path="/workspace/converter/voice" element={<ProtectedRoute><VoiceWorkspace /></ProtectedRoute>} />
-          <Route path="/workspace/converter/translator" element={<ProtectedRoute><TranslatorWorkspace /></ProtectedRoute>} />
-          <Route path="/workspace/converter/password" element={<ProtectedRoute><PasswordWorkspace /></ProtectedRoute>} />
-          <Route path="/workspace/business/calculator" element={<ProtectedRoute><CalculatorWorkspace /></ProtectedRoute>} />
+
           
           <Route path="/workspace/legal/gift-deed" element={<ProtectedRoute><GiftDeedWorkspace /></ProtectedRoute>} />
           <Route path="/workspace/legal/notice" element={<ProtectedRoute><NoticeWorkspace /></ProtectedRoute>} />
@@ -313,6 +299,27 @@ function App() {
           <Route path="/workspace/tax/gst" element={<ProtectedRoute><GSTWorkspace /></ProtectedRoute>} />
           <Route path="/workspace/tax/refund" element={<ProtectedRoute><RefundWorkspace /></ProtectedRoute>} />
           <Route path="/workspace/media/poster" element={<ProtectedRoute><PosterWorkspace /></ProtectedRoute>} />
+
+          {/* ═══════ Converter Tool Routes ═══════ */}
+          {/* Working tools — real components */}
+          <Route path="/workspace/converter/passport" element={<ProtectedRoute><ComingSoonWorkspace /></ProtectedRoute>} />
+          <Route path="/workspace/converter/document" element={<ProtectedRoute><DocumentConverter /></ProtectedRoute>} />
+          <Route path="/workspace/converter/image-to-pdf" element={<ProtectedRoute><DocumentConverter /></ProtectedRoute>} />
+          <Route path="/workspace/media/image-compress" element={<ProtectedRoute><FileCompressor /></ProtectedRoute>} />
+          <Route path="/workspace/converter/qr" element={<ProtectedRoute><UtilityTools /></ProtectedRoute>} />
+          <Route path="/workspace/converter/password" element={<ProtectedRoute><UtilityTools /></ProtectedRoute>} />
+          <Route path="/workspace/business/calculator" element={<ProtectedRoute><CalculatorWorkspace /></ProtectedRoute>} />
+          <Route path="/workspace/converter/translator" element={<ProtectedRoute><TranslatorTool /></ProtectedRoute>} />
+          <Route path="/workspace/converter/audio" element={<ProtectedRoute><MediaConverter /></ProtectedRoute>} />
+
+          {/* Broken tools → Coming Soon (no blank page) */}
+          <Route path="/workspace/converter/passport-size" element={<ProtectedRoute><ComingSoonWorkspace /></ProtectedRoute>} />
+          <Route path="/workspace/converter/group-photo" element={<ProtectedRoute><ComingSoonWorkspace /></ProtectedRoute>} />
+          <Route path="/workspace/converter/image-format" element={<ProtectedRoute><ComingSoonWorkspace /></ProtectedRoute>} />
+          <Route path="/workspace/converter/speech" element={<ProtectedRoute><ComingSoonWorkspace /></ProtectedRoute>} />
+          <Route path="/workspace/converter/voice" element={<ProtectedRoute><ComingSoonWorkspace /></ProtectedRoute>} />
+          <Route path="/workspace/media/video" element={<ProtectedRoute><ComingSoonWorkspace /></ProtectedRoute>} />
+          <Route path="/workspace/converter/pdf-to-word" element={<ProtectedRoute><DocumentConverter /></ProtectedRoute>} />
 
           <Route path="/workspace/coming-soon" element={<ProtectedRoute><ComingSoonWorkspace /></ProtectedRoute>} />
           {/* ═══════ Admin Dashboards ═══════ */}

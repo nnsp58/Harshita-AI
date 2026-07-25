@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Upload, FileImage, Download, RefreshCw, Settings2, Trash2 } from 'lucide-react';
-import { trackToolUsage } from '../utils/analytics';
+
 
 const FileCompressor = ({ onClose }) => {
   const [files, setFiles] = useState([]);

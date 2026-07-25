@@ -1,9 +1,9 @@
-import React, { useState, useRef } from 'react';
+﻿import React, { useState, useRef } from 'react';
 import Cropper from 'react-cropper';
 import 'cropperjs/dist/cropper.css';
 import { Camera, Upload, Crop, Maximize, Settings2, Download, CheckCircle2, RefreshCw } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { trackToolUsage } from '../utils/analytics';
+
 
 const PassportPhotoMaker = ({ onClose }) => {
   const [image, setImage] = useState(null);
@@ -171,11 +171,11 @@ const PassportPhotoMaker = ({ onClose }) => {
               <h3 className="font-semibold text-slate-800 flex items-center gap-2"><Crop className="w-5 h-5"/> Crop Image</h3>
               <div className="flex gap-2 bg-white p-1 rounded-md border border-slate-200">
                 <button 
-                  className={\`px-4 py-1 rounded \${settings.ratio === 3.5/4.5 ? 'bg-blue-600 text-white' : 'text-slate-600'}\`}
+                  className={`px-4 py-1 rounded \${settings.ratio === 3.5/4.5 ? 'bg-blue-600 text-white' : 'text-slate-600'}`}
                   onClick={() => setSettings({...settings, ratio: 3.5/4.5})}
                 >Portrait</button>
                 <button 
-                  className={\`px-4 py-1 rounded \${settings.ratio === 4.5/3.5 ? 'bg-blue-600 text-white' : 'text-slate-600'}\`}
+                  className={`px-4 py-1 rounded \${settings.ratio === 4.5/3.5 ? 'bg-blue-600 text-white' : 'text-slate-600'}`}
                   onClick={() => setSettings({...settings, ratio: 4.5/3.5})}
                 >Landscape</button>
               </div>
@@ -274,7 +274,7 @@ const PassportPhotoMaker = ({ onClose }) => {
         )}
 
         {/* Step 4: Result */}
-        <div className={\`mt-8 space-y-4 transition-all duration-500 \${processedImage ? 'opacity-100 h-auto' : 'opacity-0 h-0 overflow-hidden'}\`}>
+        <div className={`mt-8 space-y-4 transition-all duration-500 \${processedImage ? 'opacity-100 h-auto' : 'opacity-0 h-0 overflow-hidden'}`}>
           <div className="h-px bg-slate-200 w-full my-6"></div>
           <h3 className="text-xl font-bold text-slate-800 text-center">Your Photo Sheet</h3>
           <div className="bg-slate-100 p-4 rounded-xl border border-slate-200 overflow-x-auto flex justify-center">

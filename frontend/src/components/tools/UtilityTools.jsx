@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { QrCode, KeyRound, Calculator, Copy, RefreshCw, Download } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
 
@@ -64,7 +64,7 @@ const QRGenerator = () => {
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(img, 0, 0);
       const a = document.createElement('a');
-      a.download = \`QRCode_\${Date.now()}.png\`;
+      a.download = `QRCode_\${Date.now()}.png`;
       a.href = canvas.toDataURL('image/png');
       a.click();
     };
@@ -270,12 +270,12 @@ const SmartCalculator = () => {
           <button 
             key={i}
             onClick={btn.action}
-            className={\`h-14 rounded-xl font-bold text-lg transition active:scale-95 flex items-center justify-center
+            className={`h-14 rounded-xl font-bold text-lg transition active:scale-95 flex items-center justify-center
               \${btn.type === 'num' ? 'bg-slate-700 text-white hover:bg-slate-600' : ''}
               \${btn.type === 'op' ? 'bg-purple-600 text-white hover:bg-purple-500' : ''}
               \${btn.type === 'action' ? 'bg-slate-600 text-pink-400 hover:bg-slate-500' : ''}
               \${btn.type === 'equal' ? 'bg-gradient-to-br from-pink-500 to-purple-600 text-white shadow-lg' : ''}
-            \`}
+            `}
           >
             {btn.label}
           </button>

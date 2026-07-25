@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+﻿import React, { useState, useRef } from 'react';
 import { FileText, FileImage, Upload, Download, RefreshCw, FileCode2 } from 'lucide-react';
 import * as pdfjsLib from 'pdfjs-dist';
 import { Document, Packer, Paragraph, TextRun } from 'docx';
@@ -30,11 +30,11 @@ const DocumentConverter = ({ onClose }) => {
       <div className="flex border-b border-slate-200">
         <button 
           onClick={() => setActiveTab('pdf2word')}
-          className={\`flex-1 py-4 font-semibold flex justify-center items-center gap-2 transition-colors \${activeTab === 'pdf2word' ? 'text-emerald-600 border-b-2 border-emerald-600 bg-emerald-50' : 'text-slate-500 hover:bg-slate-50'}\`}
+          className={`flex-1 py-4 font-semibold flex justify-center items-center gap-2 transition-colors \${activeTab === 'pdf2word' ? 'text-emerald-600 border-b-2 border-emerald-600 bg-emerald-50' : 'text-slate-500 hover:bg-slate-50'}`}
         ><FileText className="w-5 h-5"/> PDF Extract</button>
         <button 
           onClick={() => setActiveTab('img2pdf')}
-          className={\`flex-1 py-4 font-semibold flex justify-center items-center gap-2 transition-colors \${activeTab === 'img2pdf' ? 'text-emerald-600 border-b-2 border-emerald-600 bg-emerald-50' : 'text-slate-500 hover:bg-slate-50'}\`}
+          className={`flex-1 py-4 font-semibold flex justify-center items-center gap-2 transition-colors \${activeTab === 'img2pdf' ? 'text-emerald-600 border-b-2 border-emerald-600 bg-emerald-50' : 'text-slate-500 hover:bg-slate-50'}`}
         ><FileImage className="w-5 h-5"/> Image to PDF</button>
       </div>
 
@@ -76,7 +76,7 @@ const PdfExtractor = () => {
       const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
 
       if (outputFormat === 'docx') {
-        setStatus(\`Extracting text from \${pdf.numPages} pages...\`);
+        setStatus(`Extracting text from \${pdf.numPages} pages...`);
         const paragraphs = [];
 
         for (let i = 1; i <= pdf.numPages; i++) {
@@ -102,7 +102,7 @@ const PdfExtractor = () => {
         setStatus('Conversion Successful! ✅ DOCX Downloaded.');
       } else {
         // PDF to Image
-        setStatus(\`Rendering \${pdf.numPages} pages as \${outputFormat.toUpperCase()}...\`);
+        setStatus(`Rendering \${pdf.numPages} pages as \${outputFormat.toUpperCase()}...`);
         const images = [];
 
         for (let i = 1; i <= pdf.numPages; i++) {
@@ -114,12 +114,12 @@ const PdfExtractor = () => {
           canvas.width = viewport.width;
 
           await page.render({ canvasContext: context, viewport }).promise;
-          const imgUrl = canvas.toDataURL(\`image/\${outputFormat === 'jpg' ? 'jpeg' : 'png'}\`);
-          images.push({ url: imgUrl, name: \`Page_\${i}.\${outputFormat}\` });
+          const imgUrl = canvas.toDataURL(`image/\${outputFormat === 'jpg' ? 'jpeg' : 'png'}`);
+          images.push({ url: imgUrl, name: `Page_\${i}.\${outputFormat}` });
         }
         
         setPreviewImages(images);
-        setStatus(\`Successfully rendered \${images.length} pages. ✅\`);
+        setStatus(`Successfully rendered \${images.length} pages. ✅`);
       }
     } catch (err) {
       console.error(err);
@@ -136,7 +136,7 @@ const PdfExtractor = () => {
       >
         <Upload className="w-12 h-12 text-emerald-600 mx-auto mb-3" />
         <h3 className="text-lg font-semibold text-slate-800">{file ? file.name : 'Upload PDF Document'}</h3>
-        <p className="text-slate-500 text-sm mt-1">{file ? \`\${(file.size/1024/1024).toFixed(2)} MB\` : 'Click to select (max 20MB)'}</p>
+        <p className="text-slate-500 text-sm mt-1">{file ? `\${(file.size/1024/1024).toFixed(2)} MB` : 'Click to select (max 20MB)'}</p>
         <input type="file" id="pdfInput" hidden accept="application/pdf" onChange={handleFile} />
       </div>
 
@@ -144,15 +144,15 @@ const PdfExtractor = () => {
         <>
           <div className="flex gap-4 justify-center">
             <button 
-              className={\`px-6 py-2 rounded-lg font-medium border-2 \${outputFormat === 'docx' ? 'border-emerald-600 bg-emerald-600 text-white' : 'border-slate-200 bg-white text-slate-600'}\`}
+              className={`px-6 py-2 rounded-lg font-medium border-2 \${outputFormat === 'docx' ? 'border-emerald-600 bg-emerald-600 text-white' : 'border-slate-200 bg-white text-slate-600'}`}
               onClick={() => setOutputFormat('docx')}
             >Extract to Word</button>
             <button 
-              className={\`px-6 py-2 rounded-lg font-medium border-2 \${outputFormat === 'jpg' ? 'border-emerald-600 bg-emerald-600 text-white' : 'border-slate-200 bg-white text-slate-600'}\`}
+              className={`px-6 py-2 rounded-lg font-medium border-2 \${outputFormat === 'jpg' ? 'border-emerald-600 bg-emerald-600 text-white' : 'border-slate-200 bg-white text-slate-600'}`}
               onClick={() => setOutputFormat('jpg')}
             >Convert to JPG</button>
             <button 
-              className={\`px-6 py-2 rounded-lg font-medium border-2 \${outputFormat === 'png' ? 'border-emerald-600 bg-emerald-600 text-white' : 'border-slate-200 bg-white text-slate-600'}\`}
+              className={`px-6 py-2 rounded-lg font-medium border-2 \${outputFormat === 'png' ? 'border-emerald-600 bg-emerald-600 text-white' : 'border-slate-200 bg-white text-slate-600'}`}
               onClick={() => setOutputFormat('png')}
             >Convert to PNG</button>
           </div>
@@ -169,7 +169,7 @@ const PdfExtractor = () => {
       )}
 
       {status && (
-        <div className={\`p-4 rounded-lg text-center font-medium \${status.includes('Error') ? 'bg-red-50 text-red-600' : 'bg-emerald-50 text-emerald-700'}\`}>
+        <div className={`p-4 rounded-lg text-center font-medium \${status.includes('Error') ? 'bg-red-50 text-red-600' : 'bg-emerald-50 text-emerald-700'}`}>
           {status}
         </div>
       )}
@@ -246,7 +246,7 @@ const ImageToPdf = () => {
           doc.addImage(imgObj.url, 'JPEG', x, y, w, h);
         });
 
-        doc.save(\`Document_\${Date.now()}.pdf\`);
+        doc.save(`Document_\${Date.now()}.pdf`);
       } catch(err) {
         alert("Error generating PDF.");
       }
