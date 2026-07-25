@@ -20,6 +20,10 @@ class PhotoMakerSkill extends BaseSkill {
     this.priority = 9; // Higher than DocumentOCR (8) to win passport photo routing
     
     this.intents = ['create_passport_photo', 'create_joint_photo'];
+
+    this.visible = true;
+    this.type = 'application';
+    this.route = '/workspace/coming-soon?tool=Photo+Maker';
     this.keywords = {
       hi: ['पासपोर्ट फोटो', 'जॉइंट फोटो', 'फोटो बनाओ', 'पासपोर्ट साइज़', 'पासपोर्ट साइज', 'फोटो शीट'],
       en: ['passport photo', 'joint photo', 'passport size', 'photo sheet', 'passport photo maker', 'photo banao'],

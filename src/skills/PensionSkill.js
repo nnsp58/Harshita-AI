@@ -2,11 +2,13 @@ const { BaseSkill } = require('./BaseSkill');
 
 class PensionSkill extends BaseSkill {
   constructor() {
-    super({
-      name: 'pension_automation',
-      description: 'Pension and Ex-Servicemen Welfare Automation workflows',
-      intents: ['pension', 'sparsh', 'welfare', 'ex_servicemen'],
-    });
+    super();
+    this.name = 'pension_automation';
+    this.description = 'Pension and Ex-Servicemen Welfare Automation workflows';
+    this.intents = ['pension', 'sparsh', 'welfare', 'ex_servicemen'];
+    this.displayName = 'पेंशन ऑटोमेशन';
+    this.displayNameEn = 'Pension Automation';
+    this.category = 'government';
   }
 
   async execute(context) {

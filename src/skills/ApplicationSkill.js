@@ -26,7 +26,7 @@ class ApplicationSkill extends BaseSkill {
     this.intents = ['application_writer', 'write_application', 'prarthna_patra', 'application_likho'];
     
     this.keywords = {
-      hi: ['एप्लीकेशन', 'प्रार्थना पत्र', 'शिकायत पत्र', 'आवेदन पत्र', 'अधिकारी', 'डीएम', 'एसडीएम', 'लिखो', 'छुट्टी'],
+      hi: ['एप्लीकेशन', 'प्रार्थना पत्र', 'शिकायत पत्र', 'आवेदन पत्र', 'अधिकारी', 'डीएम', 'एसडीएम', 'छुट्टी'],
       en: ['application', 'complaint letter', 'leave application', 'write application', 'official letter'],
       hinglish: ['application likho', 'prarthna patra banao', 'shikayat likho', 'dm ko application']
     };
@@ -62,6 +62,8 @@ class ApplicationSkill extends BaseSkill {
     const { message, userId } = context;
     const userIdSafe = userId || 'anon';
     const msg = (message || '').trim();
+
+    console.log(`[${new Date().toISOString()}] [ApplicationSkill] execute() start | userId=${userIdSafe} | msg="${msg.substring(0, 60)}"`);
 
     if (!msg) {
       return this._reply(this._getHelpMessage(), { mode: 'application_prompt' });
@@ -129,7 +131,7 @@ class ApplicationSkill extends BaseSkill {
       const departmentInfo = context.params?.departmentInfo || (departmentKey && DEPARTMENT_MAP[departmentKey]) || null;
 
       try {
-        this._reply('सभी जानकारी मिल गई! ✅ Application तैयार हो रही है... (10-15 सेकंड)', null, 'processing');
+        console.log(`[${new Date().toISOString()}] [ApplicationSkill] all info collected — starting generation`);
 
         const enrichedInput = `
 Applicant Name: ${collectedData.applicantName || '[आवेदक का नाम]'}
@@ -177,7 +179,25 @@ Original Request: ${message}
 
 
   async _generateApplication(userInput, authorityInfo = null, departmentInfo = null, retryCount = 0) {
-    if (!this.aiManager) return null;
+    if (!this.aiManager) {
+      console.log(`[${new Date().toISOString()}] [ApplicationSkill] no aiManager configured — using local template`);
+      return null;
+    }
+
+    // P0 FIX: If no LLM providers are configured, skip the network entirely
+    // and let execute() fall back to the local template immediately.
+    if (!this.aiManager.providers || this.aiManager.providers.size === 0) {
+      console.log(`[${new Date().toISOString()}] [ApplicationSkill] no AI providers registered — using local template`);
+      return null;
+    }
+
+    // P0 FIX: Hard 30s cap so execute() can NEVER hang on a stalled provider.
+    const GENERATION_TIMEOUT_MS = 30000;
+    const withHardTimeout = (promise, ms) =>
+      Promise.race([
+        promise,
+        new Promise((_, reject) => setTimeout(() => reject(new Error('ApplicationSkill generation timed out (30s)')), ms)),
+      ]);
 
     // PRD-021: Build authority-specific instruction if available
     let authorityInstruction = '';
@@ -258,27 +278,33 @@ ${authorityInstruction}
 Draft the formal application now.`;
 
     try {
-      const response = await this.aiManager.createChatCompletion('ApplicationSkill', {
-        messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: userPrompt },
-        ],
-        temperature: 0.3,
-        max_tokens: 1500,
-      });
+      console.log(`[${new Date().toISOString()}] [ApplicationSkill] AI generation started (attempt ${retryCount + 1}, hard timeout ${GENERATION_TIMEOUT_MS}ms)`);
+
+      const response = await withHardTimeout(
+        this.aiManager.createChatCompletion('ApplicationSkill', {
+          messages: [
+            { role: 'system', content: systemPrompt },
+            { role: 'user', content: userPrompt },
+          ],
+          temperature: 0.3,
+          max_tokens: 1500,
+        }),
+        GENERATION_TIMEOUT_MS
+      );
 
       let draft = response?.choices?.[0]?.message?.content?.trim();
 
       // If draft is too short, retry once
       if (draft && draft.length < 100 && retryCount < 1) {
-        console.log('[ApplicationSkill] Draft too short — auto-retrying...');
-        return this._generateApplication(userInput, retryCount + 1);
+        console.log(`[${new Date().toISOString()}] [ApplicationSkill] Draft too short — auto-retrying...`);
+        return this._generateApplication(userInput, authorityInfo, departmentInfo, retryCount + 1);
       }
-      
+
+      console.log(`[${new Date().toISOString()}] [ApplicationSkill] AI generation succeeded (${draft ? draft.length : 0} chars)`);
       return draft;
     } catch (err) {
-      console.error('[ApplicationSkill] AI call error:', err.message);
-      return null;
+      console.error(`[${new Date().toISOString()}] [ApplicationSkill] AI call error (falling back to local template):`, err.message);
+      return null; // execute() will use _generateFallbackTemplate — guaranteed to return
     }
   }
 

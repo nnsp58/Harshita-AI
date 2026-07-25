@@ -28,6 +28,10 @@ class RationCardSkill extends BaseSkill {
 
     this.intents = ['ration_card', 'rashan_card', 'bpl_card', 'ration_status', 'ration_search', 'ration_apply'];
 
+    this.visible = true;
+    this.type = 'application';
+    this.route = '/service/ration-card';
+
     this.keywords = {
       hi: ['राशन', 'बीपीएल', 'खाद्य', 'राशन कार्ड', 'राशनकार्ड', 'अंत्योदय', 'पात्रता',
            'सदस्य जोड़ो', 'सदस्य हटाओ', 'खाद्य सुरक्षा', 'पीएचएच'],

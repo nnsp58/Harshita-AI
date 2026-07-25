@@ -20,6 +20,10 @@ class ResumeSkill extends BaseSkill {
 
     this.intents = ['create_resume', 'update_resume', 'resume_status'];
 
+    this.visible = true;
+    this.type = 'application';
+    this.route = '/resume-builder';
+
     this.keywords = {
       hi: ['रिज्यूमे', 'बायोडाटा', 'सीवी', 'नौकरी के लिए पर्चा', 'resume बनाओ', 'biodata बनाओ'],
       en: ['resume', 'cv', 'biodata', 'curriculum vitae', 'create resume', 'make cv'],

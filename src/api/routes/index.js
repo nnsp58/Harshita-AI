@@ -23,6 +23,7 @@ const settingRoutes = require('./settings');
 const storyVideoRoutes = require('./storyVideo');
 const academyRoutes = require('./academy');
 const selfHealingRoutes = require('./selfHealing');
+const utilitiesRoutes = require('./utilities');
 
 router.use('/auth', authRoutes);
 router.use('/self-healing', selfHealingRoutes);
@@ -34,7 +35,6 @@ router.use('/document', documentRoutes);
 router.use('/review', reviewRoutes);
 router.use('/download', downloadRoutes);
 
-// Public agents list — no auth required (must be BEFORE router.use('/agents') to avoid shadow)
 router.get('/agents', (req, res) => {
   try {
     const masterAgent = req.app.get('masterAgent');
@@ -42,16 +42,18 @@ router.get('/agents', (req, res) => {
       return res.json({ agents: [], total: 0 });
     }
     const skills = masterAgent.registry.getAllSkills ? masterAgent.registry.getAllSkills() : [];
+    const visibleSkills = skills.filter(s => s.visible === true);
     res.json({
-      agents: skills.map(s => ({
+      agents: visibleSkills.map(s => ({
         id: s.name,
         displayName: s.displayName || s.name,
         category: s.category || 'general',
         status: 'running',
         canRunOffline: s.canRunOffline || false,
-        intentsCount: (s.intents || []).length
+        intentsCount: (s.intents || []).length,
+        route: s.route
       })),
-      total: skills.length
+      total: visibleSkills.length
     });
   } catch (e) {
     res.json({ agents: [], total: 0, error: e.message });
@@ -71,6 +73,7 @@ router.use('/analytics', analyticsRoutes);
 router.use('/settings', settingRoutes);
 router.use('/story-video', storyVideoRoutes);
 router.use('/academy', academyRoutes);
+router.use('/utilities', utilitiesRoutes);
 
 
 

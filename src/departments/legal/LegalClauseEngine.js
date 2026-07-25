@@ -7,8 +7,32 @@ class LegalClauseEngine {
     if (documentType === 'Gift Deed') {
       return this._getGiftDeedClauses(memory);
     }
+    if (documentType === 'RTI Application') {
+      return this._getRTIApplicationClauses(memory);
+    }
     // Default fallback
     return [{ type: 'OPERATIVE', content: 'Standard operative clause.' }];
+  }
+
+  _getRTIApplicationClauses(memory) {
+    const applicant = memory.applicantName || '[आवेदक का नाम]';
+    const address = memory.address || '[पता]';
+    const pio = memory.pio || 'जन सूचना अधिकारी (PIO)';
+    const department = memory.department || '[विभाग का नाम]';
+    const subject = memory.subject || 'सूचना के अधिकार अधिनियम, 2005 के अंतर्गत सूचना प्राप्त करने हेतु आवेदन।';
+    const details = memory.details || '1. [सूचना बिंदु 1]\n2. [सूचना बिंदु 2]';
+
+    return [
+      { type: 'TITLE', content: `सूचना का अधिकार (RTI) आवेदन` },
+      { type: 'TO', content: `सेवा में,\n\n${pio},\n${department},\n[स्थान]` },
+      { type: 'SUBJECT', content: `विषय: ${subject}` },
+      { type: 'SALUTATION', content: `महोदय,` },
+      { type: 'OPERATIVE', content: `मैं, ${applicant}, निवासी ${address}, सूचना के अधिकार अधिनियम, 2005 के अंतर्गत निम्नलिखित जानकारी प्राप्त करना चाहता/चाहती हूँ:` },
+      { type: 'DETAILS', content: `${details}` },
+      { type: 'FEES', content: `मैंने इस आवेदन के साथ 10/- रुपये का निर्धारित शुल्क (पोस्टल ऑर्डर / नकद / डीडी संख्या ________) संलग्न किया है।` },
+      { type: 'CLOSING', content: `कृपया मुझे निर्धारित समय सीमा (30 दिन) के भीतर जानकारी प्रदान करने की कृपा करें। यदि यह जानकारी आपके विभाग से संबंधित नहीं है, तो कृपया इसे धारा 6(3) के तहत संबंधित लोक सूचना अधिकारी को स्थानांतरित करें।` },
+      { type: 'SIGNATURE', content: `भवदीय,\n\nहस्ताक्षर: ____________________\nनाम: ${applicant}\nपता: ${address}\nदिनांक: [Date]` }
+    ];
   }
 
   _getGiftDeedClauses(memory) {

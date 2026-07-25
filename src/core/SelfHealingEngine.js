@@ -45,8 +45,11 @@ class SelfHealingEngine {
     console.warn(`[SelfHealingEngine] All retries failed for ${skill.name}. Attempting fallback...`);
 
     // Phase 2: Switch Tool/Agent (Fallback)
-    if (skill.fallbackAgent && registry) {
-      const fallbackSkill = registry.getSkill(skill.fallbackAgent);
+    // Agar skill ne apna khud ka fallbackAgent nahi diya, to LLM (general_chat) ko default
+    // fallback maano — taaki user ko static error ki jagah ek asli, sahi jawab mile.
+    const fallbackAgentName = skill.fallbackAgent || (skill.name !== 'general_chat' ? 'general_chat' : null);
+    if (fallbackAgentName && registry) {
+      const fallbackSkill = registry.getSkill(fallbackAgentName);
       if (fallbackSkill) {
         try {
           console.log(`[SelfHealingEngine] Executing fallback skill: ${fallbackSkill.name}`);

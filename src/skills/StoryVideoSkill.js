@@ -21,6 +21,10 @@ class StoryVideoSkill extends BaseSkill {
     this.category = 'automation';
     this.priority = 8;
     this.intents = ['story_video', 'generate_video', 'cartoon_video'];
+
+    this.visible = true;
+    this.type = 'application';
+    this.route = '/story-video';
   }
 
   /**

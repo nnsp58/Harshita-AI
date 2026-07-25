@@ -24,6 +24,10 @@ class EligibilitySkill extends BaseSkill {
     this.canRunOffline = false;
     this.priority = 6;
     this.intents = ['eligibility_check', 'yogyata_check', 'am_i_eligible', 'qualification_check'];
+
+    this.visible = true;
+    this.type = 'application';
+    this.route = '/service/eligibility';
     this.keywords = {
       hi: ['योग्य', 'योग्यता', 'पात्रता', 'उम्र सीमा', 'क्वालिफिकेशन', 'पात्र'],
       en: ['eligible', 'eligibility', 'qualification', 'age limit', 'criteria', 'qualify'],

@@ -1,5 +1,6 @@
 /**
  * GeneralChatSkill — सामान्य बातचीत / ग्रीटिंग / हेल्प
+ * PRD-013: Final Fallback returns static message when all providers fail
  */
 const { BaseSkill } = require('./BaseSkill');
 const { aiProviderManager } = require('../utils/aiProviderManager');
@@ -15,9 +16,13 @@ class GeneralChatSkill extends BaseSkill {
     this.version = '1.0.0';
     this.category = 'utility';
     this.canRunOffline = true;
-    this.priority = 1; // सबसे कम — सिर्फ तब चले जब कोई और स्किल match न हो
+    this.priority = 1;
 
     this.intents = ['general_chat', 'greeting', 'help', 'who_are_you', 'thanks'];
+
+    this.visible = true;
+    this.type = 'application';
+    this.route = '/service/ai-assistant';
 
     this.keywords = {
       hi: ['नमस्ते', 'हेलो', 'कैसे हो', 'मदद', 'कौन हो', 'धन्यवाद', 'शुक्रिया'],
@@ -27,8 +32,13 @@ class GeneralChatSkill extends BaseSkill {
   }
 
   async execute(context) {
-    const { message, userId } = context;
+    const { message, userId, params } = context;
     const text = message.toLowerCase();
+
+    // PRD-013: Check if offline knowledge already provided answer
+    if (params?.offlineAnswer) {
+      return this._reply(params.offlineAnswer);
+    }
 
     // नमस्ते / Hello
     if (text.match(/^(hi|hello|hey|namaste|namaskar)\b/i) || text.match(/^(नमस्ते|नमस्कार|हेलो)/)) {
@@ -37,19 +47,14 @@ class GeneralChatSkill extends BaseSkill {
       );
     }
 
-    // कौन हो / परिचय / kaun ho / kya kar sakti ho / capabilities
+    const mentionsBot = /\b(you|your|harshita|assistant|bot|aap|tumhare|tumhari|apni|apne)\b/i.test(text) ||
+                        /\b(तुम|आप|हर्षिता|अपनी|अपने)\b/.test(text);
     const isBotIntroRequest = (
-      // Strict word matching for English capabilities of the bot
-      /\b(who are you|who is this|who is harshita|what can you do|what do you do|your capabilities|your skills|about you|help menu|skills|batao|batao.*skills)\b/i.test(text) ||
-      // Checks to ensure "who" or "about" is referring to the bot itself
-      ((text.includes('who') || text.includes('about') || text.includes('skills') || text.includes('capabilit')) && 
-       /\b(you|your|harshita|assistant|bot)\b/i.test(text)) ||
-      // Hindi/Hinglish queries asking "who are you" or "what do you do"
-      /\b(kaun ho|kaun hai|kon ho|kon h|kaun h|kya kar sakti|kya kar sakte|kabiliyat|kya kaam|hunar|skills.*batao|apni.*skill)\b/i.test(text) ||
-      // Explicit Hindi word match with context
-      (text.includes('कौन') && /\b(तुम|आप|हर्षिता)\b/i.test(text)) ||
-      (text.includes('क्या कर') && /\b(सकती|सकते|सकतीं|काम)\b/i.test(text)) ||
-      (text.includes('काबिलियत') || text.includes('kabiliyat') || text.includes('skills'))
+      /\b(who are you|who is this|who is harshita|what can you do|what do you do|your capabilities|your skills|about you|help menu)\b/i.test(text) ||
+      /\b(kaun ho|kaun hai|kon ho|kon h|kaun h|kya kar sakti|kya kar sakte|kabiliyat|kya kaam|hunar|apni.*skill|skills.*batao)\b/i.test(text) ||
+      (text.includes('कौन') && /\b(तुम|आप|हर्षिता)\b/.test(text)) ||
+      (text.includes('क्या कर') && /\b(सकती|सकते|सकतीं|काम)\b/.test(text)) ||
+      (/capabilit/i.test(text) && mentionsBot)
     );
 
     if (isBotIntroRequest) {
@@ -92,21 +97,16 @@ class GeneralChatSkill extends BaseSkill {
       );
     }
 
-    // उम्र / जन्म / Age / Birthday
     if ((/\b(age|birthday|dob|date\s+of\s+birth|umar|janamdin)\b/i.test(text) || text.includes('उम्र')) && !text.includes('mera') && !text.includes('my')) {
       return this._reply(
         'मेरी सिस्टम इनिशियलाइजेशन (Initialization) तिथि 18 जुलाई है। एक उन्नत AI होने के नाते, मेरा मुख्य उद्देश्य निरंतर सीखना और आपके कार्यों को ऑटोमेट करना है। मैं आपकी कैसे सहायता कर सकती हूँ?'
       );
     }
 
-    // किसने बनाया / Who created / banaya / father / founder of Harshita AI specifically
     const isAboutMeCreator = (
-      // "kisne banaya" / "who created" / "owner" combined with "harshita" or "tumhe" or "you" or "aap"
       (/(?:tumhe|aap|you|harshita|app|bot|assistant|website|system|engine|here|this).*(?:banaya|बनाया|banane|created|developed|creator|father|founder|owner|maalik|मालिक|papa)/i.test(text)) ||
       (/(?:banaya|बनाया|banane|created|developed|creator|father|founder|owner|maalik|मालिक|papa).*(?:tumhe|aap|you|harshita|app|bot|assistant|website|system)/i.test(text)) ||
-      // Or explicitly mentions n-dizi
       /n-dizi|n dizi/i.test(text) ||
-      // Or simple "who created you" or "your owner"
       ((/(?:who|kisne|कौन).*(?:creator|owner|maalik|father|maker)/i.test(text)) && /(?:you|your|aap|tum)/i.test(text))
     ) && !/(?:telephone|phone|computer|taj|bulb|electricity|aeroplane|america|india|gravity|steam|engine|radio|tv|television|camera|zero|math|gravity|force)/i.test(text);
 
@@ -118,21 +118,17 @@ class GeneralChatSkill extends BaseSkill {
       );
     }
 
-    // मदद / Help
     if (text.includes('help') || text.includes('मदद') || text.includes('madad')) {
       return this._reply(
         'सिस्टम सहायता (System Help): मैं कई प्रकार की सेवाओं को निष्पादित कर सकती हूँ। आप मुझे सीधे निर्देश दे सकते हैं, जैसे:\n\n• "नवीनतम SSC वैकेंसियों का विश्लेषण करें"\n• "आधार कार्ड से डेटा एक्सट्रेक्ट करें"\n• "एक कानूनी शपथपत्र (Affidavit) ड्राफ्ट करें"\n• "टीए/डीए (TA/DA) क्लेम तैयार करें"\n\nकृपया अपना निर्देश स्पष्ट रूप से प्रदान करें।'
       );
     }
 
-    // धन्यवाद
     if (text.includes('thank') || text.includes('धन्यवाद') || text.includes('shukriya') || text.includes('शुक्रिया')) {
       return this._reply('आपका स्वागत है। यदि कोई अन्य कार्य शेष है, तो कृपया मुझे सूचित करें।');
     }
 
-    // AI Fallback — कोई भी random बात (smart conversational reply)
     try {
-      // Build message history
       const messages = [
         {
           role: 'system',
@@ -142,7 +138,7 @@ ABOUT YOU (Harshita AI):
 - Name: Harshita AI
 - Built by: A team in India for CSC operators and citizens
 - Purpose: Automate government forms, document OCR, job search, legal drafts, TA-DA naksha, ration card services, WhatsApp messaging, and more
-- 32+ specialized AI skills covering CSC services (Government Services: Form Auto-fill, Ration Card, Land Record, Result Tracker, Eligibility Check; Documents & Content: OCR, File Processor, Project Report, Resume/Biodata Builder, Bulk Import & Validator; Legal & Business: Legal Drafting, Legal Notice, TA-DA, Ticket Booking; Media: Photo Maker, Media Skill; Developer & Utility: Voice Agent, Deploy, Self Evolution & Healing, Web Learning, UI Builder, Notepad, Language Skill, Security Guardrail)
+- 32+ specialized AI skills covering CSC services
 
 BEHAVIOR RULES:
 1. Deeply ANALYZE the user's question before answering. Think step-by-step about what the user is really asking.
@@ -151,13 +147,11 @@ BEHAVIOR RULES:
 4. Keep responses professional, natural, and highly helpful.
 5. Do not pretend to perform actions if you don't have the tool for it; advise them how to access the tools in the dashboard.
 6. If asked who created you, say you were created by the "n-dizi team".
-7. NEVER use markdown code blocks (\`\`\`) in conversational responses unless showing actual programming code.
-
-Chat History / Memory: Yes, conversation history is stored persistently on the server inside the JSON database file "data/learning/conversations.json" (remembers last 50 messages per session, and automatically prunes sessions older than 90 days).
+7. NEVER use markdown code blocks (\\\`\\\`) in conversational responses unless showing actual programming code.
 
 YOUR PERSONALITY:
 - Professional, friendly, helpful, concise (max 80 words per reply)
-- Act as a highly capable AI agent. Answer general knowledge, historical, geographical, and factual questions accurately, directly, and specifically (e.g., if asked about a location, name the specific location). Do not give vague or evasive summaries.
+- Act as a highly capable AI agent. Answer general knowledge, historical, geographical, and factual questions accurately, directly, and specifically.
 - Do not repeat basic greetings if the conversation is ongoing.
 - Reply in same language user used (Hindi/English/Hinglish auto-detect)
 - Use emojis sparingly (1-2 per reply)
@@ -187,7 +181,6 @@ Keep replies under 80 words. Be professional and context-aware.`
       let aiMessage = response.choices[0].message.content;
       let actionParams = {};
 
-      // Check if AI decided to navigate
       const navMatch = aiMessage.match(/NAVIGATE_TO:\s*(https?:\/\/[^\s]+)/);
       if (navMatch) {
         actionParams.navigate = navMatch[1];
@@ -197,10 +190,9 @@ Keep replies under 80 words. Be professional and context-aware.`
       return this._reply(aiMessage, actionParams);
     } catch (e) {
       console.error('[GeneralChatSkill] AI conversational fallback failed:', e.message);
-      // AI not available — use static fallback
     }
 
-    return this._reply(`मुझे खेद है, यह कमांड मेरे वर्तमान ऑपरेशनल पैरामीटर्स (Operational Parameters) के बाहर है या स्पष्ट नहीं है: "${message}"\n\nकृपया अपने निर्देश को स्पष्ट करें या मुझे किसी विशिष्ट प्रक्रिया (जैसे: डेटा एक्सट्रैक्शन, फॉर्म फाइलिंग, या लीगल ड्राफ्टिंग) के लिए निर्देशित करें।`);
+    return this._reply("I am temporarily unable to contact AI servers. Offline services are still available.");
   }
 }
 

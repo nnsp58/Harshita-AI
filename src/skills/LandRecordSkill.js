@@ -16,6 +16,10 @@ class LandRecordSkill extends BaseSkill {
     this.canRunOffline = false;
     this.priority = 6;
     this.intents = ['land_record', 'bhulekh', 'khasra', 'khatauni', 'zameen'];
+
+    this.visible = true;
+    this.type = 'application';
+    this.route = '/service/land_record';
     this.keywords = {
       hi: ['भूलेख', 'खसरा', 'खतौनी', 'ज़मीन', 'जमीन', 'रजिस्ट्री', 'पट्टा', 'भूमि'],
       en: ['land', 'bhulekh', 'khasra', 'khatauni', 'plot', 'registry', 'property'],

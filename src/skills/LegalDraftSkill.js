@@ -22,6 +22,10 @@ class LegalDraftSkill extends BaseSkill {
       'prayer_letter', 'application', 'draft', 'representation', 'complaint', 'notice', 'undertaking',
       'money_recovery'
     ];
+
+    this.visible = true;
+    this.type = 'application';
+    this.route = '/workspace/legal/affidavit';
     this.keywords = {
       hi: ['कानूनी', 'ड्राफ्ट', 'शपथपत्र', 'अनुबंध', 'वकील', 'कानून', 'नोटिस'],
       en: ['legal', 'draft', 'affidavit', 'agreement', 'contract', 'lawyer', 'notice'],

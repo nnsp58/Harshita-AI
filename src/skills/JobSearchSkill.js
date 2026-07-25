@@ -25,6 +25,10 @@ class JobSearchSkill extends BaseSkill {
 
     this.intents = ['job_search', 'find_vacancy', 'naukri_dhundho', 'latest_bharti', 'ssc_form'];
 
+    this.visible = true;
+    this.type = 'application';
+    this.route = '/service/job_search';
+
     this.keywords = {
       hi: ['नौकरी', 'भर्ती', 'वैकेंसी', 'सिपाही', 'फौज', 'रेलवे', 'बैंक', 'पुलिस',
            'परीक्षा', 'एसएससी', 'यूपीएससी', 'आर्मी'],

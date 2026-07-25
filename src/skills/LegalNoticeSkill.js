@@ -38,6 +38,10 @@ class LegalNoticeSkill extends BaseSkill {
     this.intents = ['legal_notice', 'advocate_notice', 'lawyer_notice', 'cheque_bounce_notice',
                     'defamation_notice', 'recovery_notice', 'eviction_notice'];
 
+    this.visible = true;
+    this.type = 'application';
+    this.route = '/workspace/legal/notice';
+
     this.keywords = {
       hi: ['कानूनी नोटिस', 'वकील नोटिस', 'अधिवक्ता', 'चेक बाउंस', 'मानहानि',
            'वसूली', 'बेदखली', 'अनुबंध भंग', 'उपभोक्ता शिकायत', 'letterhead'],

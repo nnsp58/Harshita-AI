@@ -4,8 +4,10 @@
  */
 class LegalRuleEngine {
   identifyDocumentType(intent) {
-    if (intent.includes('gift') || intent.includes('daan')) return 'Gift Deed';
-    if (intent.includes('sale') || intent.includes('sell')) return 'Sale Deed';
+    const lowerIntent = intent.toLowerCase();
+    if (lowerIntent.includes('rti') || lowerIntent.includes('सूचना')) return 'RTI Application';
+    if (lowerIntent.includes('gift') || lowerIntent.includes('daan')) return 'Gift Deed';
+    if (lowerIntent.includes('sale') || lowerIntent.includes('sell')) return 'Sale Deed';
     return 'General Agreement';
   }
 

@@ -21,6 +21,7 @@ const { TaxSecurityEngine } = require('./TaxSecurityEngine');
 const { TaxWorkspaceRouter } = require('./TaxWorkspaceRouter');
 const { TaxAnalytics } = require('./TaxAnalytics');
 const { ITRAgent } = require('./agents/ITRAgent');
+const { DocumentParserEngine } = require('./engines/DocumentParserEngine');
 
 class MasterTaxAgent extends BaseSkill {
   constructor() {
@@ -34,6 +35,10 @@ class MasterTaxAgent extends BaseSkill {
     this.category = 'finance';
     this.canRunOffline = false;
     this.priority = 10;
+
+    this.visible = true;
+    this.type = 'application';
+    this.route = '/workspace/tax/itr';
     
     this.intents = [
       'itr_filing', 'file_itr', 'income_tax_return',
@@ -101,13 +106,62 @@ class MasterTaxAgent extends BaseSkill {
 
     // Document upload handling
     if (context.attachments && context.attachments.length > 0) {
-      return this._reply(
-        `📄 Document प्राप्त हुआ। कृपया Workspace में **Documents** tab पर जाएं — AI OCR Engine automatic extract करेगा।`,
-        TaxWorkspaceRouter.routeTo('documents', {
-          pan: TaxSecurityEngine.maskPan(profile.pan),
-          attachments: context.attachments.length
-        })
-      );
+      let extractedAny = false;
+      
+      // Parse attachments using DocumentParserEngine
+      for (const attachment of context.attachments) {
+        const docName = attachment.filename || attachment.path || '';
+        let docType = 'FORM_16'; // default
+        if (docName.toLowerCase().includes('ais')) docType = 'AIS';
+        else if (docName.toLowerCase().includes('26as')) docType = '26AS';
+        
+        try {
+          if (attachment.path) {
+            const parsedData = await DocumentParserEngine.extractTaxData(attachment.path, docType);
+            if (parsedData) {
+              extractedAny = true;
+              // Merge into profile based on document type
+              if (docType === 'FORM_16') {
+                profile.employer = parsedData.employer || profile.employer;
+                profile.grossSalary = parsedData.grossSalary || profile.grossSalary;
+                profile.tdsDeducted = (profile.tdsDeducted || 0) + (parsedData.tdsDeducted || 0);
+                profile.hasForm16 = 'हाँ, है';
+                profile.salaryDetailsCollected = true;
+              } else if (docType === 'AIS') {
+                profile.bankInterest = parsedData.bankInterest || profile.bankInterest;
+                profile.dividendIncome = parsedData.dividendIncome || profile.dividendIncome;
+                profile.hasAIS = 'हाँ';
+              } else if (docType === '26AS') {
+                profile.tdsDeducted = (profile.tdsDeducted || 0) + (parsedData.totalTdsDeposited || 0);
+                profile.has26AS = 'हाँ';
+              }
+            }
+          }
+        } catch (e) {
+          console.error(`[MasterTaxAgent] Error parsing attachment ${docName}:`, e.message);
+        }
+      }
+
+      if (extractedAny && uid !== 'anon') {
+        await TaxMemoryEngine.updateProfile(uid, profile);
+        TaxMemoryEngine.logAudit(uid, 'UPDATE_PROFILE', 'Tax details extracted from uploaded documents');
+        
+        return this._reply(
+          `📄 **Document Processed Successfully!**\nAI OCR Engine has extracted the tax details and updated your profile.\nकृपया Workspace में **Documents** tab पर verify करें।`,
+          TaxWorkspaceRouter.routeTo('dashboard', {
+            pan: TaxSecurityEngine.maskPan(profile.pan),
+            attachments: context.attachments.length
+          })
+        );
+      } else {
+        return this._reply(
+          `📄 Document प्राप्त हुआ। कृपया Workspace में **Documents** tab पर जाएं। (Auto-extraction pending)`,
+          TaxWorkspaceRouter.routeTo('documents', {
+            pan: TaxSecurityEngine.maskPan(profile.pan),
+            attachments: context.attachments.length
+          })
+        );
+      }
     }
 
     // Conduct Interview via ITRAgent

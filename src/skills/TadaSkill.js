@@ -23,6 +23,10 @@ class TadaSkill extends BaseSkill {
 
     this.intents = ['tada_process', 'ta_da_form', 'travel_allowance', 'yatra_bhatta'];
 
+    this.visible = true;
+    this.type = 'application';
+    this.route = '/tada';
+
     this.keywords = {
       hi: ['भत्ता', 'यात्रा भत्ता', 'दैनिक भत्ता', 'टीए', 'डीए', 'सफर खर्चा', 'ड्यूटी', 'नक्शा'],
       en: ['tada', 'ta/da', 'ta da', 'travel allowance', 'dearness allowance', 'duty', 'conveyance'],
