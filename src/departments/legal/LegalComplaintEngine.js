@@ -105,10 +105,10 @@ class LegalComplaintEngine {
       entities.complainant.address = compNiwasMatch[1].trim();
     }
 
-    const compDistMatch = text.match(/(?:mera\s*naam[^\.]*?)(?:dist|distt|district|जिला)\s*[:\-]?\s*([A-Za-z\u0900-\u097F]+)/i) ||
-                          text.match(/(?:dist|distt|district|जिला)\s*[:\-]?\s*([A-Za-z\u0900-\u097F]+)/i);
+    const compDistMatch = text.match(/(?:mera\s*naam[^\.]*?)(?:distt?\.?|district|जिला)\s*[:\-]?\s*([A-Za-z\u0900-\u097F]+)/i) ||
+                          text.match(/(?:distt?\.?|district|जिला)\s*[:\-]?\s*([A-Za-z\u0900-\u097F]+)/i);
     if (compDistMatch) {
-      entities.complainant.district = compDistMatch[1].trim();
+      entities.complainant.district = compDistMatch[1].replace(/^(rict|t|tt)\s+/i, '').trim();
     }
 
     const compVillMatch = text.match(/(?:mera\s*naam[^\.]*?)(?:vill\s*post|vill|village|ग्राम)\s*[:\-]?\s*([A-Za-z\u0900-\u097F]+)/i) ||

@@ -3132,5 +3132,43 @@
     ],
     "createdAt": "2026-09-11T04:58:45.466Z",
     "lastActive": "2026-09-11T04:58:45.467Z"
+  },
+  "test_user_phase5:math_skill": {
+    "userId": "test_user_phase5",
+    "skill": "math_skill",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Gautam Chaudhary s/o Pankaj Vill Post Sikhera Tehsil Bulandshahr District Bulandshahr. 26 August 2026 ko mere ghar se mera carry bag jisme kuch jaruri documents aur Poco M3 phone tha le gaya. Main us waqt sharab ke nashe me tha. Usne mere ghar par sharab pi thi. Mera naam Nar Narayan Singh s/o Shri Meer Singh Vill Post Sikhera District Bulandshahr PIN 203002.",
+        "timestamp": "2026-09-11T05:21:33.177Z"
+      },
+      {
+        "role": "assistant",
+        "content": "यह एक जटिल गणितीय समस्या है। मेरे ऑफलाइन डेटाबेस में इसका सीधा हल नहीं है और अभी ऑनलाइन AI से कनेक्ट करने में समस्या आ रही है।",
+        "timestamp": "2026-09-11T05:21:33.178Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-09-11T05:21:33.177Z",
+    "lastActive": "2026-09-11T05:21:33.178Z"
+  },
+  "test_user_phase5:legal_draft": {
+    "userId": "test_user_phase5",
+    "skill": "legal_draft",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Gautam Chaudhary s/o Pankaj Vill Post Sikhera Tehsil Bulandshahr District Bulandshahr. 26 August 2026 ko mere ghar se mera carry bag jisme kuch jaruri documents aur Poco M3 phone tha le gaya. Main us waqt sharab ke nashe me tha. Usne mere ghar par sharab pi thi. Mera naam Nar Narayan Singh s/o Shri Meer Singh Vill Post Sikhera District Bulandshahr PIN 203002.",
+        "timestamp": "2026-09-11T05:23:23.399Z"
+      },
+      {
+        "role": "assistant",
+        "content": "[रूटिंग सफल] ✅ आपकी शिकायत का कानूनी मसौदा (A4 Police Complaint) तैयार कर दिया गया है।\n\n📄 **शीर्षक:** पुलिस शिकायत पत्र (Nar Narayan Singh)\n🏛️ **प्राधिकारी:** थाना प्रभारी महोदय, जिला- rict\n👤 **शिकायतकर्ता:** Nar Narayan Singh\n🚨 **संदिग्ध:** Gautam Chaudhary\n\nदस्तावेज़ को नीचे A4 वर्कस्पेस में खोला गया है जहाँ से आप इसे Edit, Print या PDF डाउनलोड कर सकते हैं।\n\n═══════════════════════════════════════════════════════════════\n                 पुलिस शिकायत पत्र / POLICE COMPLAINT APPLICATION\n═══════════════════════════════════════════════════════════════\n\nसेवा में,\nथानाध्यक्ष / थाना प्रभारी महोदय,\nथाना: __________ (संबंधित स्थानीय थाना)\nजिला: rict, उत्तर प्रदेश\n\nविषय: घर से कैरी बैग, महत्वपूर्ण व्यक्तिगत दस्तावेज़ एवं Poco M3 मोबाइल फोन चोरी होने / ले जाए जाने के संबंध में शिकायत पत्र।\n\nमहोदय,\n\nसविनय निवेदन है कि प्रार्थी / शिकायतकर्ता का पूर्ण विवरण एवं घटना के तथ्य निम्नवत् हैं:\n\n१. शिकायतकर्ता का विवरण:\n   • नाम: Nar Narayan Singh\n   • पिता का नाम: श्री Pankaj\n   • स्थायी पता: ग्राम व पोस्ट- Sikhera, जिला- rict, पिन- 203002\n   • मोबाइल नंबर: __________\n\n२. घटना का विवरण:\n   • दिनांक: 26 August 2026\n   • समय: __________ (समय उपलब्ध नहीं / रात्रि के समय)\n   • स्थान: शिकायतकर्ता का निवास स्थान (Complainant Residence)\n\n३. संदिग्ध / नामजद व्यक्ति का विवरण:\n   • नाम: Gautam Chaudhary\n   • पिता का नाम: श्री Pankaj\n   • पता: ग्राम व पोस्ट- Sikhera, तहसील- sil, जिला- rict\n\n४. चोरी / ले जाई गई वस्तुओं का विवरण:\n   (a) एक कैरी बैग (Carry Bag)\n   (b) कुछ महत्वपूर्ण व्यक्तिगत दस्तावेज़ (Important Personal Documents)\n   (c) Poco M3 phone tha le gaya\n\n५. घटना का विवरण (तथ्य एवं आरोप):\n   शिकायतकर्ता के कथन एवं आरोप के अनुसार, दिनांक 26 August 2026 को उक्त संदिग्ध व्यक्ति (Gautam Chaudhary) शिकायतकर्ता के घर पर मौजूद था। उक्त व्यक्ति द्वारा शिकायतकर्ता के घर से उसका कैरी बैग, जिसमें कुछ महत्वपूर्ण दस्तावेज़ एवं Poco M3 मोबाइल फोन रखे हुए थे, चोरी से अपने साथ ले जाने का आरोप है।\n\n६. विशेष परिस्थितियां:\nशिकायतकर्ता के कथन के अनुसार, घटना के समय वह शराब के प्रभाव (नशे) में था तथा उ",
+        "timestamp": "2026-09-11T05:23:23.400Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-09-11T05:23:23.399Z",
+    "lastActive": "2026-09-11T05:23:23.400Z"
   }
 }

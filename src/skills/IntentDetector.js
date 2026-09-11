@@ -82,6 +82,26 @@ class IntentDetector {
       };
     }
 
+    // Step 0.5: Legal / Police Complaint Fast-Path (Harshita AI Master Legal Instruction)
+    const { legalComplaintEngine } = require('../departments/legal/LegalComplaintEngine');
+    if (legalComplaintEngine.isComplaintRequest(cleanMessage)) {
+      const complaintEntities = legalComplaintEngine.extractEntities(cleanMessage);
+      const result = {
+        intent: 'legal_draft',
+        confidence: 0.99,
+        skill: 'legal_draft',
+        skillDisplayName: 'कानूनी ड्राफ्ट',
+        params: {
+          raw: cleanMessage,
+          docCategory: 'police_complaint',
+          docType: 'police_complaint',
+          extractedEntities: complaintEntities,
+        },
+        method: 'legal_complaint_engine',
+      };
+      return this._finalizeResult(result, cacheKey);
+    }
+
     // Step 1: Offline Knowledge Check (PRD-013)
     const offlineResult = this._checkOfflineKnowledge(cleanMessage, lowerMessage);
     if (offlineResult) {
@@ -115,26 +135,6 @@ class IntentDetector {
     if (queryType === 'information' && /(?:itr|income tax|tax|pan|gift deed|sale deed|affidavit|rent agreement|legal notice|resume|cv|biodata|application)/i.test(lowerMessage)) {
         const result = { intent: 'general_chat', confidence: 0.95, params: { raw: cleanMessage, queryType }, method: 'info_intercept' };
         return this._finalizeResult(result, cacheKey);
-    }
-
-    // Step 1: Legal / Police Complaint Fast-Path (Harshita AI Master Legal Instruction)
-    const { legalComplaintEngine } = require('../departments/legal/LegalComplaintEngine');
-    if (legalComplaintEngine.isComplaintRequest(cleanMessage)) {
-      const complaintEntities = legalComplaintEngine.extractEntities(cleanMessage);
-      const result = {
-        intent: 'legal_draft',
-        confidence: 0.99,
-        skill: 'legal_draft',
-        skillDisplayName: 'कानूनी ड्राफ्ट',
-        params: {
-          raw: cleanMessage,
-          docCategory: 'police_complaint',
-          docType: 'police_complaint',
-          extractedEntities: complaintEntities,
-        },
-        method: 'legal_complaint_engine',
-      };
-      return this._finalizeResult(result, cacheKey);
     }
 
     // Step 1.1: Pattern Overrides

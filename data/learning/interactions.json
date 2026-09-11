@@ -4967,5 +4967,23 @@
     "output": "[रूटिंग सफल] ✅ आपकी शिकायत का कानूनी मसौदा (A4 Police Complaint) तैयार कर दिया गया है।\n\n📄 **शीर्षक:** पुलिस शिकायत पत्र (राहुल शर्मा)\n🏛️ **प्राधिकारी:** थाना प्रभारी महोदय, जिला- बुलंदशहर\n👤 **शिकाय",
     "success": true,
     "timestamp": "2026-09-11T04:58:45.467Z"
+  },
+  {
+    "id": "test_user_phase5_1789104093179_o3zbevp",
+    "userId": "test_user_phase5",
+    "skill": "math_skill",
+    "input": "Gautam Chaudhary s/o Pankaj Vill Post Sikhera Tehsil Bulandshahr District Bulandshahr. 26 August 2026 ko mere ghar se mera carry bag jisme kuch jaruri documents aur Poco M3 phone tha le gaya. Main us waqt sharab ke nashe me tha. Usne mere ghar par sharab pi thi. Mera naam Nar Narayan Singh s/o Shri Meer Singh Vill Post Sikhera District Bulandshahr PIN 203002.",
+    "output": "यह एक जटिल गणितीय समस्या है। मेरे ऑफलाइन डेटाबेस में इसका सीधा हल नहीं है और अभी ऑनलाइन AI से कनेक्ट करने में समस्या आ रही है।",
+    "success": true,
+    "timestamp": "2026-09-11T05:21:33.179Z"
+  },
+  {
+    "id": "test_user_phase5_1789104203400_inlpx25",
+    "userId": "test_user_phase5",
+    "skill": "legal_draft",
+    "input": "Gautam Chaudhary s/o Pankaj Vill Post Sikhera Tehsil Bulandshahr District Bulandshahr. 26 August 2026 ko mere ghar se mera carry bag jisme kuch jaruri documents aur Poco M3 phone tha le gaya. Main us waqt sharab ke nashe me tha. Usne mere ghar par sharab pi thi. Mera naam Nar Narayan Singh s/o Shri Meer Singh Vill Post Sikhera District Bulandshahr PIN 203002.",
+    "output": "[रूटिंग सफल] ✅ आपकी शिकायत का कानूनी मसौदा (A4 Police Complaint) तैयार कर दिया गया है।\n\n📄 **शीर्षक:** पुलिस शिकायत पत्र (Nar Narayan Singh)\n🏛️ **प्राधिकारी:** थाना प्रभारी महोदय, जिला- rict\n👤 **शिक",
+    "success": true,
+    "timestamp": "2026-09-11T05:23:23.400Z"
   }
 ]
