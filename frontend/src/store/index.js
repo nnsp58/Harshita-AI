@@ -40,7 +40,6 @@ export const useStore = create(
           const payload = unwrap(response)
           const agentsList = Array.isArray(payload) ? payload : (payload?.agents || response.data?.agents || [])
           set({ agents: agentsList })
-          console.log('Agents fetched:', agentsList.length)
         } catch (error) {
           console.error('Failed to fetch agents:', error)
           // Keep default agents on error
@@ -98,7 +97,6 @@ export const useStore = create(
         try {
           const statsRes = await dashboardAPI.getStats()
           set({ stats: unwrap(statsRes) })
-          console.log('Stats fetched:', unwrap(statsRes))
         } catch (error) {
           console.error('Failed to fetch stats:', error)
           // Keep default stats on error

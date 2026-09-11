@@ -118,16 +118,28 @@ export default function AIAssistantWidget() {
               }`}>
                 {(msg.message || msg.text)?.replace(/^\[[^\]]*रूटिंग[^\]]*\]\s*/, '')}
               </div>
-              {msg.action === 'navigate' && msg.route && (
-                <div className="mt-2 w-full max-w-[85%]">
-                  <button 
-                    onClick={() => navigate(msg.route)}
-                    className="w-full py-2 bg-indigo-500 hover:bg-indigo-400 text-white font-medium rounded-lg shadow-lg shadow-indigo-500/20 transition-all active:scale-95 text-sm"
-                  >
-                    Open Workspace
-                  </button>
-                </div>
-              )}
+              {(() => {
+                const navRoute = msg.action?.route || msg.action?.navigate || msg.route || (typeof msg.action === 'string' && msg.action.startsWith('/') ? msg.action : null);
+                const openInNewTab = msg.action?.target === '_blank';
+                if (!navRoute) return null;
+                return (
+                  <div className="mt-2 w-full max-w-[85%] flex gap-2">
+                    <button 
+                      onClick={() => navigate(navRoute)}
+                      className="flex-1 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded-lg shadow-lg shadow-indigo-500/20 transition-all active:scale-95 text-sm"
+                    >
+                      Open Workspace
+                    </button>
+                    <button 
+                      onClick={() => window.open(navRoute, '_blank')}
+                      title="Open in separate window / new tab"
+                      className="px-3 py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 hover:text-white rounded-lg transition-all active:scale-95 text-xs flex items-center gap-1 border border-slate-600"
+                    >
+                      <span>Separate Window ↗</span>
+                    </button>
+                  </div>
+                );
+              })()}
               {msg.type !== 'user' && msg.interactionId && (
                 <div className="flex items-center gap-2 mt-1 ml-2 text-slate-400">
                   <button 

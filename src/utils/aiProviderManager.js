@@ -164,11 +164,11 @@ class AIProviderManager {
         'DocumentAIAgent': 'deepseek-r1:8b'
       },
       groq: {
-        'default': 'llama-3.3-70b-versatile'
+        'default': 'groq/compound-mini'
       },
       gemini: {
-        'default': 'gemini-1.5-flash',
-        'LegalDraftAgent': 'gemini-1.5-flash'
+        'default': 'gemini-2.5-flash',
+        'LegalDraftAgent': 'gemini-2.5-flash'
       },
       openrouter: {
         'default': 'gemma-2-27b-it',

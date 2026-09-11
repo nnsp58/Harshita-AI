@@ -228,10 +228,51 @@ Keep replies under 80 words. Be professional and context-aware.`
       console.error('[GeneralChatSkill] AI conversational fallback failed:', e.message);
     }
 
+    // Check if user is asking to open the previous/recent action or workspace in a separate window
+    if (/\b(separate|saprate|new)\s*(window|tab)\b/i.test(text) || /\b(alag|naye|dusre)\s*(window|tab)\b/i.test(text) || text.includes('अलग विंडो') || text.includes('नए टैब')) {
+      // Look back in history to find the last route/page
+      let targetRoute = '/tada-naksha';
+      if (context.history && context.history.length > 0) {
+        for (let i = context.history.length - 1; i >= 0; i--) {
+          const h = context.history[i];
+          const histText = (h.message || '').toLowerCase();
+          if (histText.includes('tada') || histText.includes('नक्शा') || histText.includes('naksha')) {
+            targetRoute = '/tada-naksha';
+            break;
+          }
+          if (histText.includes('affidavit') || histText.includes('शपथपत्र')) {
+            targetRoute = '/legal-drafting';
+            break;
+          }
+        }
+      }
+      return this._reply(
+        isEnglish 
+          ? `Opening page in a separate window for you: ${targetRoute}` 
+          : `पेज अलग विंडो में खोला जा रहा है: ${targetRoute}`,
+        { mode: 'navigate', navigate: targetRoute, target: '_blank', route: targetRoute },
+        { navigate: targetRoute, target: '_blank', route: targetRoute }
+      );
+    }
+
+    // Questions about how to bring bot online or offline status
+    if (/\b(how to online|bring online|make online|turn online|connect internet|online kaise|online ho jao)\b/i.test(text) || text.includes('ऑनलाइन कैसे')) {
+      if (isEnglish) {
+        return this._reply("I automatically connect to online AI services (Gemini/Groq) whenever API connectivity is active. When running offline or if servers are unreachable, I operate with local built-in offline templates and tools.");
+      }
+      if (isHinglish) {
+        return this._reply("Main Gemini aur Groq AI se automatically connect rehti hoon. Agar AI connection me deri ya issue ho, toh main offline templates aur legal tools ke sath turant kaam karti hoon.");
+      }
+      return this._reply("जब भी AI API सक्रिय होता है, मैं स्वचालित रूप से ऑनलाइन सेवाओं से जुड़ जाती हूँ। इंटरनेट या सर्वर उपलब्ध न होने पर भी मैं स्थानीय ऑफलाइन टूल्स और कानूनी ड्राफ्टिंग के साथ कार्य करती हूँ।");
+    }
+
     // Offline Smart Fallback: If AI servers are unavailable, provide a contextual offline response in user's language
     if (isEnglish) {
       if (/how are you/i.test(text)) {
         return this._reply("I'm doing well, thank you! How can I help you?");
+      }
+      if (/about your\s*self|who are you|tell me about/i.test(text)) {
+        return this._reply("I am N-Dizi AI (Harshita AI), an intelligent assistant built to help with legal drafting, TA/DA naksha calculations, government forms, documents, and business automation. How can I assist you today?");
       }
       if (/what can you do/i.test(text) || /your capabilities/i.test(text)) {
         return this._reply("I can help you draft legal notices, police complaints, calculate taxes, convert documents to PDF, and automate government services. How can I assist you today?");
@@ -242,6 +283,9 @@ Keep replies under 80 words. Be professional and context-aware.`
     if (isHinglish) {
       if (/haal|kaise ho|kya haal/i.test(text)) {
         return this._reply("Main bilkul badhiya hoon! Aap bataiye, main aapki kya madad kar sakti hoon?");
+      }
+      if (/about your\s*self|apne baare|kaun ho/i.test(text)) {
+        return this._reply("Main N-Dizi AI (Harshita AI) hoon, aapki digital assistant. Main legal drafts, TA/DA naksha, sarkari forms aur document processing mein madad karti hoon.");
       }
       if (/kya kar sakti/i.test(text) || /kabiliyat/i.test(text)) {
         return this._reply("Main legal notices, affidavits, tax calculations, forms aur documents automate karne mein madad kar sakti hoon. Aap kya karna chahte hain?");

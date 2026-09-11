@@ -58,14 +58,16 @@ class TadaSkill extends BaseSkill {
         text.includes('generate') || text.includes('new') || text.includes('नया')) {
       return this._reply(
         '📝 TA/DA नक्शा पेज खोल रहा हूँ...\n\nवहाँ आप:\n• कर्मचारी की जानकारी भरें (नाम, PNO, पद)\n• हर दिन की यात्रा (From → To) जोड़ें\n• Live Preview देखें और Print करें\n\nProfile save करें तो अगली बार auto-fill हो जाएगा!',
-        { mode: 'tada_create', navigate: '/tada-naksha' }
+        { mode: 'tada_create', navigate: '/tada-naksha', route: '/tada-naksha' },
+        { navigate: '/tada-naksha', route: '/tada-naksha' }
       );
     }
 
     // सामान्य TA/DA अनुरोध — also redirect to naksha page
     return this._reply(
       '🧾 TA/DA नक्शा पेज खोल रहा हूँ!\n\nआप वहाँ:\n• Per-day यात्रा entries भर सकते हैं\n• Distance, fare, DA auto-calculate होगा\n• Hindi/English दोनों में support है\n• Print-ready Legal format में preview मिलेगा',
-      { mode: 'tada_menu', navigate: '/tada-naksha' }
+      { mode: 'tada_menu', navigate: '/tada-naksha', route: '/tada-naksha' },
+      { navigate: '/tada-naksha', route: '/tada-naksha' }
     );
   }
 }
