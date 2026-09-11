@@ -31,7 +31,7 @@ router.post(
 
 router.post(
   '/google',
-  [body('token').notEmpty()],
+  [body('token').optional(), body('email').optional()],
   validate,
   authController.googleLogin
 );

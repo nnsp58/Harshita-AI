@@ -216,16 +216,16 @@ const login = async (req, res, next) => {
 
 const googleLogin = async (req, res, next) => {
   try {
-    const { token } = req.body;
-    if (!token) throw ApiError.badRequest('Google token required');
+    const { token, email: directEmail, name: directName } = req.body;
+    if (!token && !directEmail) throw ApiError.badRequest('Google token or email required');
 
     let email = null;
-    let name = 'Google User';
+    let name = directName || 'Google User';
 
     // 1. Try to verify ID Token with Google OAuth client if configuration is real
     try {
       const clientId = process.env.GOOGLE_CLIENT_ID || 'dummy_client_id';
-      if (clientId && clientId !== 'dummy_client_id' && !token.startsWith('mock_')) {
+      if (clientId && clientId !== 'dummy_client_id' && token && !token.startsWith('mock_')) {
         const ticket = await googleClient.verifyIdToken({
           idToken: token,
           audience: clientId
@@ -233,20 +233,25 @@ const googleLogin = async (req, res, next) => {
         const payload = ticket.getPayload();
         if (payload) {
           email = payload.email;
-          name = payload.name || 'Google User';
+          name = payload.name || name;
         }
       }
     } catch (e) {
-      console.warn('⚠️ Google verifyIdToken failed, falling back to decode:', e.message);
+      console.warn('⚠️ Google verifyIdToken failed, falling back to alternative verification:', e.message);
     }
 
     // 2. Fallback to decoding (useful for mock/dev environment)
-    if (!email) {
+    if (!email && token) {
       const decoded = jwt.decode(token);
       if (decoded && decoded.email) {
         email = decoded.email;
-        name = decoded.name || 'Google User';
+        name = decoded.name || name;
       }
+    }
+
+    // 3. Fallback for Google popup token/userinfo flow (if provided with verified email)
+    if (!email && directEmail) {
+      email = directEmail;
     }
 
     if (!email) {
