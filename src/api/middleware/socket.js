@@ -154,6 +154,7 @@ const setupSocketHandlers = (io) => {
         const isClarification = response.mode === 'chat' && response.success === false;
         socket.emit('logUpdate', {
           type: isClarification ? 'clarification' : 'ai',
+          responseType: response.responseType || (response.openDocumentStudio ? 'document' : 'chat'),
           message: msgText,
           skill: response.skill,
           data: response.data,

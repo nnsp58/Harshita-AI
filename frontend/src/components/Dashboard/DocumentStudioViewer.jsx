@@ -23,7 +23,18 @@ export default function DocumentStudioViewer() {
 
   useEffect(() => {
     if (editorRef.current && currentDocument) {
-      editorRef.current.innerHTML = currentDocument.content;
+      const raw = currentDocument.content || '';
+      // If content doesn't contain HTML tags, format line breaks safely
+      if (!/<[a-z][\s\S]*>/i.test(raw)) {
+        const formatted = raw
+          .split('\n\n')
+          .map(p => `<p style="margin-bottom:1em;">${p.replace(/\n/g, '<br/>')}</p>`)
+          .join('');
+        editorRef.current.innerHTML = formatted;
+      } else {
+        editorRef.current.innerHTML = raw;
+      }
+      console.log('[DOCUMENT STUDIO] Content injected:', currentDocument.title);
     }
   }, [currentDocument]);
 

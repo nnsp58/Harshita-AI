@@ -4,6 +4,7 @@ import { useStore } from '../store';
 import ModernSidebar from '../components/Layout/ModernSidebar';
 import CommandPalette from '../components/Layout/CommandPalette';
 import AIAssistantWidget from '../components/Dashboard/AIAssistantWidget';
+import DocumentStudioViewer from '../components/Dashboard/DocumentStudioViewer';
 import {
   Bot, Briefcase, FileText, Upload, Settings,
   Search, Users, Activity, TrendingUp, Bell,
@@ -74,7 +75,7 @@ const statusBgColors = {
 
 export default function DashboardSaaS() {
   const navigate = useNavigate();
-  const { user, stats, initialize, agents, fetchAgents } = useStore();
+  const { user, stats, initialize, agents, fetchAgents, responseMode } = useStore();
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isMobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -200,8 +201,13 @@ export default function DashboardSaaS() {
           </div>
         </header>
 
-        <div className="flex-1 overflow-y-auto scrollbar-hide p-4 lg:p-8">
-          <div className="max-w-7xl mx-auto space-y-8">
+        {responseMode === 'DOCUMENT' ? (
+          <div className="flex-1 overflow-hidden h-[calc(100vh-4rem)]">
+            <DocumentStudioViewer />
+          </div>
+        ) : (
+          <div className="flex-1 overflow-y-auto scrollbar-hide p-4 lg:p-8">
+            <div className="max-w-7xl mx-auto space-y-8">
 
             <section className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-900/40 via-slate-900 to-purple-900/40 border border-slate-800 p-8 sm:p-10">
               <div className="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-indigo-500/20 blur-3xl rounded-full"></div>
@@ -335,9 +341,9 @@ export default function DashboardSaaS() {
             </section>
 
             <div className="h-32"></div>
-
           </div>
         </div>
+        )}
 
         <AIAssistantWidget />
       </main>

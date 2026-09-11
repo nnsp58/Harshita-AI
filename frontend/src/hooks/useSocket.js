@@ -51,45 +51,48 @@ export function useSocket() {
         interactionId: data.interactionId || null,
       }
 
-      // PRD-021: Enhanced Document Auto-Routing (only for 'ai' type messages)
+      // Structured Document Auto-Routing based on explicit contract:
+      // responseType === 'document' OR action.mode === 'open_document_studio' OR data.openDocumentStudio === true
+      const isExplicitDocument = data.responseType === 'document' || 
+                                 data.action?.mode === 'open_document_studio' || 
+                                 data.data?.openDocumentStudio === true;
+
       let isDocument = false;
-      if (msgType === 'ai' && text.length > 100) {
-        const docClassification = classifyDocumentCategory(text);
+      if (isExplicitDocument && text.length > 50) {
+        isDocument = true;
+        const title = data.action?.title || data.data?.title || getDocumentTitle(text) || 'Generated Document';
+        const docContent = data.action?.content || data.data?.content || text;
 
-        if (docClassification.isDocument || isDocumentType(text)) {
-          isDocument = true;
-          const title = docClassification.title || getDocumentTitle(text);
+        console.log('[FRONTEND] Workspace action received: Document Studio opening', title);
 
-          setCurrentDocument({
-            title: title || 'Generated Document',
-            content: text,
-            type: docClassification.category || 'document',
-            category: docClassification.category,
-            timestamp: new Date().toISOString()
+        setCurrentDocument({
+          title,
+          content: docContent,
+          type: data.data?.documentType || 'document',
+          category: data.data?.documentType || 'document',
+          timestamp: new Date().toISOString()
+        });
+        setResponseMode('DOCUMENT');
+
+        // Save to History
+        try {
+          const history = JSON.parse(localStorage.getItem('harshita_doc_history') || '[]');
+          history.unshift({
+            id: `doc-${Date.now()}`,
+            title,
+            type: data.data?.documentType || 'document',
+            date: new Date().toISOString(),
+            status: 'Generated',
           });
-          setResponseMode('DOCUMENT');
+          localStorage.setItem('harshita_doc_history', JSON.stringify(history.slice(0, 50)));
+        } catch (_) { }
 
-          // Rule 6: Save to History
-          try {
-            const history = JSON.parse(localStorage.getItem('harshita_doc_history') || '[]');
-            history.unshift({
-              id: `doc-${Date.now()}`,
-              title: title || 'Generated Document',
-              type: docClassification.category || 'document',
-              date: new Date().toISOString(),
-              status: 'Generated',
-            });
-            // Keep last 50
-            localStorage.setItem('harshita_doc_history', JSON.stringify(history.slice(0, 50)));
-          } catch (_) { }
-
-          setMessages((prev) => [...prev, {
-            id: Date.now() + Math.random(),
-            type: 'system',
-            message: `✅ Document Generated Successfully.\n📄 ${title}\nOpening A4 Workspace...`,
-            timestamp: new Date().toISOString()
-          }]);
-        }
+        setMessages((prev) => [...prev, {
+          id: Date.now() + Math.random(),
+          type: 'system',
+          message: `📄 ${title} — Document Studio opened.`,
+          timestamp: new Date().toISOString()
+        }]);
       }
 
       if (!isDocument) {

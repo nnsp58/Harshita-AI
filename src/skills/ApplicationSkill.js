@@ -150,11 +150,20 @@ Original Request: ${message}
         if (draft) {
           draft = autoCapitalizeText(draft);
           draft = eliminatePlaceholders(draft);
+          const docTitle = 'प्रार्थना पत्र (Application)';
           return this._reply(draft, {
             mode: 'application_generated',
+            openDocumentStudio: true,
+            title: docTitle,
+            content: draft,
             editable: true,
             originalQuery: message,
             collectedData,
+          }, {
+            mode: 'open_document_studio',
+            title: docTitle,
+            content: draft,
+            editable: true
           });
         }
       } catch (err) {
@@ -164,11 +173,20 @@ Original Request: ${message}
       // Fallback if AI fails
       const fallback = this._generateFallbackTemplate(session.data.subject || message, authorityInfo, departmentInfo);
       this._clearSession(userIdSafe);
+      const fallbackTitle = 'प्रार्थना पत्र (Application Template)';
       return this._reply(fallback, {
         mode: 'application_generated_template',
+        openDocumentStudio: true,
+        title: fallbackTitle,
+        content: fallback,
         editable: true,
         originalQuery: message,
         note: 'Template (AI unavailable)',
+      }, {
+        mode: 'open_document_studio',
+        title: fallbackTitle,
+        content: fallback,
+        editable: true
       });
     }
 

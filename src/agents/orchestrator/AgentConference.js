@@ -167,6 +167,19 @@ class AgentConferenceEngine {
       };
     }
 
+    // Formal Application / Prarthna Patra fast-path
+    if (/(?:prarthna\s*patra|prarthana\s*patra|application\s*bana|likh\s*do\s*application|application\s*likh|प्रार्थना\s*पत्र|आवेदन\s*पत्र)/i.test(lower) && !/(?:list|prakar|kitne|types)/i.test(lower)) {
+      return {
+        type: 'multi_agent',
+        taskType: 'application_draft',
+        agents: ['application_writer', 'document_studio'],
+        plan: [
+          { step: 1, agent: 'application_writer', desc: 'Draft formal application' },
+          { step: 2, agent: 'document_studio', desc: 'Prepare editable A4 document' }
+        ]
+      };
+    }
+
     // Document extraction to application
     if (/(?:document|kaha\s*gaya|image|photo|extract|nikal\s*kar)/i.test(lower) && /(?:application|prarthna|patra|likh|bana)/i.test(lower)) {
       return {
@@ -247,6 +260,54 @@ class AgentConferenceEngine {
         skill: 'land_measurement_skill',
         data: {
           trace: ctx.getTrace()
+        }
+      };
+      return ctx.finalDecision;
+    }
+
+    if (plan.taskType === 'application_draft') {
+      const appSkill = this.master.registry.getSkill('application_writer');
+      let appRes = null;
+      if (appSkill) {
+        // Set session directly to generating phase with available user facts so it produces full draft immediately
+        if (appSkill.sessions) {
+          appSkill.sessions.set(ctx.userId, {
+            step: 'generating',
+            data: {
+              applicantName: ctx.userFacts?.name || ctx.userFacts?.applicantName || 'आवेदक',
+              authority: 'सक्षम अधिकारी',
+              subject: ctx.originalUserMessage
+            },
+            questionIndex: 3
+          });
+        }
+        appRes = await appSkill.execute({ message: ctx.originalUserMessage, userId: ctx.userId, userFacts: ctx.userFacts });
+        ctx.recordAgentResult('application_writer', { status: 'SUCCESS', result: appRes.message });
+      }
+
+      const rawMsg = appRes?.message || '';
+      const docTitle = appRes?.data?.title || 'प्रार्थना पत्र (Application)';
+      ctx.finalDecision = {
+        type: 'ai',
+        responseType: 'document',
+        message: rawMsg,
+        skill: 'application_writer',
+        openDocumentStudio: true,
+        data: {
+          openDocumentStudio: true,
+          documentType: 'application',
+          title: docTitle,
+          content: rawMsg,
+          editable: true,
+          trace: ctx.getTrace()
+        },
+        action: {
+          mode: 'open_document_studio',
+          route: '/documents',
+          navigate: '/documents',
+          title: docTitle,
+          content: rawMsg,
+          editable: true
         }
       };
       return ctx.finalDecision;

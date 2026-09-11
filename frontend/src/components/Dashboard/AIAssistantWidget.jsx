@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Bot, X, Maximize2, Minimize2, Send, Mic, Paperclip, MessageSquare, ThumbsUp, ThumbsDown } from 'lucide-react';
 import { useSocket } from '../../hooks/useSocket';
 import { useNavigate } from 'react-router-dom';
+import { useStore } from '../../store';
 
 export default function AIAssistantWidget() {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,6 +11,7 @@ export default function AIAssistantWidget() {
   const [ratings, setRatings] = useState({});
   const fileInputRef = useRef(null);
   const { isConnected, sendCommand, submitFeedback, messages, setMessages } = useSocket();
+  const { setCurrentDocument, setResponseMode } = useStore();
   const messagesEndRef = useRef(null);
   const navigate = useNavigate();
 
@@ -119,6 +121,32 @@ export default function AIAssistantWidget() {
                 {(msg.message || msg.text)?.replace(/^\[[^\]]*रूटिंग[^\]]*\]\s*/, '')}
               </div>
               {(() => {
+                const isDocStudioAction = msg.action?.mode === 'open_document_studio' || msg.data?.openDocumentStudio;
+                const docContent = msg.action?.content || msg.data?.content || msg.message || msg.text;
+                const docTitle = msg.action?.title || msg.data?.title || 'Generated Document';
+
+                if (isDocStudioAction && docContent) {
+                  return (
+                    <div className="mt-2 w-full max-w-[85%] flex gap-2">
+                      <button 
+                        onClick={() => {
+                          setCurrentDocument({
+                            title: docTitle,
+                            content: docContent,
+                            type: 'document',
+                            timestamp: new Date().toISOString()
+                          });
+                          setResponseMode('DOCUMENT');
+                          if (isExpanded) setIsExpanded(false);
+                        }}
+                        className="flex-1 py-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-medium rounded-lg shadow-lg shadow-emerald-500/20 transition-all active:scale-95 text-sm flex items-center justify-center gap-1.5"
+                      >
+                        <span>📝 Open A4 Document Studio</span>
+                      </button>
+                    </div>
+                  );
+                }
+
                 const navRoute = msg.action?.route || msg.action?.navigate || msg.route || (typeof msg.action === 'string' && msg.action.startsWith('/') ? msg.action : null);
                 const openInNewTab = msg.action?.target === '_blank';
                 if (!navRoute) return null;
