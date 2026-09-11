@@ -82,8 +82,9 @@ class LegalComplaintEngine {
       entities.complainant.name = complainantMatch[1].replace(/^(mera naam|prarthi|shikayatkarta|shri)\s+/i, '').trim();
     }
 
-    // Complainant Father
-    const compFatherMatch = text.match(/(?:s\/o|w\/o|d\/o|son\s*of|father\s*is|पिता\s*(?:का\s*नाम|श्री)?|पुत्र\s*(?:श्री)?|आत्मज)\s*[:\-]?\s*(?:shri|mr\.|श्री)?\s*([A-Za-z\u0900-\u097F\s\.]+?)(?=\s+(?:vill|post|dist|teh|pin|resident|निवासी|मोबाइल|mobile|\.|$))/i);
+    // Complainant Father (associated with complainant phrase)
+    const compFatherMatch = text.match(/(?:mera\s*naam|shikayatkarta|prarthi)[^\.]*?(?:s\/o|w\/o|d\/o|son\s*of|father\s*is|पिता\s*(?:का\s*नाम|श्री)?|पुत्र\s*(?:श्री)?|आत्मज)\s*[:\-]?\s*(?:shri|mr\.|श्री)?\s*([A-Za-z\u0900-\u097F\s\.]+?)(?=\s+(?:vill|post|dist|teh|pin|resident|निवासी|मोबाइल|mobile|\.|$))/i) ||
+                            text.match(/(?:s\/o|w\/o|d\/o|son\s*of|पिता\s*(?:का\s*नाम|श्री)?|पुत्र\s*(?:श्री)?)\s*[:\-]?\s*(?:shri|mr\.|श्री)?\s*([A-Za-z\u0900-\u097F\s\.]+?)(?=\s+(?:vill|post|dist|teh|pin|resident|निवासी|मोबाइल|mobile|\.|$))/i);
     if (compFatherMatch) {
       entities.complainant.father = compFatherMatch[1].replace(/^(shri|mr|late|स्व\.|श्री)\s+/i, '').trim();
     }
@@ -127,28 +128,27 @@ class LegalComplaintEngine {
     }
 
     // ─── 2. Suspected Person Extraction ───
-    // Look at first person mentioned if not complainant
     const suspectMatch = text.match(/^([A-Za-z\u0900-\u097F\s\.]+?)(?=\s+(?:s\/o|w\/o|d\/o|son\s*of|vill|post|teh|dist))/i);
     if (suspectMatch && (!entities.complainant.name || !suspectMatch[1].toLowerCase().includes(entities.complainant.name.toLowerCase()))) {
       entities.suspect.name = suspectMatch[1].trim();
     }
 
-    // Suspect Father
-    const suspectFatherMatch = text.match(/^[^.]*?(?:s\/o|w\/o|d\/o|son\s*of|आत्मज)\s*[:\-]?\s*([A-Za-z\u0900-\u097F]+)/i);
+    // Suspect Father (associated with first suspect block)
+    const suspectFatherMatch = text.match(/^[^.]*?(?:s\/o|w\/o|d\/o|son\s*of|आत्मज)\s*[:\-]?\s*(?:shri|mr\.|श्री)?\s*([A-Za-z\u0900-\u097F]+)/i);
     if (suspectFatherMatch) {
-      entities.suspect.father = suspectFatherMatch[1].trim();
+      entities.suspect.father = suspectFatherMatch[1].replace(/^(shri|mr|late|स्व\.|श्री)\s+/i, '').trim();
     }
 
     // Suspect Tehsil
     const suspectTehMatch = text.match(/(?:teh|tehsil|तहसील)\s*[:\-]?\s*([A-Za-z\u0900-\u097F]+)/i);
     if (suspectTehMatch) {
-      entities.suspect.tehsil = suspectTehMatch[1].trim();
+      entities.suspect.tehsil = suspectTehMatch[1].replace(/^(sil|teh)\s+/i, '').trim();
     }
 
     // Suspect District
-    const suspectDistMatch = text.match(/(?:distt|dist|district|जिला)\s*[:\-]?\s*([A-Za-z\u0900-\u097F]+)/i);
+    const suspectDistMatch = text.match(/(?:distt?\.?|dist|district|जिला)\s*[:\-]?\s*([A-Za-z\u0900-\u097F]+)/i);
     if (suspectDistMatch) {
-      entities.suspect.district = suspectDistMatch[1].trim();
+      entities.suspect.district = suspectDistMatch[1].replace(/^(rict|t|tt)\s+/i, '').trim();
     }
 
     // Suspect Village/Post
@@ -165,7 +165,6 @@ class LegalComplaintEngine {
     entities.suspect.address = suspParts.length > 0 ? suspParts.join(', ') : null;
 
     // ─── 3. Incident Details Extraction ───
-    // Date extraction: "26 August 2026", "26/08/2026", "26 Aug 2026"
     const dateMatch = text.match(/(\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|जनवरी|फरवरी|मार्च|अप्रैल|मई|जून|जुलाई|अगस्त|सितंबर|अक्टूबर|नवंबर|दिसंबर)\s+\d{4})/i) ||
                       text.match(/(\d{1,2}[\/\-\.]\d{1,2}[\/\-\.]\d{2,4})/);
     if (dateMatch) {
@@ -197,10 +196,11 @@ class LegalComplaintEngine {
     if (bikeMatch) {
       items.push(`मोटरसाइकिल / वाहन (${bikeMatch[1].trim()})`);
     }
-    const phoneMatch = text.match(/((?:poco|redmi|realme|samsung|iphone|vivo|oppo|oneplus|motorola|nokia|mi)[\s\w\d\-]+(?:phone|mobile)?)/i) ||
+    const phoneMatch = text.match(/((?:poco|redmi|realme|samsung|iphone|vivo|oppo|oneplus|motorola|nokia|mi)[\s\w\d\-]+)/i) ||
                        text.match(/(mobile\s*phone|स्मार्टफोन|फोन)/i);
     if (phoneMatch) {
-      items.push(phoneMatch[1].trim() + (/phone|mobile/i.test(phoneMatch[1]) ? '' : ' मोबाइल फोन'));
+      const cleanPhone = phoneMatch[1].replace(/(\s+(?:phone|mobile|tha|le|gaya))+/gi, '').trim();
+      items.push(`${cleanPhone} मोबाइल फोन`);
     }
     if (/cash|rupaye|rupees|रुपये|नकद/i.test(text)) {
       const cashMatch = text.match(/(?:₹|rs\.?|रुपये)?\s*(\d+[\d,]*)\s*(?:rupees|cash|नकद|रुपये)?/i);
