@@ -244,9 +244,9 @@ app.use(helmet({
     directives: {
       defaultSrc: ["'self'"],
       connectSrc: ["'self'", "ws:", "wss:", "https://n-dizi.in", "https://*.onrender.com", "https://accounts.google.com", "https://*.google.com", "https://*.googlesyndication.com", "https://*.adtrafficquality.google", "https://*.doubleclick.net"],
-      scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://accounts.google.com", "https://*.googleapis.com", "https://*.googlesyndication.com", "https://pagead2.googlesyndication.com", "https://*.google.com", "https://*.adtrafficquality.google"],
-      scriptSrcElem: ["'self'", "'unsafe-inline'", "https://accounts.google.com", "https://*.googleapis.com", "https://*.googlesyndication.com", "https://pagead2.googlesyndication.com", "https://*.google.com", "https://*.adtrafficquality.google"],
-      frameSrc: ["'self'", "https://accounts.google.com", "https://*.google.com", "https://*.googlesyndication.com", "https://googleads.g.doubleclick.net"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://accounts.google.com", "https://*.googleapis.com", "https://*.googlesyndication.com", "https://pagead2.googlesyndication.com", "https://*.google.com", "https://*.adtrafficquality.google", "https://*.doubleclick.net"],
+      scriptSrcElem: ["'self'", "'unsafe-inline'", "https://accounts.google.com", "https://*.googleapis.com", "https://*.googlesyndication.com", "https://pagead2.googlesyndication.com", "https://*.google.com", "https://*.adtrafficquality.google", "https://*.doubleclick.net"],
+      frameSrc: ["'self'", "https://accounts.google.com", "https://*.google.com", "https://*.googlesyndication.com", "https://*.adtrafficquality.google", "https://googleads.g.doubleclick.net", "https://*.doubleclick.net"],
       imgSrc: ["'self'", "data:", "blob:", "https:", "https://*.googlesyndication.com", "https://*.google.com", "https://*.doubleclick.net"],
       styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://accounts.google.com", "https://*.googlesyndication.com"],
       styleSrcElem: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://accounts.google.com", "https://*.googlesyndication.com"],
