@@ -245,6 +245,37 @@ input[type="search"] {
   padding-right: 0.75rem;
 }
 
+/* ═══════ FIX: invisible-typing bug ═══════
+   Root cause: inputs without an explicit color inherited `color: #f1f5f9`
+   (Tailwind gray.100) from `body`, while sitting on light cards → light
+   text on a light background = typed text invisible. Force a visible
+   color/background/caret on every form control globally. */
+input,
+textarea,
+select {
+  background: #ffffff;
+  color: #111827;
+  caret-color: #2563eb;
+  border: 1px solid #cbd5e1;
+  -webkit-text-fill-color: #111827; /* guards against any transparent fill */
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #6b7280;
+  opacity: 1;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  color: #111827;
+  background: #ffffff;
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
 /* Ensure padding utility wins over base styles */
 .input.pl-10, 
 input.pl-10 {
@@ -353,5 +384,94 @@ input.pl-10 {
   .prarthna-section {
     display: block !important;
     page-break-before: avoid;
+  }
+}
+
+/* ═══════ Mobile Web (MW) Styles ═══════ */
+
+/* Safe area support for notched phones */
+.safe-area-pb {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Mobile bottom nav active indicator */
+nav button:active {
+  transform: scale(0.95);
+}
+
+/* Mobile-friendly touch targets */
+@media (max-width: 768px) {
+  body {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Prevent bounce on mobile */
+  html {
+    overscroll-behavior-y: none;
+  }
+
+  /* Larger touch targets for mobile buttons */
+  button, a[role="button"], .btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Mobile card spacing */
+  .grid-cols-2 > button,
+  .grid-cols-3 > button {
+    margin-bottom: 0;
+  }
+
+  /* Mobile header optimization */
+  header {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+
+  /* Mobile scroll optimization */
+  main {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+
+  /* Disable hover effects on touch devices */
+  *:hover {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Mobile input optimization */
+  input, textarea, select {
+    font-size: 16px; /* Prevents iOS zoom on focus */
+  }
+
+  /* Mobile gradient cards */
+  section {
+    margin-bottom: 1rem;
+  }
+
+  /* Mobile bottom nav shadow */
+  nav {
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Tablet optimization */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .grid-cols-2.md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Dark mode support for mobile */
+@media (prefers-color-scheme: dark) {
+  /* Already dark theme throughout */
+}
+
+/* Print protection for mobile */
+@media print {
+  nav,
+  header,
+  .fixed {
+    display: none !important;
   }
 }

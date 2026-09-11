@@ -1,23 +1,3 @@
-export const TOOLS_LIST = [
-  { icon: '📷', name: 'Passport Photo Maker', desc: 'Generate standard passport size photos with smart background removal.', href: '/workspace/converter/passport', keywords: ['photo', 'passport', 'image', 'background'] },
-  { icon: '🖼️', name: 'Passport Size Maker', desc: 'Quickly resize any portrait image to official passport size specifications.', href: '/workspace/converter/passport', keywords: ['photo', 'resize', 'passport'] },
-  { icon: '🎵', name: 'Audio Converter', desc: 'Convert audio files to MP3, WAV, OGG formats in seconds.', href: '/workspace/converter/audio', keywords: ['audio', 'mp3', 'wav', 'ogg', 'convert'] },
-  { icon: '📄', name: 'Document Converter', desc: 'Convert between PDF, DOCX, TXT, HTML, and JSON structures.', href: '/workspace/converter/document', keywords: ['pdf', 'word', 'docx', 'txt', 'html', 'json', 'convert'] },
-  { icon: '🗜️', name: 'File Compressor', desc: 'Compress PDF files to optimize loading speeds and storage.', href: '/workspace/converter/pdf-to-word', keywords: ['compress', 'pdf', 'size', 'reduce'] },
-  { icon: '🖼️', name: 'Group Photo Maker', desc: 'Create beautiful grids, collages, and customizable layouts.', href: '/workspace/coming-soon?tool=Group+Photo+Maker', keywords: ['photo', 'group', 'collage', 'grid'] },
-  { icon: '📉', name: 'Image Compressor', desc: 'Compress PNG, JPG, and WebP images without losing visual quality.', href: '/workspace/media/image-compress', keywords: ['image', 'compress', 'png', 'jpg', 'webp', 'size'] },
-  { icon: '🔄', name: 'Image Format Converter', desc: 'Convert image files to PNG, JPEG, and WebP formats.', href: '/workspace/converter/image-format', keywords: ['image', 'format', 'convert', 'png', 'jpeg', 'webp'] },
-  { icon: '📑', name: 'Image to PDF', desc: 'Merge multiple image files into a single, high-quality PDF.', href: '/workspace/converter/image-to-pdf', keywords: ['image', 'pdf', 'convert', 'merge'] },
-  { icon: '🧮', name: 'Multifunction Calculator', desc: 'Perform basic math, financial, currency, and unit conversions.', href: '/workspace/business/calculator', keywords: ['calculator', 'math', 'currency', 'unit'] },
-  { icon: '📝', name: 'PDF to Word', desc: 'Convert read-only PDF files to fully editable Word documents.', href: '/workspace/converter/pdf-to-word', keywords: ['pdf', 'word', 'docx', 'convert'] },
-  { icon: '🔳', name: 'QR Code Generator', desc: 'Generate unique QR codes for websites, texts, and contact details.', href: '/workspace/converter/qr', keywords: ['qr', 'code', 'generate', 'barcode'] },
-  { icon: '🔊', name: 'Speech Synthesis & Recognition', desc: 'Convert text to natural speech voice and transcribe audio files.', href: '/workspace/coming-soon?tool=Speech', keywords: ['speech', 'text', 'voice', 'audio', 'recognize'] },
-  { icon: '🌍', name: 'Universal Translator', desc: 'Translate documents, voice, and text to over 100 languages instantly.', href: '/workspace/converter/translator', keywords: ['translate', 'language', 'voice', 'text'] },
-  { icon: '🎬', name: 'Video Converter', desc: 'Convert video clips to MP4, AVI, MKV, and MOV formats.', href: '/workspace/media/video', keywords: ['video', 'convert', 'mp4', 'avi', 'mkv', 'mov'] },
-  { icon: '🎙️', name: 'Voice Translator', desc: 'Translate spoken phrases and voice logs in real-time.', href: '/workspace/converter/voice', keywords: ['voice', 'translate', 'audio', 'realtime'] },
-  { icon: '🔑', name: 'Password Generator', desc: 'Create secure, highly randomized passwords instantly.', href: '/workspace/converter/password', keywords: ['password', 'secure', 'generate', 'random'] }
-];
-
 export const DRAFTING_TOOLS = [
   { icon: '⚖️', name: 'Passport Affidavit', desc: 'Create legally valid passport affidavits and address confirmations.', slug: 'passport-affidavit', href: '/login?prompt=Passport+Affidavit+banao', keywords: ['passport', 'affidavit', 'address', 'legal'] },
   { icon: '📝', name: 'Passport Application', desc: 'Apply for fresh or renewal passports online via Passport Seva portal guidelines.', slug: 'passport-application', href: '/login?prompt=Passport+application', keywords: ['passport', 'apply', 'application', 'seva'] },

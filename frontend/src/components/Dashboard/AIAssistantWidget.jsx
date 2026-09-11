@@ -8,7 +8,8 @@ export default function AIAssistantWidget() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [input, setInput] = useState('');
   const [ratings, setRatings] = useState({});
-  const { isConnected, sendCommand, submitFeedback, messages } = useSocket();
+  const fileInputRef = useRef(null);
+  const { isConnected, sendCommand, submitFeedback, messages, setMessages } = useSocket();
   const messagesEndRef = useRef(null);
   const navigate = useNavigate();
 
@@ -34,6 +35,23 @@ export default function AIAssistantWidget() {
     if (ratings[interactionId]) return;
     submitFeedback(interactionId, rating);
     setRatings(prev => ({ ...prev, [interactionId]: rating }));
+  };
+
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      // Simulate file upload success in chat UI
+      const fileMsg = {
+        id: Date.now() + Math.random(),
+        type: 'user',
+        message: `📄 [File Uploaded: ${file.name}]`,
+        timestamp: new Date().toISOString(),
+      };
+      setMessages(prev => [...prev, fileMsg]);
+      // After uploading, you could send a command or data
+      sendCommand(`Maine file attach kar di hai: ${file.name}`);
+      e.target.value = ''; // Reset input
+    }
   };
 
   if (!isOpen) {
@@ -142,7 +160,13 @@ export default function AIAssistantWidget() {
       {/* Input */}
       <div className="p-3 bg-slate-800 border-t border-slate-700">
         <form onSubmit={handleSend} className="relative flex items-center bg-slate-900 rounded-xl border border-slate-700 focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500/50 overflow-hidden">
-          <button type="button" className="pl-3 pr-2 py-3 text-slate-400 hover:text-white transition-colors">
+          <input 
+            type="file" 
+            ref={fileInputRef} 
+            onChange={handleFileUpload} 
+            className="hidden" 
+          />
+          <button type="button" onClick={() => fileInputRef.current?.click()} className="pl-3 pr-2 py-3 text-slate-400 hover:text-white transition-colors">
             <Paperclip size={18} />
           </button>
           <input

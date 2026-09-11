@@ -156,6 +156,7 @@ export default function ServicePage() {
   const [input, setInput] = useState('')
   const [isThinking, setIsThinking] = useState(false)
   const messagesEndRef = useRef(null)
+  const thinkTimerRef = useRef(null)
 
   const config = SERVICE_CONFIGS[serviceId]
 
@@ -164,11 +165,26 @@ export default function ServicePage() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
 
+  // P0 FIX: clear any pending safety timer on unmount
+  useEffect(() => {
+    return () => {
+      if (thinkTimerRef.current) {
+        clearTimeout(thinkTimerRef.current)
+        thinkTimerRef.current = null
+      }
+    }
+  }, [])
+
   // Stop "thinking" indicator when AI responds and handle AI actions
   useEffect(() => {
     if (messages?.length > 0) {
       const last = messages[messages.length - 1]
       if ((last.type === 'ai' || last.type === 'system') && isThinking) {
+        // P0 FIX: clear the safety timer once a real response arrives
+        if (thinkTimerRef.current) {
+          clearTimeout(thinkTimerRef.current)
+          thinkTimerRef.current = null
+        }
         setTimeout(() => setIsThinking(false), 0)
       }
 
@@ -206,6 +222,24 @@ export default function ServicePage() {
     sendCommand(cmd)
     setIsThinking(true)
     setInput('')
+
+    // P0 FIX: hard 30s safety net so the typing indicator can NEVER spin forever.
+    // If the server is slow/unreachable, we clear the indicator and surface a
+    // friendly error instead of an infinite spinner.
+    if (thinkTimerRef.current) clearTimeout(thinkTimerRef.current)
+    thinkTimerRef.current = setTimeout(() => {
+      setIsThinking(false)
+      thinkTimerRef.current = null
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now() + Math.random(),
+          type: 'error',
+          message: '⏱️ सर्वर धीमा है या उपलब्ध नहीं है। कृपया कुछ देर बाद दोबारा कोशिश करें।',
+          timestamp: new Date().toISOString(),
+        },
+      ])
+    }, 30000)
   }
 
   return (

@@ -1793,5 +1793,251 @@
     "completedAt": "2026-07-12T18:30:48.179Z",
     "durationMs": 3105,
     "success": true
+  },
+  {
+    "startedAt": "2026-07-13T18:30:36.463Z",
+    "tasks": [
+      {
+        "name": "flush_data",
+        "success": true,
+        "durationMs": 15,
+        "result": {
+          "saved": true
+        }
+      },
+      {
+        "name": "prune_conversations",
+        "success": true,
+        "durationMs": 2,
+        "result": {
+          "removed": 0
+        }
+      },
+      {
+        "name": "learn_keywords",
+        "success": true,
+        "durationMs": 23,
+        "result": {
+          "sessionsAnalyzed": 26,
+          "keywordsLearned": 75
+        }
+      },
+      {
+        "name": "upgrade_skills",
+        "success": true,
+        "durationMs": 289,
+        "result": {
+          "skillsUpgraded": 16,
+          "totalSkills": 37
+        }
+      },
+      {
+        "name": "analyze_failures",
+        "success": true,
+        "durationMs": 1,
+        "result": {
+          "failurePatternsFound": 0,
+          "top5": []
+        }
+      },
+      {
+        "name": "cognitive_evolution",
+        "success": true,
+        "durationMs": 4250,
+        "result": {
+          "evolved": true,
+          "reason": "Cognitive self-training completed successfully"
+        }
+      },
+      {
+        "name": "generate_stats",
+        "success": true,
+        "durationMs": 11,
+        "result": {
+          "learning": {
+            "totalInteractions": 109,
+            "totalFeedback": 0,
+            "totalFailures": 0,
+            "successRate": 97.2,
+            "skillsLearned": 16,
+            "patternsDiscovered": 0,
+            "topSkills": [
+              {
+                "skill": "legal_draft",
+                "count": 37
+              },
+              {
+                "skill": "general_chat",
+                "count": 17
+              },
+              {
+                "skill": "tada_process",
+                "count": 9
+              },
+              {
+                "skill": "legal_notice",
+                "count": 9
+              },
+              {
+                "skill": "job_search",
+                "count": 7
+              },
+              {
+                "skill": "land_record",
+                "count": 5
+              },
+              {
+                "skill": "undefined",
+                "count": 3
+              },
+              {
+                "skill": "ration_card",
+                "count": 3
+              },
+              {
+                "skill": "form_fill",
+                "count": 3
+              },
+              {
+                "skill": "application_writer",
+                "count": 3
+              }
+            ]
+          },
+          "conversations": {
+            "totalSessions": 26,
+            "totalMessages": 160,
+            "uniqueUsers": 6,
+            "uniqueSkills": 16
+          }
+        }
+      }
+    ],
+    "completedAt": "2026-07-13T18:30:41.056Z",
+    "durationMs": 4597,
+    "success": true
+  },
+  {
+    "startedAt": "2026-07-14T18:30:39.518Z",
+    "tasks": [
+      {
+        "name": "flush_data",
+        "success": true,
+        "durationMs": 11,
+        "result": {
+          "saved": true
+        }
+      },
+      {
+        "name": "prune_conversations",
+        "success": true,
+        "durationMs": 1,
+        "result": {
+          "removed": 0
+        }
+      },
+      {
+        "name": "learn_keywords",
+        "success": true,
+        "durationMs": 17,
+        "result": {
+          "sessionsAnalyzed": 35,
+          "keywordsLearned": 124
+        }
+      },
+      {
+        "name": "upgrade_skills",
+        "success": true,
+        "durationMs": 5,
+        "result": {
+          "skillsUpgraded": 17,
+          "totalSkills": 38
+        }
+      },
+      {
+        "name": "analyze_failures",
+        "success": true,
+        "durationMs": 1,
+        "result": {
+          "failurePatternsFound": 0,
+          "top5": []
+        }
+      },
+      {
+        "name": "cognitive_evolution",
+        "success": true,
+        "durationMs": 3198,
+        "result": {
+          "evolved": true,
+          "reason": "Cognitive self-training completed successfully"
+        }
+      },
+      {
+        "name": "generate_stats",
+        "success": true,
+        "durationMs": 19,
+        "result": {
+          "learning": {
+            "totalInteractions": 253,
+            "totalFeedback": 0,
+            "totalFailures": 0,
+            "successRate": 98.8,
+            "skillsLearned": 18,
+            "patternsDiscovered": 0,
+            "topSkills": [
+              {
+                "skill": "general_chat",
+                "count": 146
+              },
+              {
+                "skill": "legal_draft",
+                "count": 38
+              },
+              {
+                "skill": "legal_notice",
+                "count": 13
+              },
+              {
+                "skill": "tada_process",
+                "count": 9
+              },
+              {
+                "skill": "master_tax_agent",
+                "count": 8
+              },
+              {
+                "skill": "job_search",
+                "count": 7
+              },
+              {
+                "skill": "land_record",
+                "count": 5
+              },
+              {
+                "skill": "application_writer",
+                "count": 5
+              },
+              {
+                "skill": "undefined",
+                "count": 3
+              },
+              {
+                "skill": "ration_card",
+                "count": 3
+              }
+            ]
+          },
+          "conversations": {
+            "totalSessions": 35,
+            "totalMessages": 268,
+            "uniqueUsers": 8,
+            "uniqueSkills": 18
+          }
+        }
+      }
+    ],
+    "completedAt": "2026-07-14T18:30:42.772Z",
+    "durationMs": 3254,
+    "success": true
   }
 ]

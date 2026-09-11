@@ -899,5 +899,4073 @@
     "output": "Draft failed quality checks. Regenerating...",
     "success": true,
     "timestamp": "2026-07-07T21:38:12.016Z"
+  },
+  {
+    "id": "u1_1783965743604_l9i9skn",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "namaste",
+    "output": "नमस्कार। मैं Harshita AI हूँ — आपकी उन्नत (Advanced) CSC और एंटरप्राइज सहायक।\n\nमैं निम्नलिखित कार्यों में आपकी सहायता कर सकती हूँ:\n• ऑटोमेटेड फॉर्म फिलिंग (Automated Form Filling)\n• कानूनी दस्तावेज़ ड",
+    "success": true,
+    "timestamp": "2026-07-13T18:02:23.604Z"
+  },
+  {
+    "id": "u1_1783965743706_92rcyc8",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "aap kaun ho",
+    "output": "[रूटिंग सफल] 🤖 **Harshita AI — Platform Capabilities & Skill Discovery**\n\n📊 **Total Skill Count:** 31 Active AI Skills\n\n### 📁 Categories & Sub-Skills:\n\n#### 1. ⚖️ Legal & Drafting Services\n- **कानू",
+    "success": true,
+    "timestamp": "2026-07-13T18:02:23.706Z"
+  },
+  {
+    "id": "u1_1783965744017_mmregap",
+    "userId": "u1",
+    "skill": "master_tax_agent",
+    "input": "aaj mausam kaisa hai",
+    "output": "🙏 **नमस्कार! मैं Harshita AI Chartered Accountant हूँ।**\n\nमैं आपका Income Tax Return तैयार करूँगा।\n\nसबसे पहले, कृपया अपना **PAN Number** दर्ज करें।\n(जैसे: ABCDE1234F)",
+    "success": true,
+    "timestamp": "2026-07-13T18:02:24.017Z"
+  },
+  {
+    "id": "u1_1783965747824_uf0ap8n",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "India ke pradhan mantri kaun hain",
+    "output": "Bharat ke pradhan mantri Narendra Modi hain. 🙏",
+    "success": true,
+    "timestamp": "2026-07-13T18:02:27.824Z"
+  },
+  {
+    "id": "u1_1783965748837_lb2guxz",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "25 * 8 kya hota hai",
+    "output": "25 * 8 ka uttar 200 hota hai. 📝",
+    "success": true,
+    "timestamp": "2026-07-13T18:02:28.837Z"
+  },
+  {
+    "id": "u1_1783965749939_fg4kfo3",
+    "userId": "u1",
+    "skill": "master_tax_agent",
+    "input": "mera ITR file karna hai",
+    "output": "🙏 **नमस्कार! मैं Harshita AI Chartered Accountant हूँ।**\n\nमैं आपका Income Tax Return तैयार करूँगा।\n\nसबसे पहले, कृपया अपना **PAN Number** दर्ज करें।\n(जैसे: ABCDE1234F)",
+    "success": true,
+    "timestamp": "2026-07-13T18:02:29.939Z"
+  },
+  {
+    "id": "u1_1783965750482_o2prrls",
+    "userId": "u1",
+    "skill": "master_tax_agent",
+    "input": "ITR ke bare me kya jante ho",
+    "output": "🙏 **नमस्कार! मैं Harshita AI Chartered Accountant हूँ।**\n\nमैं आपका Income Tax Return तैयार करूँगा।\n\nसबसे पहले, कृपया अपना **PAN Number** दर्ज करें।\n(जैसे: ABCDE1234F)",
+    "success": true,
+    "timestamp": "2026-07-13T18:02:30.482Z"
+  },
+  {
+    "id": "u1_1783965752688_fyrs9e1",
+    "userId": "u1",
+    "skill": "legal_notice",
+    "input": "legal notice draft chahiye",
+    "output": "\n═══════════════════════════════════════════════════════════════\n                        LEGAL NOTICE\n═══════════════════════════════════════════════════════════════\n\nDate: 13/7/2026\nPlace: __________",
+    "success": true,
+    "timestamp": "2026-07-13T18:02:32.688Z"
+  },
+  {
+    "id": "u1_1783965753392_80gv2q3",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "resume banana hai",
+    "output": "Resume banaane mein main aapki madad kar sakta hoon. Aap apni jaankari de, jaise ki naam, shiksha, anubhav aur kaushal, aur main aapke liye ek effective resume banaane mein madad karunga. 📝",
+    "success": true,
+    "timestamp": "2026-07-13T18:02:33.393Z"
+  },
+  {
+    "id": "u1_1783965754024_uicvtut",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "CSC me job chahiye",
+    "output": "CSC me job ke liye aapko pehle registration karna hoga. Main aapko navigate kar sakta hoon, aapko form bharna hoga. Chaliye, shuru karte hain.",
+    "success": true,
+    "timestamp": "2026-07-13T18:02:34.024Z"
+  },
+  {
+    "id": "u1_1783965754607_u33jrjz",
+    "userId": "u1",
+    "skill": "ration_card",
+    "input": "ration card banwana hai",
+    "output": "📝 *नया राशन कार्ड आवेदन*\n\nमुझे ये जानकारी चाहिए:\n1. परिवार के मुखिया का नाम\n2. आधार कार्ड नंबर\n3. परिवार के सभी सदस्यों के आधार\n4. वर्तमान पता\n5. आय प्रमाण पत्र\n6. जिला + ब्लॉक\n\n📎 आधार कार्ड की phot",
+    "success": true,
+    "timestamp": "2026-07-13T18:02:34.607Z"
+  },
+  {
+    "id": "u1_1783965754713_3qbsdct",
+    "userId": "u1",
+    "skill": "form_fill",
+    "input": "pension form bharna hai",
+    "output": "📋 फॉर्म ऑटो-फिलिंग सिस्टम तैयार!\n\nउपलब्ध सेवाएँ:\n• *SSC CGL/CHSL* — [ssc.gov.in](https://ssc.gov.in)\n• *Indian Army* — [joinindianarmy.nic.in](https://joinindianarmy.nic.in)\n• *Railway RRB* — [rrbcdg",
+    "success": true,
+    "timestamp": "2026-07-13T18:02:34.713Z"
+  },
+  {
+    "id": "u1_1783965754806_ajveknh",
+    "userId": "u1",
+    "skill": "document_ocr",
+    "input": "PAN card apply karna hai",
+    "output": "📸 *पैन कार्ड* प्रोसेस करने के लिए तैयार!\n\nकृपया अपने पैन कार्ड की साफ़ फोटो या PDF अपलोड करें।\n\nमैं इसमें से ऑटोमैटिक निकालूँगा:\n• नाम\n• पिता\n• जन्मतिथि\n• PAN नंबर\n\n💡 *टिप:* साफ़ और सीधी फोटो भेजने ",
+    "success": true,
+    "timestamp": "2026-07-13T18:02:34.806Z"
+  },
+  {
+    "id": "u1_1783965755787_tl81ca6",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "blablabla xyz",
+    "output": "कृपया अपना प्रश्न स्पष्ट करें ताकि मैं आपकी सहायता कर सकूँ।",
+    "success": true,
+    "timestamp": "2026-07-13T18:02:35.787Z"
+  },
+  {
+    "id": "u1_1783974458458_zcgqboc",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "namaste",
+    "output": "नमस्कार। मैं Harshita AI हूँ — आपकी उन्नत (Advanced) CSC और एंटरप्राइज सहायक।\n\nमैं निम्नलिखित कार्यों में आपकी सहायता कर सकती हूँ:\n• ऑटोमेटेड फॉर्म फिलिंग (Automated Form Filling)\n• कानूनी दस्तावेज़ ड",
+    "success": true,
+    "timestamp": "2026-07-13T20:27:38.458Z"
+  },
+  {
+    "id": "u1_1783974458520_hj8lce5",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "aap kaun ho",
+    "output": "[रूटिंग सफल] 🤖 **Harshita AI — Platform Capabilities & Skill Discovery**\n\n📊 **Total Skill Count:** 31 Active AI Skills\n\n### 📁 Categories & Sub-Skills:\n\n#### 1. ⚖️ Legal & Drafting Services\n- **कानू",
+    "success": true,
+    "timestamp": "2026-07-13T20:27:38.520Z"
+  },
+  {
+    "id": "u1_1783974459577_vl50v6k",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "aaj mausam kaisa hai",
+    "output": "Aaj ka mausam jaanne ke liye main aapko apne sheher ka naam bataane ke liye kahungi. Kripya apne sheher ka naam bataayein. 🌞",
+    "success": true,
+    "timestamp": "2026-07-13T20:27:39.577Z"
+  },
+  {
+    "id": "u1_1783974459975_m00qmdi",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "India ke pradhan mantri kaun hain",
+    "output": "Bharat ke var्तमान pradhan mantri Narendra Modi hain. 🙏",
+    "success": true,
+    "timestamp": "2026-07-13T20:27:39.975Z"
+  },
+  {
+    "id": "u1_1783974460343_0f69pg3",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "25 * 8 kya hota hai",
+    "output": "25 * 8 ka uttar 200 hota hai. 😊",
+    "success": true,
+    "timestamp": "2026-07-13T20:27:40.343Z"
+  },
+  {
+    "id": "u1_1783974460490_p0k52zj",
+    "userId": "u1",
+    "skill": "master_tax_agent",
+    "input": "mera ITR file karna hai",
+    "output": "🙏 **नमस्कार! मैं Harshita AI Chartered Accountant हूँ।**\n\nमैं आपका Income Tax Return तैयार करूँगा।\n\nसबसे पहले, कृपया अपना **PAN Number** दर्ज करें।\n(जैसे: ABCDE1234F)",
+    "success": true,
+    "timestamp": "2026-07-13T20:27:40.490Z"
+  },
+  {
+    "id": "u1_1783974460686_px3i568",
+    "userId": "u1",
+    "skill": "master_tax_agent",
+    "input": "ITR ke bare me kya jante ho",
+    "output": "🙏 **नमस्कार! मैं Harshita AI Chartered Accountant हूँ।**\n\nमैं आपका Income Tax Return तैयार करूँगा।\n\nसबसे पहले, कृपया अपना **PAN Number** दर्ज करें।\n(जैसे: ABCDE1234F)",
+    "success": true,
+    "timestamp": "2026-07-13T20:27:40.686Z"
+  },
+  {
+    "id": "u1_1783974462510_9gbv7r9",
+    "userId": "u1",
+    "skill": "legal_notice",
+    "input": "legal notice draft chahiye",
+    "output": "\n═══════════════════════════════════════════════════════════════\n                        LEGAL NOTICE\n═══════════════════════════════════════════════════════════════\n\nDate: 14/7/2026\nPlace: __________",
+    "success": true,
+    "timestamp": "2026-07-13T20:27:42.510Z"
+  },
+  {
+    "id": "u1_1783974463096_xxsxvjg",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "resume banana hai",
+    "output": "Resume banane mein madad kar sakti hoon. Aapko apni details deni hongi, jaise ki naam, shiksha, anubhav, aur kaushal. Main aapko resume builder tool tak navigate kar sakti hoon. Chaliye, shuru karte h",
+    "success": true,
+    "timestamp": "2026-07-13T20:27:43.096Z"
+  },
+  {
+    "id": "u1_1783974463752_o0jba2k",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "CSC me job chahiye",
+    "output": "CSC me job ke liye aapko apne aas-paas ke Common Service Center me sampark karna hoga. Main aapko job search tool tak navigate kar sakta hoon. Kya aapko uska link chahiye? 📊",
+    "success": true,
+    "timestamp": "2026-07-13T20:27:43.752Z"
+  },
+  {
+    "id": "u1_1783974464321_1fr610t",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "ration card banwana hai",
+    "output": "Ration card banane ke liye aapko kuch jaruri documents ki zaroorat hogi. Aap mujhe apne state aur district bata sakte hain, main aapko process batata hun. 📝",
+    "success": true,
+    "timestamp": "2026-07-13T20:27:44.322Z"
+  },
+  {
+    "id": "u1_1783974464710_x41j2n1",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "pension form bharna hai",
+    "output": "Pension form bharna hai? Main aapko form bharna mein madad kar sakta hoon. Aap kis prakar ki pension ke liye form bharna chahte hain? 📝",
+    "success": true,
+    "timestamp": "2026-07-13T20:27:44.710Z"
+  },
+  {
+    "id": "u1_1783974465244_fbckgu1",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "PAN card apply karna hai",
+    "output": "PAN card apply karne ke liye main aapko navigate karunga. Aapko form bharna hoga, documents upload karne honge. Chaliye, shuru karte hain. Form bharna hai, main aapko uss page par le jaoonga.",
+    "success": true,
+    "timestamp": "2026-07-13T20:27:45.244Z"
+  },
+  {
+    "id": "u1_1783974465702_tedf165",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "blablabla xyz",
+    "output": "मैं आपकी बात समझ नहीं पा रही हूँ। कृपया अपना प्रश्न फिर से पूछें ताकि मैं आपकी सहायता कर सकूँ। 😊",
+    "success": true,
+    "timestamp": "2026-07-13T20:27:45.702Z"
+  },
+  {
+    "id": "u1_1783974801613_4mv9ckp",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "bina quadratic formula ke x^2 - 11x + 30 = 0 solve karo",
+    "output": "x^2 - 11x + 30 = 0 ko factorize karke solve kiya ja sakta hai. \nx^2 - 5x - 6x + 30 = 0 \nx(x - 5) - 6(x - 5) = 0 \n(x - 5)(x - 6) = 0 \nIsliye, x = 5 ya x = 6. 📝",
+    "success": true,
+    "timestamp": "2026-07-13T20:33:21.613Z"
+  },
+  {
+    "id": "u1_1783974801646_zz924uf",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "yadi sin theta = 3/5 hai to sabhi trigonometric ratios batao",
+    "output": "[रूटिंग सफल] 🤖 **Harshita AI — Platform Capabilities & Skill Discovery**\n\n📊 **Total Skill Count:** 31 Active AI Skills\n\n### 📁 Categories & Sub-Skills:\n\n#### 1. ⚖️ Legal & Drafting Services\n- **कानू",
+    "success": true,
+    "timestamp": "2026-07-13T20:33:21.646Z"
+  },
+  {
+    "id": "u1_1783974802116_c9bcobi",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "v^2 = u^2 + 2as ka derivation karo",
+    "output": "v^2 = u^2 + 2as ka derivation ek basic equation hai, jo uniformly accelerated motion ko describe karti hai. Iska derivation Newton ke second law of motion se kiya ja sakta hai. 📝",
+    "success": true,
+    "timestamp": "2026-07-13T20:33:22.116Z"
+  },
+  {
+    "id": "u1_1783974802458_4z0r15c",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "18 gram water me kitne molecules hote hain",
+    "output": "18 gram pani me lagbhag 6.022 x 10^23 molecules hote hain, jo Avogadro ki sankhya ke anusaar hain. 💧",
+    "success": true,
+    "timestamp": "2026-07-13T20:33:22.458Z"
+  },
+  {
+    "id": "u1_1783974803478_g4ood0u",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "plot ki front 22 ft, back 66 ft, left 55 ft, right 55 ft — area nikaal sakte ho? kya formula chahiye?",
+    "output": "Plot ka area nikaalne ke liye, length aur width ki zaroorat hoti hai. Yeh plot irregular hai, isliye hume sabse choti length aur width ko dhundhna hoga. Length 66 ft aur 22 ft ki average nahi, balki c",
+    "success": true,
+    "timestamp": "2026-07-13T20:33:23.478Z"
+  },
+  {
+    "id": "u1_1783974803771_kzynhdn",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "3 aadmi 3 din me 3 deewar banate hain, to 9 aadmi 9 din me kitni deewar banayenge",
+    "output": "9 aadmi 9 din me 27 deewar banayenge.",
+    "success": true,
+    "timestamp": "2026-07-13T20:33:23.771Z"
+  },
+  {
+    "id": "u1_1783975060491_ojamkfb",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "aapke owner ka naam batao",
+    "output": "[रूटिंग सफल] 🤖 **Harshita AI — Platform Capabilities & Skill Discovery**\n\n📊 **Total Skill Count:** 31 Active AI Skills\n\n### 📁 Categories & Sub-Skills:\n\n#### 1. ⚖️ Legal & Drafting Services\n- **कानू",
+    "success": true,
+    "timestamp": "2026-07-13T20:37:40.492Z"
+  },
+  {
+    "id": "u1_1783975060555_llccqgn",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "who is your father owner",
+    "output": "[रूटिंग सफल] 🤖 **Harshita AI — Platform Capabilities & Skill Discovery**\n\n📊 **Total Skill Count:** 31 Active AI Skills\n\n### 📁 Categories & Sub-Skills:\n\n#### 1. ⚖️ Legal & Drafting Services\n- **कानू",
+    "success": true,
+    "timestamp": "2026-07-13T20:37:40.555Z"
+  },
+  {
+    "id": "u1_1783975061530_zjj5zfq",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "Brahmagupta Formula kab lagoo hoti hai",
+    "output": "Brahmagupta Formula chaukor ke kshetrafal ko nikalne ke liye lagoo hoti hai, jab chaukor ke charon bhujayein jaani hoti hain. 📝",
+    "success": true,
+    "timestamp": "2026-07-13T20:37:41.530Z"
+  },
+  {
+    "id": "u1_1783975062191_7gfrt3d",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "Frustum ka volume siddh karo",
+    "output": "Frustum ka volume nikalne ke liye, hum formula ka use karte hain: V = (1/3) * π * h * (r1^2 + r2^2 + r1 * r2), jahan h height hai, r1 aur r2 radius hain. 📝",
+    "success": true,
+    "timestamp": "2026-07-13T20:37:42.191Z"
+  },
+  {
+    "id": "u1_1783975062202_gisp5dw",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "yadi sin theta = 3/5 hai to trigonometric ratios batao",
+    "output": "[रूटिंग सफल] 🤖 **Harshita AI — Platform Capabilities & Skill Discovery**\n\n📊 **Total Skill Count:** 31 Active AI Skills\n\n### 📁 Categories & Sub-Skills:\n\n#### 1. ⚖️ Legal & Drafting Services\n- **कानू",
+    "success": true,
+    "timestamp": "2026-07-13T20:37:42.202Z"
+  },
+  {
+    "id": "u1_1783975062213_azi0q4f",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "ye kis category ki dava hai details me batao",
+    "output": "[रूटिंग सफल] 🤖 **Harshita AI — Platform Capabilities & Skill Discovery**\n\n📊 **Total Skill Count:** 31 Active AI Skills\n\n### 📁 Categories & Sub-Skills:\n\n#### 1. ⚖️ Legal & Drafting Services\n- **कानू",
+    "success": true,
+    "timestamp": "2026-07-13T20:37:42.213Z"
+  },
+  {
+    "id": "u1_1783975173676_svfi77n",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "aapke owner ka naam batao",
+    "output": "मुझे n-dizi टीम द्वारा विकसित किया गया है। यदि आप मेरी इंजीनियरिंग टीम या प्रबंधन से संपर्क करना चाहते हैं, तो कृपया निम्नलिखित लिंक का उपयोग करें:\n\n🔗 **[संपर्क प्रपत्र (Contact Form)](/contact)**\n\nअ",
+    "success": true,
+    "timestamp": "2026-07-13T20:39:33.676Z"
+  },
+  {
+    "id": "u1_1783975173719_v7mrdjm",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "who is your father owner",
+    "output": "मुझे n-dizi टीम द्वारा विकसित किया गया है। यदि आप मेरी इंजीनियरिंग टीम या प्रबंधन से संपर्क करना चाहते हैं, तो कृपया निम्नलिखित लिंक का उपयोग करें:\n\n🔗 **[संपर्क प्रपत्र (Contact Form)](/contact)**\n\nअ",
+    "success": true,
+    "timestamp": "2026-07-13T20:39:33.719Z"
+  },
+  {
+    "id": "u1_1783975174795_s70q7m1",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "yadi sin theta = 3/5 hai to trigonometric ratios batao",
+    "output": "Yadi sin theta = 3/5 hai, to cos theta = 4/5 aur tan theta = 3/4 hoga. 📝",
+    "success": true,
+    "timestamp": "2026-07-13T20:39:34.795Z"
+  },
+  {
+    "id": "u1_1783975175674_008tkzv",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "ye kis category ki dava hai details me batao",
+    "output": "Aap kis dava ki category ke baare mein puchh rahe hain? Kripya dava ka naam bataayein, main aapko uski category aur details ke baare mein bataunga. 😊",
+    "success": true,
+    "timestamp": "2026-07-13T20:39:35.674Z"
+  },
+  {
+    "id": "u1_1783975175686_nqtgyob",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "aap kaun ho",
+    "output": "[रूटिंग सफल] 🤖 **Harshita AI — Platform Capabilities & Skill Discovery**\n\n📊 **Total Skill Count:** 31 Active AI Skills\n\n### 📁 Categories & Sub-Skills:\n\n#### 1. ⚖️ Legal & Drafting Services\n- **कानू",
+    "success": true,
+    "timestamp": "2026-07-13T20:39:35.686Z"
+  },
+  {
+    "id": "u1_1783975175698_5or6lhh",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "what can you do",
+    "output": "[रूटिंग सफल] 🤖 **Harshita AI — Platform Capabilities & Skill Discovery**\n\n📊 **Total Skill Count:** 31 Active AI Skills\n\n### 📁 Categories & Sub-Skills:\n\n#### 1. ⚖️ Legal & Drafting Services\n- **कानू",
+    "success": true,
+    "timestamp": "2026-07-13T20:39:35.698Z"
+  },
+  {
+    "id": "u1_1783975175710_3daz8e6",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "skills batao",
+    "output": "[रूटिंग सफल] 🤖 **Harshita AI — Platform Capabilities & Skill Discovery**\n\n📊 **Total Skill Count:** 31 Active AI Skills\n\n### 📁 Categories & Sub-Skills:\n\n#### 1. ⚖️ Legal & Drafting Services\n- **कानू",
+    "success": true,
+    "timestamp": "2026-07-13T20:39:35.710Z"
+  },
+  {
+    "id": "u1_1783975175723_9j2crk3",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "kya kar sakti ho",
+    "output": "[रूटिंग सफल] 🤖 **Harshita AI — Platform Capabilities & Skill Discovery**\n\n📊 **Total Skill Count:** 31 Active AI Skills\n\n### 📁 Categories & Sub-Skills:\n\n#### 1. ⚖️ Legal & Drafting Services\n- **कानू",
+    "success": true,
+    "timestamp": "2026-07-13T20:39:35.723Z"
+  },
+  {
+    "id": "u1_1783975596096_yspn9re",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "bina quadratic formula ke x^2 - 11x + 30 = 0 solve karo",
+    "output": "x^2 - 11x + 30 = 0 ko factorize karke solve kiya ja sakta hai. \nx^2 - 5x - 6x + 30 = 0 \nx(x - 5) - 6(x - 5) = 0 \n(x - 5)(x - 6) = 0 \nIsliye, x = 5 ya x = 6. 📝",
+    "success": true,
+    "timestamp": "2026-07-13T20:46:36.096Z"
+  },
+  {
+    "id": "u1_1783975596569_5abmxt2",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "yadi a+b=10 aur ab=21 to a^3 + b^3 nikalo",
+    "output": "a^3 + b^3 = (a + b)(a^2 - ab + b^2) \n= 10 * ((a + b)^2 - 3ab) \n= 10 * (10^2 - 3 * 21) \n= 10 * (100 - 63) \n= 10 * 37 \n= 370",
+    "success": true,
+    "timestamp": "2026-07-13T20:46:36.569Z"
+  },
+  {
+    "id": "u1_1783975597728_9vukewa",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "(a+b+c)^2 ka poora vistar likho aur siddh karo",
+    "output": "(a+b+c)^2 = a^2 + b^2 + c^2 + 2ab + 2bc + 2ca. Iske liye hum (a+b+c) ko do baar guna karte hain aur phir siddh karte hain. 👍",
+    "success": true,
+    "timestamp": "2026-07-13T20:46:37.728Z"
+  },
+  {
+    "id": "u1_1783975598380_7vag0hs",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "siddh karo: sinA / (1 - cosA) = (1 + cosA) / sinA",
+    "output": "yeh samikaran hai: \nsinA / (1 - cosA) = (1 + cosA) / sinA\ndonon paksho ko gunnakar, \nsin²A = (1 - cos²A)\nsin²A = sin²A\nyeh samikaran satya hai 🙏",
+    "success": true,
+    "timestamp": "2026-07-13T20:46:38.380Z"
+  },
+  {
+    "id": "u1_1783975598919_mwbytm6",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "yadi sin theta = 3/5 to sabhi trigonometric ratios nikalo",
+    "output": "Yadi sin θ = 3/5 hai, to hum anya trigonometric ratios nikal sakte hain. \ncos θ = √(1 - sin²θ) = √(1 - (3/5)²) = 4/5\ntan θ = sin θ / cos θ = (3/5) / (4/5) = 3/4\ncot θ = 1 / tan θ = 4/3\nsec θ = 1 / cos",
+    "success": true,
+    "timestamp": "2026-07-13T20:46:38.919Z"
+  },
+  {
+    "id": "u1_1783975599416_4bbs090",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "ek tower ki height nikalo yadi 50 m door se elevation angle 60 degree hai",
+    "output": "Tower ki height nikalne ke liye, trigonometry ka use karo. Elevation angle 60 degree hai, toh tan(60) = height / 50. Tan(60) = √3, isliye height = 50 * √3 ≈ 86.60 m. 📏",
+    "success": true,
+    "timestamp": "2026-07-13T20:46:39.416Z"
+  },
+  {
+    "id": "u1_1783975600936_ogrc9f0",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "kewal char bhujaon se area kab nahi nikala ja sakta",
+    "output": "Bilkul, kewal char bhujaon se area nikalna sambhav nahin hai, kyonki yeh jaankari paripurn nahin hai. Aapko kam se kam 5 bhujaon ki avashyakta hogi. Main aapko iske liye sahi formula bata sakta hoon. ",
+    "success": true,
+    "timestamp": "2026-07-13T20:46:40.936Z"
+  },
+  {
+    "id": "u1_1783975601576_bbahj7b",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "Frustum ka volume siddh karo",
+    "output": "Frustum ka volume nikalne ke liye, hum formula ka upyog karte hain: V = (1/3) * π * h * (r1² + r2² + r1 * r2), jahaan h uchchayi, r1 bada radius aur r2 chota radius hai. 📝",
+    "success": true,
+    "timestamp": "2026-07-13T20:46:41.576Z"
+  },
+  {
+    "id": "u1_1783975602213_sy67o1x",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "Hemisphere aur Sphere me antar batao",
+    "output": "Hemisphere ek golardh ke do bhaagon mein se ek hai, jabki Sphere ek poorn golardh hota hai. Hemisphere mein 180 degree ka kshetrafal hota hai, jabki Sphere mein 360 degree ka kshetrafal hota hai 🌎",
+    "success": true,
+    "timestamp": "2026-07-13T20:46:42.213Z"
+  },
+  {
+    "id": "u1_1783975602862_r8t7kxj",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "v^2 = u^2 + 2as derive karo",
+    "output": "Yeh equation motion ka hai. Iska derivation Newton ke doosre niyam se kiya ja sakta hai. V = u + at, isse v - u = at, dono taraf square karen aur 2as joda hai to v^2 = u^2 + 2as milta hai. 📝",
+    "success": true,
+    "timestamp": "2026-07-13T20:46:42.862Z"
+  },
+  {
+    "id": "u1_1783975603355_k8lwgjb",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "Free Fall aur Projectile Motion me antar batao",
+    "output": "Free Fall mein vastu sirf gurutvakarshan ke kaaran girti hai, jabki Projectile Motion mein vastu gurutvakarshan aur gati ke kaaran ek parabola ka anuvaad karti hai 🚀",
+    "success": true,
+    "timestamp": "2026-07-13T20:46:43.355Z"
+  },
+  {
+    "id": "u1_1783975603952_dpijsju",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "Rocket antariksh me kaise chalta hai jab piche hawa nahi hoti",
+    "output": "Antariksh me rocket ka chalna Newton ke teesre niyam par aadharit hai. Rocket apne andar se jalne wale fuel ko piche dhakelte hai, jisse aage ki or gati hoti hai 🚀",
+    "success": true,
+    "timestamp": "2026-07-13T20:46:43.952Z"
+  },
+  {
+    "id": "u1_1783975604453_y6fg20z",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "yadi 3 ohm, 6 ohm aur 9 ohm parallel hain to kul resistance nikalo",
+    "output": "Parallel mein resistance ka formula hai: 1/R = 1/R1 + 1/R2 + 1/R3. \nIsliye, 1/R = 1/3 + 1/6 + 1/9 = 6/18 + 3/18 + 2/18 = 11/18.\nToh, R = 18/11 ohm. 😊",
+    "success": true,
+    "timestamp": "2026-07-13T20:46:44.453Z"
+  },
+  {
+    "id": "u1_1783975604932_ib5p4y6",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "Transformer DC par kyu nahi chalta",
+    "output": "Transformer DC par nahi chalta kyonki transformer ac current par hi kaam karta hai. DC current mein phase shift nahi hota, jisse transformer ka principle fail ho jata hai. 💡",
+    "success": true,
+    "timestamp": "2026-07-13T20:46:44.932Z"
+  },
+  {
+    "id": "u1_1783975605459_y0oun3i",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "18 gram water me kitne molecules hote hain",
+    "output": "18 gram pani me 1 mol (6.022 x 10^23) molecules hote hain, kyunki pani ka molar mass 18 gram/mol hai 🌟.",
+    "success": true,
+    "timestamp": "2026-07-13T20:46:45.459Z"
+  },
+  {
+    "id": "u1_1783975605747_ct6xomn",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "pH 3 aur pH 5 me kitni guna amliyata ka antar hai",
+    "output": "pH 3 aur pH 5 me 100 guna amliyata ka antar hai. 📊",
+    "success": true,
+    "timestamp": "2026-07-13T20:46:45.747Z"
+  },
+  {
+    "id": "u1_1783975609291_fkg0bnf",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "3 aadmi 3 din me 3 deewar banate hain to 9 aadmi 9 din me kitni deewar banayenge",
+    "output": "9 aadmi 9 din me 27 deewar banayenge. 📈",
+    "success": true,
+    "timestamp": "2026-07-13T20:46:49.291Z"
+  },
+  {
+    "id": "u1_1783975621101_mwgmo8z",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "plot: front 22 ft, back 66 ft, left 55 ft, right 55 ft — area nikalo ya batao kya extra chahiye",
+    "output": "Plot ka area nikalne ke liye, humein length aur width ki zarurat hai. Yahan, length 66 ft (back) aur width 55 ft (left/right) hai. Toh, area = length * width = 66 * 55 = 3630 sq ft.",
+    "success": true,
+    "timestamp": "2026-07-13T20:47:01.101Z"
+  },
+  {
+    "id": "u1_1783975658275_lbgtwrp",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "bina quadratic formula ke x^2 - 11x + 30 = 0 solve karo",
+    "output": "x^2 - 11x + 30 = 0, is equation ko factorize karke solve kiya ja sakta hai. \nx^2 - 5x - 6x + 30 = 0 \nx(x - 5) - 6(x - 5) = 0 \n(x - 5)(x - 6) = 0 \nIsliye, x = 5 ya x = 6. 📝",
+    "success": true,
+    "timestamp": "2026-07-13T20:47:38.276Z"
+  },
+  {
+    "id": "u1_1783975658854_25v6xmo",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "yadi a+b=10 aur ab=21 to a^3 + b^3 nikalo",
+    "output": "a^3 + b^3 = (a+b)^3 - 3ab(a+b) \n= (10)^3 - 3*21*10 \n= 1000 - 630 \n= 370 😊",
+    "success": true,
+    "timestamp": "2026-07-13T20:47:38.854Z"
+  },
+  {
+    "id": "u1_1783975659480_ftefsu2",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "(a+b+c)^2 ka poora vistar likho aur siddh karo",
+    "output": "(a+b+c)^2 = a^2 + b^2 + c^2 + 2ab + 2bc + 2ca. Iske liye hum binomial theorem ka upyog karte hain. 📝",
+    "success": true,
+    "timestamp": "2026-07-13T20:47:39.480Z"
+  },
+  {
+    "id": "u1_1783975660126_cdsbhfi",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "siddh karo: sinA / (1 - cosA) = (1 + cosA) / sinA",
+    "output": "yah samikaran hai: \ntan(A/2) = sinA / (1 - cosA) = (1 + cosA) / sinA \nis samikaran ko siddh karne ke liye, humein trigonometric gunon ka upyog karna hoga.",
+    "success": true,
+    "timestamp": "2026-07-13T20:47:40.126Z"
+  },
+  {
+    "id": "u1_1783975661100_nf6mbf7",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "yadi sin theta = 3/5 to sabhi trigonometric ratios nikalo",
+    "output": "Yadi sin θ = 3/5 hai, to hum anya trigonometric ratios nikal sakte hain. Cos θ = √(1 - sin²θ) = √(1 - (3/5)²) = 4/5. Tan θ = sin θ / cos θ = (3/5) / (4/5) = 3/4. Cot θ = 1 / tan θ = 4/3. Sec θ = 1 / c",
+    "success": true,
+    "timestamp": "2026-07-13T20:47:41.100Z"
+  },
+  {
+    "id": "u1_1783975661540_ydu7ldm",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "ek tower ki height nikalo yadi 50 m door se elevation angle 60 degree hai",
+    "output": "Tower ki height nikalne ke liye, tan(60) = height / 50 ka formula use karo. Height = 50 * tan(60) = 50 * 1.732 = 86.6 m 📏",
+    "success": true,
+    "timestamp": "2026-07-13T20:47:41.540Z"
+  },
+  {
+    "id": "u1_1783975662657_qj9f3a4",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "Brahmagupta Formula kab lagoo hoti hai aur kab nahi",
+    "output": "Brahmagupta Formula chaturbhuj ke kshetraphal ko nikalne ke liye lagoo hoti hai, jab chaturbhuj ka parimaap aur vikarnon ki lambai maaloom ho. 📝",
+    "success": true,
+    "timestamp": "2026-07-13T20:47:42.657Z"
+  },
+  {
+    "id": "u1_1783975663346_9ipyoc0",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "kewal char bhujaon se area kab nahi nikala ja sakta",
+    "output": "Bhujao se area nikalne ke liye kam se kam 3 bhujao ki avashyakta hoti hai. Kewal 2 bhujao se area nahin nikala ja sakta. 📐",
+    "success": true,
+    "timestamp": "2026-07-13T20:47:43.346Z"
+  },
+  {
+    "id": "u1_1783975663979_0xus61l",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "Frustum ka volume siddh karo",
+    "output": "Frustum ka volume nikalne ke liye, hum is formula ka upyog karte hain: V = (1/3) * π * h * (r1^2 + r2^2 + r1 * r2), jahan h frustum ki oonchai, aur r1 aur r2 adharon ke trijya hain. 📝",
+    "success": true,
+    "timestamp": "2026-07-13T20:47:43.980Z"
+  },
+  {
+    "id": "u1_1783975664443_4amykw7",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "Hemisphere aur Sphere me antar batao",
+    "output": "Hemisphere ek golardh ka adha bhaag hota hai, jabki Sphere ek poorn golardh hota hai. Hemisphere mein 180 degree ka kshetrafal hota hai, jabki Sphere mein 360 degree ka kshetrafal hota hai 🌎",
+    "success": true,
+    "timestamp": "2026-07-13T20:47:44.443Z"
+  },
+  {
+    "id": "u1_1783975665059_b7m1fxt",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "v^2 = u^2 + 2as derive karo",
+    "output": "Ekdam sahi! v^2 = u^2 + 2as gati ka sutra hai. Yah sutra gati, tvaaran, aur duri ke beech sambandh ko darshata hai. 📝",
+    "success": true,
+    "timestamp": "2026-07-13T20:47:45.059Z"
+  },
+  {
+    "id": "u1_1783975665812_wsw1mm4",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "Free Fall aur Projectile Motion me antar batao",
+    "output": "Free Fall aur Projectile Motion me mukhya antar yeh hai ki free fall me vastu sirf gravity ke prabhav me girti hai, jabki projectile motion me vastu gravity ke saath-saath anya balon ka bhi saamna kar",
+    "success": true,
+    "timestamp": "2026-07-13T20:47:45.812Z"
+  },
+  {
+    "id": "u1_1783975666353_v5q6x18",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "Rocket antariksh me kaise chalta hai jab piche hawa nahi hoti",
+    "output": "Rocket antariksh mein apne andar se jalne wale fuel ki madad se chalta hai, jisse ek bal utpann hota hai. Yah bal rocket ko aage ki or dhakelne mein madad karta hai, chahe piche hawa maujood ho ya na ",
+    "success": true,
+    "timestamp": "2026-07-13T20:47:46.353Z"
+  },
+  {
+    "id": "u1_1783975671104_cnsa392",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "yadi 3 ohm, 6 ohm aur 9 ohm parallel hain to kul resistance nikalo",
+    "output": "Parallel resistance ka formula: 1/R = 1/R1 + 1/R2 + 1/R3. \nIs case mein, 1/R = 1/3 + 1/6 + 1/9 = 2/3. \nIsliye, R = 3/2 = 1.5 ohm. 📝",
+    "success": true,
+    "timestamp": "2026-07-13T20:47:51.104Z"
+  },
+  {
+    "id": "u1_1783975675179_o2jddhg",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "Transformer DC par kyu nahi chalta",
+    "output": "Transformer DC par nahi chalta kyonki transformer AC current par hi kaam karta hai. DC current mein frequency nahi hoti, jiske karan transformer ka induction principle kaam nahi karta. 🤔",
+    "success": true,
+    "timestamp": "2026-07-13T20:47:55.179Z"
+  },
+  {
+    "id": "u1_1783975678768_kbdhxtq",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "18 gram water me kitne molecules hote hain",
+    "output": "18 gram pani me lagbhag 6.022 x 10^23 molecules hote hain, jo ki Avogadro ki sankhya ke barabar hai 💧",
+    "success": true,
+    "timestamp": "2026-07-13T20:47:58.768Z"
+  },
+  {
+    "id": "u1_1783975681408_5wxap8z",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "pH 3 aur pH 5 me kitni guna amliyata ka antar hai",
+    "output": "pH 3 aur pH 5 me amliyata ka antar 100 guna hai. 📊",
+    "success": true,
+    "timestamp": "2026-07-13T20:48:01.408Z"
+  },
+  {
+    "id": "u1_1783975686129_3rpizou",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "3 aadmi 3 din me 3 deewar banate hain to 9 aadmi 9 din me kitni deewar banayenge",
+    "output": "Yadi 3 aadmi 3 din me 3 deewar banate hain, to 1 aadmi 1 din me 1 deewar banata hai. Isliye, 9 aadmi 9 din me 9 deewar banayenge. 📈",
+    "success": true,
+    "timestamp": "2026-07-13T20:48:06.129Z"
+  },
+  {
+    "id": "u1_1783975690206_a2ttjep",
+    "userId": "u1",
+    "skill": "ui_builder",
+    "input": "ghadi 3:15 dikha rahi hai to ghante aur minute ki sui me kitna kon banega",
+    "output": "[रूटिंग सफल] ✅ Page generated using built-in template!\n📁 Saved: D:\\Harshita-AI\\output\\generated_pages\\custom_ghadi_315_dikha_rahi_hai_to_ghante_aur_m_1783975690203.html\n💡 Tip: Connect Groq/Gemini AP",
+    "success": true,
+    "timestamp": "2026-07-13T20:48:10.206Z"
+  },
+  {
+    "id": "u1_1783975699292_gy92sl0",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "plot: front 22 ft, back 66 ft, left 55 ft, right 55 ft — area nikalo ya batao kya extra chahiye",
+    "output": "Plot ka area nikalne ke liye, humein length aur width ki zaroorat hai. Yahan, length 66 ft (back) aur width 55 ft (left/right) hai. Toh, area = length * width = 66 * 55 = 3630 sq ft. 😊",
+    "success": true,
+    "timestamp": "2026-07-13T20:48:19.292Z"
+  },
+  {
+    "id": "u1_1783975732839_lpjk9dv",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "bina quadratic formula ke x^2 - 11x + 30 = 0 solve karo",
+    "output": "x^2 - 11x + 30 = 0 ko factorize karke solve kiya ja sakta hai. \nx^2 - 5x - 6x + 30 = 0 \nx(x - 5) - 6(x - 5) = 0 \n(x - 5)(x - 6) = 0 \nIsliye, x = 5 ya x = 6 📝",
+    "success": true,
+    "timestamp": "2026-07-13T20:48:52.839Z"
+  },
+  {
+    "id": "u1_1783975733385_7ikecbu",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "yadi a+b=10 aur ab=21 to a^3 + b^3 nikalo",
+    "output": "Aapko pata hai ki a+b = 10 aur ab = 21. \nA^3 + B^3 = (a+b)^3 - 3ab(a+b) \n= (10)^3 - 3*21*10 \n= 1000 - 630 \n= 370.",
+    "success": true,
+    "timestamp": "2026-07-13T20:48:53.385Z"
+  },
+  {
+    "id": "u1_1783975734061_4vjyjqe",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "(a+b+c)^2 ka poora vistar likho aur siddh karo",
+    "output": "(a+b+c)^2 = a^2 + b^2 + c^2 + 2ab + 2bc + 2ac. Yeh siddh karne ke liye, hum binomial theorem ka upyog kar sakte hain. 📝",
+    "success": true,
+    "timestamp": "2026-07-13T20:48:54.061Z"
+  },
+  {
+    "id": "u1_1783975734696_gg294c5",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "siddh karo: sinA / (1 - cosA) = (1 + cosA) / sinA",
+    "output": "Siddh karo: \nsinA / (1 - cosA) = (1 + cosA) / sinA\nDono taraf sinA * (1 + cosA) karo. \nsin²A = (1 - cos²A) \nsin²A + cos²A = 1 \nSiddh. 📝",
+    "success": true,
+    "timestamp": "2026-07-13T20:48:54.697Z"
+  },
+  {
+    "id": "u1_1783975735336_g4wizi3",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "yadi sin theta = 3/5 to sabhi trigonometric ratios nikalo",
+    "output": "Sin theta = 3/5, \ntoh cos theta = 4/5, \ntan theta = 3/4, \ncot theta = 4/3, \nsec theta = 5/4, \ncosec theta = 5/3.",
+    "success": true,
+    "timestamp": "2026-07-13T20:48:55.336Z"
+  },
+  {
+    "id": "u1_1783975735966_wh6ki0g",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "ek tower ki height nikalo yadi 50 m door se elevation angle 60 degree hai",
+    "output": "Tower ki height nikalne ke liye, tan(60) = height / 50 ka formula use karein. Height = 50 * tan(60) = 50 * 1.732 = 86.6 m 📏",
+    "success": true,
+    "timestamp": "2026-07-13T20:48:55.966Z"
+  },
+  {
+    "id": "u1_1783975736761_u1nji1m",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "Brahmagupta Formula kab lagoo hoti hai aur kab nahi",
+    "output": "Brahmagupta Formula chaukor ke kshetrafal ko nikalne ke liye lagoo hoti hai, lekin sirf tabhi jab chaukor ka sabhi bhujaon ka maap pata ho. 📐",
+    "success": true,
+    "timestamp": "2026-07-13T20:48:56.761Z"
+  },
+  {
+    "id": "u1_1783975737256_mnfs4g1",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "kewal char bhujaon se area kab nahi nikala ja sakta",
+    "output": "Bhujayon se area nikalne ke liye, kam se kam 3 bhujayen chahiye hain. Kewal 2 bhujayon se area nahin nikala ja sakta.",
+    "success": true,
+    "timestamp": "2026-07-13T20:48:57.256Z"
+  },
+  {
+    "id": "u1_1783975737896_lar0fe7",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "Frustum ka volume siddh karo",
+    "output": "Frustum ka volume nikalne ke liye, humein uske radius, height aur slant height ki avashyakta hoti hai. Formula hai: V = (1/3) * π * h * (r1^2 + r2^2 + r1 * r2) 📝",
+    "success": true,
+    "timestamp": "2026-07-13T20:48:57.896Z"
+  },
+  {
+    "id": "u1_1783975738531_wk2q80c",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "Hemisphere aur Sphere me antar batao",
+    "output": "Hemisphere ek golardh ke do bhaagon mein se ek hai, jabki Sphere ek poorn golardh hota hai. Hemisphere mein 180 degree ka kshetrafal hota hai, jabki Sphere mein 360 degree ka kshetrafal hota hai 🌎",
+    "success": true,
+    "timestamp": "2026-07-13T20:48:58.532Z"
+  },
+  {
+    "id": "u1_1783975742697_0qlilp6",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "v^2 = u^2 + 2as derive karo",
+    "output": "v^2 = u^2 + 2as, yeh equation uniformly accelerated motion ka hai. Iska derivation Newton ke doosre niyam se kiya ja sakta hai. 📝",
+    "success": true,
+    "timestamp": "2026-07-13T20:49:02.697Z"
+  },
+  {
+    "id": "u1_1783975745570_h59iva4",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "Free Fall aur Projectile Motion me antar batao",
+    "output": "Free Fall mein vastu sirf gurutvakarshan ke kaaran girti hai, jabki Projectile Motion mein vastu gurutvakarshan aur gati ke kaaran ek parabola ke roop mein gati karti hai 🚀",
+    "success": true,
+    "timestamp": "2026-07-13T20:49:05.570Z"
+  },
+  {
+    "id": "u1_1783975756978_9d7jp1q",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "yadi 3 ohm, 6 ohm aur 9 ohm parallel hain to kul resistance nikalo",
+    "output": "Parallel mein kul resistance (R) ki ganana ke liye, hum is formula ka upyog karte hain: \n1/R = 1/R1 + 1/R2 + 1/R3\nIsliye, 1/R = 1/3 + 1/6 + 1/9\n1/R = (6+3+2)/18\n1/R = 11/18\nR = 18/11 ohm \nR = 1.636 oh",
+    "success": true,
+    "timestamp": "2026-07-13T20:49:16.978Z"
+  },
+  {
+    "id": "u1_1783975761096_qspp6vh",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "Transformer DC par kyu nahi chalta",
+    "output": "Transformer AC par chalta hai, DC par nahi. Iska kaaran yeh hai ki transformer mein electromagnetic induction hota hai, jo AC current ke liye upyukt hai. DC current mein badlaav nahi hota, isliye tran",
+    "success": true,
+    "timestamp": "2026-07-13T20:49:21.096Z"
+  },
+  {
+    "id": "u1_1783975765095_xqxmo8w",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "18 gram water me kitne molecules hote hain",
+    "output": "18 gram pani me lagbhag 6.022 x 10^23 molecules hote hain, jo Avogadro ki sankhya ke barabar hain. 💧",
+    "success": true,
+    "timestamp": "2026-07-13T20:49:25.095Z"
+  },
+  {
+    "id": "u1_1783975767634_zvbul1r",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "pH 3 aur pH 5 me kitni guna amliyata ka antar hai",
+    "output": "pH 3 aur pH 5 me amliyata ka antar 100 guna hota hai. 📊",
+    "success": true,
+    "timestamp": "2026-07-13T20:49:27.634Z"
+  },
+  {
+    "id": "u1_1783975771167_kiile7x",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "3 aadmi 3 din me 3 deewar banate hain to 9 aadmi 9 din me kitni deewar banayenge",
+    "output": "9 aadmi 9 din me 27 deewar banayenge. 📈",
+    "success": true,
+    "timestamp": "2026-07-13T20:49:31.167Z"
+  },
+  {
+    "id": "u1_1783975778856_c47my81",
+    "userId": "u1",
+    "skill": "ui_builder",
+    "input": "ghadi 3:15 dikha rahi hai to ghante aur minute ki sui me kitna kon banega",
+    "output": "[रूटिंग सफल] ✅ Page generated using built-in template!\n📁 Saved: D:\\Harshita-AI\\output\\generated_pages\\custom_ghadi_315_dikha_rahi_hai_to_ghante_aur_m_1783975778854.html\n💡 Tip: Connect Groq/Gemini AP",
+    "success": true,
+    "timestamp": "2026-07-13T20:49:38.856Z"
+  },
+  {
+    "id": "u1_1783975872644_6cozybc",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "bina quadratic formula ke x^2 - 11x + 30 = 0 solve karo",
+    "output": "x^2 - 11x + 30 = 0 ko factor karke solve kiya ja sakta hai. \nx^2 - 5x - 6x + 30 = 0 \nx(x - 5) - 6(x - 5) = 0 \n(x - 5)(x - 6) = 0 \nx = 5 ya x = 6 💡",
+    "success": true,
+    "timestamp": "2026-07-13T20:51:12.644Z"
+  },
+  {
+    "id": "u1_1783975873151_ql3h91f",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "yadi a+b=10 aur ab=21 to a^3 + b^3 nikalo",
+    "output": "a^3 + b^3 = (a+b)^3 - 3ab(a+b) \n= (10)^3 - 3*21*10 \n= 1000 - 630 \n= 370",
+    "success": true,
+    "timestamp": "2026-07-13T20:51:13.151Z"
+  },
+  {
+    "id": "u1_1783975873888_vs78w4b",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "(a+b+c)^2 ka poora vistar likho aur siddh karo",
+    "output": "(a+b+c)^2 = a^2 + b^2 + c^2 + 2ab + 2bc + 2ac. Yah ek aljebraic siddhant hai, jise gunan aur varg ke gunan ke tatvon se siddh kiya ja sakta hai. 📝",
+    "success": true,
+    "timestamp": "2026-07-13T20:51:13.888Z"
+  },
+  {
+    "id": "u1_1783975874556_l1hdf38",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "siddh karo: sinA / (1 - cosA) = (1 + cosA) / sinA",
+    "output": "Siddh karo: sinA / (1 - cosA) = (1 + cosA) / sinA\nDono taraf sinA ko guna karo: sin²A = (1 - cos²A) \ntrikonsometrya ke anusaar: sin²A + cos²A = 1\nisliye: sin²A = 1 - cos²A\ndonon taraf barabar hain.",
+    "success": true,
+    "timestamp": "2026-07-13T20:51:14.557Z"
+  },
+  {
+    "id": "u1_1783975875089_tixfxg9",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "yadi sin theta = 3/5 to sabhi trigonometric ratios nikalo",
+    "output": "Sin θ = 3/5, \nCos θ = 4/5, \nTan θ = 3/4, \nCosec θ = 5/3, \nSec θ = 5/4, \nCot θ = 4/3.",
+    "success": true,
+    "timestamp": "2026-07-13T20:51:15.089Z"
+  },
+  {
+    "id": "u1_1783975875531_yd06svd",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "ek tower ki height nikalo yadi 50 m door se elevation angle 60 degree hai",
+    "output": "Tower ki height nikalne ke liye, tan(60 degree) = height / 50 m. Tan(60) = 1.732, isliye height = 1.732 * 50 = 86.6 m 📏",
+    "success": true,
+    "timestamp": "2026-07-13T20:51:15.532Z"
+  },
+  {
+    "id": "u1_1783975876094_22h84vt",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "Brahmagupta Formula kab lagoo hoti hai aur kab nahi",
+    "output": "Brahmagupta Formula chaukor ke kshetraphal ko nikalne ke liye lagoo hoti hai, jab chaukor ke chaaron bhujaon ki lambaiyan jaani hoti hain. 📝",
+    "success": true,
+    "timestamp": "2026-07-13T20:51:16.094Z"
+  },
+  {
+    "id": "u1_1783975876768_ulh6sr6",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "kewal char bhujaon se area kab nahi nikala ja sakta",
+    "output": "Aapko bata dena chahiye ki char bhujaon se area nikalne ke liye humein unke vibhinn pahluon ki jaankari ki aavashyakta hoti hai. Sirf char bhujaon se area nahin nikala ja sakta. 📏",
+    "success": true,
+    "timestamp": "2026-07-13T20:51:16.768Z"
+  },
+  {
+    "id": "u1_1783975877263_nuz7t4n",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "Frustum ka volume siddh karo",
+    "output": "Frustum ka volume V = (1/3) * π * h * (r1^2 + r2^2 + r1 * r2) hai, jahan h uchhai, r1 bada radius, aur r2 chhota radius hai. 📝",
+    "success": true,
+    "timestamp": "2026-07-13T20:51:17.263Z"
+  },
+  {
+    "id": "u1_1783975877809_lj9p0fk",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "Hemisphere aur Sphere me antar batao",
+    "output": "Hemisphere ek golardh ke do hisse hote hain, jabki Sphere ek poorna golardh hota hai. Hemisphere mein ek hissa hota hai, jaise ki Prithvi ka uttari hemisphere ya dakshini hemisphere. 🌎",
+    "success": true,
+    "timestamp": "2026-07-13T20:51:17.809Z"
+  },
+  {
+    "id": "u1_1783975878490_sdjw9fr",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "v^2 = u^2 + 2as derive karo",
+    "output": "Ek samanya bhautiki siddhant hai. Yah siddhant gati aur velocity ke beech sambandh ko darshata hai. Iska arth hai ki vastu ki antya gati (v) ka varg, prarambhik gati (u) ka varg, 2, tanav (a), aur sam",
+    "success": true,
+    "timestamp": "2026-07-13T20:51:18.490Z"
+  },
+  {
+    "id": "u1_1783975879038_8oizmoc",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "Free Fall aur Projectile Motion me antar batao",
+    "output": "Free Fall me gati sirf neeche ki aur hoti hai, jabki Projectile Motion me gati do dishaon me hoti hai - upar-neeche aur aage-peeche. 🚀",
+    "success": true,
+    "timestamp": "2026-07-13T20:51:19.038Z"
+  },
+  {
+    "id": "u1_1783975879725_dcx3oxc",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "Rocket antariksh me kaise chalta hai jab piche hawa nahi hoti",
+    "output": "Rocket mein fuel aur oxidizer hota hai, jo milke combustion reaction dete hain. Is reaction se tezi se gas nikalti hai, jisse rocket aage badhta hai. Hawa ki zarurat nahi hoti, kyunki rocket apni khud",
+    "success": true,
+    "timestamp": "2026-07-13T20:51:19.725Z"
+  },
+  {
+    "id": "u1_1783975880123_fjn19la",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "yadi 3 ohm, 6 ohm aur 9 ohm parallel hain to kul resistance nikalo",
+    "output": "Parallel resistance ka formula: 1/R = 1/R1 + 1/R2 + 1/R3. \n1/R = 1/3 + 1/6 + 1/9 = 6/18 + 3/18 + 2/18 = 11/18. \nR = 18/11 ohm. 📝",
+    "success": true,
+    "timestamp": "2026-07-13T20:51:20.123Z"
+  },
+  {
+    "id": "u1_1783975880559_fkhss5g",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "Transformer DC par kyu nahi chalta",
+    "output": "Transformer DC par nahi chalta kyunki transformer AC current ko badalne ke liye design kiya gaya hai. DC current mein phase difference nahi hota, isliye transformer ka induction principle kaam nahi ka",
+    "success": true,
+    "timestamp": "2026-07-13T20:51:20.559Z"
+  },
+  {
+    "id": "u1_1783975880886_e2kcwvn",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "18 gram water me kitne molecules hote hain",
+    "output": "18 gram pani me lagbhag 6.022 x 10^23 molecules hote hain, jo Avogadro ki sankhya hai. 🌊",
+    "success": true,
+    "timestamp": "2026-07-13T20:51:20.886Z"
+  },
+  {
+    "id": "u1_1783975881355_z9yl4ls",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "pH 3 aur pH 5 me kitni guna amliyata ka antar hai",
+    "output": "pH 3 aur pH 5 me amliyata ka antar 100 guna hai. pH 3 mein amliyata 10^(-3) hai, jabki pH 5 mein amliyata 10^(-5) hai. Isliye, pH 3 mein amliyata pH 5 ki tulna mein 100 guna adhik hai. 📊",
+    "success": true,
+    "timestamp": "2026-07-13T20:51:21.355Z"
+  },
+  {
+    "id": "u1_1783975883859_pmt3ict",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "3 aadmi 3 din me 3 deewar banate hain to 9 aadmi 9 din me kitni deewar banayenge",
+    "output": "9 aadmi 9 din me 27 deewar banayenge. 📈",
+    "success": true,
+    "timestamp": "2026-07-13T20:51:23.860Z"
+  },
+  {
+    "id": "u1_1783975892052_bmzhfda",
+    "userId": "u1",
+    "skill": "ui_builder",
+    "input": "ghadi 3:15 dikha rahi hai to ghante aur minute ki sui me kitna kon banega",
+    "output": "[रूटिंग सफल] ✅ Page generated using built-in template!\n📁 Saved: D:\\Harshita-AI\\output\\generated_pages\\custom_ghadi_315_dikha_rahi_hai_to_ghante_aur_m_1783975892050.html\n💡 Tip: Connect Groq/Gemini AP",
+    "success": true,
+    "timestamp": "2026-07-13T20:51:32.052Z"
+  },
+  {
+    "id": "u1_1783975895010_wpi3lz8",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "plot: front 22 ft, back 66 ft, left 55 ft, right 55 ft — area nikalo ya batao kya extra chahiye",
+    "output": "Plot ka area nikalne ke liye, humein length aur width ki zaroorat hai. Yahan, length 66 ft (back) aur width 55 ft (left/right) hai. Toh, area = length * width = 66 * 55 = 3630 sq ft.",
+    "success": true,
+    "timestamp": "2026-07-13T20:51:35.010Z"
+  },
+  {
+    "id": "u1_1783976080602_dp6juc5",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "aapke owner ka naam batao",
+    "output": "मुझे n-dizi टीम द्वारा विकसित किया गया है। यदि आप मेरी इंजीनियरिंग टीम या प्रबंधन से संपर्क करना चाहते हैं, तो कृपया निम्नलिखित लिंक का उपयोग करें:\n\n🔗 **[संपर्क प्रपत्र (Contact Form)](/contact)**\n\nअ",
+    "success": true,
+    "timestamp": "2026-07-13T20:54:40.602Z"
+  },
+  {
+    "id": "u1_1783976080628_n0p0biu",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "who is your father/owner",
+    "output": "मुझे n-dizi टीम द्वारा विकसित किया गया है। यदि आप मेरी इंजीनियरिंग टीम या प्रबंधन से संपर्क करना चाहते हैं, तो कृपया निम्नलिखित लिंक का उपयोग करें:\n\n🔗 **[संपर्क प्रपत्र (Contact Form)](/contact)**\n\nअ",
+    "success": true,
+    "timestamp": "2026-07-13T20:54:40.628Z"
+  },
+  {
+    "id": "u1_1783976081605_w88js0e",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "kitne guna 8 = 12",
+    "output": "1.5 guna 8 = 12 😊",
+    "success": true,
+    "timestamp": "2026-07-13T20:54:41.606Z"
+  },
+  {
+    "id": "u1_1783976081908_i9zctv1",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "kitne atthe 12",
+    "output": "12 ka varg 144 hai.",
+    "success": true,
+    "timestamp": "2026-07-13T20:54:41.908Z"
+  },
+  {
+    "id": "u1_1783976082239_cs34zp4",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "kitne ka 8 guna 12",
+    "output": "8 ka guna 12 hai 96. 📝",
+    "success": true,
+    "timestamp": "2026-07-13T20:54:42.239Z"
+  },
+  {
+    "id": "probe-user_1784015747749_vxl17fq",
+    "userId": "probe-user",
+    "skill": "general_chat",
+    "input": "22+55",
+    "output": "77 📝",
+    "success": true,
+    "timestamp": "2026-07-14T07:55:47.750Z"
+  },
+  {
+    "id": "probe-user_1784015748381_qp432wb",
+    "userId": "probe-user",
+    "skill": "general_chat",
+    "input": "%calculate 15% of 2400",
+    "output": "15% of 2400 is 360. 😊",
+    "success": true,
+    "timestamp": "2026-07-14T07:55:48.381Z"
+  },
+  {
+    "id": "probe-user_1784015751560_prcmy0g",
+    "userId": "probe-user",
+    "skill": "general_chat",
+    "input": "(a+b)^2 formula",
+    "output": "(a+b)^2 = a^2 + 2ab + b^2 📝",
+    "success": true,
+    "timestamp": "2026-07-14T07:55:51.560Z"
+  },
+  {
+    "id": "probe-user_1784015759103_um2lktj",
+    "userId": "probe-user",
+    "skill": "general_chat",
+    "input": "derivative of x^2",
+    "output": "Derivative of x^2 is 2x 📝",
+    "success": true,
+    "timestamp": "2026-07-14T07:55:59.103Z"
+  },
+  {
+    "id": "probe-user_1784015759839_qqae6ae",
+    "userId": "probe-user",
+    "skill": "general_chat",
+    "input": "ITR kya hai",
+    "output": "ITR ka matlab hai Income Tax Return. Yeh ek document hai jisme aap apni aay ka vivran dete hain, jisse income tax department aapki aay ka hisab lagata hai. Main aapko ITR form bharna mein madad kar sa",
+    "success": true,
+    "timestamp": "2026-07-14T07:55:59.839Z"
+  },
+  {
+    "id": "probe-user_1784015759944_5agxg0y",
+    "userId": "probe-user",
+    "skill": "master_tax_agent",
+    "input": "mera ITR bhar do",
+    "output": "🙏 **नमस्कार! मैं Harshita AI Chartered Accountant हूँ।**\n\nमैं आपका Income Tax Return तैयार करूँगा।\n\nसबसे पहले, कृपया अपना **PAN Number** दर्ज करें।\n(जैसे: ABCDE1234F)",
+    "success": true,
+    "timestamp": "2026-07-14T07:55:59.944Z"
+  },
+  {
+    "id": "probe-user_1784015760917_5xsjilo",
+    "userId": "probe-user",
+    "skill": "general_chat",
+    "input": "ITR ke bare me batao",
+    "output": "ITR ka matlab hai Income Tax Return. Yeh ek document hai jisme aap apni aay ke baare me jankari dete hain. Main aapko ITR form bharna mein madad kar sakta hoon. Aap kis saal ka ITR bharna chahte hain?",
+    "success": true,
+    "timestamp": "2026-07-14T07:56:00.917Z"
+  },
+  {
+    "id": "probe-user_1784015764451_267h318",
+    "userId": "probe-user",
+    "skill": "general_chat",
+    "input": "Resume kya hota hai",
+    "output": "Resume aapki shiksha, kaushal, anubhav aur yogyata ko darshata hai. Yah ek document hai jo aapki vyaktigat jaankari aur career details ko sansthit roop se prastut karta hai. Main aapki madad kar sakta",
+    "success": true,
+    "timestamp": "2026-07-14T07:56:04.451Z"
+  },
+  {
+    "id": "probe-user_1784015765183_zmn93qc",
+    "userId": "probe-user",
+    "skill": "general_chat",
+    "input": "Resume banao",
+    "output": "Resume banaane ke liye aapko apni jaankaari deni hogi. Aapka naam, address, qualification, experience aur skills kya hain? Main aapko resume builder tool tak navigate kar sakta hoon.",
+    "success": true,
+    "timestamp": "2026-07-14T07:56:05.183Z"
+  },
+  {
+    "id": "probe-user_1784015766555_xm4pacn",
+    "userId": "probe-user",
+    "skill": "general_chat",
+    "input": "Gift deed kya hai",
+    "output": "Gift deed ek legal document hai jo ek vyakti dwara apni sampatti dusre vyakti ko bina kisi vitaran ke dene ke liye taiyar kiya jata hai. 📜",
+    "success": true,
+    "timestamp": "2026-07-14T07:56:06.555Z"
+  },
+  {
+    "id": "probe-user_1784015766574_a6pyl4r",
+    "userId": "probe-user",
+    "skill": "legal_draft",
+    "input": "Gift deed banao",
+    "output": "To draft the Gift Deed, I need the following details: Khasra Number, Property Area, Two Witnesses (Mandatory)",
+    "success": true,
+    "timestamp": "2026-07-14T07:56:06.574Z"
+  },
+  {
+    "id": "probe-user_1784015768549_qghssxx",
+    "userId": "probe-user",
+    "skill": "general_chat",
+    "input": "PAN card kya hai",
+    "output": "PAN card ek unique identification number hai jo income tax department dwara jari kiya jata hai. Iska full form Permanent Account Number hai. Yeh 10 digit ka alphanumeric number hota hai jo tax payment",
+    "success": true,
+    "timestamp": "2026-07-14T07:56:08.549Z"
+  },
+  {
+    "id": "probe-user_1784015770185_cs30iq8",
+    "userId": "probe-user",
+    "skill": "general_chat",
+    "input": "PAN apply karo",
+    "output": "PAN apply karne ke liye, main aapko form bharna navigate karunga. Aapko kuch details deni hogi, jaise ki naam, address, aur date of birth. Chaliye, shuru karte hain. 💡",
+    "success": true,
+    "timestamp": "2026-07-14T07:56:10.185Z"
+  },
+  {
+    "id": "probe-user_1784015771767_bvlki7p",
+    "userId": "probe-user",
+    "skill": "general_chat",
+    "input": "Application kya hoti hai",
+    "output": "Application ek prakar ki software hoti hai jo kisi vishesh karya ko poora karne ke liye design ki jati hai. Yah user ke liye upyogi hoti hai aur kai tarah ke karya kar sakti hai, jaise ki form bharna,",
+    "success": true,
+    "timestamp": "2026-07-14T07:56:11.767Z"
+  },
+  {
+    "id": "probe-user_1784015771782_38kkly2",
+    "userId": "probe-user",
+    "skill": "application_writer",
+    "input": "Principal ko application likho chhutti ke liye 3 din",
+    "output": "आपका नाम क्या है? (Aapka naam kya hai?) (1/3 जानकारी मिली)\n\n💡 उदाहरण: e.g. Ramesh Kumar",
+    "success": true,
+    "timestamp": "2026-07-14T07:56:11.782Z"
+  },
+  {
+    "id": "probe-user_1784015780178_8llmqj8",
+    "userId": "probe-user",
+    "skill": "legal_notice",
+    "input": "Legal notice kya hota hai",
+    "output": "\n═══════════════════════════════════════════════════════════════\n                        LEGAL NOTICE\n═══════════════════════════════════════════════════════════════\n\nDate: 14/7/2026\nPlace: __________",
+    "success": true,
+    "timestamp": "2026-07-14T07:56:20.178Z"
+  },
+  {
+    "id": "probe-user_1784015783204_fucmc79",
+    "userId": "probe-user",
+    "skill": "legal_notice",
+    "input": "Legal notice draft karo",
+    "output": "\n═══════════════════════════════════════════════════════════════\n                        LEGAL NOTICE\n═══════════════════════════════════════════════════════════════\n\nDate: 14/7/2026\nPlace: __________",
+    "success": true,
+    "timestamp": "2026-07-14T07:56:23.204Z"
+  },
+  {
+    "id": "probe-user_1784015783688_06dy77k",
+    "userId": "probe-user",
+    "skill": "general_chat",
+    "input": "Weather kaisa hai",
+    "output": "Mausam ki jaankari ke liye main aapko dashboard par navigate karwa sakta hoon. Wahan aapko mausam ki jaankari mil jayegi.",
+    "success": true,
+    "timestamp": "2026-07-14T07:56:23.688Z"
+  },
+  {
+    "id": "probe-user_1784015784193_roecsry",
+    "userId": "probe-user",
+    "skill": "general_chat",
+    "input": "Tax free weather",
+    "output": "Tax free ke baare mein jaankari chahiye? Main aapko tax free schemes ke baare mein bata sakta hoon. Kripya adhik jaankari ke liye poochhein. 😊",
+    "success": true,
+    "timestamp": "2026-07-14T07:56:24.193Z"
+  },
+  {
+    "id": "probe-user_1784015785110_qedzuvp",
+    "userId": "probe-user",
+    "skill": "general_chat",
+    "input": "pension me tax kitna",
+    "output": "Pension par tax 60 saal ke baad 0% hai, lekin 60 saal se kam umra me 10% tax lagta hai. Aapke pension ke hisab se tax lagega. Mai aapko tax calculation tool tak navigate kar sakta hun.",
+    "success": true,
+    "timestamp": "2026-07-14T07:56:25.110Z"
+  },
+  {
+    "id": "probe-user_1784015785791_puvrsnr",
+    "userId": "probe-user",
+    "skill": "general_chat",
+    "input": "resume ke liye application",
+    "output": "Resume banane ke liye main aapki madad kar sakta hoon. Aapki details dijiye, main aapka resume banaunga.",
+    "success": true,
+    "timestamp": "2026-07-14T07:56:25.791Z"
+  },
+  {
+    "id": "probe-user_1784015788029_7tiaynr",
+    "userId": "probe-user",
+    "skill": "legal_notice",
+    "input": "legal notice ke bare me article likho",
+    "output": "\n═══════════════════════════════════════════════════════════════\n                        LEGAL NOTICE\n═══════════════════════════════════════════════════════════════\n\nDate: 14/7/2026\nPlace: __________",
+    "success": true,
+    "timestamp": "2026-07-14T07:56:28.029Z"
+  },
+  {
+    "id": "probe-user_1784015788059_pailecq",
+    "userId": "probe-user",
+    "skill": "master_tax_agent",
+    "input": "ITR wali application principal ko",
+    "output": "🙏 **नमस्कार! मैं Harshita AI Chartered Accountant हूँ।**\n\nमैं आपका Income Tax Return तैयार करूँगा।\n\nसबसे पहले, कृपया अपना **PAN Number** दर्ज करें।\n(जैसे: ABCDE1234F)",
+    "success": true,
+    "timestamp": "2026-07-14T07:56:28.059Z"
+  },
+  {
+    "id": "probe-user_1784015788693_fa9xrek",
+    "userId": "probe-user",
+    "skill": "general_chat",
+    "input": "pani ka formula",
+    "output": "Pani ka formula H2O hai. 🌊",
+    "success": true,
+    "timestamp": "2026-07-14T07:56:28.693Z"
+  },
+  {
+    "id": "probe-user_1784015789298_ya4qajc",
+    "userId": "probe-user",
+    "skill": "general_chat",
+    "input": "Ashoka kaun tha",
+    "output": "Ashoka ek prachin Bharatiya samrat tha, jinhone 269-232 BCE tak Maurya samrajya par raj kiya. Vah dharm parivartan kar Buddhism apnaya aur ahinsa ka paalan kiya. 🙏",
+    "success": true,
+    "timestamp": "2026-07-14T07:56:29.298Z"
+  },
+  {
+    "id": "probe-user_1784015789794_k6e77wq",
+    "userId": "probe-user",
+    "skill": "general_chat",
+    "input": "QR code banao",
+    "output": "Main aapko QR code banane mein madad kar sakta hoon. Kripya mujhe batayein ki aap kis prakaar ka QR code banana chahte hain?",
+    "success": true,
+    "timestamp": "2026-07-14T07:56:29.794Z"
+  },
+  {
+    "id": "probe-user_1784015789862_ofqsn4z",
+    "userId": "probe-user",
+    "skill": "master_tax_agent",
+    "input": "mera resume banao aur ITR bhi bhar do",
+    "output": "🙏 **नमस्कार! मैं Harshita AI Chartered Accountant हूँ।**\n\nमैं आपका Income Tax Return तैयार करूँगा।\n\nसबसे पहले, कृपया अपना **PAN Number** दर्ज करें।\n(जैसे: ABCDE1234F)",
+    "success": true,
+    "timestamp": "2026-07-14T07:56:29.862Z"
+  },
+  {
+    "id": "probe-user_1784015789880_9p7r4yr",
+    "userId": "probe-user",
+    "skill": "application_writer",
+    "input": "application likho principal ko chhutti ke liye 3 din",
+    "output": "Application का विषय / कारण क्या है? जैसे छुट्टी, शिकायत, प्रमाण पत्र आदि। (2/3 जानकारी मिली)\n\n💡 उदाहरण: e.g. 5 din ki chhutti",
+    "success": true,
+    "timestamp": "2026-07-14T07:56:29.880Z"
+  },
+  {
+    "id": "probe-user_1784015790432_0vgydf5",
+    "userId": "probe-user",
+    "skill": "general_chat",
+    "input": "pension form bhar do aur PAN bhi apply karo",
+    "output": "Pension form bharna hai aur PAN apply karna hai. Main aapko navigate karunga. Pension form ke liye aapko kuch jaruri documents ki zarurat hogi. Aapke documents ready hain? 📝",
+    "success": true,
+    "timestamp": "2026-07-14T07:56:30.432Z"
+  },
+  {
+    "id": "audit-user_1784110623436_j9mxh1t",
+    "userId": "audit-user",
+    "skill": "application_writer",
+    "input": "hello",
+    "output": "आपका नाम क्या है? (Aapka naam kya hai?) (0/3 जानकारी मिली)\n\n💡 उदाहरण: e.g. Ramesh Kumar",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:03.436Z"
+  },
+  {
+    "id": "audit-user_1784110623455_zup1fv9",
+    "userId": "audit-user",
+    "skill": "bulk_import",
+    "input": "hello",
+    "output": "📁 बल्क इम्पोर्ट सेवा:\n• \"Excel फाइल अपलोड करो\"\n• \"डेटा इम्पोर्ट करो\"\n• \"सैंपल फॉर्मेट डाउनलोड करो\"\n\nक्या मैं आपकी मदद करूँ?",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:03.455Z"
+  },
+  {
+    "id": "audit-user_1784110623502_by0czgt",
+    "userId": "audit-user",
+    "skill": "deploy_manager",
+    "input": "hello",
+    "output": "⚠️ मुझे Render Deploy Hook URL नहीं मिला। \n\nसर्वर को ऑटो-डिप्लॉय करने के लिए, कृपया अपना Render Deploy Hook URL मुझे दें (यह `https://api.render.com/deploy/...` से शुरू होता है)।\nया फिर इसे अपने `.env",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:03.502Z"
+  },
+  {
+    "id": "audit-user_1784110623537_z190o55",
+    "userId": "audit-user",
+    "skill": "document_ocr",
+    "input": "hello",
+    "output": "📄 Document OCR तैयार है!\n\nमैं इन दस्तावेज़ों से डेटा निकाल सकता हूँ:\n• आधार कार्ड (Aadhaar Card)\n• पैन कार्ड (PAN Card)\n• मतदाता पहचान पत्र (Voter ID (EPIC))\n• ड्राइविंग लाइसेंस (Driving License (DL)",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:03.537Z"
+  },
+  {
+    "id": "audit-user_1784110625239_ftplxpu",
+    "userId": "audit-user",
+    "skill": "eligibility_check",
+    "input": "hello",
+    "output": "🔍 *पात्रता जाँच (Eligibility Pre-Check)*\n\nकिस योजना या नौकरी की पात्रता जाँचनी है? (जैसे: ssc, railway, pmegp, police)\n\nExample: \"Mera eligibility check karo SSC ke liye\"",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:05.239Z"
+  },
+  {
+    "id": "audit-user_1784110625272_t6w4q8f",
+    "userId": "audit-user",
+    "skill": "file_processor",
+    "input": "hello",
+    "output": "📁 *फाइल प्रोसेसिंग सेवा (File Processor)*\n\nमैं ये काम कर सकता हूँ:\n\n📸 *Image:*\n• \"Photo compress karo\" — फोटो साइज कम\n• \"Photo resize 100KB\" — exact साइज बनाओ\n• \"Photo to PDF\" — फोटो → PDF\n\n📄 *PDF:",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:05.272Z"
+  },
+  {
+    "id": "audit-user_1784110625352_1zr90zs",
+    "userId": "audit-user",
+    "skill": "form_fill",
+    "input": "hello",
+    "output": "📋 फॉर्म ऑटो-फिलिंग सिस्टम तैयार!\n\nउपलब्ध सेवाएँ:\n• *SSC CGL/CHSL* — [ssc.gov.in](https://ssc.gov.in)\n• *Indian Army* — [joinindianarmy.nic.in](https://joinindianarmy.nic.in)\n• *Railway RRB* — [rrbcdg",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:05.352Z"
+  },
+  {
+    "id": "audit-user_1784110625396_agpsyt2",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "hello",
+    "output": "नमस्कार। मैं Harshita AI हूँ — आपकी उन्नत (Advanced) CSC और एंटरप्राइज सहायक।\n\nमैं निम्नलिखित कार्यों में आपकी सहायता कर सकती हूँ:\n• ऑटोमेटेड फॉर्म फिलिंग (Automated Form Filling)\n• कानूनी दस्तावेज़ ड",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:05.396Z"
+  },
+  {
+    "id": "audit-user_1784110625419_apo95n8",
+    "userId": "audit-user",
+    "skill": "geometry_skill",
+    "input": "hello",
+    "output": "प्लाट का एरिया निकालने के लिए मुझे लम्बाई और चौड़ाई (जैसे: \"22 front, 43 back, 90 length\" या \"30x40\") बताएं।",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:05.419Z"
+  },
+  {
+    "id": "audit-user_1784110625462_xrjwef0",
+    "userId": "audit-user",
+    "skill": "job_search",
+    "input": "hello",
+    "output": "🔍 SarkariResult से ताज़ा नौकरियाँ खोज रहा हूँ... कृपया कुछ सेकंड प्रतीक्षा करें।",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:05.462Z"
+  },
+  {
+    "id": "audit-user_1784110625486_ybstnt2",
+    "userId": "audit-user",
+    "skill": "land_measurement_skill",
+    "input": "hello",
+    "output": "जमीन का बंटवारा करने के लिए, पहले मुझे जमीन का एरिया बताएं (जैसे \"22 front 43 back 90 length\") और फिर पूछें \"इसे 3 हिस्सों में बांटो\"।",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:05.486Z"
+  },
+  {
+    "id": "audit-user_1784110625507_cwm2euz",
+    "userId": "audit-user",
+    "skill": "land_record",
+    "input": "hello",
+    "output": "🏞️ *भूलेख / ज़मीन सेवा (Land Record Service)*\n\nमुझसे क्या काम है? बस बोलें:\n\n📋 *उपलब्ध सेवाएँ:*\n• \"खसरा खतौनी निकालो\" — भूलेख रिकॉर्ड\n• \"ज़मीन का रिकॉर्ड दिखाओ\" — भू-नक्शा\n• \"रजिस्ट्री की जानकारी\" —",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:05.507Z"
+  },
+  {
+    "id": "audit-user_1784110625539_vof0n3g",
+    "userId": "audit-user",
+    "skill": "language_translator",
+    "input": "hello",
+    "output": "🌍 *Universal AI Translator*\n\nमैंने ट्रांसलेटर टूल खोल दिया है। आप यहाँ 80 से ज़्यादा भाषाओं में कुछ भी ट्रांसलेट कर सकते हैं।",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:05.539Z"
+  },
+  {
+    "id": "audit-user_1784110625580_8ksco2i",
+    "userId": "audit-user",
+    "skill": "legal_draft",
+    "input": "hello",
+    "output": "Draft failed quality checks. Regenerating...",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:05.580Z"
+  },
+  {
+    "id": "audit-user_1784110627652_0wuv892",
+    "userId": "audit-user",
+    "skill": "legal_notice",
+    "input": "hello",
+    "output": "\n═══════════════════════════════════════════════════════════════\n                        Legal Notice\n═══════════════════════════════════════════════════════════════\n\nDate: 15/7/2026\nPlace: __________",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:07.652Z"
+  },
+  {
+    "id": "audit-user_1784110642126_ftsv0sa",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "hello",
+    "output": "यह एक जटिल गणितीय समस्या है। मेरे ऑफलाइन डेटाबेस में इसका सीधा हल नहीं है और अभी ऑनलाइन AI से कनेक्ट करने में समस्या आ रही है।",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:22.126Z"
+  },
+  {
+    "id": "audit-user_1784110642180_94wgyqm",
+    "userId": "audit-user",
+    "skill": "media_converter",
+    "input": "hello",
+    "output": "🎬 *Media Converter*\n\nमैंने मीडिया कन्वर्टर टूल खोल दिया है। यहाँ से आप किसी भी **Video** को MP4, AVI, MKV आदि में और **Audio** को MP3, WAV आदि में बदल सकते हैं।",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:22.180Z"
+  },
+  {
+    "id": "audit-user_1784110643581_dz9ji27",
+    "userId": "audit-user",
+    "skill": "network_monitor",
+    "input": "hello",
+    "output": "📡 *नेटवर्क स्टेटस (Network Status)*\n\n• इंटरनेट: 🔴 ऑफलाइन (Offline)\n• लेटेंसी (Google): 1377ms\n• सर्वर अपटाइम: 0h 0m\n• मेमोरी: 246MB / 11226MB (2%)\n• CPU कोर: 4\n• Node.js: v24.18.0\n• Platform: Window",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:23.581Z"
+  },
+  {
+    "id": "audit-user_1784110643593_whp8qlr",
+    "userId": "audit-user",
+    "skill": "notepad",
+    "input": "hello",
+    "output": "वर्चुअल नोटपैड सक्रिय है। आप जो भी बोलेंगे मैं उसे डैशबोर्ड के केंद्र में टाइप करूँगा।",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:23.593Z"
+  },
+  {
+    "id": "audit-user_1784110643618_b6b7mmu",
+    "userId": "audit-user",
+    "skill": "pension_automation",
+    "input": "hello",
+    "output": "Pension Workflow Error: FormFillSkill is not a constructor",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:23.618Z"
+  },
+  {
+    "id": "audit-user_1784110643631_3dw8ikk",
+    "userId": "audit-user",
+    "skill": "photo_maker",
+    "input": "hello",
+    "output": "📸 *Passport Photo Maker*\n\nमैंने पासपोर्ट फोटो टूल तैयार कर लिया है। आप यहाँ 4, 8, या ज़्यादा कॉपियां एक साथ बना सकते हैं।",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:23.632Z"
+  },
+  {
+    "id": "audit-user_1784110643658_bj8nkmj",
+    "userId": "audit-user",
+    "skill": "project_report",
+    "input": "hello",
+    "output": "📊 *प्रोजेक्ट रिपोर्ट सेवा (Business Project Report)*\n\nबैंक लोन के लिए प्रोफेशनल प्रोजेक्ट रिपोर्ट और CMA Data:\n\n• \"PMEGP रिपोर्ट बनाओ\" (25-35% subsidy)\n• \"मुद्रा लोन रिपोर्ट\" (Shishu/Kishor/Tarun)\n• ",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:23.658Z"
+  },
+  {
+    "id": "audit-user_1784110643680_ogy8hm3",
+    "userId": "audit-user",
+    "skill": "ration_card",
+    "input": "hello",
+    "output": "🍚 *राशन कार्ड सेवा (Ration Card Service)*\n\nमुझसे क्या काम है? बस अपनी बात बताओ:\n\n📋 *उदाहरण:*\n• \"मेरा ration card 123456789012 ka status check karo\"\n• \"Ram Singh S/o Mohan Lal ke naam ka ration card ",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:23.680Z"
+  },
+  {
+    "id": "audit-user_1784110643697_9s2v6tw",
+    "userId": "audit-user",
+    "skill": "result_generator",
+    "input": "hello",
+    "output": "🏆 रिजल्ट ट्रैकर सक्रिय है।\n\nआप मुझे विभाग का नाम या रोल नंबर दे सकते हैं, मैं लेटेस्ट रिजल्ट्स चेक कर लूँगा।",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:23.698Z"
+  },
+  {
+    "id": "audit-user_1784110643718_ua0fqyy",
+    "userId": "audit-user",
+    "skill": "resume_maker",
+    "input": "hello",
+    "output": "📄 *Harshita AI रिज्यूमे बिल्डर* में आपका स्वागत है!\n\nमैं आपका प्रोफेशनल रिज्यूमे बना सकती हूँ।\n\nशुरू करने के लिए अपना *पूरा नाम* बताएं!\n(उदाहरण: \"मेरा नाम राहुल कुमार है\")",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:23.718Z"
+  },
+  {
+    "id": "audit-user_1784110643768_ttibu0y",
+    "userId": "audit-user",
+    "skill": "security_guardrail",
+    "input": "hello",
+    "output": "⚠️ **सुरक्षा चेतावनी (Security Alert)**\n\nमैं **Harshita AI** हूँ, एक सुरक्षित और एथिकल सरकारी सेवा सहायक।\nमैं किसी भी प्रकार की **अवैध (illegal), हैकिंग, या अनुचित** गतिविधि का समर्थन नहीं करती और न ह",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:23.768Z"
+  },
+  {
+    "id": "audit-user_1784110643803_xsjo1t2",
+    "userId": "audit-user",
+    "skill": "self_healing",
+    "input": "hello",
+    "output": "🧬 **Self-Healing Process Initiated...**\n\nमैंने अपनी पिछली सभी इंटरेक्शन्स और गलतियों (Failure Logs) का विश्लेषण शुरू कर दिया है। मैं अपनी प्रॉम्प्टिंग और कॉग्निटिव स्किल्स को ऑटोमैटिक रूप से अपडेट कर",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:23.803Z"
+  },
+  {
+    "id": "audit-user_1784110643997_f167pim",
+    "userId": "audit-user",
+    "skill": "story_video",
+    "input": "hello",
+    "output": "कहानी से कार्टून वीडियो: \nInvalid `prisma.storyVideo.create()` invocation:\n\n{\n  data: {\n    title: \"Analyzing story...\",\n    language: undefined,\n    duration: 30,\n    style: \"Cartoon\",\n    voiceType:",
+    "success": false,
+    "timestamp": "2026-07-15T10:17:23.997Z"
+  },
+  {
+    "id": "audit-user_1784110644020_yhg363e",
+    "userId": "audit-user",
+    "skill": "tada_process",
+    "input": "hello",
+    "output": "🧾 TA/DA नक्शा पेज खोल रहा हूँ!\n\nआप वहाँ:\n• Per-day यात्रा entries भर सकते हैं\n• Distance, fare, DA auto-calculate होगा\n• Hindi/English दोनों में support है\n• Print-ready Legal format में preview मिले",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:24.020Z"
+  },
+  {
+    "id": "audit-user_1784110644191_ynniki3",
+    "userId": "audit-user",
+    "skill": "master_tax_agent",
+    "input": "hello",
+    "output": "🙏 **नमस्कार! मैं Harshita AI Chartered Accountant हूँ।**\n\nमैं आपका Income Tax Return तैयार करूँगा।\n\nसबसे पहले, कृपया अपना **PAN Number** दर्ज करें।\n(जैसे: ABCDE1234F)",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:24.191Z"
+  },
+  {
+    "id": "audit-user_1784110644213_e6v40xb",
+    "userId": "audit-user",
+    "skill": "ticket_booking",
+    "input": "hello",
+    "output": "🎫 *टिकट बुकिंग सेवा (Ticket Booking)*\n\n• \"ट्रेन का टिकट बुक करो\" (IRCTC)\n• \"बस का टिकट\" (RedBus/State Transport)\n• \"फ्लाइट बुकिंग\" (Air Travel)\n\nकौन सा टिकट चाहिए?",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:24.213Z"
+  },
+  {
+    "id": "audit-user_1784110644262_p939vbc",
+    "userId": "audit-user",
+    "skill": "ui_builder",
+    "input": "hello",
+    "output": "🎨 UI बिल्डर मोड सक्रिय है।\n\nआप मुझे बता सकते हैं कि आपको किस तरह का लेआउट चाहिए (जैसे: \"3 कार्ड वाला ग्रिड\" या \"डार्क थीम चार्ट\")।",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:24.262Z"
+  },
+  {
+    "id": "audit-user_1784110644293_8jga71y",
+    "userId": "audit-user",
+    "skill": "unit_conversion_skill",
+    "input": "hello",
+    "output": "कृपया वह संख्या बताएं जिसे आप कन्वर्ट करना चाहते हैं (जैसे: \"2925 sq ft को bigha में\")",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:24.293Z"
+  },
+  {
+    "id": "audit-user_1784110644305_iin9gr8",
+    "userId": "audit-user",
+    "skill": "utility_tools",
+    "input": "hello",
+    "output": "🛠️ *Quick Utility Tools*\n\nमैंने यूटिलिटी हब खोल दिया है। यहाँ आप **QR Code** बना सकते हैं, **Secure Password** जनरेट कर सकते हैं, या **Calculator** का इस्तेमाल कर सकते हैं।",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:24.305Z"
+  },
+  {
+    "id": "audit-user_1784110644319_384yalf",
+    "userId": "audit-user",
+    "skill": "validator",
+    "input": "hello",
+    "output": "✅ *डेटा वैलिडेशन सेवा (Data Validation)*\n\nमुझे कोई भी नंबर या डेटा दें, मैं तुरंत चेक कर लूँगा:\n\n📋 *सपोर्टेड डेटा:*\n• आधार नंबर (12 digit + checksum)\n• PAN नंबर (AAAAA0000A)\n• IFSC Code (ABCD0123456)",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:24.319Z"
+  },
+  {
+    "id": "audit-user_1784110644333_nqugefb",
+    "userId": "audit-user",
+    "skill": "voice_agent",
+    "input": "hello",
+    "output": "🎙️ Voice Assistant yahan hai!\n\nAap \"voice on\" ya \"awaaz chalu karo\" bol kar voice mode start kar sakte ho.\n\nPhir microphone button daba kar Hindi/English mein boliye — main samajh kar jawab dungi (aw",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:24.333Z"
+  },
+  {
+    "id": "audit-user_1784110644369_azmshue",
+    "userId": "audit-user",
+    "skill": "web_learning",
+    "input": "hello",
+    "output": "🌐 *वेब लर्निंग मोड*\n\nकृपया उस वेबसाइट का URL दें जिसे मुझे analyze करना है:\n\nExample:\n• \"https://ssc.nic.in analyze karo\"\n• \"https://upbhulekh.gov.in se seekho\"\n\nमैं वेबसाइट के फॉर्म, बटन और स्ट्रक्च",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:24.369Z"
+  },
+  {
+    "id": "audit-user_1784110644403_80iyx68",
+    "userId": "audit-user",
+    "skill": "whatsapp",
+    "input": "hello",
+    "output": "📲 *WhatsApp Bot Service*\n\nमैं ये कर सकती हूँ:\n• \"WhatsApp connect karo\" — QR scan करके connect + WhatsApp Web open\n• \"WhatsApp prachar karo\" — 📢 Groups में Harshita AI का प्रचार\n• \"9876543210 par he",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:24.403Z"
+  },
+  {
+    "id": "audit-user_1784110644529_audmh29",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "2^15",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:24.529Z"
+  },
+  {
+    "id": "audit-user_1784110644600_7vf8c7o",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "sqrt(576)",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:24.600Z"
+  },
+  {
+    "id": "audit-user_1784110644632_rqjgces",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "sin(45) * cos(45)",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:24.632Z"
+  },
+  {
+    "id": "audit-user_1784110644669_00jk6me",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "log10(1000)",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:24.669Z"
+  },
+  {
+    "id": "audit-user_1784110644686_kf9btc0",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "Compound Interest for principal 5000 rate 8 time 3",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:24.686Z"
+  },
+  {
+    "id": "audit-user_1784110644726_y70d2ue",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "Front 22 ft, Back 43 ft, Left 90 ft, Right 90 ft area",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:24.726Z"
+  },
+  {
+    "id": "audit-user_1784110644749_rawduv5",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "Area of trapezium with front 22, back 43, length 90",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:24.749Z"
+  },
+  {
+    "id": "audit-user_1784110644767_z7bnubl",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "convert 100 sq ft to bigha",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:24.767Z"
+  },
+  {
+    "id": "audit-user_1784110644807_p6qqpy0",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "convert 10 hectares to acre",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:24.807Z"
+  },
+  {
+    "id": "audit-user_1784110644831_n9my6l8",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "draft legal notice for money recovery",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:24.831Z"
+  },
+  {
+    "id": "audit-user_1784110644919_k0w59nz",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "cheque bounce case legal notice draft",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:24.919Z"
+  },
+  {
+    "id": "audit-user_1784110644983_wl10lwp",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "draft affidavit for lost marksheet",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:24.983Z"
+  },
+  {
+    "id": "audit-user_1784110645017_d70rzr7",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "draft rent agreement for residential property",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:25.017Z"
+  },
+  {
+    "id": "audit-user_1784110645053_w83f0nh",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "GST calculation for amount 15000 rate 18",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:25.053Z"
+  },
+  {
+    "id": "audit-user_1784110645077_1rs2639",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "ITR filing deadline details",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:25.077Z"
+  },
+  {
+    "id": "audit-user_1784110645094_yai6bxk",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "write an application to BDO for road construction",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:25.094Z"
+  },
+  {
+    "id": "audit-user_1784110645116_xrxgyyj",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "write electricity complaint letter for low voltage",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:25.116Z"
+  },
+  {
+    "id": "audit-user_1784110645146_tn9vmms",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "create professional resume for software developer",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:25.146Z"
+  },
+  {
+    "id": "audit-user_1784110645163_rfrnmig",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "calculate TA DA for Jhansi VVIP duty",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-15T10:17:25.163Z"
+  },
+  {
+    "id": "audit-user_1784120973707_q0s5x9s",
+    "userId": "audit-user",
+    "skill": "application_writer",
+    "input": "hello",
+    "output": "आपका नाम क्या है? (Aapka naam kya hai?) (0/3 जानकारी मिली)\n\n💡 उदाहरण: e.g. Ramesh Kumar",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:33.707Z"
+  },
+  {
+    "id": "audit-user_1784120973730_xukf6kp",
+    "userId": "audit-user",
+    "skill": "bulk_import",
+    "input": "hello",
+    "output": "📁 बल्क इम्पोर्ट सेवा:\n• \"Excel फाइल अपलोड करो\"\n• \"डेटा इम्पोर्ट करो\"\n• \"सैंपल फॉर्मेट डाउनलोड करो\"\n\nक्या मैं आपकी मदद करूँ?",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:33.730Z"
+  },
+  {
+    "id": "audit-user_1784120973744_cyf26z8",
+    "userId": "audit-user",
+    "skill": "deploy_manager",
+    "input": "hello",
+    "output": "⚠️ मुझे Render Deploy Hook URL नहीं मिला। \n\nसर्वर को ऑटो-डिप्लॉय करने के लिए, कृपया अपना Render Deploy Hook URL मुझे दें (यह `https://api.render.com/deploy/...` से शुरू होता है)।\nया फिर इसे अपने `.env",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:33.744Z"
+  },
+  {
+    "id": "audit-user_1784120973756_flzk85d",
+    "userId": "audit-user",
+    "skill": "document_ocr",
+    "input": "hello",
+    "output": "📄 Document OCR तैयार है!\n\nमैं इन दस्तावेज़ों से डेटा निकाल सकता हूँ:\n• आधार कार्ड (Aadhaar Card)\n• पैन कार्ड (PAN Card)\n• मतदाता पहचान पत्र (Voter ID (EPIC))\n• ड्राइविंग लाइसेंस (Driving License (DL)",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:33.756Z"
+  },
+  {
+    "id": "audit-user_1784120975407_ch0nxr3",
+    "userId": "audit-user",
+    "skill": "eligibility_check",
+    "input": "hello",
+    "output": "🔍 *पात्रता जाँच (Eligibility Pre-Check)*\n\nकिस योजना या नौकरी की पात्रता जाँचनी है? (जैसे: ssc, railway, pmegp, police)\n\nExample: \"Mera eligibility check karo SSC ke liye\"",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:35.407Z"
+  },
+  {
+    "id": "audit-user_1784120975440_q4xkecm",
+    "userId": "audit-user",
+    "skill": "file_processor",
+    "input": "hello",
+    "output": "📁 *फाइल प्रोसेसिंग सेवा (File Processor)*\n\nमैं ये काम कर सकता हूँ:\n\n📸 *Image:*\n• \"Photo compress karo\" — फोटो साइज कम\n• \"Photo resize 100KB\" — exact साइज बनाओ\n• \"Photo to PDF\" — फोटो → PDF\n\n📄 *PDF:",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:35.440Z"
+  },
+  {
+    "id": "audit-user_1784120975524_j20xnwm",
+    "userId": "audit-user",
+    "skill": "form_fill",
+    "input": "hello",
+    "output": "📋 फॉर्म ऑटो-फिलिंग सिस्टम तैयार!\n\nउपलब्ध सेवाएँ:\n• *SSC CGL/CHSL* — [ssc.gov.in](https://ssc.gov.in)\n• *Indian Army* — [joinindianarmy.nic.in](https://joinindianarmy.nic.in)\n• *Railway RRB* — [rrbcdg",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:35.524Z"
+  },
+  {
+    "id": "audit-user_1784120975557_1ztx19r",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "hello",
+    "output": "नमस्कार। मैं Harshita AI हूँ — आपकी उन्नत (Advanced) CSC और एंटरप्राइज सहायक।\n\nमैं निम्नलिखित कार्यों में आपकी सहायता कर सकती हूँ:\n• ऑटोमेटेड फॉर्म फिलिंग (Automated Form Filling)\n• कानूनी दस्तावेज़ ड",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:35.557Z"
+  },
+  {
+    "id": "audit-user_1784120975578_sd3gtcu",
+    "userId": "audit-user",
+    "skill": "geometry_skill",
+    "input": "hello",
+    "output": "प्लाट का एरिया निकालने के लिए मुझे लम्बाई और चौड़ाई (जैसे: \"22 front, 43 back, 90 length\" या \"30x40\") बताएं।",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:35.578Z"
+  },
+  {
+    "id": "audit-user_1784120975590_qke5a6z",
+    "userId": "audit-user",
+    "skill": "job_search",
+    "input": "hello",
+    "output": "🔍 SarkariResult से ताज़ा नौकरियाँ खोज रहा हूँ... कृपया कुछ सेकंड प्रतीक्षा करें।",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:35.590Z"
+  },
+  {
+    "id": "audit-user_1784120975605_ovflmuq",
+    "userId": "audit-user",
+    "skill": "land_measurement_skill",
+    "input": "hello",
+    "output": "जमीन का बंटवारा करने के लिए, पहले मुझे जमीन का एरिया बताएं (जैसे \"22 front 43 back 90 length\") और फिर पूछें \"इसे 3 हिस्सों में बांटो\"।",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:35.605Z"
+  },
+  {
+    "id": "audit-user_1784120975623_jzdk8gk",
+    "userId": "audit-user",
+    "skill": "land_record",
+    "input": "hello",
+    "output": "🏞️ *भूलेख / ज़मीन सेवा (Land Record Service)*\n\nमुझसे क्या काम है? बस बोलें:\n\n📋 *उपलब्ध सेवाएँ:*\n• \"खसरा खतौनी निकालो\" — भूलेख रिकॉर्ड\n• \"ज़मीन का रिकॉर्ड दिखाओ\" — भू-नक्शा\n• \"रजिस्ट्री की जानकारी\" —",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:35.623Z"
+  },
+  {
+    "id": "audit-user_1784120975670_qn1ys31",
+    "userId": "audit-user",
+    "skill": "language_translator",
+    "input": "hello",
+    "output": "🌍 *Universal AI Translator*\n\nमैंने ट्रांसलेटर टूल खोल दिया है। आप यहाँ 80 से ज़्यादा भाषाओं में कुछ भी ट्रांसलेट कर सकते हैं।",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:35.670Z"
+  },
+  {
+    "id": "audit-user_1784120975692_n1ra6yv",
+    "userId": "audit-user",
+    "skill": "legal_draft",
+    "input": "hello",
+    "output": "Draft failed quality checks. Regenerating...",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:35.692Z"
+  },
+  {
+    "id": "audit-user_1784120977188_3rz6o8m",
+    "userId": "audit-user",
+    "skill": "legal_notice",
+    "input": "hello",
+    "output": "\n═══════════════════════════════════════════════════════════════\n                        Legal Notice\n═══════════════════════════════════════════════════════════════\n\nDate: 15/7/2026\nPlace: __________",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:37.188Z"
+  },
+  {
+    "id": "audit-user_1784120989910_8vanhmr",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "hello",
+    "output": "यह एक जटिल गणितीय समस्या है। मेरे ऑफलाइन डेटाबेस में इसका सीधा हल नहीं है और अभी ऑनलाइन AI से कनेक्ट करने में समस्या आ रही है।",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:49.910Z"
+  },
+  {
+    "id": "audit-user_1784120989985_913hzpt",
+    "userId": "audit-user",
+    "skill": "media_converter",
+    "input": "hello",
+    "output": "🎬 *Media Converter*\n\nमैंने मीडिया कन्वर्टर टूल खोल दिया है। यहाँ से आप किसी भी **Video** को MP4, AVI, MKV आदि में और **Audio** को MP3, WAV आदि में बदल सकते हैं।",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:49.985Z"
+  },
+  {
+    "id": "audit-user_1784120995710_m78ifzc",
+    "userId": "audit-user",
+    "skill": "network_monitor",
+    "input": "hello",
+    "output": "📡 *नेटवर्क स्टेटस (Network Status)*\n\n• इंटरनेट: 🔴 ऑफलाइन (Offline)\n• लेटेंसी (Google): ❌ Timeout\n• सर्वर अपटाइम: 0h 0m\n• मेमोरी: 240MB / 11226MB (2%)\n• CPU कोर: 4\n• Node.js: v24.18.0\n• Platform: Win",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:55.710Z"
+  },
+  {
+    "id": "audit-user_1784120995740_0r8gdnd",
+    "userId": "audit-user",
+    "skill": "notepad",
+    "input": "hello",
+    "output": "वर्चुअल नोटपैड सक्रिय है। आप जो भी बोलेंगे मैं उसे डैशबोर्ड के केंद्र में टाइप करूँगा।",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:55.740Z"
+  },
+  {
+    "id": "audit-user_1784120995801_5vd6wd3",
+    "userId": "audit-user",
+    "skill": "pension_automation",
+    "input": "hello",
+    "output": "Pension Workflow Error: FormFillSkill is not a constructor",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:55.801Z"
+  },
+  {
+    "id": "audit-user_1784120995822_zj5i4x2",
+    "userId": "audit-user",
+    "skill": "photo_maker",
+    "input": "hello",
+    "output": "📸 *Passport Photo Maker*\n\nमैंने पासपोर्ट फोटो टूल तैयार कर लिया है। आप यहाँ 4, 8, या ज़्यादा कॉपियां एक साथ बना सकते हैं।",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:55.822Z"
+  },
+  {
+    "id": "audit-user_1784120995870_i8oe5f4",
+    "userId": "audit-user",
+    "skill": "project_report",
+    "input": "hello",
+    "output": "📊 *प्रोजेक्ट रिपोर्ट सेवा (Business Project Report)*\n\nबैंक लोन के लिए प्रोफेशनल प्रोजेक्ट रिपोर्ट और CMA Data:\n\n• \"PMEGP रिपोर्ट बनाओ\" (25-35% subsidy)\n• \"मुद्रा लोन रिपोर्ट\" (Shishu/Kishor/Tarun)\n• ",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:55.870Z"
+  },
+  {
+    "id": "audit-user_1784120995906_7lyk43b",
+    "userId": "audit-user",
+    "skill": "ration_card",
+    "input": "hello",
+    "output": "🍚 *राशन कार्ड सेवा (Ration Card Service)*\n\nमुझसे क्या काम है? बस अपनी बात बताओ:\n\n📋 *उदाहरण:*\n• \"मेरा ration card 123456789012 ka status check karo\"\n• \"Ram Singh S/o Mohan Lal ke naam ka ration card ",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:55.906Z"
+  },
+  {
+    "id": "audit-user_1784120995935_2ns0xiw",
+    "userId": "audit-user",
+    "skill": "result_generator",
+    "input": "hello",
+    "output": "🏆 रिजल्ट ट्रैकर सक्रिय है।\n\nआप मुझे विभाग का नाम या रोल नंबर दे सकते हैं, मैं लेटेस्ट रिजल्ट्स चेक कर लूँगा।",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:55.935Z"
+  },
+  {
+    "id": "audit-user_1784120995954_9tlp5am",
+    "userId": "audit-user",
+    "skill": "resume_maker",
+    "input": "hello",
+    "output": "📄 *Harshita AI रिज्यूमे बिल्डर* में आपका स्वागत है!\n\nमैं आपका प्रोफेशनल रिज्यूमे बना सकती हूँ।\n\nशुरू करने के लिए अपना *पूरा नाम* बताएं!\n(उदाहरण: \"मेरा नाम राहुल कुमार है\")",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:55.954Z"
+  },
+  {
+    "id": "audit-user_1784120995973_kdilcvy",
+    "userId": "audit-user",
+    "skill": "security_guardrail",
+    "input": "hello",
+    "output": "⚠️ **सुरक्षा चेतावनी (Security Alert)**\n\nमैं **Harshita AI** हूँ, एक सुरक्षित और एथिकल सरकारी सेवा सहायक।\nमैं किसी भी प्रकार की **अवैध (illegal), हैकिंग, या अनुचित** गतिविधि का समर्थन नहीं करती और न ह",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:55.973Z"
+  },
+  {
+    "id": "audit-user_1784120995987_lbclb4j",
+    "userId": "audit-user",
+    "skill": "self_healing",
+    "input": "hello",
+    "output": "🧬 **Self-Healing Process Initiated...**\n\nमैंने अपनी पिछली सभी इंटरेक्शन्स और गलतियों (Failure Logs) का विश्लेषण शुरू कर दिया है। मैं अपनी प्रॉम्प्टिंग और कॉग्निटिव स्किल्स को ऑटोमैटिक रूप से अपडेट कर",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:55.987Z"
+  },
+  {
+    "id": "audit-user_1784120996109_x2p89kg",
+    "userId": "audit-user",
+    "skill": "story_video",
+    "input": "hello",
+    "output": "कहानी से कार्टून वीडियो: \nInvalid `prisma.storyVideo.create()` invocation:\n\n{\n  data: {\n    title: \"Analyzing story...\",\n    language: undefined,\n    duration: 30,\n    style: \"Cartoon\",\n    voiceType:",
+    "success": false,
+    "timestamp": "2026-07-15T13:09:56.109Z"
+  },
+  {
+    "id": "audit-user_1784120996138_f0jewo9",
+    "userId": "audit-user",
+    "skill": "tada_process",
+    "input": "hello",
+    "output": "🧾 TA/DA नक्शा पेज खोल रहा हूँ!\n\nआप वहाँ:\n• Per-day यात्रा entries भर सकते हैं\n• Distance, fare, DA auto-calculate होगा\n• Hindi/English दोनों में support है\n• Print-ready Legal format में preview मिले",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:56.138Z"
+  },
+  {
+    "id": "audit-user_1784120996386_vvv40s1",
+    "userId": "audit-user",
+    "skill": "master_tax_agent",
+    "input": "hello",
+    "output": "🙏 **नमस्कार! मैं Harshita AI Chartered Accountant हूँ।**\n\nमैं आपका Income Tax Return तैयार करूँगा।\n\nसबसे पहले, कृपया अपना **PAN Number** दर्ज करें।\n(जैसे: ABCDE1234F)",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:56.386Z"
+  },
+  {
+    "id": "audit-user_1784120996413_rvzp0v3",
+    "userId": "audit-user",
+    "skill": "ticket_booking",
+    "input": "hello",
+    "output": "🎫 *टिकट बुकिंग सेवा (Ticket Booking)*\n\n• \"ट्रेन का टिकट बुक करो\" (IRCTC)\n• \"बस का टिकट\" (RedBus/State Transport)\n• \"फ्लाइट बुकिंग\" (Air Travel)\n\nकौन सा टिकट चाहिए?",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:56.413Z"
+  },
+  {
+    "id": "audit-user_1784120996464_yf90t6c",
+    "userId": "audit-user",
+    "skill": "ui_builder",
+    "input": "hello",
+    "output": "🎨 UI बिल्डर मोड सक्रिय है।\n\nआप मुझे बता सकते हैं कि आपको किस तरह का लेआउट चाहिए (जैसे: \"3 कार्ड वाला ग्रिड\" या \"डार्क थीम चार्ट\")।",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:56.464Z"
+  },
+  {
+    "id": "audit-user_1784120996489_ag7n7q7",
+    "userId": "audit-user",
+    "skill": "unit_conversion_skill",
+    "input": "hello",
+    "output": "कृपया वह संख्या बताएं जिसे आप कन्वर्ट करना चाहते हैं (जैसे: \"2925 sq ft को bigha में\")",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:56.489Z"
+  },
+  {
+    "id": "audit-user_1784120996522_4c9dxp1",
+    "userId": "audit-user",
+    "skill": "utility_tools",
+    "input": "hello",
+    "output": "🛠️ *Quick Utility Tools*\n\nमैंने यूटिलिटी हब खोल दिया है। यहाँ आप **QR Code** बना सकते हैं, **Secure Password** जनरेट कर सकते हैं, या **Calculator** का इस्तेमाल कर सकते हैं।",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:56.522Z"
+  },
+  {
+    "id": "audit-user_1784120996571_6ha5agh",
+    "userId": "audit-user",
+    "skill": "validator",
+    "input": "hello",
+    "output": "✅ *डेटा वैलिडेशन सेवा (Data Validation)*\n\nमुझे कोई भी नंबर या डेटा दें, मैं तुरंत चेक कर लूँगा:\n\n📋 *सपोर्टेड डेटा:*\n• आधार नंबर (12 digit + checksum)\n• PAN नंबर (AAAAA0000A)\n• IFSC Code (ABCD0123456)",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:56.571Z"
+  },
+  {
+    "id": "audit-user_1784120996586_ioi2k0i",
+    "userId": "audit-user",
+    "skill": "voice_agent",
+    "input": "hello",
+    "output": "🎙️ Voice Assistant yahan hai!\n\nAap \"voice on\" ya \"awaaz chalu karo\" bol kar voice mode start kar sakte ho.\n\nPhir microphone button daba kar Hindi/English mein boliye — main samajh kar jawab dungi (aw",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:56.586Z"
+  },
+  {
+    "id": "audit-user_1784120996604_kldl4x6",
+    "userId": "audit-user",
+    "skill": "web_learning",
+    "input": "hello",
+    "output": "🌐 *वेब लर्निंग मोड*\n\nकृपया उस वेबसाइट का URL दें जिसे मुझे analyze करना है:\n\nExample:\n• \"https://ssc.nic.in analyze karo\"\n• \"https://upbhulekh.gov.in se seekho\"\n\nमैं वेबसाइट के फॉर्म, बटन और स्ट्रक्च",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:56.604Z"
+  },
+  {
+    "id": "audit-user_1784120996665_mfv7sf6",
+    "userId": "audit-user",
+    "skill": "whatsapp",
+    "input": "hello",
+    "output": "📲 *WhatsApp Bot Service*\n\nमैं ये कर सकती हूँ:\n• \"WhatsApp connect karo\" — QR scan करके connect + WhatsApp Web open\n• \"WhatsApp prachar karo\" — 📢 Groups में Harshita AI का प्रचार\n• \"9876543210 par he",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:56.665Z"
+  },
+  {
+    "id": "audit-user_1784120996797_omzhuyc",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "2^15",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:56.797Z"
+  },
+  {
+    "id": "audit-user_1784120996875_5kmm2y1",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "sqrt(576)",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:56.875Z"
+  },
+  {
+    "id": "audit-user_1784120996966_xjec62p",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "sin(45) * cos(45)",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:56.966Z"
+  },
+  {
+    "id": "audit-user_1784120996992_b0cp9kv",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "log10(1000)",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:56.992Z"
+  },
+  {
+    "id": "audit-user_1784120997022_vpcbl03",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "Compound Interest for principal 5000 rate 8 time 3",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:57.022Z"
+  },
+  {
+    "id": "audit-user_1784120997078_6ish3ns",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "Front 22 ft, Back 43 ft, Left 90 ft, Right 90 ft area",
+    "output": "Formula\nअनुमानित क्षेत्रफल (आमने-सामने की भुजाओं का औसत)\n\nValues\nपहली दीवार (Front) = 22 फीट\nसामने की दीवार (Back) = 43 फीट\nएक तरफ की दीवार (Left) = 90 फीट\nदूसरी तरफ की दीवार (Right) = 90 फीट\n\nCalcula",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:57.078Z"
+  },
+  {
+    "id": "audit-user_1784120997135_j1cknft",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "Area of trapezium with front 22, back 43, length 90",
+    "output": "Please provide all 4 sides (Front, Back, Left, Right) or Length and Width to calculate the area.\nExample: Front 22, Back 66, Left 55, Right 55",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:57.135Z"
+  },
+  {
+    "id": "audit-user_1784120997164_c0hnzbm",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "convert 100 sq ft to bigha",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:57.164Z"
+  },
+  {
+    "id": "audit-user_1784120997240_v9lpqhl",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "convert 10 hectares to acre",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:57.240Z"
+  },
+  {
+    "id": "audit-user_1784120997269_txotrio",
+    "userId": "audit-user",
+    "skill": "legal_notice",
+    "input": "draft legal notice for money recovery",
+    "output": "\n═══════════════════════════════════════════════════════════════\n                        Legal Notice\n═══════════════════════════════════════════════════════════════\n\nDate: 15/7/2026\nPlace: __________",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:57.269Z"
+  },
+  {
+    "id": "audit-user_1784120997299_lb29k6d",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "draft legal notice for money recovery",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:57.299Z"
+  },
+  {
+    "id": "audit-user_1784120997339_89zjo6k",
+    "userId": "audit-user",
+    "skill": "legal_notice",
+    "input": "cheque bounce case legal notice draft",
+    "output": "\n═══════════════════════════════════════════════════════════════\n                        Legal Notice\n═══════════════════════════════════════════════════════════════\n\nDate: 15/7/2026\nPlace: __________",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:57.339Z"
+  },
+  {
+    "id": "audit-user_1784120997359_wx1ph19",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "cheque bounce case legal notice draft",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:57.359Z"
+  },
+  {
+    "id": "audit-user_1784120997394_zk2aqn6",
+    "userId": "audit-user",
+    "skill": "legal_draft",
+    "input": "draft affidavit for lost marksheet",
+    "output": "Draft failed quality checks. Regenerating...",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:57.394Z"
+  },
+  {
+    "id": "audit-user_1784120997416_m4lcwu2",
+    "userId": "audit-user",
+    "skill": "legal_draft",
+    "input": "draft rent agreement for residential property",
+    "output": "Draft failed quality checks. Regenerating...",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:57.416Z"
+  },
+  {
+    "id": "audit-user_1784120997438_4f3pv4z",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "GST calculation for amount 15000 rate 18",
+    "output": "Formula\nGST Amount = (Original Amount × GST%) / 100\n\nValues\nOriginal Amount = ₹15000\nGST Rate = 18%\n\nCalculation\nGST Amount = (15000 × 18) / 100 = ₹2700.00\nTotal = 15000 + 2700.00 = ₹17700.00\n\nResult\n",
+    "success": true,
+    "timestamp": "2026-07-15T13:09:57.438Z"
+  },
+  {
+    "id": "audit-user_1784121032639_i5zua56",
+    "userId": "audit-user",
+    "skill": "master_tax_agent",
+    "input": "ITR filing deadline details",
+    "output": "🙏 **नमस्कार! मैं Harshita AI Chartered Accountant हूँ।**\n\nमैं आपका Income Tax Return तैयार करूँगा।\n\nसबसे पहले, कृपया अपना **PAN Number** दर्ज करें।\n(जैसे: ABCDE1234F)",
+    "success": true,
+    "timestamp": "2026-07-15T13:10:32.639Z"
+  },
+  {
+    "id": "audit-user_1784121032717_8lkgmkd",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "write an application to BDO for road construction",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-15T13:10:32.717Z"
+  },
+  {
+    "id": "audit-user_1784121032777_j6i6rsk",
+    "userId": "audit-user",
+    "skill": "application_writer",
+    "input": "write electricity complaint letter for low voltage",
+    "output": "आपका नाम क्या है? (Aapka naam kya hai?) (1/3 जानकारी मिली)\n\n💡 उदाहरण: e.g. Ramesh Kumar",
+    "success": true,
+    "timestamp": "2026-07-15T13:10:32.777Z"
+  },
+  {
+    "id": "audit-user_1784121032839_vjir384",
+    "userId": "audit-user",
+    "skill": "resume_maker",
+    "input": "create professional resume for software developer",
+    "output": "📄 *Harshita AI रिज्यूमे बिल्डर* में आपका स्वागत है!\n\nमैं आपका प्रोफेशनल रिज्यूमे बना सकती हूँ।\n\nशुरू करने के लिए अपना *पूरा नाम* बताएं!\n(उदाहरण: \"मेरा नाम राहुल कुमार है\")",
+    "success": true,
+    "timestamp": "2026-07-15T13:10:32.839Z"
+  },
+  {
+    "id": "audit-user_1784121032877_tq0otno",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "calculate TA DA for Jhansi VVIP duty",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-15T13:10:32.877Z"
+  },
+  {
+    "id": "audit-user_1784660220974_e4s7v5z",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 22",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 22\n\nCalculation\n55 + 22\n\nResult\n77",
+    "success": true,
+    "timestamp": "2026-07-21T18:57:00.974Z"
+  },
+  {
+    "id": "audit-user_1784660222666_imkajqn",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "100 * 5",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-21T18:57:02.667Z"
+  },
+  {
+    "id": "audit-user_1784660224084_ms1p9n7",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "999 / 9",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-21T18:57:04.084Z"
+  },
+  {
+    "id": "audit-user_1784660225519_bnkkrj9",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "12345 - 678",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-21T18:57:05.519Z"
+  },
+  {
+    "id": "audit-user_1784660225542_a7hcuvg",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "2^15",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-21T18:57:05.542Z"
+  },
+  {
+    "id": "audit-user_1784660225705_sy5ci8k",
+    "userId": "audit-user",
+    "skill": "whatsapp",
+    "input": "sqrt(576)",
+    "output": "📱 *WhatsApp Web खोल रहे हैं...*\n\n🌐 Browser में WhatsApp Web open हो रहा है।\n\nSteps:\n1. WhatsApp app खोलें\n2. Settings → Linked Devices\n3. \"Link a device\" टैप करें\n4. Browser में दिखा QR code scan कर",
+    "success": true,
+    "timestamp": "2026-07-21T18:57:05.705Z"
+  },
+  {
+    "id": "audit-user_1784660225738_we4l1ed",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "log10(1000)",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-21T18:57:05.738Z"
+  },
+  {
+    "id": "audit-user_1784660225793_dnwnhqn",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "50% of 2500",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-21T18:57:05.793Z"
+  },
+  {
+    "id": "audit-user_1784660225834_yixj48v",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "15 percent of 15000",
+    "output": "यह एक जटिल गणितीय समस्या है। मेरे ऑफलाइन डेटाबेस में इसका सीधा हल नहीं है और अभी ऑनलाइन AI से कनेक्ट करने में समस्या आ रही है।",
+    "success": true,
+    "timestamp": "2026-07-21T18:57:05.834Z"
+  },
+  {
+    "id": "audit-user_1784660225871_o9t9bjr",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "1200 + 400 - 100",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n1200 + 400 - 100\n\nCalculation\n1200 + 400 - 100\n\nResult\n1500",
+    "success": true,
+    "timestamp": "2026-07-21T18:57:05.871Z"
+  },
+  {
+    "id": "audit-user_1784660225897_rufh7d6",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "Area of circle with radius 7",
+    "output": "Formula\nArea of Circle (वृत्त का क्षेत्रफल)\n\nValues\nRadius (r) = Unknown\n\nCalculation\nA = π × r²\n\nResult\nवृत्त का क्षेत्रफल निकालने का सूत्र है: **π × r²**\nजहाँ 'r' त्रिज्या (radius) है।",
+    "success": true,
+    "timestamp": "2026-07-21T18:57:05.897Z"
+  },
+  {
+    "id": "audit-user_1784660225924_sarwp7w",
+    "userId": "audit-user",
+    "skill": "form_fill",
+    "input": "Volume of sphere formula",
+    "output": "📋 फॉर्म ऑटो-फिलिंग सिस्टम तैयार!\n\nउपलब्ध सेवाएँ:\n• *SSC CGL/CHSL* — [ssc.gov.in](https://ssc.gov.in)\n• *Indian Army* — [joinindianarmy.nic.in](https://joinindianarmy.nic.in)\n• *Railway RRB* — [rrbcdg",
+    "success": true,
+    "timestamp": "2026-07-21T18:57:05.925Z"
+  },
+  {
+    "id": "audit-user_1784660225957_g17a7la",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "Area of rectangle length 12 width 8",
+    "output": "Formula\nArea of Rectangle (आयत का क्षेत्रफल)\n\nValues\nLength (l) = Unknown, Width (w) = Unknown\n\nCalculation\nA = l × w\n\nResult\nआयत का क्षेत्रफल निकालने का सूत्र है: **लम्बाई × चौड़ाई**",
+    "success": true,
+    "timestamp": "2026-07-21T18:57:05.957Z"
+  },
+  {
+    "id": "audit-user_1784660225991_vbr5y7y",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "perimeter of square side 10",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-21T18:57:05.991Z"
+  },
+  {
+    "id": "audit-user_1784660226024_4ra29vk",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "ayat ka kshetrafal",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-21T18:57:06.024Z"
+  },
+  {
+    "id": "audit-user_1784660226063_r5nlbca",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "sin(45) * cos(45)",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-21T18:57:06.063Z"
+  },
+  {
+    "id": "audit-user_1784660226099_77l40d4",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "tan(60)",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-21T18:57:06.099Z"
+  },
+  {
+    "id": "audit-user_1784660226149_922ykzf",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "sin 30 + cos 60",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-21T18:57:06.149Z"
+  },
+  {
+    "id": "audit-user_1784660226178_g16nvzu",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "pythagoras formula",
+    "output": "यह एक जटिल गणितीय समस्या है। मेरे ऑफलाइन डेटाबेस में इसका सीधा हल नहीं है और अभी ऑनलाइन AI से कनेक्ट करने में समस्या आ रही है।",
+    "success": true,
+    "timestamp": "2026-07-21T18:57:06.178Z"
+  },
+  {
+    "id": "audit-user_1784660226212_65rnl21",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "cosec 90",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-21T18:57:06.212Z"
+  },
+  {
+    "id": "audit-user_1784660226243_mwgscb7",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "speed of light value",
+    "output": "यह एक जटिल गणितीय समस्या है। मेरे ऑफलाइन डेटाबेस में इसका सीधा हल नहीं है और अभी ऑनलाइन AI से कनेक्ट करने में समस्या आ रही है।",
+    "success": true,
+    "timestamp": "2026-07-21T18:57:06.243Z"
+  },
+  {
+    "id": "audit-user_1784660226264_1y3ek9m",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "gravity value on earth",
+    "output": "यह एक जटिल गणितीय समस्या है। मेरे ऑफलाइन डेटाबेस में इसका सीधा हल नहीं है और अभी ऑनलाइन AI से कनेक्ट करने में समस्या आ रही है।",
+    "success": true,
+    "timestamp": "2026-07-21T18:57:06.264Z"
+  },
+  {
+    "id": "audit-user_1784660226284_k1e2wjn",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "planck constant value",
+    "output": "यह एक जटिल गणितीय समस्या है। मेरे ऑफलाइन डेटाबेस में इसका सीधा हल नहीं है और अभी ऑनलाइन AI से कनेक्ट करने में समस्या आ रही है।",
+    "success": true,
+    "timestamp": "2026-07-21T18:57:06.284Z"
+  },
+  {
+    "id": "audit-user_1784660226309_tl9y0ax",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "boltzmann constant",
+    "output": "यह एक जटिल गणितीय समस्या है। मेरे ऑफलाइन डेटाबेस में इसका सीधा हल नहीं है और अभी ऑनलाइन AI से कनेक्ट करने में समस्या आ रही है।",
+    "success": true,
+    "timestamp": "2026-07-21T18:57:06.309Z"
+  },
+  {
+    "id": "audit-user_1784660226340_nq60cn6",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "what is h2o chemical formula",
+    "output": "EMI निकालने के लिए मुझे मूलधन (Principal), ब्याज दर (Yearly Interest Rate) और समय (महीनों में) बताएं। (जैसे: 100000 10 24 EMI)",
+    "success": true,
+    "timestamp": "2026-07-21T18:57:06.340Z"
+  },
+  {
+    "id": "audit-user_1784660226356_g96ez8l",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "co2 chemical formula",
+    "output": "EMI निकालने के लिए मुझे मूलधन (Principal), ब्याज दर (Yearly Interest Rate) और समय (महीनों में) बताएं। (जैसे: 100000 10 24 EMI)",
+    "success": true,
+    "timestamp": "2026-07-21T18:57:06.356Z"
+  },
+  {
+    "id": "audit-user_1784660226374_oz698bn",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "what is dna",
+    "output": "DNA (Deoxyribonucleic acid) - Contains genetic instructions for all living organisms. Double helix structure discovered by Watson and Crick.",
+    "success": true,
+    "timestamp": "2026-07-21T18:57:06.374Z"
+  },
+  {
+    "id": "audit-user_1784660226402_yq42600",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "what is india capital",
+    "output": "New Delhi is the capital of India.",
+    "success": true,
+    "timestamp": "2026-07-21T18:57:06.402Z"
+  },
+  {
+    "id": "audit-user_1784660226415_usx6hu4",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "india population statistics",
+    "output": "Approximately 1.4 billion people (2024 estimate).",
+    "success": true,
+    "timestamp": "2026-07-21T18:57:06.415Z"
+  },
+  {
+    "id": "audit-user_1784660226447_5gkqxef",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "GST calculation for amount 15000 rate 18",
+    "output": "Formula\nGST Amount = (Original Amount × GST%) / 100\n\nValues\nOriginal Amount = ₹15000\nGST Rate = 18%\n\nCalculation\nGST Amount = (15000 × 18) / 100 = ₹2700.00\nTotal = 15000 + 2700.00 = ₹17700.00\n\nResult\n",
+    "success": true,
+    "timestamp": "2026-07-21T18:57:06.447Z"
+  },
+  {
+    "id": "audit-user_1784699054223_dj6deh0",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 22",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 22\n\nCalculation\n55 + 22\n\nResult\n77",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:14.223Z"
+  },
+  {
+    "id": "audit-user_1784699056104_zmzlluq",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "100 * 5",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:16.104Z"
+  },
+  {
+    "id": "audit-user_1784699056127_wb7etn1",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "999 / 9",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n999 / 9\n\nCalculation\n999 / 9\n\nResult\n111",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:16.127Z"
+  },
+  {
+    "id": "audit-user_1784699056167_82qzmg1",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "12345 - 678",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n12345 - 678\n\nCalculation\n12345 - 678\n\nResult\n11667",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:16.167Z"
+  },
+  {
+    "id": "audit-user_1784699057720_lro3o9d",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "2^15",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:17.720Z"
+  },
+  {
+    "id": "audit-user_1784699059211_ggqf1vy",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "sqrt(576)",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:19.211Z"
+  },
+  {
+    "id": "audit-user_1784699059262_k5t3oy6",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "log10(1000)",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:19.262Z"
+  },
+  {
+    "id": "audit-user_1784699059314_fvqsud4",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "50% of 2500",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:19.314Z"
+  },
+  {
+    "id": "audit-user_1784699059365_z7m2wsn",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "15 percent of 15000",
+    "output": "यह एक जटिल गणितीय समस्या है। मेरे ऑफलाइन डेटाबेस में इसका सीधा हल नहीं है और अभी ऑनलाइन AI से कनेक्ट करने में समस्या आ रही है।",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:19.365Z"
+  },
+  {
+    "id": "audit-user_1784699059396_k8sgp4z",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "1200 + 400 - 100",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n1200 + 400 - 100\n\nCalculation\n1200 + 400 - 100\n\nResult\n1500",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:19.396Z"
+  },
+  {
+    "id": "audit-user_1784699059420_gz318ze",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "Area of circle with radius 7",
+    "output": "Formula\nArea of Circle (वृत्त का क्षेत्रफल)\n\nValues\nRadius (r) = Unknown\n\nCalculation\nA = π × r²\n\nResult\nवृत्त का क्षेत्रफल निकालने का सूत्र है: **π × r²**\nजहाँ 'r' त्रिज्या (radius) है।",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:19.420Z"
+  },
+  {
+    "id": "audit-user_1784699059438_pwj7ru1",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "Volume of sphere formula",
+    "output": "Formula\nVolume of Sphere (गोले का आयतन / घनत्व)\n\nValues\nRadius (r) = Unknown\n\nCalculation\nV = (4/3) × π × r³\n\nResult\nगोले का घनत्व/आयतन (Volume of Sphere) निकालने का सूत्र है: **(4/3) × π × r³**\nजहाँ ",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:19.438Z"
+  },
+  {
+    "id": "audit-user_1784699059459_hy74ijo",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "Area of rectangle length 12 width 8",
+    "output": "Formula\nArea of Rectangle (आयत का क्षेत्रफल)\n\nValues\nLength (l) = Unknown, Width (w) = Unknown\n\nCalculation\nA = l × w\n\nResult\nआयत का क्षेत्रफल निकालने का सूत्र है: **लम्बाई × चौड़ाई**",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:19.459Z"
+  },
+  {
+    "id": "audit-user_1784699059496_md39w60",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "perimeter of square side 10",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:19.496Z"
+  },
+  {
+    "id": "audit-user_1784699059538_qhkhbxi",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "ayat ka kshetrafal",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:19.538Z"
+  },
+  {
+    "id": "audit-user_1784699059600_pg8h7eu",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "sin(45) * cos(45)",
+    "output": "यह एक जटिल गणितीय समस्या है। मेरे ऑफलाइन डेटाबेस में इसका सीधा हल नहीं है और अभी ऑनलाइन AI से कनेक्ट करने में समस्या आ रही है।",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:19.600Z"
+  },
+  {
+    "id": "audit-user_1784699059643_kn19fp4",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "tan(60)",
+    "output": "यह एक जटिल गणितीय समस्या है। मेरे ऑफलाइन डेटाबेस में इसका सीधा हल नहीं है और अभी ऑनलाइन AI से कनेक्ट करने में समस्या आ रही है।",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:19.643Z"
+  },
+  {
+    "id": "audit-user_1784699059707_e3b6ego",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "sin 30 + cos 60",
+    "output": "यह एक जटिल गणितीय समस्या है। मेरे ऑफलाइन डेटाबेस में इसका सीधा हल नहीं है और अभी ऑनलाइन AI से कनेक्ट करने में समस्या आ रही है।",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:19.707Z"
+  },
+  {
+    "id": "audit-user_1784699059740_3d9rn3f",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "pythagoras formula",
+    "output": "यह एक जटिल गणितीय समस्या है। मेरे ऑफलाइन डेटाबेस में इसका सीधा हल नहीं है और अभी ऑनलाइन AI से कनेक्ट करने में समस्या आ रही है।",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:19.740Z"
+  },
+  {
+    "id": "audit-user_1784699059768_wfr3njt",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "cosec 90",
+    "output": "यह एक जटिल गणितीय समस्या है। मेरे ऑफलाइन डेटाबेस में इसका सीधा हल नहीं है और अभी ऑनलाइन AI से कनेक्ट करने में समस्या आ रही है।",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:19.768Z"
+  },
+  {
+    "id": "audit-user_1784699059800_p60glid",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "speed of light value",
+    "output": "यह एक जटिल गणितीय समस्या है। मेरे ऑफलाइन डेटाबेस में इसका सीधा हल नहीं है और अभी ऑनलाइन AI से कनेक्ट करने में समस्या आ रही है।",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:19.800Z"
+  },
+  {
+    "id": "audit-user_1784699059821_eosfldy",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "gravity value on earth",
+    "output": "यह एक जटिल गणितीय समस्या है। मेरे ऑफलाइन डेटाबेस में इसका सीधा हल नहीं है और अभी ऑनलाइन AI से कनेक्ट करने में समस्या आ रही है।",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:19.821Z"
+  },
+  {
+    "id": "audit-user_1784699059880_tqivf8s",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "planck constant value",
+    "output": "यह एक जटिल गणितीय समस्या है। मेरे ऑफलाइन डेटाबेस में इसका सीधा हल नहीं है और अभी ऑनलाइन AI से कनेक्ट करने में समस्या आ रही है।",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:19.880Z"
+  },
+  {
+    "id": "audit-user_1784699059902_g2at2pa",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "boltzmann constant",
+    "output": "यह एक जटिल गणितीय समस्या है। मेरे ऑफलाइन डेटाबेस में इसका सीधा हल नहीं है और अभी ऑनलाइन AI से कनेक्ट करने में समस्या आ रही है।",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:19.902Z"
+  },
+  {
+    "id": "audit-user_1784699059921_f52535b",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "what is h2o chemical formula",
+    "output": "EMI निकालने के लिए मुझे मूलधन (Principal), ब्याज दर (Yearly Interest Rate) और समय (महीनों में) बताएं। (जैसे: 100000 10 24 EMI)",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:19.921Z"
+  },
+  {
+    "id": "audit-user_1784699059960_k8wmkwe",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "co2 chemical formula",
+    "output": "EMI निकालने के लिए मुझे मूलधन (Principal), ब्याज दर (Yearly Interest Rate) और समय (महीनों में) बताएं। (जैसे: 100000 10 24 EMI)",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:19.960Z"
+  },
+  {
+    "id": "audit-user_1784699059997_e0j2lav",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "what is dna",
+    "output": "DNA (Deoxyribonucleic acid) - Contains genetic instructions for all living organisms. Double helix structure discovered by Watson and Crick.",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:19.997Z"
+  },
+  {
+    "id": "audit-user_1784699060018_octdx26",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "what is india capital",
+    "output": "New Delhi is the capital of India.",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:20.018Z"
+  },
+  {
+    "id": "audit-user_1784699060036_huwjr7n",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "india population statistics",
+    "output": "Approximately 1.4 billion people (2024 estimate).",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:20.036Z"
+  },
+  {
+    "id": "audit-user_1784699060051_sfcc3tv",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "GST calculation for amount 15000 rate 18",
+    "output": "Formula\nGST Amount = (Original Amount × GST%) / 100\n\nValues\nOriginal Amount = ₹15000\nGST Rate = 18%\n\nCalculation\nGST Amount = (15000 × 18) / 100 = ₹2700.00\nTotal = 15000 + 2700.00 = ₹17700.00\n\nResult\n",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:20.051Z"
+  },
+  {
+    "id": "audit-user_1784699060290_wl9aull",
+    "userId": "audit-user",
+    "skill": "master_tax_agent",
+    "input": "GST 12% on 8000",
+    "output": "🙏 **नमस्कार! मैं Harshita AI Chartered Accountant हूँ।**\n\nमैं आपका Income Tax Return तैयार करूँगा।\n\nसबसे पहले, कृपया अपना **PAN Number** दर्ज करें।\n(जैसे: ABCDE1234F)",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:20.290Z"
+  },
+  {
+    "id": "audit-user_1784699060347_1taxok2",
+    "userId": "audit-user",
+    "skill": "master_tax_agent",
+    "input": "GST kya hai",
+    "output": "🙏 **नमस्कार! मैं Harshita AI Chartered Accountant हूँ।**\n\nमैं आपका Income Tax Return तैयार करूँगा।\n\nसबसे पहले, कृपया अपना **PAN Number** दर्ज करें।\n(जैसे: ABCDE1234F)",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:20.348Z"
+  },
+  {
+    "id": "audit-user_1784699060418_siebqop",
+    "userId": "audit-user",
+    "skill": "master_tax_agent",
+    "input": "GST rules",
+    "output": "🙏 **नमस्कार! मैं Harshita AI Chartered Accountant हूँ।**\n\nमैं आपका Income Tax Return तैयार करूँगा।\n\nसबसे पहले, कृपया अपना **PAN Number** दर्ज करें।\n(जैसे: ABCDE1234F)",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:20.418Z"
+  },
+  {
+    "id": "audit-user_1784699060465_tz6mhlw",
+    "userId": "audit-user",
+    "skill": "master_tax_agent",
+    "input": "ITR deadline details",
+    "output": "🙏 **नमस्कार! मैं Harshita AI Chartered Accountant हूँ।**\n\nमैं आपका Income Tax Return तैयार करूँगा।\n\nसबसे पहले, कृपया अपना **PAN Number** दर्ज करें।\n(जैसे: ABCDE1234F)",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:20.465Z"
+  },
+  {
+    "id": "audit-user_1784699060515_s9rq9ro",
+    "userId": "audit-user",
+    "skill": "master_tax_agent",
+    "input": "ITR kya hai",
+    "output": "🙏 **नमस्कार! मैं Harshita AI Chartered Accountant हूँ।**\n\nमैं आपका Income Tax Return तैयार करूँगा।\n\nसबसे पहले, कृपया अपना **PAN Number** दर्ज करें।\n(जैसे: ABCDE1234F)",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:20.515Z"
+  },
+  {
+    "id": "audit-user_1784699060549_28akzeq",
+    "userId": "audit-user",
+    "skill": "master_tax_agent",
+    "input": "ITR fill karo",
+    "output": "🙏 **नमस्कार! मैं Harshita AI Chartered Accountant हूँ।**\n\nमैं आपका Income Tax Return तैयार करूँगा।\n\nसबसे पहले, कृपया अपना **PAN Number** दर्ज करें।\n(जैसे: ABCDE1234F)",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:20.549Z"
+  },
+  {
+    "id": "audit-user_1784699060583_wb6hvq6",
+    "userId": "audit-user",
+    "skill": "master_tax_agent",
+    "input": "Income tax calculate for salary 800000",
+    "output": "🙏 **नमस्कार! मैं Harshita AI Chartered Accountant हूँ।**\n\nमैं आपका Income Tax Return तैयार करूँगा।\n\nसबसे पहले, कृपया अपना **PAN Number** दर्ज करें।\n(जैसे: ABCDE1234F)",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:20.583Z"
+  },
+  {
+    "id": "audit-user_1784699060609_qsigbkp",
+    "userId": "audit-user",
+    "skill": "resume_maker",
+    "input": "Resume kya hota hai",
+    "output": "📄 *Harshita AI रिज्यूमे बिल्डर* में आपका स्वागत है!\n\nमैं आपका प्रोफेशनल रिज्यूमे बना सकती हूँ।\n\nशुरू करने के लिए अपना *पूरा नाम* बताएं!\n(उदाहरण: \"मेरा नाम राहुल कुमार है\")",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:20.609Z"
+  },
+  {
+    "id": "audit-user_1784699060634_7u6wdez",
+    "userId": "audit-user",
+    "skill": "resume_maker",
+    "input": "CV kaise banate hain",
+    "output": "📄 *Harshita AI रिज्यूमे बिल्डर* में आपका स्वागत है!\n\nमैं आपका प्रोफेशनल रिज्यूमे बना सकती हूँ।\n\nशुरू करने के लिए अपना *पूरा नाम* बताएं!\n(उदाहरण: \"मेरा नाम राहुल कुमार है\")",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:20.634Z"
+  },
+  {
+    "id": "audit-user_1784699060658_m0gul8m",
+    "userId": "audit-user",
+    "skill": "resume_maker",
+    "input": "Resume banao software engineer",
+    "output": "📄 *Harshita AI रिज्यूमे बिल्डर* में आपका स्वागत है!\n\nमैं आपका प्रोफेशनल रिज्यूमे बना सकती हूँ।\n\nशुरू करने के लिए अपना *पूरा नाम* बताएं!\n(उदाहरण: \"मेरा नाम राहुल कुमार है\")",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:20.658Z"
+  },
+  {
+    "id": "audit-user_1784699060680_fosuc82",
+    "userId": "audit-user",
+    "skill": "resume_maker",
+    "input": "create professional resume",
+    "output": "📄 *Harshita AI रिज्यूमे बिल्डर* में आपका स्वागत है!\n\nमैं आपका प्रोफेशनल रिज्यूमे बना सकती हूँ।\n\nशुरू करने के लिए अपना *पूरा नाम* बताएं!\n(उदाहरण: \"मेरा नाम राहुल कुमार है\")",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:20.680Z"
+  },
+  {
+    "id": "audit-user_1784699060922_p5r1ew1",
+    "userId": "audit-user",
+    "skill": "legal_notice",
+    "input": "draft legal notice for money recovery",
+    "output": "\n═══════════════════════════════════════════════════════════════\n                        Legal Notice\n═══════════════════════════════════════════════════════════════\n\nDate: 22/7/2026\nPlace: __________",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:20.922Z"
+  },
+  {
+    "id": "audit-user_1784699060943_l64gh6o",
+    "userId": "audit-user",
+    "skill": "legal_notice",
+    "input": "cheque bounce case legal notice draft",
+    "output": "\n═══════════════════════════════════════════════════════════════\n                        Legal Notice\n═══════════════════════════════════════════════════════════════\n\nDate: 22/7/2026\nPlace: __________",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:20.943Z"
+  },
+  {
+    "id": "audit-user_1784699060977_x5hf40q",
+    "userId": "audit-user",
+    "skill": "legal_draft",
+    "input": "legal notice kya hota hai",
+    "output": "Draft failed quality checks. Regenerating...",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:20.977Z"
+  },
+  {
+    "id": "audit-user_1784699060994_e1s5qng",
+    "userId": "audit-user",
+    "skill": "legal_draft",
+    "input": "draft affidavit for lost marksheet",
+    "output": "Draft failed quality checks. Regenerating...",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:20.994Z"
+  },
+  {
+    "id": "audit-user_1784699061014_wjnj4jm",
+    "userId": "audit-user",
+    "skill": "legal_draft",
+    "input": "Passport affidavit generate",
+    "output": "Draft failed quality checks. Regenerating...",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.014Z"
+  },
+  {
+    "id": "audit-user_1784699061035_ezgoj9a",
+    "userId": "audit-user",
+    "skill": "legal_draft",
+    "input": "Gift deed create",
+    "output": "To draft the Gift Deed, I need the following details: Khasra Number, Property Area, Two Witnesses (Mandatory)",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.035Z"
+  },
+  {
+    "id": "audit-user_1784699061053_w4lmpvj",
+    "userId": "audit-user",
+    "skill": "legal_draft",
+    "input": "Rent agreement draft",
+    "output": "Draft failed quality checks. Regenerating...",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.053Z"
+  },
+  {
+    "id": "audit-user_1784699061081_t6shtmi",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "Gift deed kya hai",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.081Z"
+  },
+  {
+    "id": "audit-user_1784699061106_3wapbbc",
+    "userId": "audit-user",
+    "skill": "legal_draft",
+    "input": "Affidavit kya hota hai",
+    "output": "Draft failed quality checks. Regenerating...",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.106Z"
+  },
+  {
+    "id": "audit-user_1784699061124_fg49u8e",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "Front 22 ft, Back 43 ft, Left 90 ft, Right 90 ft area",
+    "output": "Formula\nअनुमानित क्षेत्रफल (आमने-सामने की भुजाओं का औसत)\n\nValues\nपहली दीवार (Front) = 22 फीट\nसामने की दीवार (Back) = 43 फीट\nएक तरफ की दीवार (Left) = 90 फीट\nदूसरी तरफ की दीवार (Right) = 90 फीट\n\nCalcula",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.124Z"
+  },
+  {
+    "id": "audit-user_1784699061139_pnp1jip",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "Trapezium plot measurement front 25 back 35 length 80",
+    "output": "Please provide all 4 sides (Front, Back, Left, Right) or Length and Width to calculate the area.\nExample: Front 22, Back 66, Left 55, Right 55",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.139Z"
+  },
+  {
+    "id": "audit-user_1784699061164_vha7k0z",
+    "userId": "audit-user",
+    "skill": "unit_conversion_skill",
+    "input": "Bigha calculations for plot",
+    "output": "कृपया वह संख्या बताएं जिसे आप कन्वर्ट करना चाहते हैं (जैसे: \"2925 sq ft को bigha में\")",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.164Z"
+  },
+  {
+    "id": "audit-user_1784699061198_xed518h",
+    "userId": "audit-user",
+    "skill": "tada_process",
+    "input": "calculate TA DA for Jhansi VVIP duty",
+    "output": "🧾 TA/DA नक्शा पेज खोल रहा हूँ!\n\nआप वहाँ:\n• Per-day यात्रा entries भर सकते हैं\n• Distance, fare, DA auto-calculate होगा\n• Hindi/English दोनों में support है\n• Print-ready Legal format में preview मिले",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.198Z"
+  },
+  {
+    "id": "audit-user_1784699061218_fmihij8",
+    "userId": "audit-user",
+    "skill": "tada_process",
+    "input": "TA DA calculation parameters",
+    "output": "🧾 TA/DA नक्शा पेज खोल रहा हूँ!\n\nआप वहाँ:\n• Per-day यात्रा entries भर सकते हैं\n• Distance, fare, DA auto-calculate होगा\n• Hindi/English दोनों में support है\n• Print-ready Legal format में preview मिले",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.218Z"
+  },
+  {
+    "id": "audit-user_1784699061266_h32ngts",
+    "userId": "audit-user",
+    "skill": "document_ocr",
+    "input": "run OCR on aadhaar card scan",
+    "output": "📸 *आधार कार्ड* प्रोसेस करने के लिए तैयार!\n\nकृपया अपने आधार कार्ड की साफ़ फोटो या PDF अपलोड करें।\n\nमैं इसमें से ऑटोमैटिक निकालूँगा:\n• नाम\n• पिता\n• जन्मतिथि\n• पता\n• आधार नंबर\n\n💡 *टिप:* साफ़ और सीधी फो",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.266Z"
+  },
+  {
+    "id": "audit-user_1784699061304_3lqan5a",
+    "userId": "audit-user",
+    "skill": "web_learning",
+    "input": "extract text from Marks Sheet",
+    "output": "🌐 *वेब लर्निंग मोड*\n\nकृपया उस वेबसाइट का URL दें जिसे मुझे analyze करना है:\n\nExample:\n• \"https://ssc.nic.in analyze karo\"\n• \"https://upbhulekh.gov.in se seekho\"\n\nमैं वेबसाइट के फॉर्म, बटन और स्ट्रक्च",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.304Z"
+  },
+  {
+    "id": "audit-user_1784699061344_45gyzg0",
+    "userId": "audit-user",
+    "skill": "unit_conversion_skill",
+    "input": "convert 100 sq ft to bigha",
+    "output": "**100 स्क्वायर फीट** = **0.0037 बीघा**",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.344Z"
+  },
+  {
+    "id": "audit-user_1784699061374_mc9sjqm",
+    "userId": "audit-user",
+    "skill": "unit_conversion_skill",
+    "input": "convert 10 hectares to acre",
+    "output": "**10 स्क्वायर फीट** = **0.0002 एकड़**",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.374Z"
+  },
+  {
+    "id": "audit-user_1784699061390_yk78z6d",
+    "userId": "audit-user",
+    "skill": "unit_conversion_skill",
+    "input": "convert 1000 meters to km",
+    "output": "**1000 स्क्वायर फीट** = **92.9030 स्क्वायर मीटर**",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.390Z"
+  },
+  {
+    "id": "audit-user_1784699061407_m1869xr",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "write an application to BDO for road construction",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.407Z"
+  },
+  {
+    "id": "audit-user_1784699061425_2s3e085",
+    "userId": "audit-user",
+    "skill": "application_writer",
+    "input": "write electricity complaint letter for low voltage",
+    "output": "आपका नाम क्या है? (Aapka naam kya hai?) (1/3 जानकारी मिली)\n\n💡 उदाहरण: e.g. Ramesh Kumar",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.425Z"
+  },
+  {
+    "id": "audit-user_1784699061461_45ntvoe",
+    "userId": "audit-user",
+    "skill": "application_writer",
+    "input": "Principal application for sick leave",
+    "output": "यह application किसको लिखनी है? जैसे Principal, DM, SDM, BDO, HR आदि। (2/3 जानकारी मिली)\n\n💡 उदाहरण: e.g. Principal",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.461Z"
+  },
+  {
+    "id": "audit-user_1784699061499_u991cxe",
+    "userId": "audit-user",
+    "skill": "application_writer",
+    "input": "BDO application kya hoti hai",
+    "output": "सेवा में,\n\n[अधिकारी का पदनाम / Designation]\n[कार्यालय/विभाग का नाम / Department Name]\n[शहर/जिला / City/District]\n\nविषय: शिकायत पत्र के सन्दर्भ में प्रार्थना पत्र।\n\nमहोदय,\n\nसविनय निवेदन है कि मैं [आपका",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.499Z"
+  },
+  {
+    "id": "audit-user_1784699061521_n0v5ghk",
+    "userId": "audit-user",
+    "skill": "resume_maker",
+    "input": "Resume banao",
+    "output": "📄 *Harshita AI रिज्यूमे बिल्डर* में आपका स्वागत है!\n\nमैं आपका प्रोफेशनल रिज्यूमे बना सकती हूँ।\n\nशुरू करने के लिए अपना *पूरा नाम* बताएं!\n(उदाहरण: \"मेरा नाम राहुल कुमार है\")",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.521Z"
+  },
+  {
+    "id": "audit-user_1784699061549_e5szlxt",
+    "userId": "audit-user",
+    "skill": "master_tax_agent",
+    "input": "ITR",
+    "output": "🙏 **नमस्कार! मैं Harshita AI Chartered Accountant हूँ।**\n\nमैं आपका Income Tax Return तैयार करूँगा।\n\nसबसे पहले, कृपया अपना **PAN Number** दर्ज करें।\n(जैसे: ABCDE1234F)",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.549Z"
+  },
+  {
+    "id": "audit-user_1784699061584_8hnue3p",
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "input": "bhar do",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.584Z"
+  },
+  {
+    "id": "audit-user_1784699061605_emdanp8",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 65 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 65\n\nCalculation\n55 + 65\n\nResult\n120",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.605Z"
+  },
+  {
+    "id": "audit-user_1784699061654_5uj30yx",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 66 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 66\n\nCalculation\n55 + 66\n\nResult\n121",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.654Z"
+  },
+  {
+    "id": "audit-user_1784699061677_ui1aqxj",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 67 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 67\n\nCalculation\n55 + 67\n\nResult\n122",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.677Z"
+  },
+  {
+    "id": "audit-user_1784699061712_k7kc01j",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 68 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 68\n\nCalculation\n55 + 68\n\nResult\n123",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.712Z"
+  },
+  {
+    "id": "audit-user_1784699061755_dntbxx1",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 69 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 69\n\nCalculation\n55 + 69\n\nResult\n124",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.755Z"
+  },
+  {
+    "id": "audit-user_1784699061775_cpqsfsz",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 70 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 70\n\nCalculation\n55 + 70\n\nResult\n125",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.775Z"
+  },
+  {
+    "id": "audit-user_1784699061802_3staly9",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 71 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 71\n\nCalculation\n55 + 71\n\nResult\n126",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.802Z"
+  },
+  {
+    "id": "audit-user_1784699061821_nbgi1eb",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 72 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 72\n\nCalculation\n55 + 72\n\nResult\n127",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.821Z"
+  },
+  {
+    "id": "audit-user_1784699061836_qzyyrbj",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 73 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 73\n\nCalculation\n55 + 73\n\nResult\n128",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.836Z"
+  },
+  {
+    "id": "audit-user_1784699061855_j3l4l6y",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 74 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 74\n\nCalculation\n55 + 74\n\nResult\n129",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.855Z"
+  },
+  {
+    "id": "audit-user_1784699061874_yb0pf7k",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 75 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 75\n\nCalculation\n55 + 75\n\nResult\n130",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.874Z"
+  },
+  {
+    "id": "audit-user_1784699061893_adfrb9j",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 76 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 76\n\nCalculation\n55 + 76\n\nResult\n131",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.893Z"
+  },
+  {
+    "id": "audit-user_1784699061912_4rk5amr",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 77 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 77\n\nCalculation\n55 + 77\n\nResult\n132",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.912Z"
+  },
+  {
+    "id": "audit-user_1784699061931_awvmwtd",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 78 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 78\n\nCalculation\n55 + 78\n\nResult\n133",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.931Z"
+  },
+  {
+    "id": "audit-user_1784699061948_7jxlrgv",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 79 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 79\n\nCalculation\n55 + 79\n\nResult\n134",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.948Z"
+  },
+  {
+    "id": "audit-user_1784699061970_ond393q",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 80 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 80\n\nCalculation\n55 + 80\n\nResult\n135",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.970Z"
+  },
+  {
+    "id": "audit-user_1784699061987_33rhh7f",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 81 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 81\n\nCalculation\n55 + 81\n\nResult\n136",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:21.987Z"
+  },
+  {
+    "id": "audit-user_1784699062005_0qvvuh2",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 82 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 82\n\nCalculation\n55 + 82\n\nResult\n137",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:22.005Z"
+  },
+  {
+    "id": "audit-user_1784699062031_xhgfg45",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 83 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 83\n\nCalculation\n55 + 83\n\nResult\n138",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:22.031Z"
+  },
+  {
+    "id": "audit-user_1784699062057_lio8g8n",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 84 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 84\n\nCalculation\n55 + 84\n\nResult\n139",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:22.057Z"
+  },
+  {
+    "id": "audit-user_1784699062077_rf3z121",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 85 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 85\n\nCalculation\n55 + 85\n\nResult\n140",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:22.077Z"
+  },
+  {
+    "id": "audit-user_1784699062095_lggcvd1",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 86 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 86\n\nCalculation\n55 + 86\n\nResult\n141",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:22.095Z"
+  },
+  {
+    "id": "audit-user_1784699062143_0hgusx7",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 87 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 87\n\nCalculation\n55 + 87\n\nResult\n142",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:22.143Z"
+  },
+  {
+    "id": "audit-user_1784699062168_36dtwq9",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 88 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 88\n\nCalculation\n55 + 88\n\nResult\n143",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:22.168Z"
+  },
+  {
+    "id": "audit-user_1784699062186_cq8fvjs",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 89 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 89\n\nCalculation\n55 + 89\n\nResult\n144",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:22.186Z"
+  },
+  {
+    "id": "audit-user_1784699062205_f6k3mjo",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 90 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 90\n\nCalculation\n55 + 90\n\nResult\n145",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:22.205Z"
+  },
+  {
+    "id": "audit-user_1784699062223_g53u2d1",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 91 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 91\n\nCalculation\n55 + 91\n\nResult\n146",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:22.223Z"
+  },
+  {
+    "id": "audit-user_1784699062244_0yxfhbe",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 92 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 92\n\nCalculation\n55 + 92\n\nResult\n147",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:22.244Z"
+  },
+  {
+    "id": "audit-user_1784699062271_3aloubh",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 93 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 93\n\nCalculation\n55 + 93\n\nResult\n148",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:22.271Z"
+  },
+  {
+    "id": "audit-user_1784699062315_6ivzskc",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 94 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 94\n\nCalculation\n55 + 94\n\nResult\n149",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:22.315Z"
+  },
+  {
+    "id": "audit-user_1784699062332_uep1iul",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 95 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 95\n\nCalculation\n55 + 95\n\nResult\n150",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:22.332Z"
+  },
+  {
+    "id": "audit-user_1784699062352_sfrbpdf",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 96 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 96\n\nCalculation\n55 + 96\n\nResult\n151",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:22.352Z"
+  },
+  {
+    "id": "audit-user_1784699062368_2t07n7k",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 97 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 97\n\nCalculation\n55 + 97\n\nResult\n152",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:22.368Z"
+  },
+  {
+    "id": "audit-user_1784699062384_f6yu25x",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 98 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 98\n\nCalculation\n55 + 98\n\nResult\n153",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:22.384Z"
+  },
+  {
+    "id": "audit-user_1784699062401_glhlrvp",
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "input": "55 + 99 math calculation",
+    "output": "Formula\nArithmetic Evaluation\n\nValues\n55 + 99\n\nCalculation\n55 + 99\n\nResult\n154",
+    "success": true,
+    "timestamp": "2026-07-22T05:44:22.401Z"
+  },
+  {
+    "id": "test_e2e_core_1789102398480_4g8bcrx",
+    "userId": "test_e2e_core",
+    "skill": "general_chat",
+    "input": "नमस्ते हर्षिता, आप क्या क्या कर सकती हैं?",
+    "output": "नमस्कार। मैं Harshita AI हूँ — आपकी उन्नत (Advanced) CSC और एंटरप्राइज सहायक।\n\nमैं निम्नलिखित कार्यों में आपकी सहायता कर सकती हूँ:\n• ऑटोमेटेड फॉर्म फिलिंग (Automated Form Filling)\n• कानूनी दस्तावेज़ ड",
+    "success": true,
+    "timestamp": "2026-09-11T04:53:18.481Z"
+  },
+  {
+    "id": "test_e2e_core_1789102398676_svdivif",
+    "userId": "test_e2e_core",
+    "skill": "general_chat",
+    "input": "Hello, what services do you provide for CSC center?",
+    "output": "Hello in Hindi: नमस्ते (Namaste)",
+    "success": true,
+    "timestamp": "2026-09-11T04:53:18.676Z"
+  },
+  {
+    "id": "test_e2e_core_1789102400393_g8on908",
+    "userId": "test_e2e_core",
+    "skill": "general_chat",
+    "input": "Bhai mujhe ek cyber cafe open karna hai, kya requirements hongi?",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-09-11T04:53:20.393Z"
+  },
+  {
+    "id": "test_e2e_core_1789102400567_hi7pe0p",
+    "userId": "test_e2e_core",
+    "skill": "legal_draft",
+    "input": "Pehle mujhe police complaint draft karni hai fir affidavit",
+    "output": "[रूटिंग सफल] ✅ आपकी शिकायत का कानूनी मसौदा (A4 Police Complaint) तैयार कर दिया गया है।\n\n📄 **शीर्षक:** पुलिस शिकायत पत्र (Police Complaint)\n🏛️ **प्राधिकारी:** थाना प्रभारी महोदय, जिला- बुलंदशहर\n👤 **",
+    "success": true,
+    "timestamp": "2026-09-11T04:53:20.567Z"
+  },
+  {
+    "id": "test_e2e_legal_1789102400610_wmbvbzp",
+    "userId": "test_e2e_legal",
+    "skill": "application_writer",
+    "input": "थाना प्रभारी महोदय को मोबाइल चोरी की तहरीर / पुलिस शिकायत लिखनी है। शिकायतकर्ता: अमित कुमार, पता: सिविल लाइन्स प्रयागराज, घटना: 10 सितंबर 2026 को सिविल लाइन्स बस स्टैंड पर मोबाइल चोरी हुआ।",
+    "output": "आपका नाम क्या है? (Aapka naam kya hai?) (1/3 जानकारी मिली)\n\n💡 उदाहरण: e.g. Ramesh Kumar",
+    "success": true,
+    "timestamp": "2026-09-11T04:53:20.610Z"
+  },
+  {
+    "id": "test_e2e_legal_1789102401976_wdpvj9v",
+    "userId": "test_e2e_legal",
+    "skill": "legal_notice",
+    "input": "चेक बाउंस का कानूनी नोटिस (Section 138 NI Act) भेजना है। चेक नंबर 445566, रकम 1,50,000 रु, जारीकर्ता: दिनेश शर्मा, बैंक: PNB, चेक तिथि: 01/08/2026",
+    "output": "\n═══════════════════════════════════════════════════════════════\n                        Legal Notice\n═══════════════════════════════════════════════════════════════\n\nDate: 11/9/2026\nPlace: __________",
+    "success": true,
+    "timestamp": "2026-09-11T04:53:21.976Z"
+  },
+  {
+    "id": "test_e2e_legal_1789102402012_4bxoquj",
+    "userId": "test_e2e_legal",
+    "skill": "legal_draft",
+    "input": "नाम परिवर्तन (Name Change) का शपथ पत्र (Affidavit) बनाना है। प्रार्थी: राजेश यादव पुत्र राम यादव, निवासी कानपुर",
+    "output": "Draft failed quality checks. Regenerating...",
+    "success": true,
+    "timestamp": "2026-09-11T04:53:22.012Z"
+  },
+  {
+    "id": "test_e2e_legal_1789102402034_fybcsu2",
+    "userId": "test_e2e_legal",
+    "skill": "legal_draft",
+    "input": "मकान का रेंट एग्रीमेंट (Rent Agreement) तैयार करें। मकान मालिक: सुरेश वर्मा, किराएदार: विकास गुप्ता, किराया: 12,000 रु प्रति माह, अवधि: 11 माह, पता: फ्लैट 201 गोमती नगर लखनऊ",
+    "output": "Draft failed quality checks. Regenerating...",
+    "success": true,
+    "timestamp": "2026-09-11T04:53:22.034Z"
+  },
+  {
+    "id": "test_e2e_legal_1789102402060_3jq1sfl",
+    "userId": "test_e2e_legal",
+    "skill": "legal_draft",
+    "input": "मकान बिजली कनेक्शन के लिए अनापत्ति प्रमाण पत्र (NOC / No Objection Certificate) बनाना है। मकान मालिक: सुनीता देवी",
+    "output": "Draft failed quality checks. Regenerating...",
+    "success": true,
+    "timestamp": "2026-09-11T04:53:22.060Z"
+  },
+  {
+    "id": "test_e2e_legal_1789102403565_hy5j4xs",
+    "userId": "test_e2e_legal",
+    "skill": "legal_notice",
+    "input": "बकाया रकम वसूली (Money Recovery) के लिए लीगल नोटिस भेजना है। कर्जदार: मोहित सिंह, बकाया राशि: 2,00,000 रुपये",
+    "output": "\n═══════════════════════════════════════════════════════════════\n                        Legal Notice\n═══════════════════════════════════════════════════════════════\n\nDate: 11/9/2026\nPlace: __________",
+    "success": true,
+    "timestamp": "2026-09-11T04:53:23.565Z"
+  },
+  {
+    "id": "test_e2e_legal_1789102403615_ju6jh2y",
+    "userId": "test_e2e_legal",
+    "skill": "application_writer",
+    "input": "तहसीलदार महोदय को वरासत दर्ज करने हेतु प्रार्थना पत्र / आवेदन पत्र लिखना है।",
+    "output": "यह application किसको लिखनी है? जैसे Principal, DM, SDM, BDO, HR आदि। (2/3 जानकारी मिली)\n\n💡 उदाहरण: e.g. Principal",
+    "success": true,
+    "timestamp": "2026-09-11T04:53:23.615Z"
+  },
+  {
+    "id": "test_e2e_legal_1789102403648_pat87l0",
+    "userId": "test_e2e_legal",
+    "skill": "legal_draft",
+    "input": "आय एवं संपत्ति का स्व-घोषणा पत्र (Self Declaration) तैयार करें।",
+    "output": "Draft failed quality checks. Regenerating...",
+    "success": true,
+    "timestamp": "2026-09-11T04:53:23.648Z"
+  },
+  {
+    "id": "test_e2e_legal_1789102403681_bgfmcq5",
+    "userId": "test_e2e_legal",
+    "skill": "legal_draft",
+    "input": "वसीयतनामा (Will) का कानूनी प्रारूप तैयार करें। वसीयतकर्ता: बृजमोहन लाल, आयु: 68 वर्ष",
+    "output": "Draft failed quality checks. Regenerating...",
+    "success": true,
+    "timestamp": "2026-09-11T04:53:23.681Z"
+  },
+  {
+    "id": "test_e2e_legal_1789102403717_9cg0pt4",
+    "userId": "test_e2e_legal",
+    "skill": "legal_draft",
+    "input": "संपत्ति देखभाल हेतु मुख्तारनामा (General Power of Attorney) का प्रारूप बनाएं।",
+    "output": "Draft failed quality checks. Regenerating...",
+    "success": true,
+    "timestamp": "2026-09-11T04:53:23.717Z"
+  },
+  {
+    "id": "test_e2e_context_1789102403794_wpm65fu",
+    "userId": "test_e2e_context",
+    "skill": "application_writer",
+    "input": "थाना सिविल लाइन्स में शिकायत: शिकायतकर्ता राहुल शर्मा पुत्र श्री अशोक शर्मा, निवासी 123 राजापुर प्रयागराज, मोबाइल 9876543210। आरोपी अज्ञात व्यक्ति। घटना दिनांक 05 सितंबर 2026 समय सायं 6 बजे। घटना स्थल सुभाष चौराहा। घटना: मेरी बाइक UP70 AB 1234 चोरी हो गई। कृपया FIR दर्ज करें।",
+    "output": "आपका नाम क्या है? (Aapka naam kya hai?) (1/3 जानकारी मिली)\n\n💡 उदाहरण: e.g. Ramesh Kumar",
+    "success": true,
+    "timestamp": "2026-09-11T04:53:23.794Z"
+  },
+  {
+    "id": "test_e2e_core_1789102562228_ob5zfoi",
+    "userId": "test_e2e_core",
+    "skill": "general_chat",
+    "input": "नमस्ते हर्षिता, आप क्या क्या कर सकती हैं?",
+    "output": "नमस्कार। मैं Harshita AI हूँ — आपकी उन्नत (Advanced) CSC और एंटरप्राइज सहायक।\n\nमैं निम्नलिखित कार्यों में आपकी सहायता कर सकती हूँ:\n• ऑटोमेटेड फॉर्म फिलिंग (Automated Form Filling)\n• कानूनी दस्तावेज़ ड",
+    "success": true,
+    "timestamp": "2026-09-11T04:56:02.228Z"
+  },
+  {
+    "id": "test_e2e_core_1789102562342_lehnm33",
+    "userId": "test_e2e_core",
+    "skill": "general_chat",
+    "input": "Hello, what services do you provide for CSC center?",
+    "output": "Hello in Hindi: नमस्ते (Namaste)",
+    "success": true,
+    "timestamp": "2026-09-11T04:56:02.342Z"
+  },
+  {
+    "id": "test_e2e_core_1789102564089_hccfasn",
+    "userId": "test_e2e_core",
+    "skill": "general_chat",
+    "input": "Bhai mujhe ek cyber cafe open karna hai, kya requirements hongi?",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-09-11T04:56:04.089Z"
+  },
+  {
+    "id": "test_e2e_core_1789102564308_5cgm6hh",
+    "userId": "test_e2e_core",
+    "skill": "legal_draft",
+    "input": "Pehle mujhe police complaint draft karni hai fir affidavit",
+    "output": "[रूटिंग सफल] ✅ आपकी शिकायत का कानूनी मसौदा (A4 Police Complaint) तैयार कर दिया गया है।\n\n📄 **शीर्षक:** पुलिस शिकायत पत्र (Police Complaint)\n🏛️ **प्राधिकारी:** थाना प्रभारी महोदय, जिला- बुलंदशहर\n👤 **",
+    "success": true,
+    "timestamp": "2026-09-11T04:56:04.308Z"
+  },
+  {
+    "id": "test_e2e_legal_1789102564353_h7ukvr8",
+    "userId": "test_e2e_legal",
+    "skill": "application_writer",
+    "input": "थाना प्रभारी महोदय को मोबाइल चोरी की तहरीर / पुलिस शिकायत लिखनी है। शिकायतकर्ता: अमित कुमार, पता: सिविल लाइन्स प्रयागराज, घटना: 10 सितंबर 2026 को सिविल लाइन्स बस स्टैंड पर मोबाइल चोरी हुआ।",
+    "output": "आपका नाम क्या है? (Aapka naam kya hai?) (1/3 जानकारी मिली)\n\n💡 उदाहरण: e.g. Ramesh Kumar",
+    "success": true,
+    "timestamp": "2026-09-11T04:56:04.353Z"
+  },
+  {
+    "id": "test_e2e_legal_1789102565947_cgcltw0",
+    "userId": "test_e2e_legal",
+    "skill": "legal_notice",
+    "input": "चेक बाउंस का कानूनी नोटिस (Section 138 NI Act) भेजना है। चेक नंबर 445566, रकम 1,50,000 रु, जारीकर्ता: दिनेश शर्मा, बैंक: PNB, चेक तिथि: 01/08/2026",
+    "output": "\n═══════════════════════════════════════════════════════════════\n                        Legal Notice\n═══════════════════════════════════════════════════════════════\n\nDate: 11/9/2026\nPlace: __________",
+    "success": true,
+    "timestamp": "2026-09-11T04:56:05.947Z"
+  },
+  {
+    "id": "test_e2e_legal_1789102565968_srrkj77",
+    "userId": "test_e2e_legal",
+    "skill": "legal_draft",
+    "input": "नाम परिवर्तन (Name Change) का शपथ पत्र (Affidavit) बनाना है। प्रार्थी: राजेश यादव पुत्र राम यादव, निवासी कानपुर",
+    "output": "Draft failed quality checks. Regenerating...",
+    "success": true,
+    "timestamp": "2026-09-11T04:56:05.968Z"
+  },
+  {
+    "id": "test_e2e_legal_1789102565992_w7pnh16",
+    "userId": "test_e2e_legal",
+    "skill": "legal_draft",
+    "input": "मकान का रेंट एग्रीमेंट (Rent Agreement) तैयार करें। मकान मालिक: सुरेश वर्मा, किराएदार: विकास गुप्ता, किराया: 12,000 रु प्रति माह, अवधि: 11 माह, पता: फ्लैट 201 गोमती नगर लखनऊ",
+    "output": "Draft failed quality checks. Regenerating...",
+    "success": true,
+    "timestamp": "2026-09-11T04:56:05.992Z"
+  },
+  {
+    "id": "test_e2e_legal_1789102566017_29oouig",
+    "userId": "test_e2e_legal",
+    "skill": "legal_draft",
+    "input": "मकान बिजली कनेक्शन के लिए अनापत्ति प्रमाण पत्र (NOC / No Objection Certificate) बनाना है। मकान मालिक: सुनीता देवी",
+    "output": "Draft failed quality checks. Regenerating...",
+    "success": true,
+    "timestamp": "2026-09-11T04:56:06.017Z"
+  },
+  {
+    "id": "test_e2e_legal_1789102567391_jljroai",
+    "userId": "test_e2e_legal",
+    "skill": "legal_notice",
+    "input": "बकाया रकम वसूली (Money Recovery) के लिए लीगल नोटिस भेजना है। कर्जदार: मोहित सिंह, बकाया राशि: 2,00,000 रुपये",
+    "output": "\n═══════════════════════════════════════════════════════════════\n                        Legal Notice\n═══════════════════════════════════════════════════════════════\n\nDate: 11/9/2026\nPlace: __________",
+    "success": true,
+    "timestamp": "2026-09-11T04:56:07.391Z"
+  },
+  {
+    "id": "test_e2e_legal_1789102567436_e1ok4ed",
+    "userId": "test_e2e_legal",
+    "skill": "application_writer",
+    "input": "तहसीलदार महोदय को वरासत दर्ज करने हेतु प्रार्थना पत्र / आवेदन पत्र लिखना है।",
+    "output": "यह application किसको लिखनी है? जैसे Principal, DM, SDM, BDO, HR आदि। (2/3 जानकारी मिली)\n\n💡 उदाहरण: e.g. Principal",
+    "success": true,
+    "timestamp": "2026-09-11T04:56:07.436Z"
+  },
+  {
+    "id": "test_e2e_legal_1789102567458_hy8p5bi",
+    "userId": "test_e2e_legal",
+    "skill": "legal_draft",
+    "input": "आय एवं संपत्ति का स्व-घोषणा पत्र (Self Declaration) तैयार करें।",
+    "output": "Draft failed quality checks. Regenerating...",
+    "success": true,
+    "timestamp": "2026-09-11T04:56:07.458Z"
+  },
+  {
+    "id": "test_e2e_legal_1789102567477_xh9iyio",
+    "userId": "test_e2e_legal",
+    "skill": "legal_draft",
+    "input": "वसीयतनामा (Will) का कानूनी प्रारूप तैयार करें। वसीयतकर्ता: बृजमोहन लाल, आयु: 68 वर्ष",
+    "output": "Draft failed quality checks. Regenerating...",
+    "success": true,
+    "timestamp": "2026-09-11T04:56:07.477Z"
+  },
+  {
+    "id": "test_e2e_legal_1789102567495_uzc3z9r",
+    "userId": "test_e2e_legal",
+    "skill": "legal_draft",
+    "input": "संपत्ति देखभाल हेतु मुख्तारनामा (General Power of Attorney) का प्रारूप बनाएं।",
+    "output": "Draft failed quality checks. Regenerating...",
+    "success": true,
+    "timestamp": "2026-09-11T04:56:07.495Z"
+  },
+  {
+    "id": "test_e2e_context_1789102567513_ckzz1n5",
+    "userId": "test_e2e_context",
+    "skill": "application_writer",
+    "input": "थाना सिविल लाइन्स में शिकायत: शिकायतकर्ता राहुल शर्मा पुत्र श्री अशोक शर्मा, निवासी 123 राजापुर प्रयागराज, मोबाइल 9876543210। आरोपी अज्ञात व्यक्ति। घटना दिनांक 05 सितंबर 2026 समय सायं 6 बजे। घटना स्थल सुभाष चौराहा। घटना: मेरी बाइक UP70 AB 1234 चोरी हो गई। कृपया FIR दर्ज करें।",
+    "output": "आपका नाम क्या है? (Aapka naam kya hai?) (1/3 जानकारी मिली)\n\n💡 उदाहरण: e.g. Ramesh Kumar",
+    "success": true,
+    "timestamp": "2026-09-11T04:56:07.513Z"
+  },
+  {
+    "id": "test_user_1789102652899_rmh6axp",
+    "userId": "test_user",
+    "skill": "legal_draft",
+    "input": "थाना सिविल लाइन्स में शिकायत: शिकायतकर्ता राहुल शर्मा पुत्र श्री अशोक शर्मा, निवासी 123 राजापुर प्रयागराज, मोबाइल 9876543210। आरोपी अज्ञात व्यक्ति। घटना दिनांक 05 सितंबर 2026 समय सायं 6 बजे। घटना स्थल सुभाष चौराहा। घटना: मेरी बाइक UP70 AB 1234 चोरी हो गई। कृपया FIR दर्ज करें।",
+    "output": "[रूटिंग सफल] ✅ आपकी शिकायत का कानूनी मसौदा (A4 Police Complaint) तैयार कर दिया गया है।\n\n📄 **शीर्षक:** पुलिस शिकायत पत्र (Police Complaint)\n🏛️ **प्राधिकारी:** थाना प्रभारी महोदय, जिला- बुलंदशहर\n👤 **",
+    "success": true,
+    "timestamp": "2026-09-11T04:57:32.899Z"
+  },
+  {
+    "id": "test_e2e_core_1789102720439_0fvau9z",
+    "userId": "test_e2e_core",
+    "skill": "general_chat",
+    "input": "नमस्ते हर्षिता, आप क्या क्या कर सकती हैं?",
+    "output": "नमस्कार। मैं Harshita AI हूँ — आपकी उन्नत (Advanced) CSC और एंटरप्राइज सहायक।\n\nमैं निम्नलिखित कार्यों में आपकी सहायता कर सकती हूँ:\n• ऑटोमेटेड फॉर्म फिलिंग (Automated Form Filling)\n• कानूनी दस्तावेज़ ड",
+    "success": true,
+    "timestamp": "2026-09-11T04:58:40.439Z"
+  },
+  {
+    "id": "test_e2e_core_1789102720559_bu8o5p7",
+    "userId": "test_e2e_core",
+    "skill": "general_chat",
+    "input": "Hello, what services do you provide for CSC center?",
+    "output": "Hello in Hindi: नमस्ते (Namaste)",
+    "success": true,
+    "timestamp": "2026-09-11T04:58:40.559Z"
+  },
+  {
+    "id": "test_e2e_core_1789102721994_1wadmxh",
+    "userId": "test_e2e_core",
+    "skill": "general_chat",
+    "input": "Bhai mujhe ek cyber cafe open karna hai, kya requirements hongi?",
+    "output": "I am temporarily unable to contact AI servers. Offline services are still available.",
+    "success": true,
+    "timestamp": "2026-09-11T04:58:41.994Z"
+  },
+  {
+    "id": "test_e2e_core_1789102722183_z9qqfkt",
+    "userId": "test_e2e_core",
+    "skill": "legal_draft",
+    "input": "Pehle mujhe police complaint draft karni hai fir affidavit",
+    "output": "[रूटिंग सफल] ✅ आपकी शिकायत का कानूनी मसौदा (A4 Police Complaint) तैयार कर दिया गया है।\n\n📄 **शीर्षक:** पुलिस शिकायत पत्र (Police Complaint)\n🏛️ **प्राधिकारी:** थाना प्रभारी महोदय, जिला- बुलंदशहर\n👤 **",
+    "success": true,
+    "timestamp": "2026-09-11T04:58:42.183Z"
+  },
+  {
+    "id": "test_e2e_legal_1789102722231_j454kc8",
+    "userId": "test_e2e_legal",
+    "skill": "legal_draft",
+    "input": "थाना प्रभारी महोदय को मोबाइल चोरी की तहरीर / पुलिस शिकायत लिखनी है। शिकायतकर्ता: अमित कुमार, पता: सिविल लाइन्स प्रयागराज, घटना: 10 सितंबर 2026 को सिविल लाइन्स बस स्टैंड पर मोबाइल चोरी हुआ।",
+    "output": "[रूटिंग सफल] ✅ आपकी शिकायत का कानूनी मसौदा (A4 Police Complaint) तैयार कर दिया गया है।\n\n📄 **शीर्षक:** पुलिस शिकायत पत्र (Police Complaint)\n🏛️ **प्राधिकारी:** थाना प्रभारी महोदय, जिला- बुलंदशहर\n👤 **",
+    "success": true,
+    "timestamp": "2026-09-11T04:58:42.231Z"
+  },
+  {
+    "id": "test_e2e_legal_1789102723853_pfbq0m4",
+    "userId": "test_e2e_legal",
+    "skill": "legal_notice",
+    "input": "चेक बाउंस का कानूनी नोटिस (Section 138 NI Act) भेजना है। चेक नंबर 445566, रकम 1,50,000 रु, जारीकर्ता: दिनेश शर्मा, बैंक: PNB, चेक तिथि: 01/08/2026",
+    "output": "\n═══════════════════════════════════════════════════════════════\n                        Legal Notice\n═══════════════════════════════════════════════════════════════\n\nDate: 11/9/2026\nPlace: __________",
+    "success": true,
+    "timestamp": "2026-09-11T04:58:43.853Z"
+  },
+  {
+    "id": "test_e2e_legal_1789102723902_8neyw5x",
+    "userId": "test_e2e_legal",
+    "skill": "legal_draft",
+    "input": "नाम परिवर्तन (Name Change) का शपथ पत्र (Affidavit) बनाना है। प्रार्थी: राजेश यादव पुत्र राम यादव, निवासी कानपुर",
+    "output": "Draft failed quality checks. Regenerating...",
+    "success": true,
+    "timestamp": "2026-09-11T04:58:43.902Z"
+  },
+  {
+    "id": "test_e2e_legal_1789102723931_g7wii46",
+    "userId": "test_e2e_legal",
+    "skill": "legal_draft",
+    "input": "मकान का रेंट एग्रीमेंट (Rent Agreement) तैयार करें। मकान मालिक: सुरेश वर्मा, किराएदार: विकास गुप्ता, किराया: 12,000 रु प्रति माह, अवधि: 11 माह, पता: फ्लैट 201 गोमती नगर लखनऊ",
+    "output": "Draft failed quality checks. Regenerating...",
+    "success": true,
+    "timestamp": "2026-09-11T04:58:43.931Z"
+  },
+  {
+    "id": "test_e2e_legal_1789102723953_y7dmotj",
+    "userId": "test_e2e_legal",
+    "skill": "legal_draft",
+    "input": "मकान बिजली कनेक्शन के लिए अनापत्ति प्रमाण पत्र (NOC / No Objection Certificate) बनाना है। मकान मालिक: सुनीता देवी",
+    "output": "Draft failed quality checks. Regenerating...",
+    "success": true,
+    "timestamp": "2026-09-11T04:58:43.953Z"
+  },
+  {
+    "id": "test_e2e_legal_1789102725330_w7hi10u",
+    "userId": "test_e2e_legal",
+    "skill": "legal_notice",
+    "input": "बकाया रकम वसूली (Money Recovery) के लिए लीगल नोटिस भेजना है। कर्जदार: मोहित सिंह, बकाया राशि: 2,00,000 रुपये",
+    "output": "\n═══════════════════════════════════════════════════════════════\n                        Legal Notice\n═══════════════════════════════════════════════════════════════\n\nDate: 11/9/2026\nPlace: __________",
+    "success": true,
+    "timestamp": "2026-09-11T04:58:45.330Z"
+  },
+  {
+    "id": "test_e2e_legal_1789102725358_sihbq4k",
+    "userId": "test_e2e_legal",
+    "skill": "application_writer",
+    "input": "तहसीलदार महोदय को वरासत दर्ज करने हेतु प्रार्थना पत्र / आवेदन पत्र लिखना है।",
+    "output": "आपका नाम क्या है? (Aapka naam kya hai?) (0/3 जानकारी मिली)\n\n💡 उदाहरण: e.g. Ramesh Kumar",
+    "success": true,
+    "timestamp": "2026-09-11T04:58:45.358Z"
+  },
+  {
+    "id": "test_e2e_legal_1789102725386_2bd4i80",
+    "userId": "test_e2e_legal",
+    "skill": "legal_draft",
+    "input": "आय एवं संपत्ति का स्व-घोषणा पत्र (Self Declaration) तैयार करें।",
+    "output": "Draft failed quality checks. Regenerating...",
+    "success": true,
+    "timestamp": "2026-09-11T04:58:45.386Z"
+  },
+  {
+    "id": "test_e2e_legal_1789102725413_wkbqgx1",
+    "userId": "test_e2e_legal",
+    "skill": "legal_draft",
+    "input": "वसीयतनामा (Will) का कानूनी प्रारूप तैयार करें। वसीयतकर्ता: बृजमोहन लाल, आयु: 68 वर्ष",
+    "output": "Draft failed quality checks. Regenerating...",
+    "success": true,
+    "timestamp": "2026-09-11T04:58:45.413Z"
+  },
+  {
+    "id": "test_e2e_legal_1789102725442_gfctpda",
+    "userId": "test_e2e_legal",
+    "skill": "legal_draft",
+    "input": "संपत्ति देखभाल हेतु मुख्तारनामा (General Power of Attorney) का प्रारूप बनाएं।",
+    "output": "Draft failed quality checks. Regenerating...",
+    "success": true,
+    "timestamp": "2026-09-11T04:58:45.442Z"
+  },
+  {
+    "id": "test_e2e_context_1789102725467_wcnuifa",
+    "userId": "test_e2e_context",
+    "skill": "legal_draft",
+    "input": "थाना सिविल लाइन्स में शिकायत: शिकायतकर्ता राहुल शर्मा पुत्र श्री अशोक शर्मा, निवासी 123 राजापुर प्रयागराज, मोबाइल 9876543210। आरोपी अज्ञात व्यक्ति। घटना दिनांक 05 सितंबर 2026 समय सायं 6 बजे। घटना स्थल सुभाष चौराहा। घटना: मेरी बाइक UP70 AB 1234 चोरी हो गई। कृपया FIR दर्ज करें।",
+    "output": "[रूटिंग सफल] ✅ आपकी शिकायत का कानूनी मसौदा (A4 Police Complaint) तैयार कर दिया गया है।\n\n📄 **शीर्षक:** पुलिस शिकायत पत्र (राहुल शर्मा)\n🏛️ **प्राधिकारी:** थाना प्रभारी महोदय, जिला- बुलंदशहर\n👤 **शिकाय",
+    "success": true,
+    "timestamp": "2026-09-11T04:58:45.467Z"
   }
 ]

@@ -5,6 +5,7 @@ import {
   Download, Share2, Edit, Play, RotateCcw, Zap, BookOpen 
 } from 'lucide-react';
 import { useStore } from '../../store';
+import DocumentWatermark from '../DocumentWatermark';
 
 export default function AgentStudioPanel({ agent, onGenerate, onEditInWorkspace }) {
   const [formData, setFormData] = useState({});
@@ -175,25 +176,28 @@ export default function AgentStudioPanel({ agent, onGenerate, onEditInWorkspace 
 
           <div className="flex-1 overflow-y-auto p-8 pt-12 pb-24 custom-scrollbar">
             {/* A4 Paper Container */}
-            <div className="bg-white mx-auto shadow-2xl rounded-sm text-black relative"
+            <div className="bg-white mx-auto shadow-2xl rounded-sm text-black relative overflow-hidden"
                  style={{ width: '100%', maxWidth: '210mm', minHeight: '297mm', padding: '25.4mm' }}>
+              <DocumentWatermark />
               
-              {isGenerating ? (
-                <div className="flex flex-col items-center justify-center h-full opacity-50 space-y-4">
-                  <div className="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
-                  <p className="text-sm font-medium">Drafting document...</p>
-                </div>
-              ) : currentDocument && currentDocument.content ? (
-                <pre className="whitespace-pre-wrap font-serif text-sm leading-relaxed text-gray-800 font-medium">
-                  {currentDocument.content}
-                </pre>
-              ) : (
-                <div className="flex flex-col items-center justify-center h-full opacity-30">
-                  <FileText size={48} className="text-gray-400 mb-4" />
-                  <p className="text-base font-semibold">Generated output will appear here</p>
-                  <p className="text-sm text-gray-500 mt-1">Fill the details and click generate</p>
-                </div>
-              )}
+              <div style={{ position: 'relative', zIndex: 1, height: '100%' }}>
+                {isGenerating ? (
+                  <div className="flex flex-col items-center justify-center h-full opacity-50 space-y-4">
+                    <div className="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+                    <p className="text-sm font-medium">Drafting document...</p>
+                  </div>
+                ) : currentDocument && currentDocument.content ? (
+                  <pre className="whitespace-pre-wrap font-serif text-sm leading-relaxed text-gray-800 font-medium">
+                    {currentDocument.content}
+                  </pre>
+                ) : (
+                  <div className="flex flex-col items-center justify-center h-full opacity-30">
+                    <FileText size={48} className="text-gray-400 mb-4" />
+                    <p className="text-base font-semibold">Generated output will appear here</p>
+                    <p className="text-sm text-gray-500 mt-1">Fill the details and click generate</p>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 

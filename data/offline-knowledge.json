@@ -1,0 +1,72 @@
+{
+  "math": {
+    "pi": { "answer": "π (Pi) = 3.141592653589793... It is the ratio of a circle's circumference to its diameter. An irrational number with infinite non-repeating decimals.", "intent": "math_skill" },
+    "e": { "answer": "e = 2.718281828459045... Euler's number, the base of natural logarithms. Important in calculus and compound interest.", "intent": "math_skill" },
+    "golden ratio": { "answer": "φ (Golden Ratio) = 1.618033988749895... A ratio where (a+b)/a = a/b, found in nature and art.", "intent": "math_skill" }
+  },
+  "physics": {
+    "speed of light": { "answer": "c = 299,792,458 m/s (approximately 3×10⁸ m/s in vacuum). The speed of light in vacuum is a fundamental constant.", "intent": "math_skill" },
+    "gravity": { "answer": "g = 9.8 m/s² (Earth's gravitational acceleration at surface level)", "intent": "math_skill" },
+    "planck constant": { "answer": "h = 6.62607015 × 10⁻³⁴ J·s - Fundamental quantum constant", "intent": "math_skill" }
+  },
+  "chemistry": {
+    "h2o": { "answer": "H₂O - Water. Chemical formula with 2 hydrogen atoms and 1 oxygen atom.", "intent": "math_skill" },
+    "co2": { "answer": "CO₂ - Carbon Dioxide. Chemical formula with 1 carbon atom and 2 oxygen atoms.", "intent": "math_skill" }
+  },
+  "biology": {
+    "dna": { "answer": "DNA (Deoxyribonucleic acid) - Contains genetic instructions for all living organisms. Double helix structure discovered by Watson and Crick.", "intent": "general_chat" }
+  },
+  "medical": {
+    "bmi": { "answer": "BMI = weight (kg) / height² (m²). Normal range: 18.5-24.9", "intent": "math_skill" }
+  },
+  "geography": {
+    "india capital": { "answer": "New Delhi is the capital of India.", "intent": "general_chat" },
+    "india population": { "answer": "Approximately 1.4 billion people (2024 estimate).", "intent": "general_chat" }
+  },
+  "history": {
+    "independence day": { "answer": "India gained independence on August 15, 1947.", "intent": "general_chat" }
+  },
+  "grammar": {
+    "tenses": { "answer": "English has 3 main tenses: Present (I work), Past (I worked), Future (I will work). Each has 4 aspects.", "intent": "general_chat" }
+  },
+  "translation": {
+    "hello": { "answer": "Hello in Hindi: नमस्ते (Namaste)", "intent": "language_skill" }
+  },
+  "dictionary": {
+    "ai": { "answer": "AI (Artificial Intelligence) - Technology enabling machines to perform human-like cognitive functions.", "intent": "general_chat" }
+  },
+  "periodic table": {
+    "hydrogen": { "answer": "H - Atomic number 1, lightest element, most abundant in universe.", "intent": "general_chat" },
+    "gold": { "answer": "Au - Atomic number 79, symbol from Latin 'Aurum'", "intent": "general_chat" }
+  },
+  "formula database": {
+    "pythagoras": { "answer": "a² + b² = c² - For right-angled triangles", "intent": "math_skill" },
+    "quadratic formula": { "answer": "x = (-b ± √(b²-4ac)) / 2a - For ax² + bx + c = 0", "intent": "math_skill" },
+    "distance": { "answer": "Distance = Speed × Time (or for 2D: √((x₂-x₁)² + (y₂-y₁)²))", "intent": "math_skill" },
+    "area of circle": { "answer": "A = πr² (where r is radius)", "intent": "math_skill" }
+  },
+  "land measurement": {
+    "bigha": { "answer": "Bigha is a traditional unit. 1 Bigha ≈ 1,600-2,500 sq yards (varies by region). In UP: 2,640 sq yards.", "intent": "unit_conversion" },
+    "acre": { "answer": "1 acre = 4,840 sq yards = 43,560 sq feet", "intent": "unit_conversion" }
+  },
+  "gst formula": {
+    "gst calculation": { "answer": "GST Amount = (Amount × GST Rate) / 100. Final Price = Amount + GST Amount.", "intent": "math_skill" }
+  },
+  "ta/da": {
+    "ta da calculation": { "answer": "TA/DA (Travel Allowance/Dearness Allowance) is calculated based on distance and duration. Daily rates vary by city classification.", "intent": "tada_process" }
+  },
+  "itr rules": {
+    "itr deadline": { "answer": "ITR filing deadline is July 31st for individuals. Extension available till December for some cases.", "intent": "master_tax_agent" }
+  },
+  "legal rules": {
+    "contract validity": { "answer": "A valid contract requires: Offer, Acceptance, Consideration, and Free Consent.", "intent": "legal_draft" }
+  },
+  "government schemes": {
+    "ayushman bharat": { "answer": "Ayushman Bharat Yojana provides health insurance up to ₹5 lakh per family annually.", "intent": "general_chat" },
+    "pm kisan": { "answer": "PM Kisan Samman Nidhi provides ₹6,000/year to eligible farmer families in 3 installments.", "intent": "general_chat" }
+  },
+  "scientific constants": {
+    "avogadro": { "answer": "Avogadro's number = 6.02214076 × 10²³ - Number of atoms in 1 mole", "intent": "math_skill" },
+    "boltzmann": { "answer": "k = 1.380649 × 10⁻²³ J/K - Relates temperature to energy", "intent": "math_skill" }
+  }
+}

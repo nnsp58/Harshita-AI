@@ -7,7 +7,7 @@ import AIAssistantWidget from '../components/Dashboard/AIAssistantWidget';
 import {
   Bot, Briefcase, FileText, Upload, Settings,
   Search, Users, Activity, TrendingUp, Bell,
-  SearchX, RefreshCw
+  SearchX, RefreshCw, AlertTriangle
 } from 'lucide-react';
 
 const AGENT_ICONS = {
@@ -79,12 +79,41 @@ export default function DashboardSaaS() {
   const [isMobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const [loadError, setLoadError] = useState(false);
 
   useEffect(() => {
-    initialize().finally(() => setIsLoading(false));
+    let timer;
+    setIsLoading(true);
+    initialize()
+      .then(() => {
+        // Start a 5-second timeout check for agents
+        timer = setTimeout(() => {
+          const state = useStore.getState();
+          if (!state.agents || state.agents.length === 0) {
+            setLoadError(true);
+          }
+        }, 5000);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+
+    return () => clearTimeout(timer);
   }, [initialize]);
 
+  const handleRetry = async () => {
+    setLoadError(false);
+    setIsRefreshing(true);
+    try {
+      await fetchAgents();
+    } catch (e) {
+      setLoadError(true);
+    }
+    setIsRefreshing(false);
+  };
+
   const handleRefreshAgents = async () => {
+    setLoadError(false);
     setIsRefreshing(true);
     try {
       await fetchAgents();
@@ -252,7 +281,7 @@ export default function DashboardSaaS() {
                     return (
                       <button
                         key={agent.id || agent.name}
-                        onClick={() => navigate('/service/ai-assistant')}
+                        onClick={() => navigate(agent.route || '/service/ai-assistant')}
                         className={`relative flex flex-col items-center justify-center p-4 rounded-xl border bg-gradient-to-br transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group ${
                           isActive
                             ? statusBgColors[agent.status] || statusBgColors.running
@@ -285,11 +314,22 @@ export default function DashboardSaaS() {
                     );
                   })}
                 </div>
+              ) : loadError ? (
+                <div className="text-center py-12 bg-red-950/20 rounded-xl border border-red-900/30 max-w-xl mx-auto w-full">
+                  <AlertTriangle className="mx-auto text-red-500 mb-3" size={32} />
+                  <p className="text-sm text-red-200 font-medium">Service temporarily unavailable.</p>
+                  <p className="text-xs text-slate-500 mt-1 mb-4">The server connection timed out. Please try again.</p>
+                  <button
+                    onClick={handleRetry}
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-sm font-semibold transition-colors shadow-lg shadow-indigo-600/20"
+                  >
+                    <RefreshCw size={14} className={isRefreshing ? 'animate-spin' : ''} /> Retry
+                  </button>
+                </div>
               ) : (
-                <div className="text-center py-12 bg-white/5 rounded-xl border border-white/10">
+                <div className="text-center py-12 bg-white/5 rounded-xl border border-white/10 w-full">
                   <RefreshCw className="mx-auto text-gray-600 mb-3 animate-spin" size={32} />
-                  <p className="text-sm text-gray-400">Loading all 22 AI agents...</p>
-                  <p className="text-xs text-gray-600 mt-1">If this takes too long, check if the server is running.</p>
+                  <p className="text-sm text-gray-400">Loading all applications...</p>
                 </div>
               )}
             </section>

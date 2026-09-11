@@ -13,7 +13,8 @@
     "db:studio": "prisma studio",
     "db:seed": "node prisma/seed.js",
     "test:smoke": "node scripts/smoke-test.js",
-    "test": "jest"
+    "test": "jest",
+    "build:local": "npm run --prefix frontend build:local"
   },
   "keywords": [
     "csc",
@@ -57,6 +58,7 @@
     "playwright": "^1.59.1",
     "prisma": "^6.4.1",
     "qrcode-terminal": "^0.12.0",
+    "razorpay": "^2.9.8",
     "sharp": "^0.33.0",
     "socket.io": "^4.8.3",
     "tesseract.js": "^7.0.0",

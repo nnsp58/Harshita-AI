@@ -12,6 +12,7 @@ import PublicHome from './pages/PublicHome'
 
 // Lazy load other pages
 const WorkspaceDashboard = lazy(() => import('./components/Dashboard/WorkspaceDashboard'))
+const MobileDashboard = lazy(() => import('./components/Mobile/MobileDashboard'))
 const Settings = lazy(() => import('./pages/Settings'))
 const Subscription = lazy(() => import('./pages/Subscription'))
 const Home = lazy(() => import('./pages/Home'))
@@ -89,6 +90,9 @@ const DeveloperCenter = lazy(() => import('./pages/admin/DeveloperCenter'))
 const AnalyticsDashboard = lazy(() => import('./pages/admin/AnalyticsDashboard'))
 const SystemControl = lazy(() => import('./pages/admin/SystemControl'))
 
+// Ebook Store Pages
+const EbookSalesPage = lazy(() => import('./pages/ebooks/EbookSalesPage'))
+const EbookThankYouPage = lazy(() => import('./pages/ebooks/ThankYouPage'))
 
 // Role-based admin route
 function AdminRoute({ children, allow }) {
@@ -160,6 +164,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <WorkspaceDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/mobile"
+            element={
+              <ProtectedRoute>
+                <MobileDashboard />
               </ProtectedRoute>
             }
           />
@@ -364,6 +376,11 @@ function App() {
           <Route path="/release-notes" element={<ReleaseNotes />} />
           <Route path="/release-notes" element={<ReleaseNotes />} />
           <Route path="/changelog" element={<Changelog />} />
+
+          {/* eBook Store Routes */}
+          <Route path="/ebooks" element={<Navigate to="/ebooks/part-1" replace />} />
+          <Route path="/ebooks/thank-you" element={<EbookThankYouPage />} />
+          <Route path="/ebooks/:slug" element={<EbookSalesPage />} />
 
           {/* Professional 404 Error Page (Replaces Redirect to Home) */}
           <Route path="*" element={<NotFoundWorkspace />} />

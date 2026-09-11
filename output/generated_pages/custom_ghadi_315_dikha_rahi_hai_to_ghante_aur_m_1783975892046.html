@@ -1,0 +1,101 @@
+
+<!-- Powered by Harshita AI Platform | UIBuilderAgent | 2026-07-13T20:51:32.046Z -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🕰️ घड़ी की सुई</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', 'Noto Sans Devanagari', sans-serif;
+            background-color: #f0f0f0;
+            padding: 12px;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .clock {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 2px solid #1a1a2e;
+            background-color: #fff;
+        }
+        .hour-hand {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(97.5deg);
+            width: 4px;
+            height: 80px;
+            background-color: #1a1a2e;
+            border-radius: 2px;
+            z-index: 1;
+        }
+        .minute-hand {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(94.5deg);
+            width: 2px;
+            height: 120px;
+            background-color: #4834d4;
+            border-radius: 1px;
+            z-index: 2;
+        }
+        .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background-color: #1a1a2e;
+            border-radius: 50%;
+            z-index: 3;
+        }
+        .angle {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>घड़ी की सुई</h1>
+        <div class="clock">
+            <div class="hour-hand"></div>
+            <div class="minute-hand"></div>
+            <div class="center"></div>
+        </div>
+        <p>घड़ी 3:15 दिखा रही है</p>
+        <p>घंटे की सुई और मिनट की सुई के बीच का कोण है: <span class="angle">105 डिग्री</span></p>
+    </div>
+    <script>
+        // calculate angle between hour and minute hands
+        const hour = 3;
+        const minute = 15;
+        const hourAngle = (hour * 30) + (minute * 0.5);
+        const minuteAngle = minute * 6;
+        const angle = Math.abs(hourAngle - minuteAngle);
+        if (angle > 180) {
+            angle = 360 - angle;
+        }
+        document.querySelector('.angle').innerText = angle + ' डिग्री';
+    </script>
+
+  <div style="text-align:center;padding:24px;background:#0a0a0f;color:#666;font-size:12px;margin-top:60px;border-top: 1px solid #1a1a2e;">
+    🤖 Powered by <strong style="color:#4834d4;">Harshita AI Platform</strong> | Adaptive UI Engine &copy; 2026
+  </div>
+</body>
+</html>

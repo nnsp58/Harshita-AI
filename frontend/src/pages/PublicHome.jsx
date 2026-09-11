@@ -9,11 +9,10 @@ import {
 import SEO from '../components/SEO'
 import Footer from '../components/Footer'
 
-import { TOOLS_LIST, DRAFTING_TOOLS } from '../data/converters'
+import { DRAFTING_TOOLS } from '../data/converters'
 
 const ALL_SERVICES = [
-  ...DRAFTING_TOOLS,
-  ...TOOLS_LIST.map(t => ({ ...t, slug: t.href.replace('/', '').replace('.html', ''), category: 'Converters' }))
+  ...DRAFTING_TOOLS
 ]
 
 const FAQS = [
@@ -74,7 +73,7 @@ export default function PublicHome() {
           <nav className="hidden md:flex items-center gap-8 text-sm text-gray-400 font-medium">
             <a href="#features" className="hover:text-indigo-400 transition-colors">Features</a>
             <a href="#draft-tools" className="hover:text-indigo-400 transition-colors">Legal AI</a>
-            <a href="#tools" className="hover:text-indigo-400 transition-colors">Converters</a>
+
             <Link to="/about" className="hover:text-indigo-400 transition-colors">About Us</Link>
             <Link to="/contact" className="hover:text-indigo-400 transition-colors">Contact</Link>
           </nav>
@@ -228,34 +227,34 @@ export default function PublicHome() {
 
       {/* Premium AI Drafting Tools Directory */}
       <section id="draft-tools" className="py-16 px-4 sm:px-8 border-t border-white/5 bg-[#0b0d19]/30">
-        <div className="max-w-7xl mx-auto space-y-8">
+        <div className="max-w-[1400px] mx-auto space-y-8">
           <div className="text-center max-w-2xl mx-auto space-y-2">
             <span className="text-xs font-bold text-amber-500 uppercase tracking-widest">Legal Engine</span>
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">AI Drafting Assistants</h2>
             <p className="text-sm text-gray-400">Generate court-ready agreements, legal notices, and certificates in minutes with our zero-placeholder quality gates.</p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8 gap-4">
-            {DRAFTING_TOOLS.slice(0, showAllDrafting ? DRAFTING_TOOLS.length : 6).map((tool, idx) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 justify-items-center">
+            {DRAFTING_TOOLS.slice(0, showAllDrafting ? DRAFTING_TOOLS.length : 5).map((tool, idx) => (
               <Link 
                 key={idx} 
                 to={tool.href || `/tools/${tool.slug}`}
-                className="group h-[140px] p-3.5 rounded-xl bg-[#0f111a] border border-white/5 hover:border-amber-500/30 transition-all duration-300 shadow-xl flex flex-col justify-between hover:scale-[1.02]"
+                className="group w-full max-w-[240px] min-w-[220px] h-[210px] p-6 rounded-2xl bg-[#0f111a] border border-white/5 hover:border-purple-500/40 hover:-translate-y-1.5 hover:shadow-[0_0_20px_rgba(139,92,246,0.15)] transition-all duration-300 flex flex-col justify-between hover:scale-[1.01] shadow-xl"
               >
-                <div className="space-y-1">
-                  <span className="text-2xl block group-hover:scale-110 transition-transform origin-left">{tool.icon}</span>
-                  <h3 className="font-bold text-white text-xs leading-tight group-hover:text-amber-400 transition-colors truncate">{tool.name}</h3>
-                  <p className="text-[10px] text-gray-400 line-clamp-1">{tool.desc}</p>
+                <div className="space-y-2">
+                  <span className="text-[42px] leading-none block group-hover:scale-110 transition-transform origin-left select-none">{tool.icon}</span>
+                  <h3 className="font-bold text-white text-[18px] leading-tight group-hover:text-purple-400 transition-colors truncate">{tool.name}</h3>
+                  <p className="text-[13px] text-gray-400 line-clamp-2 leading-relaxed">{tool.desc}</p>
                 </div>
-                <div className="flex items-center justify-between text-[10px] text-amber-500 font-bold border-t border-white/[0.02] pt-2">
-                  <span>Launch</span>
-                  <ChevronRight size={10} className="group-hover:translate-x-0.5 transition-transform" />
+                <div className="w-full py-2.5 bg-purple-600/10 group-hover:bg-purple-600 border border-purple-500/20 group-hover:border-purple-500 text-purple-400 group-hover:text-white rounded-xl text-xs font-bold transition-all duration-300 flex items-center justify-center gap-1.5 shrink-0">
+                  <span>Launch Tool</span>
+                  <ChevronRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
                 </div>
               </Link>
             ))}
           </div>
 
-          {!showAllDrafting && DRAFTING_TOOLS.length > 6 && (
+          {!showAllDrafting && DRAFTING_TOOLS.length > 5 && (
             <div className="text-center pt-4">
               <button 
                 onClick={() => setShowAllDrafting(true)}
@@ -268,48 +267,6 @@ export default function PublicHome() {
         </div>
       </section>
 
-      {/* Programmatic Tools Directory */}
-      <section id="tools" className="py-16 px-4 sm:px-8 border-t border-white/5">
-        <div className="max-w-7xl mx-auto space-y-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div className="space-y-2">
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Free Conversion Suite</h2>
-              <p className="text-sm text-gray-400 max-w-xl">Double-click or open any tool below to perform offline document, image, and voice conversion.</p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {TOOLS_LIST.slice(0, showAllTools ? TOOLS_LIST.length : 6).map((tool, idx) => (
-              <a 
-                key={idx} 
-                href={tool.href} 
-                className="group h-[140px] p-3.5 rounded-xl bg-[#0f111a] border border-white/5 hover:border-indigo-500/30 transition-all duration-300 shadow-xl flex flex-col justify-between hover:scale-[1.02]"
-              >
-                <div className="space-y-1">
-                  <span className="text-2xl block group-hover:scale-110 transition-transform origin-left">{tool.icon}</span>
-                  <h3 className="font-bold text-white text-xs leading-tight group-hover:text-indigo-400 transition-colors truncate">{tool.name}</h3>
-                  <p className="text-[10px] text-gray-400 line-clamp-1">{tool.desc}</p>
-                </div>
-                <div className="flex items-center justify-between text-[10px] text-indigo-400 font-bold border-t border-white/[0.02] pt-2">
-                  <span>Launch</span>
-                  <ChevronRight size={10} className="group-hover:translate-x-0.5 transition-transform" />
-                </div>
-              </a>
-            ))}
-          </div>
-
-          {!showAllTools && TOOLS_LIST.length > 6 && (
-            <div className="text-center pt-4">
-              <button 
-                onClick={() => setShowAllTools(true)}
-                className="px-6 py-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-xs font-semibold text-white transition-colors"
-              >
-                View All ({TOOLS_LIST.length}) →
-              </button>
-            </div>
-          )}
-        </div>
-      </section>
 
       {/* Testimonials */}
       <section className="py-20 px-4 sm:px-8 border-t border-white/5 bg-[#0b0d19]/30">

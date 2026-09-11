@@ -1,5 +1,6 @@
 import { useState, useRef, useMemo, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useStore } from '../store'
 import {
   User, MapPin, Plus, Trash2, Edit3, Check, X,
   ChevronRight, ChevronLeft, Printer, Eye, ArrowLeft, Search
@@ -940,18 +941,63 @@ function JourneyStep({ form, setForm, editIdx, onAdd, onCancel, pno, journeys, m
 
 // ===== NAKSHA PREVIEW (Landscape) =====
 function NakshaPreview({ info, journeys, onEdit, onDelete, totalDist, totalFare, totalDays, totalDA, grandTotal, hasManualDA: _hasManualDA }) {
+  const { subscriptionMode } = useStore();
+  const isPremium = subscriptionMode === 'active';
+
   return (
     <div className="naksha-print-wrapper flex justify-center">
       {/* Page wrapper — Legal landscape size with visible margins */}
-      <div className="naksha-page bg-white text-black shadow-2xl"
+      <div className="naksha-page bg-white text-black shadow-2xl relative overflow-hidden"
         style={{
           width: '356mm',
           minHeight: '216mm',
           padding: '8mm',
           boxSizing: 'border-box',
         }}>
+        
+        {/* Watermark Layer */}
+        {!isPremium && (
+          <div style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '60%',
+            opacity: 0.1,
+            zIndex: 0,
+            pointerEvents: 'none',
+            userSelect: 'none',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}>
+            <img 
+              src="/up-police-logo.png" 
+              alt="UP Police Watermark"
+              style={{
+                width: '100%',
+                height: 'auto',
+                filter: 'grayscale(100%) opacity(1)' // Use opacity on container, keep image sharp
+              }}
+              onError={(e) => {
+                // Fallback monogram if image is missing
+                e.target.style.display = 'none';
+                e.target.nextSibling.style.display = 'block';
+              }}
+            />
+            <div style={{
+              display: 'none',
+              fontSize: '120px',
+              fontWeight: '900',
+              fontFamily: 'serif',
+              color: '#b0b0b0',
+              textAlign: 'center'
+            }}>UPP</div>
+          </div>
+        )}
+
         {/* Inner content with border */}
-        <div className="naksha-preview border-2 border-black p-3 font-mono text-[12px] h-full">
+        <div className="naksha-preview border-2 border-black p-3 font-mono text-[12px] h-full relative" style={{ zIndex: 1 }}>
           <div className="flex gap-2 h-full">
             {/* LEFT: Naksha Table (75%) */}
             <div className="flex-1 min-w-0 flex flex-col">

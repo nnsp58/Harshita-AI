@@ -79,8 +79,10 @@ class MasterAgent {
       console.log(`\n🎯 [MasterAgent Orchestrator] User ${userId}: "${cmd.substring(0, 60)}..."`);
       
       // Conjunction split check (P0-5 Multi Intent Support)
+      // Do NOT split if message is a narrative legal complaint, police report, or single incident context
+      const isNarrativeOrLegal = /(?:chori|shikayat|police|fir|le\s*gaya|thana|complaint|affidavit|rent\s*agreement|gift\s*deed|notice|s\/o|w\/o|d\/o|mera\s*naam|story|nibandh|essay)/i.test(cmd);
       const splitKeywords = /\s+(?:aur|and|&|bhi|साथ\s+ही)\s+/gi;
-      if (splitKeywords.test(cmd)) {
+      if (!isNarrativeOrLegal && splitKeywords.test(cmd)) {
         const parts = cmd.split(splitKeywords).map(p => p.trim()).filter(Boolean);
         if (parts.length > 1) {
           console.log(`[MasterAgent] Multi-intent detected. Splitting into ${parts.length} tasks:`, parts);

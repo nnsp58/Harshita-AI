@@ -1,0 +1,125 @@
+
+<!-- Powered by Harshita AI Platform | UIBuilderAgent | 2026-07-13T20:49:38.850Z -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🕰️ घड़ी की सुई</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', 'Noto Sans Devanagari', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 400px;
+            margin: 40px auto;
+            background-color: #fff;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .hero {
+            background: linear-gradient(90deg, #1a1a2e, #4834d4);
+            color: #fff;
+            padding: 24px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+        }
+        .clock {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 24px;
+        }
+        .clock svg {
+            width: 200px;
+            height: 200px;
+        }
+        .clock-circle {
+            fill: none;
+            stroke: #1a1a2e;
+            stroke-width: 2;
+        }
+        .hour-hand {
+            fill: none;
+            stroke: #1a1a2e;
+            stroke-width: 4;
+            stroke-linecap: round;
+            animation: rotate-hour 60s linear infinite;
+        }
+        .minute-hand {
+            fill: none;
+            stroke: #4834d4;
+            stroke-width: 2;
+            stroke-linecap: round;
+            animation: rotate-minute 60s linear infinite;
+        }
+        @keyframes rotate-hour {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes rotate-minute {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        .result {
+            margin-top: 24px;
+            text-align: center;
+        }
+        @media (max-width: 412px) {
+            .container {
+                padding: 12px;
+                margin: 20px auto;
+            }
+            .hero {
+                padding: 16px;
+            }
+            .hero h1 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>घड़ी की सुई</h1>
+            <p>3:15 दिखा रही है</p>
+        </div>
+        <div class="clock">
+            <svg viewBox="0 0 200 200">
+                <circle cx="100" cy="100" r="90" class="clock-circle"></circle>
+                <line x1="100" y1="100" x2="100" y2="50" class="hour-hand" style="transform: rotate(97.5deg);"></line>
+                <line x1="100" y1="100" x2="100" y2="30" class="minute-hand" style="transform: rotate(90deg);"></line>
+            </svg>
+        </div>
+        <div class="result">
+            <p>घंटे और मिनट की सुई में 97.5° का कोण बनेगा</p>
+        </div>
+    </div>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <div style="text-align:center;padding:24px;background:#0a0a0f;color:#666;font-size:12px;margin-top:60px;border-top: 1px solid #1a1a2e;">
+    🤖 Powered by <strong style="color:#4834d4;">Harshita AI Platform</strong> | Adaptive UI Engine &copy; 2026
+  </div>
+</body>
+</html>

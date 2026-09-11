@@ -24,6 +24,7 @@ const storyVideoRoutes = require('./storyVideo');
 const academyRoutes = require('./academy');
 const selfHealingRoutes = require('./selfHealing');
 const utilitiesRoutes = require('./utilities');
+const ebookRoutes = require('./ebooks');
 
 router.use('/auth', authRoutes);
 router.use('/self-healing', selfHealingRoutes);
@@ -74,6 +75,7 @@ router.use('/settings', settingRoutes);
 router.use('/story-video', storyVideoRoutes);
 router.use('/academy', academyRoutes);
 router.use('/utilities', utilitiesRoutes);
+router.use('/ebooks', ebookRoutes);
 
 
 

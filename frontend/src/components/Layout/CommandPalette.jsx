@@ -4,7 +4,7 @@ import { Search, Command, Folder, Bot, FileText, FileType, Clock, Star, CornerDo
 import Fuse from 'fuse.js';
 import { TOOLS_METADATA } from '../../data/toolsMetadata';
 import { AGENTS } from '../../data/agents';
-import { TOOLS_LIST } from '../../data/converters';
+
 
 const CORE_ACTIONS = [
   { id: 'dashboard', title: 'Go to Dashboard', route: '/dashboard', type: 'Workspace', keywords: ['home', 'main'] },
@@ -87,16 +87,7 @@ export default function CommandPalette() {
       });
     });
 
-    TOOLS_LIST.forEach(tool => {
-      index.push({
-        id: `tool-${tool.name}`,
-        title: tool.name,
-        desc: tool.desc,
-        type: 'Service',
-        route: tool.href.replace('.html', ''),
-        keywords: tool.keywords || []
-      });
-    });
+
 
     return index;
   }, []);

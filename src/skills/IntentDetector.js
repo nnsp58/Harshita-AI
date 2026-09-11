@@ -117,7 +117,27 @@ class IntentDetector {
         return this._finalizeResult(result, cacheKey);
     }
 
-    // Step 1: Pattern Overrides
+    // Step 1: Legal / Police Complaint Fast-Path (Harshita AI Master Legal Instruction)
+    const { legalComplaintEngine } = require('../departments/legal/LegalComplaintEngine');
+    if (legalComplaintEngine.isComplaintRequest(cleanMessage)) {
+      const complaintEntities = legalComplaintEngine.extractEntities(cleanMessage);
+      const result = {
+        intent: 'legal_draft',
+        confidence: 0.99,
+        skill: 'legal_draft',
+        skillDisplayName: 'कानूनी ड्राफ्ट',
+        params: {
+          raw: cleanMessage,
+          docCategory: 'police_complaint',
+          docType: 'police_complaint',
+          extractedEntities: complaintEntities,
+        },
+        method: 'legal_complaint_engine',
+      };
+      return this._finalizeResult(result, cacheKey);
+    }
+
+    // Step 1.1: Pattern Overrides
     for (const override of this.overrides) {
       const regex = new RegExp(override.pattern, override.flags || 'i');
       if (regex.test(lowerMessage)) {
@@ -225,6 +245,11 @@ class IntentDetector {
     // Financial Pattern
     if (/(?:gst|emi|interest|tax|percentage|percent|interest|ब्याज|प्रतिशत|%)/i.test(lowerMessage) && /\d+/.test(lowerMessage)) {
       return { intent: 'math_financial', confidence: 0.95, params: { raw: message, queryType: 'execution' }, method: 'pattern' };
+    }
+
+    // HTML to PDF Pattern
+    if (/(?:html.*to.*pdf|html.*pdf|web.*to.*pdf|वेब.*पीडीएफ|एचटीएमएल.*पीडीएफ)/i.test(lowerMessage)) {
+      return { intent: 'html_to_pdf', confidence: 0.98, params: { raw: message, queryType: 'execution' }, method: 'pattern' };
     }
 
     // 2. Information vs Execution overrides based on verbs

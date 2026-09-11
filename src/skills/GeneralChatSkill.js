@@ -128,6 +128,11 @@ class GeneralChatSkill extends BaseSkill {
       return this._reply('आपका स्वागत है। यदि कोई अन्य कार्य शेष है, तो कृपया मुझे सूचित करें।');
     }
 
+    // Acknowledgments (ok / theek hai / done / sure / acha)
+    if (/^(ok|okay|thik hai|theek hai|thik h|theek h|accha|acha|sahi hai|done|sure|got it|hmm|haan|ha|yes|fine)\b/i.test(text.trim())) {
+      return this._reply('जी बिल्कुल! कृपया बताएं कि मैं आपकी आगे किस कार्य में सहायता करूँ? आप फॉर्म भरने, कानूनी ड्राफ्ट, नोटिस या फाइल कन्वर्ट करने का निर्देश दे सकते हैं।');
+    }
+
     try {
       const messages = [
         {

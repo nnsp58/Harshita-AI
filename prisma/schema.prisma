@@ -55,6 +55,9 @@ model User {
   tax_profile           TaxProfile?
   legal_profile         LegalProfile?
   csc                   CSC                   @relation(fields: [csc_id], references: [id], onDelete: Cascade)
+  purchases             Purchase[]
+  entitlements          Entitlement[]
+  referral_codes        ReferralCode[]
 
   @@index([csc_id])
   @@map("users")
@@ -536,4 +539,103 @@ enum VerificationStatus {
   needs_review
   verified
   rejected
+}
+
+model Product {
+  id               String   @id @default(uuid())
+  slug             String   @unique
+  title            String
+  shortDescription String   @map("short_description")
+  description      String?
+  productType      String   @default("ebook") @map("product_type")
+  language         String   @default("english")
+  coverImage       String?  @map("cover_image")
+  filePath         String?  @map("file_path")
+  regularPrice     Float    @map("regular_price")
+  salePrice        Float    @map("sale_price")
+  currency         String   @default("USD")
+  partNumber       Int?     @map("part_number")
+  status           String   @default("draft") // draft, coming_soon, published, archived
+  isFeatured       Boolean  @default(false) @map("is_featured")
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+
+  purchases    Purchase[]
+  entitlements Entitlement[]
+  referrals    Referral[]
+
+  @@map("products")
+}
+
+model Purchase {
+  id                String   @id @default(uuid())
+  userId            String?  @map("user_id") // Optional, for guests
+  customerEmail     String   @map("customer_email")
+  productId         String   @map("product_id")
+  razorpayOrderId   String?  @map("razorpay_order_id")
+  razorpayPaymentId String?  @unique @map("razorpay_payment_id")
+  amount            Float
+  currency          String   @default("USD")
+  status            String   @default("created") // created, paid, failed, refunded
+  referralCode      String?  @map("referral_code")
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+
+  user    User?   @relation(fields: [userId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+
+  referralAsReferee Referral? @relation("RefereePurchase")
+
+  @@index([customerEmail])
+  @@index([productId])
+  @@map("purchases")
+}
+
+model Entitlement {
+  id            String   @id @default(uuid())
+  userId        String?  @map("user_id") // Optional
+  customerEmail String   @map("customer_email")
+  productId     String   @map("product_id")
+  source        String   @default("purchase") // purchase, referral_reward, manual
+  referralId    String?  @map("referral_id")
+  status        String   @default("active") // active, revoked
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  user    User?   @relation(fields: [userId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+  referral Referral? @relation(fields: [referralId], references: [id])
+
+  @@unique([customerEmail, productId])
+  @@index([userId])
+  @@map("entitlements")
+}
+
+model ReferralCode {
+  id            String   @id @default(uuid())
+  userId        String?  @map("user_id")
+  customerEmail String   @map("customer_email")
+  code          String   @unique
+  active        Boolean  @default(true)
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  user User? @relation(fields: [userId], references: [id])
+
+  @@index([customerEmail])
+  @@map("referral_codes")
+}
+
+model Referral {
+  id                String   @id @default(uuid())
+  referrerEmail     String   @map("referrer_email")
+  refereePurchaseId String   @unique @map("referee_purchase_id")
+  productId         String   @map("product_id")
+  status            String   @default("pending") // pending, successful, rewarded
+  createdAt         DateTime @default(now()) @map("created_at")
+
+  refereePurchase Purchase      @relation("RefereePurchase", fields: [refereePurchaseId], references: [id])
+  product         Product       @relation(fields: [productId], references: [id])
+  entitlements    Entitlement[]
+
+  @@index([referrerEmail])
+  @@map("referrals")
 }

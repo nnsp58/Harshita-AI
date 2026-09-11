@@ -93,12 +93,26 @@ export function classifyDocumentCategory(text) {
     return { isDocument: false, category: null, title: null, type: 'chat' };
   }
 
+  // Guard: Never classify conversational greetings, intros, error fallbacks, or platform menus as documents
+  if (
+    /Harshita AI|Platform Capabilities|Skill Discovery|सहायक|नमस्कार|Total Skill Count|I am temporarily unable/i.test(text) ||
+    /क्या कर सकती हूँ|कृपया बताएं कि मैं आपके लिए|उन्नत \(Advanced\) CSC/i.test(text)
+  ) {
+    return { isDocument: false, category: null, title: null, type: 'chat' };
+  }
+
+  // A document must have actual structural layout or formal document headers
+  const markerCount = DOCUMENT_STRUCTURE_MARKERS.filter(m => text.includes(m)).length;
+  if (markerCount < 2 && !/(?:सेवा\s*में|AFFIDAVIT|LEGAL NOTICE|RENT AGREEMENT|GIFT DEED|शपथ पत्र|अनुबंध|विलेख)/i.test(text)) {
+    return { isDocument: false, category: null, title: null, type: 'chat' };
+  }
+
   // Category detection order: most specific first
   const categoryPatterns = [
-    { category: 'rti', title: 'RTI Application / सूचना का अधिकार', regex: /rti|सूचना\s*का\s*अधिकार|आरटीआई|right\s*to\s*information/i },
+    { category: 'rti', title: 'RTI Application / सूचना का अधिकार', regex: /सूचना\s*का\s*अधिकार|आरटीआई|right\s*to\s*information/i },
     { category: 'affidavit', title: 'शपथ पत्र / Affidavit', regex: /affidavit|शपथ\s*पत्र|एफिडेविट|शपथपूर्वक|sworn/i },
     { category: 'gift_deed', title: 'दान विलेख / Gift Deed', regex: /gift\s*deed|दान\s*विलेख/i },
-    { category: 'partition_deed', title: 'बंटवारा विलेख / Partition Deed', regex: /partition|बंटवारा/i },
+    { category: 'partition_deed', title: 'बंटवारा विलेख / Partition Deed', regex: /partition\s*deed|बंटवारा\s*विलेख/i },
     { category: 'rent_agreement', title: 'किराया अनुबंध / Rent Agreement', regex: /rent\s*agreement|किराया\s*अनुबंध/i },
     { category: 'noc', title: 'अनापत्ति प्रमाण पत्र / NOC', regex: /\bNOC\b|no\s*objection|अनापत्ति/i },
     { category: 'will', title: 'वसीयत / Will', regex: /\bwill\b|वसीयत|testament/i },
@@ -114,10 +128,10 @@ export function classifyDocumentCategory(text) {
     { category: 'representation', title: 'अभ्यावेदन / Representation', regex: /representation|अभ्यावेदन/i },
     { category: 'complaint', title: 'शिकायत पत्र / Complaint Letter', regex: /complaint|शिकायत\s*पत्र/i },
     { category: 'prayer_letter', title: 'प्रार्थना पत्र / Prayer Letter', regex: /prayer\s*letter|प्रार्थना\s*पत्र/i },
-    { category: 'application', title: 'आवेदन पत्र / Application', regex: /application|आवेदन\s*पत्र|सेवा\s*में/i },
-    { category: 'notice', title: 'नोटिस / Notice', regex: /notice|नोटिस/i },
-    { category: 'draft', title: 'मसौदा / Draft', regex: /draft|मसौदा/i },
-    { category: 'agreement', title: 'अनुबंध / Agreement', regex: /agreement|अनुबंध|करार/i },
+    { category: 'application', title: 'आवेदन पत्र / Application', regex: /आवेदन\s*पत्र|सेवा\s*में/i },
+    { category: 'notice', title: 'नोटिस / Notice', regex: /कानूनी\s*नोटिस|NOTICE/i },
+    { category: 'draft', title: 'मसौदा / Draft', regex: /कानूनी\s*मसौदा|DRAFT/i },
+    { category: 'agreement', title: 'अनुबंध / Agreement', regex: /अनुबंध\s*पत्र|AGREEMENT/i },
   ];
 
   for (const { category, title, regex } of categoryPatterns) {
@@ -132,7 +146,6 @@ export function classifyDocumentCategory(text) {
   }
 
   // Check if it has document structural markers (fallback)
-  const markerCount = DOCUMENT_STRUCTURE_MARKERS.filter(m => text.includes(m)).length;
   if (markerCount >= 3) {
     return {
       isDocument: true,

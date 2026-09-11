@@ -930,10 +930,21 @@
         "content": "शपथ पत्र / Affidavit\n═══════════════════════════════════════════════════════════════════════════════\n\nमैं, ____________________, पुत्र / पुत्री ____________________, आयु ____________________ वर्ष, निवासी ____________________,\nआधार संख्या ____________________, सत्यनिष्ठा से शपथ लेकर निम्नलिखित घोषणा करता/करती हूँ:\n\nI, ____________________, S/o ____________________, Aged ____________________ Years, R/o ____________________,\nAadhaar No. ____________________, Do Hereby Solemnly Affirm and Declare As Under:\n\nविषय / Subject:\nNaam Parivartan ke Liye Shapath Patra. Nar Narayan Singh putra Meer Singh.\n\nघोषणा / Declaration:\n1. यह कि उपरोक्त कथन मेरी व्यक्तिगत जानकारी, विश्वास और सत्य के अनुसार पूर्णतः सही है।\n2. यह कि मैंने इस शपथ पत्र में कोई भी तथ्य जानबूझकर छुपाया या विकृत नहीं किया है।\n3. यह कि यह शपथ पत्र विधिक प्रयोजनों हेतु निष्पादित किया जा रहा है।\n\nसत्यापन / Verification:\nसत्यापित किया जाता है कि उपरोक्त पैरा 1 से 3 तक के कथन मेरी जानकारी और विश्वास के अनुसार सत्य हैं तथा इनमें कुछ भी असत्य नहीं है।\n\nदिनांक / Date: 20/6/2026                              स्थान / Place: ____________\n\nशपथकर्ता / Deponent\nनाम: ___________________________\nहस्ताक्षर: _______________________\n\n═══════════════════════════════════════════════════════════════════════════════\nनोट: इस शपथ पत्र को नोटरी पब्लिक से सत्यापित करवाना अनिवार्य है।",
         "timestamp": "2026-06-19T18:53:44.298Z",
         "success": true
+      },
+      {
+        "role": "user",
+        "content": "थाना सिविल लाइन्स में शिकायत: शिकायतकर्ता राहुल शर्मा पुत्र श्री अशोक शर्मा, निवासी 123 राजापुर प्रयागराज, मोबाइल 9876543210। आरोपी अज्ञात व्यक्ति। घटना दिनांक 05 सितंबर 2026 समय सायं 6 बजे। घटना स्थल सुभाष चौराहा। घटना: मेरी बाइक UP70 AB 1234 चोरी हो गई। कृपया FIR दर्ज करें।",
+        "timestamp": "2026-09-11T04:57:32.898Z"
+      },
+      {
+        "role": "assistant",
+        "content": "[रूटिंग सफल] ✅ आपकी शिकायत का कानूनी मसौदा (A4 Police Complaint) तैयार कर दिया गया है।\n\n📄 **शीर्षक:** पुलिस शिकायत पत्र (Police Complaint)\n🏛️ **प्राधिकारी:** थाना प्रभारी महोदय, जिला- बुलंदशहर\n👤 **शिकायतकर्ता:** विवरण दर्ज\n🚨 **संदिग्ध:** विवरण दर्ज\n\nदस्तावेज़ को नीचे A4 वर्कस्पेस में खोला गया है जहाँ से आप इसे Edit, Print या PDF डाउनलोड कर सकते हैं।\n\n═══════════════════════════════════════════════════════════════\n                 पुलिस शिकायत पत्र / POLICE COMPLAINT APPLICATION\n═══════════════════════════════════════════════════════════════\n\nसेवा में,\nथानाध्यक्ष / थाना प्रभारी महोदय,\nथाना: __________ (संबंधित स्थानीय थाना)\nजिला: बुलंदशहर, उत्तर प्रदेश\n\nविषय: घर से कैरी बैग, महत्वपूर्ण व्यक्तिगत दस्तावेज़ एवं Poco M3 मोबाइल फोन चोरी होने / ले जाए जाने के संबंध में शिकायत पत्र।\n\nमहोदय,\n\nसविनय निवेदन है कि प्रार्थी / शिकायतकर्ता का पूर्ण विवरण एवं घटना के तथ्य निम्नवत् हैं:\n\n१. शिकायतकर्ता का विवरण:\n   • नाम: [शिकायतकर्ता का नाम]\n   • पिता का नाम: [पिता का नाम]\n   • स्थायी पता: ग्राम व पोस्ट- सिखैड़ा, जिला- बुलंदशहर, उत्तर प्रदेश\n   • मोबाइल नंबर: __________\n\n२. घटना का विवरण:\n   • दिनांक: 05 सितंबर 2026\n   • समय: __________ (समय उपलब्ध नहीं / रात्रि के समय)\n   • स्थान: शिकायतकर्ता का निवास स्थान\n\n३. संदिग्ध / नामजद व्यक्ति का विवरण:\n   • नाम: [संदिग्ध/आरोपी व्यक्ति का नाम]\n   • पिता का नाम: [पिता का नाम]\n   • पता: ग्राम व पोस्ट- सिखैड़ा, तहसील- बुलंदशहर, जिला- बुलंदशहर\n\n४. चोरी / ले जाई गई वस्तुओं का विवरण:\n   (a) एक कैरी बैग\n   (b) आवश्यक दस्तावेज़\n   (c) मोबाइल फोन\n\n५. घटना का विवरण (तथ्य एवं आरोप):\n   शिकायतकर्ता के कथन एवं आरोप के अनुसार, दिनांक 05 सितंबर 2026 को उक्त संदिग्ध व्यक्ति ([संदिग्ध/आरोपी व्यक्ति का नाम]) शिकायतकर्ता के घर पर मौजूद था। उक्त व्यक्ति द्वारा शिकायतकर्ता के घर से उसका कैरी बैग, जिसमें कुछ महत्वपूर्ण दस्तावेज़ एवं Poco M3 मोबाइल फोन रखे हुए थे, चोरी से अपने साथ ले जाने का आरोप है।\n\n७. पुलिस प्रशासन से विनम्र प्रार्थना:\n   अतः श्रीमान जी से विनम्र निवेदन है कि:\n   (क) उक्त शिकायत को गंभीरता से संज्ञान में लेते हुए उचित अभिलेखों (GD/FIR) म",
+        "timestamp": "2026-09-11T04:57:32.898Z",
+        "success": true
       }
     ],
     "createdAt": "2026-06-19T18:53:43.865Z",
-    "lastActive": "2026-06-19T18:53:44.298Z"
+    "lastActive": "2026-09-11T04:57:32.898Z"
   },
   "test_user:application_writer": {
     "userId": "test_user",
@@ -1086,5 +1097,2040 @@
     ],
     "createdAt": "2026-07-07T21:38:11.671Z",
     "lastActive": "2026-07-07T21:38:11.672Z"
+  },
+  "u1:general_chat": {
+    "userId": "u1",
+    "skill": "general_chat",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Free Fall aur Projectile Motion me antar batao",
+        "timestamp": "2026-07-13T20:49:05.569Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Free Fall mein vastu sirf gurutvakarshan ke kaaran girti hai, jabki Projectile Motion mein vastu gurutvakarshan aur gati ke kaaran ek parabola ke roop mein gati karti hai 🚀",
+        "timestamp": "2026-07-13T20:49:05.569Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Rocket antariksh me kaise chalta hai jab piche hawa nahi hoti",
+        "timestamp": "2026-07-13T20:49:09.699Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Rocket mein rakhe gaye fuel aur oxidizer ki pratikriya se bahar ki aur dhakka hota hai, jisse rocket antariksh me chalta hai. Ismein piche hawa ki avashyakta nahi hoti. 🚀",
+        "timestamp": "2026-07-13T20:49:09.699Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "yadi 3 ohm, 6 ohm aur 9 ohm parallel hain to kul resistance nikalo",
+        "timestamp": "2026-07-13T20:49:16.978Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Parallel mein kul resistance (R) ki ganana ke liye, hum is formula ka upyog karte hain: \n1/R = 1/R1 + 1/R2 + 1/R3\nIsliye, 1/R = 1/3 + 1/6 + 1/9\n1/R = (6+3+2)/18\n1/R = 11/18\nR = 18/11 ohm \nR = 1.636 ohm",
+        "timestamp": "2026-07-13T20:49:16.978Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Transformer DC par kyu nahi chalta",
+        "timestamp": "2026-07-13T20:49:21.096Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Transformer AC par chalta hai, DC par nahi. Iska kaaran yeh hai ki transformer mein electromagnetic induction hota hai, jo AC current ke liye upyukt hai. DC current mein badlaav nahi hota, isliye transformer usse prabhavit nahi kar sakta. 📚",
+        "timestamp": "2026-07-13T20:49:21.096Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "18 gram water me kitne molecules hote hain",
+        "timestamp": "2026-07-13T20:49:25.095Z"
+      },
+      {
+        "role": "assistant",
+        "content": "18 gram pani me lagbhag 6.022 x 10^23 molecules hote hain, jo Avogadro ki sankhya ke barabar hain. 💧",
+        "timestamp": "2026-07-13T20:49:25.095Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "pH 3 aur pH 5 me kitni guna amliyata ka antar hai",
+        "timestamp": "2026-07-13T20:49:27.634Z"
+      },
+      {
+        "role": "assistant",
+        "content": "pH 3 aur pH 5 me amliyata ka antar 100 guna hota hai. 📊",
+        "timestamp": "2026-07-13T20:49:27.634Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "3 aadmi 3 din me 3 deewar banate hain to 9 aadmi 9 din me kitni deewar banayenge",
+        "timestamp": "2026-07-13T20:49:31.167Z"
+      },
+      {
+        "role": "assistant",
+        "content": "9 aadmi 9 din me 27 deewar banayenge. 📈",
+        "timestamp": "2026-07-13T20:49:31.167Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "bina quadratic formula ke x^2 - 11x + 30 = 0 solve karo",
+        "timestamp": "2026-07-13T20:51:12.643Z"
+      },
+      {
+        "role": "assistant",
+        "content": "x^2 - 11x + 30 = 0 ko factor karke solve kiya ja sakta hai. \nx^2 - 5x - 6x + 30 = 0 \nx(x - 5) - 6(x - 5) = 0 \n(x - 5)(x - 6) = 0 \nx = 5 ya x = 6 💡",
+        "timestamp": "2026-07-13T20:51:12.643Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "yadi a+b=10 aur ab=21 to a^3 + b^3 nikalo",
+        "timestamp": "2026-07-13T20:51:13.151Z"
+      },
+      {
+        "role": "assistant",
+        "content": "a^3 + b^3 = (a+b)^3 - 3ab(a+b) \n= (10)^3 - 3*21*10 \n= 1000 - 630 \n= 370",
+        "timestamp": "2026-07-13T20:51:13.151Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "(a+b+c)^2 ka poora vistar likho aur siddh karo",
+        "timestamp": "2026-07-13T20:51:13.888Z"
+      },
+      {
+        "role": "assistant",
+        "content": "(a+b+c)^2 = a^2 + b^2 + c^2 + 2ab + 2bc + 2ac. Yah ek aljebraic siddhant hai, jise gunan aur varg ke gunan ke tatvon se siddh kiya ja sakta hai. 📝",
+        "timestamp": "2026-07-13T20:51:13.888Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "siddh karo: sinA / (1 - cosA) = (1 + cosA) / sinA",
+        "timestamp": "2026-07-13T20:51:14.556Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Siddh karo: sinA / (1 - cosA) = (1 + cosA) / sinA\nDono taraf sinA ko guna karo: sin²A = (1 - cos²A) \ntrikonsometrya ke anusaar: sin²A + cos²A = 1\nisliye: sin²A = 1 - cos²A\ndonon taraf barabar hain.",
+        "timestamp": "2026-07-13T20:51:14.556Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "yadi sin theta = 3/5 to sabhi trigonometric ratios nikalo",
+        "timestamp": "2026-07-13T20:51:15.089Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Sin θ = 3/5, \nCos θ = 4/5, \nTan θ = 3/4, \nCosec θ = 5/3, \nSec θ = 5/4, \nCot θ = 4/3.",
+        "timestamp": "2026-07-13T20:51:15.089Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "ek tower ki height nikalo yadi 50 m door se elevation angle 60 degree hai",
+        "timestamp": "2026-07-13T20:51:15.531Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Tower ki height nikalne ke liye, tan(60 degree) = height / 50 m. Tan(60) = 1.732, isliye height = 1.732 * 50 = 86.6 m 📏",
+        "timestamp": "2026-07-13T20:51:15.531Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Brahmagupta Formula kab lagoo hoti hai aur kab nahi",
+        "timestamp": "2026-07-13T20:51:16.094Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Brahmagupta Formula chaukor ke kshetraphal ko nikalne ke liye lagoo hoti hai, jab chaukor ke chaaron bhujaon ki lambaiyan jaani hoti hain. 📝",
+        "timestamp": "2026-07-13T20:51:16.094Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "kewal char bhujaon se area kab nahi nikala ja sakta",
+        "timestamp": "2026-07-13T20:51:16.768Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Aapko bata dena chahiye ki char bhujaon se area nikalne ke liye humein unke vibhinn pahluon ki jaankari ki aavashyakta hoti hai. Sirf char bhujaon se area nahin nikala ja sakta. 📏",
+        "timestamp": "2026-07-13T20:51:16.768Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Frustum ka volume siddh karo",
+        "timestamp": "2026-07-13T20:51:17.263Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Frustum ka volume V = (1/3) * π * h * (r1^2 + r2^2 + r1 * r2) hai, jahan h uchhai, r1 bada radius, aur r2 chhota radius hai. 📝",
+        "timestamp": "2026-07-13T20:51:17.263Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Hemisphere aur Sphere me antar batao",
+        "timestamp": "2026-07-13T20:51:17.809Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Hemisphere ek golardh ke do hisse hote hain, jabki Sphere ek poorna golardh hota hai. Hemisphere mein ek hissa hota hai, jaise ki Prithvi ka uttari hemisphere ya dakshini hemisphere. 🌎",
+        "timestamp": "2026-07-13T20:51:17.809Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "v^2 = u^2 + 2as derive karo",
+        "timestamp": "2026-07-13T20:51:18.490Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Ek samanya bhautiki siddhant hai. Yah siddhant gati aur velocity ke beech sambandh ko darshata hai. Iska arth hai ki vastu ki antya gati (v) ka varg, prarambhik gati (u) ka varg, 2, tanav (a), aur samay (s) ka gunanphal joda hai. 📝",
+        "timestamp": "2026-07-13T20:51:18.490Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Free Fall aur Projectile Motion me antar batao",
+        "timestamp": "2026-07-13T20:51:19.038Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Free Fall me gati sirf neeche ki aur hoti hai, jabki Projectile Motion me gati do dishaon me hoti hai - upar-neeche aur aage-peeche. 🚀",
+        "timestamp": "2026-07-13T20:51:19.038Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Rocket antariksh me kaise chalta hai jab piche hawa nahi hoti",
+        "timestamp": "2026-07-13T20:51:19.725Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Rocket mein fuel aur oxidizer hota hai, jo milke combustion reaction dete hain. Is reaction se tezi se gas nikalti hai, jisse rocket aage badhta hai. Hawa ki zarurat nahi hoti, kyunki rocket apni khud ki thrust generate karta hai 🚀",
+        "timestamp": "2026-07-13T20:51:19.725Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "yadi 3 ohm, 6 ohm aur 9 ohm parallel hain to kul resistance nikalo",
+        "timestamp": "2026-07-13T20:51:20.123Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Parallel resistance ka formula: 1/R = 1/R1 + 1/R2 + 1/R3. \n1/R = 1/3 + 1/6 + 1/9 = 6/18 + 3/18 + 2/18 = 11/18. \nR = 18/11 ohm. 📝",
+        "timestamp": "2026-07-13T20:51:20.123Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Transformer DC par kyu nahi chalta",
+        "timestamp": "2026-07-13T20:51:20.559Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Transformer DC par nahi chalta kyunki transformer AC current ko badalne ke liye design kiya gaya hai. DC current mein phase difference nahi hota, isliye transformer ka induction principle kaam nahi karta. 💡",
+        "timestamp": "2026-07-13T20:51:20.559Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "18 gram water me kitne molecules hote hain",
+        "timestamp": "2026-07-13T20:51:20.885Z"
+      },
+      {
+        "role": "assistant",
+        "content": "18 gram pani me lagbhag 6.022 x 10^23 molecules hote hain, jo Avogadro ki sankhya hai. 🌊",
+        "timestamp": "2026-07-13T20:51:20.885Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "pH 3 aur pH 5 me kitni guna amliyata ka antar hai",
+        "timestamp": "2026-07-13T20:51:21.354Z"
+      },
+      {
+        "role": "assistant",
+        "content": "pH 3 aur pH 5 me amliyata ka antar 100 guna hai. pH 3 mein amliyata 10^(-3) hai, jabki pH 5 mein amliyata 10^(-5) hai. Isliye, pH 3 mein amliyata pH 5 ki tulna mein 100 guna adhik hai. 📊",
+        "timestamp": "2026-07-13T20:51:21.355Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "3 aadmi 3 din me 3 deewar banate hain to 9 aadmi 9 din me kitni deewar banayenge",
+        "timestamp": "2026-07-13T20:51:23.859Z"
+      },
+      {
+        "role": "assistant",
+        "content": "9 aadmi 9 din me 27 deewar banayenge. 📈",
+        "timestamp": "2026-07-13T20:51:23.859Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-07-13T18:02:23.603Z",
+    "lastActive": "2026-07-13T20:51:23.859Z"
+  },
+  "u1:master_tax_agent": {
+    "userId": "u1",
+    "skill": "master_tax_agent",
+    "messages": [
+      {
+        "role": "user",
+        "content": "aaj mausam kaisa hai",
+        "timestamp": "2026-07-13T18:02:24.016Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🙏 **नमस्कार! मैं Harshita AI Chartered Accountant हूँ।**\n\nमैं आपका Income Tax Return तैयार करूँगा।\n\nसबसे पहले, कृपया अपना **PAN Number** दर्ज करें।\n(जैसे: ABCDE1234F)",
+        "timestamp": "2026-07-13T18:02:24.017Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "mera ITR file karna hai",
+        "timestamp": "2026-07-13T18:02:29.939Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🙏 **नमस्कार! मैं Harshita AI Chartered Accountant हूँ।**\n\nमैं आपका Income Tax Return तैयार करूँगा।\n\nसबसे पहले, कृपया अपना **PAN Number** दर्ज करें।\n(जैसे: ABCDE1234F)",
+        "timestamp": "2026-07-13T18:02:29.939Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "ITR ke bare me kya jante ho",
+        "timestamp": "2026-07-13T18:02:30.482Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🙏 **नमस्कार! मैं Harshita AI Chartered Accountant हूँ।**\n\nमैं आपका Income Tax Return तैयार करूँगा।\n\nसबसे पहले, कृपया अपना **PAN Number** दर्ज करें।\n(जैसे: ABCDE1234F)",
+        "timestamp": "2026-07-13T18:02:30.482Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "mera ITR file karna hai",
+        "timestamp": "2026-07-13T20:27:40.490Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🙏 **नमस्कार! मैं Harshita AI Chartered Accountant हूँ।**\n\nमैं आपका Income Tax Return तैयार करूँगा।\n\nसबसे पहले, कृपया अपना **PAN Number** दर्ज करें।\n(जैसे: ABCDE1234F)",
+        "timestamp": "2026-07-13T20:27:40.490Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "ITR ke bare me kya jante ho",
+        "timestamp": "2026-07-13T20:27:40.686Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🙏 **नमस्कार! मैं Harshita AI Chartered Accountant हूँ।**\n\nमैं आपका Income Tax Return तैयार करूँगा।\n\nसबसे पहले, कृपया अपना **PAN Number** दर्ज करें।\n(जैसे: ABCDE1234F)",
+        "timestamp": "2026-07-13T20:27:40.686Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-07-13T18:02:24.016Z",
+    "lastActive": "2026-07-13T20:27:40.686Z"
+  },
+  "u1:legal_notice": {
+    "userId": "u1",
+    "skill": "legal_notice",
+    "messages": [
+      {
+        "role": "user",
+        "content": "legal notice draft chahiye",
+        "timestamp": "2026-07-13T18:02:32.688Z"
+      },
+      {
+        "role": "assistant",
+        "content": "\n═══════════════════════════════════════════════════════════════\n                        LEGAL NOTICE\n═══════════════════════════════════════════════════════════════\n\nDate: 13/7/2026\nPlace: ____________________\n\n1. यह लीगल नोटिस ____________________ को दिया जा रहा है, जो कि ____________________ पर रहते हैं।\n2. यह नोटिस ____________________ के संबंध में दिया जा रहा है, जिसमें ____________________ शामिल है।\n3. यह नोटिस ____________________ को दिया जा रहा है, और इसके लिए ____________________ की मांग की जा रही है।\n4. आपसे अनुरोध है कि आप इस नोटिस का जवाब ____________________ के भीतर दें, और आवश्यक कार्रवाई करें।\n5. यदि आप इस नोटिस का जवाब नहीं देते हैं, तो हमें आपके खिलाफ कानूनी कार्रवाई करने के लिए मजबूर होना पड़ेगा, जिसमें ____________________ शामिल हो सकती है।\n\nयह नोटिस आपको正式 रूप से सूचित करने के लिए दिया जा रहा है कि आपके खिलाफ कानूनी कार्रवाई की जा सकती है, और आपको इसके लिए तैयार रहना चाहिए।\n\n═══════════════════════════════════════════════════════════════\n\n                                          [Sender's Signature]\n                                          Sender's Name: ____________________\n                                          आधार संख्या / Aadhaar No.: ____________________\n                                          पैन संख्या / PAN No.: ____________________\n                                          Contact: ____________________\n\n═══════════════════════════════════════════════════════════════\nNOTE: This is a formal legal notice sent by the aggrieved party.\nReply within 15 days of receipt. Sent via Registered Post AD.\n═══════════════════════════════════════════════════════════════",
+        "timestamp": "2026-07-13T18:02:32.688Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "legal notice draft chahiye",
+        "timestamp": "2026-07-13T20:27:42.510Z"
+      },
+      {
+        "role": "assistant",
+        "content": "\n═══════════════════════════════════════════════════════════════\n                        LEGAL NOTICE\n═══════════════════════════════════════════════════════════════\n\nDate: 14/7/2026\nPlace: ____________________\n\n1. यह लीगल नोटिस ____________________ को दी जा रही है, जो कि ____________________ पर रहते/रहती हैं।\n\n2. यह नोटिस ____________________ के संबंध में दी जा रही है, जिसमें ____________________ शामिल है।\n\n3. आपसे अनुरोध है कि आप ____________________ के लिए ____________________ के भीतर कार्रवाई करें, जिससे कि इस मामले का समाधान हो सके।\n\n4. यदि आप समय सीमा के भीतर कार्रवाई नहीं करते हैं, तो हमें आपके खिलाफ कानूनी कार्रवाई करनी पड़ सकती है, जिसमें ____________________ शामिल हो सकती है।\n\n5. कृपया इस नोटिस को गंभीरता से लें और समय सीमा के भीतर कार्रवाई करें, जिससे कि इस मामले का समाधान हो सके।\n\nडिमांड क्लॉज:\nहम आपसे ____________________ की मांग करते हैं, जो कि ____________________ के लिए दी जा रही है। यह राशि ____________________ के भीतर दी जानी चाहिए।\n\n═══════════════════════════════════════════════════════════════\n\n                                          [Sender's Signature]\n                                          Sender's Name: ____________________\n                                          आधार संख्या / Aadhaar No.: ____________________\n                                          पैन संख्या / PAN No.: ____________________\n                                          Contact: ____________________\n\n═══════════════════════════════════════════════════════════════\nNOTE: This is a formal legal notice sent by the aggrieved party.\nReply within 15 days of receipt. Sent via Registered Post AD.\n═══════════════════════════════════════════════════════════════",
+        "timestamp": "2026-07-13T20:27:42.510Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-07-13T18:02:32.687Z",
+    "lastActive": "2026-07-13T20:27:42.510Z"
+  },
+  "u1:ui_builder": {
+    "userId": "u1",
+    "skill": "ui_builder",
+    "messages": [
+      {
+        "role": "user",
+        "content": "ghadi 3:15 dikha rahi hai to ghante aur minute ki sui me kitna kon banega",
+        "timestamp": "2026-07-13T20:46:54.704Z"
+      },
+      {
+        "role": "assistant",
+        "content": "[रूटिंग सफल] ✅ Page generated using built-in template!\n📁 Saved: D:\\Harshita-AI\\output\\generated_pages\\custom_ghadi_315_dikha_rahi_hai_to_ghante_aur_m_1783975614702.html\n💡 Tip: Connect Groq/Gemini API for AI-powered custom designs.",
+        "timestamp": "2026-07-13T20:46:54.704Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "ghadi 3:15 dikha rahi hai to ghante aur minute ki sui me kitna kon banega",
+        "timestamp": "2026-07-13T20:48:10.206Z"
+      },
+      {
+        "role": "assistant",
+        "content": "[रूटिंग सफल] ✅ Page generated using built-in template!\n📁 Saved: D:\\Harshita-AI\\output\\generated_pages\\custom_ghadi_315_dikha_rahi_hai_to_ghante_aur_m_1783975690203.html\n💡 Tip: Connect Groq/Gemini API for AI-powered custom designs.",
+        "timestamp": "2026-07-13T20:48:10.206Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-07-13T20:46:54.704Z",
+    "lastActive": "2026-07-13T20:48:10.206Z"
+  },
+  "probe-user:general_chat": {
+    "userId": "probe-user",
+    "skill": "general_chat",
+    "messages": [
+      {
+        "role": "user",
+        "content": "22+55",
+        "timestamp": "2026-07-14T07:55:47.748Z"
+      },
+      {
+        "role": "assistant",
+        "content": "77 📝",
+        "timestamp": "2026-07-14T07:55:47.748Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "%calculate 15% of 2400",
+        "timestamp": "2026-07-14T07:55:48.381Z"
+      },
+      {
+        "role": "assistant",
+        "content": "15% of 2400 is 360. 😊",
+        "timestamp": "2026-07-14T07:55:48.381Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "(a+b)^2 formula",
+        "timestamp": "2026-07-14T07:55:51.560Z"
+      },
+      {
+        "role": "assistant",
+        "content": "(a+b)^2 = a^2 + 2ab + b^2 📝",
+        "timestamp": "2026-07-14T07:55:51.560Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "derivative of x^2",
+        "timestamp": "2026-07-14T07:55:59.103Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Derivative of x^2 is 2x 📝",
+        "timestamp": "2026-07-14T07:55:59.103Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "ITR kya hai",
+        "timestamp": "2026-07-14T07:55:59.837Z"
+      },
+      {
+        "role": "assistant",
+        "content": "ITR ka matlab hai Income Tax Return. Yeh ek document hai jisme aap apni aay ka vivran dete hain, jisse income tax department aapki aay ka hisab lagata hai. Main aapko ITR form bharna mein madad kar sakta hoon. Aap kis saal ka ITR form bharna chahte hain?",
+        "timestamp": "2026-07-14T07:55:59.837Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "ITR ke bare me batao",
+        "timestamp": "2026-07-14T07:56:00.917Z"
+      },
+      {
+        "role": "assistant",
+        "content": "ITR ka matlab hai Income Tax Return. Yeh ek document hai jisme aap apni aay ke baare me jankari dete hain. Main aapko ITR form bharna mein madad kar sakta hoon. Aap kis saal ka ITR bharna chahte hain? 📝",
+        "timestamp": "2026-07-14T07:56:00.917Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Resume kya hota hai",
+        "timestamp": "2026-07-14T07:56:04.451Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Resume aapki shiksha, kaushal, anubhav aur yogyata ko darshata hai. Yah ek document hai jo aapki vyaktigat jaankari aur career details ko sansthit roop se prastut karta hai. Main aapki madad kar sakta hoon resume banane mein. Chahiye to main aapko resume builder tool tak navigate kar sakta hoon.",
+        "timestamp": "2026-07-14T07:56:04.451Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Resume banao",
+        "timestamp": "2026-07-14T07:56:05.183Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Resume banaane ke liye aapko apni jaankaari deni hogi. Aapka naam, address, qualification, experience aur skills kya hain? Main aapko resume builder tool tak navigate kar sakta hoon.",
+        "timestamp": "2026-07-14T07:56:05.183Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Gift deed kya hai",
+        "timestamp": "2026-07-14T07:56:06.555Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Gift deed ek legal document hai jo ek vyakti dwara apni sampatti dusre vyakti ko bina kisi vitaran ke dene ke liye taiyar kiya jata hai. 📜",
+        "timestamp": "2026-07-14T07:56:06.555Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "PAN card kya hai",
+        "timestamp": "2026-07-14T07:56:08.549Z"
+      },
+      {
+        "role": "assistant",
+        "content": "PAN card ek unique identification number hai jo income tax department dwara jari kiya jata hai. Iska full form Permanent Account Number hai. Yeh 10 digit ka alphanumeric number hota hai jo tax payment aur financial transactions ke liye upyog kiya jata hai. 📝",
+        "timestamp": "2026-07-14T07:56:08.549Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "PAN apply karo",
+        "timestamp": "2026-07-14T07:56:10.185Z"
+      },
+      {
+        "role": "assistant",
+        "content": "PAN apply karne ke liye, main aapko form bharna navigate karunga. Aapko kuch details deni hogi, jaise ki naam, address, aur date of birth. Chaliye, shuru karte hain. 💡",
+        "timestamp": "2026-07-14T07:56:10.185Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Application kya hoti hai",
+        "timestamp": "2026-07-14T07:56:11.767Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Application ek prakar ki software hoti hai jo kisi vishesh karya ko poora karne ke liye design ki jati hai. Yah user ke liye upyogi hoti hai aur kai tarah ke karya kar sakti hai, jaise ki form bharna, data store karna, ya kisi vishesh service ka upyog karna. 💻",
+        "timestamp": "2026-07-14T07:56:11.767Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Weather kaisa hai",
+        "timestamp": "2026-07-14T07:56:23.688Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Mausam ki jaankari ke liye main aapko dashboard par navigate karwa sakta hoon. Wahan aapko mausam ki jaankari mil jayegi.",
+        "timestamp": "2026-07-14T07:56:23.688Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Tax free weather",
+        "timestamp": "2026-07-14T07:56:24.193Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Tax free ke baare mein jaankari chahiye? Main aapko tax free schemes ke baare mein bata sakta hoon. Kripya adhik jaankari ke liye poochhein. 😊",
+        "timestamp": "2026-07-14T07:56:24.193Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "pension me tax kitna",
+        "timestamp": "2026-07-14T07:56:25.110Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Pension par tax 60 saal ke baad 0% hai, lekin 60 saal se kam umra me 10% tax lagta hai. Aapke pension ke hisab se tax lagega. Mai aapko tax calculation tool tak navigate kar sakta hun.",
+        "timestamp": "2026-07-14T07:56:25.110Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-07-14T07:55:47.747Z",
+    "lastActive": "2026-07-14T07:56:25.110Z"
+  },
+  "probe-user:master_tax_agent": {
+    "userId": "probe-user",
+    "skill": "master_tax_agent",
+    "messages": [
+      {
+        "role": "user",
+        "content": "mera ITR bhar do",
+        "timestamp": "2026-07-14T07:55:59.944Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🙏 **नमस्कार! मैं Harshita AI Chartered Accountant हूँ।**\n\nमैं आपका Income Tax Return तैयार करूँगा।\n\nसबसे पहले, कृपया अपना **PAN Number** दर्ज करें।\n(जैसे: ABCDE1234F)",
+        "timestamp": "2026-07-14T07:55:59.944Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-07-14T07:55:59.944Z",
+    "lastActive": "2026-07-14T07:55:59.944Z"
+  },
+  "probe-user:legal_draft": {
+    "userId": "probe-user",
+    "skill": "legal_draft",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Gift deed banao",
+        "timestamp": "2026-07-14T07:56:06.574Z"
+      },
+      {
+        "role": "assistant",
+        "content": "To draft the Gift Deed, I need the following details: Khasra Number, Property Area, Two Witnesses (Mandatory)",
+        "timestamp": "2026-07-14T07:56:06.574Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-07-14T07:56:06.574Z",
+    "lastActive": "2026-07-14T07:56:06.574Z"
+  },
+  "probe-user:application_writer": {
+    "userId": "probe-user",
+    "skill": "application_writer",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Principal ko application likho chhutti ke liye 3 din",
+        "timestamp": "2026-07-14T07:56:11.782Z"
+      },
+      {
+        "role": "assistant",
+        "content": "आपका नाम क्या है? (Aapka naam kya hai?) (1/3 जानकारी मिली)\n\n💡 उदाहरण: e.g. Ramesh Kumar",
+        "timestamp": "2026-07-14T07:56:11.782Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-07-14T07:56:11.782Z",
+    "lastActive": "2026-07-14T07:56:11.782Z"
+  },
+  "probe-user:legal_notice": {
+    "userId": "probe-user",
+    "skill": "legal_notice",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Legal notice kya hota hai",
+        "timestamp": "2026-07-14T07:56:20.177Z"
+      },
+      {
+        "role": "assistant",
+        "content": "\n═══════════════════════════════════════════════════════════════\n                        LEGAL NOTICE\n═══════════════════════════════════════════════════════════════\n\nDate: 14/7/2026\nPlace: ____________________\n\n1. यह लीगल नोटिस आपको यह सूचित करने के लिए है कि आपसे लीगल नोटिस के बारे में जानकारी मांगी गई है।\n2. लीगल नोटिस एक प्रकार का दस्तावेज है जो कानूनी कार्रवाई की धमकी देता है और प्राप्तकर्ता को अपने अधिकारों का प्रयोग करने के लिए कहता है।\n3. लीगल नोटिस आमतौर पर कानूनी विवादों में भेजा जाता है, जैसे कि धन वसूली, संपत्ति विवाद, चेक बाउंस, या अन्य कानूनी मुद्दे।\n4. लीगल नोटिस में आमतौर पर प्राप्तकर्ता को एक निश्चित समय सीमा के भीतर जवाब देने के लिए कहा जाता है, जो आमतौर पर 15 दिन होती है।\n5. यदि प्राप्तकर्ता समय सीमा के भीतर जवाब नहीं देता है, तो भेजने वाला पक्ष कानूनी कार्रवाई करने के लिए स्वतंत्र होता है।\n\nमांग की जा रही है कि आप लीगल नोटिस के बारे में जानकारी प्रदान करें और अपने अधिकारों का प्रयोग करने के लिए कदम उठाएं। यदि आपको लगता है कि आपके पास लीगल नोटिस के बारे में कोई प्रश्न या चिंता है, तो कृपया एक योग्य वकील से परामर्श लें।\n\nसमय सीमा: 15 दिन\n\nकृपया ध्यान दें कि यह एक सामान्य जानकारी है और लीगल नोटिस के बारे में विशिष्ट जानकारी के लिए एक योग्य वकील से परामर्श लेना आवश्यक है।\n\n═══════════════════════════════════════════════════════════════\n\n                                          [Sender's Signature]\n                                          Sender's Name: ____________________\n                                          आधार संख्या / Aadhaar No.: ____________________\n                                          पैन संख्या / PAN No.: ____________________\n                                          Contact: ____________________\n\n═══════════════════════════════════════════════════════════════\nNOTE: This is a formal legal notice sent by the aggrieved party.\nReply within 15 days of receipt. Sent via Registered Post AD.\n═══════════════════════════════════════════════════════════════",
+        "timestamp": "2026-07-14T07:56:20.178Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Legal notice draft karo",
+        "timestamp": "2026-07-14T07:56:23.204Z"
+      },
+      {
+        "role": "assistant",
+        "content": "\n═══════════════════════════════════════════════════════════════\n                        LEGAL NOTICE\n═══════════════════════════════════════════════════════════════\n\nDate: 14/7/2026\nPlace: ____________________\n\n1. यह लीगल नोटिस ____________________ को दिया जा रहा है, जो कि ____________________ पर रहते हैं।\n2. यह लीगल नोटिस ____________________ के संबंध में दिया जा रहा है, जिसमें ____________________ शामिल है।\n3. यह लीगल नोटिस ____________________ पर दिया जा रहा है, जो कि ____________________ के तहत आता है।\n4. हमें यह कहना होगा कि ____________________ ने ____________________ में ____________________ किया है, जिससे हमें ____________________ हुआ है।\n5. हम ____________________ को ____________________ की भरपाई करने के लिए कहते हैं, जो कि ____________________ के भीतर किया जाना चाहिए।\n6. यदि ____________________ उपरोक्त मांग को पूरा नहीं करते हैं, तो हमें मजबूरन कानूनी कार्रवाई करनी पड़ेगी, जिसमें ____________________ शामिल हो सकती है।\n7. यह लीगल नोटिस ____________________ को दिया जा रहा है और यह ____________________ के लिए अंतिम नोटिस है।\n8. हम ____________________ को यह सलाह देते हैं कि वे इस लीगल नोटिस का जवाब ____________________ के भीतर दें, जिसमें वे अपना पक्ष रखें और आवश्यक कार्रवाई करें।\n\nयह लीगल नोटिस ____________________ को दिया जा रहा है और यह उनके लिए अंतिम नोटिस है।\n\n═══════════════════════════════════════════════════════════════\n\n                                          [Sender's Signature]\n                                          Sender's Name: ____________________\n                                          आधार संख्या / Aadhaar No.: ____________________\n                                          पैन संख्या / PAN No.: ____________________\n                                          Contact: ____________________\n\n═══════════════════════════════════════════════════════════════\nNOTE: This is a formal legal notice sent by the aggrieved party.\nReply within 15 days of receipt. Sent via Registered Post AD.\n════════════════════════════════════════════════════════════",
+        "timestamp": "2026-07-14T07:56:23.204Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-07-14T07:56:20.177Z",
+    "lastActive": "2026-07-14T07:56:23.204Z"
+  },
+  "audit-user:application_writer": {
+    "userId": "audit-user",
+    "skill": "application_writer",
+    "messages": [
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-07-15T10:17:03.434Z"
+      },
+      {
+        "role": "assistant",
+        "content": "आपका नाम क्या है? (Aapka naam kya hai?) (0/3 जानकारी मिली)\n\n💡 उदाहरण: e.g. Ramesh Kumar",
+        "timestamp": "2026-07-15T10:17:03.435Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-07-15T13:09:33.706Z"
+      },
+      {
+        "role": "assistant",
+        "content": "आपका नाम क्या है? (Aapka naam kya hai?) (0/3 जानकारी मिली)\n\n💡 उदाहरण: e.g. Ramesh Kumar",
+        "timestamp": "2026-07-15T13:09:33.707Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-07-15T10:17:03.434Z",
+    "lastActive": "2026-07-15T13:09:33.707Z"
+  },
+  "audit-user:bulk_import": {
+    "userId": "audit-user",
+    "skill": "bulk_import",
+    "messages": [
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-07-15T10:17:03.455Z"
+      },
+      {
+        "role": "assistant",
+        "content": "📁 बल्क इम्पोर्ट सेवा:\n• \"Excel फाइल अपलोड करो\"\n• \"डेटा इम्पोर्ट करो\"\n• \"सैंपल फॉर्मेट डाउनलोड करो\"\n\nक्या मैं आपकी मदद करूँ?",
+        "timestamp": "2026-07-15T10:17:03.455Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-07-15T13:09:33.730Z"
+      },
+      {
+        "role": "assistant",
+        "content": "📁 बल्क इम्पोर्ट सेवा:\n• \"Excel फाइल अपलोड करो\"\n• \"डेटा इम्पोर्ट करो\"\n• \"सैंपल फॉर्मेट डाउनलोड करो\"\n\nक्या मैं आपकी मदद करूँ?",
+        "timestamp": "2026-07-15T13:09:33.730Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-07-15T10:17:03.455Z",
+    "lastActive": "2026-07-15T13:09:33.730Z"
+  },
+  "audit-user:deploy_manager": {
+    "userId": "audit-user",
+    "skill": "deploy_manager",
+    "messages": [
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-07-15T10:17:03.502Z"
+      },
+      {
+        "role": "assistant",
+        "content": "⚠️ मुझे Render Deploy Hook URL नहीं मिला। \n\nसर्वर को ऑटो-डिप्लॉय करने के लिए, कृपया अपना Render Deploy Hook URL मुझे दें (यह `https://api.render.com/deploy/...` से शुरू होता है)।\nया फिर इसे अपने `.env` फाइल में `RENDER_DEPLOY_HOOK_URL=...` के रूप में सेट करें।",
+        "timestamp": "2026-07-15T10:17:03.502Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-07-15T13:09:33.744Z"
+      },
+      {
+        "role": "assistant",
+        "content": "⚠️ मुझे Render Deploy Hook URL नहीं मिला। \n\nसर्वर को ऑटो-डिप्लॉय करने के लिए, कृपया अपना Render Deploy Hook URL मुझे दें (यह `https://api.render.com/deploy/...` से शुरू होता है)।\nया फिर इसे अपने `.env` फाइल में `RENDER_DEPLOY_HOOK_URL=...` के रूप में सेट करें।",
+        "timestamp": "2026-07-15T13:09:33.744Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-07-15T10:17:03.502Z",
+    "lastActive": "2026-07-15T13:09:33.744Z"
+  },
+  "audit-user:document_ocr": {
+    "userId": "audit-user",
+    "skill": "document_ocr",
+    "messages": [
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-07-15T10:17:03.537Z"
+      },
+      {
+        "role": "assistant",
+        "content": "📄 Document OCR तैयार है!\n\nमैं इन दस्तावेज़ों से डेटा निकाल सकता हूँ:\n• आधार कार्ड (Aadhaar Card)\n• पैन कार्ड (PAN Card)\n• मतदाता पहचान पत्र (Voter ID (EPIC))\n• ड्राइविंग लाइसेंस (Driving License (DL))\n• 10वीं मार्कशीट (10th Marksheet)\n• 12वीं मार्कशीट (12th Marksheet)\n• डिग्री/ग्रेजुएशन (Degree Certificate)\n• जाति प्रमाणपत्र (Caste Certificate)\n• आय प्रमाणपत्र (Income Certificate)\n• निवास प्रमाणपत्र (Domicile Certificate)\n• EWS प्रमाणपत्र (EWS Certificate)\n• पासपोर्ट (Passport)\n\nकृपया बताएं कौन सा दस्तावेज़ भेजना है, या सीधे फोटो/PDF अपलोड करें — मैं खुद पहचान लूँगा।",
+        "timestamp": "2026-07-15T10:17:03.537Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-07-15T13:09:33.756Z"
+      },
+      {
+        "role": "assistant",
+        "content": "📄 Document OCR तैयार है!\n\nमैं इन दस्तावेज़ों से डेटा निकाल सकता हूँ:\n• आधार कार्ड (Aadhaar Card)\n• पैन कार्ड (PAN Card)\n• मतदाता पहचान पत्र (Voter ID (EPIC))\n• ड्राइविंग लाइसेंस (Driving License (DL))\n• 10वीं मार्कशीट (10th Marksheet)\n• 12वीं मार्कशीट (12th Marksheet)\n• डिग्री/ग्रेजुएशन (Degree Certificate)\n• जाति प्रमाणपत्र (Caste Certificate)\n• आय प्रमाणपत्र (Income Certificate)\n• निवास प्रमाणपत्र (Domicile Certificate)\n• EWS प्रमाणपत्र (EWS Certificate)\n• पासपोर्ट (Passport)\n\nकृपया बताएं कौन सा दस्तावेज़ भेजना है, या सीधे फोटो/PDF अपलोड करें — मैं खुद पहचान लूँगा।",
+        "timestamp": "2026-07-15T13:09:33.756Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-07-15T10:17:03.537Z",
+    "lastActive": "2026-07-15T13:09:33.756Z"
+  },
+  "audit-user:eligibility_check": {
+    "userId": "audit-user",
+    "skill": "eligibility_check",
+    "messages": [
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-07-15T10:17:05.238Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🔍 *पात्रता जाँच (Eligibility Pre-Check)*\n\nकिस योजना या नौकरी की पात्रता जाँचनी है? (जैसे: ssc, railway, pmegp, police)\n\nExample: \"Mera eligibility check karo SSC ke liye\"",
+        "timestamp": "2026-07-15T10:17:05.239Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-07-15T13:09:35.406Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🔍 *पात्रता जाँच (Eligibility Pre-Check)*\n\nकिस योजना या नौकरी की पात्रता जाँचनी है? (जैसे: ssc, railway, pmegp, police)\n\nExample: \"Mera eligibility check karo SSC ke liye\"",
+        "timestamp": "2026-07-15T13:09:35.406Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-07-15T10:17:05.238Z",
+    "lastActive": "2026-07-15T13:09:35.406Z"
+  },
+  "audit-user:file_processor": {
+    "userId": "audit-user",
+    "skill": "file_processor",
+    "messages": [
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-07-15T10:17:05.272Z"
+      },
+      {
+        "role": "assistant",
+        "content": "📁 *फाइल प्रोसेसिंग सेवा (File Processor)*\n\nमैं ये काम कर सकता हूँ:\n\n📸 *Image:*\n• \"Photo compress karo\" — फोटो साइज कम\n• \"Photo resize 100KB\" — exact साइज बनाओ\n• \"Photo to PDF\" — फोटो → PDF\n\n📄 *PDF:*\n• \"PDF compress karo\" — PDF साइज कम\n• \"PDF to image\" — PDF → Photos\n\nया सीधे file upload करें!",
+        "timestamp": "2026-07-15T10:17:05.272Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-07-15T13:09:35.439Z"
+      },
+      {
+        "role": "assistant",
+        "content": "📁 *फाइल प्रोसेसिंग सेवा (File Processor)*\n\nमैं ये काम कर सकता हूँ:\n\n📸 *Image:*\n• \"Photo compress karo\" — फोटो साइज कम\n• \"Photo resize 100KB\" — exact साइज बनाओ\n• \"Photo to PDF\" — फोटो → PDF\n\n📄 *PDF:*\n• \"PDF compress karo\" — PDF साइज कम\n• \"PDF to image\" — PDF → Photos\n\nया सीधे file upload करें!",
+        "timestamp": "2026-07-15T13:09:35.440Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-07-15T10:17:05.272Z",
+    "lastActive": "2026-07-15T13:09:35.440Z"
+  },
+  "audit-user:form_fill": {
+    "userId": "audit-user",
+    "skill": "form_fill",
+    "messages": [
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-07-15T10:17:05.352Z"
+      },
+      {
+        "role": "assistant",
+        "content": "📋 फॉर्म ऑटो-फिलिंग सिस्टम तैयार!\n\nउपलब्ध सेवाएँ:\n• *SSC CGL/CHSL* — [ssc.gov.in](https://ssc.gov.in)\n• *Indian Army* — [joinindianarmy.nic.in](https://joinindianarmy.nic.in)\n• *Railway RRB* — [rrbcdg.gov.in](https://rrbcdg.gov.in)\n• *Banking IBPS/SBI* — [ibps.in](https://ibps.in)\n• *Police Recruitment* — [police.gov.in](https://police.gov.in)\n• *Navy/Air Force* — [joinindiannavy.gov.in](https://joinindiannavy.gov.in)\n• *India Post* — [ippbonline.com](https://ippbonline.com)\n• *Apprenticeship* — [apprenticeship.gov.in](https://apprenticeship.gov.in)\n• *UPSSSC* — [upsssc.gov.in](https://upsssc.gov.in)\n• *Ration Card* — [nfsa.gov.in](https://nfsa.gov.in)\n\nकौन सा फॉर्म भरना है बताइए!\nउदाहरण: \"SSC का फॉर्म भरो\" या \"Railway में अप्लाई करो\"",
+        "timestamp": "2026-07-15T10:17:05.352Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-07-15T13:09:35.524Z"
+      },
+      {
+        "role": "assistant",
+        "content": "📋 फॉर्म ऑटो-फिलिंग सिस्टम तैयार!\n\nउपलब्ध सेवाएँ:\n• *SSC CGL/CHSL* — [ssc.gov.in](https://ssc.gov.in)\n• *Indian Army* — [joinindianarmy.nic.in](https://joinindianarmy.nic.in)\n• *Railway RRB* — [rrbcdg.gov.in](https://rrbcdg.gov.in)\n• *Banking IBPS/SBI* — [ibps.in](https://ibps.in)\n• *Police Recruitment* — [police.gov.in](https://police.gov.in)\n• *Navy/Air Force* — [joinindiannavy.gov.in](https://joinindiannavy.gov.in)\n• *India Post* — [ippbonline.com](https://ippbonline.com)\n• *Apprenticeship* — [apprenticeship.gov.in](https://apprenticeship.gov.in)\n• *UPSSSC* — [upsssc.gov.in](https://upsssc.gov.in)\n• *Ration Card* — [nfsa.gov.in](https://nfsa.gov.in)\n\nकौन सा फॉर्म भरना है बताइए!\nउदाहरण: \"SSC का फॉर्म भरो\" या \"Railway में अप्लाई करो\"",
+        "timestamp": "2026-07-15T13:09:35.524Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-07-15T10:17:05.352Z",
+    "lastActive": "2026-07-15T13:09:35.524Z"
+  },
+  "audit-user:general_chat": {
+    "userId": "audit-user",
+    "skill": "general_chat",
+    "messages": [
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-07-15T10:17:05.390Z"
+      },
+      {
+        "role": "assistant",
+        "content": "नमस्कार। मैं Harshita AI हूँ — आपकी उन्नत (Advanced) CSC और एंटरप्राइज सहायक।\n\nमैं निम्नलिखित कार्यों में आपकी सहायता कर सकती हूँ:\n• ऑटोमेटेड फॉर्म फिलिंग (Automated Form Filling)\n• कानूनी दस्तावेज़ ड्राफ्टिंग (Legal Drafting)\n• डेटा एक्सट्रैक्शन एवं OCR (Data Extraction)\n• करियर और जॉब सर्च विश्लेषण\n\nकृपया बताएं कि मैं आपके लिए कौन सी प्रक्रिया आरंभ करूँ?",
+        "timestamp": "2026-07-15T10:17:05.395Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-07-15T13:09:35.555Z"
+      },
+      {
+        "role": "assistant",
+        "content": "नमस्कार। मैं Harshita AI हूँ — आपकी उन्नत (Advanced) CSC और एंटरप्राइज सहायक।\n\nमैं निम्नलिखित कार्यों में आपकी सहायता कर सकती हूँ:\n• ऑटोमेटेड फॉर्म फिलिंग (Automated Form Filling)\n• कानूनी दस्तावेज़ ड्राफ्टिंग (Legal Drafting)\n• डेटा एक्सट्रैक्शन एवं OCR (Data Extraction)\n• करियर और जॉब सर्च विश्लेषण\n\nकृपया बताएं कि मैं आपके लिए कौन सी प्रक्रिया आरंभ करूँ?",
+        "timestamp": "2026-07-15T13:09:35.555Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "100 * 5",
+        "timestamp": "2026-07-22T05:44:16.103Z"
+      },
+      {
+        "role": "assistant",
+        "content": "I am temporarily unable to contact AI servers. Offline services are still available.",
+        "timestamp": "2026-07-22T05:44:16.104Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "2^15",
+        "timestamp": "2026-07-22T05:44:17.720Z"
+      },
+      {
+        "role": "assistant",
+        "content": "I am temporarily unable to contact AI servers. Offline services are still available.",
+        "timestamp": "2026-07-22T05:44:17.720Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "sqrt(576)",
+        "timestamp": "2026-07-22T05:44:19.211Z"
+      },
+      {
+        "role": "assistant",
+        "content": "I am temporarily unable to contact AI servers. Offline services are still available.",
+        "timestamp": "2026-07-22T05:44:19.211Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "log10(1000)",
+        "timestamp": "2026-07-22T05:44:19.262Z"
+      },
+      {
+        "role": "assistant",
+        "content": "I am temporarily unable to contact AI servers. Offline services are still available.",
+        "timestamp": "2026-07-22T05:44:19.262Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "50% of 2500",
+        "timestamp": "2026-07-22T05:44:19.314Z"
+      },
+      {
+        "role": "assistant",
+        "content": "I am temporarily unable to contact AI servers. Offline services are still available.",
+        "timestamp": "2026-07-22T05:44:19.314Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "perimeter of square side 10",
+        "timestamp": "2026-07-22T05:44:19.496Z"
+      },
+      {
+        "role": "assistant",
+        "content": "I am temporarily unable to contact AI servers. Offline services are still available.",
+        "timestamp": "2026-07-22T05:44:19.496Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "ayat ka kshetrafal",
+        "timestamp": "2026-07-22T05:44:19.538Z"
+      },
+      {
+        "role": "assistant",
+        "content": "I am temporarily unable to contact AI servers. Offline services are still available.",
+        "timestamp": "2026-07-22T05:44:19.538Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "what is dna",
+        "timestamp": "2026-07-22T05:44:19.996Z"
+      },
+      {
+        "role": "assistant",
+        "content": "DNA (Deoxyribonucleic acid) - Contains genetic instructions for all living organisms. Double helix structure discovered by Watson and Crick.",
+        "timestamp": "2026-07-22T05:44:19.997Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "what is india capital",
+        "timestamp": "2026-07-22T05:44:20.018Z"
+      },
+      {
+        "role": "assistant",
+        "content": "New Delhi is the capital of India.",
+        "timestamp": "2026-07-22T05:44:20.018Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "india population statistics",
+        "timestamp": "2026-07-22T05:44:20.036Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Approximately 1.4 billion people (2024 estimate).",
+        "timestamp": "2026-07-22T05:44:20.036Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-07-15T10:17:05.390Z",
+    "lastActive": "2026-07-22T05:44:20.036Z"
+  },
+  "audit-user:geometry_skill": {
+    "userId": "audit-user",
+    "skill": "geometry_skill",
+    "messages": [
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-07-15T10:17:05.419Z"
+      },
+      {
+        "role": "assistant",
+        "content": "प्लाट का एरिया निकालने के लिए मुझे लम्बाई और चौड़ाई (जैसे: \"22 front, 43 back, 90 length\" या \"30x40\") बताएं।",
+        "timestamp": "2026-07-15T10:17:05.419Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-07-15T13:09:35.578Z"
+      },
+      {
+        "role": "assistant",
+        "content": "प्लाट का एरिया निकालने के लिए मुझे लम्बाई और चौड़ाई (जैसे: \"22 front, 43 back, 90 length\" या \"30x40\") बताएं।",
+        "timestamp": "2026-07-15T13:09:35.578Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-07-15T10:17:05.419Z",
+    "lastActive": "2026-07-15T13:09:35.578Z"
+  },
+  "audit-user:job_search": {
+    "userId": "audit-user",
+    "skill": "job_search",
+    "messages": [
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-07-15T10:17:05.462Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🔍 SarkariResult से ताज़ा नौकरियाँ खोज रहा हूँ... कृपया कुछ सेकंड प्रतीक्षा करें।",
+        "timestamp": "2026-07-15T10:17:05.462Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-07-15T13:09:35.590Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🔍 SarkariResult से ताज़ा नौकरियाँ खोज रहा हूँ... कृपया कुछ सेकंड प्रतीक्षा करें।",
+        "timestamp": "2026-07-15T13:09:35.590Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-07-15T10:17:05.462Z",
+    "lastActive": "2026-07-15T13:09:35.590Z"
+  },
+  "audit-user:land_measurement_skill": {
+    "userId": "audit-user",
+    "skill": "land_measurement_skill",
+    "messages": [
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-07-15T10:17:05.486Z"
+      },
+      {
+        "role": "assistant",
+        "content": "जमीन का बंटवारा करने के लिए, पहले मुझे जमीन का एरिया बताएं (जैसे \"22 front 43 back 90 length\") और फिर पूछें \"इसे 3 हिस्सों में बांटो\"।",
+        "timestamp": "2026-07-15T10:17:05.486Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-07-15T13:09:35.605Z"
+      },
+      {
+        "role": "assistant",
+        "content": "जमीन का बंटवारा करने के लिए, पहले मुझे जमीन का एरिया बताएं (जैसे \"22 front 43 back 90 length\") और फिर पूछें \"इसे 3 हिस्सों में बांटो\"।",
+        "timestamp": "2026-07-15T13:09:35.605Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-07-15T10:17:05.486Z",
+    "lastActive": "2026-07-15T13:09:35.605Z"
+  },
+  "audit-user:land_record": {
+    "userId": "audit-user",
+    "skill": "land_record",
+    "messages": [
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-07-15T10:17:05.507Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🏞️ *भूलेख / ज़मीन सेवा (Land Record Service)*\n\nमुझसे क्या काम है? बस बोलें:\n\n📋 *उपलब्ध सेवाएँ:*\n• \"खसरा खतौनी निकालो\" — भूलेख रिकॉर्ड\n• \"ज़मीन का रिकॉर्ड दिखाओ\" — भू-नक्शा\n• \"रजिस्ट्री की जानकारी\" — पंजीकरण प्रक्रिया\n• \"नामांतरण कैसे करें\" — म्यूटेशन गाइड\n\n🔗 *ज़रूरी पोर्टल:*\n• [UP Bhulekh](https://upbhulekh.gov.in)\n• [MP Bhulekh](https://mpbhulekh.gov.in)\n• [Bihar Bhumi](https://biharbhumi.bihar.gov.in)\n\nक्या चाहिए?",
+        "timestamp": "2026-07-15T10:17:05.507Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-07-15T13:09:35.623Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🏞️ *भूलेख / ज़मीन सेवा (Land Record Service)*\n\nमुझसे क्या काम है? बस बोलें:\n\n📋 *उपलब्ध सेवाएँ:*\n• \"खसरा खतौनी निकालो\" — भूलेख रिकॉर्ड\n• \"ज़मीन का रिकॉर्ड दिखाओ\" — भू-नक्शा\n• \"रजिस्ट्री की जानकारी\" — पंजीकरण प्रक्रिया\n• \"नामांतरण कैसे करें\" — म्यूटेशन गाइड\n\n🔗 *ज़रूरी पोर्टल:*\n• [UP Bhulekh](https://upbhulekh.gov.in)\n• [MP Bhulekh](https://mpbhulekh.gov.in)\n• [Bihar Bhumi](https://biharbhumi.bihar.gov.in)\n\nक्या चाहिए?",
+        "timestamp": "2026-07-15T13:09:35.623Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-07-15T10:17:05.507Z",
+    "lastActive": "2026-07-15T13:09:35.623Z"
+  },
+  "audit-user:language_translator": {
+    "userId": "audit-user",
+    "skill": "language_translator",
+    "messages": [
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-07-15T10:17:05.539Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🌍 *Universal AI Translator*\n\nमैंने ट्रांसलेटर टूल खोल दिया है। आप यहाँ 80 से ज़्यादा भाषाओं में कुछ भी ट्रांसलेट कर सकते हैं।",
+        "timestamp": "2026-07-15T10:17:05.539Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-07-15T13:09:35.670Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🌍 *Universal AI Translator*\n\nमैंने ट्रांसलेटर टूल खोल दिया है। आप यहाँ 80 से ज़्यादा भाषाओं में कुछ भी ट्रांसलेट कर सकते हैं।",
+        "timestamp": "2026-07-15T13:09:35.670Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-07-15T10:17:05.539Z",
+    "lastActive": "2026-07-15T13:09:35.670Z"
+  },
+  "audit-user:legal_draft": {
+    "userId": "audit-user",
+    "skill": "legal_draft",
+    "messages": [
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-07-15T10:17:05.580Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Draft failed quality checks. Regenerating...",
+        "timestamp": "2026-07-15T10:17:05.580Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-07-15T13:09:35.692Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Draft failed quality checks. Regenerating...",
+        "timestamp": "2026-07-15T13:09:35.692Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-07-15T10:17:05.580Z",
+    "lastActive": "2026-07-15T13:09:35.692Z"
+  },
+  "audit-user:legal_notice": {
+    "userId": "audit-user",
+    "skill": "legal_notice",
+    "messages": [
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-07-15T10:17:07.652Z"
+      },
+      {
+        "role": "assistant",
+        "content": "\n═══════════════════════════════════════════════════════════════\n                        Legal Notice\n═══════════════════════════════════════════════════════════════\n\nDate: 15/7/2026\nPlace: ____________________\n\nNotice\nThrough Registered Post Ad / Email\n\nTO,\n____________________\n____________________\n____________________\n\n\nSir / Madam,\n\nI Hereby Serve Upon You the Following Formal Notice:\n\n1. That I, the Undersigned, S/o ____________________, R/o ____________________, am Aggrieved by Your Following Acts:\n\n    Hello\n\n2. That Despite Repeated Requests, You Have Failed to Address the Matter Amicably, Leaving me With No Choice but to Issue This Formal Legal Notice.\n\n3. That Your Aforesaid acts/omissions Have Caused Mental Agony, Financial Loss, and Harassment, for Which You are Legally Liable.\n\n4. I Hereby Call Upon You to:\n   a) Cease and Desist From the Aforementioned Acts Immediately;\n   B) Make Good the Loss Caused;\n   C) Send a Written Reply to This Notice Within 15 (Fifteen) Days From the Date of Receipt;\n   D) Comply With the Demands Stated Above.\n\n5. Take Notice That in Case You Fail to Comply With the Above Demands Within the Stipulated Time, I Shall be Constrained to Initiate Appropriate Civil and/or Criminal Proceedings Against You in the Competent Court of Law, at Your Sole Risk, Costs, and Consequences.\n\n\n\nTake Notice Accordingly.\n\nYours Faithfully,\n\n═══════════════════════════════════════════════════════════════\n\n                                          ____________________\n                                          Sender's Name: ____________________\n                                          आधार संख्या / Aadhaar No.: ____________________\n                                          पैन संख्या / Pan No.: ____________________\n                                          Contact: ____________________\n\n═══════════════════════════════════════════════════════════════\nNote: This is a Formal Legal Notice Sent by the Aggrieved Party.\nReply Within 15 Days of Receipt. Sen",
+        "timestamp": "2026-07-15T10:17:07.652Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-07-15T13:09:37.188Z"
+      },
+      {
+        "role": "assistant",
+        "content": "\n═══════════════════════════════════════════════════════════════\n                        Legal Notice\n═══════════════════════════════════════════════════════════════\n\nDate: 15/7/2026\nPlace: ____________________\n\nNotice\nThrough Registered Post Ad / Email\n\nTO,\n____________________\n____________________\n____________________\n\n\nSir / Madam,\n\nI Hereby Serve Upon You the Following Formal Notice:\n\n1. That I, the Undersigned, S/o ____________________, R/o ____________________, am Aggrieved by Your Following Acts:\n\n    Hello\n\n2. That Despite Repeated Requests, You Have Failed to Address the Matter Amicably, Leaving me With No Choice but to Issue This Formal Legal Notice.\n\n3. That Your Aforesaid acts/omissions Have Caused Mental Agony, Financial Loss, and Harassment, for Which You are Legally Liable.\n\n4. I Hereby Call Upon You to:\n   a) Cease and Desist From the Aforementioned Acts Immediately;\n   B) Make Good the Loss Caused;\n   C) Send a Written Reply to This Notice Within 15 (Fifteen) Days From the Date of Receipt;\n   D) Comply With the Demands Stated Above.\n\n5. Take Notice That in Case You Fail to Comply With the Above Demands Within the Stipulated Time, I Shall be Constrained to Initiate Appropriate Civil and/or Criminal Proceedings Against You in the Competent Court of Law, at Your Sole Risk, Costs, and Consequences.\n\n\n\nTake Notice Accordingly.\n\nYours Faithfully,\n\n═══════════════════════════════════════════════════════════════\n\n                                          ____________________\n                                          Sender's Name: ____________________\n                                          आधार संख्या / Aadhaar No.: ____________________\n                                          पैन संख्या / Pan No.: ____________________\n                                          Contact: ____________________\n\n═══════════════════════════════════════════════════════════════\nNote: This is a Formal Legal Notice Sent by the Aggrieved Party.\nReply Within 15 Days of Receipt. Sen",
+        "timestamp": "2026-07-15T13:09:37.188Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-07-15T10:17:07.652Z",
+    "lastActive": "2026-07-15T13:09:37.188Z"
+  },
+  "audit-user:math_skill": {
+    "userId": "audit-user",
+    "skill": "math_skill",
+    "messages": [
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-07-15T13:09:49.910Z"
+      },
+      {
+        "role": "assistant",
+        "content": "यह एक जटिल गणितीय समस्या है। मेरे ऑफलाइन डेटाबेस में इसका सीधा हल नहीं है और अभी ऑनलाइन AI से कनेक्ट करने में समस्या आ रही है।",
+        "timestamp": "2026-07-15T13:09:49.910Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "55 + 22",
+        "timestamp": "2026-07-22T05:44:14.222Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Formula\nArithmetic Evaluation\n\nValues\n55 + 22\n\nCalculation\n55 + 22\n\nResult\n77",
+        "timestamp": "2026-07-22T05:44:14.222Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "999 / 9",
+        "timestamp": "2026-07-22T05:44:16.126Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Formula\nArithmetic Evaluation\n\nValues\n999 / 9\n\nCalculation\n999 / 9\n\nResult\n111",
+        "timestamp": "2026-07-22T05:44:16.127Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "12345 - 678",
+        "timestamp": "2026-07-22T05:44:16.167Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Formula\nArithmetic Evaluation\n\nValues\n12345 - 678\n\nCalculation\n12345 - 678\n\nResult\n11667",
+        "timestamp": "2026-07-22T05:44:16.167Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "15 percent of 15000",
+        "timestamp": "2026-07-22T05:44:19.365Z"
+      },
+      {
+        "role": "assistant",
+        "content": "यह एक जटिल गणितीय समस्या है। मेरे ऑफलाइन डेटाबेस में इसका सीधा हल नहीं है और अभी ऑनलाइन AI से कनेक्ट करने में समस्या आ रही है।",
+        "timestamp": "2026-07-22T05:44:19.365Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "1200 + 400 - 100",
+        "timestamp": "2026-07-22T05:44:19.395Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Formula\nArithmetic Evaluation\n\nValues\n1200 + 400 - 100\n\nCalculation\n1200 + 400 - 100\n\nResult\n1500",
+        "timestamp": "2026-07-22T05:44:19.395Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Area of circle with radius 7",
+        "timestamp": "2026-07-22T05:44:19.420Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Formula\nArea of Circle (वृत्त का क्षेत्रफल)\n\nValues\nRadius (r) = Unknown\n\nCalculation\nA = π × r²\n\nResult\nवृत्त का क्षेत्रफल निकालने का सूत्र है: **π × r²**\nजहाँ 'r' त्रिज्या (radius) है।",
+        "timestamp": "2026-07-22T05:44:19.420Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Volume of sphere formula",
+        "timestamp": "2026-07-22T05:44:19.438Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Formula\nVolume of Sphere (गोले का आयतन / घनत्व)\n\nValues\nRadius (r) = Unknown\n\nCalculation\nV = (4/3) × π × r³\n\nResult\nगोले का घनत्व/आयतन (Volume of Sphere) निकालने का सूत्र है: **(4/3) × π × r³**\nजहाँ 'r' गोले की त्रिज्या (radius) है।",
+        "timestamp": "2026-07-22T05:44:19.438Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Area of rectangle length 12 width 8",
+        "timestamp": "2026-07-22T05:44:19.459Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Formula\nArea of Rectangle (आयत का क्षेत्रफल)\n\nValues\nLength (l) = Unknown, Width (w) = Unknown\n\nCalculation\nA = l × w\n\nResult\nआयत का क्षेत्रफल निकालने का सूत्र है: **लम्बाई × चौड़ाई**",
+        "timestamp": "2026-07-22T05:44:19.459Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "sin(45) * cos(45)",
+        "timestamp": "2026-07-22T05:44:19.600Z"
+      },
+      {
+        "role": "assistant",
+        "content": "यह एक जटिल गणितीय समस्या है। मेरे ऑफलाइन डेटाबेस में इसका सीधा हल नहीं है और अभी ऑनलाइन AI से कनेक्ट करने में समस्या आ रही है।",
+        "timestamp": "2026-07-22T05:44:19.600Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "tan(60)",
+        "timestamp": "2026-07-22T05:44:19.643Z"
+      },
+      {
+        "role": "assistant",
+        "content": "यह एक जटिल गणितीय समस्या है। मेरे ऑफलाइन डेटाबेस में इसका सीधा हल नहीं है और अभी ऑनलाइन AI से कनेक्ट करने में समस्या आ रही है।",
+        "timestamp": "2026-07-22T05:44:19.643Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "sin 30 + cos 60",
+        "timestamp": "2026-07-22T05:44:19.707Z"
+      },
+      {
+        "role": "assistant",
+        "content": "यह एक जटिल गणितीय समस्या है। मेरे ऑफलाइन डेटाबेस में इसका सीधा हल नहीं है और अभी ऑनलाइन AI से कनेक्ट करने में समस्या आ रही है।",
+        "timestamp": "2026-07-22T05:44:19.707Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "pythagoras formula",
+        "timestamp": "2026-07-22T05:44:19.740Z"
+      },
+      {
+        "role": "assistant",
+        "content": "यह एक जटिल गणितीय समस्या है। मेरे ऑफलाइन डेटाबेस में इसका सीधा हल नहीं है और अभी ऑनलाइन AI से कनेक्ट करने में समस्या आ रही है।",
+        "timestamp": "2026-07-22T05:44:19.740Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "cosec 90",
+        "timestamp": "2026-07-22T05:44:19.768Z"
+      },
+      {
+        "role": "assistant",
+        "content": "यह एक जटिल गणितीय समस्या है। मेरे ऑफलाइन डेटाबेस में इसका सीधा हल नहीं है और अभी ऑनलाइन AI से कनेक्ट करने में समस्या आ रही है।",
+        "timestamp": "2026-07-22T05:44:19.768Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "speed of light value",
+        "timestamp": "2026-07-22T05:44:19.800Z"
+      },
+      {
+        "role": "assistant",
+        "content": "यह एक जटिल गणितीय समस्या है। मेरे ऑफलाइन डेटाबेस में इसका सीधा हल नहीं है और अभी ऑनलाइन AI से कनेक्ट करने में समस्या आ रही है।",
+        "timestamp": "2026-07-22T05:44:19.800Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "gravity value on earth",
+        "timestamp": "2026-07-22T05:44:19.821Z"
+      },
+      {
+        "role": "assistant",
+        "content": "यह एक जटिल गणितीय समस्या है। मेरे ऑफलाइन डेटाबेस में इसका सीधा हल नहीं है और अभी ऑनलाइन AI से कनेक्ट करने में समस्या आ रही है।",
+        "timestamp": "2026-07-22T05:44:19.821Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "planck constant value",
+        "timestamp": "2026-07-22T05:44:19.879Z"
+      },
+      {
+        "role": "assistant",
+        "content": "यह एक जटिल गणितीय समस्या है। मेरे ऑफलाइन डेटाबेस में इसका सीधा हल नहीं है और अभी ऑनलाइन AI से कनेक्ट करने में समस्या आ रही है।",
+        "timestamp": "2026-07-22T05:44:19.879Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "boltzmann constant",
+        "timestamp": "2026-07-22T05:44:19.902Z"
+      },
+      {
+        "role": "assistant",
+        "content": "यह एक जटिल गणितीय समस्या है। मेरे ऑफलाइन डेटाबेस में इसका सीधा हल नहीं है और अभी ऑनलाइन AI से कनेक्ट करने में समस्या आ रही है।",
+        "timestamp": "2026-07-22T05:44:19.902Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "what is h2o chemical formula",
+        "timestamp": "2026-07-22T05:44:19.921Z"
+      },
+      {
+        "role": "assistant",
+        "content": "EMI निकालने के लिए मुझे मूलधन (Principal), ब्याज दर (Yearly Interest Rate) और समय (महीनों में) बताएं। (जैसे: 100000 10 24 EMI)",
+        "timestamp": "2026-07-22T05:44:19.921Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "co2 chemical formula",
+        "timestamp": "2026-07-22T05:44:19.960Z"
+      },
+      {
+        "role": "assistant",
+        "content": "EMI निकालने के लिए मुझे मूलधन (Principal), ब्याज दर (Yearly Interest Rate) और समय (महीनों में) बताएं। (जैसे: 100000 10 24 EMI)",
+        "timestamp": "2026-07-22T05:44:19.960Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "GST calculation for amount 15000 rate 18",
+        "timestamp": "2026-07-22T05:44:20.051Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Formula\nGST Amount = (Original Amount × GST%) / 100\n\nValues\nOriginal Amount = ₹15000\nGST Rate = 18%\n\nCalculation\nGST Amount = (15000 × 18) / 100 = ₹2700.00\nTotal = 15000 + 2700.00 = ₹17700.00\n\nResult\nGST: ₹2700.00\nTotal Price (inclusive): ₹17700.00",
+        "timestamp": "2026-07-22T05:44:20.051Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-07-15T13:09:49.910Z",
+    "lastActive": "2026-07-22T05:44:20.051Z"
+  },
+  "audit-user:media_converter": {
+    "userId": "audit-user",
+    "skill": "media_converter",
+    "messages": [
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-07-15T13:09:49.985Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🎬 *Media Converter*\n\nमैंने मीडिया कन्वर्टर टूल खोल दिया है। यहाँ से आप किसी भी **Video** को MP4, AVI, MKV आदि में और **Audio** को MP3, WAV आदि में बदल सकते हैं।",
+        "timestamp": "2026-07-15T13:09:49.985Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-07-15T13:09:49.985Z",
+    "lastActive": "2026-07-15T13:09:49.985Z"
+  },
+  "test_e2e_core:general_chat": {
+    "userId": "test_e2e_core",
+    "skill": "general_chat",
+    "messages": [
+      {
+        "role": "user",
+        "content": "नमस्ते हर्षिता, आप क्या क्या कर सकती हैं?",
+        "timestamp": "2026-09-11T04:53:18.480Z"
+      },
+      {
+        "role": "assistant",
+        "content": "नमस्कार। मैं Harshita AI हूँ — आपकी उन्नत (Advanced) CSC और एंटरप्राइज सहायक।\n\nमैं निम्नलिखित कार्यों में आपकी सहायता कर सकती हूँ:\n• ऑटोमेटेड फॉर्म फिलिंग (Automated Form Filling)\n• कानूनी दस्तावेज़ ड्राफ्टिंग (Legal Drafting)\n• डेटा एक्सट्रैक्शन एवं OCR (Data Extraction)\n• करियर और जॉब सर्च विश्लेषण\n\nकृपया बताएं कि मैं आपके लिए कौन सी प्रक्रिया आरंभ करूँ?",
+        "timestamp": "2026-09-11T04:53:18.480Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Hello, what services do you provide for CSC center?",
+        "timestamp": "2026-09-11T04:53:18.676Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Hello in Hindi: नमस्ते (Namaste)",
+        "timestamp": "2026-09-11T04:53:18.676Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Bhai mujhe ek cyber cafe open karna hai, kya requirements hongi?",
+        "timestamp": "2026-09-11T04:53:20.393Z"
+      },
+      {
+        "role": "assistant",
+        "content": "I am temporarily unable to contact AI servers. Offline services are still available.",
+        "timestamp": "2026-09-11T04:53:20.393Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "नमस्ते हर्षिता, आप क्या क्या कर सकती हैं?",
+        "timestamp": "2026-09-11T04:56:02.227Z"
+      },
+      {
+        "role": "assistant",
+        "content": "नमस्कार। मैं Harshita AI हूँ — आपकी उन्नत (Advanced) CSC और एंटरप्राइज सहायक।\n\nमैं निम्नलिखित कार्यों में आपकी सहायता कर सकती हूँ:\n• ऑटोमेटेड फॉर्म फिलिंग (Automated Form Filling)\n• कानूनी दस्तावेज़ ड्राफ्टिंग (Legal Drafting)\n• डेटा एक्सट्रैक्शन एवं OCR (Data Extraction)\n• करियर और जॉब सर्च विश्लेषण\n\nकृपया बताएं कि मैं आपके लिए कौन सी प्रक्रिया आरंभ करूँ?",
+        "timestamp": "2026-09-11T04:56:02.227Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Hello, what services do you provide for CSC center?",
+        "timestamp": "2026-09-11T04:56:02.342Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Hello in Hindi: नमस्ते (Namaste)",
+        "timestamp": "2026-09-11T04:56:02.342Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Bhai mujhe ek cyber cafe open karna hai, kya requirements hongi?",
+        "timestamp": "2026-09-11T04:56:04.088Z"
+      },
+      {
+        "role": "assistant",
+        "content": "I am temporarily unable to contact AI servers. Offline services are still available.",
+        "timestamp": "2026-09-11T04:56:04.088Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "नमस्ते हर्षिता, आप क्या क्या कर सकती हैं?",
+        "timestamp": "2026-09-11T04:58:40.438Z"
+      },
+      {
+        "role": "assistant",
+        "content": "नमस्कार। मैं Harshita AI हूँ — आपकी उन्नत (Advanced) CSC और एंटरप्राइज सहायक।\n\nमैं निम्नलिखित कार्यों में आपकी सहायता कर सकती हूँ:\n• ऑटोमेटेड फॉर्म फिलिंग (Automated Form Filling)\n• कानूनी दस्तावेज़ ड्राफ्टिंग (Legal Drafting)\n• डेटा एक्सट्रैक्शन एवं OCR (Data Extraction)\n• करियर और जॉब सर्च विश्लेषण\n\nकृपया बताएं कि मैं आपके लिए कौन सी प्रक्रिया आरंभ करूँ?",
+        "timestamp": "2026-09-11T04:58:40.438Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Hello, what services do you provide for CSC center?",
+        "timestamp": "2026-09-11T04:58:40.559Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Hello in Hindi: नमस्ते (Namaste)",
+        "timestamp": "2026-09-11T04:58:40.559Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Bhai mujhe ek cyber cafe open karna hai, kya requirements hongi?",
+        "timestamp": "2026-09-11T04:58:41.994Z"
+      },
+      {
+        "role": "assistant",
+        "content": "I am temporarily unable to contact AI servers. Offline services are still available.",
+        "timestamp": "2026-09-11T04:58:41.994Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-09-11T04:53:18.479Z",
+    "lastActive": "2026-09-11T04:58:41.994Z"
+  },
+  "test_e2e_core:legal_draft": {
+    "userId": "test_e2e_core",
+    "skill": "legal_draft",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Pehle mujhe police complaint draft karni hai fir affidavit",
+        "timestamp": "2026-09-11T04:53:20.566Z"
+      },
+      {
+        "role": "assistant",
+        "content": "[रूटिंग सफल] ✅ आपकी शिकायत का कानूनी मसौदा (A4 Police Complaint) तैयार कर दिया गया है।\n\n📄 **शीर्षक:** पुलिस शिकायत पत्र (Police Complaint)\n🏛️ **प्राधिकारी:** थाना प्रभारी महोदय, जिला- बुलंदशहर\n👤 **शिकायतकर्ता:** विवरण दर्ज\n🚨 **संदिग्ध:** विवरण दर्ज\n\nदस्तावेज़ को नीचे A4 वर्कस्पेस में खोला गया है जहाँ से आप इसे Edit, Print या PDF डाउनलोड कर सकते हैं।\n\n═══════════════════════════════════════════════════════════════\n                 पुलिस शिकायत पत्र / POLICE COMPLAINT APPLICATION\n═══════════════════════════════════════════════════════════════\n\nसेवा में,\nथानाध्यक्ष / थाना प्रभारी महोदय,\nथाना: __________ (संबंधित स्थानीय थाना)\nजिला: बुलंदशहर, उत्तर प्रदेश\n\nविषय: घर से कैरी बैग, महत्वपूर्ण व्यक्तिगत दस्तावेज़ एवं Poco M3 मोबाइल फोन चोरी होने / ले जाए जाने के संबंध में शिकायत पत्र।\n\nमहोदय,\n\nसविनय निवेदन है कि प्रार्थी / शिकायतकर्ता का पूर्ण विवरण एवं घटना के तथ्य निम्नवत् हैं:\n\n१. शिकायतकर्ता का विवरण:\n   • नाम: [शिकायतकर्ता का नाम]\n   • पिता का नाम: [पिता का नाम]\n   • स्थायी पता: ग्राम व पोस्ट- सिखैड़ा, जिला- बुलंदशहर, उत्तर प्रदेश\n   • मोबाइल नंबर: __________\n\n२. घटना का विवरण:\n   • दिनांक: 11/09/2026\n   • समय: __________ (समय उपलब्ध नहीं / रात्रि के समय)\n   • स्थान: शिकायतकर्ता का निवास स्थान\n\n३. संदिग्ध / नामजद व्यक्ति का विवरण:\n   • नाम: [संदिग्ध/आरोपी व्यक्ति का नाम]\n   • पिता का नाम: [पिता का नाम]\n   • पता: ग्राम व पोस्ट- सिखैड़ा, तहसील- बुलंदशहर, जिला- बुलंदशहर\n\n४. चोरी / ले जाई गई वस्तुओं का विवरण:\n   (a) एक कैरी बैग\n   (b) आवश्यक दस्तावेज़\n   (c) मोबाइल फोन\n\n५. घटना का विवरण (तथ्य एवं आरोप):\n   शिकायतकर्ता के कथन एवं आरोप के अनुसार, दिनांक 11/09/2026 को उक्त संदिग्ध व्यक्ति ([संदिग्ध/आरोपी व्यक्ति का नाम]) शिकायतकर्ता के घर पर मौजूद था। उक्त व्यक्ति द्वारा शिकायतकर्ता के घर से उसका कैरी बैग, जिसमें कुछ महत्वपूर्ण दस्तावेज़ एवं Poco M3 मोबाइल फोन रखे हुए थे, चोरी से अपने साथ ले जाने का आरोप है।\n\n७. पुलिस प्रशासन से विनम्र प्रार्थना:\n   अतः श्रीमान जी से विनम्र निवेदन है कि:\n   (क) उक्त शिकायत को गंभीरता से संज्ञान में लेते हुए उचित अभिलेखों (GD/FIR) में दर्ज ",
+        "timestamp": "2026-09-11T04:53:20.566Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Pehle mujhe police complaint draft karni hai fir affidavit",
+        "timestamp": "2026-09-11T04:56:04.308Z"
+      },
+      {
+        "role": "assistant",
+        "content": "[रूटिंग सफल] ✅ आपकी शिकायत का कानूनी मसौदा (A4 Police Complaint) तैयार कर दिया गया है।\n\n📄 **शीर्षक:** पुलिस शिकायत पत्र (Police Complaint)\n🏛️ **प्राधिकारी:** थाना प्रभारी महोदय, जिला- बुलंदशहर\n👤 **शिकायतकर्ता:** विवरण दर्ज\n🚨 **संदिग्ध:** विवरण दर्ज\n\nदस्तावेज़ को नीचे A4 वर्कस्पेस में खोला गया है जहाँ से आप इसे Edit, Print या PDF डाउनलोड कर सकते हैं।\n\n═══════════════════════════════════════════════════════════════\n                 पुलिस शिकायत पत्र / POLICE COMPLAINT APPLICATION\n═══════════════════════════════════════════════════════════════\n\nसेवा में,\nथानाध्यक्ष / थाना प्रभारी महोदय,\nथाना: __________ (संबंधित स्थानीय थाना)\nजिला: बुलंदशहर, उत्तर प्रदेश\n\nविषय: घर से कैरी बैग, महत्वपूर्ण व्यक्तिगत दस्तावेज़ एवं Poco M3 मोबाइल फोन चोरी होने / ले जाए जाने के संबंध में शिकायत पत्र।\n\nमहोदय,\n\nसविनय निवेदन है कि प्रार्थी / शिकायतकर्ता का पूर्ण विवरण एवं घटना के तथ्य निम्नवत् हैं:\n\n१. शिकायतकर्ता का विवरण:\n   • नाम: [शिकायतकर्ता का नाम]\n   • पिता का नाम: [पिता का नाम]\n   • स्थायी पता: ग्राम व पोस्ट- सिखैड़ा, जिला- बुलंदशहर, उत्तर प्रदेश\n   • मोबाइल नंबर: __________\n\n२. घटना का विवरण:\n   • दिनांक: 11/09/2026\n   • समय: __________ (समय उपलब्ध नहीं / रात्रि के समय)\n   • स्थान: शिकायतकर्ता का निवास स्थान\n\n३. संदिग्ध / नामजद व्यक्ति का विवरण:\n   • नाम: [संदिग्ध/आरोपी व्यक्ति का नाम]\n   • पिता का नाम: [पिता का नाम]\n   • पता: ग्राम व पोस्ट- सिखैड़ा, तहसील- बुलंदशहर, जिला- बुलंदशहर\n\n४. चोरी / ले जाई गई वस्तुओं का विवरण:\n   (a) एक कैरी बैग\n   (b) आवश्यक दस्तावेज़\n   (c) मोबाइल फोन\n\n५. घटना का विवरण (तथ्य एवं आरोप):\n   शिकायतकर्ता के कथन एवं आरोप के अनुसार, दिनांक 11/09/2026 को उक्त संदिग्ध व्यक्ति ([संदिग्ध/आरोपी व्यक्ति का नाम]) शिकायतकर्ता के घर पर मौजूद था। उक्त व्यक्ति द्वारा शिकायतकर्ता के घर से उसका कैरी बैग, जिसमें कुछ महत्वपूर्ण दस्तावेज़ एवं Poco M3 मोबाइल फोन रखे हुए थे, चोरी से अपने साथ ले जाने का आरोप है।\n\n७. पुलिस प्रशासन से विनम्र प्रार्थना:\n   अतः श्रीमान जी से विनम्र निवेदन है कि:\n   (क) उक्त शिकायत को गंभीरता से संज्ञान में लेते हुए उचित अभिलेखों (GD/FIR) में दर्ज ",
+        "timestamp": "2026-09-11T04:56:04.308Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Pehle mujhe police complaint draft karni hai fir affidavit",
+        "timestamp": "2026-09-11T04:58:42.183Z"
+      },
+      {
+        "role": "assistant",
+        "content": "[रूटिंग सफल] ✅ आपकी शिकायत का कानूनी मसौदा (A4 Police Complaint) तैयार कर दिया गया है।\n\n📄 **शीर्षक:** पुलिस शिकायत पत्र (Police Complaint)\n🏛️ **प्राधिकारी:** थाना प्रभारी महोदय, जिला- बुलंदशहर\n👤 **शिकायतकर्ता:** विवरण दर्ज\n🚨 **संदिग्ध:** विवरण दर्ज\n\nदस्तावेज़ को नीचे A4 वर्कस्पेस में खोला गया है जहाँ से आप इसे Edit, Print या PDF डाउनलोड कर सकते हैं।\n\n═══════════════════════════════════════════════════════════════\n                 पुलिस शिकायत पत्र / POLICE COMPLAINT APPLICATION\n═══════════════════════════════════════════════════════════════\n\nसेवा में,\nथानाध्यक्ष / थाना प्रभारी महोदय,\nथाना: __________ (संबंधित स्थानीय थाना)\nजिला: बुलंदशहर, उत्तर प्रदेश\n\nविषय: घर से कैरी बैग, महत्वपूर्ण व्यक्तिगत दस्तावेज़ एवं Poco M3 मोबाइल फोन चोरी होने / ले जाए जाने के संबंध में शिकायत पत्र।\n\nमहोदय,\n\nसविनय निवेदन है कि प्रार्थी / शिकायतकर्ता का पूर्ण विवरण एवं घटना के तथ्य निम्नवत् हैं:\n\n१. शिकायतकर्ता का विवरण:\n   • नाम: [शिकायतकर्ता का नाम]\n   • पिता का नाम: [पिता का नाम]\n   • स्थायी पता: ग्राम व पोस्ट- सिखैड़ा, जिला- बुलंदशहर, उत्तर प्रदेश\n   • मोबाइल नंबर: __________\n\n२. घटना का विवरण:\n   • दिनांक: 11/09/2026\n   • समय: __________ (समय उपलब्ध नहीं / रात्रि के समय)\n   • स्थान: घटना स्थल\n\n३. संदिग्ध / नामजद व्यक्ति का विवरण:\n   • नाम: [संदिग्ध/आरोपी व्यक्ति का नाम]\n   • पिता का नाम: [पिता का नाम]\n   • पता: ग्राम व पोस्ट- सिखैड़ा, तहसील- बुलंदशहर, जिला- बुलंदशहर\n\n४. चोरी / ले जाई गई वस्तुओं का विवरण:\n   (a) एक चोरी की गई वस्तु / मोबाइल / वाहन\n\n५. घटना का विवरण (तथ्य एवं आरोप):\n   शिकायतकर्ता के कथन एवं आरोप के अनुसार, दिनांक 11/09/2026 को उक्त संदिग्ध व्यक्ति ([संदिग्ध/आरोपी व्यक्ति का नाम]) शिकायतकर्ता के घर पर मौजूद था। उक्त व्यक्ति द्वारा शिकायतकर्ता के घर से उसका कैरी बैग, जिसमें कुछ महत्वपूर्ण दस्तावेज़ एवं Poco M3 मोबाइल फोन रखे हुए थे, चोरी से अपने साथ ले जाने का आरोप है।\n\n७. पुलिस प्रशासन से विनम्र प्रार्थना:\n   अतः श्रीमान जी से विनम्र निवेदन है कि:\n   (क) उक्त शिकायत को गंभीरता से संज्ञान में लेते हुए उचित अभिलेखों (GD/FIR) में दर्ज करने की कृपा करें।\n   (ख) मामले की ",
+        "timestamp": "2026-09-11T04:58:42.183Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-09-11T04:53:20.566Z",
+    "lastActive": "2026-09-11T04:58:42.183Z"
+  },
+  "test_e2e_legal:application_writer": {
+    "userId": "test_e2e_legal",
+    "skill": "application_writer",
+    "messages": [
+      {
+        "role": "user",
+        "content": "थाना प्रभारी महोदय को मोबाइल चोरी की तहरीर / पुलिस शिकायत लिखनी है। शिकायतकर्ता: अमित कुमार, पता: सिविल लाइन्स प्रयागराज, घटना: 10 सितंबर 2026 को सिविल लाइन्स बस स्टैंड पर मोबाइल चोरी हुआ।",
+        "timestamp": "2026-09-11T04:53:20.610Z"
+      },
+      {
+        "role": "assistant",
+        "content": "आपका नाम क्या है? (Aapka naam kya hai?) (1/3 जानकारी मिली)\n\n💡 उदाहरण: e.g. Ramesh Kumar",
+        "timestamp": "2026-09-11T04:53:20.610Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "तहसीलदार महोदय को वरासत दर्ज करने हेतु प्रार्थना पत्र / आवेदन पत्र लिखना है।",
+        "timestamp": "2026-09-11T04:53:23.615Z"
+      },
+      {
+        "role": "assistant",
+        "content": "यह application किसको लिखनी है? जैसे Principal, DM, SDM, BDO, HR आदि। (2/3 जानकारी मिली)\n\n💡 उदाहरण: e.g. Principal",
+        "timestamp": "2026-09-11T04:53:23.615Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "थाना प्रभारी महोदय को मोबाइल चोरी की तहरीर / पुलिस शिकायत लिखनी है। शिकायतकर्ता: अमित कुमार, पता: सिविल लाइन्स प्रयागराज, घटना: 10 सितंबर 2026 को सिविल लाइन्स बस स्टैंड पर मोबाइल चोरी हुआ।",
+        "timestamp": "2026-09-11T04:56:04.353Z"
+      },
+      {
+        "role": "assistant",
+        "content": "आपका नाम क्या है? (Aapka naam kya hai?) (1/3 जानकारी मिली)\n\n💡 उदाहरण: e.g. Ramesh Kumar",
+        "timestamp": "2026-09-11T04:56:04.353Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "तहसीलदार महोदय को वरासत दर्ज करने हेतु प्रार्थना पत्र / आवेदन पत्र लिखना है।",
+        "timestamp": "2026-09-11T04:56:07.436Z"
+      },
+      {
+        "role": "assistant",
+        "content": "यह application किसको लिखनी है? जैसे Principal, DM, SDM, BDO, HR आदि। (2/3 जानकारी मिली)\n\n💡 उदाहरण: e.g. Principal",
+        "timestamp": "2026-09-11T04:56:07.436Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "तहसीलदार महोदय को वरासत दर्ज करने हेतु प्रार्थना पत्र / आवेदन पत्र लिखना है।",
+        "timestamp": "2026-09-11T04:58:45.358Z"
+      },
+      {
+        "role": "assistant",
+        "content": "आपका नाम क्या है? (Aapka naam kya hai?) (0/3 जानकारी मिली)\n\n💡 उदाहरण: e.g. Ramesh Kumar",
+        "timestamp": "2026-09-11T04:58:45.358Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-09-11T04:53:20.610Z",
+    "lastActive": "2026-09-11T04:58:45.358Z"
+  },
+  "test_e2e_legal:legal_notice": {
+    "userId": "test_e2e_legal",
+    "skill": "legal_notice",
+    "messages": [
+      {
+        "role": "user",
+        "content": "चेक बाउंस का कानूनी नोटिस (Section 138 NI Act) भेजना है। चेक नंबर 445566, रकम 1,50,000 रु, जारीकर्ता: दिनेश शर्मा, बैंक: PNB, चेक तिथि: 01/08/2026",
+        "timestamp": "2026-09-11T04:53:21.976Z"
+      },
+      {
+        "role": "assistant",
+        "content": "\n═══════════════════════════════════════════════════════════════\n                        Legal Notice\n═══════════════════════════════════════════════════════════════\n\nDate: 11/9/2026\nPlace: ____________________\n\nNotice\nThrough Registered Post Ad / Email\n\nTO,\n____________________\n____________________\n____________________\n\n\nDemand Notice Under Section 138 OF THE Negotiable Instruments Act, 1881\n\nSir / Madam,\n\nI Hereby Serve Upon You the Following Formal Notice:\n\n1. That I, the Undersigned, S/o ____________________, R/o ____________________, am Aggrieved by Your Following Acts:\n\n    चेक बाउंस का कानूनी नोटिस (Section 138 Ni Act) भेजना है। चेक नंबर 445566, रकम 1,50,000 रु, जारीकर्ता: दिनेश शर्मा, बैंक: Pnb, चेक तिथि: 01/08/2026\n\n2. That Despite Repeated Requests, You Have Failed to Address the Matter Amicably, Leaving me With No Choice but to Issue This Formal Legal Notice.\n\n3. That Your Aforesaid acts/omissions Have Caused Mental Agony, Financial Loss, and Harassment, for Which You are Legally Liable.\n\n4. I Hereby Call Upon You to:\n   a) Cease and Desist From the Aforementioned Acts Immediately;\n   B) Make Good the Loss Caused;\n   C) Send a Written Reply to This Notice Within 15 (Fifteen) Days From the Date of Receipt;\n   D) Comply With the Demands Stated Above.\n\n5. Take Notice That in Case You Fail to Comply With the Above Demands Within the Stipulated Time, I Shall be Constrained to Initiate Appropriate Civil and/or Criminal Proceedings Against You in the Competent Court of Law, at Your Sole Risk, Costs, and Consequences.\n\n\n\nTake Notice Accordingly.\n\nYours Faithfully,\n\n═══════════════════════════════════════════════════════════════\n\n                                          ____________________\n                                          Sender's Name: ____________________\n                                          आधार संख्या / Aadhaar No.: ____________________\n                                          पैन संख्या / Pan No.: ____________________\n                        ",
+        "timestamp": "2026-09-11T04:53:21.976Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "बकाया रकम वसूली (Money Recovery) के लिए लीगल नोटिस भेजना है। कर्जदार: मोहित सिंह, बकाया राशि: 2,00,000 रुपये",
+        "timestamp": "2026-09-11T04:53:23.565Z"
+      },
+      {
+        "role": "assistant",
+        "content": "\n═══════════════════════════════════════════════════════════════\n                        Legal Notice\n═══════════════════════════════════════════════════════════════\n\nDate: 11/9/2026\nPlace: ____________________\n\nNotice\nThrough Registered Post Ad / Email\n\nTO,\n____________________\n____________________\n____________________\n\n\nSir / Madam,\n\nI Hereby Serve Upon You the Following Formal Notice:\n\n1. That I, the Undersigned, S/o ____________________, R/o ____________________, am Aggrieved by Your Following Acts:\n\n    बकाया रकम वसूली (Money Recovery) के लिए लीगल नोटिस भेजना है। कर्जदार: मोहित सिंह, बकाया राशि: 2,00,000 रुपये\n\n2. That Despite Repeated Requests, You Have Failed to Address the Matter Amicably, Leaving me With No Choice but to Issue This Formal Legal Notice.\n\n3. That Your Aforesaid acts/omissions Have Caused Mental Agony, Financial Loss, and Harassment, for Which You are Legally Liable.\n\n4. I Hereby Call Upon You to:\n   a) Cease and Desist From the Aforementioned Acts Immediately;\n   B) Make Good the Loss Caused;\n   C) Send a Written Reply to This Notice Within 15 (Fifteen) Days From the Date of Receipt;\n   D) Comply With the Demands Stated Above.\n\n5. Take Notice That in Case You Fail to Comply With the Above Demands Within the Stipulated Time, I Shall be Constrained to Initiate Appropriate Civil and/or Criminal Proceedings Against You in the Competent Court of Law, at Your Sole Risk, Costs, and Consequences.\n\n\n\nTake Notice Accordingly.\n\nYours Faithfully,\n\n═══════════════════════════════════════════════════════════════\n\n                                          ____________________\n                                          Sender's Name: ____________________\n                                          आधार संख्या / Aadhaar No.: ____________________\n                                          पैन संख्या / Pan No.: ____________________\n                                          Contact: ____________________\n\n══════════════════════════════════════════════════════════════",
+        "timestamp": "2026-09-11T04:53:23.565Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "चेक बाउंस का कानूनी नोटिस (Section 138 NI Act) भेजना है। चेक नंबर 445566, रकम 1,50,000 रु, जारीकर्ता: दिनेश शर्मा, बैंक: PNB, चेक तिथि: 01/08/2026",
+        "timestamp": "2026-09-11T04:56:05.947Z"
+      },
+      {
+        "role": "assistant",
+        "content": "\n═══════════════════════════════════════════════════════════════\n                        Legal Notice\n═══════════════════════════════════════════════════════════════\n\nDate: 11/9/2026\nPlace: ____________________\n\nNotice\nThrough Registered Post Ad / Email\n\nTO,\n____________________\n____________________\n____________________\n\n\nDemand Notice Under Section 138 OF THE Negotiable Instruments Act, 1881\n\nSir / Madam,\n\nI Hereby Serve Upon You the Following Formal Notice:\n\n1. That I, the Undersigned, S/o ____________________, R/o ____________________, am Aggrieved by Your Following Acts:\n\n    चेक बाउंस का कानूनी नोटिस (Section 138 Ni Act) भेजना है। चेक नंबर 445566, रकम 1,50,000 रु, जारीकर्ता: दिनेश शर्मा, बैंक: Pnb, चेक तिथि: 01/08/2026\n\n2. That Despite Repeated Requests, You Have Failed to Address the Matter Amicably, Leaving me With No Choice but to Issue This Formal Legal Notice.\n\n3. That Your Aforesaid acts/omissions Have Caused Mental Agony, Financial Loss, and Harassment, for Which You are Legally Liable.\n\n4. I Hereby Call Upon You to:\n   a) Cease and Desist From the Aforementioned Acts Immediately;\n   B) Make Good the Loss Caused;\n   C) Send a Written Reply to This Notice Within 15 (Fifteen) Days From the Date of Receipt;\n   D) Comply With the Demands Stated Above.\n\n5. Take Notice That in Case You Fail to Comply With the Above Demands Within the Stipulated Time, I Shall be Constrained to Initiate Appropriate Civil and/or Criminal Proceedings Against You in the Competent Court of Law, at Your Sole Risk, Costs, and Consequences.\n\n\n\nTake Notice Accordingly.\n\nYours Faithfully,\n\n═══════════════════════════════════════════════════════════════\n\n                                          ____________________\n                                          Sender's Name: ____________________\n                                          आधार संख्या / Aadhaar No.: ____________________\n                                          पैन संख्या / Pan No.: ____________________\n                        ",
+        "timestamp": "2026-09-11T04:56:05.947Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "बकाया रकम वसूली (Money Recovery) के लिए लीगल नोटिस भेजना है। कर्जदार: मोहित सिंह, बकाया राशि: 2,00,000 रुपये",
+        "timestamp": "2026-09-11T04:56:07.391Z"
+      },
+      {
+        "role": "assistant",
+        "content": "\n═══════════════════════════════════════════════════════════════\n                        Legal Notice\n═══════════════════════════════════════════════════════════════\n\nDate: 11/9/2026\nPlace: ____________________\n\nNotice\nThrough Registered Post Ad / Email\n\nTO,\n____________________\n____________________\n____________________\n\n\nSir / Madam,\n\nI Hereby Serve Upon You the Following Formal Notice:\n\n1. That I, the Undersigned, S/o ____________________, R/o ____________________, am Aggrieved by Your Following Acts:\n\n    बकाया रकम वसूली (Money Recovery) के लिए लीगल नोटिस भेजना है। कर्जदार: मोहित सिंह, बकाया राशि: 2,00,000 रुपये\n\n2. That Despite Repeated Requests, You Have Failed to Address the Matter Amicably, Leaving me With No Choice but to Issue This Formal Legal Notice.\n\n3. That Your Aforesaid acts/omissions Have Caused Mental Agony, Financial Loss, and Harassment, for Which You are Legally Liable.\n\n4. I Hereby Call Upon You to:\n   a) Cease and Desist From the Aforementioned Acts Immediately;\n   B) Make Good the Loss Caused;\n   C) Send a Written Reply to This Notice Within 15 (Fifteen) Days From the Date of Receipt;\n   D) Comply With the Demands Stated Above.\n\n5. Take Notice That in Case You Fail to Comply With the Above Demands Within the Stipulated Time, I Shall be Constrained to Initiate Appropriate Civil and/or Criminal Proceedings Against You in the Competent Court of Law, at Your Sole Risk, Costs, and Consequences.\n\n\n\nTake Notice Accordingly.\n\nYours Faithfully,\n\n═══════════════════════════════════════════════════════════════\n\n                                          ____________________\n                                          Sender's Name: ____________________\n                                          आधार संख्या / Aadhaar No.: ____________________\n                                          पैन संख्या / Pan No.: ____________________\n                                          Contact: ____________________\n\n══════════════════════════════════════════════════════════════",
+        "timestamp": "2026-09-11T04:56:07.391Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "चेक बाउंस का कानूनी नोटिस (Section 138 NI Act) भेजना है। चेक नंबर 445566, रकम 1,50,000 रु, जारीकर्ता: दिनेश शर्मा, बैंक: PNB, चेक तिथि: 01/08/2026",
+        "timestamp": "2026-09-11T04:58:43.853Z"
+      },
+      {
+        "role": "assistant",
+        "content": "\n═══════════════════════════════════════════════════════════════\n                        Legal Notice\n═══════════════════════════════════════════════════════════════\n\nDate: 11/9/2026\nPlace: ____________________\n\nNotice\nThrough Registered Post Ad / Email\n\nTO,\n____________________\n____________________\n____________________\n\n\nDemand Notice Under Section 138 OF THE Negotiable Instruments Act, 1881\n\nSir / Madam,\n\nI Hereby Serve Upon You the Following Formal Notice:\n\n1. That I, the Undersigned, S/o ____________________, R/o ____________________, am Aggrieved by Your Following Acts:\n\n    चेक बाउंस का कानूनी नोटिस (Section 138 Ni Act) भेजना है। चेक नंबर 445566, रकम 1,50,000 रु, जारीकर्ता: दिनेश शर्मा, बैंक: Pnb, चेक तिथि: 01/08/2026\n\n2. That Despite Repeated Requests, You Have Failed to Address the Matter Amicably, Leaving me With No Choice but to Issue This Formal Legal Notice.\n\n3. That Your Aforesaid acts/omissions Have Caused Mental Agony, Financial Loss, and Harassment, for Which You are Legally Liable.\n\n4. I Hereby Call Upon You to:\n   a) Cease and Desist From the Aforementioned Acts Immediately;\n   B) Make Good the Loss Caused;\n   C) Send a Written Reply to This Notice Within 15 (Fifteen) Days From the Date of Receipt;\n   D) Comply With the Demands Stated Above.\n\n5. Take Notice That in Case You Fail to Comply With the Above Demands Within the Stipulated Time, I Shall be Constrained to Initiate Appropriate Civil and/or Criminal Proceedings Against You in the Competent Court of Law, at Your Sole Risk, Costs, and Consequences.\n\n\n\nTake Notice Accordingly.\n\nYours Faithfully,\n\n═══════════════════════════════════════════════════════════════\n\n                                          ____________________\n                                          Sender's Name: ____________________\n                                          आधार संख्या / Aadhaar No.: ____________________\n                                          पैन संख्या / Pan No.: ____________________\n                        ",
+        "timestamp": "2026-09-11T04:58:43.853Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "बकाया रकम वसूली (Money Recovery) के लिए लीगल नोटिस भेजना है। कर्जदार: मोहित सिंह, बकाया राशि: 2,00,000 रुपये",
+        "timestamp": "2026-09-11T04:58:45.330Z"
+      },
+      {
+        "role": "assistant",
+        "content": "\n═══════════════════════════════════════════════════════════════\n                        Legal Notice\n═══════════════════════════════════════════════════════════════\n\nDate: 11/9/2026\nPlace: ____________________\n\nNotice\nThrough Registered Post Ad / Email\n\nTO,\n____________________\n____________________\n____________________\n\n\nSir / Madam,\n\nI Hereby Serve Upon You the Following Formal Notice:\n\n1. That I, the Undersigned, S/o ____________________, R/o ____________________, am Aggrieved by Your Following Acts:\n\n    बकाया रकम वसूली (Money Recovery) के लिए लीगल नोटिस भेजना है। कर्जदार: मोहित सिंह, बकाया राशि: 2,00,000 रुपये\n\n2. That Despite Repeated Requests, You Have Failed to Address the Matter Amicably, Leaving me With No Choice but to Issue This Formal Legal Notice.\n\n3. That Your Aforesaid acts/omissions Have Caused Mental Agony, Financial Loss, and Harassment, for Which You are Legally Liable.\n\n4. I Hereby Call Upon You to:\n   a) Cease and Desist From the Aforementioned Acts Immediately;\n   B) Make Good the Loss Caused;\n   C) Send a Written Reply to This Notice Within 15 (Fifteen) Days From the Date of Receipt;\n   D) Comply With the Demands Stated Above.\n\n5. Take Notice That in Case You Fail to Comply With the Above Demands Within the Stipulated Time, I Shall be Constrained to Initiate Appropriate Civil and/or Criminal Proceedings Against You in the Competent Court of Law, at Your Sole Risk, Costs, and Consequences.\n\n\n\nTake Notice Accordingly.\n\nYours Faithfully,\n\n═══════════════════════════════════════════════════════════════\n\n                                          ____________________\n                                          Sender's Name: ____________________\n                                          आधार संख्या / Aadhaar No.: ____________________\n                                          पैन संख्या / Pan No.: ____________________\n                                          Contact: ____________________\n\n══════════════════════════════════════════════════════════════",
+        "timestamp": "2026-09-11T04:58:45.330Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-09-11T04:53:21.976Z",
+    "lastActive": "2026-09-11T04:58:45.330Z"
+  },
+  "test_e2e_legal:legal_draft": {
+    "userId": "test_e2e_legal",
+    "skill": "legal_draft",
+    "messages": [
+      {
+        "role": "user",
+        "content": "नाम परिवर्तन (Name Change) का शपथ पत्र (Affidavit) बनाना है। प्रार्थी: राजेश यादव पुत्र राम यादव, निवासी कानपुर",
+        "timestamp": "2026-09-11T04:53:22.011Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Draft failed quality checks. Regenerating...",
+        "timestamp": "2026-09-11T04:53:22.012Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "मकान का रेंट एग्रीमेंट (Rent Agreement) तैयार करें। मकान मालिक: सुरेश वर्मा, किराएदार: विकास गुप्ता, किराया: 12,000 रु प्रति माह, अवधि: 11 माह, पता: फ्लैट 201 गोमती नगर लखनऊ",
+        "timestamp": "2026-09-11T04:53:22.034Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Draft failed quality checks. Regenerating...",
+        "timestamp": "2026-09-11T04:53:22.034Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "मकान बिजली कनेक्शन के लिए अनापत्ति प्रमाण पत्र (NOC / No Objection Certificate) बनाना है। मकान मालिक: सुनीता देवी",
+        "timestamp": "2026-09-11T04:53:22.060Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Draft failed quality checks. Regenerating...",
+        "timestamp": "2026-09-11T04:53:22.060Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "आय एवं संपत्ति का स्व-घोषणा पत्र (Self Declaration) तैयार करें।",
+        "timestamp": "2026-09-11T04:53:23.648Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Draft failed quality checks. Regenerating...",
+        "timestamp": "2026-09-11T04:53:23.648Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "वसीयतनामा (Will) का कानूनी प्रारूप तैयार करें। वसीयतकर्ता: बृजमोहन लाल, आयु: 68 वर्ष",
+        "timestamp": "2026-09-11T04:53:23.681Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Draft failed quality checks. Regenerating...",
+        "timestamp": "2026-09-11T04:53:23.681Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "संपत्ति देखभाल हेतु मुख्तारनामा (General Power of Attorney) का प्रारूप बनाएं।",
+        "timestamp": "2026-09-11T04:53:23.716Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Draft failed quality checks. Regenerating...",
+        "timestamp": "2026-09-11T04:53:23.717Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "नाम परिवर्तन (Name Change) का शपथ पत्र (Affidavit) बनाना है। प्रार्थी: राजेश यादव पुत्र राम यादव, निवासी कानपुर",
+        "timestamp": "2026-09-11T04:56:05.968Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Draft failed quality checks. Regenerating...",
+        "timestamp": "2026-09-11T04:56:05.968Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "मकान का रेंट एग्रीमेंट (Rent Agreement) तैयार करें। मकान मालिक: सुरेश वर्मा, किराएदार: विकास गुप्ता, किराया: 12,000 रु प्रति माह, अवधि: 11 माह, पता: फ्लैट 201 गोमती नगर लखनऊ",
+        "timestamp": "2026-09-11T04:56:05.992Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Draft failed quality checks. Regenerating...",
+        "timestamp": "2026-09-11T04:56:05.992Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "मकान बिजली कनेक्शन के लिए अनापत्ति प्रमाण पत्र (NOC / No Objection Certificate) बनाना है। मकान मालिक: सुनीता देवी",
+        "timestamp": "2026-09-11T04:56:06.016Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Draft failed quality checks. Regenerating...",
+        "timestamp": "2026-09-11T04:56:06.016Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "आय एवं संपत्ति का स्व-घोषणा पत्र (Self Declaration) तैयार करें।",
+        "timestamp": "2026-09-11T04:56:07.458Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Draft failed quality checks. Regenerating...",
+        "timestamp": "2026-09-11T04:56:07.458Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "वसीयतनामा (Will) का कानूनी प्रारूप तैयार करें। वसीयतकर्ता: बृजमोहन लाल, आयु: 68 वर्ष",
+        "timestamp": "2026-09-11T04:56:07.477Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Draft failed quality checks. Regenerating...",
+        "timestamp": "2026-09-11T04:56:07.477Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "संपत्ति देखभाल हेतु मुख्तारनामा (General Power of Attorney) का प्रारूप बनाएं।",
+        "timestamp": "2026-09-11T04:56:07.495Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Draft failed quality checks. Regenerating...",
+        "timestamp": "2026-09-11T04:56:07.495Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "थाना प्रभारी महोदय को मोबाइल चोरी की तहरीर / पुलिस शिकायत लिखनी है। शिकायतकर्ता: अमित कुमार, पता: सिविल लाइन्स प्रयागराज, घटना: 10 सितंबर 2026 को सिविल लाइन्स बस स्टैंड पर मोबाइल चोरी हुआ।",
+        "timestamp": "2026-09-11T04:58:42.231Z"
+      },
+      {
+        "role": "assistant",
+        "content": "[रूटिंग सफल] ✅ आपकी शिकायत का कानूनी मसौदा (A4 Police Complaint) तैयार कर दिया गया है।\n\n📄 **शीर्षक:** पुलिस शिकायत पत्र (Police Complaint)\n🏛️ **प्राधिकारी:** थाना प्रभारी महोदय, जिला- बुलंदशहर\n👤 **शिकायतकर्ता:** विवरण दर्ज\n🚨 **संदिग्ध:** विवरण दर्ज\n\nदस्तावेज़ को नीचे A4 वर्कस्पेस में खोला गया है जहाँ से आप इसे Edit, Print या PDF डाउनलोड कर सकते हैं।\n\n═══════════════════════════════════════════════════════════════\n                 पुलिस शिकायत पत्र / POLICE COMPLAINT APPLICATION\n═══════════════════════════════════════════════════════════════\n\nसेवा में,\nथानाध्यक्ष / थाना प्रभारी महोदय,\nथाना: __________ (संबंधित स्थानीय थाना)\nजिला: बुलंदशहर, उत्तर प्रदेश\n\nविषय: घर से कैरी बैग, महत्वपूर्ण व्यक्तिगत दस्तावेज़ एवं Poco M3 मोबाइल फोन चोरी होने / ले जाए जाने के संबंध में शिकायत पत्र।\n\nमहोदय,\n\nसविनय निवेदन है कि प्रार्थी / शिकायतकर्ता का पूर्ण विवरण एवं घटना के तथ्य निम्नवत् हैं:\n\n१. शिकायतकर्ता का विवरण:\n   • नाम: [शिकायतकर्ता का नाम]\n   • पिता का नाम: [पिता का नाम]\n   • स्थायी पता: सिविल लाइन्स प्रयागराज,\n   • मोबाइल नंबर: __________\n\n२. घटना का विवरण:\n   • दिनांक: 10 सितंबर 2026\n   • समय: __________ (समय उपलब्ध नहीं / रात्रि के समय)\n   • स्थान: घटना स्थल\n\n३. संदिग्ध / नामजद व्यक्ति का विवरण:\n   • नाम: [संदिग्ध/आरोपी व्यक्ति का नाम]\n   • पिता का नाम: [पिता का नाम]\n   • पता: ग्राम व पोस्ट- सिखैड़ा, तहसील- बुलंदशहर, जिला- बुलंदशहर\n\n४. चोरी / ले जाई गई वस्तुओं का विवरण:\n   (a) एक चोरी की गई वस्तु / मोबाइल / वाहन\n\n५. घटना का विवरण (तथ्य एवं आरोप):\n   शिकायतकर्ता के कथन एवं आरोप के अनुसार, दिनांक 10 सितंबर 2026 को उक्त संदिग्ध व्यक्ति ([संदिग्ध/आरोपी व्यक्ति का नाम]) शिकायतकर्ता के घर पर मौजूद था। उक्त व्यक्ति द्वारा शिकायतकर्ता के घर से उसका कैरी बैग, जिसमें कुछ महत्वपूर्ण दस्तावेज़ एवं Poco M3 मोबाइल फोन रखे हुए थे, चोरी से अपने साथ ले जाने का आरोप है।\n\n७. पुलिस प्रशासन से विनम्र प्रार्थना:\n   अतः श्रीमान जी से विनम्र निवेदन है कि:\n   (क) उक्त शिकायत को गंभीरता से संज्ञान में लेते हुए उचित अभिलेखों (GD/FIR) में दर्ज करने की कृपा करें।\n   (ख) मामले की निष्पक्ष जांच कर संदि",
+        "timestamp": "2026-09-11T04:58:42.231Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "नाम परिवर्तन (Name Change) का शपथ पत्र (Affidavit) बनाना है। प्रार्थी: राजेश यादव पुत्र राम यादव, निवासी कानपुर",
+        "timestamp": "2026-09-11T04:58:43.902Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Draft failed quality checks. Regenerating...",
+        "timestamp": "2026-09-11T04:58:43.902Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "मकान का रेंट एग्रीमेंट (Rent Agreement) तैयार करें। मकान मालिक: सुरेश वर्मा, किराएदार: विकास गुप्ता, किराया: 12,000 रु प्रति माह, अवधि: 11 माह, पता: फ्लैट 201 गोमती नगर लखनऊ",
+        "timestamp": "2026-09-11T04:58:43.930Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Draft failed quality checks. Regenerating...",
+        "timestamp": "2026-09-11T04:58:43.930Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "मकान बिजली कनेक्शन के लिए अनापत्ति प्रमाण पत्र (NOC / No Objection Certificate) बनाना है। मकान मालिक: सुनीता देवी",
+        "timestamp": "2026-09-11T04:58:43.953Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Draft failed quality checks. Regenerating...",
+        "timestamp": "2026-09-11T04:58:43.953Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "आय एवं संपत्ति का स्व-घोषणा पत्र (Self Declaration) तैयार करें।",
+        "timestamp": "2026-09-11T04:58:45.386Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Draft failed quality checks. Regenerating...",
+        "timestamp": "2026-09-11T04:58:45.386Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "वसीयतनामा (Will) का कानूनी प्रारूप तैयार करें। वसीयतकर्ता: बृजमोहन लाल, आयु: 68 वर्ष",
+        "timestamp": "2026-09-11T04:58:45.413Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Draft failed quality checks. Regenerating...",
+        "timestamp": "2026-09-11T04:58:45.413Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "संपत्ति देखभाल हेतु मुख्तारनामा (General Power of Attorney) का प्रारूप बनाएं।",
+        "timestamp": "2026-09-11T04:58:45.442Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Draft failed quality checks. Regenerating...",
+        "timestamp": "2026-09-11T04:58:45.442Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-09-11T04:53:22.011Z",
+    "lastActive": "2026-09-11T04:58:45.442Z"
+  },
+  "test_e2e_context:application_writer": {
+    "userId": "test_e2e_context",
+    "skill": "application_writer",
+    "messages": [
+      {
+        "role": "user",
+        "content": "थाना सिविल लाइन्स में शिकायत: शिकायतकर्ता राहुल शर्मा पुत्र श्री अशोक शर्मा, निवासी 123 राजापुर प्रयागराज, मोबाइल 9876543210। आरोपी अज्ञात व्यक्ति। घटना दिनांक 05 सितंबर 2026 समय सायं 6 बजे। घटना स्थल सुभाष चौराहा। घटना: मेरी बाइक UP70 AB 1234 चोरी हो गई। कृपया FIR दर्ज करें।",
+        "timestamp": "2026-09-11T04:53:23.794Z"
+      },
+      {
+        "role": "assistant",
+        "content": "आपका नाम क्या है? (Aapka naam kya hai?) (1/3 जानकारी मिली)\n\n💡 उदाहरण: e.g. Ramesh Kumar",
+        "timestamp": "2026-09-11T04:53:23.794Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "थाना सिविल लाइन्स में शिकायत: शिकायतकर्ता राहुल शर्मा पुत्र श्री अशोक शर्मा, निवासी 123 राजापुर प्रयागराज, मोबाइल 9876543210। आरोपी अज्ञात व्यक्ति। घटना दिनांक 05 सितंबर 2026 समय सायं 6 बजे। घटना स्थल सुभाष चौराहा। घटना: मेरी बाइक UP70 AB 1234 चोरी हो गई। कृपया FIR दर्ज करें।",
+        "timestamp": "2026-09-11T04:56:07.513Z"
+      },
+      {
+        "role": "assistant",
+        "content": "आपका नाम क्या है? (Aapka naam kya hai?) (1/3 जानकारी मिली)\n\n💡 उदाहरण: e.g. Ramesh Kumar",
+        "timestamp": "2026-09-11T04:56:07.513Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-09-11T04:53:23.794Z",
+    "lastActive": "2026-09-11T04:56:07.513Z"
+  },
+  "test_e2e_context:legal_draft": {
+    "userId": "test_e2e_context",
+    "skill": "legal_draft",
+    "messages": [
+      {
+        "role": "user",
+        "content": "थाना सिविल लाइन्स में शिकायत: शिकायतकर्ता राहुल शर्मा पुत्र श्री अशोक शर्मा, निवासी 123 राजापुर प्रयागराज, मोबाइल 9876543210। आरोपी अज्ञात व्यक्ति। घटना दिनांक 05 सितंबर 2026 समय सायं 6 बजे। घटना स्थल सुभाष चौराहा। घटना: मेरी बाइक UP70 AB 1234 चोरी हो गई। कृपया FIR दर्ज करें।",
+        "timestamp": "2026-09-11T04:58:45.466Z"
+      },
+      {
+        "role": "assistant",
+        "content": "[रूटिंग सफल] ✅ आपकी शिकायत का कानूनी मसौदा (A4 Police Complaint) तैयार कर दिया गया है।\n\n📄 **शीर्षक:** पुलिस शिकायत पत्र (राहुल शर्मा)\n🏛️ **प्राधिकारी:** थाना प्रभारी महोदय, जिला- बुलंदशहर\n👤 **शिकायतकर्ता:** राहुल शर्मा\n🚨 **संदिग्ध:** विवरण दर्ज\n\nदस्तावेज़ को नीचे A4 वर्कस्पेस में खोला गया है जहाँ से आप इसे Edit, Print या PDF डाउनलोड कर सकते हैं।\n\n═══════════════════════════════════════════════════════════════\n                 पुलिस शिकायत पत्र / POLICE COMPLAINT APPLICATION\n═══════════════════════════════════════════════════════════════\n\nसेवा में,\nथानाध्यक्ष / थाना प्रभारी महोदय,\nथाना: __________ (संबंधित स्थानीय थाना)\nजिला: बुलंदशहर, उत्तर प्रदेश\n\nविषय: घर से कैरी बैग, महत्वपूर्ण व्यक्तिगत दस्तावेज़ एवं Poco M3 मोबाइल फोन चोरी होने / ले जाए जाने के संबंध में शिकायत पत्र।\n\nमहोदय,\n\nसविनय निवेदन है कि प्रार्थी / शिकायतकर्ता का पूर्ण विवरण एवं घटना के तथ्य निम्नवत् हैं:\n\n१. शिकायतकर्ता का विवरण:\n   • नाम: राहुल शर्मा\n   • पिता का नाम: [पिता का नाम]\n   • स्थायी पता: 123 राजापुर प्रयागराज,\n   • मोबाइल नंबर: __________\n\n२. घटना का विवरण:\n   • दिनांक: 05 सितंबर 2026\n   • समय: __________ (समय उपलब्ध नहीं / रात्रि के समय)\n   • स्थान: सुभाष चौराहा।\n\n३. संदिग्ध / नामजद व्यक्ति का विवरण:\n   • नाम: [संदिग्ध/आरोपी व्यक्ति का नाम]\n   • पिता का नाम: [पिता का नाम]\n   • पता: ग्राम व पोस्ट- सिखैड़ा, तहसील- बुलंदशहर, जिला- बुलंदशहर\n\n४. चोरी / ले जाई गई वस्तुओं का विवरण:\n   (a) मोटरसाइकिल / वाहन (बाइक UP70 AB 1234)\n\n५. घटना का विवरण (तथ्य एवं आरोप):\n   शिकायतकर्ता के कथन एवं आरोप के अनुसार, दिनांक 05 सितंबर 2026 को उक्त संदिग्ध व्यक्ति ([संदिग्ध/आरोपी व्यक्ति का नाम]) शिकायतकर्ता के घर पर मौजूद था। उक्त व्यक्ति द्वारा शिकायतकर्ता के घर से उसका कैरी बैग, जिसमें कुछ महत्वपूर्ण दस्तावेज़ एवं Poco M3 मोबाइल फोन रखे हुए थे, चोरी से अपने साथ ले जाने का आरोप है।\n\n७. पुलिस प्रशासन से विनम्र प्रार्थना:\n   अतः श्रीमान जी से विनम्र निवेदन है कि:\n   (क) उक्त शिकायत को गंभीरता से संज्ञान में लेते हुए उचित अभिलेखों (GD/FIR) में दर्ज करने की कृपा करें।\n   (ख) मामले की निष्पक्ष जांच कर संदिग्ध व्यक",
+        "timestamp": "2026-09-11T04:58:45.467Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-09-11T04:58:45.466Z",
+    "lastActive": "2026-09-11T04:58:45.467Z"
   }
 }
