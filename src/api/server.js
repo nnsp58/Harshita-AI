@@ -243,7 +243,7 @@ app.use(helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
-      connectSrc: ["'self'", "ws:", "wss:", "https://n-dizi.in", "https://*.onrender.com", "https://accounts.google.com", "https://*.google.com", "https://*.googlesyndication.com"],
+      connectSrc: ["'self'", "ws:", "wss:", "https://n-dizi.in", "https://*.onrender.com", "https://accounts.google.com", "https://*.google.com", "https://*.googlesyndication.com", "https://*.adtrafficquality.google", "https://*.doubleclick.net"],
       scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://accounts.google.com", "https://*.googleapis.com", "https://*.googlesyndication.com", "https://pagead2.googlesyndication.com", "https://*.google.com"],
       scriptSrcElem: ["'self'", "'unsafe-inline'", "https://accounts.google.com", "https://*.googleapis.com", "https://*.googlesyndication.com", "https://pagead2.googlesyndication.com", "https://*.google.com"],
       frameSrc: ["'self'", "https://accounts.google.com", "https://*.google.com", "https://*.googlesyndication.com", "https://googleads.g.doubleclick.net"],
