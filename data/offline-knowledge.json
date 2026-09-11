@@ -30,7 +30,9 @@
     "tenses": { "answer": "English has 3 main tenses: Present (I work), Past (I worked), Future (I will work). Each has 4 aspects.", "intent": "general_chat" }
   },
   "translation": {
-    "hello": { "answer": "Hello in Hindi: नमस्ते (Namaste)", "intent": "language_skill" }
+    "translate hello to hindi": { "answer": "Hello in Hindi: नमस्ते (Namaste)", "intent": "language_skill" },
+    "hello in hindi": { "answer": "Hello in Hindi: नमस्ते (Namaste)", "intent": "language_skill" },
+    "hello ka hindi meaning": { "answer": "Hello in Hindi: नमस्ते (Namaste)", "intent": "language_skill" }
   },
   "dictionary": {
     "ai": { "answer": "AI (Artificial Intelligence) - Technology enabling machines to perform human-like cognitive functions.", "intent": "general_chat" }

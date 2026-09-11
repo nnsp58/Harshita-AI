@@ -4985,5 +4985,212 @@
     "output": "[रूटिंग सफल] ✅ आपकी शिकायत का कानूनी मसौदा (A4 Police Complaint) तैयार कर दिया गया है।\n\n📄 **शीर्षक:** पुलिस शिकायत पत्र (Nar Narayan Singh)\n🏛️ **प्राधिकारी:** थाना प्रभारी महोदय, जिला- rict\n👤 **शिक",
     "success": true,
     "timestamp": "2026-09-11T05:23:23.400Z"
+  },
+  {
+    "id": "user1_1789139008506_0ad0qgb",
+    "userId": "user1",
+    "skill": "general_chat",
+    "input": "hello",
+    "output": "Hello in Hindi: नमस्ते (Namaste)",
+    "success": true,
+    "timestamp": "2026-09-11T15:03:28.506Z"
+  },
+  {
+    "id": "test_user_1789140051204_1pkaxvd",
+    "userId": "test_user",
+    "skill": "general_chat",
+    "input": "hello",
+    "output": "Hello! How can I help you?",
+    "success": true,
+    "timestamp": "2026-09-11T15:20:51.204Z"
+  },
+  {
+    "id": "test_user_1789140051305_nfu26yg",
+    "userId": "test_user",
+    "skill": "general_chat",
+    "input": "hi",
+    "output": "Hello! How can I help you?",
+    "success": true,
+    "timestamp": "2026-09-11T15:20:51.305Z"
+  },
+  {
+    "id": "test_user_1789140052895_vt7pk54",
+    "userId": "test_user",
+    "skill": "general_chat",
+    "input": "How are you?",
+    "output": "I'm doing well, thank you! How can I help you?",
+    "success": true,
+    "timestamp": "2026-09-11T15:20:52.895Z"
+  },
+  {
+    "id": "test_user_1789140052922_tkl4snf",
+    "userId": "test_user",
+    "skill": "general_chat",
+    "input": "What can you do?",
+    "output": "[रूटिंग सफल] 🤖 **Harshita AI — Platform Capabilities & Skill Discovery**\n\n📊 **Total Skill Count:** 31 Active AI Skills\n\n### 📁 Categories & Sub-Skills:\n\n#### 1. ⚖️ Legal & Drafting Services\n- **कानू",
+    "success": true,
+    "timestamp": "2026-09-11T15:20:52.922Z"
+  },
+  {
+    "id": "test_user_1789140053077_lwoiyzq",
+    "userId": "test_user",
+    "skill": "general_chat",
+    "input": "नमस्ते",
+    "output": "Hello! How can I help you today?",
+    "success": true,
+    "timestamp": "2026-09-11T15:20:53.077Z"
+  },
+  {
+    "id": "test_user_1789140054562_35uymln",
+    "userId": "test_user",
+    "skill": "general_chat",
+    "input": "आप कैसे हैं?",
+    "output": "Hello! I am operating in offline mode right now. How can I assist you with legal drafting, calculations, or documents?",
+    "success": true,
+    "timestamp": "2026-09-11T15:20:54.562Z"
+  },
+  {
+    "id": "test_user_1789140056069_fwf3twj",
+    "userId": "test_user",
+    "skill": "general_chat",
+    "input": "आप क्या कर सकती हैं?",
+    "output": "Hello! I am operating in offline mode right now. How can I assist you with legal drafting, calculations, or documents?",
+    "success": true,
+    "timestamp": "2026-09-11T15:20:56.070Z"
+  },
+  {
+    "id": "test_user_1789140056117_va06sh0",
+    "userId": "test_user",
+    "skill": "general_chat",
+    "input": "Bhai kya haal hai?",
+    "output": "Main bilkul badhiya hoon! Aap bataiye, main aapki kya madad kar sakti hoon?",
+    "success": true,
+    "timestamp": "2026-09-11T15:20:56.117Z"
+  },
+  {
+    "id": "test_user_1789140056158_hodl6bo",
+    "userId": "test_user",
+    "skill": "general_chat",
+    "input": "hello ka Hindi meaning batao",
+    "output": "Hello in Hindi: नमस्ते (Namaste)",
+    "success": true,
+    "timestamp": "2026-09-11T15:20:56.158Z"
+  },
+  {
+    "id": "test_user_1789140404203_3k2h5tg",
+    "userId": "test_user",
+    "skill": "general_chat",
+    "input": "hello",
+    "output": "Hello! How can I help you?",
+    "success": true,
+    "timestamp": "2026-09-11T15:26:44.203Z"
+  },
+  {
+    "id": "test_user_1789140404329_w5or7et",
+    "userId": "test_user",
+    "skill": "general_chat",
+    "input": "hi",
+    "output": "Hello! How can I help you?",
+    "success": true,
+    "timestamp": "2026-09-11T15:26:44.329Z"
+  },
+  {
+    "id": "test_user_1789140405863_babd2ke",
+    "userId": "test_user",
+    "skill": "general_chat",
+    "input": "How are you?",
+    "output": "I'm doing well, thank you! How can I help you?",
+    "success": true,
+    "timestamp": "2026-09-11T15:26:45.863Z"
+  },
+  {
+    "id": "test_user_1789140405927_6mjrxhh",
+    "userId": "test_user",
+    "skill": "general_chat",
+    "input": "What can you do?",
+    "output": "[रूटिंग सफल] 🤖 **Harshita AI — Platform Capabilities & Skill Discovery**\n\n📊 **Total Skill Count:** 31 Active AI Skills\n\n### 📁 Categories & Sub-Skills:\n\n#### 1. ⚖️ Legal & Drafting Services\n- **कानू",
+    "success": true,
+    "timestamp": "2026-09-11T15:26:45.927Z"
+  },
+  {
+    "id": "test_user_1789140406212_uvxf2dm",
+    "userId": "test_user",
+    "skill": "general_chat",
+    "input": "नमस्ते",
+    "output": "नमस्ते! मैं आपकी कैसे सहायता कर सकती हूँ?",
+    "success": true,
+    "timestamp": "2026-09-11T15:26:46.212Z"
+  },
+  {
+    "id": "test_user_1789140407583_m9yj6mw",
+    "userId": "test_user",
+    "skill": "general_chat",
+    "input": "आप कैसे हैं?",
+    "output": "मैं ठीक हूँ। मैं आपकी कैसे सहायता कर सकती हूँ?",
+    "success": true,
+    "timestamp": "2026-09-11T15:26:47.583Z"
+  },
+  {
+    "id": "test_user_1789140409069_24c31nb",
+    "userId": "test_user",
+    "skill": "general_chat",
+    "input": "आप क्या कर सकती हैं?",
+    "output": "मैं कानूनी ड्राफ्ट, पुलिस शिकायत, टैक्स गणना और सरकारी फॉर्म भरने में आपकी पूरी सहायता कर सकती हूँ।",
+    "success": true,
+    "timestamp": "2026-09-11T15:26:49.069Z"
+  },
+  {
+    "id": "test_user_1789140409119_dyojh8z",
+    "userId": "test_user",
+    "skill": "general_chat",
+    "input": "Bhai kya haal hai?",
+    "output": "Main bilkul badhiya hoon! Aap bataiye, main aapki kya madad kar sakti hoon?",
+    "success": true,
+    "timestamp": "2026-09-11T15:26:49.119Z"
+  },
+  {
+    "id": "test_user_1789140409179_laf3hr7",
+    "userId": "test_user",
+    "skill": "general_chat",
+    "input": "hello ka Hindi meaning batao",
+    "output": "Hello in Hindi: नमस्ते (Namaste)",
+    "success": true,
+    "timestamp": "2026-09-11T15:26:49.179Z"
+  },
+  {
+    "id": "user1_1789140530280_oic5ham",
+    "userId": "user1",
+    "skill": "legal_draft",
+    "input": "police complaint likho nar narayan singh s/o ramesh chand gautam chaudhary bulandshahr mobile poco m3 chori ho gaya",
+    "output": "[रूटिंग सफल] ✅ आपकी शिकायत का कानूनी मसौदा (A4 Police Complaint) तैयार कर दिया गया है।\n\n📄 **शीर्षक:** पुलिस शिकायत पत्र (Police Complaint)\n🏛️ **प्राधिकारी:** थाना प्रभारी महोदय, जिला- बुलंदशहर\n👤 **",
+    "success": true,
+    "timestamp": "2026-09-11T15:28:50.280Z"
+  },
+  {
+    "id": "user1_1789140531789_fh6sz53",
+    "userId": "user1",
+    "skill": "legal_notice",
+    "input": "cheque bounce notice draft karo 50000 rupaye",
+    "output": "\n═══════════════════════════════════════════════════════════════\n                        Legal Notice\n═══════════════════════════════════════════════════════════════\n\nDate: 11/9/2026\nPlace: __________",
+    "success": true,
+    "timestamp": "2026-09-11T15:28:51.789Z"
+  },
+  {
+    "id": "user1_1789140531833_0im71h3",
+    "userId": "user1",
+    "skill": "legal_draft",
+    "input": "affidavit banaye name change ke liye",
+    "output": "Draft failed quality checks. Regenerating...",
+    "success": true,
+    "timestamp": "2026-09-11T15:28:51.833Z"
+  },
+  {
+    "id": "user1_1789140531903_j9xsxfz",
+    "userId": "user1",
+    "skill": "legal_draft",
+    "input": "rent agreement format chahiye",
+    "output": "Draft failed quality checks. Regenerating...",
+    "success": true,
+    "timestamp": "2026-09-11T15:28:51.903Z"
   }
 ]

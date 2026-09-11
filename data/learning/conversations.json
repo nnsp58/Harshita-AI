@@ -979,10 +979,208 @@
         "content": "[रूटिंग सफल] 🤖 **Harshita AI — Platform Capabilities & Skill Discovery**\n\n📊 **Total Skill Count:** 31 Active AI Skills\n\n### 📁 Categories & Sub-Skills:\n\n#### 1. ⚖️ Legal & Drafting Services\n- **कानूनी ड्राफ्ट (legal_draft)**: Affidavit, Gift Deed, Partition Deed, Rent Agreement, NOC, Declaration, Power of Attorney, Will.\n  *Example*: \"Apni property wife ke naam gift karni hai\"\n- **कानूनी नोटिस (legal_notice)**: Money Recovery, Defamation, Property Dispute, Cheque Bounce, Eviction, Contract Breach, Consumer Complaint.\n  *Example*: \"Cheque bounce notice to Ramesh for 50000 INR\"\n- **प्रार्थना पत्र (application_writer)**: Government applications, leave/official letters, representations.\n  *Example*: \"Atal awasya school principal ko 7 din ki chutti ki application\"\n\n#### 2. 📝 Government Services\n- **फॉर्म ऑटो-फिल (form_fill)**: SSC, Railway, Banking online form helper.\n- **पात्रता जाँच (eligibility_check)**: Direct qualification checks.\n- **राशन कार्ड (ration_card)**: BPL/APL card applications.\n- **भूलेख (land_record)**: Khasra, Khatauni land records.\n- **रिजल्ट ट्रैकर (result_generator)**: SSC, CBSE merit list / score checks.\n\n#### 3. 🔍 Documents & Content Engines\n- **दस्तावेज़ OCR (document_ocr)**: Text extraction from Aadhaar, PAN, marksheets.\n- **फाइल प्रोसेसर (file_processor)**: PDF/Excel manipulation.\n- **प्रोजेक्ट रिपोर्ट (project_report)**: PMEGP/Mudra business reports.\n- **रिज्यूमे मेकर (resume_maker)**: Professional CV/biodata generation.\n- **डेटा वैलिडेटर (validator)**: Automated CSV/Excel audits.\n- **बल्क इम्पोर्ट (bulk_import)**: Direct batch processing.\n\n#### 4. 🚗 Business & Media Utility\n- **TA/DA प्रोसेसर (tada_process)**: Travel allowance calculations.\n- **टिकट बुकिंग (ticket_booking)**: Train/Bus ticket booking aid.\n- **पासपोर्ट फोटो मेकर (photo_maker)**: Passport size crop and print layout creation.\n- **मीडिया कन्वर्टर (media_converter)**: Image compression and conversions.\n\n#### 5. 🤖 Core Agent & Development\n- **Voice Assistant (voice_agent)**: M",
         "timestamp": "2026-06-19T18:53:44.348Z",
         "success": true
+      },
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-09-11T15:20:51.204Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Hello! How can I help you?",
+        "timestamp": "2026-09-11T15:20:51.204Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "hi",
+        "timestamp": "2026-09-11T15:20:51.305Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Hello! How can I help you?",
+        "timestamp": "2026-09-11T15:20:51.305Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "How are you?",
+        "timestamp": "2026-09-11T15:20:52.895Z"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm doing well, thank you! How can I help you?",
+        "timestamp": "2026-09-11T15:20:52.895Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "What can you do?",
+        "timestamp": "2026-09-11T15:20:52.922Z"
+      },
+      {
+        "role": "assistant",
+        "content": "[रूटिंग सफल] 🤖 **Harshita AI — Platform Capabilities & Skill Discovery**\n\n📊 **Total Skill Count:** 31 Active AI Skills\n\n### 📁 Categories & Sub-Skills:\n\n#### 1. ⚖️ Legal & Drafting Services\n- **कानूनी ड्राफ्ट (legal_draft)**: Affidavit, Gift Deed, Partition Deed, Rent Agreement, NOC, Declaration, Power of Attorney, Will.\n  *Example*: \"Apni property wife ke naam gift karni hai\"\n- **कानूनी नोटिस (legal_notice)**: Money Recovery, Defamation, Property Dispute, Cheque Bounce, Eviction, Contract Breach, Consumer Complaint.\n  *Example*: \"Cheque bounce notice to Ramesh for 50000 INR\"\n- **प्रार्थना पत्र (application_writer)**: Government applications, leave/official letters, representations.\n  *Example*: \"Atal awasya school principal ko 7 din ki chutti ki application\"\n\n#### 2. 📝 Government Services\n- **फॉर्म ऑटो-फिल (form_fill)**: SSC, Railway, Banking online form helper.\n- **पात्रता जाँच (eligibility_check)**: Direct qualification checks.\n- **राशन कार्ड (ration_card)**: BPL/APL card applications.\n- **भूलेख (land_record)**: Khasra, Khatauni land records.\n- **रिजल्ट ट्रैकर (result_generator)**: SSC, CBSE merit list / score checks.\n\n#### 3. 🔍 Documents & Content Engines\n- **दस्तावेज़ OCR (document_ocr)**: Text extraction from Aadhaar, PAN, marksheets.\n- **फाइल प्रोसेसर (file_processor)**: PDF/Excel manipulation.\n- **प्रोजेक्ट रिपोर्ट (project_report)**: PMEGP/Mudra business reports.\n- **रिज्यूमे मेकर (resume_maker)**: Professional CV/biodata generation.\n- **डेटा वैलिडेटर (validator)**: Automated CSV/Excel audits.\n- **बल्क इम्पोर्ट (bulk_import)**: Direct batch processing.\n\n#### 4. 🚗 Business & Media Utility\n- **TA/DA प्रोसेसर (tada_process)**: Travel allowance calculations.\n- **टिकट बुकिंग (ticket_booking)**: Train/Bus ticket booking aid.\n- **पासपोर्ट फोटो मेकर (photo_maker)**: Passport size crop and print layout creation.\n- **मीडिया कन्वर्टर (media_converter)**: Image compression and conversions.\n\n#### 5. 🤖 Core Agent & Development\n- **Voice Assistant (voice_agent)**: M",
+        "timestamp": "2026-09-11T15:20:52.922Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "नमस्ते",
+        "timestamp": "2026-09-11T15:20:53.077Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Hello! How can I help you today?",
+        "timestamp": "2026-09-11T15:20:53.077Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "आप कैसे हैं?",
+        "timestamp": "2026-09-11T15:20:54.562Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Hello! I am operating in offline mode right now. How can I assist you with legal drafting, calculations, or documents?",
+        "timestamp": "2026-09-11T15:20:54.562Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "आप क्या कर सकती हैं?",
+        "timestamp": "2026-09-11T15:20:56.069Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Hello! I am operating in offline mode right now. How can I assist you with legal drafting, calculations, or documents?",
+        "timestamp": "2026-09-11T15:20:56.069Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Bhai kya haal hai?",
+        "timestamp": "2026-09-11T15:20:56.117Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Main bilkul badhiya hoon! Aap bataiye, main aapki kya madad kar sakti hoon?",
+        "timestamp": "2026-09-11T15:20:56.117Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "hello ka Hindi meaning batao",
+        "timestamp": "2026-09-11T15:20:56.158Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Hello in Hindi: नमस्ते (Namaste)",
+        "timestamp": "2026-09-11T15:20:56.158Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-09-11T15:26:44.202Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Hello! How can I help you?",
+        "timestamp": "2026-09-11T15:26:44.202Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "hi",
+        "timestamp": "2026-09-11T15:26:44.329Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Hello! How can I help you?",
+        "timestamp": "2026-09-11T15:26:44.329Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "How are you?",
+        "timestamp": "2026-09-11T15:26:45.863Z"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm doing well, thank you! How can I help you?",
+        "timestamp": "2026-09-11T15:26:45.863Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "What can you do?",
+        "timestamp": "2026-09-11T15:26:45.927Z"
+      },
+      {
+        "role": "assistant",
+        "content": "[रूटिंग सफल] 🤖 **Harshita AI — Platform Capabilities & Skill Discovery**\n\n📊 **Total Skill Count:** 31 Active AI Skills\n\n### 📁 Categories & Sub-Skills:\n\n#### 1. ⚖️ Legal & Drafting Services\n- **कानूनी ड्राफ्ट (legal_draft)**: Affidavit, Gift Deed, Partition Deed, Rent Agreement, NOC, Declaration, Power of Attorney, Will.\n  *Example*: \"Apni property wife ke naam gift karni hai\"\n- **कानूनी नोटिस (legal_notice)**: Money Recovery, Defamation, Property Dispute, Cheque Bounce, Eviction, Contract Breach, Consumer Complaint.\n  *Example*: \"Cheque bounce notice to Ramesh for 50000 INR\"\n- **प्रार्थना पत्र (application_writer)**: Government applications, leave/official letters, representations.\n  *Example*: \"Atal awasya school principal ko 7 din ki chutti ki application\"\n\n#### 2. 📝 Government Services\n- **फॉर्म ऑटो-फिल (form_fill)**: SSC, Railway, Banking online form helper.\n- **पात्रता जाँच (eligibility_check)**: Direct qualification checks.\n- **राशन कार्ड (ration_card)**: BPL/APL card applications.\n- **भूलेख (land_record)**: Khasra, Khatauni land records.\n- **रिजल्ट ट्रैकर (result_generator)**: SSC, CBSE merit list / score checks.\n\n#### 3. 🔍 Documents & Content Engines\n- **दस्तावेज़ OCR (document_ocr)**: Text extraction from Aadhaar, PAN, marksheets.\n- **फाइल प्रोसेसर (file_processor)**: PDF/Excel manipulation.\n- **प्रोजेक्ट रिपोर्ट (project_report)**: PMEGP/Mudra business reports.\n- **रिज्यूमे मेकर (resume_maker)**: Professional CV/biodata generation.\n- **डेटा वैलिडेटर (validator)**: Automated CSV/Excel audits.\n- **बल्क इम्पोर्ट (bulk_import)**: Direct batch processing.\n\n#### 4. 🚗 Business & Media Utility\n- **TA/DA प्रोसेसर (tada_process)**: Travel allowance calculations.\n- **टिकट बुकिंग (ticket_booking)**: Train/Bus ticket booking aid.\n- **पासपोर्ट फोटो मेकर (photo_maker)**: Passport size crop and print layout creation.\n- **मीडिया कन्वर्टर (media_converter)**: Image compression and conversions.\n\n#### 5. 🤖 Core Agent & Development\n- **Voice Assistant (voice_agent)**: M",
+        "timestamp": "2026-09-11T15:26:45.927Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "नमस्ते",
+        "timestamp": "2026-09-11T15:26:46.212Z"
+      },
+      {
+        "role": "assistant",
+        "content": "नमस्ते! मैं आपकी कैसे सहायता कर सकती हूँ?",
+        "timestamp": "2026-09-11T15:26:46.212Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "आप कैसे हैं?",
+        "timestamp": "2026-09-11T15:26:47.583Z"
+      },
+      {
+        "role": "assistant",
+        "content": "मैं ठीक हूँ। मैं आपकी कैसे सहायता कर सकती हूँ?",
+        "timestamp": "2026-09-11T15:26:47.583Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "आप क्या कर सकती हैं?",
+        "timestamp": "2026-09-11T15:26:49.069Z"
+      },
+      {
+        "role": "assistant",
+        "content": "मैं कानूनी ड्राफ्ट, पुलिस शिकायत, टैक्स गणना और सरकारी फॉर्म भरने में आपकी पूरी सहायता कर सकती हूँ।",
+        "timestamp": "2026-09-11T15:26:49.069Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Bhai kya haal hai?",
+        "timestamp": "2026-09-11T15:26:49.119Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Main bilkul badhiya hoon! Aap bataiye, main aapki kya madad kar sakti hoon?",
+        "timestamp": "2026-09-11T15:26:49.119Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "hello ka Hindi meaning batao",
+        "timestamp": "2026-09-11T15:26:49.179Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Hello in Hindi: नमस्ते (Namaste)",
+        "timestamp": "2026-09-11T15:26:49.179Z",
+        "success": true
       }
     ],
     "createdAt": "2026-06-19T18:53:44.348Z",
-    "lastActive": "2026-06-19T18:53:44.348Z"
+    "lastActive": "2026-09-11T15:26:49.179Z"
   },
   "e01a622f-ea52-459d-9d36-13372f7b73fc:utility_tools": {
     "userId": "e01a622f-ea52-459d-9d36-13372f7b73fc",
@@ -3170,5 +3368,84 @@
     ],
     "createdAt": "2026-09-11T05:23:23.399Z",
     "lastActive": "2026-09-11T05:23:23.400Z"
+  },
+  "user1:general_chat": {
+    "userId": "user1",
+    "skill": "general_chat",
+    "messages": [
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-09-11T15:03:28.504Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Hello in Hindi: नमस्ते (Namaste)",
+        "timestamp": "2026-09-11T15:03:28.505Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-09-11T15:03:28.504Z",
+    "lastActive": "2026-09-11T15:03:28.505Z"
+  },
+  "user1:legal_draft": {
+    "userId": "user1",
+    "skill": "legal_draft",
+    "messages": [
+      {
+        "role": "user",
+        "content": "police complaint likho nar narayan singh s/o ramesh chand gautam chaudhary bulandshahr mobile poco m3 chori ho gaya",
+        "timestamp": "2026-09-11T15:28:50.279Z"
+      },
+      {
+        "role": "assistant",
+        "content": "[रूटिंग सफल] ✅ आपकी शिकायत का कानूनी मसौदा (A4 Police Complaint) तैयार कर दिया गया है।\n\n📄 **शीर्षक:** पुलिस शिकायत पत्र (Police Complaint)\n🏛️ **प्राधिकारी:** थाना प्रभारी महोदय, जिला- बुलंदशहर\n👤 **शिकायतकर्ता:** विवरण दर्ज\n🚨 **संदिग्ध:** police complaint likho nar narayan singh\n\nदस्तावेज़ को नीचे A4 वर्कस्पेस में खोला गया है जहाँ से आप इसे Edit, Print या PDF डाउनलोड कर सकते हैं।\n\n═══════════════════════════════════════════════════════════════\n                 पुलिस शिकायत पत्र / POLICE COMPLAINT APPLICATION\n═══════════════════════════════════════════════════════════════\n\nसेवा में,\nथानाध्यक्ष / थाना प्रभारी महोदय,\nथाना: __________ (संबंधित स्थानीय थाना)\nजिला: बुलंदशहर, उत्तर प्रदेश\n\nविषय: घर से कैरी बैग, महत्वपूर्ण व्यक्तिगत दस्तावेज़ एवं Poco M3 मोबाइल फोन चोरी होने / ले जाए जाने के संबंध में शिकायत पत्र।\n\nमहोदय,\n\nसविनय निवेदन है कि प्रार्थी / शिकायतकर्ता का पूर्ण विवरण एवं घटना के तथ्य निम्नवत् हैं:\n\n१. शिकायतकर्ता का विवरण:\n   • नाम: [शिकायतकर्ता का नाम]\n   • पिता का नाम: श्री ramesh chand gautam chaudhary bulandshahr\n   • स्थायी पता: ग्राम व पोस्ट- सिखैड़ा, जिला- बुलंदशहर, उत्तर प्रदेश\n   • मोबाइल नंबर: __________\n\n२. घटना का विवरण:\n   • दिनांक: 11/09/2026\n   • समय: __________ (समय उपलब्ध नहीं / रात्रि के समय)\n   • स्थान: घटना स्थल\n\n३. संदिग्ध / नामजद व्यक्ति का विवरण:\n   • नाम: police complaint likho nar narayan singh\n   • पिता का नाम: श्री ramesh\n   • पता: ग्राम व पोस्ट- सिखैड़ा, तहसील- बुलंदशहर, जिला- बुलंदशहर\n\n४. चोरी / ले जाई गई वस्तुओं का विवरण:\n   (a) poco m3 chori ho मोबाइल फोन\n\n५. घटना का विवरण (तथ्य एवं आरोप):\n   शिकायतकर्ता के कथन एवं आरोप के अनुसार, दिनांक 11/09/2026 को उक्त संदिग्ध व्यक्ति (police complaint likho nar narayan singh) शिकायतकर्ता के घर पर मौजूद था। उक्त व्यक्ति द्वारा शिकायतकर्ता के घर से उसका कैरी बैग, जिसमें कुछ महत्वपूर्ण दस्तावेज़ एवं Poco M3 मोबाइल फोन रखे हुए थे, चोरी से अपने साथ ले जाने का आरोप है।\n\n७. पुलिस प्रशासन से विनम्र प्रार्थना:\n   अतः श्रीमान जी से विनम्र निवेदन है कि:\n   (क) उक्त शिकायत को गंभीरता से संज्ञान में लेत",
+        "timestamp": "2026-09-11T15:28:50.279Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "affidavit banaye name change ke liye",
+        "timestamp": "2026-09-11T15:28:51.832Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Draft failed quality checks. Regenerating...",
+        "timestamp": "2026-09-11T15:28:51.832Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "rent agreement format chahiye",
+        "timestamp": "2026-09-11T15:28:51.903Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Draft failed quality checks. Regenerating...",
+        "timestamp": "2026-09-11T15:28:51.903Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-09-11T15:28:50.279Z",
+    "lastActive": "2026-09-11T15:28:51.903Z"
+  },
+  "user1:legal_notice": {
+    "userId": "user1",
+    "skill": "legal_notice",
+    "messages": [
+      {
+        "role": "user",
+        "content": "cheque bounce notice draft karo 50000 rupaye",
+        "timestamp": "2026-09-11T15:28:51.789Z"
+      },
+      {
+        "role": "assistant",
+        "content": "\n═══════════════════════════════════════════════════════════════\n                        Legal Notice\n═══════════════════════════════════════════════════════════════\n\nDate: 11/9/2026\nPlace: ____________________\n\nNotice\nThrough Registered Post Ad / Email\n\nTO,\n____________________\n____________________\n____________________\n\n\nDemand Notice Under Section 138 OF THE Negotiable Instruments Act, 1881\n\nSir / Madam,\n\nI Hereby Serve Upon You the Following Formal Notice:\n\n1. That I, the Undersigned, S/o ____________________, R/o ____________________, am Aggrieved by Your Following Acts:\n\n    Cheque Bounce Notice Draft Karo 50000 Rupaye\n\n2. That Despite Repeated Requests, You Have Failed to Address the Matter Amicably, Leaving me With No Choice but to Issue This Formal Legal Notice.\n\n3. That Your Aforesaid acts/omissions Have Caused Mental Agony, Financial Loss, and Harassment, for Which You are Legally Liable.\n\n4. I Hereby Call Upon You to:\n   a) Cease and Desist From the Aforementioned Acts Immediately;\n   B) Make Good the Loss Caused;\n   C) Send a Written Reply to This Notice Within 15 (Fifteen) Days From the Date of Receipt;\n   D) Comply With the Demands Stated Above.\n\n5. Take Notice That in Case You Fail to Comply With the Above Demands Within the Stipulated Time, I Shall be Constrained to Initiate Appropriate Civil and/or Criminal Proceedings Against You in the Competent Court of Law, at Your Sole Risk, Costs, and Consequences.\n\n\n\nTake Notice Accordingly.\n\nYours Faithfully,\n\n═══════════════════════════════════════════════════════════════\n\n                                          ____________________\n                                          Sender's Name: ____________________\n                                          आधार संख्या / Aadhaar No.: ____________________\n                                          पैन संख्या / Pan No.: ____________________\n                                          Contact: ____________________\n\n═════════════════════════════════════════════════════",
+        "timestamp": "2026-09-11T15:28:51.789Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-09-11T15:28:51.789Z",
+    "lastActive": "2026-09-11T15:28:51.789Z"
   }
 }

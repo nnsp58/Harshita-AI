@@ -4,6 +4,9 @@
  */
 const { BaseSkill } = require('./BaseSkill');
 const { aiProviderManager } = require('../utils/aiProviderManager');
+const { LanguageEngine } = require('../core/languageEngine');
+
+const languageEngine = new LanguageEngine();
 
 class GeneralChatSkill extends BaseSkill {
   constructor() {
@@ -33,18 +36,46 @@ class GeneralChatSkill extends BaseSkill {
 
   async execute(context) {
     const { message, userId, params } = context;
-    const text = message.toLowerCase();
+    const rawText = message || '';
+    const text = rawText.toLowerCase().trim();
+
+    // Detect language of the input
+    const langInfo = languageEngine.detectLanguage(rawText);
+    const isHindi = langInfo.lang === 'hi';
+    const isHinglish = langInfo.isHinglish || langInfo.lang === 'hi-Latn';
+    const isEnglish = !isHindi && !isHinglish;
 
     // PRD-013: Check if offline knowledge already provided answer
     if (params?.offlineAnswer) {
       return this._reply(params.offlineAnswer);
     }
 
-    // नमस्ते / Hello
-    if (text.match(/^(hi|hello|hey|namaste|namaskar)\b/i) || text.match(/^(नमस्ते|नमस्कार|हेलो)/)) {
-      return this._reply(
-        'नमस्कार। मैं Harshita AI हूँ — आपकी उन्नत (Advanced) CSC और एंटरप्राइज सहायक।\n\nमैं निम्नलिखित कार्यों में आपकी सहायता कर सकती हूँ:\n• ऑटोमेटेड फॉर्म फिलिंग (Automated Form Filling)\n• कानूनी दस्तावेज़ ड्राफ्टिंग (Legal Drafting)\n• डेटा एक्सट्रैक्शन एवं OCR (Data Extraction)\n• करियर और जॉब सर्च विश्लेषण\n\nकृपया बताएं कि मैं आपके लिए कौन सी प्रक्रिया आरंभ करूँ?'
-      );
+    // Explicit Greetings: Language-matched natural greetings
+    if (/^(hi|hello|hey)\b/i.test(text)) {
+      if (isEnglish) {
+        return this._reply('Hello! How can I help you?');
+      }
+      if (isHinglish) {
+        return this._reply('Hello! Main aapki kya madad kar sakti hoon?');
+      }
+      return this._reply('नमस्ते! मैं आपकी कैसे सहायता कर सकती हूँ?');
+    }
+
+    if (/^(namaste|namaskar)\b/i.test(text) || /^(नमस्ते|नमस्कार)/.test(text)) {
+      if (isEnglish) {
+        return this._reply('Hello! How can I help you today?');
+      }
+      if (isHinglish) {
+        return this._reply('Namaste! Main aapki kya madad kar sakti hoon?');
+      }
+      return this._reply('नमस्ते! मैं आपकी कैसे सहायता कर सकती हूँ?');
+    }
+
+    if (/^(good\s+(morning|afternoon|evening|night))/i.test(text)) {
+      if (isEnglish) {
+        return this._reply(`Good ${text.match(/morning|afternoon|evening|night/i)[0]}! How can I help you?`);
+      }
+      return this._reply('नमस्कार! मैं आपकी कैसे सहायता कर सकती हूँ?');
     }
 
     const mentionsBot = /\b(you|your|harshita|assistant|bot|aap|tumhare|tumhari|apni|apne)\b/i.test(text) ||
@@ -197,7 +228,36 @@ Keep replies under 80 words. Be professional and context-aware.`
       console.error('[GeneralChatSkill] AI conversational fallback failed:', e.message);
     }
 
-    return this._reply("I am temporarily unable to contact AI servers. Offline services are still available.");
+    // Offline Smart Fallback: If AI servers are unavailable, provide a contextual offline response in user's language
+    if (isEnglish) {
+      if (/how are you/i.test(text)) {
+        return this._reply("I'm doing well, thank you! How can I help you?");
+      }
+      if (/what can you do/i.test(text) || /your capabilities/i.test(text)) {
+        return this._reply("I can help you draft legal notices, police complaints, calculate taxes, convert documents to PDF, and automate government services. How can I assist you today?");
+      }
+      return this._reply("Hello! I am operating in offline mode right now. How can I assist you with legal drafting, calculations, or documents?");
+    }
+
+    if (isHinglish) {
+      if (/haal|kaise ho|kya haal/i.test(text)) {
+        return this._reply("Main bilkul badhiya hoon! Aap bataiye, main aapki kya madad kar sakti hoon?");
+      }
+      if (/kya kar sakti/i.test(text) || /kabiliyat/i.test(text)) {
+        return this._reply("Main legal notices, affidavits, tax calculations, forms aur documents automate karne mein madad kar sakti hoon. Aap kya karna chahte hain?");
+      }
+      return this._reply("Namaste! Abhi offline mode active hai. Main legal documents, forms ya calculations mein aapki poori madad kar sakti hoon.");
+    }
+
+    // Default Hindi
+    if (/कैसे हो|कैसे हैं|कैसी हो|हाल/i.test(text)) {
+      return this._reply("मैं ठीक हूँ। मैं आपकी कैसे सहायता कर सकती हूँ?");
+    }
+    if (/क्या कर सकती/i.test(text) || /सहायता/i.test(text)) {
+      return this._reply("मैं कानूनी ड्राफ्ट, पुलिस शिकायत, टैक्स गणना और सरकारी फॉर्म भरने में आपकी पूरी सहायता कर सकती हूँ।");
+    }
+
+    return this._reply("नमस्ते! अभी ऑफलाइन मोड सक्रिय है। आप कानूनी ड्राफ्ट, एफिडेविट या गणितीय गणनाओं के लिए निर्देश दे सकते हैं।");
   }
 }
 

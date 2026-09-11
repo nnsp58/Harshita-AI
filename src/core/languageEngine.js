@@ -24,17 +24,17 @@ const path = require('path');
 
 // Unicode ranges for script detection
 const SCRIPT_RANGES = {
-  devanagari:  { regex: /[\u0900-\u097F]/, lang: 'hi', name: 'हिंदी', nameEn: 'Hindi' },
-  bengali:     { regex: /[\u0980-\u09FF]/, lang: 'bn', name: 'বাংলা', nameEn: 'Bengali' },
-  tamil:       { regex: /[\u0B80-\u0BFF]/, lang: 'ta', name: 'தமிழ்', nameEn: 'Tamil' },
-  telugu:      { regex: /[\u0C00-\u0C7F]/, lang: 'te', name: 'తెలుగు', nameEn: 'Telugu' },
-  gujarati:    { regex: /[\u0A80-\u0AFF]/, lang: 'gu', name: 'ગુજરાતી', nameEn: 'Gujarati' },
-  kannada:     { regex: /[\u0C80-\u0CFF]/, lang: 'kn', name: 'ಕನ್ನಡ', nameEn: 'Kannada' },
-  malayalam:   { regex: /[\u0D00-\u0D7F]/, lang: 'ml', name: 'മലയാളം', nameEn: 'Malayalam' },
-  gurmukhi:    { regex: /[\u0A00-\u0A7F]/, lang: 'pa', name: 'ਪੰਜਾਬੀ', nameEn: 'Punjabi' },
-  odia:        { regex: /[\u0B00-\u0B7F]/, lang: 'or', name: 'ଓଡ଼ିଆ', nameEn: 'Odia' },
-  marathi:     { regex: /[\u0900-\u097F]/, lang: 'mr', name: 'मराठी', nameEn: 'Marathi' }, // Same script as Hindi
-  urdu:        { regex: /[\u0600-\u06FF]/, lang: 'ur', name: 'اردو', nameEn: 'Urdu' },
+  devanagari:  { regex: /[\u0900-\u097F]/g, lang: 'hi', name: 'हिंदी', nameEn: 'Hindi' },
+  bengali:     { regex: /[\u0980-\u09FF]/g, lang: 'bn', name: 'বাংলা', nameEn: 'Bengali' },
+  tamil:       { regex: /[\u0B80-\u0BFF]/g, lang: 'ta', name: 'தமிழ்', nameEn: 'Tamil' },
+  telugu:      { regex: /[\u0C00-\u0C7F]/g, lang: 'te', name: 'తెలుగు', nameEn: 'Telugu' },
+  gujarati:    { regex: /[\u0A80-\u0AFF]/g, lang: 'gu', name: 'ગુજરાતી', nameEn: 'Gujarati' },
+  kannada:     { regex: /[\u0C80-\u0CFF]/g, lang: 'kn', name: 'ಕನ್ನಡ', nameEn: 'Kannada' },
+  malayalam:   { regex: /[\u0D00-\u0D7F]/g, lang: 'ml', name: 'മലയാളം', nameEn: 'Malayalam' },
+  gurmukhi:    { regex: /[\u0A00-\u0A7F]/g, lang: 'pa', name: 'ਪੰਜਾਬੀ', nameEn: 'Punjabi' },
+  odia:        { regex: /[\u0B00-\u0B7F]/g, lang: 'or', name: 'ଓଡ଼ିଆ', nameEn: 'Odia' },
+  marathi:     { regex: /[\u0900-\u097F]/g, lang: 'mr', name: 'मराठी', nameEn: 'Marathi' }, // Same script as Hindi
+  urdu:        { regex: /[\u0600-\u06FF]/g, lang: 'ur', name: 'اردو', nameEn: 'Urdu' },
 };
 
 // Hinglish / Romanized Hindi detection keywords
@@ -48,7 +48,9 @@ const HINGLISH_KEYWORDS = [
   'paisa', 'rupiya', 'form', 'bharna', 'naukri', 'sarkari', 'aadhaar',
   'karwao', 'banwao', 'nikalo', 'lagao', 'dalo', 'uthao', 'girao',
   'mujhe', 'tumhe', 'unhe', 'isko', 'usko', 'sabko', 'kisiko',
-  'lekin', 'kyunki', 'isliye', 'toh', 'phir', 'aur', 'ya', 'par'
+  'lekin', 'kyunki', 'isliye', 'toh', 'phir', 'aur', 'ya', 'par',
+  'haal', 'namaste', 'namaskar', 'shukriya', 'dhanyawad', 'kaisa', 'kaisi',
+  'kuch', 'bolo', 'kijiye', 'bataye', 'batayein', 'bataiye', 'karein', 'kare'
 ];
 
 class LanguageEngine {
@@ -68,7 +70,7 @@ class LanguageEngine {
   }
 
   // ─────────────────────────────────────────────────────────
-  //  1. LANGUAGE AUTO-DETECTION (Zero-cost, regex-based)
+  //  1. LANGUAGE DETECTION
   // ─────────────────────────────────────────────────────────
 
   /**
@@ -108,11 +110,12 @@ class LanguageEngine {
     }
 
     // Step 2: Check for Hinglish (Romanized Hindi in Latin script)
-    const words = cleaned.toLowerCase().split(/\s+/);
+    const words = cleaned.toLowerCase().replace(/[^a-z0-9\s]/gi, ' ').split(/\s+/).filter(Boolean);
     const hinglishMatches = words.filter(w => HINGLISH_KEYWORDS.includes(w)).length;
     const hinglishRatio = words.length > 0 ? hinglishMatches / words.length : 0;
 
-    if (hinglishRatio >= 0.2 || hinglishMatches >= 2) {
+    // Explicit Hinglish if contains distinct Hinglish keywords
+    if (hinglishMatches >= 1 && (hinglishRatio >= 0.25 || words.length <= 4 || hinglishMatches >= 2)) {
       return {
         lang: 'hi-Latn',
         name: 'हिंग्लिश',
