@@ -21,12 +21,15 @@ const { IntentDetector } = require('../skills/IntentDetector');
 const { selfHealingEngine } = require('../core/SelfHealingEngine');
 const { verificationEngine } = require('../core/VerificationEngine');
 const { memoryEngine } = require('../core/MemoryEngine');
+const { AgentConferenceEngine } = require('./orchestrator/AgentConference');
+const { actionDispatcher } = require('../utils/actionDispatcher');
 
 class MasterAgent {
   constructor(io) {
     this.io = io;
     this.registry = new SkillRegistry();
     this.detector = null; // IntentDetector — registry load होने के बाद बनेगा
+    this.conference = new AgentConferenceEngine(this);
     this.isReady = false;
 
     // Conversation history (per user) — context के लिए
@@ -66,8 +69,12 @@ class MasterAgent {
    * @param {string} userId - यूज़र ID
    * @param {string} cmd - यूज़र का मैसेज (Hindi/English/Hinglish कुछ भी)
    * @param {Object} options - अतिरिक्त विकल्प { app, lang, audioPath }
-   * @returns {Object} - { type, message, data?, action?, skill? }
+   * @returns {Object}
    */
+  async handleCommand(userId, cmd, options = {}) {
+    return this.processCommand(userId, cmd, options);
+  }
+
   async processCommand(userId, cmd, options = {}) {
     // ── Safety: अगर Skill System तैयार नहीं है ──
     if (!this.isReady || !this.detector) {
@@ -125,6 +132,38 @@ class MasterAgent {
       };
     }
 
+    // ── 1. Create AgentConferenceContext & Plan ──
+    const conferenceCtx = this.conference.createContext(userId, cmd, options.lang || 'hi');
+    const taskPlan = this.conference.createPlan(cmd);
+
+    // Direct Navigation / Open Workspace
+    if (taskPlan.type === 'navigation' && taskPlan.action) {
+      console.log(`[MasterAgent] Unified Action Dispatcher: ${taskPlan.action.route}`);
+      const navMsg = `🚀 **${taskPlan.action.title}** खोला जा रहा है...`;
+      this._addToHistory(userId, 'user', cmd, 'navigation');
+      this._addToHistory(userId, 'assistant', navMsg, 'navigation');
+      return {
+        type: 'ai',
+        responseType: 'workspace',
+        message: navMsg,
+        skill: 'action_dispatcher',
+        usedLLM: false,
+        action: taskPlan.action,
+        data: { route: taskPlan.action.route, trace: conferenceCtx.getTrace() }
+      };
+    }
+
+    // Multi-Agent Task Orchestration
+    if (taskPlan.type === 'multi_agent') {
+      console.log(`[MasterAgent] Orchestrating Multi-Agent Conference for task: ${taskPlan.taskType}`);
+      const multiAgentResult = await this.conference.executeMultiAgentTask(conferenceCtx, taskPlan);
+      if (multiAgentResult) {
+        this._addToHistory(userId, 'user', cmd, taskPlan.taskType);
+        this._addToHistory(userId, 'assistant', multiAgentResult.message, taskPlan.taskType);
+        return multiAgentResult;
+      }
+    }
+
     // FAST PATH: Local Offline Skill-Based Routing (No API Load)
     const detectResult = await this.detector.detect(cmd, options.lang, this._getHistory(userId));
     const conf = Number(detectResult?.confidence) || 0;
@@ -149,6 +188,9 @@ class MasterAgent {
         detectResult.confidence = bestSkill.score;
       }
     }
+
+    // Pass conference userFacts to context options
+    options.userFacts = conferenceCtx.userFacts;
 
     // P0-3 & P0-6 Offline-First & LLM Guard Logic
     if (matchedSkill && matchedSkill.canRunOffline) {
@@ -248,7 +290,8 @@ class MasterAgent {
       message,
       intent: detection.intent,
       confidence: detection.confidence,
-      params: { ...detectedParams, ...frontendContext },
+      params: { ...detectedParams, ...frontendContext, userFacts: options.userFacts || {} },
+      userFacts: options.userFacts || {},
       lang: frontendContext.language || options.lang || userProfile.preferences.language || 'hi',
       userProfile, // V2: Pass full memory profile to skills
       io: this.io,

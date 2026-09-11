@@ -55,11 +55,11 @@ export function useSocket() {
       let isDocument = false;
       if (msgType === 'ai' && text.length > 100) {
         const docClassification = classifyDocumentCategory(text);
-        
+
         if (docClassification.isDocument || isDocumentType(text)) {
           isDocument = true;
           const title = docClassification.title || getDocumentTitle(text);
-          
+
           setCurrentDocument({
             title: title || 'Generated Document',
             content: text,
@@ -81,7 +81,7 @@ export function useSocket() {
             });
             // Keep last 50
             localStorage.setItem('harshita_doc_history', JSON.stringify(history.slice(0, 50)));
-          } catch (_) {}
+          } catch (_) { }
 
           setMessages((prev) => [...prev, {
             id: Date.now() + Math.random(),

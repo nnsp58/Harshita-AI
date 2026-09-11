@@ -22,9 +22,9 @@ class ApplicationSkill extends BaseSkill {
     this.category = 'document';
     this.canRunOffline = false;
     this.priority = 6;
-    
+
     this.intents = ['application_writer', 'write_application', 'prarthna_patra', 'application_likho'];
-    
+
     this.keywords = {
       hi: ['एप्लीकेशन', 'प्रार्थना पत्र', 'शिकायत पत्र', 'आवेदन पत्र', 'अधिकारी', 'डीएम', 'एसडीएम', 'छुट्टी'],
       en: ['application', 'complaint letter', 'leave application', 'write application', 'official letter'],

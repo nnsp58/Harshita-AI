@@ -146,7 +146,7 @@
       "vasiyat": 1,
       "banani": 1,
       "change": 12,
-      "affidavit": 182,
+      "affidavit": 183,
       "शपथ": 170,
       "पत्र:": 167,
       "मेँ": 468,
@@ -380,9 +380,11 @@
       "banaye": 1,
       "rent": 1,
       "agreement": 1,
-      "format": 1
+      "format": 1,
+      "need": 1,
+      "create": 1
     },
-    "count": 445
+    "count": 446
   },
   "whatsapp": {
     "learned": {
@@ -408,7 +410,7 @@
       "100": 1,
       "2400": 2,
       "2500": 1,
-      "hello": 25,
+      "hello": 26,
       "all": 18,
       "csc": 21,
       "vles": 18,
@@ -593,9 +595,12 @@
       "haal": 2,
       "hai?": 2,
       "hindi": 2,
-      "meaning": 2
+      "meaning": 2,
+      "create": 1,
+      "cartoon": 1,
+      "video": 1
     },
-    "count": 307
+    "count": 309
   },
   "ration_card": {
     "learned": {
@@ -812,17 +817,18 @@
   "master_tax_agent": {
     "learned": {
       "mera": 5,
-      "itr": 8,
-      "file": 3,
+      "itr": 9,
+      "file": 4,
       "karna": 3,
       "bare": 3,
       "jante": 3,
       "bhar": 2,
       "aaj": 1,
       "mausam": 1,
-      "kaisa": 1
+      "kaisa": 1,
+      "need": 1
     },
-    "count": 9
+    "count": 10
   },
   "ui_builder": {
     "learned": {
@@ -865,15 +871,25 @@
   },
   "land_measurement_skill": {
     "learned": {
-      "hello": 2
+      "hello": 2,
+      "need": 1,
+      "divide": 1,
+      "land": 1,
+      "equally": 1,
+      "between": 1,
+      "three": 1,
+      "brothers": 1
     },
-    "count": 2
+    "count": 3
   },
   "language_translator": {
     "learned": {
-      "hello": 2
+      "hello": 3,
+      "translate": 1,
+      "into": 1,
+      "hindi": 1
     },
-    "count": 2
+    "count": 3
   },
   "math_skill": {
     "learned": {

@@ -9,13 +9,13 @@ console.log("VITE_GOOGLE_CLIENT_ID:", import.meta.env.VITE_GOOGLE_CLIENT_ID);
 
 
 // Global error handler for uncaught errors
-window.onerror = function(msg, url, line) {
+window.onerror = function (msg, url, line) {
   console.log('Global error:', msg, 'at line:', line)
   return false
 }
 
 // Catch promise rejections
-window.addEventListener('unhandledrejection', function(e) {
+window.addEventListener('unhandledrejection', function (e) {
   console.log('Unhandled promise rejection:', e.reason)
 })
 

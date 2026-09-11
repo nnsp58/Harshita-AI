@@ -241,7 +241,7 @@ export const useStore = create(
       subscribedAgents: [], // Array of agent IDs user has paid for
       trialStartDate: Date.now(), // 1 week trial starts on first login
       subscriptionMode: 'trial', // 'trial', 'active', 'expired'
-      
+
       subscribeAgent: (agentId) => set((state) => ({
         subscribedAgents: [...new Set([...state.subscribedAgents, agentId])],
         subscriptionMode: 'active'
@@ -289,5 +289,5 @@ export const useStore = create(
         }
       },
     }
-   )
- )
+  )
+)

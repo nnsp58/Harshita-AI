@@ -8,7 +8,7 @@ const connectedUsers = new Map();
 const setupSocketHandlers = (io) => {
   io.use((socket, next) => {
     const token = socket.handshake.auth.token;
-    
+
     if (!token) {
       return next(new Error('Authentication required'));
     }
@@ -24,7 +24,7 @@ const setupSocketHandlers = (io) => {
 
   io.on('connection', (socket) => {
     console.log(`User connected: ${socket.userId}`);
-    
+
     connectedUsers.set(socket.userId, socket.id);
     socket.join(`user_${socket.userId}`);
 
@@ -77,21 +77,21 @@ const setupSocketHandlers = (io) => {
         }
 
         const startTime = Date.now();
-        
+
         // HASA: Search local RAG knowledge repository first to reduce API dependency
         const { localKnowledgeRag } = require('../../utils/LocalKnowledgeRag');
         const ragMatch = localKnowledgeRag.search(cmd);
         let response;
-        
+
         if (process.env.FORCE_OFFLINE === 'true') {
           const lowerCmd = cmd.toLowerCase();
           const docType = lowerCmd.includes('notice') ? 'legal_notice' :
-                          lowerCmd.includes('affidavit') || lowerCmd.includes('shapath') ? 'affidavit' :
-                          lowerCmd.includes('agreement') || lowerCmd.includes('rent') ? 'rent_agreement' :
-                          lowerCmd.includes('deed') || lowerCmd.includes('gift') ? 'gift_deed' :
-                          lowerCmd.includes('noc') ? 'noc' :
-                          lowerCmd.includes('complaint') || lowerCmd.includes('fir') ? 'complaint' : null;
-                          
+            lowerCmd.includes('affidavit') || lowerCmd.includes('shapath') ? 'affidavit' :
+              lowerCmd.includes('agreement') || lowerCmd.includes('rent') ? 'rent_agreement' :
+                lowerCmd.includes('deed') || lowerCmd.includes('gift') ? 'gift_deed' :
+                  lowerCmd.includes('noc') ? 'noc' :
+                    lowerCmd.includes('complaint') || lowerCmd.includes('fir') ? 'complaint' : null;
+
           if (docType) {
             const { templateEngine } = require('../../utils/TemplateEngine');
             const documentContent = templateEngine.generate(docType, { name: 'Advocate Ramesh', purpose: 'General Purpose' });
@@ -102,7 +102,7 @@ const setupSocketHandlers = (io) => {
             };
           }
         }
-        
+
         if (!response) {
           if (ragMatch) {
             response = {
@@ -114,7 +114,7 @@ const setupSocketHandlers = (io) => {
             response = await masterAgent.processCommand(socket.userId, cmd, { userId: socket.userId, app: io._app });
           }
         }
-        
+
         const responseTime = Date.now() - startTime;
 
         const skillName = response.skill || 'general_chat';
@@ -163,7 +163,7 @@ const setupSocketHandlers = (io) => {
 
       } catch (error) {
         console.error('[Socket] Command error:', error.message);
-        
+
         // Log failure to DB
         try {
           const { prisma: dbClient } = require('../../models/database');
@@ -180,7 +180,7 @@ const setupSocketHandlers = (io) => {
               }
             });
           }
-        } catch (dbErr) {}
+        } catch (dbErr) { }
 
         // Rule 9: Human-friendly error — never expose stack traces
         socket.emit('logUpdate', {
@@ -197,7 +197,7 @@ const setupSocketHandlers = (io) => {
         console.log(`[Socket] Feedback received from user ${socket.userId} for interaction ${interactionId}: ${rating}`);
         const { learningEngine } = require('../../core/learningEngine');
         learningEngine.recordFeedback(interactionId, rating, comment || '');
-        
+
         // If negative rating, trigger self-healing immediately
         if (rating === 'negative' || rating === 1 || rating === 'down') {
           const { SelfEvolutionAgent } = require('../../core/selfEvolutionAgent');
@@ -220,11 +220,11 @@ const setupSocketHandlers = (io) => {
       try {
         const { whatsappSuperEngine } = require('../../core/WhatsAppSuperEngine');
         const { recipient, base64Data, mimeType, filename } = data;
-        
+
         console.log(`[Socket] WhatsApp Send Document request from ${socket.userId} to ${recipient}`);
-        
+
         await whatsappSuperEngine.dispatchMessage(socket.userId, recipient, 'Here is the generated document.', base64Data, mimeType, filename);
-        
+
         socket.emit('notification', { message: 'Document shared to WhatsApp successfully.' });
       } catch (err) {
         console.error('[Socket] whatsapp_send_document error:', err.message);

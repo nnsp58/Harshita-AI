@@ -1302,28 +1302,6 @@
     "messages": [
       {
         "role": "user",
-        "content": "Free Fall aur Projectile Motion me antar batao",
-        "timestamp": "2026-07-13T20:49:05.569Z"
-      },
-      {
-        "role": "assistant",
-        "content": "Free Fall mein vastu sirf gurutvakarshan ke kaaran girti hai, jabki Projectile Motion mein vastu gurutvakarshan aur gati ke kaaran ek parabola ke roop mein gati karti hai 🚀",
-        "timestamp": "2026-07-13T20:49:05.569Z",
-        "success": true
-      },
-      {
-        "role": "user",
-        "content": "Rocket antariksh me kaise chalta hai jab piche hawa nahi hoti",
-        "timestamp": "2026-07-13T20:49:09.699Z"
-      },
-      {
-        "role": "assistant",
-        "content": "Rocket mein rakhe gaye fuel aur oxidizer ki pratikriya se bahar ki aur dhakka hota hai, jisse rocket antariksh me chalta hai. Ismein piche hawa ki avashyakta nahi hoti. 🚀",
-        "timestamp": "2026-07-13T20:49:09.699Z",
-        "success": true
-      },
-      {
-        "role": "user",
         "content": "yadi 3 ohm, 6 ohm aur 9 ohm parallel hain to kul resistance nikalo",
         "timestamp": "2026-07-13T20:49:16.978Z"
       },
@@ -1574,10 +1552,32 @@
         "content": "9 aadmi 9 din me 27 deewar banayenge. 📈",
         "timestamp": "2026-07-13T20:51:23.859Z",
         "success": true
+      },
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": "2026-09-11T18:40:05.245Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Hello! How can I help you?",
+        "timestamp": "2026-09-11T18:40:05.245Z",
+        "success": true
+      },
+      {
+        "role": "user",
+        "content": "Create a cartoon video for me",
+        "timestamp": "2026-09-11T18:40:07.484Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Hello! I am operating in offline mode right now. How can I assist you with legal drafting, calculations, or documents?",
+        "timestamp": "2026-09-11T18:40:07.484Z",
+        "success": true
       }
     ],
     "createdAt": "2026-07-13T18:02:23.603Z",
-    "lastActive": "2026-07-13T20:51:23.859Z"
+    "lastActive": "2026-09-11T18:40:07.484Z"
   },
   "u1:master_tax_agent": {
     "userId": "u1",
@@ -1637,10 +1637,21 @@
         "content": "🙏 **नमस्कार! मैं Harshita AI Chartered Accountant हूँ।**\n\nमैं आपका Income Tax Return तैयार करूँगा।\n\nसबसे पहले, कृपया अपना **PAN Number** दर्ज करें।\n(जैसे: ABCDE1234F)",
         "timestamp": "2026-07-13T20:27:40.686Z",
         "success": true
+      },
+      {
+        "role": "user",
+        "content": "I need to file my ITR",
+        "timestamp": "2026-09-11T18:40:05.647Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🙏 **नमस्कार! मैं Harshita AI Chartered Accountant हूँ।**\n\nमैं आपका Income Tax Return तैयार करूँगा।\n\nसबसे पहले, कृपया अपना **PAN Number** दर्ज करें।\n(जैसे: ABCDE1234F)",
+        "timestamp": "2026-09-11T18:40:05.647Z",
+        "success": true
       }
     ],
     "createdAt": "2026-07-13T18:02:24.016Z",
-    "lastActive": "2026-07-13T20:27:40.686Z"
+    "lastActive": "2026-09-11T18:40:05.647Z"
   },
   "u1:legal_notice": {
     "userId": "u1",
@@ -3447,5 +3458,62 @@
     ],
     "createdAt": "2026-09-11T15:28:51.789Z",
     "lastActive": "2026-09-11T15:28:51.789Z"
+  },
+  "u1:legal_draft": {
+    "userId": "u1",
+    "skill": "legal_draft",
+    "messages": [
+      {
+        "role": "user",
+        "content": "I need to create an affidavit",
+        "timestamp": "2026-09-11T18:40:05.290Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Draft failed quality checks. Regenerating...",
+        "timestamp": "2026-09-11T18:40:05.290Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-09-11T18:40:05.290Z",
+    "lastActive": "2026-09-11T18:40:05.290Z"
+  },
+  "anonymous:land_measurement_skill": {
+    "userId": "anonymous",
+    "skill": "land_measurement_skill",
+    "messages": [
+      {
+        "role": "user",
+        "content": "I need to divide my land equally between three brothers",
+        "timestamp": "2026-09-11T18:40:05.403Z"
+      },
+      {
+        "role": "assistant",
+        "content": "जमीन का बंटवारा करने के लिए, पहले मुझे जमीन का एरिया बताएं (जैसे \"22 front 43 back 90 length\") और फिर पूछें \"इसे 3 हिस्सों में बांटो\"।",
+        "timestamp": "2026-09-11T18:40:05.403Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-09-11T18:40:05.403Z",
+    "lastActive": "2026-09-11T18:40:05.403Z"
+  },
+  "u1:language_translator": {
+    "userId": "u1",
+    "skill": "language_translator",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Translate hello into Hindi",
+        "timestamp": "2026-09-11T18:40:07.569Z"
+      },
+      {
+        "role": "assistant",
+        "content": "🌍 *Universal AI Translator*\n\nमैंने ट्रांसलेटर टूल खोल दिया है। आप यहाँ 80 से ज़्यादा भाषाओं में कुछ भी ट्रांसलेट कर सकते हैं।",
+        "timestamp": "2026-09-11T18:40:07.569Z",
+        "success": true
+      }
+    ],
+    "createdAt": "2026-09-11T18:40:07.569Z",
+    "lastActive": "2026-09-11T18:40:07.569Z"
   }
 }

@@ -5192,5 +5192,104 @@
     "output": "Draft failed quality checks. Regenerating...",
     "success": true,
     "timestamp": "2026-09-11T15:28:51.903Z"
+  },
+  {
+    "id": "u1_1789152005246_3lpel2z",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "hello",
+    "output": "Hello! How can I help you?",
+    "success": true,
+    "timestamp": "2026-09-11T18:40:05.246Z"
+  },
+  {
+    "id": "u1_1789152005290_duzoxy6",
+    "userId": "u1",
+    "skill": "legal_draft",
+    "input": "I need to create an affidavit",
+    "output": "Draft failed quality checks. Regenerating...",
+    "success": true,
+    "timestamp": "2026-09-11T18:40:05.290Z"
+  },
+  {
+    "id": "anonymous_1789152005405_7r0fhyv",
+    "userId": "anonymous",
+    "skill": "land_measurement_skill",
+    "input": "I need to divide my land equally between three brothers",
+    "output": "जमीन का बंटवारा करने के लिए, पहले मुझे जमीन का एरिया बताएं (जैसे \"22 front 43 back 90 length\") और फिर पूछें \"इसे 3 हिस्सों में बांटो\"।",
+    "success": true,
+    "timestamp": "2026-09-11T18:40:05.405Z"
+  },
+  {
+    "id": "u1_1789152005647_6inmwfk",
+    "userId": "u1",
+    "skill": "master_tax_agent",
+    "input": "I need to file my ITR",
+    "output": "🙏 **नमस्कार! मैं Harshita AI Chartered Accountant हूँ।**\n\nमैं आपका Income Tax Return तैयार करूँगा।\n\nसबसे पहले, कृपया अपना **PAN Number** दर्ज करें।\n(जैसे: ABCDE1234F)",
+    "success": true,
+    "timestamp": "2026-09-11T18:40:05.647Z"
+  },
+  {
+    "id": "u1_1789152007484_m55w801",
+    "userId": "u1",
+    "skill": "general_chat",
+    "input": "Create a cartoon video for me",
+    "output": "Hello! I am operating in offline mode right now. How can I assist you with legal drafting, calculations, or documents?",
+    "success": true,
+    "timestamp": "2026-09-11T18:40:07.484Z"
+  },
+  {
+    "id": "u1_1789152007569_eozq881",
+    "userId": "u1",
+    "skill": "language_translator",
+    "input": "Translate hello into Hindi",
+    "output": "🌍 *Universal AI Translator*\n\nमैंने ट्रांसलेटर टूल खोल दिया है। आप यहाँ 80 से ज़्यादा भाषाओं में कुछ भी ट्रांसलेट कर सकते हैं।",
+    "success": true,
+    "timestamp": "2026-09-11T18:40:07.569Z"
+  },
+  {
+    "id": "test_user_1789152444014_ir1rbml",
+    "userId": "test_user",
+    "skill": "general_chat",
+    "input": "hello",
+    "output": "Hello! How can I help you?",
+    "success": true,
+    "timestamp": "2026-09-11T18:47:24.014Z"
+  },
+  {
+    "id": "anonymous_1789152444162_1liyewi",
+    "userId": "anonymous",
+    "skill": "land_measurement_skill",
+    "input": "I need to divide my land equally between three brothers.",
+    "output": "जमीन का बंटवारा करने के लिए, पहले मुझे जमीन का एरिया बताएं (जैसे \"22 front 43 back 90 length\") और फिर पूछें \"इसे 3 हिस्सों में बांटो\"।",
+    "success": true,
+    "timestamp": "2026-09-11T18:47:24.162Z"
+  },
+  {
+    "id": "test_user_1789152444318_jnopulq",
+    "userId": "test_user",
+    "skill": "document_ocr",
+    "input": "Read this document, extract the required information",
+    "output": "📄 Document OCR तैयार है!\n\nमैं इन दस्तावेज़ों से डेटा निकाल सकता हूँ:\n• आधार कार्ड (Aadhaar Card)\n• पैन कार्ड (PAN Card)\n• मतदाता पहचान पत्र (Voter ID (EPIC))\n• ड्राइविंग लाइसेंस (Driving License (DL)",
+    "success": true,
+    "timestamp": "2026-09-11T18:47:24.318Z"
+  },
+  {
+    "id": "test_user_1789152444379_q5mm1t8",
+    "userId": "test_user",
+    "skill": "application_writer",
+    "input": "create an application.",
+    "output": "आपका नाम क्या है? (Aapka naam kya hai?) (0/3 जानकारी मिली)\n\n💡 उदाहरण: e.g. Ramesh Kumar",
+    "success": true,
+    "timestamp": "2026-09-11T18:47:24.380Z"
+  },
+  {
+    "id": "test_user_1789152444439_5mqjkev",
+    "userId": "test_user",
+    "skill": "language_translator",
+    "input": "Translate hello into Hindi.",
+    "output": "🌍 *Universal AI Translator*\n\nमैंने ट्रांसलेटर टूल खोल दिया है। आप यहाँ 80 से ज़्यादा भाषाओं में कुछ भी ट्रांसलेट कर सकते हैं।",
+    "success": true,
+    "timestamp": "2026-09-11T18:47:24.439Z"
   }
 ]
