@@ -243,15 +243,13 @@ app.use(helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
-      connectSrc: ["'self'", "ws:", "wss:", "https://n-dizi.in", "https://*.onrender.com", "https://accounts.google.com"],
-      scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://accounts.google.com", "https://*.googleapis.com"],
-      scriptSrcElem: ["'self'", "'unsafe-inline'", "https://accounts.google.com", "https://*.googleapis.com"],
-      frameSrc: ["'self'", "https://accounts.google.com"],
-      // blob: is required for Image Compressor, Passport Cropper, and any canvas-based
-      // tool that generates local object URLs (URL.createObjectURL)
-      imgSrc: ["'self'", "data:", "blob:", "https:"],
-      styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://accounts.google.com"],
-      styleSrcElem: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://accounts.google.com"],
+      connectSrc: ["'self'", "ws:", "wss:", "https://n-dizi.in", "https://*.onrender.com", "https://accounts.google.com", "https://*.google.com", "https://*.googlesyndication.com"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://accounts.google.com", "https://*.googleapis.com", "https://*.googlesyndication.com", "https://pagead2.googlesyndication.com", "https://*.google.com"],
+      scriptSrcElem: ["'self'", "'unsafe-inline'", "https://accounts.google.com", "https://*.googleapis.com", "https://*.googlesyndication.com", "https://pagead2.googlesyndication.com", "https://*.google.com"],
+      frameSrc: ["'self'", "https://accounts.google.com", "https://*.google.com", "https://*.googlesyndication.com", "https://googleads.g.doubleclick.net"],
+      imgSrc: ["'self'", "data:", "blob:", "https:", "https://*.googlesyndication.com", "https://*.google.com", "https://*.doubleclick.net"],
+      styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://accounts.google.com", "https://*.googlesyndication.com"],
+      styleSrcElem: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://accounts.google.com", "https://*.googlesyndication.com"],
       fontSrc: ["'self'", "https://fonts.gstatic.com", "data:"],
     }
   }
