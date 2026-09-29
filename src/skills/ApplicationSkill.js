@@ -35,16 +35,6 @@ class ApplicationSkill extends BaseSkill {
     this.sessions = new Map();
   }
 
-  // ─── REQUIRED FIELDS for a proper application ──────────────────
-  // These must be collected before we can generate a good draft.
-  _getRequiredFields() {
-    return [
-      { key: 'applicantName', question: 'आपका नाम क्या है? (Aapka naam kya hai?)', hint: 'e.g. Ramesh Kumar' },
-      { key: 'authority', question: 'यह application किसको लिखनी है? जैसे Principal, DM, SDM, BDO, HR आदि।', hint: 'e.g. Principal' },
-      { key: 'subject', question: 'Application का विषय / कारण क्या है? जैसे छुट्टी, शिकायत, प्रमाण पत्र आदि।', hint: 'e.g. 5 din ki chhutti' },
-    ];
-  }
-
   // ─── SESSION HELPERS ─────────────────────────────────────────────
   _getSession(userId) {
     if (!this.sessions.has(userId)) {
@@ -55,6 +45,22 @@ class ApplicationSkill extends BaseSkill {
 
   _clearSession(userId) {
     this.sessions.delete(userId);
+  }
+
+  _inferAuthority(text, params = {}) {
+    if (params.authorityInfo?.title) return params.authorityInfo.title;
+    if (params.authority) return params.authority;
+
+    const lower = (text || '').toLowerCase();
+    const isLeave = /leave|छुट्टी|अवकाश|chhutti|chutti/.test(lower);
+    if (isLeave && /police|पुलिस/.test(lower)) return 'सक्षम अधिकारी / विभागाध्यक्ष, पुलिस विभाग';
+    if (/school|विद्यालय|स्कूल|प्रधानाचार्य/.test(lower)) return 'प्रधानाचार्य';
+    if (/college|महाविद्यालय|कॉलेज/.test(lower)) return 'महाविद्यालय के प्राचार्य';
+    if (/bank|बैंक|शाखा/.test(lower)) return 'शाखा प्रबंधक';
+    if (/bijli|बिजली|electricity|विद्युत/.test(lower)) return 'संबंधित विद्युत विभाग के सक्षम अधिकारी';
+    if (/water|पानी|जल\s*(?:कनेक्शन|निगम)/.test(lower)) return 'संबंधित जल विभाग के सक्षम अधिकारी';
+    if (/police|पुलिस|थाना|थानाध्यक्ष/.test(lower)) return 'थाना प्रभारी';
+    return 'संबंधित विभाग के सक्षम अधिकारी';
   }
 
   // ─── MAIN EXECUTE — Enterprise Conversation Framework ────────────
@@ -78,47 +84,16 @@ class ApplicationSkill extends BaseSkill {
       return this._reply('ठीक है, फिर से शुरू करते हैं। आप किस विषय पर Application लिखवाना चाहते हैं?', { mode: 'reset' });
     }
 
-    const required = this._getRequiredFields();
-
-    // ── COLLECTING PHASE: gather required info one-by-one ─────────
-    if (session.step === 'collecting') {
-      // If this is first message (no data collected yet), extract what we can
-      if (session.questionIndex === 0 && Object.keys(session.data).length === 0) {
-        // Try to extract authority from the first message
-        const msg_lower = msg.toLowerCase();
-        if (msg_lower.includes('principal') || msg_lower.includes('प्रधानाचार्य')) session.data.authority = 'Principal (प्रधानाचार्य)';
-        else if (msg_lower.includes('dm ') || msg_lower.includes('जिलाधिकारी')) session.data.authority = 'DM (जिलाधिकारी)';
-        else if (msg_lower.includes('sdm') || msg_lower.includes('उपजिलाधिकारी')) session.data.authority = 'SDM (उपजिलाधिकारी)';
-        else if (msg_lower.includes('bdo') || msg_lower.includes('खंड विकास')) session.data.authority = 'BDO (खंड विकास अधिकारी)';
-
-        if (msg_lower.includes('छुट्टी') || msg_lower.includes('leave')) session.data.subject = msg_lower.includes('medical') ? 'Medical Leave (बीमारी के कारण छुट्टी)' : 'Leave Application (अवकाश हेतु आवेदन)';
-        else if (msg_lower.includes('complaint') || msg_lower.includes('शिकायत')) session.data.subject = 'शिकायत पत्र';
-        else if (msg_lower.includes('certificate') || msg_lower.includes('प्रमाण पत्र')) session.data.subject = 'प्रमाण पत्र हेतु आवेदन';
-      } else {
-        // Save the answer to the current question
-        const currentField = required.find(f => !session.data[f.key]);
-        if (currentField) {
-          session.data[currentField.key] = msg;
-        }
-      }
-
-      // Find the next missing required field
-      const nextMissing = required.find(f => !session.data[f.key]);
-      if (nextMissing) {
-        // Ask next question
-        const filledCount = Object.keys(session.data).length;
-        const totalRequired = required.length;
-        const progress = `(${filledCount}/${totalRequired} जानकारी मिली)`;
-        session.questionIndex = filledCount;
-        return this._reply(
-          `${nextMissing.question} ${progress}\n\n💡 उदाहरण: ${nextMissing.hint}`,
-          { mode: 'collecting', conversationState: 'collecting', type: 'question', field: nextMissing.key }
-        );
-      }
-
-      // All required fields collected — move to generation
-      session.step = 'generating';
-    }
+    // Generate on the first turn. Missing identity, rank, address, or exact
+    // dates belong in editable blanks; they must never block a useful draft.
+    const facts = context.userFacts || {};
+    session.data = {
+      applicantName: facts.applicantName || facts.name || '',
+      authority: this._inferAuthority(msg, context.params),
+      subject: msg,
+      extraDetails: msg,
+    };
+    session.step = 'generating';
 
     // ── GENERATION PHASE: all info collected, generate draft ──────
     if (session.step === 'generating') {
@@ -143,6 +118,13 @@ Original Request: ${message}
 
         const processedInput = autoCapitalizeText(enrichedInput);
         let draft = await this._generateApplication(processedInput, authorityInfo, departmentInfo);
+
+        // Do not forward a fragment to the editor. A complete local application
+        // is better than an incomplete model response.
+        if (draft && (draft.length < 180 || !/(सेवा में|To\s*,)/i.test(draft) || !/(विषय|Subject)/i.test(draft))) {
+          console.warn('[ApplicationSkill] Incomplete draft detected — using the complete local template.');
+          draft = null;
+        }
 
         // Clear session after successful generation
         this._clearSession(userIdSafe);
@@ -171,7 +153,7 @@ Original Request: ${message}
       }
 
       // Fallback if AI fails
-      const fallback = this._generateFallbackTemplate(session.data.subject || message, authorityInfo, departmentInfo);
+      const fallback = this._generateFallbackTemplate(session.data.subject || message, authorityInfo, departmentInfo, message);
       this._clearSession(userIdSafe);
       const fallbackTitle = 'प्रार्थना पत्र (Application Template)';
       return this._reply(fallback, {
@@ -266,14 +248,17 @@ Every application MUST follow this exact top-to-bottom layout visually. NEVER ch
 2. ZERO QUESTIONS & PLACEHOLDERS RULE (CRITICAL):
 NEVER ask the user to provide missing information or more details.
 If required information (like applicant name, exact address, amounts, exact dates) is missing, AUTOMATICALLY insert professional blank placeholders (e.g., "[____________________]").
-Always use today's date automatically unless the user specifies otherwise. DO NOT stop the generation process. DO NOT say "Please provide details".
+Always use today's date automatically unless the user specifies otherwise. DO NOT stop the generation process. DO NOT say "Please provide details". Preserve every supplied fact, including leave days, reason, and dates; use blanks only for details the user did not supply.
+
+For leave applications, distinguish an occasion date (such as a wedding date) from the leave period. Mention the occasion date only as the reason. Unless the user explicitly gives the leave start/end dates, write the period as "[आरंभ तिथि] से [समाप्ति तिथि] तक". Never assume leave begins on the wedding/occasion date, even when the user gives a total number of days.
 
 3. AUTHORITY DETECTION ENGINE:
 Detect the correct authority automatically:
 - Tubewell/Panchayat Matter -> BDO (खंड विकास अधिकारी) / Gram Pradhan
 - School/College Matter -> Principal (प्रधानाचार्य)
 - University Matter -> Registrar (कुलसचिव)
-- Police Matter -> SHO / Station House Officer (थानाध्यक्ष / थाना प्रभारी)
+- Police complaint -> SHO / Station House Officer (थानाध्यक्ष / थाना प्रभारी)
+- Leave request by a police employee -> the competent reporting/sanctioning officer in the Police Department; if rank is unknown, use "सक्षम अधिकारी / विभागाध्यक्ष" and leave the applicant's designation blank. Do not address an employee leave request to the SHO by default.
 - Revenue Matter -> Tehsildar (तहसीलदार)
 - Land Matter -> SDM (उपजिलाधिकारी)
 - District Matter -> DM (जिलाधिकारी)
@@ -326,35 +311,79 @@ Draft the formal application now.`;
     }
   }
 
-  _generateFallbackTemplate(subject, authorityInfo = null, departmentInfo = null) {
+  _generateFallbackTemplate(subject, authorityInfo = null, departmentInfo = null, requestText = '') {
     const today = new Date().toLocaleDateString('hi-IN');
-    const officerLine = authorityInfo ? `श्रीमान ${authorityInfo.title}` : '[अधिकारी का पदनाम / Designation]';
-    const deptLine = departmentInfo ? departmentInfo.name : '[कार्यालय/विभाग का नाम / Department Name]';
+    
+    // Clean up request text to remove command verbs and filler words so the template sounds natural
+    let request = requestText || subject || '';
+    const commandRegex = /(?:likho|likhiye|write|draft|type|banao|generate)?\s*(?:for|ke liye|के लिए|हेतु|पर|बाबत|ko|को)?\s*(?:ek|a|an|एक)?\s*(?:application|letter|prarthna patra|shikayat(?: patra)?|patra|आवेदन(?: पत्र)?|प्रार्थना पत्र|शिकायत(?: पत्र)?|एप्लीकेशन|एप्लिकेशन)\s*(?:of|for|about|on)?\s*(?:likho|likhiye|likh do|type karo|write|draft|banao|taiyar karo|likhe|लिखें|लिखो|बनाएं|बनाओ|लिख दो|तैयार करो|दीजिये|दीजिए|karo)?/gi;
+    
+    request = request.replace(commandRegex, ' ').trim();
+    request = request.replace(/^(mujhe|meri|mere|kripya|please)\s+/gi, '').trim();
+    request = request.replace(/(?:ke liye|के लिए|हेतु|पर|बाबत|ko|को|for|about|on|is|iske|isme)$/gi, '').trim();
+    request = request.replace(/\s+(kare|karen|karo|plz)$/gi, '').trim();
+
+    if (!request || request.length < 2) {
+      request = 'एक आवश्यक कार्य';
+    }
+
+    const lower = (requestText || subject || '').toLowerCase();
+    const isLeave = /leave|छुट्टी|अवकाश|chhutti|chutti/.test(lower);
+    const isPoliceLeave = isLeave && /police|पुलिस/.test(lower);
+    const isWedding = /wedding|marriage|shaadi|शादी|विवाह/.test(lower);
+    const dayMatch = (requestText || subject || '').match(/([0-9०-९]+)\s*(?:दिन|दिवस|days?)\s*(?:की|का|के)?\s*(?:छुट्टी|अवकाश|leave)?/i);
+    const dayCount = dayMatch?.[1] || '[दिनों की संख्या]';
+    const weddingDateMatch = request.match(/([0-9०-९]{1,2}\s*(?:जनवरी|फरवरी|मार्च|अप्रैल|मई|जून|जुलाई|अगस्त|सितंबर|अक्टूबर|नवंबर|नवम्बर|दिसंबर|January|February|March|April|May|June|July|August|September|October|November|December))(?:\s*([0-9]{4}))?/i);
+    const weddingDate = weddingDateMatch
+      ? `${weddingDateMatch[1]}${weddingDateMatch[2] ? ` ${weddingDateMatch[2]}` : ' [वर्ष]'} `
+      : '[विवाह की तिथि]';
+    const deptLine = departmentInfo?.name || (/police|पुलिस/.test(lower) ? 'पुलिस विभाग' : '[कार्यालय / विभाग का नाम]');
+    const officerLine = isPoliceLeave
+      ? 'सक्षम अधिकारी / विभागाध्यक्ष'
+      : (authorityInfo?.title ? `श्रीमान ${authorityInfo.title}` : '[संबंधित विभाग के सक्षम अधिकारी]');
+    const genericSubject = /water|पानी|जल\s*(?:कनेक्शन|निगम)/i.test(lower)
+      ? 'जल कनेक्शन प्रदान करने हेतु प्रार्थना पत्र'
+      : /(?:lost|gum|खो|गुम).*(?:mobile|phone|मोबाइल|फोन)|(?:mobile|phone|मोबाइल|फोन).*(?:lost|gum|खो|गुम)/i.test(lower)
+        ? 'मोबाइल फोन गुम होने की सूचना दर्ज करने हेतु प्रार्थना पत्र'
+        : /aadhaar|aadhar|आधार/i.test(lower)
+          ? 'आधार कार्ड गुम होने के संबंध में प्रार्थना पत्र'
+          : /bank|बैंक/i.test(lower) && /mobile|मोबाइल|फोन/i.test(lower)
+            ? 'पंजीकृत मोबाइल नंबर बदलने हेतु प्रार्थना पत्र'
+            : 'अनुरोध के संबंध में प्रार्थना पत्र';
+    const subjectLine = isLeave
+      ? `${dayCount} दिनों के अवकाश की स्वीकृति हेतु प्रार्थना पत्र`
+      : genericSubject;
+    const body = isLeave
+      ? (isWedding
+        ? `मैं [आवेदक का नाम], [पदनाम] के रूप में ${deptLine} में कार्यरत हूँ। मेरी पुत्री का विवाह ${weddingDate} को निर्धारित है। इस पारिवारिक दायित्व के निर्वहन हेतु मुझे ${dayCount} दिनों का अवकाश चाहिए। अवकाश की प्रस्तावित अवधि [आरंभ तिथि] से [समाप्ति तिथि] तक है।`
+        : `मैं [आवेदक का नाम], [पदनाम] के रूप में ${deptLine} में कार्यरत हूँ। [अवकाश का कारण] के कारण मुझे ${dayCount} दिनों का अवकाश चाहिए। अवकाश की प्रस्तावित अवधि [आरंभ तिथि] से [समाप्ति तिथि] तक है।`)
+      : `मैं [आवेदक का नाम], निवासी [पूरा पता], यह आवेदन ${request} के संबंध में प्रस्तुत कर रहा/रही हूँ। आवश्यक विवरण: [विवरण / संदर्भ संख्या / तिथि]।`;
+
     return `सेवा में,
 
 ${officerLine}
 ${deptLine}
-[शहर/जिला / City/District]
+[कार्यालय / शहर / जिला]
 
-विषय: ${subject} के सन्दर्भ में प्रार्थना पत्र।
+विषय: ${subjectLine}।
 
-महोदय,
+महोदय / महोदया,
 
-सविनय निवेदन है कि मैं [आपका नाम], [पिता/पति का नाम] का निवासी हूँ। मेरा पता [पूरा पता] है।
+सविनय निवेदन है कि ${body}
 
-मैं आपका ध्यान उपरोक्त विषय की ओर आकृष्ट करना चाहता हूँ। (यहाँ अपनी समस्या या अनुरोध का विस्तार से वर्णन करें... ${subject})
+अतः आपसे विनम्र निवेदन है कि उपर्युक्त तथ्यों पर विचार करते हुए ${isLeave ? 'निर्धारित अवधि का अवकाश स्वीकृत' : 'आवश्यक कार्यवाही'} करने की कृपा करें।
 
-अत: आपसे विनम्र निवेदन है कि कृपया मेरी समस्या का जल्द से जल्द निवारण करने की कृपा करें। मैं सदैव आपका आभारी रहूँगा।
-
-सधन्यवाद,
+सधन्यवाद।
 
 दिनांक: ${today}
+स्थान: [स्थान]
 
 भवदीय / प्रार्थी,
-हस्ताक्षर: ___________________
-नाम: _______________________
-पता: _______________________
-मोबाइल: ____________________`;
+हस्ताक्षर: ____________________
+नाम: [आवेदक का नाम]
+पदनाम: [पदनाम]
+पता: [पूरा पता]
+मोबाइल नंबर: [मोबाइल नंबर]`;
   }
 }
 
